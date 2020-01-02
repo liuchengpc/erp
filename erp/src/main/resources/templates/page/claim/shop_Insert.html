@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		.demo{width:350px; margin:100px auto 10px auto;}
+		#g1,#g2{margin-top:50px}
+		.yuan {
+            width: 240px;
+            height: 240px;
+            border: 3px solid gainsboro;
+            overflow: hidden;
+            margin-top:10%;
+            margin-left:0%;
+        }
+        a:hover { 
+        	text-decoration:none;
+        } 
+        a { 
+        	text-decoration:none;
+        } 
+		</style>
+
+		<link rel="stylesheet" th:href="@{/css2/style.css}" type="text/css" />
+	    <link rel="stylesheet" th:href="@{/css/base.css}">
+	    <link rel="stylesheet" th:href="@{/css/reset.css}">
+	    <link rel="stylesheet" th:href="@{/css/store_management.css}">
+	    <link rel="stylesheet" th:href="@{/css/position.css}">
+	    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+	    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+	    <script th:src="@{/js/bootstrap.js}"></script>
+	    
+		<link rel="stylesheet" th:href="@{/css2/jquery.range.css}">
+		<script type="text/javascript" th:src="@{/js2/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js2/jquery.range.js}"></script>
+		<script>
+			$(function(){
+					$('.range-slider').jRange({
+						from: 0, to: 1440, step:30,
+						scale: ['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
+						format: '%s',
+						width: 400,
+						showLabels: true,
+						isRange : true
+					});
+				
+					$("#g2").click(function(){
+						var aa = $(".range-slider").val();
+						alert(aa);
+					});
+				
+			});
+			
+			
+		</script>
+	</head>
+	<body>
+		<div style="height: 515px;width: 240px;margin-left:10%;">
+			<div class="yuan">
+				<div class="tx" style="background-color: whitesmoke;width: 240px;height: 55px;position:absolute;top:30%;font-size: 18px;font-weight:bolder;text-align: center;padding-top: 10px;opacity: 0.5;">
+					<a href="#" style="color: #000000;" id="mt" data-toggle="modal" data-target="#myModal2">上传头像</a>
+				</div>
+				<img id="ima" style="width:100%;height:100%;">
+			</div>
+			<label for="exampleInputName2" style="font-size: 15px;margin-top: 10px;">店铺名称:</label>
+			<input type="text" name="shopname" class="form-control" minlength="1" maxlength="12" id="shopInput" placeholder="请填写店名" style="width:99%;" oncontextmenu="return false;">
+			<label for="exampleInputName2" style="font-size: 6px;color: grey;">格式：最长由12个中文、字母或数字组成</label>
+			<div>
+				<textarea  rows="9" name="introduction" style="resize:none;width: 99%;margin-top:10px;font-size: 12px;" placeholder="店铺简介"></textarea>
+			<div>
+			<div>
+				<label for="exampleInputName2" style="font-size: 10px;color: grey;">格式：最长由100个中文、字母或数字组成</label>
+			</div>
+		</div>
+		
+		<div style="position: absolute;margin-left:260px;margin-top:-531px;width:600px;border: 1px solid gainsboro;">
+			<form class="form-inline">
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 2%;">
+			    <label for="exampleInputName2">联&nbsp&nbsp系&nbsp&nbsp人&nbsp&nbsp</label>
+			    <input type="text" name="contacts" class="form-control" id="exampleInputName2" placeholder="联系人姓名" style="width: 60%;">
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 7%;">
+			    <label for="exampleInputEmail2">手&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp机&nbsp&nbsp</label>
+			    <input type="text" name="phonenumber" class="form-control" id="exampleInputEmail2" placeholder="手机号码" style="width: 60%;">
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 7%;">
+			    <label for="exampleInputEmail2">固&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp话&nbsp&nbsp</label>
+			    <input type="text" name="fixedtelephone" class="form-control" id="exampleInputEmail2" placeholder="固定电话" style="width: 60%;">
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 7%;">
+			    <label for="exampleInputEmail2">营业时间&nbsp&nbsp&nbsp</label>
+				<div style="margin-top: -110px;margin-left: -70px;">
+					<div class="demo" onmouseup="mouseup()">
+						<input class="range-slider" type="hidden" value="480,1320"/>
+					</div>
+				</div>
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 7%;">
+			    <input class="col-md-6" name="starttime" type="text" readonly="readonly" id="one1" style="width: 100px;margin-left: 20%;"/>
+			  	<input class="col-md-6" name="endtime" type="text" readonly="readonly" id="two2" style="width: 100px;margin-left: 10%;"/>
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 6%;">
+			    <label for="exampleInputEmail2">地&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp址&nbsp</label>
+				  <div class="form-group" data-toggle="distpicker">
+					<select name="province" data-province="---- 选择省 ----" style="margin-right:5px;margin-left:5px;border: 1px solid gainsboro;"></select>
+					<span>-</span><select name="city" data-city="---- 选择市 ----" style="margin-right:5px;margin-left:10px;border: 1px solid gainsboro;"></select>
+					<span>-</span><select name="region" data-district="---- 选择区 ----" style="margin-left:10px;border: 1px solid gainsboro;"></select>
+				  </div>
+			  </div>
+			  <div class="form-group col-md-12" style="margin-left: 13%;margin-top: 3%;margin-bottom: 2%;">
+			    <input type="text" name="address" class="form-control" id="exampleInputName2" placeholder="详细地址" style="width: 60%;margin-left: 12.5%;">
+			  </div>
+			  	<button type="button" class="btn btn-default col-md-3" style="margin-left: 22.5%;margin-bottom: 2%;margin-top: 1%;">取消</button>
+			    <button type="button" id="xz" class="btn btn-success col-md-3" style="margin-left: 2.5%;margin-bottom: 2%;margin-top: 1%;">新增</button>
+			</form>
+		</div>
+		<!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                        	   上传头像
+                        </h4>
+                    </div>
+                    <div class="modal-body" style="margin-top:-50px;">
+                        <form id="fm">
+							<div class="container" style="margin-left:13% ;">
+							  <div class="imageBox">
+							    <div class="thumbBox" style="border-radius: 150px;"></div>
+							    <div class="spinner" style="display: none">Loading...</div>
+							  </div>
+							  <div class="action"> 
+							    <!-- <input type="file" id="file" style=" width: 200px">-->
+							    <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
+							      <label for="upload-file">上传图像</label>
+							      </a>
+							      <input multiple type="file" class="" name="files2" id="upload-file" />
+							      <input hidden="hidden" id="userid2" name="shopid" type="text" />
+							    </div>
+							    <input type="button" id="btnCrop" data-dismiss="modal" class="Btnsty_peyton" value="裁切">
+							    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+							    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+							  </div>
+							</div>
+						</form>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            提交更改
+                        </button>
+                    </div> -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+
+
+		
+		<script th:src="@{/js2/bootstrap.min.js}"></script>
+		<script th:src="@{/js2/distpicker.data.js}"></script>
+		<script th:src="@{/js2/distpicker.js}"></script>
+		<script th:src="@{/js2/main.js}"></script>
+		<!-- <script type="text/javascript" th:src="@{/js2/jquery.range.js}"></script>
+		<script type="text/javascript" th:src="@{/js2/jquery.min2.js}"></script> -->
+		<script type="text/javascript" th:src="@{/js2/cropbox.js}"></script>
+		<script type="text/javascript">
+			$(function(){
+				onkey();		//键盘监听
+				loading();		//加载事件
+				loadFunction();
+				xz();		//点击新增
+			});
+			
+			var user = JSON.parse(window.sessionStorage.getItem("user"));
+			
+			//随机数 ， 店铺ID
+			function getRandomCode(length) {
+			   if (length > 0) {
+			      var data = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+			      var nums = "";
+			      for (var i = 0; i < length; i++) {
+			         var r = parseInt(Math.random() * 61);
+			         nums += data[r];
+			      }
+			      return nums;
+			   } else {
+			      return false;
+			   }
+			}
+			 
+			
+			function xz(){
+				$("#xz").click(function(){
+					var shopid = getRandomCode(11);
+					alert(shopid);
+					var shop = {
+							shopid : shopid,
+							userid:$("[name=phonenumber]").val(),
+							shopname : $("[name=shopname]").val(),
+							introduction : $("[name=introduction]").val(),
+							contacts : $("[name=contacts]").val(),
+							phonenumber : $("[name=phonenumber]").val(),
+							fixedtelephone : $("[name=fixedtelephone]").val(),
+							starttime : $("[name=starttime]").val(),
+							endtime : $("[name=endtime]").val(),
+							province : $("[name=province]").val(),
+							city : $("[name=city]").val(),
+							region : $("[name=region]").val(),
+							address : $("[name=address]").val()
+					}
+					
+					
+					
+					var code = 0;
+					$.ajax({
+						url:"[[@{/ShopController/insertSelective}]]",
+						type:"post",
+						contentType:"application/json",
+						data:JSON.stringify(shop),
+						success:function(result){
+							if(result.code=="1"){
+								code = 1;
+							}else{
+								alert(result.message);
+							}
+						}
+					});
+					
+					$("#userid2").val(shopid);
+					var formData2 = new FormData($("#fm")[0]);
+					$.ajax({
+						url:"[[@{/ShopController/updateShopImg}]]",
+						type:"post",
+						data:formData2,
+						processData:false,
+						contentType:false,
+						success:function(result2){
+							if(result2=="success"){
+								if(code=="1"){
+									alert("新增成功！");
+									history.back(-1);
+								}
+							}else{
+								
+							}
+						}
+					});
+				});
+			}
+			
+			function loading(){
+				$("#one1").val($(".pointer-label:eq(0)").html());
+				$("#two2").val($(".pointer-label:eq(1)").html());
+			}
+			
+			function mouseup(event){  //设置鼠标松开时的颜色
+				$("#one1").val($(".pointer-label:eq(0)").html());
+				$("#two2").val($(".pointer-label:eq(1)").html());
+			}
+			
+			
+			function onkey(){
+				$("#shopInput").attr("onkeyup", "if(this.value.length>12){alert(1);}");
+			}
+			
+			function loadFunction(){
+				var options =
+				{
+					thumbBox: '.thumbBox',
+					spinner: '.spinner',
+					imgSrc: ''	//动态查询出的图片路径
+				}
+				var cropper = $('.imageBox').cropbox(options);
+				//默认图片
+				$('#upload-file').on('change', function(){
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						options.imgSrc = e.target.result;
+						cropper = $('.imageBox').cropbox(options);
+					}
+					reader.readAsDataURL(this.files[0]);
+					/* this.files = []; */
+				})
+				$('#btnCrop').on('click', function(){
+					var img = cropper.getDataURL();
+					/* $(".yuan").css("background","url("+img+") no-repeat"); */
+					$("#ima").attr({
+						src:img
+					});
+					$('.cropped').html('');
+				})
+				$('#btnZoomIn').on('click', function(){
+					cropper.zoomIn();
+				})
+				$('#btnZoomOut').on('click', function(){
+					cropper.zoomOut();
+				})
+			}
+		</script>
+	</body>
+</html>

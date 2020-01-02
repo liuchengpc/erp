@@ -1,0 +1,42 @@
+/*盒子居中*/
+.div-in{
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto ;
+}
+/*盒子内容980*/
+.content-in{
+    width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+}
+/*清除浮动*/
+.clearfix::after{
+    /*设置添加的子元素的内容为空*/
+    content: "";
+    /*设置添加的子元素为块级元素*/
+    display: block;
+    /*设置添加的子元素的高度为0*/
+    height: 0;
+    /*设置添加的子元素看不见*/
+    visibility: hidden;
+    /*给添加的子元素设置clear: both;*/
+    clear: both;
+}
+.clearfix{
+    /*兼容IE6*/
+    *zoom:1;
+}
+/*左浮动*/
+.fl{
+    float: left;
+}
+/*右浮动*/
+.fr{
+    float: right;
+}
+
+body{
+    font: 14px/1.5 "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","黑体",Arial,sans-serif;
+    color: #222;
+}

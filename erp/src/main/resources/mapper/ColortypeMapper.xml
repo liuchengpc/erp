@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.ColortypeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Colortype">
+    <id column="colorTypeID" jdbcType="INTEGER" property="colortypeid" />
+    <result column="colorType" jdbcType="VARCHAR" property="colortype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    colorTypeID, colorType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from colortype
+    where colorTypeID = #{colortypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from colortype
+    where colorTypeID = #{colortypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Colortype">
+    insert into colortype (colorTypeID, colorType)
+    values (#{colortypeid,jdbcType=INTEGER}, #{colortype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Colortype">
+    insert into colortype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="colortypeid != null">
+        colorTypeID,
+      </if>
+      <if test="colortype != null">
+        colorType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="colortypeid != null">
+        #{colortypeid,jdbcType=INTEGER},
+      </if>
+      <if test="colortype != null">
+        #{colortype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Colortype">
+    update colortype
+    <set>
+      <if test="colortype != null">
+        colorType = #{colortype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where colorTypeID = #{colortypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Colortype">
+    update colortype
+    set colorType = #{colortype,jdbcType=VARCHAR}
+    where colorTypeID = #{colortypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

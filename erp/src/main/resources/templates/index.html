@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+    	<title>日进斗金商品管理系统</title>
+	   <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"></link>	
+    	<link rel="stylesheet" th:href="@{/css/layui.css}"  media="all">
+    	
+    	<!-- bootstrap树形菜单插件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css">
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+		
+		
+		
+		
+	 
+ 	    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	    <script type="text/javascript" th:src="@{/js/vue.js}"></script>
+	 
+		<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+		<script th:src="@{/layui.js}" charset="utf-8"></script>
+		<script type="text/javascript" th:src="@{/js/dialogs.js}"></script>
+		<script type="text/javascript" th:src="@{/js/vue.js}"></script>
+		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
+
+
+		<script src="/js/bootstrap-treeview.js"></script>
+		
+		<style type="text/css">
+		
+			/* !important 设置样式优先级最高
+			 * 防止数据加载完毕之前出现vue表达式 */
+			
+			[v-cloak] {
+				display: none !important;
+			}
+			.table-hover tbody tr:hover{
+		  		background: yellow;
+		  	}
+	
+			.global-width{margin: 0; padding: 0; width:100%; }
+			/* .global-width>iframe:first-child{margin: 0 0 0 130px;} */
+			a:hover{
+				text-decoration: none;
+			}
+			
+			body {
+			        font-family:Arial,Helvetica,sans-serif;
+			      }
+			 
+			.layui-tab-title {
+			    border-bottom:none;
+			}
+			.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after {
+			    border: none;
+			    border-radius: 0;
+			    border-bottom: none;
+			}
+			a:link, 
+			a:visited,
+			a:hover,
+			a:active 
+			{
+				text-decoration: none;
+			}
+			
+			.layui-tab-title li a{		
+				 width: 192.25px;
+				display: inline-block;
+			    margin-left: 4px;
+			    margin-right: 4px;
+			    line-height: 40px;
+			    border: 1px solid #DDD;
+			    border-radius: 4px;
+			    font-size: 16px;
+			    font-weight: 400;
+			    text-align: center;
+			    text-transform: uppercase;
+			    vertical-align: middle;
+			}
+			.djan{	
+				color: #FFF!important;
+			    background: #44b549!important;
+			    border: 1px solid #44b549!important;
+			    cursor: default;
+			}
+			
+			.layui-tab-title li a:hover{	
+			    border: 1px solid #44b549!important;
+			    cursor: default;
+			}
+			
+			
+		.layui-nav .layui-nav-item a {
+		    color:black;
+		} 
+		.layui-nav .layui-nav-item a:hover {
+		    color:#44b549;
+		}  
+		/* .layui-tab-title li {
+		     	padding: 0 32px !important;
+		} */
+		
+		
+		.container{
+			width: 1320px;
+		}
+		</style>
+  </head>
+  	<body scroll=no topmargin="0" leftmargin="0">	
+		<div class="top container">
+			<div class="row">
+				<ul class="layui-nav" style="background:none;">		
+			    	<a class="logo" th:href="@{#}" style="color: white;display: inline-block; position: relative;top: 3px;margin-right: 310px;">
+			    		<img th:src="@{/images/logo.png}" style="display: inline-block;width: 180px;height: 55px;">
+			    	</a>
+			    	<li class="layui-nav-item zh" style="margin-right: 100px;color:black;cursor: pointer;">
+						账户
+					</li>
+					<li class="layui-nav-item std" style="margin-right: 390px;color:black;cursor: pointer;">
+						实体店
+					</li>	
+					<span  style="margin-right: 20px;">
+						<a th:href="@{javascript:;}" id="dlzh"><!-- <img src="//t.cn/RCzsdCq" class="layui-nav-img" id="dltx">我 --></a>
+					</span>
+					<span >
+						<a th:href="@{javascript:;}" id="tcdl">退出</a>
+					</span>
+				</ul>
+			</div>
+		</div>
+		<hr style="margin: 0;"/>
+		<!--登录 E-->
+		<iframe class="zhst dl" frameBorder="0"  name="top2" id="main52" th:src="@{/topage/login2}" scrolling="no"  width="100%" onload="this.height=this.contentWindow.document.documentElement.scrollHeight"></iframe>
+		<!--登录 S-->
+		
+		<!--账号 E-->
+		<iframe  frameBorder="0" id="main5" name="main5" class="col-lg-10 zhst zhs" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/accountindex}" width="99.9%"  ></iframe>
+		<script type="text/javascript">
+			function reinitIframe5() {           
+			     var iframe = document.getElementById("main5");           
+			     try {               
+			            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+			            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+			            var height = Math.max(bHeight, dHeight);            iframe.height = height;   
+			        } catch (ex) { }       
+			}       
+			window.setInterval("reinitIframe5()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+		</script>
+		<!--账号 S-->
+		
+		
+		
+		
+		<!--实体店 E-->
+		<div class="top container zhst stds">
+			<div class="row">
+				<div>	
+					<!-- 导航选项卡 -->
+					<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+					  <ul class="layui-tab-title">
+					    <li class="layui-this ">
+					     	<a th:href="@{javascript:;}" class="djan" onclick="tzdp()" style="width: 182.25px;" >店铺</a>
+					     </li>
+					     <li >
+					     	<a th:href="@{javascript:;}" onclick="tzsp()" style="width: 182.25px;">商品</a>
+					     </li>
+					     <li >
+					    	<a th:href="@{javascript:;}" class="sy" onclick="tzsy()" style="width: 182.25px;">收银</a>
+					    </li>
+					     <li >
+					     	<a th:href="@{javascript:;}" onclick="tzbb()" style="width: 182.25px;">报表</a>
+					     </li>
+					     <li >
+					     	<a th:href="@{javascript:;}" onclick="tzhy()" style="width: 182.25px;">会员</a>
+					     </li>
+					     <li >
+					     	<a th:href="@{javascript:;}" onclick="tzerp()">ERP管理</a>
+					     </li>
+					  </ul>
+					  	<script type="text/javascript">
+					   		$(".layui-tab-title>li>a").click(function(){
+					   			$(".layui-tab-title>li>a").removeClass("djan")
+					   			$(this).addClass("djan")
+					   		})
+				   		</script>
+				   		
+				   		<!-- 选项卡窗格 -->
+					  <div class="layui-tab-content" style="height: 100px;">
+					    <div class="layui-tab-item layui-show">
+					  
+							<div class="main" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<iframe  frameBorder="0" id="left" name="left" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu}"  width="195px"  target="main"></iframe>
+									<iframe  frameBorder="0" id="main" name="main" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/store_management}" width="99.9%";  ></iframe>
+									<script type="text/javascript">		
+										function tzdp(){
+											var sxs=$("#main").attr("src")
+											$("#main").attr("src",sxs);
+										}
+										function setheight(){
+											var s=$("#main").height();
+											$(".main").height(s);
+											$("#left").height(s);
+										}
+									　	t = setInterval("setheight()", 1);
+									
+										function reinitIframe() {           
+										     var iframe = document.getElementById("main");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIframe()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div>
+					    </div>
+					    <div class="layui-tab-item ">
+					    	<div class="main2" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<iframe  frameBorder="0" id="left2" name="left2" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu2}"  width="195px"  target="main"></iframe>
+									<iframe  frameBorder="0" id="main2" name="main2" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/shop_type}" width="99.9%";  ></iframe>
+									<script type="text/javascript">	
+										function tzsp(){
+											var sxs=$("#main2").attr("src")
+											$("#main2").attr("src",sxs);
+										}
+										function setheight2(){
+											var s=$("#main2").height();
+											$(".main2").height(s);
+											$("#left2").height(s);
+											
+										}
+									　	t = setInterval("setheight2()", 1);
+									
+										function reinitIframe2() {           
+										     var iframe = document.getElementById("main2");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIframe2()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div>
+					    </div>
+					    <div class="layui-tab-item">
+					    	<div class="main3" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<!--<iframe  frameBorder="0" id="left3" name="left3" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu3.html"  width="195px"  target="main"></iframe>-->
+									<iframe  frameBorder="0"  id="main3" name="main3" class="col-lg-12" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/cashRegister_Home}" width="99.9%";  ></iframe>
+									<script type="text/javascript">	
+										function tzsy(){
+											var sxs=$("#main3").attr("src")
+											$("#main3").attr("src",sxs);
+										}
+									 
+									
+										function setheight3(){
+											
+											 
+											var s=$("#main3").height();
+											$(".main3").height(s);
+											$("#left3").height(s);
+											
+											
+										}
+									　	t = setInterval("setheight3()", 1);
+									
+										function reinitIfram3() {           
+											
+											 
+											 
+										     var iframe = document.getElementById("main3");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIfram3()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div>
+					    </div>
+					    <div class="layui-tab-item">
+					    	<div class="main4" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<iframe  frameBorder="0" id="left4" name="left4" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu4}"  width="195px"  target="main"></iframe>
+									<iframe  frameBorder="0" id="main4" name="main4" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/salesStatistics}" width="99.9%";  ></iframe>
+									<script type="text/javascript">	
+										function tzbb(){
+											var sxs=$("#main4").attr("src")
+											$("#main4").attr("src",sxs);
+										}
+										function setheight4(){
+											var s=$("#main4").height();
+											$(".main4").height(s);
+											$("#left4").height(s);
+											
+										}
+									　	t = setInterval("setheight4()", 1);
+									
+										function reinitIfram4() {           
+										     var iframe = document.getElementById("main4");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            
+										            iframe.height = height;
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIfram4()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div>
+					    </div>
+					   <div class="layui-tab-item ">
+					    	<div class="main7" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<iframe  frameBorder="0" id="left7" name="left7" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu5}"  width="195px"  target="main"></iframe>
+									<iframe  frameBorder="0" id="main7" name="main7" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/member_info}" width="99.9%";  ></iframe>
+									<script type="text/javascript">		
+										function tzhy(){
+											var sxs=$("#main7").attr("src")
+											$("#main7").attr("src",sxs);
+										}
+										function setheight7(){
+											var s=$("#main7").height();
+											$(".main7").height(s);
+											$("#left7").height(s);
+											
+										}
+									　	t = setInterval("setheight7()", 1);
+									
+										function reinitIframe7() {           
+										     var iframe = document.getElementById("main7");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIframe7()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div>
+							
+							
+								
+					    </div>
+	
+						<div class="layui-tab-item ">
+					    	<!-- <div class="main8" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+								<div class="global-width ">
+									<iframe  frameBorder="0" id="left8" name="left8" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu7}"  width="195px"  target="main"></iframe>
+									<iframe  frameBorder="0" id="main8" name="main8" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/member_info}" width="99.9%";  ></iframe>
+									<script type="text/javascript">		
+										function tzerp(){
+											var sxs=$("#main8").attr("src")
+											$("#main8").attr("src",sxs);
+										}
+										function setheight8(){
+											var s=$("#main8").height();
+											$(".main8").height(s);
+											$("#left8").height(s);
+										}
+									　	t = setInterval("setheight8()", 1);
+									
+										function reinitIframe8() {           
+										     var iframe = document.getElementById("main8");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIframe8()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+									</script>
+								</div>
+							</div> -->
+							<style>
+								#treeview>.list-group{
+									 min-width: 216.49px !important;
+								}
+								#treeview2>.list-group{
+									 min-width: 216.49px !important;
+								}
+							</style>
+							
+							
+							<div class="container">
+								    <div class="row">
+								        <div>
+								            <!-- <div id="treeview" class="col-lg-2" style="width: auto;padding: 0;"></div> -->
+								             <div id="treeview2" class="col-lg-2" style="width: auto;padding: 0;"></div>
+											<iframe src="/topage/page/claim/member_info" class="col-lg-10" name='main' id="iframepage" frameborder="0" width="100%" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
+								        </div>
+								    </div>
+								</div>
+								<script type="text/javascript">
+								/* 自动适应高度 E */
+								function tzerp(){
+									var sxs=$("#iframepage").attr("src")
+									$("#iframepage").attr("src",sxs);
+								}
+								function reinitIframe8() {           
+										     var iframe = document.getElementById("iframepage");           
+										     try {               
+										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+										        } catch (ex) { }       
+										}       
+										window.setInterval("reinitIframe8()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+								/* 自动适应高度 S */
+								
+								
+								/* $('#treeview').treeview({
+							          color: "#428bca",
+							          expandIcon: 'glyphicon glyphicon-chevron-right',
+							          collapseIcon: 'glyphicon glyphicon-chevron-down',
+							          nodeIcon: 'glyphicon glyphicon-bookmark',
+							          data: defaultData(),
+							          
+							            /*color: "#428bca",
+									     //backColor: "black",背景色
+									    //borderColor:'green',
+									    collapseIcon: "glyphicon glyphicon-minus",//可收缩的节点图标
+									    nodeIcon: "glyphicon glyphicon-user",
+									    //emptyIcon: "glyphicon glyphicon-ban-circle",//设置列表树中没有子节点的节点的图标
+									    expandIcon: "glyphicon glyphicon-plus",  //设置列表上中有子节点的图标
+									    highlightSearchResults:true,//是否高亮搜索结果 默认true
+									    highlightSelected:true,     //是否选中高亮显示
+									    onhoverColor: "#f5f5f5",    //鼠标滑过的颜色
+									    levels: 0 ,                 //设置初始化展开几级菜单 默认为2
+									    selectedIcon: 'glyphicon glyphicon-tint',
+									   // selectedBackColor: 'black',  //设置被选中的节点背景颜色
+									    //selectedColor : 'red',      //设置被选择节点的字体、图标颜色
+									    showBorder:true,                //是否显示边框
+									    showCheckbox:false,              //是否显示多选框
+									    //uncheckedIcon:'',             //设置未选择节点的图标
+									    data:defaultData,
+									    showTags:true,//显示徽章
+							        }); 
+							
+							
+								$('#treeview').on('nodeSelected', function(event, data) {
+									
+							      var arr = $('#treeview').treeview('getSelected');
+							      //var arr2=JSON.stringify(arr);
+							      if (arr[0].src!=undefined) {
+							      	document.getElementById("iframepage").src=arr[0].src;
+							      }
+							      
+							    });*/
+							
+							
+								   //定义树里的数据来源
+							 
+							 
+							
+							  
+							  
+							  
+						
+						         
+							  
+							  
+							
+						
+							  		$(function() {
+						
+						        var defaultData = [
+							    {
+							            text: '共用资料',
+							            href: '#parent1',
+							            tags: ['4'],
+							            nodes: [
+							              {
+							                text: '基本资料',
+							                href: '#child1',
+							                tags: ['2'],
+							                nodes: [
+							                  {
+							                    text: '部门设定',
+							                    href: '#grandchild1',
+							                 	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '项目设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '币别设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '地区设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '学历设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '银行设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '税目设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '发票类型设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '银行账户设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '银行存款账户设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '结算方式设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '人员主文件设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '收入费用类别设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '节假日设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '形事历设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                 
+							                ]
+							              },
+							              {
+							                text: '物料资料',
+							                href: '#child1',
+							                tags: ['2'],
+							                nodes: [
+							                  {
+							                    text: '仓库设定',
+							                    href: '#grandchild1',
+							                 	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '物料类别设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '计量单位设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '物料主文件设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '价格批次设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '物料组合一览表',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '原厂编号查询',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '子件一览表',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                ]
+							              },
+							              {
+							                text: '往来资料',
+							                href: '#child1',
+							                tags: ['2'],
+							                nodes: [
+							                  {
+							                    text: '客户类别设定',
+							                    href: '#grandchild1',
+							                 	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '客户等级设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '洽谈阶段设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '潜在客户主文件设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '客户主文件设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '潜在客户转正式客户',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '供应商类别设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '供应商主文件设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                ]
+							              },
+							              {
+							                text: '科目资料',
+							                href: '#child1',
+							                tags: ['2'],
+							                nodes: [
+							                  {
+							                    text: '科目总类设定',
+							                    href: '#grandchild1',
+							                 	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '科目类别设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: '会计科目设定',
+							                    href: '#grandchild2',
+							                	src:"/topage/page/claim/member_info",
+							                    tags: ['0']
+							                  },
+							                  
+							                ]
+							              },
+							             
+							            ]
+							          },
+							          {
+							            text: '采购管理',
+							            href: '#parent2',
+							            tags: ['0'],
+							            nodes: [
+								              {
+								                text: '基本资料',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '采购请购类型设定',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购入库类型设定',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购订单类型设定',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                ]
+								              },
+								              {
+								                text: '采购作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '采购订单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购询价单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购请购单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购入库单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购退货单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购折让确认单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '采购发票',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              {
+								                text: '分摊作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '采购分摊作业',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              
+								             
+								            ]
+							          },
+							          {
+							            text: '销售管理',
+							            href: '#parent3',
+							             tags: ['0'],
+							             nodes: [
+								              {
+								                text: '基本资料',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '销售订单类型设定',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售出库类型设定',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              {
+								                text: '销售作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '销售报价单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售订单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售出库单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售退货单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售折让确认单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '销售发票',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								              
+								                 
+								                ]
+								              },
+								              {
+								                text: '金税接口',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '销售发票导出',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              
+								             
+								            ]
+							          },
+							          {
+							            text: '库存管理',
+							            href: '#parent4',
+							            tags: ['0'],
+							            nodes: [
+								              {
+								                text: '基本资料',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '入库类型设定',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '出库类型设定',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                
+								                ]
+								              },
+								              {
+								                text: '其他出入库作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '其他入库单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '其他出库单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                
+								                 
+								                ]
+								              },
+								              {
+								                text: '调拨盘点作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '调拨单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '打印盘点卡',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '盘点单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              {
+								                text: '调价作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '调价单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              
+								             
+								            ]
+							          },
+							          {
+							            text: '账款管理',
+							            href: '#parent5'  ,
+							            tags: ['0'],
+							            nodes: [
+								              {
+								                text: '冲款作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '应收冲款单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '应付冲款单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								              {
+								                text: '其他应收付作业',
+								                href: '#child1',
+								                tags: ['2'],
+								                nodes: [
+								                  {
+								                    text: '其他应收单',
+								                    href: '#grandchild1',
+								                 	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                  {
+								                    text: '其他应付单',
+								                    href: '#grandchild2',
+								                	src:"/topage/page/claim/member_info",
+								                    tags: ['0']
+								                  },
+								                 
+								                ]
+								              },
+								             
+								              
+								             
+								            ]
+							          }
+							    ];
+							
+						
+						        
+						       
+						        $('#treeview2').treeview({
+						          levels: 1,
+						          data: defaultData,
+						        });
+						});
+	  	</script>
+					    </div>
+					  
+					  </div>
+				
+					  </div>
+					</div> 		
+				 </div>
+			</div>
+			
+		</div>
+		<!--实体店 S-->
+		
+		<!--页尾 E-->
+		<iframe frameBorder="0" id="top" name="top" th:src="@{/topage/page/common/footer}" scrolling="no"  width="100%" height="90px"></iframe>
+		<!--页尾 S-->
+		
+<script type="text/javascript">
+
+
+	$(".zhst").hide();
+	
+	
+	var user = JSON.parse(window.sessionStorage.getItem("user"));
+	//alert(user.roleid)
+	if(user==null){
+		$(".dl").show();
+	}else{
+		$("#tcdl").show();
+		$(".zhs").show();
+		$("#dlzh").html('<img src="/'+user.headportrait+'" class="layui-nav-img" id="dltx" style="width: 40px;height: 40px;">'+user.userid)//登录人账号和头像
+	}
+	
+	$(".zh").click(function(){
+		var user = JSON.parse(window.sessionStorage.getItem("user"));
+		if(user==null){
+			alert("请先登录！")
+			return false;
+		}
+		$(".zhst").hide();
+		$(".zhs").show();
+	})
+	$(".std").click(function(){
+		var user = JSON.parse(window.sessionStorage.getItem("user"));
+		if(user==null){
+			alert("请先登录！")
+			return false;
+		}
+		$(".zhst").hide();
+		$(".stds").show();
+	})
+	/*$(".sy").click(function(){
+		alert(1)
+		$(".zhst").hide();
+		$(".sys").show();
+	})*/
+</script>
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+  
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0) //用于演示
+        ,content: '内容'+ (Math.random()*1000|0)
+        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+      })
+    }
+    ,tabDelete: function(othis){
+      //删除指定Tab项
+      element.tabDelete('demo', '44'); //删除：“商品管理”
+      
+      
+      othis.addClass('layui-btn-disabled');
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', '22'); //切换到：用户管理
+    }
+  };
+  
+  $('.site-demo-active').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+  
+  //Hash地址的定位
+  var layid = location.hash.replace(/^#test=/, '');
+  element.tabChange('test', layid);
+  
+  element.on('tab(test)', function(elem){
+    location.hash = 'test='+ $(this).attr('lay-id');
+  });
+  
+});
+
+/* //账号测试数据
+var user = {
+		userid:"15012341234",
+		password:"123123",
+		username:"李店长",
+		industry:"服装",
+		phonenumber:"15012341234",
+		headportrait:"/images/pro2.jpg",
+		roleid:1,
+		shopid:12345678001
+}
+window.sessionStorage.setItem("user",JSON.stringify(user)); */
+
+</script>
+
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		$("#tcdl").hide();
+	
+			//获取当前用户
+			 $.ajax({
+					url:"[[@{/UsersController/loginuser}]]",
+					type:"post",
+					data:"",
+					dataType:"json",
+					success:function(res){
+						//alert(res)
+						
+						console.info("获取当前用户！");
+						console.info(res);
+						
+						if(res==null){
+							window.sessionStorage.setItem("user",null);
+							window.top.location.href="[[@{/topage/index}]]";
+						}else{
+							$("#tcdl").show();
+							$("#dlzh").html('<img src="/'+res.headportrait+'" class="layui-nav-img" id="dltx" style="width: 40px;height: 40px;">'+res.userid)//登录人账号和头像
+							window.sessionStorage.setItem("user",JSON.stringify(res));//将用户信息保存到js中的session中
+							$(".zhst").hide();
+							$(".zhs").show();
+						}
+						
+					}
+			}) 
+		</script>
+		<script>
+	
+		
+			 //退出登陆
+			$("#tcdl").click(function() {
+				var user = JSON.parse(window.sessionStorage.getItem("user"));
+			
+				var s=confirm("确定要退出日进斗金管理系统吗？");
+				if(s==true){
+					 $.ajax({
+							url:"[[@{/UsersController/logout}]]",
+							type:"post",
+							data:"id="+user.userid,
+							dataType:"json",
+							success:function(res){
+								window.sessionStorage.setItem("user",null);
+								window.top.location.href="[[@{/topage/index}]]";
+							}
+					}) 
+				}
+				
+			})
+		</script>
+  </body>
+</html>
+

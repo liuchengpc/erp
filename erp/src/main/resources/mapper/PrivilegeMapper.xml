@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.PrivilegeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Privilege">
+    <id column="privilegeID" jdbcType="INTEGER" property="privilegeid" />
+    <result column="privilegeName" jdbcType="VARCHAR" property="privilegename" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="enname" jdbcType="VARCHAR" property="enname" />
+    <result column="column1" jdbcType="VARCHAR" property="column1" />
+    <result column="column2" jdbcType="VARCHAR" property="column2" />
+    <result column="Column3" jdbcType="VARCHAR" property="column3" />
+    <result column="Column4" jdbcType="VARCHAR" property="column4" />
+    <result column="Column5" jdbcType="VARCHAR" property="column5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    privilegeID, privilegeName, path, enname, column1, column2, Column3, Column4, Column5
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from privilege
+    where privilegeID = #{privilegeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from privilege
+    where privilegeID = #{privilegeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Privilege">
+    insert into privilege (privilegeID, privilegeName, path, 
+      enname, column1, column2, 
+      Column3, Column4, Column5
+      )
+    values (#{privilegeid,jdbcType=INTEGER}, #{privilegename,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{enname,jdbcType=VARCHAR}, #{column1,jdbcType=VARCHAR}, #{column2,jdbcType=VARCHAR}, 
+      #{column3,jdbcType=VARCHAR}, #{column4,jdbcType=VARCHAR}, #{column5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Privilege">
+    insert into privilege
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="privilegeid != null">
+        privilegeID,
+      </if>
+      <if test="privilegename != null">
+        privilegeName,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="enname != null">
+        enname,
+      </if>
+      <if test="column1 != null">
+        column1,
+      </if>
+      <if test="column2 != null">
+        column2,
+      </if>
+      <if test="column3 != null">
+        Column3,
+      </if>
+      <if test="column4 != null">
+        Column4,
+      </if>
+      <if test="column5 != null">
+        Column5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="privilegeid != null">
+        #{privilegeid,jdbcType=INTEGER},
+      </if>
+      <if test="privilegename != null">
+        #{privilegename,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="enname != null">
+        #{enname,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null">
+        #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null">
+        #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null">
+        #{column3,jdbcType=VARCHAR},
+      </if>
+      <if test="column4 != null">
+        #{column4,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null">
+        #{column5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Privilege">
+    update privilege
+    <set>
+      <if test="privilegename != null">
+        privilegeName = #{privilegename,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="enname != null">
+        enname = #{enname,jdbcType=VARCHAR},
+      </if>
+      <if test="column1 != null">
+        column1 = #{column1,jdbcType=VARCHAR},
+      </if>
+      <if test="column2 != null">
+        column2 = #{column2,jdbcType=VARCHAR},
+      </if>
+      <if test="column3 != null">
+        Column3 = #{column3,jdbcType=VARCHAR},
+      </if>
+      <if test="column4 != null">
+        Column4 = #{column4,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null">
+        Column5 = #{column5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where privilegeID = #{privilegeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Privilege">
+    update privilege
+    set privilegeName = #{privilegename,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      enname = #{enname,jdbcType=VARCHAR},
+      column1 = #{column1,jdbcType=VARCHAR},
+      column2 = #{column2,jdbcType=VARCHAR},
+      Column3 = #{column3,jdbcType=VARCHAR},
+      Column4 = #{column4,jdbcType=VARCHAR},
+      Column5 = #{column5,jdbcType=VARCHAR}
+    where privilegeID = #{privilegeid,jdbcType=INTEGER}
+  </update>
+</mapper>

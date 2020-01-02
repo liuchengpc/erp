@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.MemberlvMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Memberlv">
+    <id column="memberLvID" jdbcType="INTEGER" property="memberlvid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="discount" jdbcType="REAL" property="discount" />
+    <result column="moneyLv" jdbcType="REAL" property="moneylv" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.apatech.domain.Memberlv">
+    <id column="memberLvID" jdbcType="INTEGER" property="memberlvid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="discount" jdbcType="REAL" property="discount" />
+    <result column="moneyLv" jdbcType="REAL" property="moneylv" />
+    <result column="startmoney" jdbcType="REAL" property="startmoney" />
+  </resultMap>
+  <select id="queryByMemberlvMoney" parameterType="com.apatech.domain.Memberlv" resultMap="BaseResultMap2">
+  	SELECT * FROM memberlv WHERE moneyLv &gt;= #{startmoney,jdbcType=REAL} AND moneyLv &lt;= #{moneylv,jdbcType=REAL} ORDER BY discount ASC LIMIT 0,1
+  </select>
+  <select id="queryMemberLvByMemberLvID" parameterType="com.apatech.domain.Memberlv" resultMap="BaseResultMap">
+  	select * from memberlv where memberLvID = #{memberlvid,jdbcType=INTEGER}
+  </select>
+  <sql id="Base_Column_List">
+    memberLvID, name, discount, moneyLv
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from memberlv
+    where memberLvID = #{memberlvid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from memberlv
+    where memberLvID = #{memberlvid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Memberlv">
+    insert into memberlv (memberLvID, name, discount, 
+      moneyLv)
+    values (#{memberlvid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{discount,jdbcType=REAL}, 
+      #{moneylv,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Memberlv">
+    insert into memberlv
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberlvid != null">
+        memberLvID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="discount != null">
+        discount,
+      </if>
+      <if test="moneylv != null">
+        moneyLv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberlvid != null">
+        #{memberlvid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=REAL},
+      </if>
+      <if test="moneylv != null">
+        #{moneylv,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Memberlv">
+    update memberlv
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=REAL},
+      </if>
+      <if test="moneylv != null">
+        moneyLv = #{moneylv,jdbcType=REAL},
+      </if>
+    </set>
+    where memberLvID = #{memberlvid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Memberlv">
+    update memberlv
+    set name = #{name,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=REAL},
+      moneyLv = #{moneylv,jdbcType=REAL}
+    where memberLvID = #{memberlvid,jdbcType=INTEGER}
+  </update>
+  <select id="queryAllByMemberlvName" resultType="com.apatech.domain.Memberlv" parameterType="String">
+	SELECT * 
+	FROM `memberlv`
+	WHERE `name`=#{0}
+  </select>
+</mapper>

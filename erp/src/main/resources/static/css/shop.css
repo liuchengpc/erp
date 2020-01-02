@@ -1,0 +1,34 @@
+.contentarea{
+    margin: 0 auto;
+    width: 1240px;
+    min-height: 450px;
+    position: relative;
+    border: 1px solid
+    #e7e7eb;
+    margin-bottom: 20px;
+}
+.navlists{
+    background: #f8f8f8 url("../images/accountindex/dian.jpeg") repeat-y 197px 0px;
+    width: 198px;
+    height: 100%;
+    float: left;
+}
+.navlists>li{
+    display: block;
+    border-bottom: 1px solid #e7e7eb;
+    border-right: 1px solid #e7e7eb;
+    text-align: center;
+}
+.current-item{
+    background: #FFF ;
+    border-right: 1px solid #FFF ;
+}
+.current-item>a{
+    color: #44b549 ;
+}
+.navlists li a{
+    display: block ;
+    line-height: 52px ;
+    font-size: 16px ;
+    text-align: center;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+  <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/shop_managerment.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}">
+    
+    <link  rel="stylesheet"  th:href="@{/js/bootstrap-datetimepicker.min.css}"/>      
+    <link href="/css/WdatePicker.css" rel="stylesheet" />
+    
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+     <script th:src="@{/js/bootstrap-table.js}"></script>
+     <script th:src="@{/js/bootstrap-table-zh-CN.js}"></script>
+   
+     <script th:src="@{/js/dialogUtil.js}" ></script>
+     
+     <!-- bootstrap-table-export数据导出---后面两个是Excel2007所需要的js -->
+	<script th:src="@{/js/bootstrap-table-export.js}"></script>
+	<script th:src="@{/js/tableExport.min.js}"></script>
+	<script th:src="@{/js/xlsx.core.min.js}"></script>
+	<script th:src="@{/js/FileSaver.min.js}"></script>
+	 <script src="/js/WdatePicker.js"></script>
+	<!-- 时间空间所需插件 -->
+	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>  
+	<script th:src="@{/js/bootstrap-datetimepicker.zh-CN.js}"></script>  
+	
+	<!-- lhgDialog弹窗提示窗口组件 -->
+    <script src="/js/lhgdialog.min.js"></script>
+</head>
+<body>
+<script>
+
+
+<script>
+    //添加数据
+    function AcceptClick() {
+        var OrderNO = $("#OrderNO").val();
+        var ProductNo = $("#ProductNo").val();
+        var CustName = $("#CustName").val();
+        var CustAddress = $("#CustAddress").val();
+        var CustPhone = $("#CustPhone").val();
+        var CustCompany = $("#CustCompany").val();
+        var CreateDateTime = $("#CreateDateTime").val();
+        var UpdateDateTime = $("#UpdateDateTime").val();
+        $.ajax({
+            url: '/SaleManage/AddDataToDB',
+            type: 'get',
+            contentType: 'application/json;charset=utf-8',
+            data: {
+                'OrderNO': OrderNO, 'ProductNo': ProductNo, 'CustName': CustName,
+                'CustAddress': CustAddress, 'CustPhone': CustPhone, 'CustCompany': CustCompany,
+                'CreateDateTime': CreateDateTime, 'UpdateDateTime': UpdateDateTime
+            },
+            success: function (data) {
+                reflesh();
+                //关闭对话框
+                closeDialog();
+            },
+            error: function (data) {
+                alert('添加数据失败' + data);
+            }
+        })
+    }
+    //刷新
+    function reflesh() {
+        window.parent.refleshBootStrapTable();
+    }
+</script>
+
+
+<div class="table" style="width:100%;margin-top:10px">
+    <table id="tb_SaleOrder_Add" class="table text-nowrap" style="text-align:right;">
+        <tr>
+            <td style="height:35px;line-height:35px">订单编号&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="OrderNO" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">产品名称&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="ProductNo" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">客户姓名&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="CustName" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">客户地址&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="CustAddress" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">客户电话&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="CustPhone" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">客户公司&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="CustCompany" style="width:500px;" /></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">订单创建时间&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="CreateDateTime" style="width:500px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate"/></td>
+        </tr>
+        <tr>
+            <td style="height:35px;line-height:35px">订单更新时间&nbsp;&nbsp;&nbsp;：</td>
+            <td><input type="text" id="UpdateDateTime" style="width:500px;" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" class="Wdate"/></td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    #tb_SaleOrder_Add td input[type=text] {
+        height: 35px;
+        border-radius: 6px;
+        border: 1px #cccccc solid;
+        outline: none
+    }
+</style>
+</body>
+</html>

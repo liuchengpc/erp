@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.SupplierMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Supplier">
+    <id column="supplierID" jdbcType="INTEGER" property="supplierid" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyname" />
+    <result column="companyAbbreviation" jdbcType="VARCHAR" property="companyabbreviation" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="telePhone" jdbcType="VARCHAR" property="telephone" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="street" jdbcType="VARCHAR" property="street" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    supplierID, companyName, companyAbbreviation, contacts, phone, email, telePhone, 
+    province, city, region, street
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplierID = #{supplierid,jdbcType=INTEGER}
+  </select>
+   <select id="selectAll2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM supplier 
+    where 1=1
+   	<if test="province != null and province !=''">
+          and province like '%${province}%'
+      </if>
+   	<if test="city != null and city !=''">
+          and city like '%${city}%'
+      </if>
+   	<if test="region != null and region !=''">
+          and region like '%${region}%'
+      </if>
+      <if test="selectqb != null  and selectqb !=''">
+          and companyname like '%${selectqb}%' 
+          OR companyabbreviation like '%${selectqb}%' 
+          OR contacts like '%${selectqb}%' 
+          OR phone like '%${selectqb}%' 
+          OR email like '%${selectqb}%' 
+          OR telephone like '%${selectqb}%' 
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supplier
+    where supplierID = #{supplierid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Supplier">
+    insert into supplier (supplierID, companyName, companyAbbreviation, 
+      contacts, phone, email, 
+      telePhone, province, city, 
+      region, street)
+    values (#{supplierid,jdbcType=INTEGER}, #{companyname,jdbcType=VARCHAR}, #{companyabbreviation,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{region,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Supplier">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierid != null">
+        supplierID,
+      </if>
+      <if test="companyname != null">
+        companyName,
+      </if>
+      <if test="companyabbreviation != null">
+        companyAbbreviation,
+      </if>
+      <if test="contacts != null">
+        contacts,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="telephone != null">
+        telePhone,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="street != null">
+        street,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierid != null">
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="companyname != null">
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyabbreviation != null">
+        #{companyabbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null">
+        #{street,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Supplier">
+    update supplier
+    <set>
+      <if test="companyname != null">
+        companyName = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyabbreviation != null">
+        companyAbbreviation = #{companyabbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telePhone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null">
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplierID = #{supplierid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Supplier">
+    update supplier
+    set companyName = #{companyname,jdbcType=VARCHAR},
+      companyAbbreviation = #{companyabbreviation,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      telePhone = #{telephone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      street = #{street,jdbcType=VARCHAR}
+    where supplierID = #{supplierid,jdbcType=INTEGER}
+  </update>
+</mapper>

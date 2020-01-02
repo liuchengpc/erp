@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.ShopMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Shop">
+    <id column="shopID" jdbcType="VARCHAR" property="shopid" />
+    <result column="userID" jdbcType="VARCHAR" property="userid" />
+    <result column="shopName" jdbcType="VARCHAR" property="shopname" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="phoneNumber" jdbcType="VARCHAR" property="phonenumber" />
+    <result column="fixedTelePhone" jdbcType="VARCHAR" property="fixedtelephone" />
+    <result column="startTime" jdbcType="VARCHAR" property="starttime" />
+    <result column="endTime" jdbcType="VARCHAR" property="endtime" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="shopImg" jdbcType="VARCHAR" property="shopimg" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.apatech.domain.Role">
+    <id column="roleID" jdbcType="INTEGER" property="roleid" />
+    <result column="roleName" jdbcType="VARCHAR" property="rolename" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shopID, userID, shopName, contacts, phoneNumber, fixedTelePhone, startTime, endTime, 
+    province, city, region, address, introduction, shopImg
+  </sql>
+  <select id="queryshopnameByshopid" parameterType="com.apatech.domain.Shop" resultMap="BaseResultMap">
+  	select * from shop where shopID = #{shopid,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByRoleName" parameterType="com.apatech.domain.Role" resultMap="BaseResultMap2">
+  	SELECT * from role
+  </select>
+  <select id="queryByAll2" parameterType="com.apatech.domain.Shop" resultMap="BaseResultMap">
+  	select * from shop 
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shopID = #{shopid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from shop
+    where shopID = #{shopid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Shop">
+    insert into shop (shopID, userID, shopName, 
+      contacts, phoneNumber, fixedTelePhone, 
+      startTime, endTime, province, 
+      city, region, address, 
+      introduction, shopImg)
+    values (#{shopid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{shopname,jdbcType=VARCHAR}, 
+      #{contacts,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{fixedtelephone,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=VARCHAR}, #{endtime,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{shopimg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Shop">
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        shopID,
+      </if>
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="shopname != null">
+        shopName,
+      </if>
+      <if test="contacts != null">
+        contacts,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="fixedtelephone != null">
+        fixedTelePhone,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="shopimg != null">
+        shopImg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null">
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedtelephone != null">
+        #{fixedtelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimg != null">
+        #{shopimg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="queryByCount" parameterType="com.apatech.domain.Shop" resultType="int">
+  		SELECT COUNT(*) FROM users,shop WHERE users.`shopID` = shop.`shopID` AND 
+  		shop.`shopID` = #{shopid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="queryByShopPage" parameterType="com.apatech.domain.Shop" resultMap="BaseResultMap">
+  		select * from Shop where 1 = 1 
+  		<if test="shopid != null">
+  			and shopID like '%${shopid}%'
+  		</if>
+  		<if test="userid != null">
+  			and userID like '%${userid}%'
+  		</if>
+  		<if test="shopname != null">
+  			and shopName like '%${shopname}%'
+  		</if>
+	 	  <if test="contacts != null">
+	        and contacts like '%${contacts}%'
+	      </if>
+	      <if test="phonenumber != null">
+	        and phoneNumber = #{phonenumber,jdbcType=VARCHAR}
+	      </if>
+	      <if test="fixedtelephone != null">
+	        and fixedTelePhone = #{fixedtelephone,jdbcType=VARCHAR}
+	      </if>
+	      <if test="starttime != null">
+	        and startTime = #{starttime,jdbcType=VARCHAR}
+	      </if>
+	      <if test="endtime != null">
+	        and endTime = #{endtime,jdbcType=VARCHAR}
+	      </if>
+	      <if test="province != null">
+	        and province = #{province,jdbcType=VARCHAR}
+	      </if>
+	      <if test="city != null">
+	        and city = #{city,jdbcType=VARCHAR}
+	      </if>
+	      <if test="region != null">
+	        and region = #{region,jdbcType=VARCHAR}
+	      </if>
+	      <if test="address != null">
+	        and address = #{address,jdbcType=VARCHAR}
+	      </if>
+	      <if test="introduction != null">
+	        and introduction = #{introduction,jdbcType=VARCHAR}
+	      </if>
+	      <if test="shopimg != null">
+	        and shopImg = #{shopimg,jdbcType=VARCHAR}
+	      </if>
+	      
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Shop">
+    update shop
+    <set>
+      <if test="userid != null">
+        userID = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopname != null">
+        shopName = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null">
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedtelephone != null">
+        fixedTelePhone = #{fixedtelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        startTime = #{starttime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null">
+        endTime = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="shopimg != null">
+        shopImg = #{shopimg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopID = #{shopid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Shop">
+    update shop
+    set userID = #{userid,jdbcType=VARCHAR},
+      shopName = #{shopname,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      fixedTelePhone = #{fixedtelephone,jdbcType=VARCHAR},
+      startTime = #{starttime,jdbcType=VARCHAR},
+      endTime = #{endtime,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      shopImg = #{shopimg,jdbcType=VARCHAR}
+    where shopID = #{shopid,jdbcType=VARCHAR}
+  </update>
+</mapper>

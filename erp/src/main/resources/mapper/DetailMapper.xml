@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.DetailMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Detail">
+    <id column="detailID" jdbcType="INTEGER" property="detailid" />
+    <result column="billID" jdbcType="VARCHAR" property="billid" />
+    <result column="commodityDetailID" jdbcType="VARCHAR" property="commoditydetailid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="costPrice" jdbcType="REAL" property="costprice" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="moneyamt" jdbcType="REAL" property="moneyamt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    detailID, billID, commodityDetailID, name, specifications, costPrice, count, moneyamt
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from detail
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from detail
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Detail">
+    insert into detail (detailID, billID, commodityDetailID, 
+      name, specifications, costPrice, 
+      count, moneyamt)
+    values (#{detailid,jdbcType=INTEGER}, #{billid,jdbcType=VARCHAR}, #{commoditydetailid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, #{costprice,jdbcType=REAL}, 
+      #{count,jdbcType=INTEGER}, #{moneyamt,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Detail">
+    insert into detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailid != null">
+        detailID,
+      </if>
+      <if test="billid != null">
+        billID,
+      </if>
+      <if test="commoditydetailid != null">
+        commodityDetailID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="specifications != null">
+        specifications,
+      </if>
+      <if test="costprice != null">
+        costPrice,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="moneyamt != null">
+        moneyamt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detailid != null">
+        #{detailid,jdbcType=INTEGER},
+      </if>
+      <if test="billid != null">
+        #{billid,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailid != null">
+        #{commoditydetailid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="costprice != null">
+        #{costprice,jdbcType=REAL},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="moneyamt != null">
+        #{moneyamt,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  
+  
+    <insert id="insertSelective2" parameterType="com.apatech.domain.Detail">
+     insert into detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailid != null">
+        detailID,
+      </if>
+      <if test="billid != null">
+        billID,
+      </if>
+      <if test="commoditydetailid != null">
+        commodityDetailID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="specifications != null">
+        specifications,
+      </if>
+      <if test="costprice != null">
+        costPrice,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="moneyamt != null">
+        moneyamt,
+      </if>
+    </trim>
+     values
+    <foreach collection="record" item="td" separator=",">
+     ( 
+   	  <if test="td.detailid != null">
+        #{td.detailid,jdbcType=INTEGER},
+      </if>
+      <if test="td.billid != null">
+        #{td.billid,jdbcType=VARCHAR},
+      </if>
+      <if test="td.commoditydetailid != null">
+        #{td.commoditydetailid,jdbcType=VARCHAR},
+      </if>
+      <if test="td.name != null">
+        #{td.name,jdbcType=VARCHAR},
+      </if>
+      <if test="td.specifications != null">
+        #{td.specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="td.costprice != null">
+        #{td.costprice,jdbcType=REAL},
+      </if>
+      <if test="td.count != null">
+        #{td.count,jdbcType=INTEGER},
+      </if>
+      <if test="moneyamt != null">
+        #{td.moneyamt,jdbcType=REAL},
+      </if>
+	)
+    </foreach>;
+  </insert>
+  
+  
+  
+  
+  
+  
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Detail">
+    update detail
+    <set>
+      <if test="billid != null">
+        billID = #{billid,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailid != null">
+        commodityDetailID = #{commoditydetailid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="costprice != null">
+        costPrice = #{costprice,jdbcType=REAL},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="moneyamt != null">
+        moneyamt = #{moneyamt,jdbcType=REAL},
+      </if>
+    </set>
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Detail">
+    update detail
+    set billID = #{billid,jdbcType=VARCHAR},
+      commodityDetailID = #{commoditydetailid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      costPrice = #{costprice,jdbcType=REAL},
+      count = #{count,jdbcType=INTEGER},
+      moneyamt = #{moneyamt,jdbcType=REAL}
+    where detailID = #{detailid,jdbcType=INTEGER}
+  </update>
+</mapper>

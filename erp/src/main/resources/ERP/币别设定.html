@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="renderer" content="webkit">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/layui.css">
+	    <script src="jquery-1.12.4.js"></script>
+	    <script src="layui.js"></script>
+	    <style>
+	    	#app{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-bottom: 15px;
+	    	}
+	    	#app2{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-left: 8%;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div id="app2">
+			<form class="layui-form" action="">
+				<div class="layui-tab">
+				  <ul class="layui-tab-title">
+				    <li class="layui-this">设定</li>
+				  </ul>
+				  <div class="layui-tab-content">
+				    <div class="layui-tab-item layui-show">
+				      <div class="layui-form-item">
+				      		<div class="layui-row">
+							    <div class="layui-col-xs6">
+							      <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+							      	<label class="layui-form-label">币别编号</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR">
+								    </div>
+							      </div>
+							    </div>
+							      </div>
+							    </div>
+							    <div class="layui-col-xs6">
+							      <div class="grid-demo">
+							      	<label class="layui-form-label">币别名称</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元">
+								    </div>
+							      </div>
+							    </div>
+							</div>
+							
+							<div class="layui-row">
+							    <div class="layui-col-xs6">
+							      <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+							      	<label class="layui-form-label">币别简称</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元">
+								    </div>
+							      </div>
+							    </div>
+							      </div>
+							    </div>
+							    <div class="layui-col-xs6" style="padding-bottom: 15px;">
+							      <div class="grid-demo">
+							      	<label class="layui-form-label">英文名称</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR">
+								    </div>
+							      </div>
+							    </div>
+							</div>
+							
+							<div class="layui-row">
+							    <div class="layui-col-xs6">
+							      <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+							      	<label class="layui-form-label">异动日期</label>
+								    <div class="layui-input-block">
+								      <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+								    </div>
+							      </div>
+							    </div>
+							      </div>
+							    </div>
+							    <div class="layui-col-xs6" style="padding-bottom: 15px;">
+							      <div class="grid-demo">
+							      	<label class="layui-form-label">固定汇率</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
+								    </div>
+							      </div>
+							    </div>
+							</div>
+							
+							<div class="layui-row">
+							    <div class="layui-col-xs6" style="padding-left: 1%;">
+							      <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+							      	<label class="layui-form-label">买进汇率</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
+								    </div>
+							      </div>
+							    </div>
+							      </div>
+							    </div>
+							    <div class="layui-col-xs6" style="padding-bottom: 15px;padding-left: 1%;">
+							      <div class="grid-demo">
+							      	<label class="layui-form-label">卖出汇率</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
+								    </div>
+							      </div>
+							    </div>
+							</div>
+								
+							<div class="layui-row">
+							    <div class="layui-col-xs6" style="padding-left: 1%;">
+							      <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+							      	<label class="layui-form-label">单价位数</label>
+								    <div class="layui-input-block">
+								      <select name="modules" lay-verify="required" lay-search="" >
+									      <option value=""></option>
+									      <option value="1">整数</option>
+									      <option value="2">小数一位</option>
+									      <option value="3">小数二位</option>
+									      <option value="4">小数三位</option>
+									      <option value="5">小数四位</option>
+									      <option value="6">小数五位</option>
+									      <option value="7">小数六位</option>
+									      <option value="8">小数七位</option>
+									  </select>
+								    </div>
+							      </div>
+							    </div>
+							      </div>
+							    </div>
+							    <div class="layui-col-xs6" style="padding-bottom: 15px;padding-left: 1%;">
+							      <div class="grid-demo">
+							      	<label class="layui-form-label">千位逗号</label>
+								    <div class="layui-input-block">
+								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="123456789.123">
+								    </div>
+							      </div>
+							    </div>
+							</div>
+				      </div>
+					</div>    
+				  </div>
+				</div>	
+				
+				  <div class="layui-btn-group" style="margin-left:5%;">
+				    <button type="button" class="layui-btn">汇率异动</button>
+				    <button type="button" class="layui-btn ">汇率走势</button>
+				  </div>
+			</form>	
+		</div>
+		
+			<script>
+				layui.use('form', function(){
+				  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+				  
+				  //……
+				  
+				  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+				  //因此你需要在相应的地方，执行下述方法来进行渲染
+				  form.render();
+				}); 
+				
+				layui.use('laydate', function(){
+				  var laydate = layui.laydate;
+				  
+				  //常规用法
+				  laydate.render({
+				    elem: '#test1'
+				  });
+				  
+				});
+			</script>
+	</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="renderer" content="webkit">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/layui.css">
+	    <script src="jquery-1.12.4.js"></script>
+	    <script src="layui.js"></script>
+	    <style>
+	    	#app{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-bottom: 15px;
+	    		padding-left: 5%;
+	    	}
+	    	#app2{
+	    		padding-left: 4%;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div id="app">
+			<form class="layui-form" action="">
+				<div class="layui-row">
+					<div class="layui-form-item">
+						<div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
+					      <div class="grid-demo">
+					      		<div id="1">
+					      			<div class="layui-inline">
+								      <label class="layui-form-label">原厂编号</label>
+								      <div class="layui-input-inline">
+								        <select name="modules" lay-verify="required" lay-search="">
+								          <option value="">大于</option>
+								          <option value="1">等于</option>
+								          <option value="2">大于等于</option>
+								          <option value="3">小于</option>
+								          <option value="4">小于等于</option>
+								          <option value="5">不等于</option>
+								          <option value="6">包含</option>
+								        </select>
+								      </div>
+								    </div>
+					      		</div>
+					      		<div id="2">
+					      			<div class="layui-inline">
+								      <label class="layui-form-label">条件过滤</label>
+								      <div class="layui-input-inline">
+								        <select name="modules" lay-verify="required" lay-search="">
+								          <option value="">客户</option>
+								          <option value="1">供应商</option>
+								        </select>
+								      </div>
+								    </div>
+					      		</div>
+					      </div>
+					    </div>
+					    <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
+					      <div class="grid-demo">
+					      	<div class="layui-input-block">
+						      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						    </div>
+						    
+						    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4" style="padding-top: 5px;">
+						    <div class="grid-demo grid-demo-bg1">
+						      	<div class="layui-form-item" pane="">
+							    <div class="layui-input-block">
+							      <input type="checkbox" name="like1[write]" lay-skin="primary" title="区间" checked="">				
+							    </div>
+							</div>
+						      </div>
+						    </div>
+						    <div class="layui-col-xs6 layui-col-sm6 layui-col-md3" style="padding-top: 5px;">
+						      <div class="grid-demo layui-bg-red">
+						      	<input type="text"name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						      </div>
+						    </div>
+						    <div class="layui-col-xs6 layui-col-sm6 layui-col-md2" style="text-align: center;font-size: 25px;color: gray;">To</div>
+						    <div class="layui-col-xs4 layui-col-sm12 layui-col-md3" style="padding-top: 5px;">
+						      <div class="grid-demo layui-bg-blue">
+						      	<input type="text"name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+						      </div>
+						    </div>
+					      </div>
+					    </div>
+					</div>
+				</div>
+				
+				<div id="app2">
+					<table class="layui-hide" id="test"></table>
+				</div>
+			</form>
+		</div>
+		
+		<script>
+			layui.use('form', function(){
+			  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+			  
+			  //……
+			  
+			  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+			  //因此你需要在相应的地方，执行下述方法来进行渲染
+			  form.render();
+			}); 
+			
+			layui.use('table', function(){
+			  var table = layui.table;
+			  
+			  table.render({
+			    elem: '#test'
+			    ,url:'/demo/table/user/'
+			    ,cellMinWidth: 60 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+			    ,cols: [[
+			      {field:'id', width:220, title: '(客户编号)'}
+			      ,{field:'username', width:220, title: '(客户简称)'}
+			      ,{field:'sex', width:220, title: '(物料编号)'}
+			      ,{field:'city', width:220, title: '物料名称'}
+				  ,{field:'price', width:220, title: '(规格型号)'}	
+				  ,{field:'price', width:120, title: '(原厂编号)'}
+				  ,{field:'price', width:120, title: '(原厂名称)'}
+				  ,{field:'price', width:120, title: '(原厂规格型号)'}
+				  ,{field:'price', width:120, title: '(备注)'}
+			    ]]
+			  });
+			});
+		</script>
+	</body>
+</html>

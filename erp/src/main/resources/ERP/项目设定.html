@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/layui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <style>
+        #app{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="layui-row">
+            <div class="layui-col-lg12">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">项目编号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">项目名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">英文名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">失效日期</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                        </div>
+                    </div>
+                    <!--<div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">银行类别</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">账款月份</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">采购入库单号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">仓库</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"  class="layui-input">
+                        </div>
+                    </div>-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">备注</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+		layui.use('form', function(){
+		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+		  
+		  //……
+		  
+		  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+		  //因此你需要在相应的地方，执行下述方法来进行渲染
+		  form.render();
+		}); 
+		
+		layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		  //常规用法
+		  laydate.render({
+		    elem: '#test1'
+		  });
+		  
+		});
+	</script>
+</body>
+</html>

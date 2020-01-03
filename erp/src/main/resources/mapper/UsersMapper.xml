@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Users">
+    <id column="userID" jdbcType="VARCHAR" property="userid" />
+    <result column="passWord" jdbcType="VARCHAR" property="password" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="industry" jdbcType="VARCHAR" property="industry" />
+    <result column="phoneNumber" jdbcType="VARCHAR" property="phonenumber" />
+    <result column="headPortrait" jdbcType="VARCHAR" property="headportrait" />
+    <result column="roleID" jdbcType="INTEGER" property="roleid" />
+    <result column="shopID" jdbcType="VARCHAR" property="shopid" />
+  </resultMap>
+  <select id="queryUsersByRoleID" parameterType="com.apatech.domain.Users" resultMap="BaseResultMap">
+  	select * from users where roleID = #{roleid,jdbcType=INTEGER}
+  </select>
+  <sql id="Base_Column_List">
+    userID, passWord, userName, industry, phoneNumber, headPortrait, roleID, shopID
+  </sql>
+  <insert id="insertUser" parameterType="com.apatech.domain.Users">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="password != null">
+        passWord,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="headportrait != null">
+        headPortrait,
+      </if>
+      <if test="roleid != null">
+        roleID,
+      </if>
+      <if test="shopid != null">
+        shopID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="queryUserByCount" parameterType="com.apatech.domain.Users" resultType="int">
+  	select count(*) from users where userID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByUserIDBykey" parameterType="com.apatech.domain.Users" resultMap="BaseResultMap">
+    select * from users where userID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where userID = #{userid,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByUserPage" parameterType="com.apatech.domain.Users" resultMap="BaseResultMap">
+  	select * from users where 1=1 and userID!='admin' 
+  	<if test="userid != null">
+        and userID=#{userid,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null">
+      	and passWord=#{password,jdbcType=VARCHAR}
+    </if>
+    <if test="username != ''">
+     	and userName like '%${username}%'
+    </if>
+    <if test="industry != null">
+      	and industry=#{industry,jdbcType=VARCHAR}
+    </if>
+    <if test="phonenumber != null">
+      	and phoneNumber=#{phonenumber,jdbcType=VARCHAR}
+    </if>
+    <if test="headportrait != null">
+      	and headPortrait=#{headportrait,jdbcType=VARCHAR}
+    </if>
+    <if test="roleid != 0">
+      	and roleID = #{roleid,jdbcType=INTEGER}
+    </if>
+    <if test="shopid != 0">
+      	and shopID = #{shopid,jdbcType=VARCHAR}
+    </if>
+  </select>
+   <delete id="deleteUser" parameterType="java.lang.String">
+    delete from users where userID = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from users
+    where userID = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Users">
+    insert into users (userID, passWord, userName, 
+      industry, phoneNumber, headPortrait, 
+      roleID, shopID)
+    values (#{userid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{headportrait,jdbcType=VARCHAR}, 
+      #{roleid,jdbcType=INTEGER}, #{shopid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Users">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userID,
+      </if>
+      <if test="password != null">
+        passWord,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="industry != null">
+        industry,
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber,
+      </if>
+      <if test="headportrait != null">
+        headPortrait,
+      </if>
+      <if test="roleid != null">
+        roleID,
+      </if>
+      <if test="shopid != null">
+        shopID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Users">
+    update users
+    <set>
+      <if test="password != null">
+        passWord = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="industry != null">
+        industry = #{industry,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        headPortrait = #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        roleID = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="shopid != null">
+        shopID = #{shopid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userID = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Users">
+    update users
+    set passWord = #{password,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      headPortrait = #{headportrait,jdbcType=VARCHAR},
+      roleID = #{roleid,jdbcType=INTEGER},
+      shopID = #{shopid,jdbcType=VARCHAR}
+    where userID = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>

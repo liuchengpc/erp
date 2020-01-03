@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+    	<title>北大青鸟办公自动化管理系统 - 首页</title>
+ <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/shop_managerment.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}">
+    
+    <link  rel="stylesheet"  th:href="@{/js/bootstrap-datetimepicker.min.css}"/>      
+    <link th:href="@{/css/WdatePicker.css}" rel="stylesheet" />
+    
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+     <script th:src="@{/js/bootstrap-table.js}"></script>
+     <script th:src="@{/js/bootstrap-table-zh-CN.js}"></script>
+   
+     <script th:src="@{/js/dialogUtil.js}" ></script>
+     
+     <!-- bootstrap-table-export数据导出---后面两个是Excel2007所需要的js -->
+	<script th:src="@{/js/bootstrap-table-export.js}"></script>
+	<script th:src="@{/js/tableExport.min.js}"></script>
+	<script th:src="@{/js/xlsx.core.min.js}"></script>
+	<script th:src="@{/js/FileSaver.min.js}"></script>
+	 <script src="/js/WdatePicker.js"></script>
+	<!-- 时间空间所需插件 -->
+	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>  
+	<script th:src="@{/js/bootstrap-datetimepicker.zh-CN.js}"></script>  
+	
+	<!-- lhgDialog弹窗提示窗口组件 -->
+    <script th:src="@{/js/lhgdialog.min.js}"></script>
+  </head>
+	<body >
+	
+
+	<el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+
+<el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  :before-close="handleClose">
+  <span>这是一段信息</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
+  };
+</script>
+	
+	
+	
+	
+	<a class="mzDialog" href="#" data-remote="test.html" data-mtitle="modal1" data-id="m1" data-width="600" data-okEvent="ok()">弹窗demo</a>
+	
+	<!-- 查询 E -->
+	<!-- @{
+	    Layout = "~/Views/Shared/_LayoutBTSTable.cshtml";
+	} -->
+	
+	<!--查询条件-->
+	<div class="panel-body" style="padding-bottom:0px;width:104%;margin-left:-15px">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	            订单管理
+	        </div>
+	        <div style="margin-top:-30px;text-align:right">
+	            <a href="~/Files/ImportTemple.xlsx" style="margin-right:20px">下载导入模板 </a>
+	        </div>
+	        <div class="panel-body">
+	            <div style="margin-top:10px;">
+	                日期：
+	                 <input type="text" id="endDate" style="height:35px;width:100px;margin-left:8px;margin-top:-34px;border-radius: 6px;border: 1px #cccccc solid; outline: none" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+20                 &nbsp; &nbsp;订单编号：<input type="text" id="queryKey" placeholder="请输入订单编号进行查询" style="height:35px;width:170px;margin-left:10px;margin-top:-34px;border-radius: 6px;border: 1px #cccccc solid; outline: none">
+21                 <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_query" class="btn btn-success">查询</button>
+22                 <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_add" class="btn btn-info">添加</button>
+23                 <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_edit" class="btn btn-warning">编辑</button>
+24                 <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_delete" class="btn btn-danger">删除</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	
+	
+	
+	
+	<!--初始化bootstrap-table-->
+	<div style="margin-bottom:-40px;color:red">注释：订单数据</div>
+	<table id="tb_SaleOrder" class="table"></table>
+	
+	<style>
+	    #tb_SaleOrder tbody > tr:hover {
+	        background-color: #449d44;
+	    }
+	
+	    #tb_SaleOrder > thead th {
+	        padding: 0;
+	        margin: 0;
+	        background-color: #d9edf7;
+	    }
+	</style>
+	<script>
+	    //刷新bootstrap-table
+	    function refleshBootStrapTable() {
+	        $("#tb_SaleOrder").bootstrapTable('refresh');
+	    }
+	</script>
+	
+	
+	<!-- 查询 S -->
+	
+	
+	
+	
+	
+	<!-- 1.Bootstrap-table JS结构定义 E 
+		<script type="text/javascript">
+		//初始化
+		var InitTable = function (url) {
+		    //先销毁表格
+		    $('#tb_SaleOrder').bootstrapTable("destroy");
+		    //加载表格
+		    $('#tb_SaleOrder').bootstrapTable({
+		        rowStyle: function (row, index) {//row 表示行数据，object,index为行索引，从0开始
+		            var style = "";
+		            if (row.SignInTime == '' || row.SignOutTime=='') {
+		                style = { css: { 'color': 'red' } };
+		            }
+		            return  style;
+		        },
+		        //searchAlign: 'left',
+		        //search: true,   //显示隐藏搜索框
+		        showHeader: true,     //是否显示列头
+		        //classes: 'table-no-bordered',
+		        showLoading: true,
+		        undefinedText: '',
+		        showFullscreen: true,
+		        toolbarAlign: 'left',
+		        paginationHAlign: 'right',
+		        silent: true,
+		        url: "[[@{/CommodityController/selectAll2}]]",
+		        queryParams : function (params) {
+                    var temp = {
+                   		commoditytypeid:$('#commoditytypeid').val(),
+                   		selectqb:$('#selectqb').val()
+                    };
+                    return temp;
+                },            
+		        method: 'get',                      //请求方式（*）
+		        toolbar: '#toolbar',                //工具按钮用哪个容器
+		        striped: true,                      //是否显示行间隔色
+		        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+		        pagination: true,                   //是否显示分页（*）
+		        sortable: false,                     //是否启用排序
+		        sortOrder: "asc",                   //排序方式
+		        //queryParams: InitTable.queryParams,  //传递参数（*）
+		        sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+		        pageNumber: 1,                       //初始化加载第一页，默认第一页
+		        pageSize :2,						//单页记录数
+             	pageList : [ 2, 4, 6],		//可选择单页记录数           
+		        search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+		        strictSearch: true,
+		        showColumns: true,                  //是否显示所有的列
+		        showRefresh: true,                  //是否显示刷新按钮
+		        minimumCountColumns: 2,             //最少允许的列数
+		        clickToSelect: true,                //是否启用点击选中行
+		        //height: 680,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+		        uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+		        showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+		        cardView: false,                    //是否显示详细视图
+		        detailView: false,                   //是否显示父子表
+		        showExport: true,
+		        //exportDataType: 'all',
+		        exportDataType: "selected",        //导出checkbox选中的行数
+		        paginationLoop: false,             //是否无限循环
+		        columns: [{
+		            checkbox: true
+		        }, {
+		            	title : '类别',
+		            	field : 'commoditytypename',	        	    	
+		                sortable : true,
+		            }, {      	   
+		            	title : '品名',
+     	    	 	field : 'name',	        	    	
+		                sortable : true,
+		                
+		            },  {      	   
+		            	title : '货号/条码',
+     	    	 	field : 'productcodeid',	        	    	
+		                sortable : true,
+		                
+		            }, {      	   
+		            	title : '库存',
+     	    	 	field : 'spkc',
+		                sortable : true,
+		                
+		            }, {      	   
+		            	title : '销售价',
+     	    	 	field : 'price',
+		                sortable : true,
+		                
+		            }, {      	   
+		            	title : '成本价',
+     	    	 	field : 'costprice',
+		                sortable : true,
+		                
+		            }, {
+		            	title : '商品详情',
+     	    	 	field : 'productcodelist',
+		                sortable : true,
+		           }]
+		    });
+		    return InitTable;
+		};
+		</script>
+		<!--  -->
+		
+		   <script type="text/javascript">
+            //初始化Table
+                $('#tb_SaleOrder').bootstrapTable({
+                	url: '[[@{/CommodityController/selectAll2}]]',   //请求后台的URL（*）
+                	 method: 'get',                      //请求方式（*）
+                     striped : true, 					//是否显示行间隔色
+                     pageNumber:1,                       //初始化加载第一页，默认第一页
+                 	pagination : true,					//是否分页
+                 	sidePagination : 'client',			//server:服务器端分页|client：前端分页
+                 	pageSize :1,						//单页记录数
+                 	pageList : [ 1, 2, 3],		//可选择单页记录数
+                 	showRefresh : true,					//刷新按钮                   
+                 	queryParams : function (params) {
+                        var temp = {
+                       		commoditytypeid:$('#commoditytypeid').val(),
+                       		selectqb:$('#selectqb').val()
+                        };
+                        return temp;
+                    },                    				//得到查询条件
+                 	contentType: "application/x-www-form-urlencoded",//一种编码。在post请求的时候需要用到。这里用的get请求，注释掉这句话也能拿到数据,必须要有！！！！
+                     toolbar: '#toolbar',                //工具按钮用哪个容器                
+                     toolbarAlign:'left',				//工具栏对齐方式
+                     buttonsAlign:'right',				//按钮对齐方式
+                     cache: false,                       // 设置为 false 禁用 AJAX 数据缓存， 默认为true,是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                     sortable: true,                    //是否启用排序
+                     sortOrder: "asc",                   //排序方式
+                     sortName: 'id', 					// 要排序的字段
+                     search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                     strictSearch: true,
+                     showColumns: true,                  //是否显示所有的列
+                     minimumCountColumns: 2,             //最少允许的列数
+                     clickToSelect: true,                //是否启用点击选中行
+                     //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                     uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                     showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+                     cardView: false,                    //是否显示详细视图
+                     detailView: false,                  //是否显示父子表
+                     locale:'zh-CN',						//中文支持
+                     paginationLoop: false, //当前页是边界时是否可以继续按   
+                    columns : [{
+                        title:'全选',
+                        field:'state',
+                        checkbox:true,
+                        width:25,
+                        align:'center',
+                        valign:'middle'
+                    },{
+                        field: 'no',
+                        title: '序号',
+                        sortable: true,
+                        align: "center",
+                        width: 40,
+                        formatter: function (value, row, index) {
+                            //获取每页显示的数量
+                            var pageSize=$('#tb_SaleOrder').bootstrapTable('getOptions').pageSize;
+                            //获取当前是第几页
+                            var pageNumber=$('#tb_SaleOrder').bootstrapTable('getOptions').pageNumber;
+                            //返回序号，注意index是从0开始的，所以要加上1
+                            return pageSize * (pageNumber - 1) + index + 1;
+                        }
+                    }, {
+ 		            	title : '类别',
+ 		            	field : 'commoditytypename',	        	    	
+ 		                sortable : true,
+ 		            }, {      	   
+ 		            	title : '品名',
+         	    	 	field : 'name',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            },  {      	   
+ 		            	title : '货号/条码',
+         	    	 	field : 'productcodeid',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '库存',
+         	    	 	field : 'spkc',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '销售价',
+         	    	 	field : 'price',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '成本价',
+         	    	 	field : 'costprice',
+ 		                sortable : true,
+ 		                
+ 		            }, {
+ 		            	title : '商品详情',
+         	    	 	field : 'productcodelist',
+ 		                sortable : true,
+ 		               /* formatter: function (value, row, index) {
+                          
+                           return JSON.stringify(value);
+                       } */
+ 		           }, {
+						/* field:'id',
+						title: '操作',
+						width: 120,
+						align: 'center',
+						valign: 'middle',
+						formatter: actionFormatter */
+						field: 'operator',
+						title: '操作',
+						align: 'center',
+						valign: 'middle',
+						width: 120,
+						// visible: false,
+						formatter: function (value, row, index) {
+ 						    // var sid_code = base64encode(row.sid + '');   //  sid 加密处理
+ 						    // alert(sid_code);
+ 						    return '<a href="#">' + 
+ 						        '<i class="glyphicon glyphicon-eye-open" title="显示"></i> ' + 
+ 						        '<a href="#editProject" data-toggle="modal" title="修改"   data-target="#smModal" href="add.html">' + 
+ 						        '<i class="glyphicon glyphicon-pencil"></i> ' + 
+ 						        '</a>'+
+ 						        '<a href="javascript:void(0)" title="删除">' +
+ 						        '<i class="glyphicon glyphicon-trash text-danger"></i> ' + 
+ 						        '</a>';
+ 						},
+						events: {
+						  'click a[title=删除]': function (e, value, row, index) {
+							  console.info(e)
+							  console.info(value)
+							  console.info(row)
+							  console.info(index)
+							  //alert(row.id)
+						      if(confirm('此操作不可逆，请确认是否删除？')==true){
+						    	 // 获取当前行 				              
+						    	 var id=row.id;
+						    	 $.ajax({
+	 									url:"/skmg/Skmg/deleteByPid",
+	 									type:"post",
+	 									data:"id="+id,
+	 									dataType:"json",						
+	 									success:function(res){	
+	 										console.info("删除：")
+	 										console.info(res);
+											alert(res.message)
+	 										$('#mytable').bootstrapTable('refresh');
+	 									}
+	 							}) 
+						      }
+						  },
+						  'click a[title=修改]': function (e, value, row, index) {
+						      // e.preventDefault();
+						      //alert('click change button');
+						  },
+						}
+		            } ],
+		           onLoadSuccess: function(){ //加载成功时执行
+	        	  	console.info("加载成功");
+	        	  },
+	        	  	onLoadError: function(){ //加载失败时执行
+	        	  	console.info("加载数据失败");
+	        	  },
+		           //>>>>>>>>>>>>>>导出excel表格设置
+	 		   		showExport: phoneOrPc(), //是否显示导出按钮(此方法是自己写的目的是判断终端是电脑还是手机,电脑则返回true,手机返回falsee,手机不显示按钮)
+	 		   		exportDataType: "all", //basic', 'all', 'selected'.
+	 		   		//exportTypes:['excel','xlsx'], //导出类型 默认： ['json', 'xml', 'csv', 'txt', 'sql', 'excel']
+	 		   		//exportButton: $('#btn_export'), //为按钮btn_export 绑定导出事件 自定义导出按钮(可以不用)
+	 		   		exportOptions:{
+		 		   		//ignoreColumn: [0,0], //忽略某一列的索引
+		 		   		fileName: '数据导出', //文件名称设置
+		 		   		worksheetName: 'Sheet1', //表格工作区名称
+		 		   		tableName: '商品数据表',
+		 		   		excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+		 		   		//onMsoNumberFormat: DoOnMsoNumberFormat
+	 		   		}
+		   			//导出excel表格设置<<<<<<<<<<<<<<<<		 
+ 		          
+                });        
+                /*判断终端是手机还是电脑--用于判断文件是否导出(电脑需要导出)*/
+        		function phoneOrPc(){
+        			var sUserAgent = navigator.userAgent.toLowerCase();
+        			var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        			var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        			var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        			var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        			var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        			if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        				//alert("手机")
+        				return false;
+        			} else {
+        				//alert("电脑")
+        				return true;
+        			}
+        		}
+       		</script>
+		<!-- S -->
+		
+		<!--代码的增删改查 E  -->
+		<script type="text/javascript">
+		$(function () {
+		    //初始时间控件
+		  /*   var frstDayDate = GetLocalMonFrstDayDate();
+		    var lastDayDate = GetLocalMonLastDayDate(); 
+		    $("#startDate").val(frstDayDate);
+		    $("#endDate").val(lastDayDate);*/
+
+		  /*   //初始化bootstrap-table参数
+		    var filterParam = "";
+		    var startDate = $("#startDate").val();
+		    var endDate = $("#endDate").val();
+		    url = "[[@{/CommodityController/selectAll2startDate=" + startDate + "&endDate=" + endDate + "&orderNO=" + filterParam + "}]]?";
+		    InitTable(url); */
+
+		    //查询数据
+		    $("#btn_query").click(function () {
+		        var filterParam = $("#queryKey").val();
+		        var startDate = $("#startDate").val();
+		        var endDate = $("#endDate").val();
+		        var url = "/SaleManage/GetOrderList?startDate="+ startDate + "&endDate=" +endDate + "&orderNO=" + filterParam + "";
+		        InitTable(url);
+		    })
+
+		    //添加
+		    $("#btn_add").click(function () {
+		        var url = "[[@{topage/AddForm}]]";
+		        openDialog(url, "AddForm", "添加订单", 645, 1470, function (iframe) {
+		            top.frames[iframe].AcceptClick()
+		        });
+		    }) 
+
+		    //编辑
+		    $("#btn_edit").click(function () {
+		        //获取当前选择行id
+		        var selectedRows = $("#tb_SaleOrder").bootstrapTable('getSelections');
+		        if (selectedRows.length <= 0) {
+		            alert('请选择要编辑的数据');
+		        } else if (selectedRows.length > 1) {
+		            alert('一次只能选择一行数据进行编辑');
+		        } else {
+		            var KeyValue = selectedRows[0].OrderNO;
+		            var url = "/SaleManage/EditForm?KeyValue=" + KeyValue;
+		            openDialog(url, "EditForm", "编辑邮件", 645, 470, function (iframe) {
+		                top.frames[iframe].AcceptClick()
+		            });
+		        }
+		    })
+		    //删除数据
+		    $("#btn_delete").click(function () {
+		        //获取当前选择行id
+		        var selectedRows = $("#tb_SaleOrder").bootstrapTable('getSelections');
+		        if (selectedRows.length <= 0) {
+		            alert('请选择要删除的数据');
+		            return;
+		        }
+		        if (selectedRows.length > 1) {
+		            alert('一次只能选择一行删除');
+		            return;
+		        }
+		        var orderNo = selectedRows[0].OrderNO;
+		        //aja异步请求
+		        $.ajax({
+		            url: '/SaleManage/DelOrder',
+		            type: 'get',
+		            contentType: 'application/json;charset=utf-8',
+		            data: { orderNo: orderNo },
+		            success: function (data) {
+		                //刷新bootstrap-table
+		                $("#tb_SaleOrder").bootstrapTable('refresh');
+		            },
+		            error: function (data) {
+		                alert('数据删除失败' + data);
+		            }
+		        })
+		    })
+
+		    //回车键
+		    document.onkeydown = function (e) {
+		        if (!e) e = window.event; //火狐中是 window.event
+		        if ((e.keyCode || e.which) == 13) {
+		            var query = document.getElementById("btn_query");
+		            query.focus();
+		            query.click();
+		        }
+		    }
+		});
+		</script>
+		<!--代码的增删改查 S  -->
+		
+		<!-- 日期初始化 E -->
+		<script type="text/javascript">
+		//当月第一天所对应的日期 yyyy-mm-dd
+		function GetLocalMonFrstDayDate() {
+		    var now = new Date();
+		    var year = now.getFullYear();//年
+		    var mon = now.getMonth() + 1;//月
+		    if (mon < 10) {
+		        mon = '-0' + mon;
+		    }
+		    var frstDay = "-01"; //日
+		    return year + mon + frstDay;
+		}
+		//当月最后一天所对应的日期 yyyy-mm-dd
+		function GetLocalMonLastDayDate() {
+		    var now = new Date();
+		    var year = now.getFullYear();//年
+		    var mon = now.getMonth() + 1;//月
+		    if (mon < 10) {
+		        mon = '-0' + mon;
+		    }
+		    var LastDay = "-" + GetDayCountInMon(year + mon);
+		    return year + mon + LastDay;
+		}
+		//计算当月对应的最大天数
+		function GetDayCountInMon(YearMon) {
+		    var arr = YearMon.split("-");
+		    var localYear = parseInt(arr[0]);
+		    var localMon = parseInt(arr[1]);
+		    var localDate = new Date(localYear, localMon, 0);
+		    return localDate.getDate();
+		}
+		</script>
+		<!-- 日期初始化 S -->
+		
+		
+		
+	
+		
+		
+		
+		<!-- 弹窗  E-->
+		<script type="text/javascript">
+		
+		/* 弹出对话框（带：确认按钮、取消按钮） */
+		function openDialog(url, _id, _title, _width, _height, callBack) {
+			alert(1)
+		   // Loading(true);
+		    $.dialog({
+		        id: _id,
+		        width: _width,
+		        height: _height ,
+		        max: false,
+		        lock: true,
+		        title: _title,
+		        resize: false,
+		        extendDrag: true,
+		        content: 'url:http://127.0.0.1:8080/' + url,
+		        ok: function () {
+		            callBack(_id);
+		            return false;
+		        },
+		        cancel: true
+		    });
+		}
+		</script>
+		
+		
+		
+		
+		
+		 <script>
+
+    // update表单
+    function update_info(id)
+    {
+        var id = id;
+        //复杂一点的json的另一种形式  
+        var value2 = {"user_id":"123456","username":"coolcooldool"};  
+ 
+ 
+        // $('input[name=username]').removeAttr("readonly");//去除input元素的readonly属性
+         var obj2 = eval(value2);  
+         // alert(obj2);
+
+        // 赋值
+        $("#user_id").val(obj2.user_id);
+        $("#user_name").val(obj2.username);
+        $("#act").val("edit");
+
+        // 将input元素设置为readonly
+        $('#user_id').attr("readonly","readonly")
+
+    }
+
+    
+
+    // 添加入库操作
+    function add_info()
+    {
+        var form_data = $("#form_data").serialize();
+        alert(form_data);
+
+    }
+</script>
+
+
+
+
+
+
+    <!-- 模态框示例（Modal） -->
+	
+		<!-- 弹窗  S-->
+  </body>
+</html>

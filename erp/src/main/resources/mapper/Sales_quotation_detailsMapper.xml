@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Sales_quotation_detailsMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_quotation_details">
+    <id column="sqd_id" jdbcType="VARCHAR" property="sqdId" />
+    <result column="sqd_document_time" jdbcType="DATE" property="sqdDocumentTime" />
+    <result column="sqd_documentnumber" jdbcType="VARCHAR" property="sqdDocumentnumber" />
+    <result column="sqd_delivery_address" jdbcType="VARCHAR" property="sqdDeliveryAddress" />
+    <result column="sot_id" jdbcType="VARCHAR" property="sotId" />
+    <result column="sqd_customerorder" jdbcType="VARCHAR" property="sqdCustomerorder" />
+    <result column="sqd_tax" jdbcType="INTEGER" property="sqdTax" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="sqd_oder_static" jdbcType="INTEGER" property="sqdOderStatic" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="sqd_monograph" jdbcType="VARCHAR" property="sqdMonograph" />
+    <result column="sqd_reviewer" jdbcType="VARCHAR" property="sqdReviewer" />
+    <result column="sqd_ subordinate" jdbcType="VARCHAR" property="sqdSubordinate" />
+    <result column="sqd_ watchword" jdbcType="VARCHAR" property="sqdWatchword" />
+    <result column="sqd_ tailclause" jdbcType="VARCHAR" property="sqdTailclause" />
+    <result column="sqd_ remark" jdbcType="VARCHAR" property="sqdRemark" />
+    <result column="sqd_account_ownership" jdbcType="VARCHAR" property="sqdAccountOwnership" />
+    <result column="sqd_collection_time" jdbcType="DATE" property="sqdCollectionTime" />
+    <result column="sqd_collection_month" jdbcType="DATE" property="sqdCollectionMonth" />
+    <result column="sqd_collection_terms" jdbcType="VARCHAR" property="sqdCollectionTerms" />
+    <result column="sqd_collection_terms_day" jdbcType="VARCHAR" property="sqdCollectionTermsDay" />
+    <result column="sqd_auditing" jdbcType="VARCHAR" property="sqdAuditing" />
+    <result column="sqd_yn" jdbcType="VARCHAR" property="sqdYn" />
+    <result column="sqd_custom1" jdbcType="VARCHAR" property="sqdCustom1" />
+    <result column="sqd_custom2" jdbcType="VARCHAR" property="sqdCustom2" />
+    <result column="sqd_custom3" jdbcType="VARCHAR" property="sqdCustom3" />
+    <result column="sqd_custom4" jdbcType="VARCHAR" property="sqdCustom4" />
+    <result column="sqd_custom5" jdbcType="VARCHAR" property="sqdCustom5" />
+    <result column="sqd_custom6" jdbcType="VARCHAR" property="sqdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sqd_id, sqd_document_time, sqd_documentnumber, sqd_delivery_address, sot_id, sqd_customerorder, 
+    sqd_tax, currency_id, sqd_oder_static, staff_id, team_id, sqd_monograph, sqd_reviewer, 
+    "sqd_ subordinate", "sqd_ watchword", "sqd_ tailclause", "sqd_ remark", sqd_account_ownership, 
+    sqd_collection_time, sqd_collection_month, sqd_collection_terms, sqd_collection_terms_day, 
+    sqd_auditing, sqd_yn, sqd_custom1, sqd_custom2, sqd_custom3, sqd_custom4, sqd_custom5, 
+    sqd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_quotation_details
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_quotation_details
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details (sqd_id, sqd_document_time, sqd_documentnumber, 
+      sqd_delivery_address, sot_id, sqd_customerorder, 
+      sqd_tax, currency_id, sqd_oder_static, 
+      staff_id, team_id, sqd_monograph, 
+      sqd_reviewer, "sqd_ subordinate", "sqd_ watchword", 
+      "sqd_ tailclause", "sqd_ remark", sqd_account_ownership, 
+      sqd_collection_time, sqd_collection_month, sqd_collection_terms, 
+      sqd_collection_terms_day, sqd_auditing, sqd_yn, 
+      sqd_custom1, sqd_custom2, sqd_custom3, 
+      sqd_custom4, sqd_custom5, sqd_custom6
+      )
+    values (#{sqdId,jdbcType=VARCHAR}, #{sqdDocumentTime,jdbcType=DATE}, #{sqdDocumentnumber,jdbcType=VARCHAR}, 
+      #{sqdDeliveryAddress,jdbcType=VARCHAR}, #{sotId,jdbcType=VARCHAR}, #{sqdCustomerorder,jdbcType=VARCHAR}, 
+      #{sqdTax,jdbcType=INTEGER}, #{currencyId,jdbcType=VARCHAR}, #{sqdOderStatic,jdbcType=INTEGER}, 
+      #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{sqdMonograph,jdbcType=VARCHAR}, 
+      #{sqdReviewer,jdbcType=VARCHAR}, #{sqdSubordinate,jdbcType=VARCHAR}, #{sqdWatchword,jdbcType=VARCHAR}, 
+      #{sqdTailclause,jdbcType=VARCHAR}, #{sqdRemark,jdbcType=VARCHAR}, #{sqdAccountOwnership,jdbcType=VARCHAR}, 
+      #{sqdCollectionTime,jdbcType=DATE}, #{sqdCollectionMonth,jdbcType=DATE}, #{sqdCollectionTerms,jdbcType=VARCHAR}, 
+      #{sqdCollectionTermsDay,jdbcType=VARCHAR}, #{sqdAuditing,jdbcType=VARCHAR}, #{sqdYn,jdbcType=VARCHAR}, 
+      #{sqdCustom1,jdbcType=VARCHAR}, #{sqdCustom2,jdbcType=VARCHAR}, #{sqdCustom3,jdbcType=VARCHAR}, 
+      #{sqdCustom4,jdbcType=VARCHAR}, #{sqdCustom5,jdbcType=VARCHAR}, #{sqdCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sqdId != null">
+        sqd_id,
+      </if>
+      <if test="sqdDocumentTime != null">
+        sqd_document_time,
+      </if>
+      <if test="sqdDocumentnumber != null">
+        sqd_documentnumber,
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        sqd_delivery_address,
+      </if>
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="sqdCustomerorder != null">
+        sqd_customerorder,
+      </if>
+      <if test="sqdTax != null">
+        sqd_tax,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="sqdOderStatic != null">
+        sqd_oder_static,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="sqdMonograph != null">
+        sqd_monograph,
+      </if>
+      <if test="sqdReviewer != null">
+        sqd_reviewer,
+      </if>
+      <if test="sqdSubordinate != null">
+        "sqd_ subordinate",
+      </if>
+      <if test="sqdWatchword != null">
+        "sqd_ watchword",
+      </if>
+      <if test="sqdTailclause != null">
+        "sqd_ tailclause",
+      </if>
+      <if test="sqdRemark != null">
+        "sqd_ remark",
+      </if>
+      <if test="sqdAccountOwnership != null">
+        sqd_account_ownership,
+      </if>
+      <if test="sqdCollectionTime != null">
+        sqd_collection_time,
+      </if>
+      <if test="sqdCollectionMonth != null">
+        sqd_collection_month,
+      </if>
+      <if test="sqdCollectionTerms != null">
+        sqd_collection_terms,
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        sqd_collection_terms_day,
+      </if>
+      <if test="sqdAuditing != null">
+        sqd_auditing,
+      </if>
+      <if test="sqdYn != null">
+        sqd_yn,
+      </if>
+      <if test="sqdCustom1 != null">
+        sqd_custom1,
+      </if>
+      <if test="sqdCustom2 != null">
+        sqd_custom2,
+      </if>
+      <if test="sqdCustom3 != null">
+        sqd_custom3,
+      </if>
+      <if test="sqdCustom4 != null">
+        sqd_custom4,
+      </if>
+      <if test="sqdCustom5 != null">
+        sqd_custom5,
+      </if>
+      <if test="sqdCustom6 != null">
+        sqd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sqdId != null">
+        #{sqdId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDocumentTime != null">
+        #{sqdDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="sqdDocumentnumber != null">
+        #{sqdDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sotId != null">
+        #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustomerorder != null">
+        #{sqdCustomerorder,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTax != null">
+        #{sqdTax,jdbcType=INTEGER},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdOderStatic != null">
+        #{sqdOderStatic,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdMonograph != null">
+        #{sqdMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdReviewer != null">
+        #{sqdReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSubordinate != null">
+        #{sqdSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdWatchword != null">
+        #{sqdWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTailclause != null">
+        #{sqdTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdRemark != null">
+        #{sqdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAccountOwnership != null">
+        #{sqdAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTime != null">
+        #{sqdCollectionTime,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionMonth != null">
+        #{sqdCollectionMonth,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionTerms != null">
+        #{sqdCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    <set>
+      <if test="sqdDocumentTime != null">
+        sqd_document_time = #{sqdDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="sqdDocumentnumber != null">
+        sqd_documentnumber = #{sqdDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        sqd_delivery_address = #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sotId != null">
+        sot_id = #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustomerorder != null">
+        sqd_customerorder = #{sqdCustomerorder,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTax != null">
+        sqd_tax = #{sqdTax,jdbcType=INTEGER},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdOderStatic != null">
+        sqd_oder_static = #{sqdOderStatic,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdMonograph != null">
+        sqd_monograph = #{sqdMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdReviewer != null">
+        sqd_reviewer = #{sqdReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSubordinate != null">
+        "sqd_ subordinate" = #{sqdSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdWatchword != null">
+        "sqd_ watchword" = #{sqdWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTailclause != null">
+        "sqd_ tailclause" = #{sqdTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdRemark != null">
+        "sqd_ remark" = #{sqdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAccountOwnership != null">
+        sqd_account_ownership = #{sqdAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTime != null">
+        sqd_collection_time = #{sqdCollectionTime,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionMonth != null">
+        sqd_collection_month = #{sqdCollectionMonth,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionTerms != null">
+        sqd_collection_terms = #{sqdCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        sqd_collection_terms_day = #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    set sqd_document_time = #{sqdDocumentTime,jdbcType=DATE},
+      sqd_documentnumber = #{sqdDocumentnumber,jdbcType=VARCHAR},
+      sqd_delivery_address = #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      sot_id = #{sotId,jdbcType=VARCHAR},
+      sqd_customerorder = #{sqdCustomerorder,jdbcType=VARCHAR},
+      sqd_tax = #{sqdTax,jdbcType=INTEGER},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      sqd_oder_static = #{sqdOderStatic,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      sqd_monograph = #{sqdMonograph,jdbcType=VARCHAR},
+      sqd_reviewer = #{sqdReviewer,jdbcType=VARCHAR},
+      "sqd_ subordinate" = #{sqdSubordinate,jdbcType=VARCHAR},
+      "sqd_ watchword" = #{sqdWatchword,jdbcType=VARCHAR},
+      "sqd_ tailclause" = #{sqdTailclause,jdbcType=VARCHAR},
+      "sqd_ remark" = #{sqdRemark,jdbcType=VARCHAR},
+      sqd_account_ownership = #{sqdAccountOwnership,jdbcType=VARCHAR},
+      sqd_collection_time = #{sqdCollectionTime,jdbcType=DATE},
+      sqd_collection_month = #{sqdCollectionMonth,jdbcType=DATE},
+      sqd_collection_terms = #{sqdCollectionTerms,jdbcType=VARCHAR},
+      sqd_collection_terms_day = #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR}
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_quotation_details">
+    <id column="sqd_id" jdbcType="VARCHAR" property="sqdId" />
+    <result column="sqd_document_time" jdbcType="DATE" property="sqdDocumentTime" />
+    <result column="sqd_documentnumber" jdbcType="VARCHAR" property="sqdDocumentnumber" />
+    <result column="sqd_delivery_address" jdbcType="VARCHAR" property="sqdDeliveryAddress" />
+    <result column="sot_id" jdbcType="VARCHAR" property="sotId" />
+    <result column="sqd_customerorder" jdbcType="VARCHAR" property="sqdCustomerorder" />
+    <result column="sqd_tax" jdbcType="INTEGER" property="sqdTax" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="sqd_oder_static" jdbcType="INTEGER" property="sqdOderStatic" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="sqd_monograph" jdbcType="VARCHAR" property="sqdMonograph" />
+    <result column="sqd_reviewer" jdbcType="VARCHAR" property="sqdReviewer" />
+    <result column="sqd_ subordinate" jdbcType="VARCHAR" property="sqdSubordinate" />
+    <result column="sqd_ watchword" jdbcType="VARCHAR" property="sqdWatchword" />
+    <result column="sqd_ tailclause" jdbcType="VARCHAR" property="sqdTailclause" />
+    <result column="sqd_ remark" jdbcType="VARCHAR" property="sqdRemark" />
+    <result column="sqd_account_ownership" jdbcType="VARCHAR" property="sqdAccountOwnership" />
+    <result column="sqd_collection_time" jdbcType="DATE" property="sqdCollectionTime" />
+    <result column="sqd_collection_month" jdbcType="DATE" property="sqdCollectionMonth" />
+    <result column="sqd_collection_terms" jdbcType="VARCHAR" property="sqdCollectionTerms" />
+    <result column="sqd_collection_terms_day" jdbcType="VARCHAR" property="sqdCollectionTermsDay" />
+    <result column="sqd_auditing" jdbcType="VARCHAR" property="sqdAuditing" />
+    <result column="sqd_yn" jdbcType="VARCHAR" property="sqdYn" />
+    <result column="sqd_custom1" jdbcType="VARCHAR" property="sqdCustom1" />
+    <result column="sqd_custom2" jdbcType="VARCHAR" property="sqdCustom2" />
+    <result column="sqd_custom3" jdbcType="VARCHAR" property="sqdCustom3" />
+    <result column="sqd_custom4" jdbcType="VARCHAR" property="sqdCustom4" />
+    <result column="sqd_custom5" jdbcType="VARCHAR" property="sqdCustom5" />
+    <result column="sqd_custom6" jdbcType="VARCHAR" property="sqdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sqd_id, sqd_document_time, sqd_documentnumber, sqd_delivery_address, sot_id, sqd_customerorder, 
+    sqd_tax, currency_id, sqd_oder_static, staff_id, team_id, sqd_monograph, sqd_reviewer, 
+    "sqd_ subordinate", "sqd_ watchword", "sqd_ tailclause", "sqd_ remark", sqd_account_ownership, 
+    sqd_collection_time, sqd_collection_month, sqd_collection_terms, sqd_collection_terms_day, 
+    sqd_auditing, sqd_yn, sqd_custom1, sqd_custom2, sqd_custom3, sqd_custom4, sqd_custom5, 
+    sqd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_quotation_details
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_quotation_details
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details (sqd_id, sqd_document_time, sqd_documentnumber, 
+      sqd_delivery_address, sot_id, sqd_customerorder, 
+      sqd_tax, currency_id, sqd_oder_static, 
+      staff_id, team_id, sqd_monograph, 
+      sqd_reviewer, "sqd_ subordinate", "sqd_ watchword", 
+      "sqd_ tailclause", "sqd_ remark", sqd_account_ownership, 
+      sqd_collection_time, sqd_collection_month, sqd_collection_terms, 
+      sqd_collection_terms_day, sqd_auditing, sqd_yn, 
+      sqd_custom1, sqd_custom2, sqd_custom3, 
+      sqd_custom4, sqd_custom5, sqd_custom6
+      )
+    values (#{sqdId,jdbcType=VARCHAR}, #{sqdDocumentTime,jdbcType=DATE}, #{sqdDocumentnumber,jdbcType=VARCHAR}, 
+      #{sqdDeliveryAddress,jdbcType=VARCHAR}, #{sotId,jdbcType=VARCHAR}, #{sqdCustomerorder,jdbcType=VARCHAR}, 
+      #{sqdTax,jdbcType=INTEGER}, #{currencyId,jdbcType=VARCHAR}, #{sqdOderStatic,jdbcType=INTEGER}, 
+      #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{sqdMonograph,jdbcType=VARCHAR}, 
+      #{sqdReviewer,jdbcType=VARCHAR}, #{sqdSubordinate,jdbcType=VARCHAR}, #{sqdWatchword,jdbcType=VARCHAR}, 
+      #{sqdTailclause,jdbcType=VARCHAR}, #{sqdRemark,jdbcType=VARCHAR}, #{sqdAccountOwnership,jdbcType=VARCHAR}, 
+      #{sqdCollectionTime,jdbcType=DATE}, #{sqdCollectionMonth,jdbcType=DATE}, #{sqdCollectionTerms,jdbcType=VARCHAR}, 
+      #{sqdCollectionTermsDay,jdbcType=VARCHAR}, #{sqdAuditing,jdbcType=VARCHAR}, #{sqdYn,jdbcType=VARCHAR}, 
+      #{sqdCustom1,jdbcType=VARCHAR}, #{sqdCustom2,jdbcType=VARCHAR}, #{sqdCustom3,jdbcType=VARCHAR}, 
+      #{sqdCustom4,jdbcType=VARCHAR}, #{sqdCustom5,jdbcType=VARCHAR}, #{sqdCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sqdId != null">
+        sqd_id,
+      </if>
+      <if test="sqdDocumentTime != null">
+        sqd_document_time,
+      </if>
+      <if test="sqdDocumentnumber != null">
+        sqd_documentnumber,
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        sqd_delivery_address,
+      </if>
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="sqdCustomerorder != null">
+        sqd_customerorder,
+      </if>
+      <if test="sqdTax != null">
+        sqd_tax,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="sqdOderStatic != null">
+        sqd_oder_static,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="sqdMonograph != null">
+        sqd_monograph,
+      </if>
+      <if test="sqdReviewer != null">
+        sqd_reviewer,
+      </if>
+      <if test="sqdSubordinate != null">
+        "sqd_ subordinate",
+      </if>
+      <if test="sqdWatchword != null">
+        "sqd_ watchword",
+      </if>
+      <if test="sqdTailclause != null">
+        "sqd_ tailclause",
+      </if>
+      <if test="sqdRemark != null">
+        "sqd_ remark",
+      </if>
+      <if test="sqdAccountOwnership != null">
+        sqd_account_ownership,
+      </if>
+      <if test="sqdCollectionTime != null">
+        sqd_collection_time,
+      </if>
+      <if test="sqdCollectionMonth != null">
+        sqd_collection_month,
+      </if>
+      <if test="sqdCollectionTerms != null">
+        sqd_collection_terms,
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        sqd_collection_terms_day,
+      </if>
+      <if test="sqdAuditing != null">
+        sqd_auditing,
+      </if>
+      <if test="sqdYn != null">
+        sqd_yn,
+      </if>
+      <if test="sqdCustom1 != null">
+        sqd_custom1,
+      </if>
+      <if test="sqdCustom2 != null">
+        sqd_custom2,
+      </if>
+      <if test="sqdCustom3 != null">
+        sqd_custom3,
+      </if>
+      <if test="sqdCustom4 != null">
+        sqd_custom4,
+      </if>
+      <if test="sqdCustom5 != null">
+        sqd_custom5,
+      </if>
+      <if test="sqdCustom6 != null">
+        sqd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sqdId != null">
+        #{sqdId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDocumentTime != null">
+        #{sqdDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="sqdDocumentnumber != null">
+        #{sqdDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sotId != null">
+        #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustomerorder != null">
+        #{sqdCustomerorder,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTax != null">
+        #{sqdTax,jdbcType=INTEGER},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdOderStatic != null">
+        #{sqdOderStatic,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdMonograph != null">
+        #{sqdMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdReviewer != null">
+        #{sqdReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSubordinate != null">
+        #{sqdSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdWatchword != null">
+        #{sqdWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTailclause != null">
+        #{sqdTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdRemark != null">
+        #{sqdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAccountOwnership != null">
+        #{sqdAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTime != null">
+        #{sqdCollectionTime,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionMonth != null">
+        #{sqdCollectionMonth,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionTerms != null">
+        #{sqdCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    <set>
+      <if test="sqdDocumentTime != null">
+        sqd_document_time = #{sqdDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="sqdDocumentnumber != null">
+        sqd_documentnumber = #{sqdDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdDeliveryAddress != null">
+        sqd_delivery_address = #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sotId != null">
+        sot_id = #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustomerorder != null">
+        sqd_customerorder = #{sqdCustomerorder,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTax != null">
+        sqd_tax = #{sqdTax,jdbcType=INTEGER},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdOderStatic != null">
+        sqd_oder_static = #{sqdOderStatic,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdMonograph != null">
+        sqd_monograph = #{sqdMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdReviewer != null">
+        sqd_reviewer = #{sqdReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSubordinate != null">
+        "sqd_ subordinate" = #{sqdSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdWatchword != null">
+        "sqd_ watchword" = #{sqdWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdTailclause != null">
+        "sqd_ tailclause" = #{sqdTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdRemark != null">
+        "sqd_ remark" = #{sqdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAccountOwnership != null">
+        sqd_account_ownership = #{sqdAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTime != null">
+        sqd_collection_time = #{sqdCollectionTime,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionMonth != null">
+        sqd_collection_month = #{sqdCollectionMonth,jdbcType=DATE},
+      </if>
+      <if test="sqdCollectionTerms != null">
+        sqd_collection_terms = #{sqdCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCollectionTermsDay != null">
+        sqd_collection_terms_day = #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    set sqd_document_time = #{sqdDocumentTime,jdbcType=DATE},
+      sqd_documentnumber = #{sqdDocumentnumber,jdbcType=VARCHAR},
+      sqd_delivery_address = #{sqdDeliveryAddress,jdbcType=VARCHAR},
+      sot_id = #{sotId,jdbcType=VARCHAR},
+      sqd_customerorder = #{sqdCustomerorder,jdbcType=VARCHAR},
+      sqd_tax = #{sqdTax,jdbcType=INTEGER},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      sqd_oder_static = #{sqdOderStatic,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      sqd_monograph = #{sqdMonograph,jdbcType=VARCHAR},
+      sqd_reviewer = #{sqdReviewer,jdbcType=VARCHAR},
+      "sqd_ subordinate" = #{sqdSubordinate,jdbcType=VARCHAR},
+      "sqd_ watchword" = #{sqdWatchword,jdbcType=VARCHAR},
+      "sqd_ tailclause" = #{sqdTailclause,jdbcType=VARCHAR},
+      "sqd_ remark" = #{sqdRemark,jdbcType=VARCHAR},
+      sqd_account_ownership = #{sqdAccountOwnership,jdbcType=VARCHAR},
+      sqd_collection_time = #{sqdCollectionTime,jdbcType=DATE},
+      sqd_collection_month = #{sqdCollectionMonth,jdbcType=DATE},
+      sqd_collection_terms = #{sqdCollectionTerms,jdbcType=VARCHAR},
+      sqd_collection_terms_day = #{sqdCollectionTermsDay,jdbcType=VARCHAR},
+      sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR}
+    where sqd_id = #{sqdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

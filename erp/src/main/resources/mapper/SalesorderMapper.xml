@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.SalesorderMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Salesorder">
+    <id column="so_id" jdbcType="VARCHAR" property="soId" />
+    <result column="so_document_time" jdbcType="DATE" property="soDocumentTime" />
+    <result column="so_documentnumber" jdbcType="VARCHAR" property="soDocumentnumber" />
+    <result column="so_delivery_address" jdbcType="DOUBLE" property="soDeliveryAddress" />
+    <result column="sot_id" jdbcType="DATE" property="sotId" />
+    <result column="so_customerorder" jdbcType="INTEGER" property="soCustomerorder" />
+    <result column="so_tax" jdbcType="VARCHAR" property="soTax" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="so_oder_static" jdbcType="VARCHAR" property="soOderStatic" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="so_monograph" jdbcType="VARCHAR" property="soMonograph" />
+    <result column="so_reviewer" jdbcType="VARCHAR" property="soReviewer" />
+    <result column="so_ subordinate" jdbcType="VARCHAR" property="soSubordinate" />
+    <result column="so_ watchword" jdbcType="VARCHAR" property="soWatchword" />
+    <result column="so_ tailclause" jdbcType="VARCHAR" property="soTailclause" />
+    <result column="so_ remark" jdbcType="VARCHAR" property="soRemark" />
+    <result column="so_ account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
+    <result column="so_collection_time" jdbcType="VARCHAR" property="soCollectionTime" />
+    <result column="so_collection_month" jdbcType="VARCHAR" property="soCollectionMonth" />
+    <result column="so_collection_terms" jdbcType="VARCHAR" property="soCollectionTerms" />
+    <result column="so_collection_terms_day" jdbcType="VARCHAR" property="soCollectionTermsDay" />
+    <result column="so_auditing" jdbcType="VARCHAR" property="soAuditing" />
+    <result column="so_yn" jdbcType="VARCHAR" property="soYn" />
+    <result column="so_custom1" jdbcType="VARCHAR" property="soCustom1" />
+    <result column="so_custom2" jdbcType="VARCHAR" property="soCustom2" />
+    <result column="so_custom3" jdbcType="VARCHAR" property="soCustom3" />
+    <result column="so_custom4" jdbcType="VARCHAR" property="soCustom4" />
+    <result column="so_custom5" jdbcType="VARCHAR" property="soCustom5" />
+    <result column="so_custom6" jdbcType="VARCHAR" property="soCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    so_id, so_document_time, so_documentnumber, so_delivery_address, sot_id, so_customerorder, 
+    so_tax, currency_id, so_oder_static, staff_id, team_id, so_monograph, so_reviewer, 
+    "so_ subordinate", "so_ watchword", "so_ tailclause", "so_ remark", "so_ account_ownership", 
+    so_collection_time, so_collection_month, so_collection_terms, so_collection_terms_day, 
+    so_auditing, so_yn, so_custom1, so_custom2, so_custom3, so_custom4, so_custom5, so_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salesorder
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from salesorder
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Salesorder">
+    insert into salesorder (so_id, so_document_time, so_documentnumber, 
+      so_delivery_address, sot_id, so_customerorder, 
+      so_tax, currency_id, so_oder_static, 
+      staff_id, team_id, so_monograph, 
+      so_reviewer, "so_ subordinate", "so_ watchword", 
+      "so_ tailclause", "so_ remark", "so_ account_ownership", 
+      so_collection_time, so_collection_month, so_collection_terms, 
+      so_collection_terms_day, so_auditing, so_yn, 
+      so_custom1, so_custom2, so_custom3, 
+      so_custom4, so_custom5, so_custom6
+      )
+    values (#{soId,jdbcType=VARCHAR}, #{soDocumentTime,jdbcType=DATE}, #{soDocumentnumber,jdbcType=VARCHAR}, 
+      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=DATE}, #{soCustomerorder,jdbcType=INTEGER}, 
+      #{soTax,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{soOderStatic,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{soMonograph,jdbcType=VARCHAR}, 
+      #{soReviewer,jdbcType=VARCHAR}, #{soSubordinate,jdbcType=VARCHAR}, #{soWatchword,jdbcType=VARCHAR}, 
+      #{soTailclause,jdbcType=VARCHAR}, #{soRemark,jdbcType=VARCHAR}, #{soAccountOwnership,jdbcType=VARCHAR}, 
+      #{soCollectionTime,jdbcType=VARCHAR}, #{soCollectionMonth,jdbcType=VARCHAR}, #{soCollectionTerms,jdbcType=VARCHAR}, 
+      #{soCollectionTermsDay,jdbcType=VARCHAR}, #{soAuditing,jdbcType=VARCHAR}, #{soYn,jdbcType=VARCHAR}, 
+      #{soCustom1,jdbcType=VARCHAR}, #{soCustom2,jdbcType=VARCHAR}, #{soCustom3,jdbcType=VARCHAR}, 
+      #{soCustom4,jdbcType=VARCHAR}, #{soCustom5,jdbcType=VARCHAR}, #{soCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Salesorder">
+    insert into salesorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="soDocumentTime != null">
+        so_document_time,
+      </if>
+      <if test="soDocumentnumber != null">
+        so_documentnumber,
+      </if>
+      <if test="soDeliveryAddress != null">
+        so_delivery_address,
+      </if>
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="soCustomerorder != null">
+        so_customerorder,
+      </if>
+      <if test="soTax != null">
+        so_tax,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="soOderStatic != null">
+        so_oder_static,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="soMonograph != null">
+        so_monograph,
+      </if>
+      <if test="soReviewer != null">
+        so_reviewer,
+      </if>
+      <if test="soSubordinate != null">
+        "so_ subordinate",
+      </if>
+      <if test="soWatchword != null">
+        "so_ watchword",
+      </if>
+      <if test="soTailclause != null">
+        "so_ tailclause",
+      </if>
+      <if test="soRemark != null">
+        "so_ remark",
+      </if>
+      <if test="soAccountOwnership != null">
+        "so_ account_ownership",
+      </if>
+      <if test="soCollectionTime != null">
+        so_collection_time,
+      </if>
+      <if test="soCollectionMonth != null">
+        so_collection_month,
+      </if>
+      <if test="soCollectionTerms != null">
+        so_collection_terms,
+      </if>
+      <if test="soCollectionTermsDay != null">
+        so_collection_terms_day,
+      </if>
+      <if test="soAuditing != null">
+        so_auditing,
+      </if>
+      <if test="soYn != null">
+        so_yn,
+      </if>
+      <if test="soCustom1 != null">
+        so_custom1,
+      </if>
+      <if test="soCustom2 != null">
+        so_custom2,
+      </if>
+      <if test="soCustom3 != null">
+        so_custom3,
+      </if>
+      <if test="soCustom4 != null">
+        so_custom4,
+      </if>
+      <if test="soCustom5 != null">
+        so_custom5,
+      </if>
+      <if test="soCustom6 != null">
+        so_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="soDocumentTime != null">
+        #{soDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="soDocumentnumber != null">
+        #{soDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="soDeliveryAddress != null">
+        #{soDeliveryAddress,jdbcType=DOUBLE},
+      </if>
+      <if test="sotId != null">
+        #{sotId,jdbcType=DATE},
+      </if>
+      <if test="soCustomerorder != null">
+        #{soCustomerorder,jdbcType=INTEGER},
+      </if>
+      <if test="soTax != null">
+        #{soTax,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="soOderStatic != null">
+        #{soOderStatic,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="soMonograph != null">
+        #{soMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="soReviewer != null">
+        #{soReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="soSubordinate != null">
+        #{soSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="soWatchword != null">
+        #{soWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="soTailclause != null">
+        #{soTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="soRemark != null">
+        #{soRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="soAccountOwnership != null">
+        #{soAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTime != null">
+        #{soCollectionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionMonth != null">
+        #{soCollectionMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTerms != null">
+        #{soCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTermsDay != null">
+        #{soCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="soAuditing != null">
+        #{soAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="soYn != null">
+        #{soYn,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom1 != null">
+        #{soCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom2 != null">
+        #{soCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom3 != null">
+        #{soCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom4 != null">
+        #{soCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom5 != null">
+        #{soCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom6 != null">
+        #{soCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Salesorder">
+    update salesorder
+    <set>
+      <if test="soDocumentTime != null">
+        so_document_time = #{soDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="soDocumentnumber != null">
+        so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="soDeliveryAddress != null">
+        so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+      </if>
+      <if test="sotId != null">
+        sot_id = #{sotId,jdbcType=DATE},
+      </if>
+      <if test="soCustomerorder != null">
+        so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+      </if>
+      <if test="soTax != null">
+        so_tax = #{soTax,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="soOderStatic != null">
+        so_oder_static = #{soOderStatic,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="soMonograph != null">
+        so_monograph = #{soMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="soReviewer != null">
+        so_reviewer = #{soReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="soSubordinate != null">
+        "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="soWatchword != null">
+        "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="soTailclause != null">
+        "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="soRemark != null">
+        "so_ remark" = #{soRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="soAccountOwnership != null">
+        "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTime != null">
+        so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionMonth != null">
+        so_collection_month = #{soCollectionMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTerms != null">
+        so_collection_terms = #{soCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTermsDay != null">
+        so_collection_terms_day = #{soCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="soAuditing != null">
+        so_auditing = #{soAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="soYn != null">
+        so_yn = #{soYn,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom1 != null">
+        so_custom1 = #{soCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom2 != null">
+        so_custom2 = #{soCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom3 != null">
+        so_custom3 = #{soCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom4 != null">
+        so_custom4 = #{soCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom5 != null">
+        so_custom5 = #{soCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom6 != null">
+        so_custom6 = #{soCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Salesorder">
+    update salesorder
+    set so_document_time = #{soDocumentTime,jdbcType=DATE},
+      so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
+      so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+      sot_id = #{sotId,jdbcType=DATE},
+      so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+      so_tax = #{soTax,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      so_oder_static = #{soOderStatic,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      so_monograph = #{soMonograph,jdbcType=VARCHAR},
+      so_reviewer = #{soReviewer,jdbcType=VARCHAR},
+      "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
+      "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
+      "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
+      "so_ remark" = #{soRemark,jdbcType=VARCHAR},
+      "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+      so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
+      so_collection_month = #{soCollectionMonth,jdbcType=VARCHAR},
+      so_collection_terms = #{soCollectionTerms,jdbcType=VARCHAR},
+      so_collection_terms_day = #{soCollectionTermsDay,jdbcType=VARCHAR},
+      so_auditing = #{soAuditing,jdbcType=VARCHAR},
+      so_yn = #{soYn,jdbcType=VARCHAR},
+      so_custom1 = #{soCustom1,jdbcType=VARCHAR},
+      so_custom2 = #{soCustom2,jdbcType=VARCHAR},
+      so_custom3 = #{soCustom3,jdbcType=VARCHAR},
+      so_custom4 = #{soCustom4,jdbcType=VARCHAR},
+      so_custom5 = #{soCustom5,jdbcType=VARCHAR},
+      so_custom6 = #{soCustom6,jdbcType=VARCHAR}
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Salesorder">
+    <id column="so_id" jdbcType="VARCHAR" property="soId" />
+    <result column="so_document_time" jdbcType="DATE" property="soDocumentTime" />
+    <result column="so_documentnumber" jdbcType="VARCHAR" property="soDocumentnumber" />
+    <result column="so_delivery_address" jdbcType="DOUBLE" property="soDeliveryAddress" />
+    <result column="sot_id" jdbcType="DATE" property="sotId" />
+    <result column="so_customerorder" jdbcType="INTEGER" property="soCustomerorder" />
+    <result column="so_tax" jdbcType="VARCHAR" property="soTax" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="so_oder_static" jdbcType="VARCHAR" property="soOderStatic" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="so_monograph" jdbcType="VARCHAR" property="soMonograph" />
+    <result column="so_reviewer" jdbcType="VARCHAR" property="soReviewer" />
+    <result column="so_ subordinate" jdbcType="VARCHAR" property="soSubordinate" />
+    <result column="so_ watchword" jdbcType="VARCHAR" property="soWatchword" />
+    <result column="so_ tailclause" jdbcType="VARCHAR" property="soTailclause" />
+    <result column="so_ remark" jdbcType="VARCHAR" property="soRemark" />
+    <result column="so_ account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
+    <result column="so_collection_time" jdbcType="VARCHAR" property="soCollectionTime" />
+    <result column="so_collection_month" jdbcType="VARCHAR" property="soCollectionMonth" />
+    <result column="so_collection_terms" jdbcType="VARCHAR" property="soCollectionTerms" />
+    <result column="so_collection_terms_day" jdbcType="VARCHAR" property="soCollectionTermsDay" />
+    <result column="so_auditing" jdbcType="VARCHAR" property="soAuditing" />
+    <result column="so_yn" jdbcType="VARCHAR" property="soYn" />
+    <result column="so_custom1" jdbcType="VARCHAR" property="soCustom1" />
+    <result column="so_custom2" jdbcType="VARCHAR" property="soCustom2" />
+    <result column="so_custom3" jdbcType="VARCHAR" property="soCustom3" />
+    <result column="so_custom4" jdbcType="VARCHAR" property="soCustom4" />
+    <result column="so_custom5" jdbcType="VARCHAR" property="soCustom5" />
+    <result column="so_custom6" jdbcType="VARCHAR" property="soCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    so_id, so_document_time, so_documentnumber, so_delivery_address, sot_id, so_customerorder, 
+    so_tax, currency_id, so_oder_static, staff_id, team_id, so_monograph, so_reviewer, 
+    "so_ subordinate", "so_ watchword", "so_ tailclause", "so_ remark", "so_ account_ownership", 
+    so_collection_time, so_collection_month, so_collection_terms, so_collection_terms_day, 
+    so_auditing, so_yn, so_custom1, so_custom2, so_custom3, so_custom4, so_custom5, so_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salesorder
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from salesorder
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Salesorder">
+    insert into salesorder (so_id, so_document_time, so_documentnumber, 
+      so_delivery_address, sot_id, so_customerorder, 
+      so_tax, currency_id, so_oder_static, 
+      staff_id, team_id, so_monograph, 
+      so_reviewer, "so_ subordinate", "so_ watchword", 
+      "so_ tailclause", "so_ remark", "so_ account_ownership", 
+      so_collection_time, so_collection_month, so_collection_terms, 
+      so_collection_terms_day, so_auditing, so_yn, 
+      so_custom1, so_custom2, so_custom3, 
+      so_custom4, so_custom5, so_custom6
+      )
+    values (#{soId,jdbcType=VARCHAR}, #{soDocumentTime,jdbcType=DATE}, #{soDocumentnumber,jdbcType=VARCHAR}, 
+      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=DATE}, #{soCustomerorder,jdbcType=INTEGER}, 
+      #{soTax,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{soOderStatic,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{soMonograph,jdbcType=VARCHAR}, 
+      #{soReviewer,jdbcType=VARCHAR}, #{soSubordinate,jdbcType=VARCHAR}, #{soWatchword,jdbcType=VARCHAR}, 
+      #{soTailclause,jdbcType=VARCHAR}, #{soRemark,jdbcType=VARCHAR}, #{soAccountOwnership,jdbcType=VARCHAR}, 
+      #{soCollectionTime,jdbcType=VARCHAR}, #{soCollectionMonth,jdbcType=VARCHAR}, #{soCollectionTerms,jdbcType=VARCHAR}, 
+      #{soCollectionTermsDay,jdbcType=VARCHAR}, #{soAuditing,jdbcType=VARCHAR}, #{soYn,jdbcType=VARCHAR}, 
+      #{soCustom1,jdbcType=VARCHAR}, #{soCustom2,jdbcType=VARCHAR}, #{soCustom3,jdbcType=VARCHAR}, 
+      #{soCustom4,jdbcType=VARCHAR}, #{soCustom5,jdbcType=VARCHAR}, #{soCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Salesorder">
+    insert into salesorder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="soDocumentTime != null">
+        so_document_time,
+      </if>
+      <if test="soDocumentnumber != null">
+        so_documentnumber,
+      </if>
+      <if test="soDeliveryAddress != null">
+        so_delivery_address,
+      </if>
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="soCustomerorder != null">
+        so_customerorder,
+      </if>
+      <if test="soTax != null">
+        so_tax,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="soOderStatic != null">
+        so_oder_static,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="soMonograph != null">
+        so_monograph,
+      </if>
+      <if test="soReviewer != null">
+        so_reviewer,
+      </if>
+      <if test="soSubordinate != null">
+        "so_ subordinate",
+      </if>
+      <if test="soWatchword != null">
+        "so_ watchword",
+      </if>
+      <if test="soTailclause != null">
+        "so_ tailclause",
+      </if>
+      <if test="soRemark != null">
+        "so_ remark",
+      </if>
+      <if test="soAccountOwnership != null">
+        "so_ account_ownership",
+      </if>
+      <if test="soCollectionTime != null">
+        so_collection_time,
+      </if>
+      <if test="soCollectionMonth != null">
+        so_collection_month,
+      </if>
+      <if test="soCollectionTerms != null">
+        so_collection_terms,
+      </if>
+      <if test="soCollectionTermsDay != null">
+        so_collection_terms_day,
+      </if>
+      <if test="soAuditing != null">
+        so_auditing,
+      </if>
+      <if test="soYn != null">
+        so_yn,
+      </if>
+      <if test="soCustom1 != null">
+        so_custom1,
+      </if>
+      <if test="soCustom2 != null">
+        so_custom2,
+      </if>
+      <if test="soCustom3 != null">
+        so_custom3,
+      </if>
+      <if test="soCustom4 != null">
+        so_custom4,
+      </if>
+      <if test="soCustom5 != null">
+        so_custom5,
+      </if>
+      <if test="soCustom6 != null">
+        so_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="soDocumentTime != null">
+        #{soDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="soDocumentnumber != null">
+        #{soDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="soDeliveryAddress != null">
+        #{soDeliveryAddress,jdbcType=DOUBLE},
+      </if>
+      <if test="sotId != null">
+        #{sotId,jdbcType=DATE},
+      </if>
+      <if test="soCustomerorder != null">
+        #{soCustomerorder,jdbcType=INTEGER},
+      </if>
+      <if test="soTax != null">
+        #{soTax,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="soOderStatic != null">
+        #{soOderStatic,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="soMonograph != null">
+        #{soMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="soReviewer != null">
+        #{soReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="soSubordinate != null">
+        #{soSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="soWatchword != null">
+        #{soWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="soTailclause != null">
+        #{soTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="soRemark != null">
+        #{soRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="soAccountOwnership != null">
+        #{soAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTime != null">
+        #{soCollectionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionMonth != null">
+        #{soCollectionMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTerms != null">
+        #{soCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTermsDay != null">
+        #{soCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="soAuditing != null">
+        #{soAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="soYn != null">
+        #{soYn,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom1 != null">
+        #{soCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom2 != null">
+        #{soCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom3 != null">
+        #{soCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom4 != null">
+        #{soCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom5 != null">
+        #{soCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom6 != null">
+        #{soCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Salesorder">
+    update salesorder
+    <set>
+      <if test="soDocumentTime != null">
+        so_document_time = #{soDocumentTime,jdbcType=DATE},
+      </if>
+      <if test="soDocumentnumber != null">
+        so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="soDeliveryAddress != null">
+        so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+      </if>
+      <if test="sotId != null">
+        sot_id = #{sotId,jdbcType=DATE},
+      </if>
+      <if test="soCustomerorder != null">
+        so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+      </if>
+      <if test="soTax != null">
+        so_tax = #{soTax,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="soOderStatic != null">
+        so_oder_static = #{soOderStatic,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="soMonograph != null">
+        so_monograph = #{soMonograph,jdbcType=VARCHAR},
+      </if>
+      <if test="soReviewer != null">
+        so_reviewer = #{soReviewer,jdbcType=VARCHAR},
+      </if>
+      <if test="soSubordinate != null">
+        "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
+      </if>
+      <if test="soWatchword != null">
+        "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
+      </if>
+      <if test="soTailclause != null">
+        "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
+      </if>
+      <if test="soRemark != null">
+        "so_ remark" = #{soRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="soAccountOwnership != null">
+        "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTime != null">
+        so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionMonth != null">
+        so_collection_month = #{soCollectionMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTerms != null">
+        so_collection_terms = #{soCollectionTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="soCollectionTermsDay != null">
+        so_collection_terms_day = #{soCollectionTermsDay,jdbcType=VARCHAR},
+      </if>
+      <if test="soAuditing != null">
+        so_auditing = #{soAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="soYn != null">
+        so_yn = #{soYn,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom1 != null">
+        so_custom1 = #{soCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom2 != null">
+        so_custom2 = #{soCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom3 != null">
+        so_custom3 = #{soCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom4 != null">
+        so_custom4 = #{soCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom5 != null">
+        so_custom5 = #{soCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="soCustom6 != null">
+        so_custom6 = #{soCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Salesorder">
+    update salesorder
+    set so_document_time = #{soDocumentTime,jdbcType=DATE},
+      so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
+      so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+      sot_id = #{sotId,jdbcType=DATE},
+      so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+      so_tax = #{soTax,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      so_oder_static = #{soOderStatic,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      so_monograph = #{soMonograph,jdbcType=VARCHAR},
+      so_reviewer = #{soReviewer,jdbcType=VARCHAR},
+      "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
+      "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
+      "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
+      "so_ remark" = #{soRemark,jdbcType=VARCHAR},
+      "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+      so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
+      so_collection_month = #{soCollectionMonth,jdbcType=VARCHAR},
+      so_collection_terms = #{soCollectionTerms,jdbcType=VARCHAR},
+      so_collection_terms_day = #{soCollectionTermsDay,jdbcType=VARCHAR},
+      so_auditing = #{soAuditing,jdbcType=VARCHAR},
+      so_yn = #{soYn,jdbcType=VARCHAR},
+      so_custom1 = #{soCustom1,jdbcType=VARCHAR},
+      so_custom2 = #{soCustom2,jdbcType=VARCHAR},
+      so_custom3 = #{soCustom3,jdbcType=VARCHAR},
+      so_custom4 = #{soCustom4,jdbcType=VARCHAR},
+      so_custom5 = #{soCustom5,jdbcType=VARCHAR},
+      so_custom6 = #{soCustom6,jdbcType=VARCHAR}
+    where so_id = #{soId,jdbcType=VARCHAR}
+  </update>
+</mapper>

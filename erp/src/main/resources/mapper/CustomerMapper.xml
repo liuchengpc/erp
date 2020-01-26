@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer">
+    <id column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="customer_easyname" jdbcType="VARCHAR" property="customerEasyname" />
+    <result column="customer_english_name" jdbcType="VARCHAR" property="customerEnglishName" />
+    <result column="customer_charge_person" jdbcType="VARCHAR" property="customerChargePerson" />
+    <result column="customer_account_ownership" jdbcType="VARCHAR" property="customerAccountOwnership" />
+    <result column="customer_type" jdbcType="VARCHAR" property="customerType" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="customer_principalman" jdbcType="VARCHAR" property="customerPrincipalman" />
+    <result column="customer_linkman" jdbcType="VARCHAR" property="customerLinkman" />
+    <result column="customer_linktela" jdbcType="VARCHAR" property="customerLinktela" />
+    <result column="customer_linktelb" jdbcType="VARCHAR" property="customerLinktelb" />
+    <result column="customer_linktelc" jdbcType="VARCHAR" property="customerLinktelc" />
+    <result column="customer_mobilephone" jdbcType="VARCHAR" property="customerMobilephone" />
+    <result column="ada_id" jdbcType="VARCHAR" property="adaId" />
+    <result column="customer_taxcheckno" jdbcType="VARCHAR" property="customerTaxcheckno" />
+    <result column="customer_capitalmoney" jdbcType="REAL" property="customerCapitalmoney" />
+    <result column="customer_job" jdbcType="VARCHAR" property="customerJob" />
+    <result column="customer_email" jdbcType="VARCHAR" property="customerEmail" />
+    <result column="customer_webadd" jdbcType="VARCHAR" property="customerWebadd" />
+    <result column="customer_faxno" jdbcType="VARCHAR" property="customerFaxno" />
+    <result column="customer_cufirstsaleout" jdbcType="DATE" property="customerCufirstsaleout" />
+    <result column="customer_cufirstsalereturn" jdbcType="DATE" property="customerCufirstsalereturn" />
+    <result column="customer_curecentsaleout" jdbcType="DATE" property="customerCurecentsaleout" />
+    <result column="customer_curecentsalereturn" jdbcType="DATE" property="customerCurecentsalereturn" />
+    <result column="customer_curecentvisit" jdbcType="DATE" property="customerCurecentvisit" />
+    <result column="customer_cuordervisit" jdbcType="DATE" property="customerCuordervisit" />
+    <result column="customer_discountpoint" jdbcType="REAL" property="customerDiscountpoint" />
+    <result column="customer_salelv" jdbcType="VARCHAR" property="customerSalelv" />
+    <result column="customer_cuiftax" jdbcType="INTEGER" property="customerCuiftax" />
+    <result column="customer_latentcusno" jdbcType="VARCHAR" property="customerLatentcusno" />
+    <result column="customer_tanddate" jdbcType="DATE" property="customerTanddate" />
+    <result column="endbusinessday" jdbcType="DATE" property="endbusinessday" />
+    <result column="customer_creditmoney" jdbcType="REAL" property="customerCreditmoney" />
+    <result column="customer_residuemonet" jdbcType="REAL" property="customerResiduemonet" />
+    <result column="customer_cuendorderday" jdbcType="DATE" property="customerCuendorderday" />
+    <result column="customer_honestlv" jdbcType="VARCHAR" property="customerHonestlv" />
+    <result column="customer_cufirstcollect" jdbcType="REAL" property="customerCufirstcollect" />
+    <result column="customer_houldcollect" jdbcType="REAL" property="customerHouldcollect" />
+    <result column="customer_cuendcollect" jdbcType="REAL" property="customerCuendcollect" />
+    <result column="cuendshouldcollect" jdbcType="REAL" property="cuendshouldcollect" />
+    <result column="customer_cudecoration" jdbcType="VARCHAR" property="customerCudecoration" />
+    <result column="Receivable_id" jdbcType="VARCHAR" property="receivableId" />
+    <result column="it_id" jdbcType="VARCHAR" property="itId" />
+    <result column="It_Accounts_eceivable_subject" jdbcType="VARCHAR" property="itAccountsEceivableSubject" />
+    <result column="It_deposit_received_subject" jdbcType="VARCHAR" property="itDepositReceivedSubject" />
+    <result column="bank_id" jdbcType="VARCHAR" property="bankId" />
+    <result column="customer_Auditing" jdbcType="VARCHAR" property="customerAuditing" />
+    <result column="customer_yn" jdbcType="VARCHAR" property="customerYn" />
+    <result column="customer_custom1" jdbcType="VARCHAR" property="customerCustom1" />
+    <result column="customer_custom2" jdbcType="VARCHAR" property="customerCustom2" />
+    <result column="customer_custom3" jdbcType="VARCHAR" property="customerCustom3" />
+    <result column="customer_custom4" jdbcType="VARCHAR" property="customerCustom4" />
+    <result column="customer_custom5" jdbcType="VARCHAR" property="customerCustom5" />
+    <result column="customer_custom6" jdbcType="VARCHAR" property="customerCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customer_id, customer_name, customer_easyname, customer_english_name, customer_charge_person, 
+    customer_account_ownership, customer_type, currency_id, customer_principalman, customer_linkman, 
+    customer_linktela, customer_linktelb, customer_linktelc, customer_mobilephone, ada_id, 
+    customer_taxcheckno, customer_capitalmoney, customer_job, customer_email, customer_webadd, 
+    customer_faxno, customer_cufirstsaleout, customer_cufirstsalereturn, customer_curecentsaleout, 
+    customer_curecentsalereturn, customer_curecentvisit, customer_cuordervisit, customer_discountpoint, 
+    customer_salelv, customer_cuiftax, customer_latentcusno, customer_tanddate, endbusinessday, 
+    customer_creditmoney, customer_residuemonet, customer_cuendorderday, customer_honestlv, 
+    customer_cufirstcollect, customer_houldcollect, customer_cuendcollect, cuendshouldcollect, 
+    customer_cudecoration, Receivable_id, it_id, It_Accounts_eceivable_subject, It_deposit_received_subject, 
+    bank_id, customer_Auditing, customer_yn, customer_custom1, customer_custom2, customer_custom3, 
+    customer_custom4, customer_custom5, customer_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer">
+    insert into customer (customer_id, customer_name, customer_easyname, 
+      customer_english_name, customer_charge_person, 
+      customer_account_ownership, customer_type, 
+      currency_id, customer_principalman, customer_linkman, 
+      customer_linktela, customer_linktelb, customer_linktelc, 
+      customer_mobilephone, ada_id, customer_taxcheckno, 
+      customer_capitalmoney, customer_job, customer_email, 
+      customer_webadd, customer_faxno, customer_cufirstsaleout, 
+      customer_cufirstsalereturn, customer_curecentsaleout, 
+      customer_curecentsalereturn, customer_curecentvisit, 
+      customer_cuordervisit, customer_discountpoint, 
+      customer_salelv, customer_cuiftax, customer_latentcusno, 
+      customer_tanddate, endbusinessday, customer_creditmoney, 
+      customer_residuemonet, customer_cuendorderday, 
+      customer_honestlv, customer_cufirstcollect, 
+      customer_houldcollect, customer_cuendcollect, cuendshouldcollect, 
+      customer_cudecoration, Receivable_id, it_id, 
+      It_Accounts_eceivable_subject, It_deposit_received_subject, 
+      bank_id, customer_Auditing, customer_yn, 
+      customer_custom1, customer_custom2, customer_custom3, 
+      customer_custom4, customer_custom5, customer_custom6
+      )
+    values (#{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{customerEasyname,jdbcType=VARCHAR}, 
+      #{customerEnglishName,jdbcType=VARCHAR}, #{customerChargePerson,jdbcType=VARCHAR}, 
+      #{customerAccountOwnership,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, 
+      #{currencyId,jdbcType=VARCHAR}, #{customerPrincipalman,jdbcType=VARCHAR}, #{customerLinkman,jdbcType=VARCHAR}, 
+      #{customerLinktela,jdbcType=VARCHAR}, #{customerLinktelb,jdbcType=VARCHAR}, #{customerLinktelc,jdbcType=VARCHAR}, 
+      #{customerMobilephone,jdbcType=VARCHAR}, #{adaId,jdbcType=VARCHAR}, #{customerTaxcheckno,jdbcType=VARCHAR}, 
+      #{customerCapitalmoney,jdbcType=REAL}, #{customerJob,jdbcType=VARCHAR}, #{customerEmail,jdbcType=VARCHAR}, 
+      #{customerWebadd,jdbcType=VARCHAR}, #{customerFaxno,jdbcType=VARCHAR}, #{customerCufirstsaleout,jdbcType=DATE}, 
+      #{customerCufirstsalereturn,jdbcType=DATE}, #{customerCurecentsaleout,jdbcType=DATE}, 
+      #{customerCurecentsalereturn,jdbcType=DATE}, #{customerCurecentvisit,jdbcType=DATE}, 
+      #{customerCuordervisit,jdbcType=DATE}, #{customerDiscountpoint,jdbcType=REAL}, 
+      #{customerSalelv,jdbcType=VARCHAR}, #{customerCuiftax,jdbcType=INTEGER}, #{customerLatentcusno,jdbcType=VARCHAR}, 
+      #{customerTanddate,jdbcType=DATE}, #{endbusinessday,jdbcType=DATE}, #{customerCreditmoney,jdbcType=REAL}, 
+      #{customerResiduemonet,jdbcType=REAL}, #{customerCuendorderday,jdbcType=DATE}, 
+      #{customerHonestlv,jdbcType=VARCHAR}, #{customerCufirstcollect,jdbcType=REAL}, 
+      #{customerHouldcollect,jdbcType=REAL}, #{customerCuendcollect,jdbcType=REAL}, #{cuendshouldcollect,jdbcType=REAL}, 
+      #{customerCudecoration,jdbcType=VARCHAR}, #{receivableId,jdbcType=VARCHAR}, #{itId,jdbcType=VARCHAR}, 
+      #{itAccountsEceivableSubject,jdbcType=VARCHAR}, #{itDepositReceivedSubject,jdbcType=VARCHAR}, 
+      #{bankId,jdbcType=VARCHAR}, #{customerAuditing,jdbcType=VARCHAR}, #{customerYn,jdbcType=VARCHAR}, 
+      #{customerCustom1,jdbcType=VARCHAR}, #{customerCustom2,jdbcType=VARCHAR}, #{customerCustom3,jdbcType=VARCHAR}, 
+      #{customerCustom4,jdbcType=VARCHAR}, #{customerCustom5,jdbcType=VARCHAR}, #{customerCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="customerEasyname != null">
+        customer_easyname,
+      </if>
+      <if test="customerEnglishName != null">
+        customer_english_name,
+      </if>
+      <if test="customerChargePerson != null">
+        customer_charge_person,
+      </if>
+      <if test="customerAccountOwnership != null">
+        customer_account_ownership,
+      </if>
+      <if test="customerType != null">
+        customer_type,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="customerPrincipalman != null">
+        customer_principalman,
+      </if>
+      <if test="customerLinkman != null">
+        customer_linkman,
+      </if>
+      <if test="customerLinktela != null">
+        customer_linktela,
+      </if>
+      <if test="customerLinktelb != null">
+        customer_linktelb,
+      </if>
+      <if test="customerLinktelc != null">
+        customer_linktelc,
+      </if>
+      <if test="customerMobilephone != null">
+        customer_mobilephone,
+      </if>
+      <if test="adaId != null">
+        ada_id,
+      </if>
+      <if test="customerTaxcheckno != null">
+        customer_taxcheckno,
+      </if>
+      <if test="customerCapitalmoney != null">
+        customer_capitalmoney,
+      </if>
+      <if test="customerJob != null">
+        customer_job,
+      </if>
+      <if test="customerEmail != null">
+        customer_email,
+      </if>
+      <if test="customerWebadd != null">
+        customer_webadd,
+      </if>
+      <if test="customerFaxno != null">
+        customer_faxno,
+      </if>
+      <if test="customerCufirstsaleout != null">
+        customer_cufirstsaleout,
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        customer_cufirstsalereturn,
+      </if>
+      <if test="customerCurecentsaleout != null">
+        customer_curecentsaleout,
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        customer_curecentsalereturn,
+      </if>
+      <if test="customerCurecentvisit != null">
+        customer_curecentvisit,
+      </if>
+      <if test="customerCuordervisit != null">
+        customer_cuordervisit,
+      </if>
+      <if test="customerDiscountpoint != null">
+        customer_discountpoint,
+      </if>
+      <if test="customerSalelv != null">
+        customer_salelv,
+      </if>
+      <if test="customerCuiftax != null">
+        customer_cuiftax,
+      </if>
+      <if test="customerLatentcusno != null">
+        customer_latentcusno,
+      </if>
+      <if test="customerTanddate != null">
+        customer_tanddate,
+      </if>
+      <if test="endbusinessday != null">
+        endbusinessday,
+      </if>
+      <if test="customerCreditmoney != null">
+        customer_creditmoney,
+      </if>
+      <if test="customerResiduemonet != null">
+        customer_residuemonet,
+      </if>
+      <if test="customerCuendorderday != null">
+        customer_cuendorderday,
+      </if>
+      <if test="customerHonestlv != null">
+        customer_honestlv,
+      </if>
+      <if test="customerCufirstcollect != null">
+        customer_cufirstcollect,
+      </if>
+      <if test="customerHouldcollect != null">
+        customer_houldcollect,
+      </if>
+      <if test="customerCuendcollect != null">
+        customer_cuendcollect,
+      </if>
+      <if test="cuendshouldcollect != null">
+        cuendshouldcollect,
+      </if>
+      <if test="customerCudecoration != null">
+        customer_cudecoration,
+      </if>
+      <if test="receivableId != null">
+        Receivable_id,
+      </if>
+      <if test="itId != null">
+        it_id,
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        It_Accounts_eceivable_subject,
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        It_deposit_received_subject,
+      </if>
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="customerAuditing != null">
+        customer_Auditing,
+      </if>
+      <if test="customerYn != null">
+        customer_yn,
+      </if>
+      <if test="customerCustom1 != null">
+        customer_custom1,
+      </if>
+      <if test="customerCustom2 != null">
+        customer_custom2,
+      </if>
+      <if test="customerCustom3 != null">
+        customer_custom3,
+      </if>
+      <if test="customerCustom4 != null">
+        customer_custom4,
+      </if>
+      <if test="customerCustom5 != null">
+        customer_custom5,
+      </if>
+      <if test="customerCustom6 != null">
+        customer_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEasyname != null">
+        #{customerEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEnglishName != null">
+        #{customerEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerChargePerson != null">
+        #{customerChargePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAccountOwnership != null">
+        #{customerAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPrincipalman != null">
+        #{customerPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinkman != null">
+        #{customerLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktela != null">
+        #{customerLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelb != null">
+        #{customerLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelc != null">
+        #{customerLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="customerMobilephone != null">
+        #{customerMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTaxcheckno != null">
+        #{customerTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCapitalmoney != null">
+        #{customerCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="customerJob != null">
+        #{customerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEmail != null">
+        #{customerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWebadd != null">
+        #{customerWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="customerFaxno != null">
+        #{customerFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstsaleout != null">
+        #{customerCufirstsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        #{customerCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsaleout != null">
+        #{customerCurecentsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        #{customerCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentvisit != null">
+        #{customerCurecentvisit,jdbcType=DATE},
+      </if>
+      <if test="customerCuordervisit != null">
+        #{customerCuordervisit,jdbcType=DATE},
+      </if>
+      <if test="customerDiscountpoint != null">
+        #{customerDiscountpoint,jdbcType=REAL},
+      </if>
+      <if test="customerSalelv != null">
+        #{customerSalelv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCuiftax != null">
+        #{customerCuiftax,jdbcType=INTEGER},
+      </if>
+      <if test="customerLatentcusno != null">
+        #{customerLatentcusno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTanddate != null">
+        #{customerTanddate,jdbcType=DATE},
+      </if>
+      <if test="endbusinessday != null">
+        #{endbusinessday,jdbcType=DATE},
+      </if>
+      <if test="customerCreditmoney != null">
+        #{customerCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="customerResiduemonet != null">
+        #{customerResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="customerCuendorderday != null">
+        #{customerCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="customerHonestlv != null">
+        #{customerHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstcollect != null">
+        #{customerCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="customerHouldcollect != null">
+        #{customerHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCuendcollect != null">
+        #{customerCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="cuendshouldcollect != null">
+        #{cuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCudecoration != null">
+        #{customerCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableId != null">
+        #{receivableId,jdbcType=VARCHAR},
+      </if>
+      <if test="itId != null">
+        #{itId,jdbcType=VARCHAR},
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAuditing != null">
+        #{customerAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYn != null">
+        #{customerYn,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom1 != null">
+        #{customerCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom2 != null">
+        #{customerCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom3 != null">
+        #{customerCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom4 != null">
+        #{customerCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom5 != null">
+        #{customerCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom6 != null">
+        #{customerCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer">
+    update customer
+    <set>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEasyname != null">
+        customer_easyname = #{customerEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEnglishName != null">
+        customer_english_name = #{customerEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerChargePerson != null">
+        customer_charge_person = #{customerChargePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAccountOwnership != null">
+        customer_account_ownership = #{customerAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPrincipalman != null">
+        customer_principalman = #{customerPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinkman != null">
+        customer_linkman = #{customerLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktela != null">
+        customer_linktela = #{customerLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelb != null">
+        customer_linktelb = #{customerLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelc != null">
+        customer_linktelc = #{customerLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="customerMobilephone != null">
+        customer_mobilephone = #{customerMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        ada_id = #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTaxcheckno != null">
+        customer_taxcheckno = #{customerTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCapitalmoney != null">
+        customer_capitalmoney = #{customerCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="customerJob != null">
+        customer_job = #{customerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEmail != null">
+        customer_email = #{customerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWebadd != null">
+        customer_webadd = #{customerWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="customerFaxno != null">
+        customer_faxno = #{customerFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstsaleout != null">
+        customer_cufirstsaleout = #{customerCufirstsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        customer_cufirstsalereturn = #{customerCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsaleout != null">
+        customer_curecentsaleout = #{customerCurecentsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        customer_curecentsalereturn = #{customerCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentvisit != null">
+        customer_curecentvisit = #{customerCurecentvisit,jdbcType=DATE},
+      </if>
+      <if test="customerCuordervisit != null">
+        customer_cuordervisit = #{customerCuordervisit,jdbcType=DATE},
+      </if>
+      <if test="customerDiscountpoint != null">
+        customer_discountpoint = #{customerDiscountpoint,jdbcType=REAL},
+      </if>
+      <if test="customerSalelv != null">
+        customer_salelv = #{customerSalelv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCuiftax != null">
+        customer_cuiftax = #{customerCuiftax,jdbcType=INTEGER},
+      </if>
+      <if test="customerLatentcusno != null">
+        customer_latentcusno = #{customerLatentcusno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTanddate != null">
+        customer_tanddate = #{customerTanddate,jdbcType=DATE},
+      </if>
+      <if test="endbusinessday != null">
+        endbusinessday = #{endbusinessday,jdbcType=DATE},
+      </if>
+      <if test="customerCreditmoney != null">
+        customer_creditmoney = #{customerCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="customerResiduemonet != null">
+        customer_residuemonet = #{customerResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="customerCuendorderday != null">
+        customer_cuendorderday = #{customerCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="customerHonestlv != null">
+        customer_honestlv = #{customerHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstcollect != null">
+        customer_cufirstcollect = #{customerCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="customerHouldcollect != null">
+        customer_houldcollect = #{customerHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCuendcollect != null">
+        customer_cuendcollect = #{customerCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="cuendshouldcollect != null">
+        cuendshouldcollect = #{cuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCudecoration != null">
+        customer_cudecoration = #{customerCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableId != null">
+        Receivable_id = #{receivableId,jdbcType=VARCHAR},
+      </if>
+      <if test="itId != null">
+        it_id = #{itId,jdbcType=VARCHAR},
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        It_Accounts_eceivable_subject = #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        It_deposit_received_subject = #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAuditing != null">
+        customer_Auditing = #{customerAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYn != null">
+        customer_yn = #{customerYn,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom1 != null">
+        customer_custom1 = #{customerCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom2 != null">
+        customer_custom2 = #{customerCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom3 != null">
+        customer_custom3 = #{customerCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom4 != null">
+        customer_custom4 = #{customerCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom5 != null">
+        customer_custom5 = #{customerCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom6 != null">
+        customer_custom6 = #{customerCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer">
+    update customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_easyname = #{customerEasyname,jdbcType=VARCHAR},
+      customer_english_name = #{customerEnglishName,jdbcType=VARCHAR},
+      customer_charge_person = #{customerChargePerson,jdbcType=VARCHAR},
+      customer_account_ownership = #{customerAccountOwnership,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      customer_principalman = #{customerPrincipalman,jdbcType=VARCHAR},
+      customer_linkman = #{customerLinkman,jdbcType=VARCHAR},
+      customer_linktela = #{customerLinktela,jdbcType=VARCHAR},
+      customer_linktelb = #{customerLinktelb,jdbcType=VARCHAR},
+      customer_linktelc = #{customerLinktelc,jdbcType=VARCHAR},
+      customer_mobilephone = #{customerMobilephone,jdbcType=VARCHAR},
+      ada_id = #{adaId,jdbcType=VARCHAR},
+      customer_taxcheckno = #{customerTaxcheckno,jdbcType=VARCHAR},
+      customer_capitalmoney = #{customerCapitalmoney,jdbcType=REAL},
+      customer_job = #{customerJob,jdbcType=VARCHAR},
+      customer_email = #{customerEmail,jdbcType=VARCHAR},
+      customer_webadd = #{customerWebadd,jdbcType=VARCHAR},
+      customer_faxno = #{customerFaxno,jdbcType=VARCHAR},
+      customer_cufirstsaleout = #{customerCufirstsaleout,jdbcType=DATE},
+      customer_cufirstsalereturn = #{customerCufirstsalereturn,jdbcType=DATE},
+      customer_curecentsaleout = #{customerCurecentsaleout,jdbcType=DATE},
+      customer_curecentsalereturn = #{customerCurecentsalereturn,jdbcType=DATE},
+      customer_curecentvisit = #{customerCurecentvisit,jdbcType=DATE},
+      customer_cuordervisit = #{customerCuordervisit,jdbcType=DATE},
+      customer_discountpoint = #{customerDiscountpoint,jdbcType=REAL},
+      customer_salelv = #{customerSalelv,jdbcType=VARCHAR},
+      customer_cuiftax = #{customerCuiftax,jdbcType=INTEGER},
+      customer_latentcusno = #{customerLatentcusno,jdbcType=VARCHAR},
+      customer_tanddate = #{customerTanddate,jdbcType=DATE},
+      endbusinessday = #{endbusinessday,jdbcType=DATE},
+      customer_creditmoney = #{customerCreditmoney,jdbcType=REAL},
+      customer_residuemonet = #{customerResiduemonet,jdbcType=REAL},
+      customer_cuendorderday = #{customerCuendorderday,jdbcType=DATE},
+      customer_honestlv = #{customerHonestlv,jdbcType=VARCHAR},
+      customer_cufirstcollect = #{customerCufirstcollect,jdbcType=REAL},
+      customer_houldcollect = #{customerHouldcollect,jdbcType=REAL},
+      customer_cuendcollect = #{customerCuendcollect,jdbcType=REAL},
+      cuendshouldcollect = #{cuendshouldcollect,jdbcType=REAL},
+      customer_cudecoration = #{customerCudecoration,jdbcType=VARCHAR},
+      Receivable_id = #{receivableId,jdbcType=VARCHAR},
+      it_id = #{itId,jdbcType=VARCHAR},
+      It_Accounts_eceivable_subject = #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      It_deposit_received_subject = #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      bank_id = #{bankId,jdbcType=VARCHAR},
+      customer_Auditing = #{customerAuditing,jdbcType=VARCHAR},
+      customer_yn = #{customerYn,jdbcType=VARCHAR},
+      customer_custom1 = #{customerCustom1,jdbcType=VARCHAR},
+      customer_custom2 = #{customerCustom2,jdbcType=VARCHAR},
+      customer_custom3 = #{customerCustom3,jdbcType=VARCHAR},
+      customer_custom4 = #{customerCustom4,jdbcType=VARCHAR},
+      customer_custom5 = #{customerCustom5,jdbcType=VARCHAR},
+      customer_custom6 = #{customerCustom6,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer">
+    <id column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="customer_easyname" jdbcType="VARCHAR" property="customerEasyname" />
+    <result column="customer_english_name" jdbcType="VARCHAR" property="customerEnglishName" />
+    <result column="customer_charge_person" jdbcType="VARCHAR" property="customerChargePerson" />
+    <result column="customer_account_ownership" jdbcType="VARCHAR" property="customerAccountOwnership" />
+    <result column="customer_type" jdbcType="VARCHAR" property="customerType" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="customer_principalman" jdbcType="VARCHAR" property="customerPrincipalman" />
+    <result column="customer_linkman" jdbcType="VARCHAR" property="customerLinkman" />
+    <result column="customer_linktela" jdbcType="VARCHAR" property="customerLinktela" />
+    <result column="customer_linktelb" jdbcType="VARCHAR" property="customerLinktelb" />
+    <result column="customer_linktelc" jdbcType="VARCHAR" property="customerLinktelc" />
+    <result column="customer_mobilephone" jdbcType="VARCHAR" property="customerMobilephone" />
+    <result column="ada_id" jdbcType="VARCHAR" property="adaId" />
+    <result column="customer_taxcheckno" jdbcType="VARCHAR" property="customerTaxcheckno" />
+    <result column="customer_capitalmoney" jdbcType="REAL" property="customerCapitalmoney" />
+    <result column="customer_job" jdbcType="VARCHAR" property="customerJob" />
+    <result column="customer_email" jdbcType="VARCHAR" property="customerEmail" />
+    <result column="customer_webadd" jdbcType="VARCHAR" property="customerWebadd" />
+    <result column="customer_faxno" jdbcType="VARCHAR" property="customerFaxno" />
+    <result column="customer_cufirstsaleout" jdbcType="DATE" property="customerCufirstsaleout" />
+    <result column="customer_cufirstsalereturn" jdbcType="DATE" property="customerCufirstsalereturn" />
+    <result column="customer_curecentsaleout" jdbcType="DATE" property="customerCurecentsaleout" />
+    <result column="customer_curecentsalereturn" jdbcType="DATE" property="customerCurecentsalereturn" />
+    <result column="customer_curecentvisit" jdbcType="DATE" property="customerCurecentvisit" />
+    <result column="customer_cuordervisit" jdbcType="DATE" property="customerCuordervisit" />
+    <result column="customer_discountpoint" jdbcType="REAL" property="customerDiscountpoint" />
+    <result column="customer_salelv" jdbcType="VARCHAR" property="customerSalelv" />
+    <result column="customer_cuiftax" jdbcType="INTEGER" property="customerCuiftax" />
+    <result column="customer_latentcusno" jdbcType="VARCHAR" property="customerLatentcusno" />
+    <result column="customer_tanddate" jdbcType="DATE" property="customerTanddate" />
+    <result column="endbusinessday" jdbcType="DATE" property="endbusinessday" />
+    <result column="customer_creditmoney" jdbcType="REAL" property="customerCreditmoney" />
+    <result column="customer_residuemonet" jdbcType="REAL" property="customerResiduemonet" />
+    <result column="customer_cuendorderday" jdbcType="DATE" property="customerCuendorderday" />
+    <result column="customer_honestlv" jdbcType="VARCHAR" property="customerHonestlv" />
+    <result column="customer_cufirstcollect" jdbcType="REAL" property="customerCufirstcollect" />
+    <result column="customer_houldcollect" jdbcType="REAL" property="customerHouldcollect" />
+    <result column="customer_cuendcollect" jdbcType="REAL" property="customerCuendcollect" />
+    <result column="cuendshouldcollect" jdbcType="REAL" property="cuendshouldcollect" />
+    <result column="customer_cudecoration" jdbcType="VARCHAR" property="customerCudecoration" />
+    <result column="Receivable_id" jdbcType="VARCHAR" property="receivableId" />
+    <result column="it_id" jdbcType="VARCHAR" property="itId" />
+    <result column="It_Accounts_eceivable_subject" jdbcType="VARCHAR" property="itAccountsEceivableSubject" />
+    <result column="It_deposit_received_subject" jdbcType="VARCHAR" property="itDepositReceivedSubject" />
+    <result column="bank_id" jdbcType="VARCHAR" property="bankId" />
+    <result column="customer_Auditing" jdbcType="VARCHAR" property="customerAuditing" />
+    <result column="customer_yn" jdbcType="VARCHAR" property="customerYn" />
+    <result column="customer_custom1" jdbcType="VARCHAR" property="customerCustom1" />
+    <result column="customer_custom2" jdbcType="VARCHAR" property="customerCustom2" />
+    <result column="customer_custom3" jdbcType="VARCHAR" property="customerCustom3" />
+    <result column="customer_custom4" jdbcType="VARCHAR" property="customerCustom4" />
+    <result column="customer_custom5" jdbcType="VARCHAR" property="customerCustom5" />
+    <result column="customer_custom6" jdbcType="VARCHAR" property="customerCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    customer_id, customer_name, customer_easyname, customer_english_name, customer_charge_person, 
+    customer_account_ownership, customer_type, currency_id, customer_principalman, customer_linkman, 
+    customer_linktela, customer_linktelb, customer_linktelc, customer_mobilephone, ada_id, 
+    customer_taxcheckno, customer_capitalmoney, customer_job, customer_email, customer_webadd, 
+    customer_faxno, customer_cufirstsaleout, customer_cufirstsalereturn, customer_curecentsaleout, 
+    customer_curecentsalereturn, customer_curecentvisit, customer_cuordervisit, customer_discountpoint, 
+    customer_salelv, customer_cuiftax, customer_latentcusno, customer_tanddate, endbusinessday, 
+    customer_creditmoney, customer_residuemonet, customer_cuendorderday, customer_honestlv, 
+    customer_cufirstcollect, customer_houldcollect, customer_cuendcollect, cuendshouldcollect, 
+    customer_cudecoration, Receivable_id, it_id, It_Accounts_eceivable_subject, It_deposit_received_subject, 
+    bank_id, customer_Auditing, customer_yn, customer_custom1, customer_custom2, customer_custom3, 
+    customer_custom4, customer_custom5, customer_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer">
+    insert into customer (customer_id, customer_name, customer_easyname, 
+      customer_english_name, customer_charge_person, 
+      customer_account_ownership, customer_type, 
+      currency_id, customer_principalman, customer_linkman, 
+      customer_linktela, customer_linktelb, customer_linktelc, 
+      customer_mobilephone, ada_id, customer_taxcheckno, 
+      customer_capitalmoney, customer_job, customer_email, 
+      customer_webadd, customer_faxno, customer_cufirstsaleout, 
+      customer_cufirstsalereturn, customer_curecentsaleout, 
+      customer_curecentsalereturn, customer_curecentvisit, 
+      customer_cuordervisit, customer_discountpoint, 
+      customer_salelv, customer_cuiftax, customer_latentcusno, 
+      customer_tanddate, endbusinessday, customer_creditmoney, 
+      customer_residuemonet, customer_cuendorderday, 
+      customer_honestlv, customer_cufirstcollect, 
+      customer_houldcollect, customer_cuendcollect, cuendshouldcollect, 
+      customer_cudecoration, Receivable_id, it_id, 
+      It_Accounts_eceivable_subject, It_deposit_received_subject, 
+      bank_id, customer_Auditing, customer_yn, 
+      customer_custom1, customer_custom2, customer_custom3, 
+      customer_custom4, customer_custom5, customer_custom6
+      )
+    values (#{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{customerEasyname,jdbcType=VARCHAR}, 
+      #{customerEnglishName,jdbcType=VARCHAR}, #{customerChargePerson,jdbcType=VARCHAR}, 
+      #{customerAccountOwnership,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, 
+      #{currencyId,jdbcType=VARCHAR}, #{customerPrincipalman,jdbcType=VARCHAR}, #{customerLinkman,jdbcType=VARCHAR}, 
+      #{customerLinktela,jdbcType=VARCHAR}, #{customerLinktelb,jdbcType=VARCHAR}, #{customerLinktelc,jdbcType=VARCHAR}, 
+      #{customerMobilephone,jdbcType=VARCHAR}, #{adaId,jdbcType=VARCHAR}, #{customerTaxcheckno,jdbcType=VARCHAR}, 
+      #{customerCapitalmoney,jdbcType=REAL}, #{customerJob,jdbcType=VARCHAR}, #{customerEmail,jdbcType=VARCHAR}, 
+      #{customerWebadd,jdbcType=VARCHAR}, #{customerFaxno,jdbcType=VARCHAR}, #{customerCufirstsaleout,jdbcType=DATE}, 
+      #{customerCufirstsalereturn,jdbcType=DATE}, #{customerCurecentsaleout,jdbcType=DATE}, 
+      #{customerCurecentsalereturn,jdbcType=DATE}, #{customerCurecentvisit,jdbcType=DATE}, 
+      #{customerCuordervisit,jdbcType=DATE}, #{customerDiscountpoint,jdbcType=REAL}, 
+      #{customerSalelv,jdbcType=VARCHAR}, #{customerCuiftax,jdbcType=INTEGER}, #{customerLatentcusno,jdbcType=VARCHAR}, 
+      #{customerTanddate,jdbcType=DATE}, #{endbusinessday,jdbcType=DATE}, #{customerCreditmoney,jdbcType=REAL}, 
+      #{customerResiduemonet,jdbcType=REAL}, #{customerCuendorderday,jdbcType=DATE}, 
+      #{customerHonestlv,jdbcType=VARCHAR}, #{customerCufirstcollect,jdbcType=REAL}, 
+      #{customerHouldcollect,jdbcType=REAL}, #{customerCuendcollect,jdbcType=REAL}, #{cuendshouldcollect,jdbcType=REAL}, 
+      #{customerCudecoration,jdbcType=VARCHAR}, #{receivableId,jdbcType=VARCHAR}, #{itId,jdbcType=VARCHAR}, 
+      #{itAccountsEceivableSubject,jdbcType=VARCHAR}, #{itDepositReceivedSubject,jdbcType=VARCHAR}, 
+      #{bankId,jdbcType=VARCHAR}, #{customerAuditing,jdbcType=VARCHAR}, #{customerYn,jdbcType=VARCHAR}, 
+      #{customerCustom1,jdbcType=VARCHAR}, #{customerCustom2,jdbcType=VARCHAR}, #{customerCustom3,jdbcType=VARCHAR}, 
+      #{customerCustom4,jdbcType=VARCHAR}, #{customerCustom5,jdbcType=VARCHAR}, #{customerCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="customerEasyname != null">
+        customer_easyname,
+      </if>
+      <if test="customerEnglishName != null">
+        customer_english_name,
+      </if>
+      <if test="customerChargePerson != null">
+        customer_charge_person,
+      </if>
+      <if test="customerAccountOwnership != null">
+        customer_account_ownership,
+      </if>
+      <if test="customerType != null">
+        customer_type,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="customerPrincipalman != null">
+        customer_principalman,
+      </if>
+      <if test="customerLinkman != null">
+        customer_linkman,
+      </if>
+      <if test="customerLinktela != null">
+        customer_linktela,
+      </if>
+      <if test="customerLinktelb != null">
+        customer_linktelb,
+      </if>
+      <if test="customerLinktelc != null">
+        customer_linktelc,
+      </if>
+      <if test="customerMobilephone != null">
+        customer_mobilephone,
+      </if>
+      <if test="adaId != null">
+        ada_id,
+      </if>
+      <if test="customerTaxcheckno != null">
+        customer_taxcheckno,
+      </if>
+      <if test="customerCapitalmoney != null">
+        customer_capitalmoney,
+      </if>
+      <if test="customerJob != null">
+        customer_job,
+      </if>
+      <if test="customerEmail != null">
+        customer_email,
+      </if>
+      <if test="customerWebadd != null">
+        customer_webadd,
+      </if>
+      <if test="customerFaxno != null">
+        customer_faxno,
+      </if>
+      <if test="customerCufirstsaleout != null">
+        customer_cufirstsaleout,
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        customer_cufirstsalereturn,
+      </if>
+      <if test="customerCurecentsaleout != null">
+        customer_curecentsaleout,
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        customer_curecentsalereturn,
+      </if>
+      <if test="customerCurecentvisit != null">
+        customer_curecentvisit,
+      </if>
+      <if test="customerCuordervisit != null">
+        customer_cuordervisit,
+      </if>
+      <if test="customerDiscountpoint != null">
+        customer_discountpoint,
+      </if>
+      <if test="customerSalelv != null">
+        customer_salelv,
+      </if>
+      <if test="customerCuiftax != null">
+        customer_cuiftax,
+      </if>
+      <if test="customerLatentcusno != null">
+        customer_latentcusno,
+      </if>
+      <if test="customerTanddate != null">
+        customer_tanddate,
+      </if>
+      <if test="endbusinessday != null">
+        endbusinessday,
+      </if>
+      <if test="customerCreditmoney != null">
+        customer_creditmoney,
+      </if>
+      <if test="customerResiduemonet != null">
+        customer_residuemonet,
+      </if>
+      <if test="customerCuendorderday != null">
+        customer_cuendorderday,
+      </if>
+      <if test="customerHonestlv != null">
+        customer_honestlv,
+      </if>
+      <if test="customerCufirstcollect != null">
+        customer_cufirstcollect,
+      </if>
+      <if test="customerHouldcollect != null">
+        customer_houldcollect,
+      </if>
+      <if test="customerCuendcollect != null">
+        customer_cuendcollect,
+      </if>
+      <if test="cuendshouldcollect != null">
+        cuendshouldcollect,
+      </if>
+      <if test="customerCudecoration != null">
+        customer_cudecoration,
+      </if>
+      <if test="receivableId != null">
+        Receivable_id,
+      </if>
+      <if test="itId != null">
+        it_id,
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        It_Accounts_eceivable_subject,
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        It_deposit_received_subject,
+      </if>
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="customerAuditing != null">
+        customer_Auditing,
+      </if>
+      <if test="customerYn != null">
+        customer_yn,
+      </if>
+      <if test="customerCustom1 != null">
+        customer_custom1,
+      </if>
+      <if test="customerCustom2 != null">
+        customer_custom2,
+      </if>
+      <if test="customerCustom3 != null">
+        customer_custom3,
+      </if>
+      <if test="customerCustom4 != null">
+        customer_custom4,
+      </if>
+      <if test="customerCustom5 != null">
+        customer_custom5,
+      </if>
+      <if test="customerCustom6 != null">
+        customer_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEasyname != null">
+        #{customerEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEnglishName != null">
+        #{customerEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerChargePerson != null">
+        #{customerChargePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAccountOwnership != null">
+        #{customerAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPrincipalman != null">
+        #{customerPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinkman != null">
+        #{customerLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktela != null">
+        #{customerLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelb != null">
+        #{customerLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelc != null">
+        #{customerLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="customerMobilephone != null">
+        #{customerMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTaxcheckno != null">
+        #{customerTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCapitalmoney != null">
+        #{customerCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="customerJob != null">
+        #{customerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEmail != null">
+        #{customerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWebadd != null">
+        #{customerWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="customerFaxno != null">
+        #{customerFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstsaleout != null">
+        #{customerCufirstsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        #{customerCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsaleout != null">
+        #{customerCurecentsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        #{customerCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentvisit != null">
+        #{customerCurecentvisit,jdbcType=DATE},
+      </if>
+      <if test="customerCuordervisit != null">
+        #{customerCuordervisit,jdbcType=DATE},
+      </if>
+      <if test="customerDiscountpoint != null">
+        #{customerDiscountpoint,jdbcType=REAL},
+      </if>
+      <if test="customerSalelv != null">
+        #{customerSalelv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCuiftax != null">
+        #{customerCuiftax,jdbcType=INTEGER},
+      </if>
+      <if test="customerLatentcusno != null">
+        #{customerLatentcusno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTanddate != null">
+        #{customerTanddate,jdbcType=DATE},
+      </if>
+      <if test="endbusinessday != null">
+        #{endbusinessday,jdbcType=DATE},
+      </if>
+      <if test="customerCreditmoney != null">
+        #{customerCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="customerResiduemonet != null">
+        #{customerResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="customerCuendorderday != null">
+        #{customerCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="customerHonestlv != null">
+        #{customerHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstcollect != null">
+        #{customerCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="customerHouldcollect != null">
+        #{customerHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCuendcollect != null">
+        #{customerCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="cuendshouldcollect != null">
+        #{cuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCudecoration != null">
+        #{customerCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableId != null">
+        #{receivableId,jdbcType=VARCHAR},
+      </if>
+      <if test="itId != null">
+        #{itId,jdbcType=VARCHAR},
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAuditing != null">
+        #{customerAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYn != null">
+        #{customerYn,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom1 != null">
+        #{customerCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom2 != null">
+        #{customerCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom3 != null">
+        #{customerCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom4 != null">
+        #{customerCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom5 != null">
+        #{customerCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom6 != null">
+        #{customerCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer">
+    update customer
+    <set>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEasyname != null">
+        customer_easyname = #{customerEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEnglishName != null">
+        customer_english_name = #{customerEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerChargePerson != null">
+        customer_charge_person = #{customerChargePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAccountOwnership != null">
+        customer_account_ownership = #{customerAccountOwnership,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null">
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPrincipalman != null">
+        customer_principalman = #{customerPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinkman != null">
+        customer_linkman = #{customerLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktela != null">
+        customer_linktela = #{customerLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelb != null">
+        customer_linktelb = #{customerLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="customerLinktelc != null">
+        customer_linktelc = #{customerLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="customerMobilephone != null">
+        customer_mobilephone = #{customerMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        ada_id = #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTaxcheckno != null">
+        customer_taxcheckno = #{customerTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCapitalmoney != null">
+        customer_capitalmoney = #{customerCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="customerJob != null">
+        customer_job = #{customerJob,jdbcType=VARCHAR},
+      </if>
+      <if test="customerEmail != null">
+        customer_email = #{customerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="customerWebadd != null">
+        customer_webadd = #{customerWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="customerFaxno != null">
+        customer_faxno = #{customerFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstsaleout != null">
+        customer_cufirstsaleout = #{customerCufirstsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCufirstsalereturn != null">
+        customer_cufirstsalereturn = #{customerCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsaleout != null">
+        customer_curecentsaleout = #{customerCurecentsaleout,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentsalereturn != null">
+        customer_curecentsalereturn = #{customerCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="customerCurecentvisit != null">
+        customer_curecentvisit = #{customerCurecentvisit,jdbcType=DATE},
+      </if>
+      <if test="customerCuordervisit != null">
+        customer_cuordervisit = #{customerCuordervisit,jdbcType=DATE},
+      </if>
+      <if test="customerDiscountpoint != null">
+        customer_discountpoint = #{customerDiscountpoint,jdbcType=REAL},
+      </if>
+      <if test="customerSalelv != null">
+        customer_salelv = #{customerSalelv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCuiftax != null">
+        customer_cuiftax = #{customerCuiftax,jdbcType=INTEGER},
+      </if>
+      <if test="customerLatentcusno != null">
+        customer_latentcusno = #{customerLatentcusno,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTanddate != null">
+        customer_tanddate = #{customerTanddate,jdbcType=DATE},
+      </if>
+      <if test="endbusinessday != null">
+        endbusinessday = #{endbusinessday,jdbcType=DATE},
+      </if>
+      <if test="customerCreditmoney != null">
+        customer_creditmoney = #{customerCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="customerResiduemonet != null">
+        customer_residuemonet = #{customerResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="customerCuendorderday != null">
+        customer_cuendorderday = #{customerCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="customerHonestlv != null">
+        customer_honestlv = #{customerHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCufirstcollect != null">
+        customer_cufirstcollect = #{customerCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="customerHouldcollect != null">
+        customer_houldcollect = #{customerHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCuendcollect != null">
+        customer_cuendcollect = #{customerCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="cuendshouldcollect != null">
+        cuendshouldcollect = #{cuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="customerCudecoration != null">
+        customer_cudecoration = #{customerCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableId != null">
+        Receivable_id = #{receivableId,jdbcType=VARCHAR},
+      </if>
+      <if test="itId != null">
+        it_id = #{itId,jdbcType=VARCHAR},
+      </if>
+      <if test="itAccountsEceivableSubject != null">
+        It_Accounts_eceivable_subject = #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="itDepositReceivedSubject != null">
+        It_deposit_received_subject = #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAuditing != null">
+        customer_Auditing = #{customerAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="customerYn != null">
+        customer_yn = #{customerYn,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom1 != null">
+        customer_custom1 = #{customerCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom2 != null">
+        customer_custom2 = #{customerCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom3 != null">
+        customer_custom3 = #{customerCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom4 != null">
+        customer_custom4 = #{customerCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom5 != null">
+        customer_custom5 = #{customerCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="customerCustom6 != null">
+        customer_custom6 = #{customerCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer">
+    update customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_easyname = #{customerEasyname,jdbcType=VARCHAR},
+      customer_english_name = #{customerEnglishName,jdbcType=VARCHAR},
+      customer_charge_person = #{customerChargePerson,jdbcType=VARCHAR},
+      customer_account_ownership = #{customerAccountOwnership,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      customer_principalman = #{customerPrincipalman,jdbcType=VARCHAR},
+      customer_linkman = #{customerLinkman,jdbcType=VARCHAR},
+      customer_linktela = #{customerLinktela,jdbcType=VARCHAR},
+      customer_linktelb = #{customerLinktelb,jdbcType=VARCHAR},
+      customer_linktelc = #{customerLinktelc,jdbcType=VARCHAR},
+      customer_mobilephone = #{customerMobilephone,jdbcType=VARCHAR},
+      ada_id = #{adaId,jdbcType=VARCHAR},
+      customer_taxcheckno = #{customerTaxcheckno,jdbcType=VARCHAR},
+      customer_capitalmoney = #{customerCapitalmoney,jdbcType=REAL},
+      customer_job = #{customerJob,jdbcType=VARCHAR},
+      customer_email = #{customerEmail,jdbcType=VARCHAR},
+      customer_webadd = #{customerWebadd,jdbcType=VARCHAR},
+      customer_faxno = #{customerFaxno,jdbcType=VARCHAR},
+      customer_cufirstsaleout = #{customerCufirstsaleout,jdbcType=DATE},
+      customer_cufirstsalereturn = #{customerCufirstsalereturn,jdbcType=DATE},
+      customer_curecentsaleout = #{customerCurecentsaleout,jdbcType=DATE},
+      customer_curecentsalereturn = #{customerCurecentsalereturn,jdbcType=DATE},
+      customer_curecentvisit = #{customerCurecentvisit,jdbcType=DATE},
+      customer_cuordervisit = #{customerCuordervisit,jdbcType=DATE},
+      customer_discountpoint = #{customerDiscountpoint,jdbcType=REAL},
+      customer_salelv = #{customerSalelv,jdbcType=VARCHAR},
+      customer_cuiftax = #{customerCuiftax,jdbcType=INTEGER},
+      customer_latentcusno = #{customerLatentcusno,jdbcType=VARCHAR},
+      customer_tanddate = #{customerTanddate,jdbcType=DATE},
+      endbusinessday = #{endbusinessday,jdbcType=DATE},
+      customer_creditmoney = #{customerCreditmoney,jdbcType=REAL},
+      customer_residuemonet = #{customerResiduemonet,jdbcType=REAL},
+      customer_cuendorderday = #{customerCuendorderday,jdbcType=DATE},
+      customer_honestlv = #{customerHonestlv,jdbcType=VARCHAR},
+      customer_cufirstcollect = #{customerCufirstcollect,jdbcType=REAL},
+      customer_houldcollect = #{customerHouldcollect,jdbcType=REAL},
+      customer_cuendcollect = #{customerCuendcollect,jdbcType=REAL},
+      cuendshouldcollect = #{cuendshouldcollect,jdbcType=REAL},
+      customer_cudecoration = #{customerCudecoration,jdbcType=VARCHAR},
+      Receivable_id = #{receivableId,jdbcType=VARCHAR},
+      it_id = #{itId,jdbcType=VARCHAR},
+      It_Accounts_eceivable_subject = #{itAccountsEceivableSubject,jdbcType=VARCHAR},
+      It_deposit_received_subject = #{itDepositReceivedSubject,jdbcType=VARCHAR},
+      bank_id = #{bankId,jdbcType=VARCHAR},
+      customer_Auditing = #{customerAuditing,jdbcType=VARCHAR},
+      customer_yn = #{customerYn,jdbcType=VARCHAR},
+      customer_custom1 = #{customerCustom1,jdbcType=VARCHAR},
+      customer_custom2 = #{customerCustom2,jdbcType=VARCHAR},
+      customer_custom3 = #{customerCustom3,jdbcType=VARCHAR},
+      customer_custom4 = #{customerCustom4,jdbcType=VARCHAR},
+      customer_custom5 = #{customerCustom5,jdbcType=VARCHAR},
+      customer_custom6 = #{customerCustom6,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

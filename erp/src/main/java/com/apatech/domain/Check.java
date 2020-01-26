@@ -12,8 +12,8 @@ public class Check {
     private String warehouseId;//盘点仓库id
     private String scAppreciationSubjects;//增值科目id
     private String scImpairmentSubjects;//减值科目id
-    private String checkDocumentationDate;//单据日期
-    private Date checkDocumentationNo;//单据号码
+    private Date checkDocumentationDate;//单据日期
+    private String checkDocumentationNo;//单据号码
     private String checkBuyer;//盘点人员
     private String checkBelongsSection;//所属部门
     private String checkForm;//制单人员
@@ -36,6 +36,10 @@ public class Check {
     
     
 
+	
+
+
+
 	@Override
 	public String toString() {
 		return "Check [checkId=" + checkId + ", warehouseId=" + warehouseId + ", scAppreciationSubjects="
@@ -47,6 +51,10 @@ public class Check {
 				+ checkCustom1 + ", checkCustom2=" + checkCustom2 + ", checkCustom3=" + checkCustom3 + ", checkCustom4="
 				+ checkCustom4 + ", checkCustom5=" + checkCustom5 + ", checkCustom6=" + checkCustom6 + "]";
 	}
+
+
+
+
 
 
 
@@ -82,23 +90,33 @@ public class Check {
         this.scImpairmentSubjects = scImpairmentSubjects == null ? null : scImpairmentSubjects.trim();
     }
 
-    public String getCheckDocumentationDate() {
-        return checkDocumentationDate;
-    }
+    
 
-    public void setCheckDocumentationDate(String checkDocumentationDate) {
-        this.checkDocumentationDate = checkDocumentationDate == null ? null : checkDocumentationDate.trim();
-    }
+    public Date getCheckDocumentationDate() {
+		return checkDocumentationDate;
+	}
 
-    public Date getCheckDocumentationNo() {
-        return checkDocumentationNo;
-    }
 
-    public void setCheckDocumentationNo(Date checkDocumentationNo) {
-        this.checkDocumentationNo = checkDocumentationNo;
-    }
 
-    public String getCheckBuyer() {
+	public void setCheckDocumentationDate(Date checkDocumentationDate) {
+		this.checkDocumentationDate = checkDocumentationDate;
+	}
+
+
+
+	public String getCheckDocumentationNo() {
+		return checkDocumentationNo;
+	}
+
+
+
+	public void setCheckDocumentationNo(String checkDocumentationNo) {
+		this.checkDocumentationNo = checkDocumentationNo;
+	}
+
+
+
+	public String getCheckBuyer() {
         return checkBuyer;
     }
 

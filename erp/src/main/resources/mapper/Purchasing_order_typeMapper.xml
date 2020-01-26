@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchasing_order_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchasing_order_type">
+    <id column="pot_id" jdbcType="VARCHAR" property="potId" />
+    <result column="pot_name" jdbcType="VARCHAR" property="potName" />
+    <result column="pot_engname" jdbcType="VARCHAR" property="potEngname" />
+    <result column="pot_remark" jdbcType="VARCHAR" property="potRemark" />
+    <result column="pot_audition" jdbcType="VARCHAR" property="potAudition" />
+    <result column="pot_yn" jdbcType="VARCHAR" property="potYn" />
+    <result column="pot_custom1" jdbcType="VARCHAR" property="potCustom1" />
+    <result column="pot_custom2" jdbcType="VARCHAR" property="potCustom2" />
+    <result column="pot_custom3" jdbcType="VARCHAR" property="potCustom3" />
+    <result column="pot_custom4" jdbcType="VARCHAR" property="potCustom4" />
+    <result column="pot_custom5" jdbcType="VARCHAR" property="potCustom5" />
+    <result column="pot_custom6" jdbcType="VARCHAR" property="potCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pot_id, pot_name, pot_engname, pot_remark, pot_audition, pot_yn, pot_custom1, pot_custom2, 
+    pot_custom3, pot_custom4, pot_custom5, pot_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchasing_order_type
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchasing_order_type
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchasing_order_type">
+    insert into purchasing_order_type (pot_id, pot_name, pot_engname, 
+      pot_remark, pot_audition, pot_yn, 
+      pot_custom1, pot_custom2, pot_custom3, 
+      pot_custom4, pot_custom5, pot_custom6
+      )
+    values (#{potId,jdbcType=VARCHAR}, #{potName,jdbcType=VARCHAR}, #{potEngname,jdbcType=VARCHAR}, 
+      #{potRemark,jdbcType=VARCHAR}, #{potAudition,jdbcType=VARCHAR}, #{potYn,jdbcType=VARCHAR}, 
+      #{potCustom1,jdbcType=VARCHAR}, #{potCustom2,jdbcType=VARCHAR}, #{potCustom3,jdbcType=VARCHAR}, 
+      #{potCustom4,jdbcType=VARCHAR}, #{potCustom5,jdbcType=VARCHAR}, #{potCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchasing_order_type">
+    insert into purchasing_order_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="potId != null">
+        pot_id,
+      </if>
+      <if test="potName != null">
+        pot_name,
+      </if>
+      <if test="potEngname != null">
+        pot_engname,
+      </if>
+      <if test="potRemark != null">
+        pot_remark,
+      </if>
+      <if test="potAudition != null">
+        pot_audition,
+      </if>
+      <if test="potYn != null">
+        pot_yn,
+      </if>
+      <if test="potCustom1 != null">
+        pot_custom1,
+      </if>
+      <if test="potCustom2 != null">
+        pot_custom2,
+      </if>
+      <if test="potCustom3 != null">
+        pot_custom3,
+      </if>
+      <if test="potCustom4 != null">
+        pot_custom4,
+      </if>
+      <if test="potCustom5 != null">
+        pot_custom5,
+      </if>
+      <if test="potCustom6 != null">
+        pot_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="potId != null">
+        #{potId,jdbcType=VARCHAR},
+      </if>
+      <if test="potName != null">
+        #{potName,jdbcType=VARCHAR},
+      </if>
+      <if test="potEngname != null">
+        #{potEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="potRemark != null">
+        #{potRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="potAudition != null">
+        #{potAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="potYn != null">
+        #{potYn,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom1 != null">
+        #{potCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom2 != null">
+        #{potCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom3 != null">
+        #{potCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom4 != null">
+        #{potCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom5 != null">
+        #{potCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom6 != null">
+        #{potCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchasing_order_type">
+    update purchasing_order_type
+    <set>
+      <if test="potName != null">
+        pot_name = #{potName,jdbcType=VARCHAR},
+      </if>
+      <if test="potEngname != null">
+        pot_engname = #{potEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="potRemark != null">
+        pot_remark = #{potRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="potAudition != null">
+        pot_audition = #{potAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="potYn != null">
+        pot_yn = #{potYn,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom1 != null">
+        pot_custom1 = #{potCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom2 != null">
+        pot_custom2 = #{potCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom3 != null">
+        pot_custom3 = #{potCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom4 != null">
+        pot_custom4 = #{potCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom5 != null">
+        pot_custom5 = #{potCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom6 != null">
+        pot_custom6 = #{potCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchasing_order_type">
+    update purchasing_order_type
+    set pot_name = #{potName,jdbcType=VARCHAR},
+      pot_engname = #{potEngname,jdbcType=VARCHAR},
+      pot_remark = #{potRemark,jdbcType=VARCHAR},
+      pot_audition = #{potAudition,jdbcType=VARCHAR},
+      pot_yn = #{potYn,jdbcType=VARCHAR},
+      pot_custom1 = #{potCustom1,jdbcType=VARCHAR},
+      pot_custom2 = #{potCustom2,jdbcType=VARCHAR},
+      pot_custom3 = #{potCustom3,jdbcType=VARCHAR},
+      pot_custom4 = #{potCustom4,jdbcType=VARCHAR},
+      pot_custom5 = #{potCustom5,jdbcType=VARCHAR},
+      pot_custom6 = #{potCustom6,jdbcType=VARCHAR}
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchasing_order_type">
+    <id column="pot_id" jdbcType="VARCHAR" property="potId" />
+    <result column="pot_name" jdbcType="VARCHAR" property="potName" />
+    <result column="pot_engname" jdbcType="VARCHAR" property="potEngname" />
+    <result column="pot_remark" jdbcType="VARCHAR" property="potRemark" />
+    <result column="pot_audition" jdbcType="VARCHAR" property="potAudition" />
+    <result column="pot_yn" jdbcType="VARCHAR" property="potYn" />
+    <result column="pot_custom1" jdbcType="VARCHAR" property="potCustom1" />
+    <result column="pot_custom2" jdbcType="VARCHAR" property="potCustom2" />
+    <result column="pot_custom3" jdbcType="VARCHAR" property="potCustom3" />
+    <result column="pot_custom4" jdbcType="VARCHAR" property="potCustom4" />
+    <result column="pot_custom5" jdbcType="VARCHAR" property="potCustom5" />
+    <result column="pot_custom6" jdbcType="VARCHAR" property="potCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pot_id, pot_name, pot_engname, pot_remark, pot_audition, pot_yn, pot_custom1, pot_custom2, 
+    pot_custom3, pot_custom4, pot_custom5, pot_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchasing_order_type
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchasing_order_type
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchasing_order_type">
+    insert into purchasing_order_type (pot_id, pot_name, pot_engname, 
+      pot_remark, pot_audition, pot_yn, 
+      pot_custom1, pot_custom2, pot_custom3, 
+      pot_custom4, pot_custom5, pot_custom6
+      )
+    values (#{potId,jdbcType=VARCHAR}, #{potName,jdbcType=VARCHAR}, #{potEngname,jdbcType=VARCHAR}, 
+      #{potRemark,jdbcType=VARCHAR}, #{potAudition,jdbcType=VARCHAR}, #{potYn,jdbcType=VARCHAR}, 
+      #{potCustom1,jdbcType=VARCHAR}, #{potCustom2,jdbcType=VARCHAR}, #{potCustom3,jdbcType=VARCHAR}, 
+      #{potCustom4,jdbcType=VARCHAR}, #{potCustom5,jdbcType=VARCHAR}, #{potCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchasing_order_type">
+    insert into purchasing_order_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="potId != null">
+        pot_id,
+      </if>
+      <if test="potName != null">
+        pot_name,
+      </if>
+      <if test="potEngname != null">
+        pot_engname,
+      </if>
+      <if test="potRemark != null">
+        pot_remark,
+      </if>
+      <if test="potAudition != null">
+        pot_audition,
+      </if>
+      <if test="potYn != null">
+        pot_yn,
+      </if>
+      <if test="potCustom1 != null">
+        pot_custom1,
+      </if>
+      <if test="potCustom2 != null">
+        pot_custom2,
+      </if>
+      <if test="potCustom3 != null">
+        pot_custom3,
+      </if>
+      <if test="potCustom4 != null">
+        pot_custom4,
+      </if>
+      <if test="potCustom5 != null">
+        pot_custom5,
+      </if>
+      <if test="potCustom6 != null">
+        pot_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="potId != null">
+        #{potId,jdbcType=VARCHAR},
+      </if>
+      <if test="potName != null">
+        #{potName,jdbcType=VARCHAR},
+      </if>
+      <if test="potEngname != null">
+        #{potEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="potRemark != null">
+        #{potRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="potAudition != null">
+        #{potAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="potYn != null">
+        #{potYn,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom1 != null">
+        #{potCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom2 != null">
+        #{potCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom3 != null">
+        #{potCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom4 != null">
+        #{potCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom5 != null">
+        #{potCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom6 != null">
+        #{potCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchasing_order_type">
+    update purchasing_order_type
+    <set>
+      <if test="potName != null">
+        pot_name = #{potName,jdbcType=VARCHAR},
+      </if>
+      <if test="potEngname != null">
+        pot_engname = #{potEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="potRemark != null">
+        pot_remark = #{potRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="potAudition != null">
+        pot_audition = #{potAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="potYn != null">
+        pot_yn = #{potYn,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom1 != null">
+        pot_custom1 = #{potCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom2 != null">
+        pot_custom2 = #{potCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom3 != null">
+        pot_custom3 = #{potCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom4 != null">
+        pot_custom4 = #{potCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom5 != null">
+        pot_custom5 = #{potCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="potCustom6 != null">
+        pot_custom6 = #{potCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchasing_order_type">
+    update purchasing_order_type
+    set pot_name = #{potName,jdbcType=VARCHAR},
+      pot_engname = #{potEngname,jdbcType=VARCHAR},
+      pot_remark = #{potRemark,jdbcType=VARCHAR},
+      pot_audition = #{potAudition,jdbcType=VARCHAR},
+      pot_yn = #{potYn,jdbcType=VARCHAR},
+      pot_custom1 = #{potCustom1,jdbcType=VARCHAR},
+      pot_custom2 = #{potCustom2,jdbcType=VARCHAR},
+      pot_custom3 = #{potCustom3,jdbcType=VARCHAR},
+      pot_custom4 = #{potCustom4,jdbcType=VARCHAR},
+      pot_custom5 = #{potCustom5,jdbcType=VARCHAR},
+      pot_custom6 = #{potCustom6,jdbcType=VARCHAR}
+    where pot_id = #{potId,jdbcType=VARCHAR}
+  </update>
+</mapper>

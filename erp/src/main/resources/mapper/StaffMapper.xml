@@ -1,0 +1,1478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.StaffMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Staff">
+    <id column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
+    <result column="staff_english_name" jdbcType="VARCHAR" property="staffEnglishName" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="staff_gender" jdbcType="CHAR" property="staffGender" />
+    <result column="staff_idnumber" jdbcType="VARCHAR" property="staffIdnumber" />
+    <result column="staff_birthday" jdbcType="DATE" property="staffBirthday" />
+    <result column="staff_maritalstatus" jdbcType="INTEGER" property="staffMaritalstatus" />
+    <result column="staff_native_place" jdbcType="INTEGER" property="staffNativePlace" />
+    <result column="staff_nativeplace" jdbcType="VARCHAR" property="staffNativeplace" />
+    <result column="staff_nationality" jdbcType="VARCHAR" property="staffNationality" />
+    <result column="staff_nation" jdbcType="VARCHAR" property="staffNation" />
+    <result column="staff_chineseposition" jdbcType="VARCHAR" property="staffChineseposition" />
+    <result column="staff_zipcode" jdbcType="VARCHAR" property="staffZipcode" />
+    <result column="staff_Mobilephone" jdbcType="VARCHAR" property="staffMobilephone" />
+    <result column="staff_politicalstatus" jdbcType="VARCHAR" property="staffPoliticalstatus" />
+    <result column="staff_entrydate" jdbcType="DATE" property="staffEntrydate" />
+    <result column="staff_becomea regularworker" jdbcType="DATE" property="staffBecomeaRegularworker" />
+    <result column="staff_probationperiod" jdbcType="VARCHAR" property="staffProbationperiod" />
+    <result column="staff_dimissiondate" jdbcType="DATE" property="staffDimissiondate" />
+    <result column="staff_technicaltitle" jdbcType="VARCHAR" property="staffTechnicaltitle" />
+    <result column="staff_englishposition" jdbcType="VARCHAR" property="staffEnglishposition" />
+    <result column="staff_address" jdbcType="VARCHAR" property="staffAddress" />
+    <result column="staff_phone" jdbcType="VARCHAR" property="staffPhone" />
+    <result column="staff_highesteducation" jdbcType="VARCHAR" property="staffHighesteducation" />
+    <result column="staff_degree" jdbcType="VARCHAR" property="staffDegree" />
+    <result column="staff_graduateschool" jdbcType="VARCHAR" property="staffGraduateschool" />
+    <result column="staff_major" jdbcType="VARCHAR" property="staffMajor" />
+    <result column="staff_foreignlanguagelevel" jdbcType="VARCHAR" property="staffForeignlanguagelevel" />
+    <result column="staff_physical examinationdate" jdbcType="DATE" property="staffPhysicalExaminationdate" />
+    <result column="staff_atmaturitydate" jdbcType="DATE" property="staffAtmaturitydate" />
+    <result column="staff_entercountry" jdbcType="DATE" property="staffEntercountry" />
+    <result column="staff_passport_number" jdbcType="VARCHAR" property="staffPassportNumber" />
+    <result column="staff_contractstartdate" jdbcType="DATE" property="staffContractstartdate" />
+    <result column="staff_contractenddate" jdbcType="DATE" property="staffContractenddate" />
+    <result column="staff_contractduration" jdbcType="VARCHAR" property="staffContractduration" />
+    <result column="staff_email" jdbcType="VARCHAR" property="staffEmail" />
+    <result column="staff_censusregisternumber" jdbcType="VARCHAR" property="staffCensusregisternumber" />
+    <result column="staff_censusregistezipcode" jdbcType="VARCHAR" property="staffCensusregistezipcode" />
+    <result column="staff_censusregisteraddress" jdbcType="VARCHAR" property="staffCensusregisteraddress" />
+    <result column="staff_hometelephone" jdbcType="VARCHAR" property="staffHometelephone" />
+    <result column="staff_homezipcode" jdbcType="VARCHAR" property="staffHomezipcode" />
+    <result column="staff_homeaddress" jdbcType="VARCHAR" property="staffHomeaddress" />
+    <result column="staff_newphone" jdbcType="VARCHAR" property="staffNewphone" />
+    <result column="staff_newzipcode" jdbcType="VARCHAR" property="staffNewzipcode" />
+    <result column="staff_newaddress" jdbcType="VARCHAR" property="staffNewaddress" />
+    <result column="staff_emergencycontact" jdbcType="VARCHAR" property="staffEmergencycontact" />
+    <result column="staff_urgentcontactzipcode" jdbcType="VARCHAR" property="staffUrgentcontactzipcode" />
+    <result column="staff_emergencycontactnumber" jdbcType="VARCHAR" property="staffEmergencycontactnumber" />
+    <result column="staff_emergencycontactaddress" jdbcType="VARCHAR" property="staffEmergencycontactaddress" />
+    <result column="staff_remark" jdbcType="VARCHAR" property="staffRemark" />
+    <result column="staff_Auditing" jdbcType="VARCHAR" property="staffAuditing" />
+    <result column="staff_yn" jdbcType="VARCHAR" property="staffYn" />
+    <result column="staff_custom1" jdbcType="VARCHAR" property="staffCustom1" />
+    <result column="staff_custom2" jdbcType="VARCHAR" property="staffCustom2" />
+    <result column="staff_custom3" jdbcType="VARCHAR" property="staffCustom3" />
+    <result column="staff_custom4" jdbcType="VARCHAR" property="staffCustom4" />
+    <result column="staff_custom5" jdbcType="VARCHAR" property="staffCustom5" />
+    <result column="staff_custom6" jdbcType="VARCHAR" property="staffCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    staff_id, staff_name, staff_english_name, team_id, staff_gender, staff_idnumber, 
+    staff_birthday, staff_maritalstatus, staff_native_place, staff_nativeplace, staff_nationality, 
+    staff_nation, staff_chineseposition, staff_zipcode, staff_Mobilephone, staff_politicalstatus, 
+    staff_entrydate, "staff_becomea regularworker", staff_probationperiod, staff_dimissiondate, 
+    staff_technicaltitle, staff_englishposition, staff_address, staff_phone, staff_highesteducation, 
+    staff_degree, staff_graduateschool, staff_major, staff_foreignlanguagelevel, "staff_physical examinationdate", 
+    staff_atmaturitydate, staff_entercountry, staff_passport_number, staff_contractstartdate, 
+    staff_contractenddate, staff_contractduration, staff_email, staff_censusregisternumber, 
+    staff_censusregistezipcode, staff_censusregisteraddress, staff_hometelephone, staff_homezipcode, 
+    staff_homeaddress, staff_newphone, staff_newzipcode, staff_newaddress, staff_emergencycontact, 
+    staff_urgentcontactzipcode, staff_emergencycontactnumber, staff_emergencycontactaddress, 
+    staff_remark, staff_Auditing, staff_yn, staff_custom1, staff_custom2, staff_custom3, 
+    staff_custom4, staff_custom5, staff_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Staff">
+    insert into staff (staff_id, staff_name, staff_english_name, 
+      team_id, staff_gender, staff_idnumber, 
+      staff_birthday, staff_maritalstatus, staff_native_place, 
+      staff_nativeplace, staff_nationality, staff_nation, 
+      staff_chineseposition, staff_zipcode, staff_Mobilephone, 
+      staff_politicalstatus, staff_entrydate, "staff_becomea regularworker", 
+      staff_probationperiod, staff_dimissiondate, 
+      staff_technicaltitle, staff_englishposition, 
+      staff_address, staff_phone, staff_highesteducation, 
+      staff_degree, staff_graduateschool, staff_major, 
+      staff_foreignlanguagelevel, "staff_physical examinationdate", 
+      staff_atmaturitydate, staff_entercountry, staff_passport_number, 
+      staff_contractstartdate, staff_contractenddate, 
+      staff_contractduration, staff_email, staff_censusregisternumber, 
+      staff_censusregistezipcode, staff_censusregisteraddress, 
+      staff_hometelephone, staff_homezipcode, staff_homeaddress, 
+      staff_newphone, staff_newzipcode, staff_newaddress, 
+      staff_emergencycontact, staff_urgentcontactzipcode, 
+      staff_emergencycontactnumber, staff_emergencycontactaddress, 
+      staff_remark, staff_Auditing, staff_yn, 
+      staff_custom1, staff_custom2, staff_custom3, 
+      staff_custom4, staff_custom5, staff_custom6
+      )
+    values (#{staffId,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{staffEnglishName,jdbcType=VARCHAR}, 
+      #{teamId,jdbcType=VARCHAR}, #{staffGender,jdbcType=CHAR}, #{staffIdnumber,jdbcType=VARCHAR}, 
+      #{staffBirthday,jdbcType=DATE}, #{staffMaritalstatus,jdbcType=INTEGER}, #{staffNativePlace,jdbcType=INTEGER}, 
+      #{staffNativeplace,jdbcType=VARCHAR}, #{staffNationality,jdbcType=VARCHAR}, #{staffNation,jdbcType=VARCHAR}, 
+      #{staffChineseposition,jdbcType=VARCHAR}, #{staffZipcode,jdbcType=VARCHAR}, #{staffMobilephone,jdbcType=VARCHAR}, 
+      #{staffPoliticalstatus,jdbcType=VARCHAR}, #{staffEntrydate,jdbcType=DATE}, #{staffBecomeaRegularworker,jdbcType=DATE}, 
+      #{staffProbationperiod,jdbcType=VARCHAR}, #{staffDimissiondate,jdbcType=DATE}, 
+      #{staffTechnicaltitle,jdbcType=VARCHAR}, #{staffEnglishposition,jdbcType=VARCHAR}, 
+      #{staffAddress,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, #{staffHighesteducation,jdbcType=VARCHAR}, 
+      #{staffDegree,jdbcType=VARCHAR}, #{staffGraduateschool,jdbcType=VARCHAR}, #{staffMajor,jdbcType=VARCHAR}, 
+      #{staffForeignlanguagelevel,jdbcType=VARCHAR}, #{staffPhysicalExaminationdate,jdbcType=DATE}, 
+      #{staffAtmaturitydate,jdbcType=DATE}, #{staffEntercountry,jdbcType=DATE}, #{staffPassportNumber,jdbcType=VARCHAR}, 
+      #{staffContractstartdate,jdbcType=DATE}, #{staffContractenddate,jdbcType=DATE}, 
+      #{staffContractduration,jdbcType=VARCHAR}, #{staffEmail,jdbcType=VARCHAR}, #{staffCensusregisternumber,jdbcType=VARCHAR}, 
+      #{staffCensusregistezipcode,jdbcType=VARCHAR}, #{staffCensusregisteraddress,jdbcType=VARCHAR}, 
+      #{staffHometelephone,jdbcType=VARCHAR}, #{staffHomezipcode,jdbcType=VARCHAR}, #{staffHomeaddress,jdbcType=VARCHAR}, 
+      #{staffNewphone,jdbcType=VARCHAR}, #{staffNewzipcode,jdbcType=VARCHAR}, #{staffNewaddress,jdbcType=VARCHAR}, 
+      #{staffEmergencycontact,jdbcType=VARCHAR}, #{staffUrgentcontactzipcode,jdbcType=VARCHAR}, 
+      #{staffEmergencycontactnumber,jdbcType=VARCHAR}, #{staffEmergencycontactaddress,jdbcType=VARCHAR}, 
+      #{staffRemark,jdbcType=VARCHAR}, #{staffAuditing,jdbcType=VARCHAR}, #{staffYn,jdbcType=VARCHAR}, 
+      #{staffCustom1,jdbcType=VARCHAR}, #{staffCustom2,jdbcType=VARCHAR}, #{staffCustom3,jdbcType=VARCHAR}, 
+      #{staffCustom4,jdbcType=VARCHAR}, #{staffCustom5,jdbcType=VARCHAR}, #{staffCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Staff">
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="staffName != null">
+        staff_name,
+      </if>
+      <if test="staffEnglishName != null">
+        staff_english_name,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="staffGender != null">
+        staff_gender,
+      </if>
+      <if test="staffIdnumber != null">
+        staff_idnumber,
+      </if>
+      <if test="staffBirthday != null">
+        staff_birthday,
+      </if>
+      <if test="staffMaritalstatus != null">
+        staff_maritalstatus,
+      </if>
+      <if test="staffNativePlace != null">
+        staff_native_place,
+      </if>
+      <if test="staffNativeplace != null">
+        staff_nativeplace,
+      </if>
+      <if test="staffNationality != null">
+        staff_nationality,
+      </if>
+      <if test="staffNation != null">
+        staff_nation,
+      </if>
+      <if test="staffChineseposition != null">
+        staff_chineseposition,
+      </if>
+      <if test="staffZipcode != null">
+        staff_zipcode,
+      </if>
+      <if test="staffMobilephone != null">
+        staff_Mobilephone,
+      </if>
+      <if test="staffPoliticalstatus != null">
+        staff_politicalstatus,
+      </if>
+      <if test="staffEntrydate != null">
+        staff_entrydate,
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        "staff_becomea regularworker",
+      </if>
+      <if test="staffProbationperiod != null">
+        staff_probationperiod,
+      </if>
+      <if test="staffDimissiondate != null">
+        staff_dimissiondate,
+      </if>
+      <if test="staffTechnicaltitle != null">
+        staff_technicaltitle,
+      </if>
+      <if test="staffEnglishposition != null">
+        staff_englishposition,
+      </if>
+      <if test="staffAddress != null">
+        staff_address,
+      </if>
+      <if test="staffPhone != null">
+        staff_phone,
+      </if>
+      <if test="staffHighesteducation != null">
+        staff_highesteducation,
+      </if>
+      <if test="staffDegree != null">
+        staff_degree,
+      </if>
+      <if test="staffGraduateschool != null">
+        staff_graduateschool,
+      </if>
+      <if test="staffMajor != null">
+        staff_major,
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        staff_foreignlanguagelevel,
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        "staff_physical examinationdate",
+      </if>
+      <if test="staffAtmaturitydate != null">
+        staff_atmaturitydate,
+      </if>
+      <if test="staffEntercountry != null">
+        staff_entercountry,
+      </if>
+      <if test="staffPassportNumber != null">
+        staff_passport_number,
+      </if>
+      <if test="staffContractstartdate != null">
+        staff_contractstartdate,
+      </if>
+      <if test="staffContractenddate != null">
+        staff_contractenddate,
+      </if>
+      <if test="staffContractduration != null">
+        staff_contractduration,
+      </if>
+      <if test="staffEmail != null">
+        staff_email,
+      </if>
+      <if test="staffCensusregisternumber != null">
+        staff_censusregisternumber,
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        staff_censusregistezipcode,
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        staff_censusregisteraddress,
+      </if>
+      <if test="staffHometelephone != null">
+        staff_hometelephone,
+      </if>
+      <if test="staffHomezipcode != null">
+        staff_homezipcode,
+      </if>
+      <if test="staffHomeaddress != null">
+        staff_homeaddress,
+      </if>
+      <if test="staffNewphone != null">
+        staff_newphone,
+      </if>
+      <if test="staffNewzipcode != null">
+        staff_newzipcode,
+      </if>
+      <if test="staffNewaddress != null">
+        staff_newaddress,
+      </if>
+      <if test="staffEmergencycontact != null">
+        staff_emergencycontact,
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        staff_urgentcontactzipcode,
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        staff_emergencycontactnumber,
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        staff_emergencycontactaddress,
+      </if>
+      <if test="staffRemark != null">
+        staff_remark,
+      </if>
+      <if test="staffAuditing != null">
+        staff_Auditing,
+      </if>
+      <if test="staffYn != null">
+        staff_yn,
+      </if>
+      <if test="staffCustom1 != null">
+        staff_custom1,
+      </if>
+      <if test="staffCustom2 != null">
+        staff_custom2,
+      </if>
+      <if test="staffCustom3 != null">
+        staff_custom3,
+      </if>
+      <if test="staffCustom4 != null">
+        staff_custom4,
+      </if>
+      <if test="staffCustom5 != null">
+        staff_custom5,
+      </if>
+      <if test="staffCustom6 != null">
+        staff_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null">
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishName != null">
+        #{staffEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGender != null">
+        #{staffGender,jdbcType=CHAR},
+      </if>
+      <if test="staffIdnumber != null">
+        #{staffIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffBirthday != null">
+        #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffMaritalstatus != null">
+        #{staffMaritalstatus,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativePlace != null">
+        #{staffNativePlace,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativeplace != null">
+        #{staffNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNationality != null">
+        #{staffNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNation != null">
+        #{staffNation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffChineseposition != null">
+        #{staffChineseposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffZipcode != null">
+        #{staffZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMobilephone != null">
+        #{staffMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPoliticalstatus != null">
+        #{staffPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEntrydate != null">
+        #{staffEntrydate,jdbcType=DATE},
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        #{staffBecomeaRegularworker,jdbcType=DATE},
+      </if>
+      <if test="staffProbationperiod != null">
+        #{staffProbationperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDimissiondate != null">
+        #{staffDimissiondate,jdbcType=DATE},
+      </if>
+      <if test="staffTechnicaltitle != null">
+        #{staffTechnicaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishposition != null">
+        #{staffEnglishposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAddress != null">
+        #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHighesteducation != null">
+        #{staffHighesteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDegree != null">
+        #{staffDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGraduateschool != null">
+        #{staffGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMajor != null">
+        #{staffMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        #{staffPhysicalExaminationdate,jdbcType=DATE},
+      </if>
+      <if test="staffAtmaturitydate != null">
+        #{staffAtmaturitydate,jdbcType=DATE},
+      </if>
+      <if test="staffEntercountry != null">
+        #{staffEntercountry,jdbcType=DATE},
+      </if>
+      <if test="staffPassportNumber != null">
+        #{staffPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffContractstartdate != null">
+        #{staffContractstartdate,jdbcType=DATE},
+      </if>
+      <if test="staffContractenddate != null">
+        #{staffContractenddate,jdbcType=DATE},
+      </if>
+      <if test="staffContractduration != null">
+        #{staffContractduration,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null">
+        #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisternumber != null">
+        #{staffCensusregisternumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHometelephone != null">
+        #{staffHometelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomezipcode != null">
+        #{staffHomezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomeaddress != null">
+        #{staffHomeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewphone != null">
+        #{staffNewphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewzipcode != null">
+        #{staffNewzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewaddress != null">
+        #{staffNewaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontact != null">
+        #{staffEmergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null">
+        #{staffRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAuditing != null">
+        #{staffAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="staffYn != null">
+        #{staffYn,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom1 != null">
+        #{staffCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom2 != null">
+        #{staffCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom3 != null">
+        #{staffCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom4 != null">
+        #{staffCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom5 != null">
+        #{staffCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom6 != null">
+        #{staffCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Staff">
+    update staff
+    <set>
+      <if test="staffName != null">
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishName != null">
+        staff_english_name = #{staffEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGender != null">
+        staff_gender = #{staffGender,jdbcType=CHAR},
+      </if>
+      <if test="staffIdnumber != null">
+        staff_idnumber = #{staffIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffBirthday != null">
+        staff_birthday = #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffMaritalstatus != null">
+        staff_maritalstatus = #{staffMaritalstatus,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativePlace != null">
+        staff_native_place = #{staffNativePlace,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativeplace != null">
+        staff_nativeplace = #{staffNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNationality != null">
+        staff_nationality = #{staffNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNation != null">
+        staff_nation = #{staffNation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffChineseposition != null">
+        staff_chineseposition = #{staffChineseposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffZipcode != null">
+        staff_zipcode = #{staffZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMobilephone != null">
+        staff_Mobilephone = #{staffMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPoliticalstatus != null">
+        staff_politicalstatus = #{staffPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEntrydate != null">
+        staff_entrydate = #{staffEntrydate,jdbcType=DATE},
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        "staff_becomea regularworker" = #{staffBecomeaRegularworker,jdbcType=DATE},
+      </if>
+      <if test="staffProbationperiod != null">
+        staff_probationperiod = #{staffProbationperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDimissiondate != null">
+        staff_dimissiondate = #{staffDimissiondate,jdbcType=DATE},
+      </if>
+      <if test="staffTechnicaltitle != null">
+        staff_technicaltitle = #{staffTechnicaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishposition != null">
+        staff_englishposition = #{staffEnglishposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAddress != null">
+        staff_address = #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHighesteducation != null">
+        staff_highesteducation = #{staffHighesteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDegree != null">
+        staff_degree = #{staffDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGraduateschool != null">
+        staff_graduateschool = #{staffGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMajor != null">
+        staff_major = #{staffMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        staff_foreignlanguagelevel = #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        "staff_physical examinationdate" = #{staffPhysicalExaminationdate,jdbcType=DATE},
+      </if>
+      <if test="staffAtmaturitydate != null">
+        staff_atmaturitydate = #{staffAtmaturitydate,jdbcType=DATE},
+      </if>
+      <if test="staffEntercountry != null">
+        staff_entercountry = #{staffEntercountry,jdbcType=DATE},
+      </if>
+      <if test="staffPassportNumber != null">
+        staff_passport_number = #{staffPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffContractstartdate != null">
+        staff_contractstartdate = #{staffContractstartdate,jdbcType=DATE},
+      </if>
+      <if test="staffContractenddate != null">
+        staff_contractenddate = #{staffContractenddate,jdbcType=DATE},
+      </if>
+      <if test="staffContractduration != null">
+        staff_contractduration = #{staffContractduration,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null">
+        staff_email = #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisternumber != null">
+        staff_censusregisternumber = #{staffCensusregisternumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        staff_censusregistezipcode = #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        staff_censusregisteraddress = #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHometelephone != null">
+        staff_hometelephone = #{staffHometelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomezipcode != null">
+        staff_homezipcode = #{staffHomezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomeaddress != null">
+        staff_homeaddress = #{staffHomeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewphone != null">
+        staff_newphone = #{staffNewphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewzipcode != null">
+        staff_newzipcode = #{staffNewzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewaddress != null">
+        staff_newaddress = #{staffNewaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontact != null">
+        staff_emergencycontact = #{staffEmergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        staff_urgentcontactzipcode = #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        staff_emergencycontactnumber = #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        staff_emergencycontactaddress = #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null">
+        staff_remark = #{staffRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAuditing != null">
+        staff_Auditing = #{staffAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="staffYn != null">
+        staff_yn = #{staffYn,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom1 != null">
+        staff_custom1 = #{staffCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom2 != null">
+        staff_custom2 = #{staffCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom3 != null">
+        staff_custom3 = #{staffCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom4 != null">
+        staff_custom4 = #{staffCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom5 != null">
+        staff_custom5 = #{staffCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom6 != null">
+        staff_custom6 = #{staffCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Staff">
+    update staff
+    set staff_name = #{staffName,jdbcType=VARCHAR},
+      staff_english_name = #{staffEnglishName,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      staff_gender = #{staffGender,jdbcType=CHAR},
+      staff_idnumber = #{staffIdnumber,jdbcType=VARCHAR},
+      staff_birthday = #{staffBirthday,jdbcType=DATE},
+      staff_maritalstatus = #{staffMaritalstatus,jdbcType=INTEGER},
+      staff_native_place = #{staffNativePlace,jdbcType=INTEGER},
+      staff_nativeplace = #{staffNativeplace,jdbcType=VARCHAR},
+      staff_nationality = #{staffNationality,jdbcType=VARCHAR},
+      staff_nation = #{staffNation,jdbcType=VARCHAR},
+      staff_chineseposition = #{staffChineseposition,jdbcType=VARCHAR},
+      staff_zipcode = #{staffZipcode,jdbcType=VARCHAR},
+      staff_Mobilephone = #{staffMobilephone,jdbcType=VARCHAR},
+      staff_politicalstatus = #{staffPoliticalstatus,jdbcType=VARCHAR},
+      staff_entrydate = #{staffEntrydate,jdbcType=DATE},
+      "staff_becomea regularworker" = #{staffBecomeaRegularworker,jdbcType=DATE},
+      staff_probationperiod = #{staffProbationperiod,jdbcType=VARCHAR},
+      staff_dimissiondate = #{staffDimissiondate,jdbcType=DATE},
+      staff_technicaltitle = #{staffTechnicaltitle,jdbcType=VARCHAR},
+      staff_englishposition = #{staffEnglishposition,jdbcType=VARCHAR},
+      staff_address = #{staffAddress,jdbcType=VARCHAR},
+      staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      staff_highesteducation = #{staffHighesteducation,jdbcType=VARCHAR},
+      staff_degree = #{staffDegree,jdbcType=VARCHAR},
+      staff_graduateschool = #{staffGraduateschool,jdbcType=VARCHAR},
+      staff_major = #{staffMajor,jdbcType=VARCHAR},
+      staff_foreignlanguagelevel = #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      "staff_physical examinationdate" = #{staffPhysicalExaminationdate,jdbcType=DATE},
+      staff_atmaturitydate = #{staffAtmaturitydate,jdbcType=DATE},
+      staff_entercountry = #{staffEntercountry,jdbcType=DATE},
+      staff_passport_number = #{staffPassportNumber,jdbcType=VARCHAR},
+      staff_contractstartdate = #{staffContractstartdate,jdbcType=DATE},
+      staff_contractenddate = #{staffContractenddate,jdbcType=DATE},
+      staff_contractduration = #{staffContractduration,jdbcType=VARCHAR},
+      staff_email = #{staffEmail,jdbcType=VARCHAR},
+      staff_censusregisternumber = #{staffCensusregisternumber,jdbcType=VARCHAR},
+      staff_censusregistezipcode = #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      staff_censusregisteraddress = #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      staff_hometelephone = #{staffHometelephone,jdbcType=VARCHAR},
+      staff_homezipcode = #{staffHomezipcode,jdbcType=VARCHAR},
+      staff_homeaddress = #{staffHomeaddress,jdbcType=VARCHAR},
+      staff_newphone = #{staffNewphone,jdbcType=VARCHAR},
+      staff_newzipcode = #{staffNewzipcode,jdbcType=VARCHAR},
+      staff_newaddress = #{staffNewaddress,jdbcType=VARCHAR},
+      staff_emergencycontact = #{staffEmergencycontact,jdbcType=VARCHAR},
+      staff_urgentcontactzipcode = #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      staff_emergencycontactnumber = #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      staff_emergencycontactaddress = #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      staff_remark = #{staffRemark,jdbcType=VARCHAR},
+      staff_Auditing = #{staffAuditing,jdbcType=VARCHAR},
+      staff_yn = #{staffYn,jdbcType=VARCHAR},
+      staff_custom1 = #{staffCustom1,jdbcType=VARCHAR},
+      staff_custom2 = #{staffCustom2,jdbcType=VARCHAR},
+      staff_custom3 = #{staffCustom3,jdbcType=VARCHAR},
+      staff_custom4 = #{staffCustom4,jdbcType=VARCHAR},
+      staff_custom5 = #{staffCustom5,jdbcType=VARCHAR},
+      staff_custom6 = #{staffCustom6,jdbcType=VARCHAR}
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Staff">
+    <id column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="staff_name" jdbcType="VARCHAR" property="staffName" />
+    <result column="staff_english_name" jdbcType="VARCHAR" property="staffEnglishName" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="staff_gender" jdbcType="CHAR" property="staffGender" />
+    <result column="staff_idnumber" jdbcType="VARCHAR" property="staffIdnumber" />
+    <result column="staff_birthday" jdbcType="DATE" property="staffBirthday" />
+    <result column="staff_maritalstatus" jdbcType="INTEGER" property="staffMaritalstatus" />
+    <result column="staff_native_place" jdbcType="INTEGER" property="staffNativePlace" />
+    <result column="staff_nativeplace" jdbcType="VARCHAR" property="staffNativeplace" />
+    <result column="staff_nationality" jdbcType="VARCHAR" property="staffNationality" />
+    <result column="staff_nation" jdbcType="VARCHAR" property="staffNation" />
+    <result column="staff_chineseposition" jdbcType="VARCHAR" property="staffChineseposition" />
+    <result column="staff_zipcode" jdbcType="VARCHAR" property="staffZipcode" />
+    <result column="staff_Mobilephone" jdbcType="VARCHAR" property="staffMobilephone" />
+    <result column="staff_politicalstatus" jdbcType="VARCHAR" property="staffPoliticalstatus" />
+    <result column="staff_entrydate" jdbcType="DATE" property="staffEntrydate" />
+    <result column="staff_becomea regularworker" jdbcType="DATE" property="staffBecomeaRegularworker" />
+    <result column="staff_probationperiod" jdbcType="VARCHAR" property="staffProbationperiod" />
+    <result column="staff_dimissiondate" jdbcType="DATE" property="staffDimissiondate" />
+    <result column="staff_technicaltitle" jdbcType="VARCHAR" property="staffTechnicaltitle" />
+    <result column="staff_englishposition" jdbcType="VARCHAR" property="staffEnglishposition" />
+    <result column="staff_address" jdbcType="VARCHAR" property="staffAddress" />
+    <result column="staff_phone" jdbcType="VARCHAR" property="staffPhone" />
+    <result column="staff_highesteducation" jdbcType="VARCHAR" property="staffHighesteducation" />
+    <result column="staff_degree" jdbcType="VARCHAR" property="staffDegree" />
+    <result column="staff_graduateschool" jdbcType="VARCHAR" property="staffGraduateschool" />
+    <result column="staff_major" jdbcType="VARCHAR" property="staffMajor" />
+    <result column="staff_foreignlanguagelevel" jdbcType="VARCHAR" property="staffForeignlanguagelevel" />
+    <result column="staff_physical examinationdate" jdbcType="DATE" property="staffPhysicalExaminationdate" />
+    <result column="staff_atmaturitydate" jdbcType="DATE" property="staffAtmaturitydate" />
+    <result column="staff_entercountry" jdbcType="DATE" property="staffEntercountry" />
+    <result column="staff_passport_number" jdbcType="VARCHAR" property="staffPassportNumber" />
+    <result column="staff_contractstartdate" jdbcType="DATE" property="staffContractstartdate" />
+    <result column="staff_contractenddate" jdbcType="DATE" property="staffContractenddate" />
+    <result column="staff_contractduration" jdbcType="VARCHAR" property="staffContractduration" />
+    <result column="staff_email" jdbcType="VARCHAR" property="staffEmail" />
+    <result column="staff_censusregisternumber" jdbcType="VARCHAR" property="staffCensusregisternumber" />
+    <result column="staff_censusregistezipcode" jdbcType="VARCHAR" property="staffCensusregistezipcode" />
+    <result column="staff_censusregisteraddress" jdbcType="VARCHAR" property="staffCensusregisteraddress" />
+    <result column="staff_hometelephone" jdbcType="VARCHAR" property="staffHometelephone" />
+    <result column="staff_homezipcode" jdbcType="VARCHAR" property="staffHomezipcode" />
+    <result column="staff_homeaddress" jdbcType="VARCHAR" property="staffHomeaddress" />
+    <result column="staff_newphone" jdbcType="VARCHAR" property="staffNewphone" />
+    <result column="staff_newzipcode" jdbcType="VARCHAR" property="staffNewzipcode" />
+    <result column="staff_newaddress" jdbcType="VARCHAR" property="staffNewaddress" />
+    <result column="staff_emergencycontact" jdbcType="VARCHAR" property="staffEmergencycontact" />
+    <result column="staff_urgentcontactzipcode" jdbcType="VARCHAR" property="staffUrgentcontactzipcode" />
+    <result column="staff_emergencycontactnumber" jdbcType="VARCHAR" property="staffEmergencycontactnumber" />
+    <result column="staff_emergencycontactaddress" jdbcType="VARCHAR" property="staffEmergencycontactaddress" />
+    <result column="staff_remark" jdbcType="VARCHAR" property="staffRemark" />
+    <result column="staff_Auditing" jdbcType="VARCHAR" property="staffAuditing" />
+    <result column="staff_yn" jdbcType="VARCHAR" property="staffYn" />
+    <result column="staff_custom1" jdbcType="VARCHAR" property="staffCustom1" />
+    <result column="staff_custom2" jdbcType="VARCHAR" property="staffCustom2" />
+    <result column="staff_custom3" jdbcType="VARCHAR" property="staffCustom3" />
+    <result column="staff_custom4" jdbcType="VARCHAR" property="staffCustom4" />
+    <result column="staff_custom5" jdbcType="VARCHAR" property="staffCustom5" />
+    <result column="staff_custom6" jdbcType="VARCHAR" property="staffCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    staff_id, staff_name, staff_english_name, team_id, staff_gender, staff_idnumber, 
+    staff_birthday, staff_maritalstatus, staff_native_place, staff_nativeplace, staff_nationality, 
+    staff_nation, staff_chineseposition, staff_zipcode, staff_Mobilephone, staff_politicalstatus, 
+    staff_entrydate, "staff_becomea regularworker", staff_probationperiod, staff_dimissiondate, 
+    staff_technicaltitle, staff_englishposition, staff_address, staff_phone, staff_highesteducation, 
+    staff_degree, staff_graduateschool, staff_major, staff_foreignlanguagelevel, "staff_physical examinationdate", 
+    staff_atmaturitydate, staff_entercountry, staff_passport_number, staff_contractstartdate, 
+    staff_contractenddate, staff_contractduration, staff_email, staff_censusregisternumber, 
+    staff_censusregistezipcode, staff_censusregisteraddress, staff_hometelephone, staff_homezipcode, 
+    staff_homeaddress, staff_newphone, staff_newzipcode, staff_newaddress, staff_emergencycontact, 
+    staff_urgentcontactzipcode, staff_emergencycontactnumber, staff_emergencycontactaddress, 
+    staff_remark, staff_Auditing, staff_yn, staff_custom1, staff_custom2, staff_custom3, 
+    staff_custom4, staff_custom5, staff_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from staff
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Staff">
+    insert into staff (staff_id, staff_name, staff_english_name, 
+      team_id, staff_gender, staff_idnumber, 
+      staff_birthday, staff_maritalstatus, staff_native_place, 
+      staff_nativeplace, staff_nationality, staff_nation, 
+      staff_chineseposition, staff_zipcode, staff_Mobilephone, 
+      staff_politicalstatus, staff_entrydate, "staff_becomea regularworker", 
+      staff_probationperiod, staff_dimissiondate, 
+      staff_technicaltitle, staff_englishposition, 
+      staff_address, staff_phone, staff_highesteducation, 
+      staff_degree, staff_graduateschool, staff_major, 
+      staff_foreignlanguagelevel, "staff_physical examinationdate", 
+      staff_atmaturitydate, staff_entercountry, staff_passport_number, 
+      staff_contractstartdate, staff_contractenddate, 
+      staff_contractduration, staff_email, staff_censusregisternumber, 
+      staff_censusregistezipcode, staff_censusregisteraddress, 
+      staff_hometelephone, staff_homezipcode, staff_homeaddress, 
+      staff_newphone, staff_newzipcode, staff_newaddress, 
+      staff_emergencycontact, staff_urgentcontactzipcode, 
+      staff_emergencycontactnumber, staff_emergencycontactaddress, 
+      staff_remark, staff_Auditing, staff_yn, 
+      staff_custom1, staff_custom2, staff_custom3, 
+      staff_custom4, staff_custom5, staff_custom6
+      )
+    values (#{staffId,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{staffEnglishName,jdbcType=VARCHAR}, 
+      #{teamId,jdbcType=VARCHAR}, #{staffGender,jdbcType=CHAR}, #{staffIdnumber,jdbcType=VARCHAR}, 
+      #{staffBirthday,jdbcType=DATE}, #{staffMaritalstatus,jdbcType=INTEGER}, #{staffNativePlace,jdbcType=INTEGER}, 
+      #{staffNativeplace,jdbcType=VARCHAR}, #{staffNationality,jdbcType=VARCHAR}, #{staffNation,jdbcType=VARCHAR}, 
+      #{staffChineseposition,jdbcType=VARCHAR}, #{staffZipcode,jdbcType=VARCHAR}, #{staffMobilephone,jdbcType=VARCHAR}, 
+      #{staffPoliticalstatus,jdbcType=VARCHAR}, #{staffEntrydate,jdbcType=DATE}, #{staffBecomeaRegularworker,jdbcType=DATE}, 
+      #{staffProbationperiod,jdbcType=VARCHAR}, #{staffDimissiondate,jdbcType=DATE}, 
+      #{staffTechnicaltitle,jdbcType=VARCHAR}, #{staffEnglishposition,jdbcType=VARCHAR}, 
+      #{staffAddress,jdbcType=VARCHAR}, #{staffPhone,jdbcType=VARCHAR}, #{staffHighesteducation,jdbcType=VARCHAR}, 
+      #{staffDegree,jdbcType=VARCHAR}, #{staffGraduateschool,jdbcType=VARCHAR}, #{staffMajor,jdbcType=VARCHAR}, 
+      #{staffForeignlanguagelevel,jdbcType=VARCHAR}, #{staffPhysicalExaminationdate,jdbcType=DATE}, 
+      #{staffAtmaturitydate,jdbcType=DATE}, #{staffEntercountry,jdbcType=DATE}, #{staffPassportNumber,jdbcType=VARCHAR}, 
+      #{staffContractstartdate,jdbcType=DATE}, #{staffContractenddate,jdbcType=DATE}, 
+      #{staffContractduration,jdbcType=VARCHAR}, #{staffEmail,jdbcType=VARCHAR}, #{staffCensusregisternumber,jdbcType=VARCHAR}, 
+      #{staffCensusregistezipcode,jdbcType=VARCHAR}, #{staffCensusregisteraddress,jdbcType=VARCHAR}, 
+      #{staffHometelephone,jdbcType=VARCHAR}, #{staffHomezipcode,jdbcType=VARCHAR}, #{staffHomeaddress,jdbcType=VARCHAR}, 
+      #{staffNewphone,jdbcType=VARCHAR}, #{staffNewzipcode,jdbcType=VARCHAR}, #{staffNewaddress,jdbcType=VARCHAR}, 
+      #{staffEmergencycontact,jdbcType=VARCHAR}, #{staffUrgentcontactzipcode,jdbcType=VARCHAR}, 
+      #{staffEmergencycontactnumber,jdbcType=VARCHAR}, #{staffEmergencycontactaddress,jdbcType=VARCHAR}, 
+      #{staffRemark,jdbcType=VARCHAR}, #{staffAuditing,jdbcType=VARCHAR}, #{staffYn,jdbcType=VARCHAR}, 
+      #{staffCustom1,jdbcType=VARCHAR}, #{staffCustom2,jdbcType=VARCHAR}, #{staffCustom3,jdbcType=VARCHAR}, 
+      #{staffCustom4,jdbcType=VARCHAR}, #{staffCustom5,jdbcType=VARCHAR}, #{staffCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Staff">
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="staffName != null">
+        staff_name,
+      </if>
+      <if test="staffEnglishName != null">
+        staff_english_name,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="staffGender != null">
+        staff_gender,
+      </if>
+      <if test="staffIdnumber != null">
+        staff_idnumber,
+      </if>
+      <if test="staffBirthday != null">
+        staff_birthday,
+      </if>
+      <if test="staffMaritalstatus != null">
+        staff_maritalstatus,
+      </if>
+      <if test="staffNativePlace != null">
+        staff_native_place,
+      </if>
+      <if test="staffNativeplace != null">
+        staff_nativeplace,
+      </if>
+      <if test="staffNationality != null">
+        staff_nationality,
+      </if>
+      <if test="staffNation != null">
+        staff_nation,
+      </if>
+      <if test="staffChineseposition != null">
+        staff_chineseposition,
+      </if>
+      <if test="staffZipcode != null">
+        staff_zipcode,
+      </if>
+      <if test="staffMobilephone != null">
+        staff_Mobilephone,
+      </if>
+      <if test="staffPoliticalstatus != null">
+        staff_politicalstatus,
+      </if>
+      <if test="staffEntrydate != null">
+        staff_entrydate,
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        "staff_becomea regularworker",
+      </if>
+      <if test="staffProbationperiod != null">
+        staff_probationperiod,
+      </if>
+      <if test="staffDimissiondate != null">
+        staff_dimissiondate,
+      </if>
+      <if test="staffTechnicaltitle != null">
+        staff_technicaltitle,
+      </if>
+      <if test="staffEnglishposition != null">
+        staff_englishposition,
+      </if>
+      <if test="staffAddress != null">
+        staff_address,
+      </if>
+      <if test="staffPhone != null">
+        staff_phone,
+      </if>
+      <if test="staffHighesteducation != null">
+        staff_highesteducation,
+      </if>
+      <if test="staffDegree != null">
+        staff_degree,
+      </if>
+      <if test="staffGraduateschool != null">
+        staff_graduateschool,
+      </if>
+      <if test="staffMajor != null">
+        staff_major,
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        staff_foreignlanguagelevel,
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        "staff_physical examinationdate",
+      </if>
+      <if test="staffAtmaturitydate != null">
+        staff_atmaturitydate,
+      </if>
+      <if test="staffEntercountry != null">
+        staff_entercountry,
+      </if>
+      <if test="staffPassportNumber != null">
+        staff_passport_number,
+      </if>
+      <if test="staffContractstartdate != null">
+        staff_contractstartdate,
+      </if>
+      <if test="staffContractenddate != null">
+        staff_contractenddate,
+      </if>
+      <if test="staffContractduration != null">
+        staff_contractduration,
+      </if>
+      <if test="staffEmail != null">
+        staff_email,
+      </if>
+      <if test="staffCensusregisternumber != null">
+        staff_censusregisternumber,
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        staff_censusregistezipcode,
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        staff_censusregisteraddress,
+      </if>
+      <if test="staffHometelephone != null">
+        staff_hometelephone,
+      </if>
+      <if test="staffHomezipcode != null">
+        staff_homezipcode,
+      </if>
+      <if test="staffHomeaddress != null">
+        staff_homeaddress,
+      </if>
+      <if test="staffNewphone != null">
+        staff_newphone,
+      </if>
+      <if test="staffNewzipcode != null">
+        staff_newzipcode,
+      </if>
+      <if test="staffNewaddress != null">
+        staff_newaddress,
+      </if>
+      <if test="staffEmergencycontact != null">
+        staff_emergencycontact,
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        staff_urgentcontactzipcode,
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        staff_emergencycontactnumber,
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        staff_emergencycontactaddress,
+      </if>
+      <if test="staffRemark != null">
+        staff_remark,
+      </if>
+      <if test="staffAuditing != null">
+        staff_Auditing,
+      </if>
+      <if test="staffYn != null">
+        staff_yn,
+      </if>
+      <if test="staffCustom1 != null">
+        staff_custom1,
+      </if>
+      <if test="staffCustom2 != null">
+        staff_custom2,
+      </if>
+      <if test="staffCustom3 != null">
+        staff_custom3,
+      </if>
+      <if test="staffCustom4 != null">
+        staff_custom4,
+      </if>
+      <if test="staffCustom5 != null">
+        staff_custom5,
+      </if>
+      <if test="staffCustom6 != null">
+        staff_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null">
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishName != null">
+        #{staffEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGender != null">
+        #{staffGender,jdbcType=CHAR},
+      </if>
+      <if test="staffIdnumber != null">
+        #{staffIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffBirthday != null">
+        #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffMaritalstatus != null">
+        #{staffMaritalstatus,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativePlace != null">
+        #{staffNativePlace,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativeplace != null">
+        #{staffNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNationality != null">
+        #{staffNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNation != null">
+        #{staffNation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffChineseposition != null">
+        #{staffChineseposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffZipcode != null">
+        #{staffZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMobilephone != null">
+        #{staffMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPoliticalstatus != null">
+        #{staffPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEntrydate != null">
+        #{staffEntrydate,jdbcType=DATE},
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        #{staffBecomeaRegularworker,jdbcType=DATE},
+      </if>
+      <if test="staffProbationperiod != null">
+        #{staffProbationperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDimissiondate != null">
+        #{staffDimissiondate,jdbcType=DATE},
+      </if>
+      <if test="staffTechnicaltitle != null">
+        #{staffTechnicaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishposition != null">
+        #{staffEnglishposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAddress != null">
+        #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHighesteducation != null">
+        #{staffHighesteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDegree != null">
+        #{staffDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGraduateschool != null">
+        #{staffGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMajor != null">
+        #{staffMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        #{staffPhysicalExaminationdate,jdbcType=DATE},
+      </if>
+      <if test="staffAtmaturitydate != null">
+        #{staffAtmaturitydate,jdbcType=DATE},
+      </if>
+      <if test="staffEntercountry != null">
+        #{staffEntercountry,jdbcType=DATE},
+      </if>
+      <if test="staffPassportNumber != null">
+        #{staffPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffContractstartdate != null">
+        #{staffContractstartdate,jdbcType=DATE},
+      </if>
+      <if test="staffContractenddate != null">
+        #{staffContractenddate,jdbcType=DATE},
+      </if>
+      <if test="staffContractduration != null">
+        #{staffContractduration,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null">
+        #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisternumber != null">
+        #{staffCensusregisternumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHometelephone != null">
+        #{staffHometelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomezipcode != null">
+        #{staffHomezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomeaddress != null">
+        #{staffHomeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewphone != null">
+        #{staffNewphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewzipcode != null">
+        #{staffNewzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewaddress != null">
+        #{staffNewaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontact != null">
+        #{staffEmergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null">
+        #{staffRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAuditing != null">
+        #{staffAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="staffYn != null">
+        #{staffYn,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom1 != null">
+        #{staffCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom2 != null">
+        #{staffCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom3 != null">
+        #{staffCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom4 != null">
+        #{staffCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom5 != null">
+        #{staffCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom6 != null">
+        #{staffCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Staff">
+    update staff
+    <set>
+      <if test="staffName != null">
+        staff_name = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishName != null">
+        staff_english_name = #{staffEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGender != null">
+        staff_gender = #{staffGender,jdbcType=CHAR},
+      </if>
+      <if test="staffIdnumber != null">
+        staff_idnumber = #{staffIdnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffBirthday != null">
+        staff_birthday = #{staffBirthday,jdbcType=DATE},
+      </if>
+      <if test="staffMaritalstatus != null">
+        staff_maritalstatus = #{staffMaritalstatus,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativePlace != null">
+        staff_native_place = #{staffNativePlace,jdbcType=INTEGER},
+      </if>
+      <if test="staffNativeplace != null">
+        staff_nativeplace = #{staffNativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNationality != null">
+        staff_nationality = #{staffNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNation != null">
+        staff_nation = #{staffNation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffChineseposition != null">
+        staff_chineseposition = #{staffChineseposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffZipcode != null">
+        staff_zipcode = #{staffZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMobilephone != null">
+        staff_Mobilephone = #{staffMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPoliticalstatus != null">
+        staff_politicalstatus = #{staffPoliticalstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEntrydate != null">
+        staff_entrydate = #{staffEntrydate,jdbcType=DATE},
+      </if>
+      <if test="staffBecomeaRegularworker != null">
+        "staff_becomea regularworker" = #{staffBecomeaRegularworker,jdbcType=DATE},
+      </if>
+      <if test="staffProbationperiod != null">
+        staff_probationperiod = #{staffProbationperiod,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDimissiondate != null">
+        staff_dimissiondate = #{staffDimissiondate,jdbcType=DATE},
+      </if>
+      <if test="staffTechnicaltitle != null">
+        staff_technicaltitle = #{staffTechnicaltitle,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEnglishposition != null">
+        staff_englishposition = #{staffEnglishposition,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAddress != null">
+        staff_address = #{staffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhone != null">
+        staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHighesteducation != null">
+        staff_highesteducation = #{staffHighesteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="staffDegree != null">
+        staff_degree = #{staffDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="staffGraduateschool != null">
+        staff_graduateschool = #{staffGraduateschool,jdbcType=VARCHAR},
+      </if>
+      <if test="staffMajor != null">
+        staff_major = #{staffMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="staffForeignlanguagelevel != null">
+        staff_foreignlanguagelevel = #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      </if>
+      <if test="staffPhysicalExaminationdate != null">
+        "staff_physical examinationdate" = #{staffPhysicalExaminationdate,jdbcType=DATE},
+      </if>
+      <if test="staffAtmaturitydate != null">
+        staff_atmaturitydate = #{staffAtmaturitydate,jdbcType=DATE},
+      </if>
+      <if test="staffEntercountry != null">
+        staff_entercountry = #{staffEntercountry,jdbcType=DATE},
+      </if>
+      <if test="staffPassportNumber != null">
+        staff_passport_number = #{staffPassportNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffContractstartdate != null">
+        staff_contractstartdate = #{staffContractstartdate,jdbcType=DATE},
+      </if>
+      <if test="staffContractenddate != null">
+        staff_contractenddate = #{staffContractenddate,jdbcType=DATE},
+      </if>
+      <if test="staffContractduration != null">
+        staff_contractduration = #{staffContractduration,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmail != null">
+        staff_email = #{staffEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisternumber != null">
+        staff_censusregisternumber = #{staffCensusregisternumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregistezipcode != null">
+        staff_censusregistezipcode = #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCensusregisteraddress != null">
+        staff_censusregisteraddress = #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHometelephone != null">
+        staff_hometelephone = #{staffHometelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomezipcode != null">
+        staff_homezipcode = #{staffHomezipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffHomeaddress != null">
+        staff_homeaddress = #{staffHomeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewphone != null">
+        staff_newphone = #{staffNewphone,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewzipcode != null">
+        staff_newzipcode = #{staffNewzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffNewaddress != null">
+        staff_newaddress = #{staffNewaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontact != null">
+        staff_emergencycontact = #{staffEmergencycontact,jdbcType=VARCHAR},
+      </if>
+      <if test="staffUrgentcontactzipcode != null">
+        staff_urgentcontactzipcode = #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactnumber != null">
+        staff_emergencycontactnumber = #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffEmergencycontactaddress != null">
+        staff_emergencycontactaddress = #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="staffRemark != null">
+        staff_remark = #{staffRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="staffAuditing != null">
+        staff_Auditing = #{staffAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="staffYn != null">
+        staff_yn = #{staffYn,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom1 != null">
+        staff_custom1 = #{staffCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom2 != null">
+        staff_custom2 = #{staffCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom3 != null">
+        staff_custom3 = #{staffCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom4 != null">
+        staff_custom4 = #{staffCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom5 != null">
+        staff_custom5 = #{staffCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCustom6 != null">
+        staff_custom6 = #{staffCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Staff">
+    update staff
+    set staff_name = #{staffName,jdbcType=VARCHAR},
+      staff_english_name = #{staffEnglishName,jdbcType=VARCHAR},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      staff_gender = #{staffGender,jdbcType=CHAR},
+      staff_idnumber = #{staffIdnumber,jdbcType=VARCHAR},
+      staff_birthday = #{staffBirthday,jdbcType=DATE},
+      staff_maritalstatus = #{staffMaritalstatus,jdbcType=INTEGER},
+      staff_native_place = #{staffNativePlace,jdbcType=INTEGER},
+      staff_nativeplace = #{staffNativeplace,jdbcType=VARCHAR},
+      staff_nationality = #{staffNationality,jdbcType=VARCHAR},
+      staff_nation = #{staffNation,jdbcType=VARCHAR},
+      staff_chineseposition = #{staffChineseposition,jdbcType=VARCHAR},
+      staff_zipcode = #{staffZipcode,jdbcType=VARCHAR},
+      staff_Mobilephone = #{staffMobilephone,jdbcType=VARCHAR},
+      staff_politicalstatus = #{staffPoliticalstatus,jdbcType=VARCHAR},
+      staff_entrydate = #{staffEntrydate,jdbcType=DATE},
+      "staff_becomea regularworker" = #{staffBecomeaRegularworker,jdbcType=DATE},
+      staff_probationperiod = #{staffProbationperiod,jdbcType=VARCHAR},
+      staff_dimissiondate = #{staffDimissiondate,jdbcType=DATE},
+      staff_technicaltitle = #{staffTechnicaltitle,jdbcType=VARCHAR},
+      staff_englishposition = #{staffEnglishposition,jdbcType=VARCHAR},
+      staff_address = #{staffAddress,jdbcType=VARCHAR},
+      staff_phone = #{staffPhone,jdbcType=VARCHAR},
+      staff_highesteducation = #{staffHighesteducation,jdbcType=VARCHAR},
+      staff_degree = #{staffDegree,jdbcType=VARCHAR},
+      staff_graduateschool = #{staffGraduateschool,jdbcType=VARCHAR},
+      staff_major = #{staffMajor,jdbcType=VARCHAR},
+      staff_foreignlanguagelevel = #{staffForeignlanguagelevel,jdbcType=VARCHAR},
+      "staff_physical examinationdate" = #{staffPhysicalExaminationdate,jdbcType=DATE},
+      staff_atmaturitydate = #{staffAtmaturitydate,jdbcType=DATE},
+      staff_entercountry = #{staffEntercountry,jdbcType=DATE},
+      staff_passport_number = #{staffPassportNumber,jdbcType=VARCHAR},
+      staff_contractstartdate = #{staffContractstartdate,jdbcType=DATE},
+      staff_contractenddate = #{staffContractenddate,jdbcType=DATE},
+      staff_contractduration = #{staffContractduration,jdbcType=VARCHAR},
+      staff_email = #{staffEmail,jdbcType=VARCHAR},
+      staff_censusregisternumber = #{staffCensusregisternumber,jdbcType=VARCHAR},
+      staff_censusregistezipcode = #{staffCensusregistezipcode,jdbcType=VARCHAR},
+      staff_censusregisteraddress = #{staffCensusregisteraddress,jdbcType=VARCHAR},
+      staff_hometelephone = #{staffHometelephone,jdbcType=VARCHAR},
+      staff_homezipcode = #{staffHomezipcode,jdbcType=VARCHAR},
+      staff_homeaddress = #{staffHomeaddress,jdbcType=VARCHAR},
+      staff_newphone = #{staffNewphone,jdbcType=VARCHAR},
+      staff_newzipcode = #{staffNewzipcode,jdbcType=VARCHAR},
+      staff_newaddress = #{staffNewaddress,jdbcType=VARCHAR},
+      staff_emergencycontact = #{staffEmergencycontact,jdbcType=VARCHAR},
+      staff_urgentcontactzipcode = #{staffUrgentcontactzipcode,jdbcType=VARCHAR},
+      staff_emergencycontactnumber = #{staffEmergencycontactnumber,jdbcType=VARCHAR},
+      staff_emergencycontactaddress = #{staffEmergencycontactaddress,jdbcType=VARCHAR},
+      staff_remark = #{staffRemark,jdbcType=VARCHAR},
+      staff_Auditing = #{staffAuditing,jdbcType=VARCHAR},
+      staff_yn = #{staffYn,jdbcType=VARCHAR},
+      staff_custom1 = #{staffCustom1,jdbcType=VARCHAR},
+      staff_custom2 = #{staffCustom2,jdbcType=VARCHAR},
+      staff_custom3 = #{staffCustom3,jdbcType=VARCHAR},
+      staff_custom4 = #{staffCustom4,jdbcType=VARCHAR},
+      staff_custom5 = #{staffCustom5,jdbcType=VARCHAR},
+      staff_custom6 = #{staffCustom6,jdbcType=VARCHAR}
+    where staff_id = #{staffId,jdbcType=VARCHAR}
+  </update>
+</mapper>

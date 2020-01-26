@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_storageMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_storage">
+    <id column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="ps_engname" jdbcType="VARCHAR" property="psEngname" />
+    <result column="pst_id" jdbcType="VARCHAR" property="pstId" />
+    <result column="ps_price_include_tax" jdbcType="VARCHAR" property="psPriceIncludeTax" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="ps_single_status" jdbcType="VARCHAR" property="psSingleStatus" />
+    <result column="ps_document_date" jdbcType="DATE" property="psDocumentDate" />
+    <result column="ps_document_number" jdbcType="VARCHAR" property="psDocumentNumber" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="ps_exchange_rate" jdbcType="REAL" property="psExchangeRate" />
+    <result column="ps_foreign_trade" jdbcType="INTEGER" property="psForeignTrade" />
+    <result column="ps_sunnum" jdbcType="INTEGER" property="psSunnum" />
+    <result column="ps_sunmoney" jdbcType="REAL" property="psSunmoney" />
+    <result column="ps_tax" jdbcType="REAL" property="psTax" />
+    <result column="ps_include_tax_amount" jdbcType="REAL" property="psIncludeTaxAmount" />
+    <result column="ps_delivery_address" jdbcType="VARCHAR" property="psDeliveryAddress" />
+    <result column="ps_buyer" jdbcType="VARCHAR" property="psBuyer" />
+    <result column="ps_belongs_section" jdbcType="VARCHAR" property="psBelongsSection" />
+    <result column="ps_belongs_project" jdbcType="VARCHAR" property="psBelongsProject" />
+    <result column="ps_executor" jdbcType="VARCHAR" property="psExecutor" />
+    <result column="ps_checkagain_staff" jdbcType="VARCHAR" property="psCheckagainStaff" />
+    <result column="ps_header_provision" jdbcType="VARCHAR" property="psHeaderProvision" />
+    <result column="ps_end_clause" jdbcType="VARCHAR" property="psEndClause" />
+    <result column="ps_remark" jdbcType="VARCHAR" property="psRemark" />
+    <result column="ps_audition" jdbcType="VARCHAR" property="psAudition" />
+    <result column="ps_yn" jdbcType="VARCHAR" property="psYn" />
+    <result column="ps_custom1" jdbcType="VARCHAR" property="psCustom1" />
+    <result column="ps_custom2" jdbcType="VARCHAR" property="psCustom2" />
+    <result column="ps_custom3" jdbcType="VARCHAR" property="psCustom3" />
+    <result column="ps_custom4" jdbcType="VARCHAR" property="psCustom4" />
+    <result column="ps_custom5" jdbcType="VARCHAR" property="psCustom5" />
+    <result column="ps_custom6" jdbcType="VARCHAR" property="psCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ps_id, supplier_id, ps_engname, pst_id, ps_price_include_tax, warehouse_id, ps_single_status, 
+    ps_document_date, ps_document_number, currency_id, ps_exchange_rate, ps_foreign_trade, 
+    ps_sunnum, ps_sunmoney, ps_tax, ps_include_tax_amount, ps_delivery_address, ps_buyer, 
+    ps_belongs_section, ps_belongs_project, ps_executor, ps_checkagain_staff, ps_header_provision, 
+    ps_end_clause, ps_remark, ps_audition, ps_yn, ps_custom1, ps_custom2, ps_custom3, 
+    ps_custom4, ps_custom5, ps_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_storage
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_storage
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_storage">
+    insert into purchase_storage (ps_id, supplier_id, ps_engname, 
+      pst_id, ps_price_include_tax, warehouse_id, 
+      ps_single_status, ps_document_date, ps_document_number, 
+      currency_id, ps_exchange_rate, ps_foreign_trade, 
+      ps_sunnum, ps_sunmoney, ps_tax, 
+      ps_include_tax_amount, ps_delivery_address, ps_buyer, 
+      ps_belongs_section, ps_belongs_project, ps_executor, 
+      ps_checkagain_staff, ps_header_provision, ps_end_clause, 
+      ps_remark, ps_audition, ps_yn, 
+      ps_custom1, ps_custom2, ps_custom3, 
+      ps_custom4, ps_custom5, ps_custom6
+      )
+    values (#{psId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{psEngname,jdbcType=VARCHAR}, 
+      #{pstId,jdbcType=VARCHAR}, #{psPriceIncludeTax,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, 
+      #{psSingleStatus,jdbcType=VARCHAR}, #{psDocumentDate,jdbcType=DATE}, #{psDocumentNumber,jdbcType=VARCHAR}, 
+      #{currencyId,jdbcType=VARCHAR}, #{psExchangeRate,jdbcType=REAL}, #{psForeignTrade,jdbcType=INTEGER}, 
+      #{psSunnum,jdbcType=INTEGER}, #{psSunmoney,jdbcType=REAL}, #{psTax,jdbcType=REAL}, 
+      #{psIncludeTaxAmount,jdbcType=REAL}, #{psDeliveryAddress,jdbcType=VARCHAR}, #{psBuyer,jdbcType=VARCHAR}, 
+      #{psBelongsSection,jdbcType=VARCHAR}, #{psBelongsProject,jdbcType=VARCHAR}, #{psExecutor,jdbcType=VARCHAR}, 
+      #{psCheckagainStaff,jdbcType=VARCHAR}, #{psHeaderProvision,jdbcType=VARCHAR}, #{psEndClause,jdbcType=VARCHAR}, 
+      #{psRemark,jdbcType=VARCHAR}, #{psAudition,jdbcType=VARCHAR}, #{psYn,jdbcType=VARCHAR}, 
+      #{psCustom1,jdbcType=VARCHAR}, #{psCustom2,jdbcType=VARCHAR}, #{psCustom3,jdbcType=VARCHAR}, 
+      #{psCustom4,jdbcType=VARCHAR}, #{psCustom5,jdbcType=VARCHAR}, #{psCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_storage">
+    insert into purchase_storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="psEngname != null">
+        ps_engname,
+      </if>
+      <if test="pstId != null">
+        pst_id,
+      </if>
+      <if test="psPriceIncludeTax != null">
+        ps_price_include_tax,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="psSingleStatus != null">
+        ps_single_status,
+      </if>
+      <if test="psDocumentDate != null">
+        ps_document_date,
+      </if>
+      <if test="psDocumentNumber != null">
+        ps_document_number,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="psExchangeRate != null">
+        ps_exchange_rate,
+      </if>
+      <if test="psForeignTrade != null">
+        ps_foreign_trade,
+      </if>
+      <if test="psSunnum != null">
+        ps_sunnum,
+      </if>
+      <if test="psSunmoney != null">
+        ps_sunmoney,
+      </if>
+      <if test="psTax != null">
+        ps_tax,
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        ps_include_tax_amount,
+      </if>
+      <if test="psDeliveryAddress != null">
+        ps_delivery_address,
+      </if>
+      <if test="psBuyer != null">
+        ps_buyer,
+      </if>
+      <if test="psBelongsSection != null">
+        ps_belongs_section,
+      </if>
+      <if test="psBelongsProject != null">
+        ps_belongs_project,
+      </if>
+      <if test="psExecutor != null">
+        ps_executor,
+      </if>
+      <if test="psCheckagainStaff != null">
+        ps_checkagain_staff,
+      </if>
+      <if test="psHeaderProvision != null">
+        ps_header_provision,
+      </if>
+      <if test="psEndClause != null">
+        ps_end_clause,
+      </if>
+      <if test="psRemark != null">
+        ps_remark,
+      </if>
+      <if test="psAudition != null">
+        ps_audition,
+      </if>
+      <if test="psYn != null">
+        ps_yn,
+      </if>
+      <if test="psCustom1 != null">
+        ps_custom1,
+      </if>
+      <if test="psCustom2 != null">
+        ps_custom2,
+      </if>
+      <if test="psCustom3 != null">
+        ps_custom3,
+      </if>
+      <if test="psCustom4 != null">
+        ps_custom4,
+      </if>
+      <if test="psCustom5 != null">
+        ps_custom5,
+      </if>
+      <if test="psCustom6 != null">
+        ps_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="psEngname != null">
+        #{psEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="pstId != null">
+        #{pstId,jdbcType=VARCHAR},
+      </if>
+      <if test="psPriceIncludeTax != null">
+        #{psPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="psSingleStatus != null">
+        #{psSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="psDocumentDate != null">
+        #{psDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psDocumentNumber != null">
+        #{psDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="psExchangeRate != null">
+        #{psExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="psForeignTrade != null">
+        #{psForeignTrade,jdbcType=INTEGER},
+      </if>
+      <if test="psSunnum != null">
+        #{psSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="psSunmoney != null">
+        #{psSunmoney,jdbcType=REAL},
+      </if>
+      <if test="psTax != null">
+        #{psTax,jdbcType=REAL},
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        #{psIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psDeliveryAddress != null">
+        #{psDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psBuyer != null">
+        #{psBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsSection != null">
+        #{psBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsProject != null">
+        #{psBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="psExecutor != null">
+        #{psExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="psCheckagainStaff != null">
+        #{psCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="psHeaderProvision != null">
+        #{psHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="psEndClause != null">
+        #{psEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="psRemark != null">
+        #{psRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psAudition != null">
+        #{psAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="psYn != null">
+        #{psYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom1 != null">
+        #{psCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom2 != null">
+        #{psCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom3 != null">
+        #{psCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom4 != null">
+        #{psCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom5 != null">
+        #{psCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom6 != null">
+        #{psCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_storage">
+    update purchase_storage
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="psEngname != null">
+        ps_engname = #{psEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="pstId != null">
+        pst_id = #{pstId,jdbcType=VARCHAR},
+      </if>
+      <if test="psPriceIncludeTax != null">
+        ps_price_include_tax = #{psPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="psSingleStatus != null">
+        ps_single_status = #{psSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="psDocumentDate != null">
+        ps_document_date = #{psDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psDocumentNumber != null">
+        ps_document_number = #{psDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="psExchangeRate != null">
+        ps_exchange_rate = #{psExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="psForeignTrade != null">
+        ps_foreign_trade = #{psForeignTrade,jdbcType=INTEGER},
+      </if>
+      <if test="psSunnum != null">
+        ps_sunnum = #{psSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="psSunmoney != null">
+        ps_sunmoney = #{psSunmoney,jdbcType=REAL},
+      </if>
+      <if test="psTax != null">
+        ps_tax = #{psTax,jdbcType=REAL},
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        ps_include_tax_amount = #{psIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psDeliveryAddress != null">
+        ps_delivery_address = #{psDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psBuyer != null">
+        ps_buyer = #{psBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsSection != null">
+        ps_belongs_section = #{psBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsProject != null">
+        ps_belongs_project = #{psBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="psExecutor != null">
+        ps_executor = #{psExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="psCheckagainStaff != null">
+        ps_checkagain_staff = #{psCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="psHeaderProvision != null">
+        ps_header_provision = #{psHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="psEndClause != null">
+        ps_end_clause = #{psEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="psRemark != null">
+        ps_remark = #{psRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psAudition != null">
+        ps_audition = #{psAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="psYn != null">
+        ps_yn = #{psYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom1 != null">
+        ps_custom1 = #{psCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom2 != null">
+        ps_custom2 = #{psCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom3 != null">
+        ps_custom3 = #{psCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom4 != null">
+        ps_custom4 = #{psCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom5 != null">
+        ps_custom5 = #{psCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom6 != null">
+        ps_custom6 = #{psCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_storage">
+    update purchase_storage
+    set supplier_id = #{supplierId,jdbcType=VARCHAR},
+      ps_engname = #{psEngname,jdbcType=VARCHAR},
+      pst_id = #{pstId,jdbcType=VARCHAR},
+      ps_price_include_tax = #{psPriceIncludeTax,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      ps_single_status = #{psSingleStatus,jdbcType=VARCHAR},
+      ps_document_date = #{psDocumentDate,jdbcType=DATE},
+      ps_document_number = #{psDocumentNumber,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      ps_exchange_rate = #{psExchangeRate,jdbcType=REAL},
+      ps_foreign_trade = #{psForeignTrade,jdbcType=INTEGER},
+      ps_sunnum = #{psSunnum,jdbcType=INTEGER},
+      ps_sunmoney = #{psSunmoney,jdbcType=REAL},
+      ps_tax = #{psTax,jdbcType=REAL},
+      ps_include_tax_amount = #{psIncludeTaxAmount,jdbcType=REAL},
+      ps_delivery_address = #{psDeliveryAddress,jdbcType=VARCHAR},
+      ps_buyer = #{psBuyer,jdbcType=VARCHAR},
+      ps_belongs_section = #{psBelongsSection,jdbcType=VARCHAR},
+      ps_belongs_project = #{psBelongsProject,jdbcType=VARCHAR},
+      ps_executor = #{psExecutor,jdbcType=VARCHAR},
+      ps_checkagain_staff = #{psCheckagainStaff,jdbcType=VARCHAR},
+      ps_header_provision = #{psHeaderProvision,jdbcType=VARCHAR},
+      ps_end_clause = #{psEndClause,jdbcType=VARCHAR},
+      ps_remark = #{psRemark,jdbcType=VARCHAR},
+      ps_audition = #{psAudition,jdbcType=VARCHAR},
+      ps_yn = #{psYn,jdbcType=VARCHAR},
+      ps_custom1 = #{psCustom1,jdbcType=VARCHAR},
+      ps_custom2 = #{psCustom2,jdbcType=VARCHAR},
+      ps_custom3 = #{psCustom3,jdbcType=VARCHAR},
+      ps_custom4 = #{psCustom4,jdbcType=VARCHAR},
+      ps_custom5 = #{psCustom5,jdbcType=VARCHAR},
+      ps_custom6 = #{psCustom6,jdbcType=VARCHAR}
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_storage">
+    <id column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="ps_engname" jdbcType="VARCHAR" property="psEngname" />
+    <result column="pst_id" jdbcType="VARCHAR" property="pstId" />
+    <result column="ps_price_include_tax" jdbcType="VARCHAR" property="psPriceIncludeTax" />
+    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
+    <result column="ps_single_status" jdbcType="VARCHAR" property="psSingleStatus" />
+    <result column="ps_document_date" jdbcType="DATE" property="psDocumentDate" />
+    <result column="ps_document_number" jdbcType="VARCHAR" property="psDocumentNumber" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="ps_exchange_rate" jdbcType="REAL" property="psExchangeRate" />
+    <result column="ps_foreign_trade" jdbcType="INTEGER" property="psForeignTrade" />
+    <result column="ps_sunnum" jdbcType="INTEGER" property="psSunnum" />
+    <result column="ps_sunmoney" jdbcType="REAL" property="psSunmoney" />
+    <result column="ps_tax" jdbcType="REAL" property="psTax" />
+    <result column="ps_include_tax_amount" jdbcType="REAL" property="psIncludeTaxAmount" />
+    <result column="ps_delivery_address" jdbcType="VARCHAR" property="psDeliveryAddress" />
+    <result column="ps_buyer" jdbcType="VARCHAR" property="psBuyer" />
+    <result column="ps_belongs_section" jdbcType="VARCHAR" property="psBelongsSection" />
+    <result column="ps_belongs_project" jdbcType="VARCHAR" property="psBelongsProject" />
+    <result column="ps_executor" jdbcType="VARCHAR" property="psExecutor" />
+    <result column="ps_checkagain_staff" jdbcType="VARCHAR" property="psCheckagainStaff" />
+    <result column="ps_header_provision" jdbcType="VARCHAR" property="psHeaderProvision" />
+    <result column="ps_end_clause" jdbcType="VARCHAR" property="psEndClause" />
+    <result column="ps_remark" jdbcType="VARCHAR" property="psRemark" />
+    <result column="ps_audition" jdbcType="VARCHAR" property="psAudition" />
+    <result column="ps_yn" jdbcType="VARCHAR" property="psYn" />
+    <result column="ps_custom1" jdbcType="VARCHAR" property="psCustom1" />
+    <result column="ps_custom2" jdbcType="VARCHAR" property="psCustom2" />
+    <result column="ps_custom3" jdbcType="VARCHAR" property="psCustom3" />
+    <result column="ps_custom4" jdbcType="VARCHAR" property="psCustom4" />
+    <result column="ps_custom5" jdbcType="VARCHAR" property="psCustom5" />
+    <result column="ps_custom6" jdbcType="VARCHAR" property="psCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ps_id, supplier_id, ps_engname, pst_id, ps_price_include_tax, warehouse_id, ps_single_status, 
+    ps_document_date, ps_document_number, currency_id, ps_exchange_rate, ps_foreign_trade, 
+    ps_sunnum, ps_sunmoney, ps_tax, ps_include_tax_amount, ps_delivery_address, ps_buyer, 
+    ps_belongs_section, ps_belongs_project, ps_executor, ps_checkagain_staff, ps_header_provision, 
+    ps_end_clause, ps_remark, ps_audition, ps_yn, ps_custom1, ps_custom2, ps_custom3, 
+    ps_custom4, ps_custom5, ps_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_storage
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_storage
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_storage">
+    insert into purchase_storage (ps_id, supplier_id, ps_engname, 
+      pst_id, ps_price_include_tax, warehouse_id, 
+      ps_single_status, ps_document_date, ps_document_number, 
+      currency_id, ps_exchange_rate, ps_foreign_trade, 
+      ps_sunnum, ps_sunmoney, ps_tax, 
+      ps_include_tax_amount, ps_delivery_address, ps_buyer, 
+      ps_belongs_section, ps_belongs_project, ps_executor, 
+      ps_checkagain_staff, ps_header_provision, ps_end_clause, 
+      ps_remark, ps_audition, ps_yn, 
+      ps_custom1, ps_custom2, ps_custom3, 
+      ps_custom4, ps_custom5, ps_custom6
+      )
+    values (#{psId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{psEngname,jdbcType=VARCHAR}, 
+      #{pstId,jdbcType=VARCHAR}, #{psPriceIncludeTax,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, 
+      #{psSingleStatus,jdbcType=VARCHAR}, #{psDocumentDate,jdbcType=DATE}, #{psDocumentNumber,jdbcType=VARCHAR}, 
+      #{currencyId,jdbcType=VARCHAR}, #{psExchangeRate,jdbcType=REAL}, #{psForeignTrade,jdbcType=INTEGER}, 
+      #{psSunnum,jdbcType=INTEGER}, #{psSunmoney,jdbcType=REAL}, #{psTax,jdbcType=REAL}, 
+      #{psIncludeTaxAmount,jdbcType=REAL}, #{psDeliveryAddress,jdbcType=VARCHAR}, #{psBuyer,jdbcType=VARCHAR}, 
+      #{psBelongsSection,jdbcType=VARCHAR}, #{psBelongsProject,jdbcType=VARCHAR}, #{psExecutor,jdbcType=VARCHAR}, 
+      #{psCheckagainStaff,jdbcType=VARCHAR}, #{psHeaderProvision,jdbcType=VARCHAR}, #{psEndClause,jdbcType=VARCHAR}, 
+      #{psRemark,jdbcType=VARCHAR}, #{psAudition,jdbcType=VARCHAR}, #{psYn,jdbcType=VARCHAR}, 
+      #{psCustom1,jdbcType=VARCHAR}, #{psCustom2,jdbcType=VARCHAR}, #{psCustom3,jdbcType=VARCHAR}, 
+      #{psCustom4,jdbcType=VARCHAR}, #{psCustom5,jdbcType=VARCHAR}, #{psCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_storage">
+    insert into purchase_storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="psEngname != null">
+        ps_engname,
+      </if>
+      <if test="pstId != null">
+        pst_id,
+      </if>
+      <if test="psPriceIncludeTax != null">
+        ps_price_include_tax,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="psSingleStatus != null">
+        ps_single_status,
+      </if>
+      <if test="psDocumentDate != null">
+        ps_document_date,
+      </if>
+      <if test="psDocumentNumber != null">
+        ps_document_number,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="psExchangeRate != null">
+        ps_exchange_rate,
+      </if>
+      <if test="psForeignTrade != null">
+        ps_foreign_trade,
+      </if>
+      <if test="psSunnum != null">
+        ps_sunnum,
+      </if>
+      <if test="psSunmoney != null">
+        ps_sunmoney,
+      </if>
+      <if test="psTax != null">
+        ps_tax,
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        ps_include_tax_amount,
+      </if>
+      <if test="psDeliveryAddress != null">
+        ps_delivery_address,
+      </if>
+      <if test="psBuyer != null">
+        ps_buyer,
+      </if>
+      <if test="psBelongsSection != null">
+        ps_belongs_section,
+      </if>
+      <if test="psBelongsProject != null">
+        ps_belongs_project,
+      </if>
+      <if test="psExecutor != null">
+        ps_executor,
+      </if>
+      <if test="psCheckagainStaff != null">
+        ps_checkagain_staff,
+      </if>
+      <if test="psHeaderProvision != null">
+        ps_header_provision,
+      </if>
+      <if test="psEndClause != null">
+        ps_end_clause,
+      </if>
+      <if test="psRemark != null">
+        ps_remark,
+      </if>
+      <if test="psAudition != null">
+        ps_audition,
+      </if>
+      <if test="psYn != null">
+        ps_yn,
+      </if>
+      <if test="psCustom1 != null">
+        ps_custom1,
+      </if>
+      <if test="psCustom2 != null">
+        ps_custom2,
+      </if>
+      <if test="psCustom3 != null">
+        ps_custom3,
+      </if>
+      <if test="psCustom4 != null">
+        ps_custom4,
+      </if>
+      <if test="psCustom5 != null">
+        ps_custom5,
+      </if>
+      <if test="psCustom6 != null">
+        ps_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="psEngname != null">
+        #{psEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="pstId != null">
+        #{pstId,jdbcType=VARCHAR},
+      </if>
+      <if test="psPriceIncludeTax != null">
+        #{psPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="psSingleStatus != null">
+        #{psSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="psDocumentDate != null">
+        #{psDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psDocumentNumber != null">
+        #{psDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="psExchangeRate != null">
+        #{psExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="psForeignTrade != null">
+        #{psForeignTrade,jdbcType=INTEGER},
+      </if>
+      <if test="psSunnum != null">
+        #{psSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="psSunmoney != null">
+        #{psSunmoney,jdbcType=REAL},
+      </if>
+      <if test="psTax != null">
+        #{psTax,jdbcType=REAL},
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        #{psIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psDeliveryAddress != null">
+        #{psDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psBuyer != null">
+        #{psBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsSection != null">
+        #{psBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsProject != null">
+        #{psBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="psExecutor != null">
+        #{psExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="psCheckagainStaff != null">
+        #{psCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="psHeaderProvision != null">
+        #{psHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="psEndClause != null">
+        #{psEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="psRemark != null">
+        #{psRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psAudition != null">
+        #{psAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="psYn != null">
+        #{psYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom1 != null">
+        #{psCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom2 != null">
+        #{psCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom3 != null">
+        #{psCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom4 != null">
+        #{psCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom5 != null">
+        #{psCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom6 != null">
+        #{psCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_storage">
+    update purchase_storage
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="psEngname != null">
+        ps_engname = #{psEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="pstId != null">
+        pst_id = #{pstId,jdbcType=VARCHAR},
+      </if>
+      <if test="psPriceIncludeTax != null">
+        ps_price_include_tax = #{psPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="psSingleStatus != null">
+        ps_single_status = #{psSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="psDocumentDate != null">
+        ps_document_date = #{psDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psDocumentNumber != null">
+        ps_document_number = #{psDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="psExchangeRate != null">
+        ps_exchange_rate = #{psExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="psForeignTrade != null">
+        ps_foreign_trade = #{psForeignTrade,jdbcType=INTEGER},
+      </if>
+      <if test="psSunnum != null">
+        ps_sunnum = #{psSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="psSunmoney != null">
+        ps_sunmoney = #{psSunmoney,jdbcType=REAL},
+      </if>
+      <if test="psTax != null">
+        ps_tax = #{psTax,jdbcType=REAL},
+      </if>
+      <if test="psIncludeTaxAmount != null">
+        ps_include_tax_amount = #{psIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psDeliveryAddress != null">
+        ps_delivery_address = #{psDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psBuyer != null">
+        ps_buyer = #{psBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsSection != null">
+        ps_belongs_section = #{psBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="psBelongsProject != null">
+        ps_belongs_project = #{psBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="psExecutor != null">
+        ps_executor = #{psExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="psCheckagainStaff != null">
+        ps_checkagain_staff = #{psCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="psHeaderProvision != null">
+        ps_header_provision = #{psHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="psEndClause != null">
+        ps_end_clause = #{psEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="psRemark != null">
+        ps_remark = #{psRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psAudition != null">
+        ps_audition = #{psAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="psYn != null">
+        ps_yn = #{psYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom1 != null">
+        ps_custom1 = #{psCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom2 != null">
+        ps_custom2 = #{psCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom3 != null">
+        ps_custom3 = #{psCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom4 != null">
+        ps_custom4 = #{psCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom5 != null">
+        ps_custom5 = #{psCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psCustom6 != null">
+        ps_custom6 = #{psCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_storage">
+    update purchase_storage
+    set supplier_id = #{supplierId,jdbcType=VARCHAR},
+      ps_engname = #{psEngname,jdbcType=VARCHAR},
+      pst_id = #{pstId,jdbcType=VARCHAR},
+      ps_price_include_tax = #{psPriceIncludeTax,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      ps_single_status = #{psSingleStatus,jdbcType=VARCHAR},
+      ps_document_date = #{psDocumentDate,jdbcType=DATE},
+      ps_document_number = #{psDocumentNumber,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      ps_exchange_rate = #{psExchangeRate,jdbcType=REAL},
+      ps_foreign_trade = #{psForeignTrade,jdbcType=INTEGER},
+      ps_sunnum = #{psSunnum,jdbcType=INTEGER},
+      ps_sunmoney = #{psSunmoney,jdbcType=REAL},
+      ps_tax = #{psTax,jdbcType=REAL},
+      ps_include_tax_amount = #{psIncludeTaxAmount,jdbcType=REAL},
+      ps_delivery_address = #{psDeliveryAddress,jdbcType=VARCHAR},
+      ps_buyer = #{psBuyer,jdbcType=VARCHAR},
+      ps_belongs_section = #{psBelongsSection,jdbcType=VARCHAR},
+      ps_belongs_project = #{psBelongsProject,jdbcType=VARCHAR},
+      ps_executor = #{psExecutor,jdbcType=VARCHAR},
+      ps_checkagain_staff = #{psCheckagainStaff,jdbcType=VARCHAR},
+      ps_header_provision = #{psHeaderProvision,jdbcType=VARCHAR},
+      ps_end_clause = #{psEndClause,jdbcType=VARCHAR},
+      ps_remark = #{psRemark,jdbcType=VARCHAR},
+      ps_audition = #{psAudition,jdbcType=VARCHAR},
+      ps_yn = #{psYn,jdbcType=VARCHAR},
+      ps_custom1 = #{psCustom1,jdbcType=VARCHAR},
+      ps_custom2 = #{psCustom2,jdbcType=VARCHAR},
+      ps_custom3 = #{psCustom3,jdbcType=VARCHAR},
+      ps_custom4 = #{psCustom4,jdbcType=VARCHAR},
+      ps_custom5 = #{psCustom5,jdbcType=VARCHAR},
+      ps_custom6 = #{psCustom6,jdbcType=VARCHAR}
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </update>
+</mapper>

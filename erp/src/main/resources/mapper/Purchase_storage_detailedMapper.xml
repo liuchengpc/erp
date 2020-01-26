@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_storage_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_storage_detailed">
+    <id column="psd_id" jdbcType="VARCHAR" property="psdId" />
+    <result column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="psd_engname" jdbcType="VARCHAR" property="psdEngname" />
+    <result column="psd_remark" jdbcType="VARCHAR" property="psdRemark" />
+    <result column="psd_price_include_tax" jdbcType="VARCHAR" property="psdPriceIncludeTax" />
+    <result column="psd_single_status" jdbcType="INTEGER" property="psdSingleStatus" />
+    <result column="psd_document_date" jdbcType="DATE" property="psdDocumentDate" />
+    <result column="psd_document_number" jdbcType="VARCHAR" property="psdDocumentNumber" />
+    <result column="psd_price" jdbcType="REAL" property="psdPrice" />
+    <result column="psd_money" jdbcType="REAL" property="psdMoney" />
+    <result column="psd_tax_rate" jdbcType="REAL" property="psdTaxRate" />
+    <result column="psd_tax_amount" jdbcType="REAL" property="psdTaxAmount" />
+    <result column="psd_including_tax_amount" jdbcType="REAL" property="psdIncludingTaxAmount" />
+    <result column="psd_batch_number" jdbcType="VARCHAR" property="psdBatchNumber" />
+    <result column="psd_ifgift" jdbcType="VARCHAR" property="psdIfgift" />
+    <result column="psd_invoice_details" jdbcType="VARCHAR" property="psdInvoiceDetails" />
+    <result column="psd_remarks" jdbcType="VARCHAR" property="psdRemarks" />
+    <result column="psd_source_order" jdbcType="VARCHAR" property="psdSourceOrder" />
+    <result column="psd_source_no" jdbcType="VARCHAR" property="psdSourceNo" />
+    <result column="psd_auditing" jdbcType="VARCHAR" property="psdAuditing" />
+    <result column="psd_yn" jdbcType="VARCHAR" property="psdYn" />
+    <result column="psd_custom1" jdbcType="VARCHAR" property="psdCustom1" />
+    <result column="psd_custom2" jdbcType="VARCHAR" property="psdCustom2" />
+    <result column="psd_custom3" jdbcType="VARCHAR" property="psdCustom3" />
+    <result column="psd_custom4" jdbcType="VARCHAR" property="psdCustom4" />
+    <result column="psd_custom5" jdbcType="VARCHAR" property="psdCustom5" />
+    <result column="psd_custom6" jdbcType="VARCHAR" property="psdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    psd_id, ps_id, matter_id, psd_engname, psd_remark, psd_price_include_tax, psd_single_status, 
+    psd_document_date, psd_document_number, psd_price, psd_money, psd_tax_rate, psd_tax_amount, 
+    psd_including_tax_amount, psd_batch_number, psd_ifgift, psd_invoice_details, psd_remarks, 
+    psd_source_order, psd_source_no, psd_auditing, psd_yn, psd_custom1, psd_custom2, 
+    psd_custom3, psd_custom4, psd_custom5, psd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_storage_detailed
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_storage_detailed
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    insert into purchase_storage_detailed (psd_id, ps_id, matter_id, 
+      psd_engname, psd_remark, psd_price_include_tax, 
+      psd_single_status, psd_document_date, psd_document_number, 
+      psd_price, psd_money, psd_tax_rate, 
+      psd_tax_amount, psd_including_tax_amount, psd_batch_number, 
+      psd_ifgift, psd_invoice_details, psd_remarks, 
+      psd_source_order, psd_source_no, psd_auditing, 
+      psd_yn, psd_custom1, psd_custom2, 
+      psd_custom3, psd_custom4, psd_custom5, 
+      psd_custom6)
+    values (#{psdId,jdbcType=VARCHAR}, #{psId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{psdEngname,jdbcType=VARCHAR}, #{psdRemark,jdbcType=VARCHAR}, #{psdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{psdSingleStatus,jdbcType=INTEGER}, #{psdDocumentDate,jdbcType=DATE}, #{psdDocumentNumber,jdbcType=VARCHAR}, 
+      #{psdPrice,jdbcType=REAL}, #{psdMoney,jdbcType=REAL}, #{psdTaxRate,jdbcType=REAL}, 
+      #{psdTaxAmount,jdbcType=REAL}, #{psdIncludingTaxAmount,jdbcType=REAL}, #{psdBatchNumber,jdbcType=VARCHAR}, 
+      #{psdIfgift,jdbcType=VARCHAR}, #{psdInvoiceDetails,jdbcType=VARCHAR}, #{psdRemarks,jdbcType=VARCHAR}, 
+      #{psdSourceOrder,jdbcType=VARCHAR}, #{psdSourceNo,jdbcType=VARCHAR}, #{psdAuditing,jdbcType=VARCHAR}, 
+      #{psdYn,jdbcType=VARCHAR}, #{psdCustom1,jdbcType=VARCHAR}, #{psdCustom2,jdbcType=VARCHAR}, 
+      #{psdCustom3,jdbcType=VARCHAR}, #{psdCustom4,jdbcType=VARCHAR}, #{psdCustom5,jdbcType=VARCHAR}, 
+      #{psdCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    insert into purchase_storage_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="psdId != null">
+        psd_id,
+      </if>
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="psdEngname != null">
+        psd_engname,
+      </if>
+      <if test="psdRemark != null">
+        psd_remark,
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        psd_price_include_tax,
+      </if>
+      <if test="psdSingleStatus != null">
+        psd_single_status,
+      </if>
+      <if test="psdDocumentDate != null">
+        psd_document_date,
+      </if>
+      <if test="psdDocumentNumber != null">
+        psd_document_number,
+      </if>
+      <if test="psdPrice != null">
+        psd_price,
+      </if>
+      <if test="psdMoney != null">
+        psd_money,
+      </if>
+      <if test="psdTaxRate != null">
+        psd_tax_rate,
+      </if>
+      <if test="psdTaxAmount != null">
+        psd_tax_amount,
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        psd_including_tax_amount,
+      </if>
+      <if test="psdBatchNumber != null">
+        psd_batch_number,
+      </if>
+      <if test="psdIfgift != null">
+        psd_ifgift,
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details,
+      </if>
+      <if test="psdRemarks != null">
+        psd_remarks,
+      </if>
+      <if test="psdSourceOrder != null">
+        psd_source_order,
+      </if>
+      <if test="psdSourceNo != null">
+        psd_source_no,
+      </if>
+      <if test="psdAuditing != null">
+        psd_auditing,
+      </if>
+      <if test="psdYn != null">
+        psd_yn,
+      </if>
+      <if test="psdCustom1 != null">
+        psd_custom1,
+      </if>
+      <if test="psdCustom2 != null">
+        psd_custom2,
+      </if>
+      <if test="psdCustom3 != null">
+        psd_custom3,
+      </if>
+      <if test="psdCustom4 != null">
+        psd_custom4,
+      </if>
+      <if test="psdCustom5 != null">
+        psd_custom5,
+      </if>
+      <if test="psdCustom6 != null">
+        psd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="psdId != null">
+        #{psdId,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="psdEngname != null">
+        #{psdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemark != null">
+        #{psdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSingleStatus != null">
+        #{psdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="psdDocumentDate != null">
+        #{psdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psdDocumentNumber != null">
+        #{psdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPrice != null">
+        #{psdPrice,jdbcType=REAL},
+      </if>
+      <if test="psdMoney != null">
+        #{psdMoney,jdbcType=REAL},
+      </if>
+      <if test="psdTaxRate != null">
+        #{psdTaxRate,jdbcType=REAL},
+      </if>
+      <if test="psdTaxAmount != null">
+        #{psdTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        #{psdIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdBatchNumber != null">
+        #{psdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdIfgift != null">
+        #{psdIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemarks != null">
+        #{psdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceOrder != null">
+        #{psdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceNo != null">
+        #{psdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psdAuditing != null">
+        #{psdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="psdYn != null">
+        #{psdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom1 != null">
+        #{psdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom2 != null">
+        #{psdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom3 != null">
+        #{psdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom4 != null">
+        #{psdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom5 != null">
+        #{psdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom6 != null">
+        #{psdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    update purchase_storage_detailed
+    <set>
+      <if test="psId != null">
+        ps_id = #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="psdEngname != null">
+        psd_engname = #{psdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemark != null">
+        psd_remark = #{psdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        psd_price_include_tax = #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSingleStatus != null">
+        psd_single_status = #{psdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="psdDocumentDate != null">
+        psd_document_date = #{psdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psdDocumentNumber != null">
+        psd_document_number = #{psdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPrice != null">
+        psd_price = #{psdPrice,jdbcType=REAL},
+      </if>
+      <if test="psdMoney != null">
+        psd_money = #{psdMoney,jdbcType=REAL},
+      </if>
+      <if test="psdTaxRate != null">
+        psd_tax_rate = #{psdTaxRate,jdbcType=REAL},
+      </if>
+      <if test="psdTaxAmount != null">
+        psd_tax_amount = #{psdTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        psd_including_tax_amount = #{psdIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdBatchNumber != null">
+        psd_batch_number = #{psdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdIfgift != null">
+        psd_ifgift = #{psdIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemarks != null">
+        psd_remarks = #{psdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceOrder != null">
+        psd_source_order = #{psdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceNo != null">
+        psd_source_no = #{psdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psdAuditing != null">
+        psd_auditing = #{psdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="psdYn != null">
+        psd_yn = #{psdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom1 != null">
+        psd_custom1 = #{psdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom2 != null">
+        psd_custom2 = #{psdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom3 != null">
+        psd_custom3 = #{psdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom4 != null">
+        psd_custom4 = #{psdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom5 != null">
+        psd_custom5 = #{psdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom6 != null">
+        psd_custom6 = #{psdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    update purchase_storage_detailed
+    set ps_id = #{psId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      psd_engname = #{psdEngname,jdbcType=VARCHAR},
+      psd_remark = #{psdRemark,jdbcType=VARCHAR},
+      psd_price_include_tax = #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      psd_single_status = #{psdSingleStatus,jdbcType=INTEGER},
+      psd_document_date = #{psdDocumentDate,jdbcType=DATE},
+      psd_document_number = #{psdDocumentNumber,jdbcType=VARCHAR},
+      psd_price = #{psdPrice,jdbcType=REAL},
+      psd_money = #{psdMoney,jdbcType=REAL},
+      psd_tax_rate = #{psdTaxRate,jdbcType=REAL},
+      psd_tax_amount = #{psdTaxAmount,jdbcType=REAL},
+      psd_including_tax_amount = #{psdIncludingTaxAmount,jdbcType=REAL},
+      psd_batch_number = #{psdBatchNumber,jdbcType=VARCHAR},
+      psd_ifgift = #{psdIfgift,jdbcType=VARCHAR},
+      psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      psd_remarks = #{psdRemarks,jdbcType=VARCHAR},
+      psd_source_order = #{psdSourceOrder,jdbcType=VARCHAR},
+      psd_source_no = #{psdSourceNo,jdbcType=VARCHAR},
+      psd_auditing = #{psdAuditing,jdbcType=VARCHAR},
+      psd_yn = #{psdYn,jdbcType=VARCHAR},
+      psd_custom1 = #{psdCustom1,jdbcType=VARCHAR},
+      psd_custom2 = #{psdCustom2,jdbcType=VARCHAR},
+      psd_custom3 = #{psdCustom3,jdbcType=VARCHAR},
+      psd_custom4 = #{psdCustom4,jdbcType=VARCHAR},
+      psd_custom5 = #{psdCustom5,jdbcType=VARCHAR},
+      psd_custom6 = #{psdCustom6,jdbcType=VARCHAR}
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_storage_detailed">
+    <id column="psd_id" jdbcType="VARCHAR" property="psdId" />
+    <result column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="psd_engname" jdbcType="VARCHAR" property="psdEngname" />
+    <result column="psd_remark" jdbcType="VARCHAR" property="psdRemark" />
+    <result column="psd_price_include_tax" jdbcType="VARCHAR" property="psdPriceIncludeTax" />
+    <result column="psd_single_status" jdbcType="INTEGER" property="psdSingleStatus" />
+    <result column="psd_document_date" jdbcType="DATE" property="psdDocumentDate" />
+    <result column="psd_document_number" jdbcType="VARCHAR" property="psdDocumentNumber" />
+    <result column="psd_price" jdbcType="REAL" property="psdPrice" />
+    <result column="psd_money" jdbcType="REAL" property="psdMoney" />
+    <result column="psd_tax_rate" jdbcType="REAL" property="psdTaxRate" />
+    <result column="psd_tax_amount" jdbcType="REAL" property="psdTaxAmount" />
+    <result column="psd_including_tax_amount" jdbcType="REAL" property="psdIncludingTaxAmount" />
+    <result column="psd_batch_number" jdbcType="VARCHAR" property="psdBatchNumber" />
+    <result column="psd_ifgift" jdbcType="VARCHAR" property="psdIfgift" />
+    <result column="psd_invoice_details" jdbcType="VARCHAR" property="psdInvoiceDetails" />
+    <result column="psd_remarks" jdbcType="VARCHAR" property="psdRemarks" />
+    <result column="psd_source_order" jdbcType="VARCHAR" property="psdSourceOrder" />
+    <result column="psd_source_no" jdbcType="VARCHAR" property="psdSourceNo" />
+    <result column="psd_auditing" jdbcType="VARCHAR" property="psdAuditing" />
+    <result column="psd_yn" jdbcType="VARCHAR" property="psdYn" />
+    <result column="psd_custom1" jdbcType="VARCHAR" property="psdCustom1" />
+    <result column="psd_custom2" jdbcType="VARCHAR" property="psdCustom2" />
+    <result column="psd_custom3" jdbcType="VARCHAR" property="psdCustom3" />
+    <result column="psd_custom4" jdbcType="VARCHAR" property="psdCustom4" />
+    <result column="psd_custom5" jdbcType="VARCHAR" property="psdCustom5" />
+    <result column="psd_custom6" jdbcType="VARCHAR" property="psdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    psd_id, ps_id, matter_id, psd_engname, psd_remark, psd_price_include_tax, psd_single_status, 
+    psd_document_date, psd_document_number, psd_price, psd_money, psd_tax_rate, psd_tax_amount, 
+    psd_including_tax_amount, psd_batch_number, psd_ifgift, psd_invoice_details, psd_remarks, 
+    psd_source_order, psd_source_no, psd_auditing, psd_yn, psd_custom1, psd_custom2, 
+    psd_custom3, psd_custom4, psd_custom5, psd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_storage_detailed
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_storage_detailed
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    insert into purchase_storage_detailed (psd_id, ps_id, matter_id, 
+      psd_engname, psd_remark, psd_price_include_tax, 
+      psd_single_status, psd_document_date, psd_document_number, 
+      psd_price, psd_money, psd_tax_rate, 
+      psd_tax_amount, psd_including_tax_amount, psd_batch_number, 
+      psd_ifgift, psd_invoice_details, psd_remarks, 
+      psd_source_order, psd_source_no, psd_auditing, 
+      psd_yn, psd_custom1, psd_custom2, 
+      psd_custom3, psd_custom4, psd_custom5, 
+      psd_custom6)
+    values (#{psdId,jdbcType=VARCHAR}, #{psId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{psdEngname,jdbcType=VARCHAR}, #{psdRemark,jdbcType=VARCHAR}, #{psdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{psdSingleStatus,jdbcType=INTEGER}, #{psdDocumentDate,jdbcType=DATE}, #{psdDocumentNumber,jdbcType=VARCHAR}, 
+      #{psdPrice,jdbcType=REAL}, #{psdMoney,jdbcType=REAL}, #{psdTaxRate,jdbcType=REAL}, 
+      #{psdTaxAmount,jdbcType=REAL}, #{psdIncludingTaxAmount,jdbcType=REAL}, #{psdBatchNumber,jdbcType=VARCHAR}, 
+      #{psdIfgift,jdbcType=VARCHAR}, #{psdInvoiceDetails,jdbcType=VARCHAR}, #{psdRemarks,jdbcType=VARCHAR}, 
+      #{psdSourceOrder,jdbcType=VARCHAR}, #{psdSourceNo,jdbcType=VARCHAR}, #{psdAuditing,jdbcType=VARCHAR}, 
+      #{psdYn,jdbcType=VARCHAR}, #{psdCustom1,jdbcType=VARCHAR}, #{psdCustom2,jdbcType=VARCHAR}, 
+      #{psdCustom3,jdbcType=VARCHAR}, #{psdCustom4,jdbcType=VARCHAR}, #{psdCustom5,jdbcType=VARCHAR}, 
+      #{psdCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    insert into purchase_storage_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="psdId != null">
+        psd_id,
+      </if>
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="psdEngname != null">
+        psd_engname,
+      </if>
+      <if test="psdRemark != null">
+        psd_remark,
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        psd_price_include_tax,
+      </if>
+      <if test="psdSingleStatus != null">
+        psd_single_status,
+      </if>
+      <if test="psdDocumentDate != null">
+        psd_document_date,
+      </if>
+      <if test="psdDocumentNumber != null">
+        psd_document_number,
+      </if>
+      <if test="psdPrice != null">
+        psd_price,
+      </if>
+      <if test="psdMoney != null">
+        psd_money,
+      </if>
+      <if test="psdTaxRate != null">
+        psd_tax_rate,
+      </if>
+      <if test="psdTaxAmount != null">
+        psd_tax_amount,
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        psd_including_tax_amount,
+      </if>
+      <if test="psdBatchNumber != null">
+        psd_batch_number,
+      </if>
+      <if test="psdIfgift != null">
+        psd_ifgift,
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details,
+      </if>
+      <if test="psdRemarks != null">
+        psd_remarks,
+      </if>
+      <if test="psdSourceOrder != null">
+        psd_source_order,
+      </if>
+      <if test="psdSourceNo != null">
+        psd_source_no,
+      </if>
+      <if test="psdAuditing != null">
+        psd_auditing,
+      </if>
+      <if test="psdYn != null">
+        psd_yn,
+      </if>
+      <if test="psdCustom1 != null">
+        psd_custom1,
+      </if>
+      <if test="psdCustom2 != null">
+        psd_custom2,
+      </if>
+      <if test="psdCustom3 != null">
+        psd_custom3,
+      </if>
+      <if test="psdCustom4 != null">
+        psd_custom4,
+      </if>
+      <if test="psdCustom5 != null">
+        psd_custom5,
+      </if>
+      <if test="psdCustom6 != null">
+        psd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="psdId != null">
+        #{psdId,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="psdEngname != null">
+        #{psdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemark != null">
+        #{psdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSingleStatus != null">
+        #{psdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="psdDocumentDate != null">
+        #{psdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psdDocumentNumber != null">
+        #{psdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPrice != null">
+        #{psdPrice,jdbcType=REAL},
+      </if>
+      <if test="psdMoney != null">
+        #{psdMoney,jdbcType=REAL},
+      </if>
+      <if test="psdTaxRate != null">
+        #{psdTaxRate,jdbcType=REAL},
+      </if>
+      <if test="psdTaxAmount != null">
+        #{psdTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        #{psdIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdBatchNumber != null">
+        #{psdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdIfgift != null">
+        #{psdIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemarks != null">
+        #{psdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceOrder != null">
+        #{psdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceNo != null">
+        #{psdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psdAuditing != null">
+        #{psdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="psdYn != null">
+        #{psdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom1 != null">
+        #{psdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom2 != null">
+        #{psdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom3 != null">
+        #{psdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom4 != null">
+        #{psdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom5 != null">
+        #{psdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom6 != null">
+        #{psdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    update purchase_storage_detailed
+    <set>
+      <if test="psId != null">
+        ps_id = #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="psdEngname != null">
+        psd_engname = #{psdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemark != null">
+        psd_remark = #{psdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPriceIncludeTax != null">
+        psd_price_include_tax = #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSingleStatus != null">
+        psd_single_status = #{psdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="psdDocumentDate != null">
+        psd_document_date = #{psdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="psdDocumentNumber != null">
+        psd_document_number = #{psdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdPrice != null">
+        psd_price = #{psdPrice,jdbcType=REAL},
+      </if>
+      <if test="psdMoney != null">
+        psd_money = #{psdMoney,jdbcType=REAL},
+      </if>
+      <if test="psdTaxRate != null">
+        psd_tax_rate = #{psdTaxRate,jdbcType=REAL},
+      </if>
+      <if test="psdTaxAmount != null">
+        psd_tax_amount = #{psdTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdIncludingTaxAmount != null">
+        psd_including_tax_amount = #{psdIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="psdBatchNumber != null">
+        psd_batch_number = #{psdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="psdIfgift != null">
+        psd_ifgift = #{psdIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="psdRemarks != null">
+        psd_remarks = #{psdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceOrder != null">
+        psd_source_order = #{psdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="psdSourceNo != null">
+        psd_source_no = #{psdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="psdAuditing != null">
+        psd_auditing = #{psdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="psdYn != null">
+        psd_yn = #{psdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom1 != null">
+        psd_custom1 = #{psdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom2 != null">
+        psd_custom2 = #{psdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom3 != null">
+        psd_custom3 = #{psdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom4 != null">
+        psd_custom4 = #{psdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom5 != null">
+        psd_custom5 = #{psdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="psdCustom6 != null">
+        psd_custom6 = #{psdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_storage_detailed">
+    update purchase_storage_detailed
+    set ps_id = #{psId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      psd_engname = #{psdEngname,jdbcType=VARCHAR},
+      psd_remark = #{psdRemark,jdbcType=VARCHAR},
+      psd_price_include_tax = #{psdPriceIncludeTax,jdbcType=VARCHAR},
+      psd_single_status = #{psdSingleStatus,jdbcType=INTEGER},
+      psd_document_date = #{psdDocumentDate,jdbcType=DATE},
+      psd_document_number = #{psdDocumentNumber,jdbcType=VARCHAR},
+      psd_price = #{psdPrice,jdbcType=REAL},
+      psd_money = #{psdMoney,jdbcType=REAL},
+      psd_tax_rate = #{psdTaxRate,jdbcType=REAL},
+      psd_tax_amount = #{psdTaxAmount,jdbcType=REAL},
+      psd_including_tax_amount = #{psdIncludingTaxAmount,jdbcType=REAL},
+      psd_batch_number = #{psdBatchNumber,jdbcType=VARCHAR},
+      psd_ifgift = #{psdIfgift,jdbcType=VARCHAR},
+      psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      psd_remarks = #{psdRemarks,jdbcType=VARCHAR},
+      psd_source_order = #{psdSourceOrder,jdbcType=VARCHAR},
+      psd_source_no = #{psdSourceNo,jdbcType=VARCHAR},
+      psd_auditing = #{psdAuditing,jdbcType=VARCHAR},
+      psd_yn = #{psdYn,jdbcType=VARCHAR},
+      psd_custom1 = #{psdCustom1,jdbcType=VARCHAR},
+      psd_custom2 = #{psdCustom2,jdbcType=VARCHAR},
+      psd_custom3 = #{psdCustom3,jdbcType=VARCHAR},
+      psd_custom4 = #{psdCustom4,jdbcType=VARCHAR},
+      psd_custom5 = #{psdCustom5,jdbcType=VARCHAR},
+      psd_custom6 = #{psdCustom6,jdbcType=VARCHAR}
+    where psd_id = #{psdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

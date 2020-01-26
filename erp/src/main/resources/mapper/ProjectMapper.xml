@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Project">
+    <id column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_english_name" jdbcType="VARCHAR" property="projectEnglishName" />
+    <result column="project_abate" jdbcType="DATE" property="projectAbate" />
+    <result column="project_remark" jdbcType="VARCHAR" property="projectRemark" />
+    <result column="project_Auditing" jdbcType="VARCHAR" property="projectAuditing" />
+    <result column="project_yn" jdbcType="VARCHAR" property="projectYn" />
+    <result column="project_custom1" jdbcType="VARCHAR" property="projectCustom1" />
+    <result column="project_custom2" jdbcType="VARCHAR" property="projectCustom2" />
+    <result column="project_custom3" jdbcType="VARCHAR" property="projectCustom3" />
+    <result column="project_custom4" jdbcType="VARCHAR" property="projectCustom4" />
+    <result column="project_custom5" jdbcType="VARCHAR" property="projectCustom5" />
+    <result column="project_custom6" jdbcType="VARCHAR" property="projectCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    project_id, project_name, project_english_name, project_abate, project_remark, project_Auditing, 
+    project_yn, project_custom1, project_custom2, project_custom3, project_custom4, project_custom5, 
+    project_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Project">
+    insert into project (project_id, project_name, project_english_name, 
+      project_abate, project_remark, project_Auditing, 
+      project_yn, project_custom1, project_custom2, 
+      project_custom3, project_custom4, project_custom5, 
+      project_custom6)
+    values (#{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{projectEnglishName,jdbcType=VARCHAR}, 
+      #{projectAbate,jdbcType=DATE}, #{projectRemark,jdbcType=VARCHAR}, #{projectAuditing,jdbcType=VARCHAR}, 
+      #{projectYn,jdbcType=VARCHAR}, #{projectCustom1,jdbcType=VARCHAR}, #{projectCustom2,jdbcType=VARCHAR}, 
+      #{projectCustom3,jdbcType=VARCHAR}, #{projectCustom4,jdbcType=VARCHAR}, #{projectCustom5,jdbcType=VARCHAR}, 
+      #{projectCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectEnglishName != null">
+        project_english_name,
+      </if>
+      <if test="projectAbate != null">
+        project_abate,
+      </if>
+      <if test="projectRemark != null">
+        project_remark,
+      </if>
+      <if test="projectAuditing != null">
+        project_Auditing,
+      </if>
+      <if test="projectYn != null">
+        project_yn,
+      </if>
+      <if test="projectCustom1 != null">
+        project_custom1,
+      </if>
+      <if test="projectCustom2 != null">
+        project_custom2,
+      </if>
+      <if test="projectCustom3 != null">
+        project_custom3,
+      </if>
+      <if test="projectCustom4 != null">
+        project_custom4,
+      </if>
+      <if test="projectCustom5 != null">
+        project_custom5,
+      </if>
+      <if test="projectCustom6 != null">
+        project_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectEnglishName != null">
+        #{projectEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAbate != null">
+        #{projectAbate,jdbcType=DATE},
+      </if>
+      <if test="projectRemark != null">
+        #{projectRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAuditing != null">
+        #{projectAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYn != null">
+        #{projectYn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom1 != null">
+        #{projectCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom2 != null">
+        #{projectCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom3 != null">
+        #{projectCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom4 != null">
+        #{projectCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom5 != null">
+        #{projectCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom6 != null">
+        #{projectCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Project">
+    update project
+    <set>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectEnglishName != null">
+        project_english_name = #{projectEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAbate != null">
+        project_abate = #{projectAbate,jdbcType=DATE},
+      </if>
+      <if test="projectRemark != null">
+        project_remark = #{projectRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAuditing != null">
+        project_Auditing = #{projectAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYn != null">
+        project_yn = #{projectYn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom1 != null">
+        project_custom1 = #{projectCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom2 != null">
+        project_custom2 = #{projectCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom3 != null">
+        project_custom3 = #{projectCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom4 != null">
+        project_custom4 = #{projectCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom5 != null">
+        project_custom5 = #{projectCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom6 != null">
+        project_custom6 = #{projectCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Project">
+    update project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      project_english_name = #{projectEnglishName,jdbcType=VARCHAR},
+      project_abate = #{projectAbate,jdbcType=DATE},
+      project_remark = #{projectRemark,jdbcType=VARCHAR},
+      project_Auditing = #{projectAuditing,jdbcType=VARCHAR},
+      project_yn = #{projectYn,jdbcType=VARCHAR},
+      project_custom1 = #{projectCustom1,jdbcType=VARCHAR},
+      project_custom2 = #{projectCustom2,jdbcType=VARCHAR},
+      project_custom3 = #{projectCustom3,jdbcType=VARCHAR},
+      project_custom4 = #{projectCustom4,jdbcType=VARCHAR},
+      project_custom5 = #{projectCustom5,jdbcType=VARCHAR},
+      project_custom6 = #{projectCustom6,jdbcType=VARCHAR}
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Project">
+    <id column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="project_english_name" jdbcType="VARCHAR" property="projectEnglishName" />
+    <result column="project_abate" jdbcType="DATE" property="projectAbate" />
+    <result column="project_remark" jdbcType="VARCHAR" property="projectRemark" />
+    <result column="project_Auditing" jdbcType="VARCHAR" property="projectAuditing" />
+    <result column="project_yn" jdbcType="VARCHAR" property="projectYn" />
+    <result column="project_custom1" jdbcType="VARCHAR" property="projectCustom1" />
+    <result column="project_custom2" jdbcType="VARCHAR" property="projectCustom2" />
+    <result column="project_custom3" jdbcType="VARCHAR" property="projectCustom3" />
+    <result column="project_custom4" jdbcType="VARCHAR" property="projectCustom4" />
+    <result column="project_custom5" jdbcType="VARCHAR" property="projectCustom5" />
+    <result column="project_custom6" jdbcType="VARCHAR" property="projectCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    project_id, project_name, project_english_name, project_abate, project_remark, project_Auditing, 
+    project_yn, project_custom1, project_custom2, project_custom3, project_custom4, project_custom5, 
+    project_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Project">
+    insert into project (project_id, project_name, project_english_name, 
+      project_abate, project_remark, project_Auditing, 
+      project_yn, project_custom1, project_custom2, 
+      project_custom3, project_custom4, project_custom5, 
+      project_custom6)
+    values (#{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{projectEnglishName,jdbcType=VARCHAR}, 
+      #{projectAbate,jdbcType=DATE}, #{projectRemark,jdbcType=VARCHAR}, #{projectAuditing,jdbcType=VARCHAR}, 
+      #{projectYn,jdbcType=VARCHAR}, #{projectCustom1,jdbcType=VARCHAR}, #{projectCustom2,jdbcType=VARCHAR}, 
+      #{projectCustom3,jdbcType=VARCHAR}, #{projectCustom4,jdbcType=VARCHAR}, #{projectCustom5,jdbcType=VARCHAR}, 
+      #{projectCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="projectEnglishName != null">
+        project_english_name,
+      </if>
+      <if test="projectAbate != null">
+        project_abate,
+      </if>
+      <if test="projectRemark != null">
+        project_remark,
+      </if>
+      <if test="projectAuditing != null">
+        project_Auditing,
+      </if>
+      <if test="projectYn != null">
+        project_yn,
+      </if>
+      <if test="projectCustom1 != null">
+        project_custom1,
+      </if>
+      <if test="projectCustom2 != null">
+        project_custom2,
+      </if>
+      <if test="projectCustom3 != null">
+        project_custom3,
+      </if>
+      <if test="projectCustom4 != null">
+        project_custom4,
+      </if>
+      <if test="projectCustom5 != null">
+        project_custom5,
+      </if>
+      <if test="projectCustom6 != null">
+        project_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectEnglishName != null">
+        #{projectEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAbate != null">
+        #{projectAbate,jdbcType=DATE},
+      </if>
+      <if test="projectRemark != null">
+        #{projectRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAuditing != null">
+        #{projectAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYn != null">
+        #{projectYn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom1 != null">
+        #{projectCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom2 != null">
+        #{projectCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom3 != null">
+        #{projectCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom4 != null">
+        #{projectCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom5 != null">
+        #{projectCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom6 != null">
+        #{projectCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Project">
+    update project
+    <set>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectEnglishName != null">
+        project_english_name = #{projectEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAbate != null">
+        project_abate = #{projectAbate,jdbcType=DATE},
+      </if>
+      <if test="projectRemark != null">
+        project_remark = #{projectRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAuditing != null">
+        project_Auditing = #{projectAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="projectYn != null">
+        project_yn = #{projectYn,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom1 != null">
+        project_custom1 = #{projectCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom2 != null">
+        project_custom2 = #{projectCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom3 != null">
+        project_custom3 = #{projectCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom4 != null">
+        project_custom4 = #{projectCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom5 != null">
+        project_custom5 = #{projectCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCustom6 != null">
+        project_custom6 = #{projectCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Project">
+    update project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      project_english_name = #{projectEnglishName,jdbcType=VARCHAR},
+      project_abate = #{projectAbate,jdbcType=DATE},
+      project_remark = #{projectRemark,jdbcType=VARCHAR},
+      project_Auditing = #{projectAuditing,jdbcType=VARCHAR},
+      project_yn = #{projectYn,jdbcType=VARCHAR},
+      project_custom1 = #{projectCustom1,jdbcType=VARCHAR},
+      project_custom2 = #{projectCustom2,jdbcType=VARCHAR},
+      project_custom3 = #{projectCustom3,jdbcType=VARCHAR},
+      project_custom4 = #{projectCustom4,jdbcType=VARCHAR},
+      project_custom5 = #{projectCustom5,jdbcType=VARCHAR},
+      project_custom6 = #{projectCustom6,jdbcType=VARCHAR}
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+</mapper>

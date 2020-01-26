@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.RechargeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Recharge">
+    <id column="rechargeID" jdbcType="INTEGER" property="rechargeid" />
+    <result column="rechargeDate" jdbcType="TIMESTAMP" property="rechargedate" />
+    <result column="weChatNumber" jdbcType="VARCHAR" property="wechatnumber" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="recharge" jdbcType="REAL" property="recharge" />
+    <result column="give" jdbcType="REAL" property="give" />
+    <result column="balance" jdbcType="REAL" property="balance" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="memberid" jdbcType="INTEGER" property="memberid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rechargeID, rechargeDate, weChatNumber, name, phone, recharge, give, balance, remarks, 
+    memberid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    where rechargeID = #{rechargeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recharge
+    where rechargeID = #{rechargeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Recharge">
+    insert into recharge (rechargeID, rechargeDate, weChatNumber, 
+      name, phone, recharge, 
+      give, balance, remarks, memberid
+      )
+    values (#{rechargeid,jdbcType=INTEGER}, #{rechargedate,jdbcType=TIMESTAMP}, #{wechatnumber,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{recharge,jdbcType=REAL}, 
+      #{give,jdbcType=REAL}, #{balance,jdbcType=REAL}, #{remarks,jdbcType=VARCHAR}, #{memberid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Recharge">
+    insert into recharge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rechargeid != null">
+        rechargeID,
+      </if>
+      <if test="rechargedate != null">
+        rechargeDate,
+      </if>
+      <if test="wechatnumber != null">
+        weChatNumber,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="recharge != null">
+        recharge,
+      </if>
+      <if test="give != null">
+        give,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="memberid != null">
+        memberid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rechargeid != null">
+        #{rechargeid,jdbcType=INTEGER},
+      </if>
+      <if test="rechargedate != null">
+        #{rechargedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatnumber != null">
+        #{wechatnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="recharge != null">
+        #{recharge,jdbcType=REAL},
+      </if>
+      <if test="give != null">
+        #{give,jdbcType=REAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=REAL},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Recharge">
+    update recharge
+    <set>
+      <if test="rechargedate != null">
+        rechargeDate = #{rechargedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechatnumber != null">
+        weChatNumber = #{wechatnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="recharge != null">
+        recharge = #{recharge,jdbcType=REAL},
+      </if>
+      <if test="give != null">
+        give = #{give,jdbcType=REAL},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=REAL},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="memberid != null">
+        memberid = #{memberid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rechargeID = #{rechargeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Recharge">
+    update recharge
+    set rechargeDate = #{rechargedate,jdbcType=TIMESTAMP},
+      weChatNumber = #{wechatnumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      recharge = #{recharge,jdbcType=REAL},
+      give = #{give,jdbcType=REAL},
+      balance = #{balance,jdbcType=REAL},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      memberid = #{memberid,jdbcType=INTEGER}
+    where rechargeID = #{rechargeid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAll" resultType="com.apatech.domain.Recharge">
+  SELECT r.rechargeID,r.rechargeDate,r.weChatNumber,m.name,m.phone,r.recharge,r.give,r.balance,r.remarks,r.memberid 
+	FROM recharge r,member m 
+	WHERE r.memberid=m.memberID  
+	<if test="null!=startTime">
+	  AND r.rechargeDate &gt;= #{startTime} 
+	 </if>  
+	<if test="null!=endTime">
+	  AND r.rechargeDate &lt;= #{endTime}  
+	 </if>
+	<if test="null!=PhoneOrName and ''!=PhoneOrName">
+	  AND (m.name LIKE "%"#{PhoneOrName,jdbcType=VARCHAR}"%" OR m.phone LIKE "%"#{PhoneOrName,jdbcType=VARCHAR}"%")
+	 </if> 
+  </select>
+</mapper>

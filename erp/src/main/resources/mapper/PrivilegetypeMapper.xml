@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.PrivilegetypeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Privilegetype">
+    <id column="privilegeTypeID" jdbcType="INTEGER" property="privilegetypeid" />
+    <result column="privilegeType" jdbcType="VARCHAR" property="privilegetype" />
+  </resultMap>
+  <select id="queryPrivilegeType" parameterType="com.apatech.domain.Privilegetype" resultMap="BaseResultMap">
+  	select * from privilegetype
+  </select>
+  <sql id="Base_Column_List">
+    privilegeTypeID, privilegeType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from privilegetype
+    where privilegeTypeID = #{privilegetypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from privilegetype
+    where privilegeTypeID = #{privilegetypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Privilegetype">
+    insert into privilegetype (privilegeTypeID, privilegeType)
+    values (#{privilegetypeid,jdbcType=INTEGER}, #{privilegetype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Privilegetype">
+    insert into privilegetype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="privilegetypeid != null">
+        privilegeTypeID,
+      </if>
+      <if test="privilegetype != null">
+        privilegeType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="privilegetypeid != null">
+        #{privilegetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="privilegetype != null">
+        #{privilegetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Privilegetype">
+    update privilegetype
+    <set>
+      <if test="privilegetype != null">
+        privilegeType = #{privilegetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where privilegeTypeID = #{privilegetypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Privilegetype">
+    update privilegetype
+    set privilegeType = #{privilegetype,jdbcType=VARCHAR}
+    where privilegeTypeID = #{privilegetypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

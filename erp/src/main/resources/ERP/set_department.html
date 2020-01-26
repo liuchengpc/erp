@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="css/layui.css">
+    
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/brands.css" rel="stylesheet">
+    <link href="css/solid.css" rel="stylesheet">
+    
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
     <style>
@@ -16,63 +21,60 @@
 </head>
 <body>
     <div id="app">
-        <div class="layui-row">
-            <div class="layui-col-lg12">
-                <div class="layui-form">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="color:#009688;">类型编号</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="color:#009688;">类型名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="color:#009688;">英文名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <!--<div class="layui-form-item">
-                        <label class="layui-form-label" style="color:#009688;">银行类别</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">账款月份</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">采购入库单号</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label" style="color:#009688;">仓库</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title"  class="layui-input">
-                        </div>
-                    </div>-->
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">备注</label>
-                        <div class="layui-input-block">
-                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    	<form >
+		  	<div class="layui-row">
+	            <div class="layui-col-lg12">
+	                <div class="layui-form">
+	                    <div class="layui-form-item">
+	                        <label class="layui-form-label" style="color:#009688;">类型编号</label>
+	                        <div class="layui-input-block">
+	                            <input type="text" name="title"  class="layui-input">
+	                        </div>
+	                    </div>
+	                    <div class="layui-form-item">
+	                        <label class="layui-form-label" style="color:#009688;">类型名称</label>
+	                        <div class="layui-input-block">
+	                            <input type="text" name="title"  class="layui-input">
+	                        </div>
+	                    </div>
+	                    <div class="layui-form-item">
+	                        <label class="layui-form-label" style="color:#009688;">英文名称</label>
+	                        <div class="layui-input-block">
+	                            <input type="text" name="title"  class="layui-input">
+	                        </div>
+	                    </div>
+	                    
+	                   
+	                    <div class="layui-form-item">
+	                        <label class="layui-form-label">备注</label>
+	                        <div class="layui-input-block">
+	                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+	                        </div>
+	                    </div>
+	                    <div class="layui-form-item">                       
+	                        <div class="layui-input-block">  
+					            <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+					            <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
+					            <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+								<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
+					            <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
+					            <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
+					            <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+					            <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
+								<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
+								<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
+								<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
+								<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+		                    </div>
+	                	</div>
+	            </div>
+	        </div>
+    		
+    	</form>
+      
     </div>
-    <!--<script>
-        layui.use('layer', function(){
+    <script>
+        /*layui.use('layer', function(){
         var layer = layui.layer;
         layer.open({
             type: 1,
@@ -80,8 +82,21 @@
             content: $('#app'),
             area: ['400px']
         });
-    });
-    </script>-->
+    });*/
+   
+   		 $.ajax({
+				url : "http://localhost:8080/RCtexam/Stockorder/updateByPrimaryKeySelective",
+				type:"post",
+			  	data : JSON.stringify(obj),
+			  	dataType:'json',	
+			  	contentType : "application/json;charset=utf-8",
+			  	success:function (res) {
+			  		showAlertDialog("系统提示：" +res.message);
+			  		$("input").prop("disabled", true);//设置不可修改
+					$("select").prop("disabled", true);//设置不可修改
+		        }
+			}); 
+    </script>
     
     
     

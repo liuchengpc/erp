@@ -98,6 +98,7 @@ public class Customer_gradeController {
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");
+			
 		}else {
 			map.put("code", "2");
 			map.put("message", "删除失败！");

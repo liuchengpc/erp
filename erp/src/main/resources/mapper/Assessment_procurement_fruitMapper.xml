@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Assessment_procurement_fruitMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Assessment_procurement_fruit">
+    <id column="apf_id" jdbcType="VARCHAR" property="apfId" />
+    <result column="ap_id" jdbcType="VARCHAR" property="apId" />
+    <result column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="apf_matter_id" jdbcType="VARCHAR" property="apfMatterId" />
+    <result column="apf_matter_name" jdbcType="VARCHAR" property="apfMatterName" />
+    <result column="apf_specifications" jdbcType="VARCHAR" property="apfSpecifications" />
+    <result column="apf_company_name" jdbcType="VARCHAR" property="apfCompanyName" />
+    <result column="apf_amount" jdbcType="INTEGER" property="apfAmount" />
+    <result column="apf_money" jdbcType="REAL" property="apfMoney" />
+    <result column="apf_weight" jdbcType="REAL" property="apfWeight" />
+    <result column="apf_volume_wood" jdbcType="REAL" property="apfVolumeWood" />
+    <result column="apf_contribution" jdbcType="REAL" property="apfContribution" />
+    <result column="prt_audition" jdbcType="VARCHAR" property="prtAudition" />
+    <result column="prt_yn" jdbcType="VARCHAR" property="prtYn" />
+    <result column="prt_custom1" jdbcType="VARCHAR" property="prtCustom1" />
+    <result column="prt_custom2" jdbcType="VARCHAR" property="prtCustom2" />
+    <result column="prt_custom3" jdbcType="VARCHAR" property="prtCustom3" />
+    <result column="prt_custom4" jdbcType="VARCHAR" property="prtCustom4" />
+    <result column="prt_custom5" jdbcType="VARCHAR" property="prtCustom5" />
+    <result column="prt_custom6" jdbcType="VARCHAR" property="prtCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    apf_id, ap_id, ps_id, apf_matter_id, apf_matter_name, apf_specifications, apf_company_name, 
+    apf_amount, apf_money, apf_weight, apf_volume_wood, apf_contribution, prt_audition, 
+    prt_yn, prt_custom1, prt_custom2, prt_custom3, prt_custom4, prt_custom5, prt_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assessment_procurement_fruit
+    where apf_id = #{apfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from assessment_procurement_fruit
+    where apf_id = #{apfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Assessment_procurement_fruit">
+    insert into assessment_procurement_fruit (apf_id, ap_id, ps_id, 
+      apf_matter_id, apf_matter_name, apf_specifications, 
+      apf_company_name, apf_amount, apf_money, 
+      apf_weight, apf_volume_wood, apf_contribution, 
+      prt_audition, prt_yn, prt_custom1, 
+      prt_custom2, prt_custom3, prt_custom4, 
+      prt_custom5, prt_custom6)
+    values (#{apfId,jdbcType=VARCHAR}, #{apId,jdbcType=VARCHAR}, #{psId,jdbcType=VARCHAR}, 
+      #{apfMatterId,jdbcType=VARCHAR}, #{apfMatterName,jdbcType=VARCHAR}, #{apfSpecifications,jdbcType=VARCHAR}, 
+      #{apfCompanyName,jdbcType=VARCHAR}, #{apfAmount,jdbcType=INTEGER}, #{apfMoney,jdbcType=REAL}, 
+      #{apfWeight,jdbcType=REAL}, #{apfVolumeWood,jdbcType=REAL}, #{apfContribution,jdbcType=REAL}, 
+      #{prtAudition,jdbcType=VARCHAR}, #{prtYn,jdbcType=VARCHAR}, #{prtCustom1,jdbcType=VARCHAR}, 
+      #{prtCustom2,jdbcType=VARCHAR}, #{prtCustom3,jdbcType=VARCHAR}, #{prtCustom4,jdbcType=VARCHAR}, 
+      #{prtCustom5,jdbcType=VARCHAR}, #{prtCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Assessment_procurement_fruit">
+    insert into assessment_procurement_fruit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apfId != null">
+        apf_id,
+      </if>
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="apfMatterId != null">
+        apf_matter_id,
+      </if>
+      <if test="apfMatterName != null">
+        apf_matter_name,
+      </if>
+      <if test="apfSpecifications != null">
+        apf_specifications,
+      </if>
+      <if test="apfCompanyName != null">
+        apf_company_name,
+      </if>
+      <if test="apfAmount != null">
+        apf_amount,
+      </if>
+      <if test="apfMoney != null">
+        apf_money,
+      </if>
+      <if test="apfWeight != null">
+        apf_weight,
+      </if>
+      <if test="apfVolumeWood != null">
+        apf_volume_wood,
+      </if>
+      <if test="apfContribution != null">
+        apf_contribution,
+      </if>
+      <if test="prtAudition != null">
+        prt_audition,
+      </if>
+      <if test="prtYn != null">
+        prt_yn,
+      </if>
+      <if test="prtCustom1 != null">
+        prt_custom1,
+      </if>
+      <if test="prtCustom2 != null">
+        prt_custom2,
+      </if>
+      <if test="prtCustom3 != null">
+        prt_custom3,
+      </if>
+      <if test="prtCustom4 != null">
+        prt_custom4,
+      </if>
+      <if test="prtCustom5 != null">
+        prt_custom5,
+      </if>
+      <if test="prtCustom6 != null">
+        prt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apfId != null">
+        #{apfId,jdbcType=VARCHAR},
+      </if>
+      <if test="apId != null">
+        #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="apfMatterId != null">
+        #{apfMatterId,jdbcType=VARCHAR},
+      </if>
+      <if test="apfMatterName != null">
+        #{apfMatterName,jdbcType=VARCHAR},
+      </if>
+      <if test="apfSpecifications != null">
+        #{apfSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="apfCompanyName != null">
+        #{apfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="apfAmount != null">
+        #{apfAmount,jdbcType=INTEGER},
+      </if>
+      <if test="apfMoney != null">
+        #{apfMoney,jdbcType=REAL},
+      </if>
+      <if test="apfWeight != null">
+        #{apfWeight,jdbcType=REAL},
+      </if>
+      <if test="apfVolumeWood != null">
+        #{apfVolumeWood,jdbcType=REAL},
+      </if>
+      <if test="apfContribution != null">
+        #{apfContribution,jdbcType=REAL},
+      </if>
+      <if test="prtAudition != null">
+        #{prtAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prtYn != null">
+        #{prtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom1 != null">
+        #{prtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom2 != null">
+        #{prtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom3 != null">
+        #{prtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom4 != null">
+        #{prtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom5 != null">
+        #{prtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom6 != null">
+        #{prtCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Assessment_procurement_fruit">
+    update assessment_procurement_fruit
+    <set>
+      <if test="apId != null">
+        ap_id = #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        ps_id = #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="apfMatterId != null">
+        apf_matter_id = #{apfMatterId,jdbcType=VARCHAR},
+      </if>
+      <if test="apfMatterName != null">
+        apf_matter_name = #{apfMatterName,jdbcType=VARCHAR},
+      </if>
+      <if test="apfSpecifications != null">
+        apf_specifications = #{apfSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="apfCompanyName != null">
+        apf_company_name = #{apfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="apfAmount != null">
+        apf_amount = #{apfAmount,jdbcType=INTEGER},
+      </if>
+      <if test="apfMoney != null">
+        apf_money = #{apfMoney,jdbcType=REAL},
+      </if>
+      <if test="apfWeight != null">
+        apf_weight = #{apfWeight,jdbcType=REAL},
+      </if>
+      <if test="apfVolumeWood != null">
+        apf_volume_wood = #{apfVolumeWood,jdbcType=REAL},
+      </if>
+      <if test="apfContribution != null">
+        apf_contribution = #{apfContribution,jdbcType=REAL},
+      </if>
+      <if test="prtAudition != null">
+        prt_audition = #{prtAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prtYn != null">
+        prt_yn = #{prtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom1 != null">
+        prt_custom1 = #{prtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom2 != null">
+        prt_custom2 = #{prtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom3 != null">
+        prt_custom3 = #{prtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom4 != null">
+        prt_custom4 = #{prtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom5 != null">
+        prt_custom5 = #{prtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom6 != null">
+        prt_custom6 = #{prtCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apf_id = #{apfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Assessment_procurement_fruit">
+    update assessment_procurement_fruit
+    set ap_id = #{apId,jdbcType=VARCHAR},
+      ps_id = #{psId,jdbcType=VARCHAR},
+      apf_matter_id = #{apfMatterId,jdbcType=VARCHAR},
+      apf_matter_name = #{apfMatterName,jdbcType=VARCHAR},
+      apf_specifications = #{apfSpecifications,jdbcType=VARCHAR},
+      apf_company_name = #{apfCompanyName,jdbcType=VARCHAR},
+      apf_amount = #{apfAmount,jdbcType=INTEGER},
+      apf_money = #{apfMoney,jdbcType=REAL},
+      apf_weight = #{apfWeight,jdbcType=REAL},
+      apf_volume_wood = #{apfVolumeWood,jdbcType=REAL},
+      apf_contribution = #{apfContribution,jdbcType=REAL},
+      prt_audition = #{prtAudition,jdbcType=VARCHAR},
+      prt_yn = #{prtYn,jdbcType=VARCHAR},
+      prt_custom1 = #{prtCustom1,jdbcType=VARCHAR},
+      prt_custom2 = #{prtCustom2,jdbcType=VARCHAR},
+      prt_custom3 = #{prtCustom3,jdbcType=VARCHAR},
+      prt_custom4 = #{prtCustom4,jdbcType=VARCHAR},
+      prt_custom5 = #{prtCustom5,jdbcType=VARCHAR},
+      prt_custom6 = #{prtCustom6,jdbcType=VARCHAR}
+    where apf_id = #{apfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

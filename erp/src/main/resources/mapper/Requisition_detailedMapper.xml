@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Requisition_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Requisition_detailed">
+    <id column="rd_id" jdbcType="VARCHAR" property="rdId" />
+    <result column="requisition_id" jdbcType="VARCHAR" property="requisitionId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="rd_engname" jdbcType="VARCHAR" property="rdEngname" />
+    <result column="rd_remark" jdbcType="VARCHAR" property="rdRemark" />
+    <result column="rd_price_include_tax" jdbcType="VARCHAR" property="rdPriceIncludeTax" />
+    <result column="rd_single_num" jdbcType="INTEGER" property="rdSingleNum" />
+    <result column="rd_batch _number" jdbcType="VARCHAR" property="rdBatchNumber" />
+    <result column="rd_remarks" jdbcType="VARCHAR" property="rdRemarks" />
+    <result column="rd_auditing" jdbcType="VARCHAR" property="rdAuditing" />
+    <result column="rd_yn" jdbcType="VARCHAR" property="rdYn" />
+    <result column="rd_custom1" jdbcType="VARCHAR" property="rdCustom1" />
+    <result column="rd_custom2" jdbcType="VARCHAR" property="rdCustom2" />
+    <result column="rd_custom3" jdbcType="VARCHAR" property="rdCustom3" />
+    <result column="rd_custom4" jdbcType="VARCHAR" property="rdCustom4" />
+    <result column="rd_custom5" jdbcType="VARCHAR" property="rdCustom5" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.apatech.domain.Requisition_detailed">
+    <result column="rd_custom6" jdbcType="VARBINARY" property="rdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rd_id, requisition_id, matter_id, rd_engname, rd_remark, rd_price_include_tax, rd_single_num, 
+    "rd_batch _number", rd_remarks, rd_auditing, rd_yn, rd_custom1, rd_custom2, rd_custom3, 
+    rd_custom4, rd_custom5
+  </sql>
+  <sql id="Blob_Column_List">
+    rd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from requisition_detailed
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from requisition_detailed
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Requisition_detailed">
+    insert into requisition_detailed (rd_id, requisition_id, matter_id, 
+      rd_engname, rd_remark, rd_price_include_tax, 
+      rd_single_num, "rd_batch _number", rd_remarks, 
+      rd_auditing, rd_yn, rd_custom1, 
+      rd_custom2, rd_custom3, rd_custom4, 
+      rd_custom5, rd_custom6)
+    values (#{rdId,jdbcType=VARCHAR}, #{requisitionId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{rdEngname,jdbcType=VARCHAR}, #{rdRemark,jdbcType=VARCHAR}, #{rdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{rdSingleNum,jdbcType=INTEGER}, #{rdBatchNumber,jdbcType=VARCHAR}, #{rdRemarks,jdbcType=VARCHAR}, 
+      #{rdAuditing,jdbcType=VARCHAR}, #{rdYn,jdbcType=VARCHAR}, #{rdCustom1,jdbcType=VARCHAR}, 
+      #{rdCustom2,jdbcType=VARCHAR}, #{rdCustom3,jdbcType=VARCHAR}, #{rdCustom4,jdbcType=VARCHAR}, 
+      #{rdCustom5,jdbcType=VARCHAR}, #{rdCustom6,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Requisition_detailed">
+    insert into requisition_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rdId != null">
+        rd_id,
+      </if>
+      <if test="requisitionId != null">
+        requisition_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="rdEngname != null">
+        rd_engname,
+      </if>
+      <if test="rdRemark != null">
+        rd_remark,
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        rd_price_include_tax,
+      </if>
+      <if test="rdSingleNum != null">
+        rd_single_num,
+      </if>
+      <if test="rdBatchNumber != null">
+        "rd_batch _number",
+      </if>
+      <if test="rdRemarks != null">
+        rd_remarks,
+      </if>
+      <if test="rdAuditing != null">
+        rd_auditing,
+      </if>
+      <if test="rdYn != null">
+        rd_yn,
+      </if>
+      <if test="rdCustom1 != null">
+        rd_custom1,
+      </if>
+      <if test="rdCustom2 != null">
+        rd_custom2,
+      </if>
+      <if test="rdCustom3 != null">
+        rd_custom3,
+      </if>
+      <if test="rdCustom4 != null">
+        rd_custom4,
+      </if>
+      <if test="rdCustom5 != null">
+        rd_custom5,
+      </if>
+      <if test="rdCustom6 != null">
+        rd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rdId != null">
+        #{rdId,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionId != null">
+        #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="rdEngname != null">
+        #{rdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemark != null">
+        #{rdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="rdSingleNum != null">
+        #{rdSingleNum,jdbcType=INTEGER},
+      </if>
+      <if test="rdBatchNumber != null">
+        #{rdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemarks != null">
+        #{rdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rdAuditing != null">
+        #{rdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="rdYn != null">
+        #{rdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom1 != null">
+        #{rdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom2 != null">
+        #{rdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom3 != null">
+        #{rdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom4 != null">
+        #{rdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom5 != null">
+        #{rdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom6 != null">
+        #{rdCustom6,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    <set>
+      <if test="requisitionId != null">
+        requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="rdEngname != null">
+        rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemark != null">
+        rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="rdSingleNum != null">
+        rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      </if>
+      <if test="rdBatchNumber != null">
+        "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemarks != null">
+        rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rdAuditing != null">
+        rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="rdYn != null">
+        rd_yn = #{rdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom1 != null">
+        rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom2 != null">
+        rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom3 != null">
+        rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom4 != null">
+        rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom5 != null">
+        rd_custom5 = #{rdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom6 != null">
+        rd_custom6 = #{rdCustom6,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    set requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      rd_yn = #{rdYn,jdbcType=VARCHAR},
+      rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      rd_custom5 = #{rdCustom5,jdbcType=VARCHAR},
+      rd_custom6 = #{rdCustom6,jdbcType=VARBINARY}
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    set requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      rd_yn = #{rdYn,jdbcType=VARCHAR},
+      rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      rd_custom5 = #{rdCustom5,jdbcType=VARCHAR}
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Requisition_detailed">
+    <id column="rd_id" jdbcType="VARCHAR" property="rdId" />
+    <result column="requisition_id" jdbcType="VARCHAR" property="requisitionId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="rd_engname" jdbcType="VARCHAR" property="rdEngname" />
+    <result column="rd_remark" jdbcType="VARCHAR" property="rdRemark" />
+    <result column="rd_price_include_tax" jdbcType="VARCHAR" property="rdPriceIncludeTax" />
+    <result column="rd_single_num" jdbcType="INTEGER" property="rdSingleNum" />
+    <result column="rd_batch _number" jdbcType="VARCHAR" property="rdBatchNumber" />
+    <result column="rd_remarks" jdbcType="VARCHAR" property="rdRemarks" />
+    <result column="rd_auditing" jdbcType="VARCHAR" property="rdAuditing" />
+    <result column="rd_yn" jdbcType="VARCHAR" property="rdYn" />
+    <result column="rd_custom1" jdbcType="VARCHAR" property="rdCustom1" />
+    <result column="rd_custom2" jdbcType="VARCHAR" property="rdCustom2" />
+    <result column="rd_custom3" jdbcType="VARCHAR" property="rdCustom3" />
+    <result column="rd_custom4" jdbcType="VARCHAR" property="rdCustom4" />
+    <result column="rd_custom5" jdbcType="VARCHAR" property="rdCustom5" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.apatech.domain.Requisition_detailed">
+    <result column="rd_custom6" jdbcType="VARBINARY" property="rdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rd_id, requisition_id, matter_id, rd_engname, rd_remark, rd_price_include_tax, rd_single_num, 
+    "rd_batch _number", rd_remarks, rd_auditing, rd_yn, rd_custom1, rd_custom2, rd_custom3, 
+    rd_custom4, rd_custom5
+  </sql>
+  <sql id="Blob_Column_List">
+    rd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from requisition_detailed
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from requisition_detailed
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Requisition_detailed">
+    insert into requisition_detailed (rd_id, requisition_id, matter_id, 
+      rd_engname, rd_remark, rd_price_include_tax, 
+      rd_single_num, "rd_batch _number", rd_remarks, 
+      rd_auditing, rd_yn, rd_custom1, 
+      rd_custom2, rd_custom3, rd_custom4, 
+      rd_custom5, rd_custom6)
+    values (#{rdId,jdbcType=VARCHAR}, #{requisitionId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{rdEngname,jdbcType=VARCHAR}, #{rdRemark,jdbcType=VARCHAR}, #{rdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{rdSingleNum,jdbcType=INTEGER}, #{rdBatchNumber,jdbcType=VARCHAR}, #{rdRemarks,jdbcType=VARCHAR}, 
+      #{rdAuditing,jdbcType=VARCHAR}, #{rdYn,jdbcType=VARCHAR}, #{rdCustom1,jdbcType=VARCHAR}, 
+      #{rdCustom2,jdbcType=VARCHAR}, #{rdCustom3,jdbcType=VARCHAR}, #{rdCustom4,jdbcType=VARCHAR}, 
+      #{rdCustom5,jdbcType=VARCHAR}, #{rdCustom6,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Requisition_detailed">
+    insert into requisition_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rdId != null">
+        rd_id,
+      </if>
+      <if test="requisitionId != null">
+        requisition_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="rdEngname != null">
+        rd_engname,
+      </if>
+      <if test="rdRemark != null">
+        rd_remark,
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        rd_price_include_tax,
+      </if>
+      <if test="rdSingleNum != null">
+        rd_single_num,
+      </if>
+      <if test="rdBatchNumber != null">
+        "rd_batch _number",
+      </if>
+      <if test="rdRemarks != null">
+        rd_remarks,
+      </if>
+      <if test="rdAuditing != null">
+        rd_auditing,
+      </if>
+      <if test="rdYn != null">
+        rd_yn,
+      </if>
+      <if test="rdCustom1 != null">
+        rd_custom1,
+      </if>
+      <if test="rdCustom2 != null">
+        rd_custom2,
+      </if>
+      <if test="rdCustom3 != null">
+        rd_custom3,
+      </if>
+      <if test="rdCustom4 != null">
+        rd_custom4,
+      </if>
+      <if test="rdCustom5 != null">
+        rd_custom5,
+      </if>
+      <if test="rdCustom6 != null">
+        rd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rdId != null">
+        #{rdId,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionId != null">
+        #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="rdEngname != null">
+        #{rdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemark != null">
+        #{rdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="rdSingleNum != null">
+        #{rdSingleNum,jdbcType=INTEGER},
+      </if>
+      <if test="rdBatchNumber != null">
+        #{rdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemarks != null">
+        #{rdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rdAuditing != null">
+        #{rdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="rdYn != null">
+        #{rdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom1 != null">
+        #{rdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom2 != null">
+        #{rdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom3 != null">
+        #{rdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom4 != null">
+        #{rdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom5 != null">
+        #{rdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom6 != null">
+        #{rdCustom6,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    <set>
+      <if test="requisitionId != null">
+        requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="rdEngname != null">
+        rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemark != null">
+        rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="rdPriceIncludeTax != null">
+        rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="rdSingleNum != null">
+        rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      </if>
+      <if test="rdBatchNumber != null">
+        "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemarks != null">
+        rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rdAuditing != null">
+        rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="rdYn != null">
+        rd_yn = #{rdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom1 != null">
+        rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom2 != null">
+        rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom3 != null">
+        rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom4 != null">
+        rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom5 != null">
+        rd_custom5 = #{rdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom6 != null">
+        rd_custom6 = #{rdCustom6,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    set requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      rd_yn = #{rdYn,jdbcType=VARCHAR},
+      rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      rd_custom5 = #{rdCustom5,jdbcType=VARCHAR},
+      rd_custom6 = #{rdCustom6,jdbcType=VARBINARY}
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Requisition_detailed">
+    update requisition_detailed
+    set requisition_id = #{requisitionId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      rd_engname = #{rdEngname,jdbcType=VARCHAR},
+      rd_remark = #{rdRemark,jdbcType=VARCHAR},
+      rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
+      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
+      rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
+      rd_yn = #{rdYn,jdbcType=VARCHAR},
+      rd_custom1 = #{rdCustom1,jdbcType=VARCHAR},
+      rd_custom2 = #{rdCustom2,jdbcType=VARCHAR},
+      rd_custom3 = #{rdCustom3,jdbcType=VARCHAR},
+      rd_custom4 = #{rdCustom4,jdbcType=VARCHAR},
+      rd_custom5 = #{rdCustom5,jdbcType=VARCHAR}
+    where rd_id = #{rdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

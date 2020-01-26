@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Other_out_storage_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Other_out_storage_detailed">
+    <id column="oosd_id" jdbcType="VARCHAR" property="oosdId" />
+    <result column="oos_id" jdbcType="VARCHAR" property="oosId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="oosd_engname" jdbcType="VARCHAR" property="oosdEngname" />
+    <result column="oosd_remark" jdbcType="VARCHAR" property="oosdRemark" />
+    <result column="oosd_price_include_tax" jdbcType="VARCHAR" property="oosdPriceIncludeTax" />
+    <result column="oosd_single_status" jdbcType="INTEGER" property="oosdSingleStatus" />
+    <result column="oosd_price" jdbcType="REAL" property="oosdPrice" />
+    <result column="oosd_money" jdbcType="REAL" property="oosdMoney" />
+    <result column="oosd_remarks" jdbcType="VARCHAR" property="oosdRemarks" />
+    <result column="oosd_source_order" jdbcType="VARCHAR" property="oosdSourceOrder" />
+    <result column="oosd_source_no" jdbcType="VARCHAR" property="oosdSourceNo" />
+    <result column="oosd_auditing" jdbcType="VARCHAR" property="oosdAuditing" />
+    <result column="oosd_yn" jdbcType="VARCHAR" property="oosdYn" />
+    <result column="oosd_custom1" jdbcType="VARCHAR" property="oosdCustom1" />
+    <result column="oosd_custom2" jdbcType="VARCHAR" property="oosdCustom2" />
+    <result column="oosd_custom3" jdbcType="VARCHAR" property="oosdCustom3" />
+    <result column="oosd_custom4" jdbcType="VARCHAR" property="oosdCustom4" />
+    <result column="oosd_custom5" jdbcType="VARCHAR" property="oosdCustom5" />
+    <result column="oosd_custom6" jdbcType="VARCHAR" property="oosdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    oosd_id, oos_id, matter_id, oosd_engname, oosd_remark, oosd_price_include_tax, oosd_single_status, 
+    oosd_price, oosd_money, oosd_remarks, oosd_source_order, oosd_source_no, oosd_auditing, 
+    oosd_yn, oosd_custom1, oosd_custom2, oosd_custom3, oosd_custom4, oosd_custom5, oosd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from other_out_storage_detailed
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from other_out_storage_detailed
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    insert into other_out_storage_detailed (oosd_id, oos_id, matter_id, 
+      oosd_engname, oosd_remark, oosd_price_include_tax, 
+      oosd_single_status, oosd_price, oosd_money, 
+      oosd_remarks, oosd_source_order, oosd_source_no, 
+      oosd_auditing, oosd_yn, oosd_custom1, 
+      oosd_custom2, oosd_custom3, oosd_custom4, 
+      oosd_custom5, oosd_custom6)
+    values (#{oosdId,jdbcType=VARCHAR}, #{oosId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{oosdEngname,jdbcType=VARCHAR}, #{oosdRemark,jdbcType=VARCHAR}, #{oosdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{oosdSingleStatus,jdbcType=INTEGER}, #{oosdPrice,jdbcType=REAL}, #{oosdMoney,jdbcType=REAL}, 
+      #{oosdRemarks,jdbcType=VARCHAR}, #{oosdSourceOrder,jdbcType=VARCHAR}, #{oosdSourceNo,jdbcType=VARCHAR}, 
+      #{oosdAuditing,jdbcType=VARCHAR}, #{oosdYn,jdbcType=VARCHAR}, #{oosdCustom1,jdbcType=VARCHAR}, 
+      #{oosdCustom2,jdbcType=VARCHAR}, #{oosdCustom3,jdbcType=VARCHAR}, #{oosdCustom4,jdbcType=VARCHAR}, 
+      #{oosdCustom5,jdbcType=VARCHAR}, #{oosdCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    insert into other_out_storage_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oosdId != null">
+        oosd_id,
+      </if>
+      <if test="oosId != null">
+        oos_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="oosdEngname != null">
+        oosd_engname,
+      </if>
+      <if test="oosdRemark != null">
+        oosd_remark,
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        oosd_price_include_tax,
+      </if>
+      <if test="oosdSingleStatus != null">
+        oosd_single_status,
+      </if>
+      <if test="oosdPrice != null">
+        oosd_price,
+      </if>
+      <if test="oosdMoney != null">
+        oosd_money,
+      </if>
+      <if test="oosdRemarks != null">
+        oosd_remarks,
+      </if>
+      <if test="oosdSourceOrder != null">
+        oosd_source_order,
+      </if>
+      <if test="oosdSourceNo != null">
+        oosd_source_no,
+      </if>
+      <if test="oosdAuditing != null">
+        oosd_auditing,
+      </if>
+      <if test="oosdYn != null">
+        oosd_yn,
+      </if>
+      <if test="oosdCustom1 != null">
+        oosd_custom1,
+      </if>
+      <if test="oosdCustom2 != null">
+        oosd_custom2,
+      </if>
+      <if test="oosdCustom3 != null">
+        oosd_custom3,
+      </if>
+      <if test="oosdCustom4 != null">
+        oosd_custom4,
+      </if>
+      <if test="oosdCustom5 != null">
+        oosd_custom5,
+      </if>
+      <if test="oosdCustom6 != null">
+        oosd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oosdId != null">
+        #{oosdId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosId != null">
+        #{oosId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdEngname != null">
+        #{oosdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdRemark != null">
+        #{oosdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSingleStatus != null">
+        #{oosdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oosdPrice != null">
+        #{oosdPrice,jdbcType=REAL},
+      </if>
+      <if test="oosdMoney != null">
+        #{oosdMoney,jdbcType=REAL},
+      </if>
+      <if test="oosdRemarks != null">
+        #{oosdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceOrder != null">
+        #{oosdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceNo != null">
+        #{oosdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdAuditing != null">
+        #{oosdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdYn != null">
+        #{oosdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom1 != null">
+        #{oosdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom2 != null">
+        #{oosdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom3 != null">
+        #{oosdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom4 != null">
+        #{oosdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom5 != null">
+        #{oosdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom6 != null">
+        #{oosdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    update other_out_storage_detailed
+    <set>
+      <if test="oosId != null">
+        oos_id = #{oosId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdEngname != null">
+        oosd_engname = #{oosdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdRemark != null">
+        oosd_remark = #{oosdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        oosd_price_include_tax = #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSingleStatus != null">
+        oosd_single_status = #{oosdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oosdPrice != null">
+        oosd_price = #{oosdPrice,jdbcType=REAL},
+      </if>
+      <if test="oosdMoney != null">
+        oosd_money = #{oosdMoney,jdbcType=REAL},
+      </if>
+      <if test="oosdRemarks != null">
+        oosd_remarks = #{oosdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceOrder != null">
+        oosd_source_order = #{oosdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceNo != null">
+        oosd_source_no = #{oosdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdAuditing != null">
+        oosd_auditing = #{oosdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdYn != null">
+        oosd_yn = #{oosdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom1 != null">
+        oosd_custom1 = #{oosdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom2 != null">
+        oosd_custom2 = #{oosdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom3 != null">
+        oosd_custom3 = #{oosdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom4 != null">
+        oosd_custom4 = #{oosdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom5 != null">
+        oosd_custom5 = #{oosdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom6 != null">
+        oosd_custom6 = #{oosdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    update other_out_storage_detailed
+    set oos_id = #{oosId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      oosd_engname = #{oosdEngname,jdbcType=VARCHAR},
+      oosd_remark = #{oosdRemark,jdbcType=VARCHAR},
+      oosd_price_include_tax = #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      oosd_single_status = #{oosdSingleStatus,jdbcType=INTEGER},
+      oosd_price = #{oosdPrice,jdbcType=REAL},
+      oosd_money = #{oosdMoney,jdbcType=REAL},
+      oosd_remarks = #{oosdRemarks,jdbcType=VARCHAR},
+      oosd_source_order = #{oosdSourceOrder,jdbcType=VARCHAR},
+      oosd_source_no = #{oosdSourceNo,jdbcType=VARCHAR},
+      oosd_auditing = #{oosdAuditing,jdbcType=VARCHAR},
+      oosd_yn = #{oosdYn,jdbcType=VARCHAR},
+      oosd_custom1 = #{oosdCustom1,jdbcType=VARCHAR},
+      oosd_custom2 = #{oosdCustom2,jdbcType=VARCHAR},
+      oosd_custom3 = #{oosdCustom3,jdbcType=VARCHAR},
+      oosd_custom4 = #{oosdCustom4,jdbcType=VARCHAR},
+      oosd_custom5 = #{oosdCustom5,jdbcType=VARCHAR},
+      oosd_custom6 = #{oosdCustom6,jdbcType=VARCHAR}
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Other_out_storage_detailed">
+    <id column="oosd_id" jdbcType="VARCHAR" property="oosdId" />
+    <result column="oos_id" jdbcType="VARCHAR" property="oosId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="oosd_engname" jdbcType="VARCHAR" property="oosdEngname" />
+    <result column="oosd_remark" jdbcType="VARCHAR" property="oosdRemark" />
+    <result column="oosd_price_include_tax" jdbcType="VARCHAR" property="oosdPriceIncludeTax" />
+    <result column="oosd_single_status" jdbcType="INTEGER" property="oosdSingleStatus" />
+    <result column="oosd_price" jdbcType="REAL" property="oosdPrice" />
+    <result column="oosd_money" jdbcType="REAL" property="oosdMoney" />
+    <result column="oosd_remarks" jdbcType="VARCHAR" property="oosdRemarks" />
+    <result column="oosd_source_order" jdbcType="VARCHAR" property="oosdSourceOrder" />
+    <result column="oosd_source_no" jdbcType="VARCHAR" property="oosdSourceNo" />
+    <result column="oosd_auditing" jdbcType="VARCHAR" property="oosdAuditing" />
+    <result column="oosd_yn" jdbcType="VARCHAR" property="oosdYn" />
+    <result column="oosd_custom1" jdbcType="VARCHAR" property="oosdCustom1" />
+    <result column="oosd_custom2" jdbcType="VARCHAR" property="oosdCustom2" />
+    <result column="oosd_custom3" jdbcType="VARCHAR" property="oosdCustom3" />
+    <result column="oosd_custom4" jdbcType="VARCHAR" property="oosdCustom4" />
+    <result column="oosd_custom5" jdbcType="VARCHAR" property="oosdCustom5" />
+    <result column="oosd_custom6" jdbcType="VARCHAR" property="oosdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    oosd_id, oos_id, matter_id, oosd_engname, oosd_remark, oosd_price_include_tax, oosd_single_status, 
+    oosd_price, oosd_money, oosd_remarks, oosd_source_order, oosd_source_no, oosd_auditing, 
+    oosd_yn, oosd_custom1, oosd_custom2, oosd_custom3, oosd_custom4, oosd_custom5, oosd_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from other_out_storage_detailed
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from other_out_storage_detailed
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    insert into other_out_storage_detailed (oosd_id, oos_id, matter_id, 
+      oosd_engname, oosd_remark, oosd_price_include_tax, 
+      oosd_single_status, oosd_price, oosd_money, 
+      oosd_remarks, oosd_source_order, oosd_source_no, 
+      oosd_auditing, oosd_yn, oosd_custom1, 
+      oosd_custom2, oosd_custom3, oosd_custom4, 
+      oosd_custom5, oosd_custom6)
+    values (#{oosdId,jdbcType=VARCHAR}, #{oosId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{oosdEngname,jdbcType=VARCHAR}, #{oosdRemark,jdbcType=VARCHAR}, #{oosdPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{oosdSingleStatus,jdbcType=INTEGER}, #{oosdPrice,jdbcType=REAL}, #{oosdMoney,jdbcType=REAL}, 
+      #{oosdRemarks,jdbcType=VARCHAR}, #{oosdSourceOrder,jdbcType=VARCHAR}, #{oosdSourceNo,jdbcType=VARCHAR}, 
+      #{oosdAuditing,jdbcType=VARCHAR}, #{oosdYn,jdbcType=VARCHAR}, #{oosdCustom1,jdbcType=VARCHAR}, 
+      #{oosdCustom2,jdbcType=VARCHAR}, #{oosdCustom3,jdbcType=VARCHAR}, #{oosdCustom4,jdbcType=VARCHAR}, 
+      #{oosdCustom5,jdbcType=VARCHAR}, #{oosdCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    insert into other_out_storage_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oosdId != null">
+        oosd_id,
+      </if>
+      <if test="oosId != null">
+        oos_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="oosdEngname != null">
+        oosd_engname,
+      </if>
+      <if test="oosdRemark != null">
+        oosd_remark,
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        oosd_price_include_tax,
+      </if>
+      <if test="oosdSingleStatus != null">
+        oosd_single_status,
+      </if>
+      <if test="oosdPrice != null">
+        oosd_price,
+      </if>
+      <if test="oosdMoney != null">
+        oosd_money,
+      </if>
+      <if test="oosdRemarks != null">
+        oosd_remarks,
+      </if>
+      <if test="oosdSourceOrder != null">
+        oosd_source_order,
+      </if>
+      <if test="oosdSourceNo != null">
+        oosd_source_no,
+      </if>
+      <if test="oosdAuditing != null">
+        oosd_auditing,
+      </if>
+      <if test="oosdYn != null">
+        oosd_yn,
+      </if>
+      <if test="oosdCustom1 != null">
+        oosd_custom1,
+      </if>
+      <if test="oosdCustom2 != null">
+        oosd_custom2,
+      </if>
+      <if test="oosdCustom3 != null">
+        oosd_custom3,
+      </if>
+      <if test="oosdCustom4 != null">
+        oosd_custom4,
+      </if>
+      <if test="oosdCustom5 != null">
+        oosd_custom5,
+      </if>
+      <if test="oosdCustom6 != null">
+        oosd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oosdId != null">
+        #{oosdId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosId != null">
+        #{oosId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdEngname != null">
+        #{oosdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdRemark != null">
+        #{oosdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSingleStatus != null">
+        #{oosdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oosdPrice != null">
+        #{oosdPrice,jdbcType=REAL},
+      </if>
+      <if test="oosdMoney != null">
+        #{oosdMoney,jdbcType=REAL},
+      </if>
+      <if test="oosdRemarks != null">
+        #{oosdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceOrder != null">
+        #{oosdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceNo != null">
+        #{oosdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdAuditing != null">
+        #{oosdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdYn != null">
+        #{oosdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom1 != null">
+        #{oosdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom2 != null">
+        #{oosdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom3 != null">
+        #{oosdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom4 != null">
+        #{oosdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom5 != null">
+        #{oosdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom6 != null">
+        #{oosdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    update other_out_storage_detailed
+    <set>
+      <if test="oosId != null">
+        oos_id = #{oosId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdEngname != null">
+        oosd_engname = #{oosdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdRemark != null">
+        oosd_remark = #{oosdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdPriceIncludeTax != null">
+        oosd_price_include_tax = #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSingleStatus != null">
+        oosd_single_status = #{oosdSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oosdPrice != null">
+        oosd_price = #{oosdPrice,jdbcType=REAL},
+      </if>
+      <if test="oosdMoney != null">
+        oosd_money = #{oosdMoney,jdbcType=REAL},
+      </if>
+      <if test="oosdRemarks != null">
+        oosd_remarks = #{oosdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceOrder != null">
+        oosd_source_order = #{oosdSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdSourceNo != null">
+        oosd_source_no = #{oosdSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdAuditing != null">
+        oosd_auditing = #{oosdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdYn != null">
+        oosd_yn = #{oosdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom1 != null">
+        oosd_custom1 = #{oosdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom2 != null">
+        oosd_custom2 = #{oosdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom3 != null">
+        oosd_custom3 = #{oosdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom4 != null">
+        oosd_custom4 = #{oosdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom5 != null">
+        oosd_custom5 = #{oosdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oosdCustom6 != null">
+        oosd_custom6 = #{oosdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Other_out_storage_detailed">
+    update other_out_storage_detailed
+    set oos_id = #{oosId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      oosd_engname = #{oosdEngname,jdbcType=VARCHAR},
+      oosd_remark = #{oosdRemark,jdbcType=VARCHAR},
+      oosd_price_include_tax = #{oosdPriceIncludeTax,jdbcType=VARCHAR},
+      oosd_single_status = #{oosdSingleStatus,jdbcType=INTEGER},
+      oosd_price = #{oosdPrice,jdbcType=REAL},
+      oosd_money = #{oosdMoney,jdbcType=REAL},
+      oosd_remarks = #{oosdRemarks,jdbcType=VARCHAR},
+      oosd_source_order = #{oosdSourceOrder,jdbcType=VARCHAR},
+      oosd_source_no = #{oosdSourceNo,jdbcType=VARCHAR},
+      oosd_auditing = #{oosdAuditing,jdbcType=VARCHAR},
+      oosd_yn = #{oosdYn,jdbcType=VARCHAR},
+      oosd_custom1 = #{oosdCustom1,jdbcType=VARCHAR},
+      oosd_custom2 = #{oosdCustom2,jdbcType=VARCHAR},
+      oosd_custom3 = #{oosdCustom3,jdbcType=VARCHAR},
+      oosd_custom4 = #{oosdCustom4,jdbcType=VARCHAR},
+      oosd_custom5 = #{oosdCustom5,jdbcType=VARCHAR},
+      oosd_custom6 = #{oosdCustom6,jdbcType=VARCHAR}
+    where oosd_id = #{oosdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

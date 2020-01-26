@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Sales_out_warehouse_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_out_warehouse_type">
+    <id column="sowt_id" jdbcType="VARCHAR" property="sowtId" />
+    <result column="sowt_name" jdbcType="VARCHAR" property="sowtName" />
+    <result column="sowt_engname" jdbcType="VARCHAR" property="sowtEngname" />
+    <result column="sowt_remark" jdbcType="VARCHAR" property="sowtRemark" />
+    <result column="sowt_auditing" jdbcType="VARCHAR" property="sowtAuditing" />
+    <result column="sowt_yn" jdbcType="VARCHAR" property="sowtYn" />
+    <result column="sowt_custom1" jdbcType="VARCHAR" property="sowtCustom1" />
+    <result column="sowt_custom2" jdbcType="VARCHAR" property="sowtCustom2" />
+    <result column="sowt_custom3" jdbcType="VARCHAR" property="sowtCustom3" />
+    <result column="sowt_custom4" jdbcType="VARCHAR" property="sowtCustom4" />
+    <result column="sowt_custom5" jdbcType="VARCHAR" property="sowtCustom5" />
+    <result column="sowt_custom6" jdbcType="VARCHAR" property="sowtCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sowt_id, sowt_name, sowt_engname, sowt_remark, sowt_auditing, sowt_yn, sowt_custom1, 
+    sowt_custom2, sowt_custom3, sowt_custom4, sowt_custom5, sowt_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_out_warehouse_type
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_out_warehouse_type
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    insert into sales_out_warehouse_type (sowt_id, sowt_name, sowt_engname, 
+      sowt_remark, sowt_auditing, sowt_yn, 
+      sowt_custom1, sowt_custom2, sowt_custom3, 
+      sowt_custom4, sowt_custom5, sowt_custom6
+      )
+    values (#{sowtId,jdbcType=VARCHAR}, #{sowtName,jdbcType=VARCHAR}, #{sowtEngname,jdbcType=VARCHAR}, 
+      #{sowtRemark,jdbcType=VARCHAR}, #{sowtAuditing,jdbcType=VARCHAR}, #{sowtYn,jdbcType=VARCHAR}, 
+      #{sowtCustom1,jdbcType=VARCHAR}, #{sowtCustom2,jdbcType=VARCHAR}, #{sowtCustom3,jdbcType=VARCHAR}, 
+      #{sowtCustom4,jdbcType=VARCHAR}, #{sowtCustom5,jdbcType=VARCHAR}, #{sowtCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    insert into sales_out_warehouse_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sowtId != null">
+        sowt_id,
+      </if>
+      <if test="sowtName != null">
+        sowt_name,
+      </if>
+      <if test="sowtEngname != null">
+        sowt_engname,
+      </if>
+      <if test="sowtRemark != null">
+        sowt_remark,
+      </if>
+      <if test="sowtAuditing != null">
+        sowt_auditing,
+      </if>
+      <if test="sowtYn != null">
+        sowt_yn,
+      </if>
+      <if test="sowtCustom1 != null">
+        sowt_custom1,
+      </if>
+      <if test="sowtCustom2 != null">
+        sowt_custom2,
+      </if>
+      <if test="sowtCustom3 != null">
+        sowt_custom3,
+      </if>
+      <if test="sowtCustom4 != null">
+        sowt_custom4,
+      </if>
+      <if test="sowtCustom5 != null">
+        sowt_custom5,
+      </if>
+      <if test="sowtCustom6 != null">
+        sowt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sowtId != null">
+        #{sowtId,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtName != null">
+        #{sowtName,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtEngname != null">
+        #{sowtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtRemark != null">
+        #{sowtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtAuditing != null">
+        #{sowtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtYn != null">
+        #{sowtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom1 != null">
+        #{sowtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom2 != null">
+        #{sowtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom3 != null">
+        #{sowtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom4 != null">
+        #{sowtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom5 != null">
+        #{sowtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom6 != null">
+        #{sowtCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    update sales_out_warehouse_type
+    <set>
+      <if test="sowtName != null">
+        sowt_name = #{sowtName,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtEngname != null">
+        sowt_engname = #{sowtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtRemark != null">
+        sowt_remark = #{sowtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtAuditing != null">
+        sowt_auditing = #{sowtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtYn != null">
+        sowt_yn = #{sowtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom1 != null">
+        sowt_custom1 = #{sowtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom2 != null">
+        sowt_custom2 = #{sowtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom3 != null">
+        sowt_custom3 = #{sowtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom4 != null">
+        sowt_custom4 = #{sowtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom5 != null">
+        sowt_custom5 = #{sowtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom6 != null">
+        sowt_custom6 = #{sowtCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    update sales_out_warehouse_type
+    set sowt_name = #{sowtName,jdbcType=VARCHAR},
+      sowt_engname = #{sowtEngname,jdbcType=VARCHAR},
+      sowt_remark = #{sowtRemark,jdbcType=VARCHAR},
+      sowt_auditing = #{sowtAuditing,jdbcType=VARCHAR},
+      sowt_yn = #{sowtYn,jdbcType=VARCHAR},
+      sowt_custom1 = #{sowtCustom1,jdbcType=VARCHAR},
+      sowt_custom2 = #{sowtCustom2,jdbcType=VARCHAR},
+      sowt_custom3 = #{sowtCustom3,jdbcType=VARCHAR},
+      sowt_custom4 = #{sowtCustom4,jdbcType=VARCHAR},
+      sowt_custom5 = #{sowtCustom5,jdbcType=VARCHAR},
+      sowt_custom6 = #{sowtCustom6,jdbcType=VARCHAR}
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_out_warehouse_type">
+    <id column="sowt_id" jdbcType="VARCHAR" property="sowtId" />
+    <result column="sowt_name" jdbcType="VARCHAR" property="sowtName" />
+    <result column="sowt_engname" jdbcType="VARCHAR" property="sowtEngname" />
+    <result column="sowt_remark" jdbcType="VARCHAR" property="sowtRemark" />
+    <result column="sowt_auditing" jdbcType="VARCHAR" property="sowtAuditing" />
+    <result column="sowt_yn" jdbcType="VARCHAR" property="sowtYn" />
+    <result column="sowt_custom1" jdbcType="VARCHAR" property="sowtCustom1" />
+    <result column="sowt_custom2" jdbcType="VARCHAR" property="sowtCustom2" />
+    <result column="sowt_custom3" jdbcType="VARCHAR" property="sowtCustom3" />
+    <result column="sowt_custom4" jdbcType="VARCHAR" property="sowtCustom4" />
+    <result column="sowt_custom5" jdbcType="VARCHAR" property="sowtCustom5" />
+    <result column="sowt_custom6" jdbcType="VARCHAR" property="sowtCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sowt_id, sowt_name, sowt_engname, sowt_remark, sowt_auditing, sowt_yn, sowt_custom1, 
+    sowt_custom2, sowt_custom3, sowt_custom4, sowt_custom5, sowt_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_out_warehouse_type
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_out_warehouse_type
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    insert into sales_out_warehouse_type (sowt_id, sowt_name, sowt_engname, 
+      sowt_remark, sowt_auditing, sowt_yn, 
+      sowt_custom1, sowt_custom2, sowt_custom3, 
+      sowt_custom4, sowt_custom5, sowt_custom6
+      )
+    values (#{sowtId,jdbcType=VARCHAR}, #{sowtName,jdbcType=VARCHAR}, #{sowtEngname,jdbcType=VARCHAR}, 
+      #{sowtRemark,jdbcType=VARCHAR}, #{sowtAuditing,jdbcType=VARCHAR}, #{sowtYn,jdbcType=VARCHAR}, 
+      #{sowtCustom1,jdbcType=VARCHAR}, #{sowtCustom2,jdbcType=VARCHAR}, #{sowtCustom3,jdbcType=VARCHAR}, 
+      #{sowtCustom4,jdbcType=VARCHAR}, #{sowtCustom5,jdbcType=VARCHAR}, #{sowtCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    insert into sales_out_warehouse_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sowtId != null">
+        sowt_id,
+      </if>
+      <if test="sowtName != null">
+        sowt_name,
+      </if>
+      <if test="sowtEngname != null">
+        sowt_engname,
+      </if>
+      <if test="sowtRemark != null">
+        sowt_remark,
+      </if>
+      <if test="sowtAuditing != null">
+        sowt_auditing,
+      </if>
+      <if test="sowtYn != null">
+        sowt_yn,
+      </if>
+      <if test="sowtCustom1 != null">
+        sowt_custom1,
+      </if>
+      <if test="sowtCustom2 != null">
+        sowt_custom2,
+      </if>
+      <if test="sowtCustom3 != null">
+        sowt_custom3,
+      </if>
+      <if test="sowtCustom4 != null">
+        sowt_custom4,
+      </if>
+      <if test="sowtCustom5 != null">
+        sowt_custom5,
+      </if>
+      <if test="sowtCustom6 != null">
+        sowt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sowtId != null">
+        #{sowtId,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtName != null">
+        #{sowtName,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtEngname != null">
+        #{sowtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtRemark != null">
+        #{sowtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtAuditing != null">
+        #{sowtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtYn != null">
+        #{sowtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom1 != null">
+        #{sowtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom2 != null">
+        #{sowtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom3 != null">
+        #{sowtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom4 != null">
+        #{sowtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom5 != null">
+        #{sowtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom6 != null">
+        #{sowtCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    update sales_out_warehouse_type
+    <set>
+      <if test="sowtName != null">
+        sowt_name = #{sowtName,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtEngname != null">
+        sowt_engname = #{sowtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtRemark != null">
+        sowt_remark = #{sowtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtAuditing != null">
+        sowt_auditing = #{sowtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtYn != null">
+        sowt_yn = #{sowtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom1 != null">
+        sowt_custom1 = #{sowtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom2 != null">
+        sowt_custom2 = #{sowtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom3 != null">
+        sowt_custom3 = #{sowtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom4 != null">
+        sowt_custom4 = #{sowtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom5 != null">
+        sowt_custom5 = #{sowtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sowtCustom6 != null">
+        sowt_custom6 = #{sowtCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_out_warehouse_type">
+    update sales_out_warehouse_type
+    set sowt_name = #{sowtName,jdbcType=VARCHAR},
+      sowt_engname = #{sowtEngname,jdbcType=VARCHAR},
+      sowt_remark = #{sowtRemark,jdbcType=VARCHAR},
+      sowt_auditing = #{sowtAuditing,jdbcType=VARCHAR},
+      sowt_yn = #{sowtYn,jdbcType=VARCHAR},
+      sowt_custom1 = #{sowtCustom1,jdbcType=VARCHAR},
+      sowt_custom2 = #{sowtCustom2,jdbcType=VARCHAR},
+      sowt_custom3 = #{sowtCustom3,jdbcType=VARCHAR},
+      sowt_custom4 = #{sowtCustom4,jdbcType=VARCHAR},
+      sowt_custom5 = #{sowtCustom5,jdbcType=VARCHAR},
+      sowt_custom6 = #{sowtCustom6,jdbcType=VARCHAR}
+    where sowt_id = #{sowtId,jdbcType=VARCHAR}
+  </update>
+</mapper>

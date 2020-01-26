@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.SalesorderlistMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Salesorderlist">
+    <id column="sol_id" jdbcType="VARCHAR" property="solId" />
+    <result column="so_id" jdbcType="VARCHAR" property="soId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="sol_mat_name" jdbcType="VARCHAR" property="solMatName" />
+    <result column="sol_mat_type" jdbcType="VARCHAR" property="solMatType" />
+    <result column="sol_nominal" jdbcType="VARCHAR" property="solNominal" />
+    <result column="sol_quantity" jdbcType="INTEGER" property="solQuantity" />
+    <result column="sol_pre_price" jdbcType="REAL" property="solPrePrice" />
+    <result column="sol_fold" jdbcType="INTEGER" property="solFold" />
+    <result column="sol_price" jdbcType="REAL" property="solPrice" />
+    <result column="sol_amount" jdbcType="REAL" property="solAmount" />
+    <result column="sol_tax_rate" jdbcType="REAL" property="solTaxRate" />
+    <result column="sol_tax" jdbcType="REAL" property="solTax" />
+    <result column="sol_tax_amount" jdbcType="REAL" property="solTaxAmount" />
+    <result column="sol_giveaway" jdbcType="INTEGER" property="solGiveaway" />
+    <result column="sol_journalizing" jdbcType="VARCHAR" property="solJournalizing" />
+    <result column="sol_material_composition" jdbcType="INTEGER" property="solMaterialComposition" />
+    <result column="sol_single_source" jdbcType="VARCHAR" property="solSingleSource" />
+    <result column="sol_single_oder" jdbcType="VARCHAR" property="solSingleOder" />
+    <result column="sol_production" jdbcType="INTEGER" property="solProduction" />
+    <result column="sol_scheduling_single_number" jdbcType="VARCHAR" property="solSchedulingSingleNumber" />
+    <result column="sol_produced_quantity" jdbcType="INTEGER" property="solProducedQuantity" />
+    <result column="sol_auditing" jdbcType="VARCHAR" property="solAuditing" />
+    <result column="sol_yn" jdbcType="VARCHAR" property="solYn" />
+    <result column="sol_custom1" jdbcType="VARCHAR" property="solCustom1" />
+    <result column="sol_custom2" jdbcType="VARCHAR" property="solCustom2" />
+    <result column="sol_custom3" jdbcType="VARCHAR" property="solCustom3" />
+    <result column="sol_custom4" jdbcType="VARCHAR" property="solCustom4" />
+    <result column="sol_custom5" jdbcType="VARCHAR" property="solCustom5" />
+    <result column="sol_custom6" jdbcType="VARCHAR" property="solCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sol_id, so_id, matter_id, sol_mat_name, sol_mat_type, sol_nominal, sol_quantity, 
+    sol_pre_price, sol_fold, sol_price, sol_amount, sol_tax_rate, sol_tax, sol_tax_amount, 
+    sol_giveaway, sol_journalizing, sol_material_composition, sol_single_source, sol_single_oder, 
+    sol_production, sol_scheduling_single_number, sol_produced_quantity, sol_auditing, 
+    sol_yn, sol_custom1, sol_custom2, sol_custom3, sol_custom4, sol_custom5, sol_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salesorderlist
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from salesorderlist
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Salesorderlist">
+    insert into salesorderlist (sol_id, so_id, matter_id, 
+      sol_mat_name, sol_mat_type, sol_nominal, 
+      sol_quantity, sol_pre_price, sol_fold, 
+      sol_price, sol_amount, sol_tax_rate, 
+      sol_tax, sol_tax_amount, sol_giveaway, 
+      sol_journalizing, sol_material_composition, 
+      sol_single_source, sol_single_oder, sol_production, 
+      sol_scheduling_single_number, sol_produced_quantity, 
+      sol_auditing, sol_yn, sol_custom1, 
+      sol_custom2, sol_custom3, sol_custom4, 
+      sol_custom5, sol_custom6)
+    values (#{solId,jdbcType=VARCHAR}, #{soId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{solMatName,jdbcType=VARCHAR}, #{solMatType,jdbcType=VARCHAR}, #{solNominal,jdbcType=VARCHAR}, 
+      #{solQuantity,jdbcType=INTEGER}, #{solPrePrice,jdbcType=REAL}, #{solFold,jdbcType=INTEGER}, 
+      #{solPrice,jdbcType=REAL}, #{solAmount,jdbcType=REAL}, #{solTaxRate,jdbcType=REAL}, 
+      #{solTax,jdbcType=REAL}, #{solTaxAmount,jdbcType=REAL}, #{solGiveaway,jdbcType=INTEGER}, 
+      #{solJournalizing,jdbcType=VARCHAR}, #{solMaterialComposition,jdbcType=INTEGER}, 
+      #{solSingleSource,jdbcType=VARCHAR}, #{solSingleOder,jdbcType=VARCHAR}, #{solProduction,jdbcType=INTEGER}, 
+      #{solSchedulingSingleNumber,jdbcType=VARCHAR}, #{solProducedQuantity,jdbcType=INTEGER}, 
+      #{solAuditing,jdbcType=VARCHAR}, #{solYn,jdbcType=VARCHAR}, #{solCustom1,jdbcType=VARCHAR}, 
+      #{solCustom2,jdbcType=VARCHAR}, #{solCustom3,jdbcType=VARCHAR}, #{solCustom4,jdbcType=VARCHAR}, 
+      #{solCustom5,jdbcType=VARCHAR}, #{solCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Salesorderlist">
+    insert into salesorderlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        sol_id,
+      </if>
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="solMatName != null">
+        sol_mat_name,
+      </if>
+      <if test="solMatType != null">
+        sol_mat_type,
+      </if>
+      <if test="solNominal != null">
+        sol_nominal,
+      </if>
+      <if test="solQuantity != null">
+        sol_quantity,
+      </if>
+      <if test="solPrePrice != null">
+        sol_pre_price,
+      </if>
+      <if test="solFold != null">
+        sol_fold,
+      </if>
+      <if test="solPrice != null">
+        sol_price,
+      </if>
+      <if test="solAmount != null">
+        sol_amount,
+      </if>
+      <if test="solTaxRate != null">
+        sol_tax_rate,
+      </if>
+      <if test="solTax != null">
+        sol_tax,
+      </if>
+      <if test="solTaxAmount != null">
+        sol_tax_amount,
+      </if>
+      <if test="solGiveaway != null">
+        sol_giveaway,
+      </if>
+      <if test="solJournalizing != null">
+        sol_journalizing,
+      </if>
+      <if test="solMaterialComposition != null">
+        sol_material_composition,
+      </if>
+      <if test="solSingleSource != null">
+        sol_single_source,
+      </if>
+      <if test="solSingleOder != null">
+        sol_single_oder,
+      </if>
+      <if test="solProduction != null">
+        sol_production,
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        sol_scheduling_single_number,
+      </if>
+      <if test="solProducedQuantity != null">
+        sol_produced_quantity,
+      </if>
+      <if test="solAuditing != null">
+        sol_auditing,
+      </if>
+      <if test="solYn != null">
+        sol_yn,
+      </if>
+      <if test="solCustom1 != null">
+        sol_custom1,
+      </if>
+      <if test="solCustom2 != null">
+        sol_custom2,
+      </if>
+      <if test="solCustom3 != null">
+        sol_custom3,
+      </if>
+      <if test="solCustom4 != null">
+        sol_custom4,
+      </if>
+      <if test="solCustom5 != null">
+        sol_custom5,
+      </if>
+      <if test="solCustom6 != null">
+        sol_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        #{solId,jdbcType=VARCHAR},
+      </if>
+      <if test="soId != null">
+        #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatName != null">
+        #{solMatName,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatType != null">
+        #{solMatType,jdbcType=VARCHAR},
+      </if>
+      <if test="solNominal != null">
+        #{solNominal,jdbcType=VARCHAR},
+      </if>
+      <if test="solQuantity != null">
+        #{solQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solPrePrice != null">
+        #{solPrePrice,jdbcType=REAL},
+      </if>
+      <if test="solFold != null">
+        #{solFold,jdbcType=INTEGER},
+      </if>
+      <if test="solPrice != null">
+        #{solPrice,jdbcType=REAL},
+      </if>
+      <if test="solAmount != null">
+        #{solAmount,jdbcType=REAL},
+      </if>
+      <if test="solTaxRate != null">
+        #{solTaxRate,jdbcType=REAL},
+      </if>
+      <if test="solTax != null">
+        #{solTax,jdbcType=REAL},
+      </if>
+      <if test="solTaxAmount != null">
+        #{solTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="solGiveaway != null">
+        #{solGiveaway,jdbcType=INTEGER},
+      </if>
+      <if test="solJournalizing != null">
+        #{solJournalizing,jdbcType=VARCHAR},
+      </if>
+      <if test="solMaterialComposition != null">
+        #{solMaterialComposition,jdbcType=INTEGER},
+      </if>
+      <if test="solSingleSource != null">
+        #{solSingleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="solSingleOder != null">
+        #{solSingleOder,jdbcType=VARCHAR},
+      </if>
+      <if test="solProduction != null">
+        #{solProduction,jdbcType=INTEGER},
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="solProducedQuantity != null">
+        #{solProducedQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solAuditing != null">
+        #{solAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="solYn != null">
+        #{solYn,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom1 != null">
+        #{solCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom2 != null">
+        #{solCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom3 != null">
+        #{solCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom4 != null">
+        #{solCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom5 != null">
+        #{solCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom6 != null">
+        #{solCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Salesorderlist">
+    update salesorderlist
+    <set>
+      <if test="soId != null">
+        so_id = #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatName != null">
+        sol_mat_name = #{solMatName,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatType != null">
+        sol_mat_type = #{solMatType,jdbcType=VARCHAR},
+      </if>
+      <if test="solNominal != null">
+        sol_nominal = #{solNominal,jdbcType=VARCHAR},
+      </if>
+      <if test="solQuantity != null">
+        sol_quantity = #{solQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solPrePrice != null">
+        sol_pre_price = #{solPrePrice,jdbcType=REAL},
+      </if>
+      <if test="solFold != null">
+        sol_fold = #{solFold,jdbcType=INTEGER},
+      </if>
+      <if test="solPrice != null">
+        sol_price = #{solPrice,jdbcType=REAL},
+      </if>
+      <if test="solAmount != null">
+        sol_amount = #{solAmount,jdbcType=REAL},
+      </if>
+      <if test="solTaxRate != null">
+        sol_tax_rate = #{solTaxRate,jdbcType=REAL},
+      </if>
+      <if test="solTax != null">
+        sol_tax = #{solTax,jdbcType=REAL},
+      </if>
+      <if test="solTaxAmount != null">
+        sol_tax_amount = #{solTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="solGiveaway != null">
+        sol_giveaway = #{solGiveaway,jdbcType=INTEGER},
+      </if>
+      <if test="solJournalizing != null">
+        sol_journalizing = #{solJournalizing,jdbcType=VARCHAR},
+      </if>
+      <if test="solMaterialComposition != null">
+        sol_material_composition = #{solMaterialComposition,jdbcType=INTEGER},
+      </if>
+      <if test="solSingleSource != null">
+        sol_single_source = #{solSingleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="solSingleOder != null">
+        sol_single_oder = #{solSingleOder,jdbcType=VARCHAR},
+      </if>
+      <if test="solProduction != null">
+        sol_production = #{solProduction,jdbcType=INTEGER},
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        sol_scheduling_single_number = #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="solProducedQuantity != null">
+        sol_produced_quantity = #{solProducedQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solAuditing != null">
+        sol_auditing = #{solAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="solYn != null">
+        sol_yn = #{solYn,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom1 != null">
+        sol_custom1 = #{solCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom2 != null">
+        sol_custom2 = #{solCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom3 != null">
+        sol_custom3 = #{solCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom4 != null">
+        sol_custom4 = #{solCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom5 != null">
+        sol_custom5 = #{solCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom6 != null">
+        sol_custom6 = #{solCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Salesorderlist">
+    update salesorderlist
+    set so_id = #{soId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      sol_mat_name = #{solMatName,jdbcType=VARCHAR},
+      sol_mat_type = #{solMatType,jdbcType=VARCHAR},
+      sol_nominal = #{solNominal,jdbcType=VARCHAR},
+      sol_quantity = #{solQuantity,jdbcType=INTEGER},
+      sol_pre_price = #{solPrePrice,jdbcType=REAL},
+      sol_fold = #{solFold,jdbcType=INTEGER},
+      sol_price = #{solPrice,jdbcType=REAL},
+      sol_amount = #{solAmount,jdbcType=REAL},
+      sol_tax_rate = #{solTaxRate,jdbcType=REAL},
+      sol_tax = #{solTax,jdbcType=REAL},
+      sol_tax_amount = #{solTaxAmount,jdbcType=REAL},
+      sol_giveaway = #{solGiveaway,jdbcType=INTEGER},
+      sol_journalizing = #{solJournalizing,jdbcType=VARCHAR},
+      sol_material_composition = #{solMaterialComposition,jdbcType=INTEGER},
+      sol_single_source = #{solSingleSource,jdbcType=VARCHAR},
+      sol_single_oder = #{solSingleOder,jdbcType=VARCHAR},
+      sol_production = #{solProduction,jdbcType=INTEGER},
+      sol_scheduling_single_number = #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      sol_produced_quantity = #{solProducedQuantity,jdbcType=INTEGER},
+      sol_auditing = #{solAuditing,jdbcType=VARCHAR},
+      sol_yn = #{solYn,jdbcType=VARCHAR},
+      sol_custom1 = #{solCustom1,jdbcType=VARCHAR},
+      sol_custom2 = #{solCustom2,jdbcType=VARCHAR},
+      sol_custom3 = #{solCustom3,jdbcType=VARCHAR},
+      sol_custom4 = #{solCustom4,jdbcType=VARCHAR},
+      sol_custom5 = #{solCustom5,jdbcType=VARCHAR},
+      sol_custom6 = #{solCustom6,jdbcType=VARCHAR}
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Salesorderlist">
+    <id column="sol_id" jdbcType="VARCHAR" property="solId" />
+    <result column="so_id" jdbcType="VARCHAR" property="soId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="sol_mat_name" jdbcType="VARCHAR" property="solMatName" />
+    <result column="sol_mat_type" jdbcType="VARCHAR" property="solMatType" />
+    <result column="sol_nominal" jdbcType="VARCHAR" property="solNominal" />
+    <result column="sol_quantity" jdbcType="INTEGER" property="solQuantity" />
+    <result column="sol_pre_price" jdbcType="REAL" property="solPrePrice" />
+    <result column="sol_fold" jdbcType="INTEGER" property="solFold" />
+    <result column="sol_price" jdbcType="REAL" property="solPrice" />
+    <result column="sol_amount" jdbcType="REAL" property="solAmount" />
+    <result column="sol_tax_rate" jdbcType="REAL" property="solTaxRate" />
+    <result column="sol_tax" jdbcType="REAL" property="solTax" />
+    <result column="sol_tax_amount" jdbcType="REAL" property="solTaxAmount" />
+    <result column="sol_giveaway" jdbcType="INTEGER" property="solGiveaway" />
+    <result column="sol_journalizing" jdbcType="VARCHAR" property="solJournalizing" />
+    <result column="sol_material_composition" jdbcType="INTEGER" property="solMaterialComposition" />
+    <result column="sol_single_source" jdbcType="VARCHAR" property="solSingleSource" />
+    <result column="sol_single_oder" jdbcType="VARCHAR" property="solSingleOder" />
+    <result column="sol_production" jdbcType="INTEGER" property="solProduction" />
+    <result column="sol_scheduling_single_number" jdbcType="VARCHAR" property="solSchedulingSingleNumber" />
+    <result column="sol_produced_quantity" jdbcType="INTEGER" property="solProducedQuantity" />
+    <result column="sol_auditing" jdbcType="VARCHAR" property="solAuditing" />
+    <result column="sol_yn" jdbcType="VARCHAR" property="solYn" />
+    <result column="sol_custom1" jdbcType="VARCHAR" property="solCustom1" />
+    <result column="sol_custom2" jdbcType="VARCHAR" property="solCustom2" />
+    <result column="sol_custom3" jdbcType="VARCHAR" property="solCustom3" />
+    <result column="sol_custom4" jdbcType="VARCHAR" property="solCustom4" />
+    <result column="sol_custom5" jdbcType="VARCHAR" property="solCustom5" />
+    <result column="sol_custom6" jdbcType="VARCHAR" property="solCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sol_id, so_id, matter_id, sol_mat_name, sol_mat_type, sol_nominal, sol_quantity, 
+    sol_pre_price, sol_fold, sol_price, sol_amount, sol_tax_rate, sol_tax, sol_tax_amount, 
+    sol_giveaway, sol_journalizing, sol_material_composition, sol_single_source, sol_single_oder, 
+    sol_production, sol_scheduling_single_number, sol_produced_quantity, sol_auditing, 
+    sol_yn, sol_custom1, sol_custom2, sol_custom3, sol_custom4, sol_custom5, sol_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salesorderlist
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from salesorderlist
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Salesorderlist">
+    insert into salesorderlist (sol_id, so_id, matter_id, 
+      sol_mat_name, sol_mat_type, sol_nominal, 
+      sol_quantity, sol_pre_price, sol_fold, 
+      sol_price, sol_amount, sol_tax_rate, 
+      sol_tax, sol_tax_amount, sol_giveaway, 
+      sol_journalizing, sol_material_composition, 
+      sol_single_source, sol_single_oder, sol_production, 
+      sol_scheduling_single_number, sol_produced_quantity, 
+      sol_auditing, sol_yn, sol_custom1, 
+      sol_custom2, sol_custom3, sol_custom4, 
+      sol_custom5, sol_custom6)
+    values (#{solId,jdbcType=VARCHAR}, #{soId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{solMatName,jdbcType=VARCHAR}, #{solMatType,jdbcType=VARCHAR}, #{solNominal,jdbcType=VARCHAR}, 
+      #{solQuantity,jdbcType=INTEGER}, #{solPrePrice,jdbcType=REAL}, #{solFold,jdbcType=INTEGER}, 
+      #{solPrice,jdbcType=REAL}, #{solAmount,jdbcType=REAL}, #{solTaxRate,jdbcType=REAL}, 
+      #{solTax,jdbcType=REAL}, #{solTaxAmount,jdbcType=REAL}, #{solGiveaway,jdbcType=INTEGER}, 
+      #{solJournalizing,jdbcType=VARCHAR}, #{solMaterialComposition,jdbcType=INTEGER}, 
+      #{solSingleSource,jdbcType=VARCHAR}, #{solSingleOder,jdbcType=VARCHAR}, #{solProduction,jdbcType=INTEGER}, 
+      #{solSchedulingSingleNumber,jdbcType=VARCHAR}, #{solProducedQuantity,jdbcType=INTEGER}, 
+      #{solAuditing,jdbcType=VARCHAR}, #{solYn,jdbcType=VARCHAR}, #{solCustom1,jdbcType=VARCHAR}, 
+      #{solCustom2,jdbcType=VARCHAR}, #{solCustom3,jdbcType=VARCHAR}, #{solCustom4,jdbcType=VARCHAR}, 
+      #{solCustom5,jdbcType=VARCHAR}, #{solCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Salesorderlist">
+    insert into salesorderlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        sol_id,
+      </if>
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="solMatName != null">
+        sol_mat_name,
+      </if>
+      <if test="solMatType != null">
+        sol_mat_type,
+      </if>
+      <if test="solNominal != null">
+        sol_nominal,
+      </if>
+      <if test="solQuantity != null">
+        sol_quantity,
+      </if>
+      <if test="solPrePrice != null">
+        sol_pre_price,
+      </if>
+      <if test="solFold != null">
+        sol_fold,
+      </if>
+      <if test="solPrice != null">
+        sol_price,
+      </if>
+      <if test="solAmount != null">
+        sol_amount,
+      </if>
+      <if test="solTaxRate != null">
+        sol_tax_rate,
+      </if>
+      <if test="solTax != null">
+        sol_tax,
+      </if>
+      <if test="solTaxAmount != null">
+        sol_tax_amount,
+      </if>
+      <if test="solGiveaway != null">
+        sol_giveaway,
+      </if>
+      <if test="solJournalizing != null">
+        sol_journalizing,
+      </if>
+      <if test="solMaterialComposition != null">
+        sol_material_composition,
+      </if>
+      <if test="solSingleSource != null">
+        sol_single_source,
+      </if>
+      <if test="solSingleOder != null">
+        sol_single_oder,
+      </if>
+      <if test="solProduction != null">
+        sol_production,
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        sol_scheduling_single_number,
+      </if>
+      <if test="solProducedQuantity != null">
+        sol_produced_quantity,
+      </if>
+      <if test="solAuditing != null">
+        sol_auditing,
+      </if>
+      <if test="solYn != null">
+        sol_yn,
+      </if>
+      <if test="solCustom1 != null">
+        sol_custom1,
+      </if>
+      <if test="solCustom2 != null">
+        sol_custom2,
+      </if>
+      <if test="solCustom3 != null">
+        sol_custom3,
+      </if>
+      <if test="solCustom4 != null">
+        sol_custom4,
+      </if>
+      <if test="solCustom5 != null">
+        sol_custom5,
+      </if>
+      <if test="solCustom6 != null">
+        sol_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="solId != null">
+        #{solId,jdbcType=VARCHAR},
+      </if>
+      <if test="soId != null">
+        #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatName != null">
+        #{solMatName,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatType != null">
+        #{solMatType,jdbcType=VARCHAR},
+      </if>
+      <if test="solNominal != null">
+        #{solNominal,jdbcType=VARCHAR},
+      </if>
+      <if test="solQuantity != null">
+        #{solQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solPrePrice != null">
+        #{solPrePrice,jdbcType=REAL},
+      </if>
+      <if test="solFold != null">
+        #{solFold,jdbcType=INTEGER},
+      </if>
+      <if test="solPrice != null">
+        #{solPrice,jdbcType=REAL},
+      </if>
+      <if test="solAmount != null">
+        #{solAmount,jdbcType=REAL},
+      </if>
+      <if test="solTaxRate != null">
+        #{solTaxRate,jdbcType=REAL},
+      </if>
+      <if test="solTax != null">
+        #{solTax,jdbcType=REAL},
+      </if>
+      <if test="solTaxAmount != null">
+        #{solTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="solGiveaway != null">
+        #{solGiveaway,jdbcType=INTEGER},
+      </if>
+      <if test="solJournalizing != null">
+        #{solJournalizing,jdbcType=VARCHAR},
+      </if>
+      <if test="solMaterialComposition != null">
+        #{solMaterialComposition,jdbcType=INTEGER},
+      </if>
+      <if test="solSingleSource != null">
+        #{solSingleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="solSingleOder != null">
+        #{solSingleOder,jdbcType=VARCHAR},
+      </if>
+      <if test="solProduction != null">
+        #{solProduction,jdbcType=INTEGER},
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="solProducedQuantity != null">
+        #{solProducedQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solAuditing != null">
+        #{solAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="solYn != null">
+        #{solYn,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom1 != null">
+        #{solCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom2 != null">
+        #{solCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom3 != null">
+        #{solCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom4 != null">
+        #{solCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom5 != null">
+        #{solCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom6 != null">
+        #{solCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Salesorderlist">
+    update salesorderlist
+    <set>
+      <if test="soId != null">
+        so_id = #{soId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatName != null">
+        sol_mat_name = #{solMatName,jdbcType=VARCHAR},
+      </if>
+      <if test="solMatType != null">
+        sol_mat_type = #{solMatType,jdbcType=VARCHAR},
+      </if>
+      <if test="solNominal != null">
+        sol_nominal = #{solNominal,jdbcType=VARCHAR},
+      </if>
+      <if test="solQuantity != null">
+        sol_quantity = #{solQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solPrePrice != null">
+        sol_pre_price = #{solPrePrice,jdbcType=REAL},
+      </if>
+      <if test="solFold != null">
+        sol_fold = #{solFold,jdbcType=INTEGER},
+      </if>
+      <if test="solPrice != null">
+        sol_price = #{solPrice,jdbcType=REAL},
+      </if>
+      <if test="solAmount != null">
+        sol_amount = #{solAmount,jdbcType=REAL},
+      </if>
+      <if test="solTaxRate != null">
+        sol_tax_rate = #{solTaxRate,jdbcType=REAL},
+      </if>
+      <if test="solTax != null">
+        sol_tax = #{solTax,jdbcType=REAL},
+      </if>
+      <if test="solTaxAmount != null">
+        sol_tax_amount = #{solTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="solGiveaway != null">
+        sol_giveaway = #{solGiveaway,jdbcType=INTEGER},
+      </if>
+      <if test="solJournalizing != null">
+        sol_journalizing = #{solJournalizing,jdbcType=VARCHAR},
+      </if>
+      <if test="solMaterialComposition != null">
+        sol_material_composition = #{solMaterialComposition,jdbcType=INTEGER},
+      </if>
+      <if test="solSingleSource != null">
+        sol_single_source = #{solSingleSource,jdbcType=VARCHAR},
+      </if>
+      <if test="solSingleOder != null">
+        sol_single_oder = #{solSingleOder,jdbcType=VARCHAR},
+      </if>
+      <if test="solProduction != null">
+        sol_production = #{solProduction,jdbcType=INTEGER},
+      </if>
+      <if test="solSchedulingSingleNumber != null">
+        sol_scheduling_single_number = #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="solProducedQuantity != null">
+        sol_produced_quantity = #{solProducedQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="solAuditing != null">
+        sol_auditing = #{solAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="solYn != null">
+        sol_yn = #{solYn,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom1 != null">
+        sol_custom1 = #{solCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom2 != null">
+        sol_custom2 = #{solCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom3 != null">
+        sol_custom3 = #{solCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom4 != null">
+        sol_custom4 = #{solCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom5 != null">
+        sol_custom5 = #{solCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="solCustom6 != null">
+        sol_custom6 = #{solCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Salesorderlist">
+    update salesorderlist
+    set so_id = #{soId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      sol_mat_name = #{solMatName,jdbcType=VARCHAR},
+      sol_mat_type = #{solMatType,jdbcType=VARCHAR},
+      sol_nominal = #{solNominal,jdbcType=VARCHAR},
+      sol_quantity = #{solQuantity,jdbcType=INTEGER},
+      sol_pre_price = #{solPrePrice,jdbcType=REAL},
+      sol_fold = #{solFold,jdbcType=INTEGER},
+      sol_price = #{solPrice,jdbcType=REAL},
+      sol_amount = #{solAmount,jdbcType=REAL},
+      sol_tax_rate = #{solTaxRate,jdbcType=REAL},
+      sol_tax = #{solTax,jdbcType=REAL},
+      sol_tax_amount = #{solTaxAmount,jdbcType=REAL},
+      sol_giveaway = #{solGiveaway,jdbcType=INTEGER},
+      sol_journalizing = #{solJournalizing,jdbcType=VARCHAR},
+      sol_material_composition = #{solMaterialComposition,jdbcType=INTEGER},
+      sol_single_source = #{solSingleSource,jdbcType=VARCHAR},
+      sol_single_oder = #{solSingleOder,jdbcType=VARCHAR},
+      sol_production = #{solProduction,jdbcType=INTEGER},
+      sol_scheduling_single_number = #{solSchedulingSingleNumber,jdbcType=VARCHAR},
+      sol_produced_quantity = #{solProducedQuantity,jdbcType=INTEGER},
+      sol_auditing = #{solAuditing,jdbcType=VARCHAR},
+      sol_yn = #{solYn,jdbcType=VARCHAR},
+      sol_custom1 = #{solCustom1,jdbcType=VARCHAR},
+      sol_custom2 = #{solCustom2,jdbcType=VARCHAR},
+      sol_custom3 = #{solCustom3,jdbcType=VARCHAR},
+      sol_custom4 = #{solCustom4,jdbcType=VARCHAR},
+      sol_custom5 = #{solCustom5,jdbcType=VARCHAR},
+      sol_custom6 = #{solCustom6,jdbcType=VARCHAR}
+    where sol_id = #{solId,jdbcType=VARCHAR}
+  </update>
+</mapper>

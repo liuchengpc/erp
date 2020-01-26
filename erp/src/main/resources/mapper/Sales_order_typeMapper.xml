@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Sales_order_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_order_type">
+    <id column="sot_id" jdbcType="VARCHAR" property="sotId" />
+    <result column="sot_name" jdbcType="VARCHAR" property="sotName" />
+    <result column="sot_engname" jdbcType="VARCHAR" property="sotEngname" />
+    <result column="sot_remark" jdbcType="VARCHAR" property="sotRemark" />
+    <result column="sot_auditing" jdbcType="VARCHAR" property="sotAuditing" />
+    <result column="sot_yn" jdbcType="VARCHAR" property="sotYn" />
+    <result column="sot_custom1" jdbcType="VARCHAR" property="sotCustom1" />
+    <result column="sot_custom2" jdbcType="VARCHAR" property="sotCustom2" />
+    <result column="sot_custom3" jdbcType="VARCHAR" property="sotCustom3" />
+    <result column="sot_custom4" jdbcType="VARCHAR" property="sotCustom4" />
+    <result column="sot_custom5" jdbcType="VARCHAR" property="sotCustom5" />
+    <result column="sot_custom6" jdbcType="VARCHAR" property="sotCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sot_id, sot_name, sot_engname, sot_remark, sot_auditing, sot_yn, sot_custom1, sot_custom2, 
+    sot_custom3, sot_custom4, sot_custom5, sot_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_order_type
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_order_type
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_order_type">
+    insert into sales_order_type (sot_id, sot_name, sot_engname, 
+      sot_remark, sot_auditing, sot_yn, 
+      sot_custom1, sot_custom2, sot_custom3, 
+      sot_custom4, sot_custom5, sot_custom6
+      )
+    values (#{sotId,jdbcType=VARCHAR}, #{sotName,jdbcType=VARCHAR}, #{sotEngname,jdbcType=VARCHAR}, 
+      #{sotRemark,jdbcType=VARCHAR}, #{sotAuditing,jdbcType=VARCHAR}, #{sotYn,jdbcType=VARCHAR}, 
+      #{sotCustom1,jdbcType=VARCHAR}, #{sotCustom2,jdbcType=VARCHAR}, #{sotCustom3,jdbcType=VARCHAR}, 
+      #{sotCustom4,jdbcType=VARCHAR}, #{sotCustom5,jdbcType=VARCHAR}, #{sotCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_order_type">
+    insert into sales_order_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="sotName != null">
+        sot_name,
+      </if>
+      <if test="sotEngname != null">
+        sot_engname,
+      </if>
+      <if test="sotRemark != null">
+        sot_remark,
+      </if>
+      <if test="sotAuditing != null">
+        sot_auditing,
+      </if>
+      <if test="sotYn != null">
+        sot_yn,
+      </if>
+      <if test="sotCustom1 != null">
+        sot_custom1,
+      </if>
+      <if test="sotCustom2 != null">
+        sot_custom2,
+      </if>
+      <if test="sotCustom3 != null">
+        sot_custom3,
+      </if>
+      <if test="sotCustom4 != null">
+        sot_custom4,
+      </if>
+      <if test="sotCustom5 != null">
+        sot_custom5,
+      </if>
+      <if test="sotCustom6 != null">
+        sot_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sotId != null">
+        #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sotName != null">
+        #{sotName,jdbcType=VARCHAR},
+      </if>
+      <if test="sotEngname != null">
+        #{sotEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sotRemark != null">
+        #{sotRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sotAuditing != null">
+        #{sotAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sotYn != null">
+        #{sotYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom1 != null">
+        #{sotCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom2 != null">
+        #{sotCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom3 != null">
+        #{sotCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom4 != null">
+        #{sotCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom5 != null">
+        #{sotCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom6 != null">
+        #{sotCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_order_type">
+    update sales_order_type
+    <set>
+      <if test="sotName != null">
+        sot_name = #{sotName,jdbcType=VARCHAR},
+      </if>
+      <if test="sotEngname != null">
+        sot_engname = #{sotEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sotRemark != null">
+        sot_remark = #{sotRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sotAuditing != null">
+        sot_auditing = #{sotAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sotYn != null">
+        sot_yn = #{sotYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom1 != null">
+        sot_custom1 = #{sotCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom2 != null">
+        sot_custom2 = #{sotCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom3 != null">
+        sot_custom3 = #{sotCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom4 != null">
+        sot_custom4 = #{sotCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom5 != null">
+        sot_custom5 = #{sotCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom6 != null">
+        sot_custom6 = #{sotCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_order_type">
+    update sales_order_type
+    set sot_name = #{sotName,jdbcType=VARCHAR},
+      sot_engname = #{sotEngname,jdbcType=VARCHAR},
+      sot_remark = #{sotRemark,jdbcType=VARCHAR},
+      sot_auditing = #{sotAuditing,jdbcType=VARCHAR},
+      sot_yn = #{sotYn,jdbcType=VARCHAR},
+      sot_custom1 = #{sotCustom1,jdbcType=VARCHAR},
+      sot_custom2 = #{sotCustom2,jdbcType=VARCHAR},
+      sot_custom3 = #{sotCustom3,jdbcType=VARCHAR},
+      sot_custom4 = #{sotCustom4,jdbcType=VARCHAR},
+      sot_custom5 = #{sotCustom5,jdbcType=VARCHAR},
+      sot_custom6 = #{sotCustom6,jdbcType=VARCHAR}
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_order_type">
+    <id column="sot_id" jdbcType="VARCHAR" property="sotId" />
+    <result column="sot_name" jdbcType="VARCHAR" property="sotName" />
+    <result column="sot_engname" jdbcType="VARCHAR" property="sotEngname" />
+    <result column="sot_remark" jdbcType="VARCHAR" property="sotRemark" />
+    <result column="sot_auditing" jdbcType="VARCHAR" property="sotAuditing" />
+    <result column="sot_yn" jdbcType="VARCHAR" property="sotYn" />
+    <result column="sot_custom1" jdbcType="VARCHAR" property="sotCustom1" />
+    <result column="sot_custom2" jdbcType="VARCHAR" property="sotCustom2" />
+    <result column="sot_custom3" jdbcType="VARCHAR" property="sotCustom3" />
+    <result column="sot_custom4" jdbcType="VARCHAR" property="sotCustom4" />
+    <result column="sot_custom5" jdbcType="VARCHAR" property="sotCustom5" />
+    <result column="sot_custom6" jdbcType="VARCHAR" property="sotCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sot_id, sot_name, sot_engname, sot_remark, sot_auditing, sot_yn, sot_custom1, sot_custom2, 
+    sot_custom3, sot_custom4, sot_custom5, sot_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_order_type
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_order_type
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_order_type">
+    insert into sales_order_type (sot_id, sot_name, sot_engname, 
+      sot_remark, sot_auditing, sot_yn, 
+      sot_custom1, sot_custom2, sot_custom3, 
+      sot_custom4, sot_custom5, sot_custom6
+      )
+    values (#{sotId,jdbcType=VARCHAR}, #{sotName,jdbcType=VARCHAR}, #{sotEngname,jdbcType=VARCHAR}, 
+      #{sotRemark,jdbcType=VARCHAR}, #{sotAuditing,jdbcType=VARCHAR}, #{sotYn,jdbcType=VARCHAR}, 
+      #{sotCustom1,jdbcType=VARCHAR}, #{sotCustom2,jdbcType=VARCHAR}, #{sotCustom3,jdbcType=VARCHAR}, 
+      #{sotCustom4,jdbcType=VARCHAR}, #{sotCustom5,jdbcType=VARCHAR}, #{sotCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_order_type">
+    insert into sales_order_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sotId != null">
+        sot_id,
+      </if>
+      <if test="sotName != null">
+        sot_name,
+      </if>
+      <if test="sotEngname != null">
+        sot_engname,
+      </if>
+      <if test="sotRemark != null">
+        sot_remark,
+      </if>
+      <if test="sotAuditing != null">
+        sot_auditing,
+      </if>
+      <if test="sotYn != null">
+        sot_yn,
+      </if>
+      <if test="sotCustom1 != null">
+        sot_custom1,
+      </if>
+      <if test="sotCustom2 != null">
+        sot_custom2,
+      </if>
+      <if test="sotCustom3 != null">
+        sot_custom3,
+      </if>
+      <if test="sotCustom4 != null">
+        sot_custom4,
+      </if>
+      <if test="sotCustom5 != null">
+        sot_custom5,
+      </if>
+      <if test="sotCustom6 != null">
+        sot_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sotId != null">
+        #{sotId,jdbcType=VARCHAR},
+      </if>
+      <if test="sotName != null">
+        #{sotName,jdbcType=VARCHAR},
+      </if>
+      <if test="sotEngname != null">
+        #{sotEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sotRemark != null">
+        #{sotRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sotAuditing != null">
+        #{sotAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sotYn != null">
+        #{sotYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom1 != null">
+        #{sotCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom2 != null">
+        #{sotCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom3 != null">
+        #{sotCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom4 != null">
+        #{sotCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom5 != null">
+        #{sotCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom6 != null">
+        #{sotCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_order_type">
+    update sales_order_type
+    <set>
+      <if test="sotName != null">
+        sot_name = #{sotName,jdbcType=VARCHAR},
+      </if>
+      <if test="sotEngname != null">
+        sot_engname = #{sotEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="sotRemark != null">
+        sot_remark = #{sotRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="sotAuditing != null">
+        sot_auditing = #{sotAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sotYn != null">
+        sot_yn = #{sotYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom1 != null">
+        sot_custom1 = #{sotCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom2 != null">
+        sot_custom2 = #{sotCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom3 != null">
+        sot_custom3 = #{sotCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom4 != null">
+        sot_custom4 = #{sotCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom5 != null">
+        sot_custom5 = #{sotCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sotCustom6 != null">
+        sot_custom6 = #{sotCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_order_type">
+    update sales_order_type
+    set sot_name = #{sotName,jdbcType=VARCHAR},
+      sot_engname = #{sotEngname,jdbcType=VARCHAR},
+      sot_remark = #{sotRemark,jdbcType=VARCHAR},
+      sot_auditing = #{sotAuditing,jdbcType=VARCHAR},
+      sot_yn = #{sotYn,jdbcType=VARCHAR},
+      sot_custom1 = #{sotCustom1,jdbcType=VARCHAR},
+      sot_custom2 = #{sotCustom2,jdbcType=VARCHAR},
+      sot_custom3 = #{sotCustom3,jdbcType=VARCHAR},
+      sot_custom4 = #{sotCustom4,jdbcType=VARCHAR},
+      sot_custom5 = #{sotCustom5,jdbcType=VARCHAR},
+      sot_custom6 = #{sotCustom6,jdbcType=VARCHAR}
+    where sot_id = #{sotId,jdbcType=VARCHAR}
+  </update>
+</mapper>

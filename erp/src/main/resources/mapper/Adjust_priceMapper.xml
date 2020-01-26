@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Adjust_priceMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Adjust_price">
+    <id column="ap_id" jdbcType="VARCHAR" property="apId" />
+    <result column="ap_dateid" jdbcType="VARCHAR" property="apDateid" />
+    <result column="materialid" jdbcType="VARCHAR" property="materialid" />
+    <result column="updowmid" jdbcType="VARCHAR" property="updowmid" />
+    <result column="ap_price" jdbcType="REAL" property="apPrice" />
+    <result column="ap_decoration" jdbcType="VARCHAR" property="apDecoration" />
+    <result column="ap_doworkman" jdbcType="VARCHAR" property="apDoworkman" />
+    <result column="ap_recheckman" jdbcType="VARCHAR" property="apRecheckman" />
+    <result column="ap_auditing" jdbcType="VARCHAR" property="apAuditing" />
+    <result column="ap_yn" jdbcType="VARCHAR" property="apYn" />
+    <result column="ap_custom1" jdbcType="VARCHAR" property="apCustom1" />
+    <result column="ap_custom2" jdbcType="VARCHAR" property="apCustom2" />
+    <result column="ap_custom3" jdbcType="VARCHAR" property="apCustom3" />
+    <result column="ap_custom4" jdbcType="VARCHAR" property="apCustom4" />
+    <result column="ap_custom5" jdbcType="VARCHAR" property="apCustom5" />
+    <result column="ap_custom6" jdbcType="VARCHAR" property="apCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ap_id, ap_dateid, materialid, updowmid, ap_price, ap_decoration, ap_doworkman, ap_recheckman, 
+    ap_auditing, ap_yn, ap_custom1, ap_custom2, ap_custom3, ap_custom4, ap_custom5, ap_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from adjust_price
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from adjust_price
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Adjust_price">
+    insert into adjust_price (ap_id, ap_dateid, materialid, 
+      updowmid, ap_price, ap_decoration, 
+      ap_doworkman, ap_recheckman, ap_auditing, 
+      ap_yn, ap_custom1, ap_custom2, 
+      ap_custom3, ap_custom4, ap_custom5, 
+      ap_custom6)
+    values (#{apId,jdbcType=VARCHAR}, #{apDateid,jdbcType=VARCHAR}, #{materialid,jdbcType=VARCHAR}, 
+      #{updowmid,jdbcType=VARCHAR}, #{apPrice,jdbcType=REAL}, #{apDecoration,jdbcType=VARCHAR}, 
+      #{apDoworkman,jdbcType=VARCHAR}, #{apRecheckman,jdbcType=VARCHAR}, #{apAuditing,jdbcType=VARCHAR}, 
+      #{apYn,jdbcType=VARCHAR}, #{apCustom1,jdbcType=VARCHAR}, #{apCustom2,jdbcType=VARCHAR}, 
+      #{apCustom3,jdbcType=VARCHAR}, #{apCustom4,jdbcType=VARCHAR}, #{apCustom5,jdbcType=VARCHAR}, 
+      #{apCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Adjust_price">
+    insert into adjust_price
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="apDateid != null">
+        ap_dateid,
+      </if>
+      <if test="materialid != null">
+        materialid,
+      </if>
+      <if test="updowmid != null">
+        updowmid,
+      </if>
+      <if test="apPrice != null">
+        ap_price,
+      </if>
+      <if test="apDecoration != null">
+        ap_decoration,
+      </if>
+      <if test="apDoworkman != null">
+        ap_doworkman,
+      </if>
+      <if test="apRecheckman != null">
+        ap_recheckman,
+      </if>
+      <if test="apAuditing != null">
+        ap_auditing,
+      </if>
+      <if test="apYn != null">
+        ap_yn,
+      </if>
+      <if test="apCustom1 != null">
+        ap_custom1,
+      </if>
+      <if test="apCustom2 != null">
+        ap_custom2,
+      </if>
+      <if test="apCustom3 != null">
+        ap_custom3,
+      </if>
+      <if test="apCustom4 != null">
+        ap_custom4,
+      </if>
+      <if test="apCustom5 != null">
+        ap_custom5,
+      </if>
+      <if test="apCustom6 != null">
+        ap_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="apDateid != null">
+        #{apDateid,jdbcType=VARCHAR},
+      </if>
+      <if test="materialid != null">
+        #{materialid,jdbcType=VARCHAR},
+      </if>
+      <if test="updowmid != null">
+        #{updowmid,jdbcType=VARCHAR},
+      </if>
+      <if test="apPrice != null">
+        #{apPrice,jdbcType=REAL},
+      </if>
+      <if test="apDecoration != null">
+        #{apDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="apDoworkman != null">
+        #{apDoworkman,jdbcType=VARCHAR},
+      </if>
+      <if test="apRecheckman != null">
+        #{apRecheckman,jdbcType=VARCHAR},
+      </if>
+      <if test="apAuditing != null">
+        #{apAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="apYn != null">
+        #{apYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom1 != null">
+        #{apCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom2 != null">
+        #{apCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom3 != null">
+        #{apCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom4 != null">
+        #{apCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom5 != null">
+        #{apCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom6 != null">
+        #{apCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Adjust_price">
+    update adjust_price
+    <set>
+      <if test="apDateid != null">
+        ap_dateid = #{apDateid,jdbcType=VARCHAR},
+      </if>
+      <if test="materialid != null">
+        materialid = #{materialid,jdbcType=VARCHAR},
+      </if>
+      <if test="updowmid != null">
+        updowmid = #{updowmid,jdbcType=VARCHAR},
+      </if>
+      <if test="apPrice != null">
+        ap_price = #{apPrice,jdbcType=REAL},
+      </if>
+      <if test="apDecoration != null">
+        ap_decoration = #{apDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="apDoworkman != null">
+        ap_doworkman = #{apDoworkman,jdbcType=VARCHAR},
+      </if>
+      <if test="apRecheckman != null">
+        ap_recheckman = #{apRecheckman,jdbcType=VARCHAR},
+      </if>
+      <if test="apAuditing != null">
+        ap_auditing = #{apAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="apYn != null">
+        ap_yn = #{apYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom1 != null">
+        ap_custom1 = #{apCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom2 != null">
+        ap_custom2 = #{apCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom3 != null">
+        ap_custom3 = #{apCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom4 != null">
+        ap_custom4 = #{apCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom5 != null">
+        ap_custom5 = #{apCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom6 != null">
+        ap_custom6 = #{apCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Adjust_price">
+    update adjust_price
+    set ap_dateid = #{apDateid,jdbcType=VARCHAR},
+      materialid = #{materialid,jdbcType=VARCHAR},
+      updowmid = #{updowmid,jdbcType=VARCHAR},
+      ap_price = #{apPrice,jdbcType=REAL},
+      ap_decoration = #{apDecoration,jdbcType=VARCHAR},
+      ap_doworkman = #{apDoworkman,jdbcType=VARCHAR},
+      ap_recheckman = #{apRecheckman,jdbcType=VARCHAR},
+      ap_auditing = #{apAuditing,jdbcType=VARCHAR},
+      ap_yn = #{apYn,jdbcType=VARCHAR},
+      ap_custom1 = #{apCustom1,jdbcType=VARCHAR},
+      ap_custom2 = #{apCustom2,jdbcType=VARCHAR},
+      ap_custom3 = #{apCustom3,jdbcType=VARCHAR},
+      ap_custom4 = #{apCustom4,jdbcType=VARCHAR},
+      ap_custom5 = #{apCustom5,jdbcType=VARCHAR},
+      ap_custom6 = #{apCustom6,jdbcType=VARCHAR}
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.TeamMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Team">
+    <id column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="team_english_name" jdbcType="VARCHAR" property="teamEnglishName" />
+    <result column="team_abate" jdbcType="DATE" property="teamAbate" />
+    <result column="team_remark" jdbcType="VARCHAR" property="teamRemark" />
+    <result column="team_Auditing" jdbcType="VARCHAR" property="teamAuditing" />
+    <result column="team_yn" jdbcType="VARCHAR" property="teamYn" />
+    <result column="team_custom1" jdbcType="VARCHAR" property="teamCustom1" />
+    <result column="team_custom2" jdbcType="VARCHAR" property="teamCustom2" />
+    <result column="team_custom3" jdbcType="VARCHAR" property="teamCustom3" />
+    <result column="team_custom4" jdbcType="VARCHAR" property="teamCustom4" />
+    <result column="team_custom5" jdbcType="VARCHAR" property="teamCustom5" />
+    <result column="team_custom6" jdbcType="VARCHAR" property="teamCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    team_id, team_name, team_english_name, team_abate, team_remark, team_Auditing, team_yn, 
+    team_custom1, team_custom2, team_custom3, team_custom4, team_custom5, team_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from team
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Team">
+    insert into team (team_id, team_name, team_english_name, 
+      team_abate, team_remark, team_Auditing, 
+      team_yn, team_custom1, team_custom2, 
+      team_custom3, team_custom4, team_custom5, 
+      team_custom6)
+    values (#{teamId,jdbcType=VARCHAR}, #{teamName,jdbcType=VARCHAR}, #{teamEnglishName,jdbcType=VARCHAR}, 
+      #{teamAbate,jdbcType=DATE}, #{teamRemark,jdbcType=VARCHAR}, #{teamAuditing,jdbcType=VARCHAR}, 
+      #{teamYn,jdbcType=VARCHAR}, #{teamCustom1,jdbcType=VARCHAR}, #{teamCustom2,jdbcType=VARCHAR}, 
+      #{teamCustom3,jdbcType=VARCHAR}, #{teamCustom4,jdbcType=VARCHAR}, #{teamCustom5,jdbcType=VARCHAR}, 
+      #{teamCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Team">
+    insert into team
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="teamEnglishName != null">
+        team_english_name,
+      </if>
+      <if test="teamAbate != null">
+        team_abate,
+      </if>
+      <if test="teamRemark != null">
+        team_remark,
+      </if>
+      <if test="teamAuditing != null">
+        team_Auditing,
+      </if>
+      <if test="teamYn != null">
+        team_yn,
+      </if>
+      <if test="teamCustom1 != null">
+        team_custom1,
+      </if>
+      <if test="teamCustom2 != null">
+        team_custom2,
+      </if>
+      <if test="teamCustom3 != null">
+        team_custom3,
+      </if>
+      <if test="teamCustom4 != null">
+        team_custom4,
+      </if>
+      <if test="teamCustom5 != null">
+        team_custom5,
+      </if>
+      <if test="teamCustom6 != null">
+        team_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamEnglishName != null">
+        #{teamEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAbate != null">
+        #{teamAbate,jdbcType=DATE},
+      </if>
+      <if test="teamRemark != null">
+        #{teamRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAuditing != null">
+        #{teamAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="teamYn != null">
+        #{teamYn,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom1 != null">
+        #{teamCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom2 != null">
+        #{teamCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom3 != null">
+        #{teamCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom4 != null">
+        #{teamCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom5 != null">
+        #{teamCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom6 != null">
+        #{teamCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Team">
+    update team
+    <set>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamEnglishName != null">
+        team_english_name = #{teamEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAbate != null">
+        team_abate = #{teamAbate,jdbcType=DATE},
+      </if>
+      <if test="teamRemark != null">
+        team_remark = #{teamRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAuditing != null">
+        team_Auditing = #{teamAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="teamYn != null">
+        team_yn = #{teamYn,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom1 != null">
+        team_custom1 = #{teamCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom2 != null">
+        team_custom2 = #{teamCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom3 != null">
+        team_custom3 = #{teamCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom4 != null">
+        team_custom4 = #{teamCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom5 != null">
+        team_custom5 = #{teamCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom6 != null">
+        team_custom6 = #{teamCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Team">
+    update team
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      team_english_name = #{teamEnglishName,jdbcType=VARCHAR},
+      team_abate = #{teamAbate,jdbcType=DATE},
+      team_remark = #{teamRemark,jdbcType=VARCHAR},
+      team_Auditing = #{teamAuditing,jdbcType=VARCHAR},
+      team_yn = #{teamYn,jdbcType=VARCHAR},
+      team_custom1 = #{teamCustom1,jdbcType=VARCHAR},
+      team_custom2 = #{teamCustom2,jdbcType=VARCHAR},
+      team_custom3 = #{teamCustom3,jdbcType=VARCHAR},
+      team_custom4 = #{teamCustom4,jdbcType=VARCHAR},
+      team_custom5 = #{teamCustom5,jdbcType=VARCHAR},
+      team_custom6 = #{teamCustom6,jdbcType=VARCHAR}
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Team">
+    <id column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="team_english_name" jdbcType="VARCHAR" property="teamEnglishName" />
+    <result column="team_abate" jdbcType="DATE" property="teamAbate" />
+    <result column="team_remark" jdbcType="VARCHAR" property="teamRemark" />
+    <result column="team_Auditing" jdbcType="VARCHAR" property="teamAuditing" />
+    <result column="team_yn" jdbcType="VARCHAR" property="teamYn" />
+    <result column="team_custom1" jdbcType="VARCHAR" property="teamCustom1" />
+    <result column="team_custom2" jdbcType="VARCHAR" property="teamCustom2" />
+    <result column="team_custom3" jdbcType="VARCHAR" property="teamCustom3" />
+    <result column="team_custom4" jdbcType="VARCHAR" property="teamCustom4" />
+    <result column="team_custom5" jdbcType="VARCHAR" property="teamCustom5" />
+    <result column="team_custom6" jdbcType="VARCHAR" property="teamCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    team_id, team_name, team_english_name, team_abate, team_remark, team_Auditing, team_yn, 
+    team_custom1, team_custom2, team_custom3, team_custom4, team_custom5, team_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from team
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Team">
+    insert into team (team_id, team_name, team_english_name, 
+      team_abate, team_remark, team_Auditing, 
+      team_yn, team_custom1, team_custom2, 
+      team_custom3, team_custom4, team_custom5, 
+      team_custom6)
+    values (#{teamId,jdbcType=VARCHAR}, #{teamName,jdbcType=VARCHAR}, #{teamEnglishName,jdbcType=VARCHAR}, 
+      #{teamAbate,jdbcType=DATE}, #{teamRemark,jdbcType=VARCHAR}, #{teamAuditing,jdbcType=VARCHAR}, 
+      #{teamYn,jdbcType=VARCHAR}, #{teamCustom1,jdbcType=VARCHAR}, #{teamCustom2,jdbcType=VARCHAR}, 
+      #{teamCustom3,jdbcType=VARCHAR}, #{teamCustom4,jdbcType=VARCHAR}, #{teamCustom5,jdbcType=VARCHAR}, 
+      #{teamCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Team">
+    insert into team
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="teamEnglishName != null">
+        team_english_name,
+      </if>
+      <if test="teamAbate != null">
+        team_abate,
+      </if>
+      <if test="teamRemark != null">
+        team_remark,
+      </if>
+      <if test="teamAuditing != null">
+        team_Auditing,
+      </if>
+      <if test="teamYn != null">
+        team_yn,
+      </if>
+      <if test="teamCustom1 != null">
+        team_custom1,
+      </if>
+      <if test="teamCustom2 != null">
+        team_custom2,
+      </if>
+      <if test="teamCustom3 != null">
+        team_custom3,
+      </if>
+      <if test="teamCustom4 != null">
+        team_custom4,
+      </if>
+      <if test="teamCustom5 != null">
+        team_custom5,
+      </if>
+      <if test="teamCustom6 != null">
+        team_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamEnglishName != null">
+        #{teamEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAbate != null">
+        #{teamAbate,jdbcType=DATE},
+      </if>
+      <if test="teamRemark != null">
+        #{teamRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAuditing != null">
+        #{teamAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="teamYn != null">
+        #{teamYn,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom1 != null">
+        #{teamCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom2 != null">
+        #{teamCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom3 != null">
+        #{teamCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom4 != null">
+        #{teamCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom5 != null">
+        #{teamCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom6 != null">
+        #{teamCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Team">
+    update team
+    <set>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamEnglishName != null">
+        team_english_name = #{teamEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAbate != null">
+        team_abate = #{teamAbate,jdbcType=DATE},
+      </if>
+      <if test="teamRemark != null">
+        team_remark = #{teamRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="teamAuditing != null">
+        team_Auditing = #{teamAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="teamYn != null">
+        team_yn = #{teamYn,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom1 != null">
+        team_custom1 = #{teamCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom2 != null">
+        team_custom2 = #{teamCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom3 != null">
+        team_custom3 = #{teamCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom4 != null">
+        team_custom4 = #{teamCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom5 != null">
+        team_custom5 = #{teamCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="teamCustom6 != null">
+        team_custom6 = #{teamCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Team">
+    update team
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      team_english_name = #{teamEnglishName,jdbcType=VARCHAR},
+      team_abate = #{teamAbate,jdbcType=DATE},
+      team_remark = #{teamRemark,jdbcType=VARCHAR},
+      team_Auditing = #{teamAuditing,jdbcType=VARCHAR},
+      team_yn = #{teamYn,jdbcType=VARCHAR},
+      team_custom1 = #{teamCustom1,jdbcType=VARCHAR},
+      team_custom2 = #{teamCustom2,jdbcType=VARCHAR},
+      team_custom3 = #{teamCustom3,jdbcType=VARCHAR},
+      team_custom4 = #{teamCustom4,jdbcType=VARCHAR},
+      team_custom5 = #{teamCustom5,jdbcType=VARCHAR},
+      team_custom6 = #{teamCustom6,jdbcType=VARCHAR}
+    where team_id = #{teamId,jdbcType=VARCHAR}
+  </update>
+</mapper>

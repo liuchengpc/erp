@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Collection_termMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Collection_term">
+    <id column="cote_id" jdbcType="VARCHAR" property="coteId" />
+    <result column="cote_name" jdbcType="VARCHAR" property="coteName" />
+    <result column="cote_days" jdbcType="INTEGER" property="coteDays" />
+    <result column="cote_Auditing" jdbcType="VARCHAR" property="coteAuditing" />
+    <result column="cote_yn" jdbcType="VARCHAR" property="coteYn" />
+    <result column="cote_custom1" jdbcType="VARCHAR" property="coteCustom1" />
+    <result column="cote_custom2" jdbcType="VARCHAR" property="coteCustom2" />
+    <result column="cote_custom3" jdbcType="VARCHAR" property="coteCustom3" />
+    <result column="cote_custom4" jdbcType="VARCHAR" property="coteCustom4" />
+    <result column="cote_custom5" jdbcType="VARCHAR" property="coteCustom5" />
+    <result column="cote_custom6" jdbcType="VARCHAR" property="coteCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cote_id, cote_name, cote_days, cote_Auditing, cote_yn, cote_custom1, cote_custom2, 
+    cote_custom3, cote_custom4, cote_custom5, cote_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from collection_term
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from collection_term
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Collection_term">
+    insert into collection_term (cote_id, cote_name, cote_days, 
+      cote_Auditing, cote_yn, cote_custom1, 
+      cote_custom2, cote_custom3, cote_custom4, 
+      cote_custom5, cote_custom6)
+    values (#{coteId,jdbcType=VARCHAR}, #{coteName,jdbcType=VARCHAR}, #{coteDays,jdbcType=INTEGER}, 
+      #{coteAuditing,jdbcType=VARCHAR}, #{coteYn,jdbcType=VARCHAR}, #{coteCustom1,jdbcType=VARCHAR}, 
+      #{coteCustom2,jdbcType=VARCHAR}, #{coteCustom3,jdbcType=VARCHAR}, #{coteCustom4,jdbcType=VARCHAR}, 
+      #{coteCustom5,jdbcType=VARCHAR}, #{coteCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Collection_term">
+    insert into collection_term
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coteId != null">
+        cote_id,
+      </if>
+      <if test="coteName != null">
+        cote_name,
+      </if>
+      <if test="coteDays != null">
+        cote_days,
+      </if>
+      <if test="coteAuditing != null">
+        cote_Auditing,
+      </if>
+      <if test="coteYn != null">
+        cote_yn,
+      </if>
+      <if test="coteCustom1 != null">
+        cote_custom1,
+      </if>
+      <if test="coteCustom2 != null">
+        cote_custom2,
+      </if>
+      <if test="coteCustom3 != null">
+        cote_custom3,
+      </if>
+      <if test="coteCustom4 != null">
+        cote_custom4,
+      </if>
+      <if test="coteCustom5 != null">
+        cote_custom5,
+      </if>
+      <if test="coteCustom6 != null">
+        cote_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coteId != null">
+        #{coteId,jdbcType=VARCHAR},
+      </if>
+      <if test="coteName != null">
+        #{coteName,jdbcType=VARCHAR},
+      </if>
+      <if test="coteDays != null">
+        #{coteDays,jdbcType=INTEGER},
+      </if>
+      <if test="coteAuditing != null">
+        #{coteAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="coteYn != null">
+        #{coteYn,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom1 != null">
+        #{coteCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom2 != null">
+        #{coteCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom3 != null">
+        #{coteCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom4 != null">
+        #{coteCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom5 != null">
+        #{coteCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom6 != null">
+        #{coteCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Collection_term">
+    update collection_term
+    <set>
+      <if test="coteName != null">
+        cote_name = #{coteName,jdbcType=VARCHAR},
+      </if>
+      <if test="coteDays != null">
+        cote_days = #{coteDays,jdbcType=INTEGER},
+      </if>
+      <if test="coteAuditing != null">
+        cote_Auditing = #{coteAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="coteYn != null">
+        cote_yn = #{coteYn,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom1 != null">
+        cote_custom1 = #{coteCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom2 != null">
+        cote_custom2 = #{coteCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom3 != null">
+        cote_custom3 = #{coteCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom4 != null">
+        cote_custom4 = #{coteCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom5 != null">
+        cote_custom5 = #{coteCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom6 != null">
+        cote_custom6 = #{coteCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Collection_term">
+    update collection_term
+    set cote_name = #{coteName,jdbcType=VARCHAR},
+      cote_days = #{coteDays,jdbcType=INTEGER},
+      cote_Auditing = #{coteAuditing,jdbcType=VARCHAR},
+      cote_yn = #{coteYn,jdbcType=VARCHAR},
+      cote_custom1 = #{coteCustom1,jdbcType=VARCHAR},
+      cote_custom2 = #{coteCustom2,jdbcType=VARCHAR},
+      cote_custom3 = #{coteCustom3,jdbcType=VARCHAR},
+      cote_custom4 = #{coteCustom4,jdbcType=VARCHAR},
+      cote_custom5 = #{coteCustom5,jdbcType=VARCHAR},
+      cote_custom6 = #{coteCustom6,jdbcType=VARCHAR}
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Collection_term">
+    <id column="cote_id" jdbcType="VARCHAR" property="coteId" />
+    <result column="cote_name" jdbcType="VARCHAR" property="coteName" />
+    <result column="cote_days" jdbcType="INTEGER" property="coteDays" />
+    <result column="cote_Auditing" jdbcType="VARCHAR" property="coteAuditing" />
+    <result column="cote_yn" jdbcType="VARCHAR" property="coteYn" />
+    <result column="cote_custom1" jdbcType="VARCHAR" property="coteCustom1" />
+    <result column="cote_custom2" jdbcType="VARCHAR" property="coteCustom2" />
+    <result column="cote_custom3" jdbcType="VARCHAR" property="coteCustom3" />
+    <result column="cote_custom4" jdbcType="VARCHAR" property="coteCustom4" />
+    <result column="cote_custom5" jdbcType="VARCHAR" property="coteCustom5" />
+    <result column="cote_custom6" jdbcType="VARCHAR" property="coteCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cote_id, cote_name, cote_days, cote_Auditing, cote_yn, cote_custom1, cote_custom2, 
+    cote_custom3, cote_custom4, cote_custom5, cote_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from collection_term
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from collection_term
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Collection_term">
+    insert into collection_term (cote_id, cote_name, cote_days, 
+      cote_Auditing, cote_yn, cote_custom1, 
+      cote_custom2, cote_custom3, cote_custom4, 
+      cote_custom5, cote_custom6)
+    values (#{coteId,jdbcType=VARCHAR}, #{coteName,jdbcType=VARCHAR}, #{coteDays,jdbcType=INTEGER}, 
+      #{coteAuditing,jdbcType=VARCHAR}, #{coteYn,jdbcType=VARCHAR}, #{coteCustom1,jdbcType=VARCHAR}, 
+      #{coteCustom2,jdbcType=VARCHAR}, #{coteCustom3,jdbcType=VARCHAR}, #{coteCustom4,jdbcType=VARCHAR}, 
+      #{coteCustom5,jdbcType=VARCHAR}, #{coteCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Collection_term">
+    insert into collection_term
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="coteId != null">
+        cote_id,
+      </if>
+      <if test="coteName != null">
+        cote_name,
+      </if>
+      <if test="coteDays != null">
+        cote_days,
+      </if>
+      <if test="coteAuditing != null">
+        cote_Auditing,
+      </if>
+      <if test="coteYn != null">
+        cote_yn,
+      </if>
+      <if test="coteCustom1 != null">
+        cote_custom1,
+      </if>
+      <if test="coteCustom2 != null">
+        cote_custom2,
+      </if>
+      <if test="coteCustom3 != null">
+        cote_custom3,
+      </if>
+      <if test="coteCustom4 != null">
+        cote_custom4,
+      </if>
+      <if test="coteCustom5 != null">
+        cote_custom5,
+      </if>
+      <if test="coteCustom6 != null">
+        cote_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="coteId != null">
+        #{coteId,jdbcType=VARCHAR},
+      </if>
+      <if test="coteName != null">
+        #{coteName,jdbcType=VARCHAR},
+      </if>
+      <if test="coteDays != null">
+        #{coteDays,jdbcType=INTEGER},
+      </if>
+      <if test="coteAuditing != null">
+        #{coteAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="coteYn != null">
+        #{coteYn,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom1 != null">
+        #{coteCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom2 != null">
+        #{coteCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom3 != null">
+        #{coteCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom4 != null">
+        #{coteCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom5 != null">
+        #{coteCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom6 != null">
+        #{coteCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Collection_term">
+    update collection_term
+    <set>
+      <if test="coteName != null">
+        cote_name = #{coteName,jdbcType=VARCHAR},
+      </if>
+      <if test="coteDays != null">
+        cote_days = #{coteDays,jdbcType=INTEGER},
+      </if>
+      <if test="coteAuditing != null">
+        cote_Auditing = #{coteAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="coteYn != null">
+        cote_yn = #{coteYn,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom1 != null">
+        cote_custom1 = #{coteCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom2 != null">
+        cote_custom2 = #{coteCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom3 != null">
+        cote_custom3 = #{coteCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom4 != null">
+        cote_custom4 = #{coteCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom5 != null">
+        cote_custom5 = #{coteCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="coteCustom6 != null">
+        cote_custom6 = #{coteCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Collection_term">
+    update collection_term
+    set cote_name = #{coteName,jdbcType=VARCHAR},
+      cote_days = #{coteDays,jdbcType=INTEGER},
+      cote_Auditing = #{coteAuditing,jdbcType=VARCHAR},
+      cote_yn = #{coteYn,jdbcType=VARCHAR},
+      cote_custom1 = #{coteCustom1,jdbcType=VARCHAR},
+      cote_custom2 = #{coteCustom2,jdbcType=VARCHAR},
+      cote_custom3 = #{coteCustom3,jdbcType=VARCHAR},
+      cote_custom4 = #{coteCustom4,jdbcType=VARCHAR},
+      cote_custom5 = #{coteCustom5,jdbcType=VARCHAR},
+      cote_custom6 = #{coteCustom6,jdbcType=VARCHAR}
+    where cote_id = #{coteId,jdbcType=VARCHAR}
+  </update>
+</mapper>

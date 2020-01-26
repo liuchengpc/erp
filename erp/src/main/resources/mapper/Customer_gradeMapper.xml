@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Customer_gradeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer_grade">
+    <id column="cg_id" jdbcType="VARCHAR" property="cgId" />
+    <result column="cg_name" jdbcType="VARCHAR" property="cgName" />
+    <result column="cg_remark" jdbcType="VARCHAR" property="cgRemark" />
+    <result column="cg_Auditing" jdbcType="VARCHAR" property="cgAuditing" />
+    <result column="cg_yn" jdbcType="VARCHAR" property="cgYn" />
+    <result column="cg_custom1" jdbcType="VARCHAR" property="cgCustom1" />
+    <result column="cg_custom2" jdbcType="VARCHAR" property="cgCustom2" />
+    <result column="cg_custom3" jdbcType="VARCHAR" property="cgCustom3" />
+    <result column="cg_custom4" jdbcType="VARCHAR" property="cgCustom4" />
+    <result column="cg_custom5" jdbcType="VARCHAR" property="cgCustom5" />
+    <result column="cg_custom6" jdbcType="VARCHAR" property="cgCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cg_id, cg_name, cg_remark, cg_Auditing, cg_yn, cg_custom1, cg_custom2, cg_custom3, 
+    cg_custom4, cg_custom5, cg_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_grade
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_grade
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer_grade">
+    insert into customer_grade (cg_id, cg_name, cg_remark, 
+      cg_Auditing, cg_yn, cg_custom1, 
+      cg_custom2, cg_custom3, cg_custom4, 
+      cg_custom5, cg_custom6)
+    values (#{cgId,jdbcType=VARCHAR}, #{cgName,jdbcType=VARCHAR}, #{cgRemark,jdbcType=VARCHAR}, 
+      #{cgAuditing,jdbcType=VARCHAR}, #{cgYn,jdbcType=VARCHAR}, #{cgCustom1,jdbcType=VARCHAR}, 
+      #{cgCustom2,jdbcType=VARCHAR}, #{cgCustom3,jdbcType=VARCHAR}, #{cgCustom4,jdbcType=VARCHAR}, 
+      #{cgCustom5,jdbcType=VARCHAR}, #{cgCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer_grade">
+    insert into customer_grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cgId != null">
+        cg_id,
+      </if>
+      <if test="cgName != null">
+        cg_name,
+      </if>
+      <if test="cgRemark != null">
+        cg_remark,
+      </if>
+      <if test="cgAuditing != null">
+        cg_Auditing,
+      </if>
+      <if test="cgYn != null">
+        cg_yn,
+      </if>
+      <if test="cgCustom1 != null">
+        cg_custom1,
+      </if>
+      <if test="cgCustom2 != null">
+        cg_custom2,
+      </if>
+      <if test="cgCustom3 != null">
+        cg_custom3,
+      </if>
+      <if test="cgCustom4 != null">
+        cg_custom4,
+      </if>
+      <if test="cgCustom5 != null">
+        cg_custom5,
+      </if>
+      <if test="cgCustom6 != null">
+        cg_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cgId != null">
+        #{cgId,jdbcType=VARCHAR},
+      </if>
+      <if test="cgName != null">
+        #{cgName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgRemark != null">
+        #{cgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cgAuditing != null">
+        #{cgAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cgYn != null">
+        #{cgYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom1 != null">
+        #{cgCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom2 != null">
+        #{cgCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom3 != null">
+        #{cgCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom4 != null">
+        #{cgCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom5 != null">
+        #{cgCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom6 != null">
+        #{cgCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer_grade">
+    update customer_grade
+    <set>
+      <if test="cgName != null">
+        cg_name = #{cgName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgRemark != null">
+        cg_remark = #{cgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cgAuditing != null">
+        cg_Auditing = #{cgAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cgYn != null">
+        cg_yn = #{cgYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom1 != null">
+        cg_custom1 = #{cgCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom2 != null">
+        cg_custom2 = #{cgCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom3 != null">
+        cg_custom3 = #{cgCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom4 != null">
+        cg_custom4 = #{cgCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom5 != null">
+        cg_custom5 = #{cgCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom6 != null">
+        cg_custom6 = #{cgCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer_grade">
+    update customer_grade
+    set cg_name = #{cgName,jdbcType=VARCHAR},
+      cg_remark = #{cgRemark,jdbcType=VARCHAR},
+      cg_Auditing = #{cgAuditing,jdbcType=VARCHAR},
+      cg_yn = #{cgYn,jdbcType=VARCHAR},
+      cg_custom1 = #{cgCustom1,jdbcType=VARCHAR},
+      cg_custom2 = #{cgCustom2,jdbcType=VARCHAR},
+      cg_custom3 = #{cgCustom3,jdbcType=VARCHAR},
+      cg_custom4 = #{cgCustom4,jdbcType=VARCHAR},
+      cg_custom5 = #{cgCustom5,jdbcType=VARCHAR},
+      cg_custom6 = #{cgCustom6,jdbcType=VARCHAR}
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer_grade">
+    <id column="cg_id" jdbcType="VARCHAR" property="cgId" />
+    <result column="cg_name" jdbcType="VARCHAR" property="cgName" />
+    <result column="cg_remark" jdbcType="VARCHAR" property="cgRemark" />
+    <result column="cg_Auditing" jdbcType="VARCHAR" property="cgAuditing" />
+    <result column="cg_yn" jdbcType="VARCHAR" property="cgYn" />
+    <result column="cg_custom1" jdbcType="VARCHAR" property="cgCustom1" />
+    <result column="cg_custom2" jdbcType="VARCHAR" property="cgCustom2" />
+    <result column="cg_custom3" jdbcType="VARCHAR" property="cgCustom3" />
+    <result column="cg_custom4" jdbcType="VARCHAR" property="cgCustom4" />
+    <result column="cg_custom5" jdbcType="VARCHAR" property="cgCustom5" />
+    <result column="cg_custom6" jdbcType="VARCHAR" property="cgCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cg_id, cg_name, cg_remark, cg_Auditing, cg_yn, cg_custom1, cg_custom2, cg_custom3, 
+    cg_custom4, cg_custom5, cg_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_grade
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_grade
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer_grade">
+    insert into customer_grade (cg_id, cg_name, cg_remark, 
+      cg_Auditing, cg_yn, cg_custom1, 
+      cg_custom2, cg_custom3, cg_custom4, 
+      cg_custom5, cg_custom6)
+    values (#{cgId,jdbcType=VARCHAR}, #{cgName,jdbcType=VARCHAR}, #{cgRemark,jdbcType=VARCHAR}, 
+      #{cgAuditing,jdbcType=VARCHAR}, #{cgYn,jdbcType=VARCHAR}, #{cgCustom1,jdbcType=VARCHAR}, 
+      #{cgCustom2,jdbcType=VARCHAR}, #{cgCustom3,jdbcType=VARCHAR}, #{cgCustom4,jdbcType=VARCHAR}, 
+      #{cgCustom5,jdbcType=VARCHAR}, #{cgCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer_grade">
+    insert into customer_grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cgId != null">
+        cg_id,
+      </if>
+      <if test="cgName != null">
+        cg_name,
+      </if>
+      <if test="cgRemark != null">
+        cg_remark,
+      </if>
+      <if test="cgAuditing != null">
+        cg_Auditing,
+      </if>
+      <if test="cgYn != null">
+        cg_yn,
+      </if>
+      <if test="cgCustom1 != null">
+        cg_custom1,
+      </if>
+      <if test="cgCustom2 != null">
+        cg_custom2,
+      </if>
+      <if test="cgCustom3 != null">
+        cg_custom3,
+      </if>
+      <if test="cgCustom4 != null">
+        cg_custom4,
+      </if>
+      <if test="cgCustom5 != null">
+        cg_custom5,
+      </if>
+      <if test="cgCustom6 != null">
+        cg_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cgId != null">
+        #{cgId,jdbcType=VARCHAR},
+      </if>
+      <if test="cgName != null">
+        #{cgName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgRemark != null">
+        #{cgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cgAuditing != null">
+        #{cgAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cgYn != null">
+        #{cgYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom1 != null">
+        #{cgCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom2 != null">
+        #{cgCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom3 != null">
+        #{cgCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom4 != null">
+        #{cgCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom5 != null">
+        #{cgCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom6 != null">
+        #{cgCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer_grade">
+    update customer_grade
+    <set>
+      <if test="cgName != null">
+        cg_name = #{cgName,jdbcType=VARCHAR},
+      </if>
+      <if test="cgRemark != null">
+        cg_remark = #{cgRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cgAuditing != null">
+        cg_Auditing = #{cgAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cgYn != null">
+        cg_yn = #{cgYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom1 != null">
+        cg_custom1 = #{cgCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom2 != null">
+        cg_custom2 = #{cgCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom3 != null">
+        cg_custom3 = #{cgCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom4 != null">
+        cg_custom4 = #{cgCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom5 != null">
+        cg_custom5 = #{cgCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cgCustom6 != null">
+        cg_custom6 = #{cgCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer_grade">
+    update customer_grade
+    set cg_name = #{cgName,jdbcType=VARCHAR},
+      cg_remark = #{cgRemark,jdbcType=VARCHAR},
+      cg_Auditing = #{cgAuditing,jdbcType=VARCHAR},
+      cg_yn = #{cgYn,jdbcType=VARCHAR},
+      cg_custom1 = #{cgCustom1,jdbcType=VARCHAR},
+      cg_custom2 = #{cgCustom2,jdbcType=VARCHAR},
+      cg_custom3 = #{cgCustom3,jdbcType=VARCHAR},
+      cg_custom4 = #{cgCustom4,jdbcType=VARCHAR},
+      cg_custom5 = #{cgCustom5,jdbcType=VARCHAR},
+      cg_custom6 = #{cgCustom6,jdbcType=VARCHAR}
+    where cg_id = #{cgId,jdbcType=VARCHAR}
+  </update>
+</mapper>

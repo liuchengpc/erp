@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Input_storage_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Input_storage_type">
+    <id column="ist_id" jdbcType="VARCHAR" property="istId" />
+    <result column="ist_name" jdbcType="VARCHAR" property="istName" />
+    <result column="ist_engname" jdbcType="VARCHAR" property="istEngname" />
+    <result column="ist_remark" jdbcType="VARCHAR" property="istRemark" />
+    <result column="ist_auditing" jdbcType="VARCHAR" property="istAuditing" />
+    <result column="ist_yn" jdbcType="VARCHAR" property="istYn" />
+    <result column="ist_custom1" jdbcType="VARCHAR" property="istCustom1" />
+    <result column="ist_custom2" jdbcType="VARCHAR" property="istCustom2" />
+    <result column="ist_custom3" jdbcType="VARCHAR" property="istCustom3" />
+    <result column="ist_custom4" jdbcType="VARCHAR" property="istCustom4" />
+    <result column="ist_custom5" jdbcType="VARCHAR" property="istCustom5" />
+    <result column="ist_custom6" jdbcType="VARCHAR" property="istCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ist_id, ist_name, ist_engname, ist_remark, ist_auditing, ist_yn, ist_custom1, ist_custom2, 
+    ist_custom3, ist_custom4, ist_custom5, ist_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from input_storage_type
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from input_storage_type
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Input_storage_type">
+    insert into input_storage_type (ist_id, ist_name, ist_engname, 
+      ist_remark, ist_auditing, ist_yn, 
+      ist_custom1, ist_custom2, ist_custom3, 
+      ist_custom4, ist_custom5, ist_custom6
+      )
+    values (#{istId,jdbcType=VARCHAR}, #{istName,jdbcType=VARCHAR}, #{istEngname,jdbcType=VARCHAR}, 
+      #{istRemark,jdbcType=VARCHAR}, #{istAuditing,jdbcType=VARCHAR}, #{istYn,jdbcType=VARCHAR}, 
+      #{istCustom1,jdbcType=VARCHAR}, #{istCustom2,jdbcType=VARCHAR}, #{istCustom3,jdbcType=VARCHAR}, 
+      #{istCustom4,jdbcType=VARCHAR}, #{istCustom5,jdbcType=VARCHAR}, #{istCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Input_storage_type">
+    insert into input_storage_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="istId != null">
+        ist_id,
+      </if>
+      <if test="istName != null">
+        ist_name,
+      </if>
+      <if test="istEngname != null">
+        ist_engname,
+      </if>
+      <if test="istRemark != null">
+        ist_remark,
+      </if>
+      <if test="istAuditing != null">
+        ist_auditing,
+      </if>
+      <if test="istYn != null">
+        ist_yn,
+      </if>
+      <if test="istCustom1 != null">
+        ist_custom1,
+      </if>
+      <if test="istCustom2 != null">
+        ist_custom2,
+      </if>
+      <if test="istCustom3 != null">
+        ist_custom3,
+      </if>
+      <if test="istCustom4 != null">
+        ist_custom4,
+      </if>
+      <if test="istCustom5 != null">
+        ist_custom5,
+      </if>
+      <if test="istCustom6 != null">
+        ist_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="istId != null">
+        #{istId,jdbcType=VARCHAR},
+      </if>
+      <if test="istName != null">
+        #{istName,jdbcType=VARCHAR},
+      </if>
+      <if test="istEngname != null">
+        #{istEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="istRemark != null">
+        #{istRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="istAuditing != null">
+        #{istAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="istYn != null">
+        #{istYn,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom1 != null">
+        #{istCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom2 != null">
+        #{istCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom3 != null">
+        #{istCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom4 != null">
+        #{istCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom5 != null">
+        #{istCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom6 != null">
+        #{istCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Input_storage_type">
+    update input_storage_type
+    <set>
+      <if test="istName != null">
+        ist_name = #{istName,jdbcType=VARCHAR},
+      </if>
+      <if test="istEngname != null">
+        ist_engname = #{istEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="istRemark != null">
+        ist_remark = #{istRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="istAuditing != null">
+        ist_auditing = #{istAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="istYn != null">
+        ist_yn = #{istYn,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom1 != null">
+        ist_custom1 = #{istCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom2 != null">
+        ist_custom2 = #{istCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom3 != null">
+        ist_custom3 = #{istCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom4 != null">
+        ist_custom4 = #{istCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom5 != null">
+        ist_custom5 = #{istCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom6 != null">
+        ist_custom6 = #{istCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Input_storage_type">
+    update input_storage_type
+    set ist_name = #{istName,jdbcType=VARCHAR},
+      ist_engname = #{istEngname,jdbcType=VARCHAR},
+      ist_remark = #{istRemark,jdbcType=VARCHAR},
+      ist_auditing = #{istAuditing,jdbcType=VARCHAR},
+      ist_yn = #{istYn,jdbcType=VARCHAR},
+      ist_custom1 = #{istCustom1,jdbcType=VARCHAR},
+      ist_custom2 = #{istCustom2,jdbcType=VARCHAR},
+      ist_custom3 = #{istCustom3,jdbcType=VARCHAR},
+      ist_custom4 = #{istCustom4,jdbcType=VARCHAR},
+      ist_custom5 = #{istCustom5,jdbcType=VARCHAR},
+      ist_custom6 = #{istCustom6,jdbcType=VARCHAR}
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Input_storage_type">
+    <id column="ist_id" jdbcType="VARCHAR" property="istId" />
+    <result column="ist_name" jdbcType="VARCHAR" property="istName" />
+    <result column="ist_engname" jdbcType="VARCHAR" property="istEngname" />
+    <result column="ist_remark" jdbcType="VARCHAR" property="istRemark" />
+    <result column="ist_auditing" jdbcType="VARCHAR" property="istAuditing" />
+    <result column="ist_yn" jdbcType="VARCHAR" property="istYn" />
+    <result column="ist_custom1" jdbcType="VARCHAR" property="istCustom1" />
+    <result column="ist_custom2" jdbcType="VARCHAR" property="istCustom2" />
+    <result column="ist_custom3" jdbcType="VARCHAR" property="istCustom3" />
+    <result column="ist_custom4" jdbcType="VARCHAR" property="istCustom4" />
+    <result column="ist_custom5" jdbcType="VARCHAR" property="istCustom5" />
+    <result column="ist_custom6" jdbcType="VARCHAR" property="istCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ist_id, ist_name, ist_engname, ist_remark, ist_auditing, ist_yn, ist_custom1, ist_custom2, 
+    ist_custom3, ist_custom4, ist_custom5, ist_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from input_storage_type
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from input_storage_type
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Input_storage_type">
+    insert into input_storage_type (ist_id, ist_name, ist_engname, 
+      ist_remark, ist_auditing, ist_yn, 
+      ist_custom1, ist_custom2, ist_custom3, 
+      ist_custom4, ist_custom5, ist_custom6
+      )
+    values (#{istId,jdbcType=VARCHAR}, #{istName,jdbcType=VARCHAR}, #{istEngname,jdbcType=VARCHAR}, 
+      #{istRemark,jdbcType=VARCHAR}, #{istAuditing,jdbcType=VARCHAR}, #{istYn,jdbcType=VARCHAR}, 
+      #{istCustom1,jdbcType=VARCHAR}, #{istCustom2,jdbcType=VARCHAR}, #{istCustom3,jdbcType=VARCHAR}, 
+      #{istCustom4,jdbcType=VARCHAR}, #{istCustom5,jdbcType=VARCHAR}, #{istCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Input_storage_type">
+    insert into input_storage_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="istId != null">
+        ist_id,
+      </if>
+      <if test="istName != null">
+        ist_name,
+      </if>
+      <if test="istEngname != null">
+        ist_engname,
+      </if>
+      <if test="istRemark != null">
+        ist_remark,
+      </if>
+      <if test="istAuditing != null">
+        ist_auditing,
+      </if>
+      <if test="istYn != null">
+        ist_yn,
+      </if>
+      <if test="istCustom1 != null">
+        ist_custom1,
+      </if>
+      <if test="istCustom2 != null">
+        ist_custom2,
+      </if>
+      <if test="istCustom3 != null">
+        ist_custom3,
+      </if>
+      <if test="istCustom4 != null">
+        ist_custom4,
+      </if>
+      <if test="istCustom5 != null">
+        ist_custom5,
+      </if>
+      <if test="istCustom6 != null">
+        ist_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="istId != null">
+        #{istId,jdbcType=VARCHAR},
+      </if>
+      <if test="istName != null">
+        #{istName,jdbcType=VARCHAR},
+      </if>
+      <if test="istEngname != null">
+        #{istEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="istRemark != null">
+        #{istRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="istAuditing != null">
+        #{istAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="istYn != null">
+        #{istYn,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom1 != null">
+        #{istCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom2 != null">
+        #{istCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom3 != null">
+        #{istCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom4 != null">
+        #{istCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom5 != null">
+        #{istCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom6 != null">
+        #{istCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Input_storage_type">
+    update input_storage_type
+    <set>
+      <if test="istName != null">
+        ist_name = #{istName,jdbcType=VARCHAR},
+      </if>
+      <if test="istEngname != null">
+        ist_engname = #{istEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="istRemark != null">
+        ist_remark = #{istRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="istAuditing != null">
+        ist_auditing = #{istAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="istYn != null">
+        ist_yn = #{istYn,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom1 != null">
+        ist_custom1 = #{istCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom2 != null">
+        ist_custom2 = #{istCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom3 != null">
+        ist_custom3 = #{istCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom4 != null">
+        ist_custom4 = #{istCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom5 != null">
+        ist_custom5 = #{istCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="istCustom6 != null">
+        ist_custom6 = #{istCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Input_storage_type">
+    update input_storage_type
+    set ist_name = #{istName,jdbcType=VARCHAR},
+      ist_engname = #{istEngname,jdbcType=VARCHAR},
+      ist_remark = #{istRemark,jdbcType=VARCHAR},
+      ist_auditing = #{istAuditing,jdbcType=VARCHAR},
+      ist_yn = #{istYn,jdbcType=VARCHAR},
+      ist_custom1 = #{istCustom1,jdbcType=VARCHAR},
+      ist_custom2 = #{istCustom2,jdbcType=VARCHAR},
+      ist_custom3 = #{istCustom3,jdbcType=VARCHAR},
+      ist_custom4 = #{istCustom4,jdbcType=VARCHAR},
+      ist_custom5 = #{istCustom5,jdbcType=VARCHAR},
+      ist_custom6 = #{istCustom6,jdbcType=VARCHAR}
+    where ist_id = #{istId,jdbcType=VARCHAR}
+  </update>
+</mapper>

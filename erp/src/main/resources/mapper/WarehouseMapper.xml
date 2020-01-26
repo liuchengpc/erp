@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.WarehouseMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Warehouse">
+    <id column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
+    <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="warehouse_easy_name" jdbcType="VARCHAR" property="warehouseEasyName" />
+    <result column="warehouse_engname" jdbcType="VARCHAR" property="warehouseEngname" />
+    <result column="warehouse_linkman" jdbcType="VARCHAR" property="warehouseLinkman" />
+    <result column="warehouse_linktel" jdbcType="VARCHAR" property="warehouseLinktel" />
+    <result column="warehouse_address" jdbcType="VARCHAR" property="warehouseAddress" />
+    <result column="warehouse_decoration" jdbcType="VARCHAR" property="warehouseDecoration" />
+    <result column="warehouse_Auditing" jdbcType="VARCHAR" property="warehouseAuditing" />
+    <result column="warehouse_yn" jdbcType="VARCHAR" property="warehouseYn" />
+    <result column="warehouse_custom1" jdbcType="VARCHAR" property="warehouseCustom1" />
+    <result column="warehouse_custom2" jdbcType="VARCHAR" property="warehouseCustom2" />
+    <result column="warehouse_custom3" jdbcType="VARCHAR" property="warehouseCustom3" />
+    <result column="warehouse_custom4" jdbcType="VARCHAR" property="warehouseCustom4" />
+    <result column="warehouse_custom5" jdbcType="VARCHAR" property="warehouseCustom5" />
+    <result column="warehouse_custom6" jdbcType="VARCHAR" property="warehouseCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    warehouse_id, warehouse_name, warehouse_easy_name, warehouse_engname, warehouse_linkman, 
+    warehouse_linktel, warehouse_address, warehouse_decoration, warehouse_Auditing, warehouse_yn, 
+    warehouse_custom1, warehouse_custom2, warehouse_custom3, warehouse_custom4, warehouse_custom5, 
+    warehouse_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Warehouse">
+    insert into warehouse (warehouse_id, warehouse_name, warehouse_easy_name, 
+      warehouse_engname, warehouse_linkman, warehouse_linktel, 
+      warehouse_address, warehouse_decoration, 
+      warehouse_Auditing, warehouse_yn, warehouse_custom1, 
+      warehouse_custom2, warehouse_custom3, warehouse_custom4, 
+      warehouse_custom5, warehouse_custom6)
+    values (#{warehouseId,jdbcType=VARCHAR}, #{warehouseName,jdbcType=VARCHAR}, #{warehouseEasyName,jdbcType=VARCHAR}, 
+      #{warehouseEngname,jdbcType=VARCHAR}, #{warehouseLinkman,jdbcType=VARCHAR}, #{warehouseLinktel,jdbcType=VARCHAR}, 
+      #{warehouseAddress,jdbcType=VARCHAR}, #{warehouseDecoration,jdbcType=VARCHAR}, 
+      #{warehouseAuditing,jdbcType=VARCHAR}, #{warehouseYn,jdbcType=VARCHAR}, #{warehouseCustom1,jdbcType=VARCHAR}, 
+      #{warehouseCustom2,jdbcType=VARCHAR}, #{warehouseCustom3,jdbcType=VARCHAR}, #{warehouseCustom4,jdbcType=VARCHAR}, 
+      #{warehouseCustom5,jdbcType=VARCHAR}, #{warehouseCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Warehouse">
+    insert into warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name,
+      </if>
+      <if test="warehouseEasyName != null">
+        warehouse_easy_name,
+      </if>
+      <if test="warehouseEngname != null">
+        warehouse_engname,
+      </if>
+      <if test="warehouseLinkman != null">
+        warehouse_linkman,
+      </if>
+      <if test="warehouseLinktel != null">
+        warehouse_linktel,
+      </if>
+      <if test="warehouseAddress != null">
+        warehouse_address,
+      </if>
+      <if test="warehouseDecoration != null">
+        warehouse_decoration,
+      </if>
+      <if test="warehouseAuditing != null">
+        warehouse_Auditing,
+      </if>
+      <if test="warehouseYn != null">
+        warehouse_yn,
+      </if>
+      <if test="warehouseCustom1 != null">
+        warehouse_custom1,
+      </if>
+      <if test="warehouseCustom2 != null">
+        warehouse_custom2,
+      </if>
+      <if test="warehouseCustom3 != null">
+        warehouse_custom3,
+      </if>
+      <if test="warehouseCustom4 != null">
+        warehouse_custom4,
+      </if>
+      <if test="warehouseCustom5 != null">
+        warehouse_custom5,
+      </if>
+      <if test="warehouseCustom6 != null">
+        warehouse_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEasyName != null">
+        #{warehouseEasyName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEngname != null">
+        #{warehouseEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinkman != null">
+        #{warehouseLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinktel != null">
+        #{warehouseLinktel,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseDecoration != null">
+        #{warehouseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAuditing != null">
+        #{warehouseAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseYn != null">
+        #{warehouseYn,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom1 != null">
+        #{warehouseCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom2 != null">
+        #{warehouseCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom3 != null">
+        #{warehouseCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom4 != null">
+        #{warehouseCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom5 != null">
+        #{warehouseCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom6 != null">
+        #{warehouseCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Warehouse">
+    update warehouse
+    <set>
+      <if test="warehouseName != null">
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEasyName != null">
+        warehouse_easy_name = #{warehouseEasyName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEngname != null">
+        warehouse_engname = #{warehouseEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinkman != null">
+        warehouse_linkman = #{warehouseLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinktel != null">
+        warehouse_linktel = #{warehouseLinktel,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseDecoration != null">
+        warehouse_decoration = #{warehouseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAuditing != null">
+        warehouse_Auditing = #{warehouseAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseYn != null">
+        warehouse_yn = #{warehouseYn,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom1 != null">
+        warehouse_custom1 = #{warehouseCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom2 != null">
+        warehouse_custom2 = #{warehouseCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom3 != null">
+        warehouse_custom3 = #{warehouseCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom4 != null">
+        warehouse_custom4 = #{warehouseCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom5 != null">
+        warehouse_custom5 = #{warehouseCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom6 != null">
+        warehouse_custom6 = #{warehouseCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Warehouse">
+    update warehouse
+    set warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      warehouse_easy_name = #{warehouseEasyName,jdbcType=VARCHAR},
+      warehouse_engname = #{warehouseEngname,jdbcType=VARCHAR},
+      warehouse_linkman = #{warehouseLinkman,jdbcType=VARCHAR},
+      warehouse_linktel = #{warehouseLinktel,jdbcType=VARCHAR},
+      warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      warehouse_decoration = #{warehouseDecoration,jdbcType=VARCHAR},
+      warehouse_Auditing = #{warehouseAuditing,jdbcType=VARCHAR},
+      warehouse_yn = #{warehouseYn,jdbcType=VARCHAR},
+      warehouse_custom1 = #{warehouseCustom1,jdbcType=VARCHAR},
+      warehouse_custom2 = #{warehouseCustom2,jdbcType=VARCHAR},
+      warehouse_custom3 = #{warehouseCustom3,jdbcType=VARCHAR},
+      warehouse_custom4 = #{warehouseCustom4,jdbcType=VARCHAR},
+      warehouse_custom5 = #{warehouseCustom5,jdbcType=VARCHAR},
+      warehouse_custom6 = #{warehouseCustom6,jdbcType=VARCHAR}
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Warehouse">
+    <id column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
+    <result column="warehouse_name" jdbcType="VARCHAR" property="warehouseName" />
+    <result column="warehouse_easy_name" jdbcType="VARCHAR" property="warehouseEasyName" />
+    <result column="warehouse_engname" jdbcType="VARCHAR" property="warehouseEngname" />
+    <result column="warehouse_linkman" jdbcType="VARCHAR" property="warehouseLinkman" />
+    <result column="warehouse_linktel" jdbcType="VARCHAR" property="warehouseLinktel" />
+    <result column="warehouse_address" jdbcType="VARCHAR" property="warehouseAddress" />
+    <result column="warehouse_decoration" jdbcType="VARCHAR" property="warehouseDecoration" />
+    <result column="warehouse_Auditing" jdbcType="VARCHAR" property="warehouseAuditing" />
+    <result column="warehouse_yn" jdbcType="VARCHAR" property="warehouseYn" />
+    <result column="warehouse_custom1" jdbcType="VARCHAR" property="warehouseCustom1" />
+    <result column="warehouse_custom2" jdbcType="VARCHAR" property="warehouseCustom2" />
+    <result column="warehouse_custom3" jdbcType="VARCHAR" property="warehouseCustom3" />
+    <result column="warehouse_custom4" jdbcType="VARCHAR" property="warehouseCustom4" />
+    <result column="warehouse_custom5" jdbcType="VARCHAR" property="warehouseCustom5" />
+    <result column="warehouse_custom6" jdbcType="VARCHAR" property="warehouseCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    warehouse_id, warehouse_name, warehouse_easy_name, warehouse_engname, warehouse_linkman, 
+    warehouse_linktel, warehouse_address, warehouse_decoration, warehouse_Auditing, warehouse_yn, 
+    warehouse_custom1, warehouse_custom2, warehouse_custom3, warehouse_custom4, warehouse_custom5, 
+    warehouse_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from warehouse
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Warehouse">
+    insert into warehouse (warehouse_id, warehouse_name, warehouse_easy_name, 
+      warehouse_engname, warehouse_linkman, warehouse_linktel, 
+      warehouse_address, warehouse_decoration, 
+      warehouse_Auditing, warehouse_yn, warehouse_custom1, 
+      warehouse_custom2, warehouse_custom3, warehouse_custom4, 
+      warehouse_custom5, warehouse_custom6)
+    values (#{warehouseId,jdbcType=VARCHAR}, #{warehouseName,jdbcType=VARCHAR}, #{warehouseEasyName,jdbcType=VARCHAR}, 
+      #{warehouseEngname,jdbcType=VARCHAR}, #{warehouseLinkman,jdbcType=VARCHAR}, #{warehouseLinktel,jdbcType=VARCHAR}, 
+      #{warehouseAddress,jdbcType=VARCHAR}, #{warehouseDecoration,jdbcType=VARCHAR}, 
+      #{warehouseAuditing,jdbcType=VARCHAR}, #{warehouseYn,jdbcType=VARCHAR}, #{warehouseCustom1,jdbcType=VARCHAR}, 
+      #{warehouseCustom2,jdbcType=VARCHAR}, #{warehouseCustom3,jdbcType=VARCHAR}, #{warehouseCustom4,jdbcType=VARCHAR}, 
+      #{warehouseCustom5,jdbcType=VARCHAR}, #{warehouseCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Warehouse">
+    insert into warehouse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="warehouseName != null">
+        warehouse_name,
+      </if>
+      <if test="warehouseEasyName != null">
+        warehouse_easy_name,
+      </if>
+      <if test="warehouseEngname != null">
+        warehouse_engname,
+      </if>
+      <if test="warehouseLinkman != null">
+        warehouse_linkman,
+      </if>
+      <if test="warehouseLinktel != null">
+        warehouse_linktel,
+      </if>
+      <if test="warehouseAddress != null">
+        warehouse_address,
+      </if>
+      <if test="warehouseDecoration != null">
+        warehouse_decoration,
+      </if>
+      <if test="warehouseAuditing != null">
+        warehouse_Auditing,
+      </if>
+      <if test="warehouseYn != null">
+        warehouse_yn,
+      </if>
+      <if test="warehouseCustom1 != null">
+        warehouse_custom1,
+      </if>
+      <if test="warehouseCustom2 != null">
+        warehouse_custom2,
+      </if>
+      <if test="warehouseCustom3 != null">
+        warehouse_custom3,
+      </if>
+      <if test="warehouseCustom4 != null">
+        warehouse_custom4,
+      </if>
+      <if test="warehouseCustom5 != null">
+        warehouse_custom5,
+      </if>
+      <if test="warehouseCustom6 != null">
+        warehouse_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null">
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEasyName != null">
+        #{warehouseEasyName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEngname != null">
+        #{warehouseEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinkman != null">
+        #{warehouseLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinktel != null">
+        #{warehouseLinktel,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseDecoration != null">
+        #{warehouseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAuditing != null">
+        #{warehouseAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseYn != null">
+        #{warehouseYn,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom1 != null">
+        #{warehouseCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom2 != null">
+        #{warehouseCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom3 != null">
+        #{warehouseCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom4 != null">
+        #{warehouseCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom5 != null">
+        #{warehouseCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom6 != null">
+        #{warehouseCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Warehouse">
+    update warehouse
+    <set>
+      <if test="warehouseName != null">
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEasyName != null">
+        warehouse_easy_name = #{warehouseEasyName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseEngname != null">
+        warehouse_engname = #{warehouseEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinkman != null">
+        warehouse_linkman = #{warehouseLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseLinktel != null">
+        warehouse_linktel = #{warehouseLinktel,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAddress != null">
+        warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseDecoration != null">
+        warehouse_decoration = #{warehouseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseAuditing != null">
+        warehouse_Auditing = #{warehouseAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseYn != null">
+        warehouse_yn = #{warehouseYn,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom1 != null">
+        warehouse_custom1 = #{warehouseCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom2 != null">
+        warehouse_custom2 = #{warehouseCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom3 != null">
+        warehouse_custom3 = #{warehouseCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom4 != null">
+        warehouse_custom4 = #{warehouseCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom5 != null">
+        warehouse_custom5 = #{warehouseCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseCustom6 != null">
+        warehouse_custom6 = #{warehouseCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Warehouse">
+    update warehouse
+    set warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      warehouse_easy_name = #{warehouseEasyName,jdbcType=VARCHAR},
+      warehouse_engname = #{warehouseEngname,jdbcType=VARCHAR},
+      warehouse_linkman = #{warehouseLinkman,jdbcType=VARCHAR},
+      warehouse_linktel = #{warehouseLinktel,jdbcType=VARCHAR},
+      warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      warehouse_decoration = #{warehouseDecoration,jdbcType=VARCHAR},
+      warehouse_Auditing = #{warehouseAuditing,jdbcType=VARCHAR},
+      warehouse_yn = #{warehouseYn,jdbcType=VARCHAR},
+      warehouse_custom1 = #{warehouseCustom1,jdbcType=VARCHAR},
+      warehouse_custom2 = #{warehouseCustom2,jdbcType=VARCHAR},
+      warehouse_custom3 = #{warehouseCustom3,jdbcType=VARCHAR},
+      warehouse_custom4 = #{warehouseCustom4,jdbcType=VARCHAR},
+      warehouse_custom5 = #{warehouseCustom5,jdbcType=VARCHAR},
+      warehouse_custom6 = #{warehouseCustom6,jdbcType=VARCHAR}
+    where warehouse_id = #{warehouseId,jdbcType=VARCHAR}
+  </update>
+</mapper>

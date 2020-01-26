@@ -11,8 +11,8 @@ public class Requisition {
     private String requisitionId;//id（主键 唯一）
     private String requisitionOutWarehouse;//调出仓库id（仓库表的warehouse_id）
     private String requisitionInputWarehouse;//调入仓库id（仓库表的warehouse_id）
-    private String requisitionDocumentationDate;//单据日期
-    private Date requisitionDocumentationNo;//单据号码
+    private Date requisitionDocumentationDate;//单据日期
+    private String requisitionDocumentationNo;//单据号码
     private String requisitionForm;//制单人员
     private String isReviewStaff;//复核人员
     private String requisitionRemark;//备注
@@ -68,23 +68,24 @@ public class Requisition {
         this.requisitionInputWarehouse = requisitionInputWarehouse == null ? null : requisitionInputWarehouse.trim();
     }
 
-    public String getRequisitionDocumentationDate() {
-        return requisitionDocumentationDate;
-    }
+   
+    public Date getRequisitionDocumentationDate() {
+		return requisitionDocumentationDate;
+	}
 
-    public void setRequisitionDocumentationDate(String requisitionDocumentationDate) {
-        this.requisitionDocumentationDate = requisitionDocumentationDate == null ? null : requisitionDocumentationDate.trim();
-    }
+	public void setRequisitionDocumentationDate(Date requisitionDocumentationDate) {
+		this.requisitionDocumentationDate = requisitionDocumentationDate;
+	}
 
-    public Date getRequisitionDocumentationNo() {
-        return requisitionDocumentationNo;
-    }
+	public String getRequisitionDocumentationNo() {
+		return requisitionDocumentationNo;
+	}
 
-    public void setRequisitionDocumentationNo(Date requisitionDocumentationNo) {
-        this.requisitionDocumentationNo = requisitionDocumentationNo;
-    }
+	public void setRequisitionDocumentationNo(String requisitionDocumentationNo) {
+		this.requisitionDocumentationNo = requisitionDocumentationNo;
+	}
 
-    public String getRequisitionForm() {
+	public String getRequisitionForm() {
         return requisitionForm;
     }
 

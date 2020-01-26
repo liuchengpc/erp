@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Updown_programMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Updown_program">
+    <id column="up_id" jdbcType="VARCHAR" property="upId" />
+    <result column="up_name" jdbcType="VARCHAR" property="upName" />
+    <result column="up_auditing" jdbcType="VARCHAR" property="upAuditing" />
+    <result column="up_yn" jdbcType="VARCHAR" property="upYn" />
+    <result column="up_custom1" jdbcType="VARCHAR" property="upCustom1" />
+    <result column="up_custom2" jdbcType="VARCHAR" property="upCustom2" />
+    <result column="up_custom3" jdbcType="VARCHAR" property="upCustom3" />
+    <result column="up_custom4" jdbcType="VARCHAR" property="upCustom4" />
+    <result column="up_custom5" jdbcType="VARCHAR" property="upCustom5" />
+    <result column="up_custom6" jdbcType="VARCHAR" property="upCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    up_id, up_name, up_auditing, up_yn, up_custom1, up_custom2, up_custom3, up_custom4, 
+    up_custom5, up_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from updown_program
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from updown_program
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Updown_program">
+    insert into updown_program (up_id, up_name, up_auditing, 
+      up_yn, up_custom1, up_custom2, 
+      up_custom3, up_custom4, up_custom5, 
+      up_custom6)
+    values (#{upId,jdbcType=VARCHAR}, #{upName,jdbcType=VARCHAR}, #{upAuditing,jdbcType=VARCHAR}, 
+      #{upYn,jdbcType=VARCHAR}, #{upCustom1,jdbcType=VARCHAR}, #{upCustom2,jdbcType=VARCHAR}, 
+      #{upCustom3,jdbcType=VARCHAR}, #{upCustom4,jdbcType=VARCHAR}, #{upCustom5,jdbcType=VARCHAR}, 
+      #{upCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Updown_program">
+    insert into updown_program
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        up_id,
+      </if>
+      <if test="upName != null">
+        up_name,
+      </if>
+      <if test="upAuditing != null">
+        up_auditing,
+      </if>
+      <if test="upYn != null">
+        up_yn,
+      </if>
+      <if test="upCustom1 != null">
+        up_custom1,
+      </if>
+      <if test="upCustom2 != null">
+        up_custom2,
+      </if>
+      <if test="upCustom3 != null">
+        up_custom3,
+      </if>
+      <if test="upCustom4 != null">
+        up_custom4,
+      </if>
+      <if test="upCustom5 != null">
+        up_custom5,
+      </if>
+      <if test="upCustom6 != null">
+        up_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        #{upId,jdbcType=VARCHAR},
+      </if>
+      <if test="upName != null">
+        #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAuditing != null">
+        #{upAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="upYn != null">
+        #{upYn,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom1 != null">
+        #{upCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom2 != null">
+        #{upCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom3 != null">
+        #{upCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom4 != null">
+        #{upCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom5 != null">
+        #{upCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom6 != null">
+        #{upCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Updown_program">
+    update updown_program
+    <set>
+      <if test="upName != null">
+        up_name = #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAuditing != null">
+        up_auditing = #{upAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="upYn != null">
+        up_yn = #{upYn,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom1 != null">
+        up_custom1 = #{upCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom2 != null">
+        up_custom2 = #{upCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom3 != null">
+        up_custom3 = #{upCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom4 != null">
+        up_custom4 = #{upCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom5 != null">
+        up_custom5 = #{upCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom6 != null">
+        up_custom6 = #{upCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Updown_program">
+    update updown_program
+    set up_name = #{upName,jdbcType=VARCHAR},
+      up_auditing = #{upAuditing,jdbcType=VARCHAR},
+      up_yn = #{upYn,jdbcType=VARCHAR},
+      up_custom1 = #{upCustom1,jdbcType=VARCHAR},
+      up_custom2 = #{upCustom2,jdbcType=VARCHAR},
+      up_custom3 = #{upCustom3,jdbcType=VARCHAR},
+      up_custom4 = #{upCustom4,jdbcType=VARCHAR},
+      up_custom5 = #{upCustom5,jdbcType=VARCHAR},
+      up_custom6 = #{upCustom6,jdbcType=VARCHAR}
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Updown_program">
+    <id column="up_id" jdbcType="VARCHAR" property="upId" />
+    <result column="up_name" jdbcType="VARCHAR" property="upName" />
+    <result column="up_auditing" jdbcType="VARCHAR" property="upAuditing" />
+    <result column="up_yn" jdbcType="VARCHAR" property="upYn" />
+    <result column="up_custom1" jdbcType="VARCHAR" property="upCustom1" />
+    <result column="up_custom2" jdbcType="VARCHAR" property="upCustom2" />
+    <result column="up_custom3" jdbcType="VARCHAR" property="upCustom3" />
+    <result column="up_custom4" jdbcType="VARCHAR" property="upCustom4" />
+    <result column="up_custom5" jdbcType="VARCHAR" property="upCustom5" />
+    <result column="up_custom6" jdbcType="VARCHAR" property="upCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    up_id, up_name, up_auditing, up_yn, up_custom1, up_custom2, up_custom3, up_custom4, 
+    up_custom5, up_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from updown_program
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from updown_program
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Updown_program">
+    insert into updown_program (up_id, up_name, up_auditing, 
+      up_yn, up_custom1, up_custom2, 
+      up_custom3, up_custom4, up_custom5, 
+      up_custom6)
+    values (#{upId,jdbcType=VARCHAR}, #{upName,jdbcType=VARCHAR}, #{upAuditing,jdbcType=VARCHAR}, 
+      #{upYn,jdbcType=VARCHAR}, #{upCustom1,jdbcType=VARCHAR}, #{upCustom2,jdbcType=VARCHAR}, 
+      #{upCustom3,jdbcType=VARCHAR}, #{upCustom4,jdbcType=VARCHAR}, #{upCustom5,jdbcType=VARCHAR}, 
+      #{upCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Updown_program">
+    insert into updown_program
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        up_id,
+      </if>
+      <if test="upName != null">
+        up_name,
+      </if>
+      <if test="upAuditing != null">
+        up_auditing,
+      </if>
+      <if test="upYn != null">
+        up_yn,
+      </if>
+      <if test="upCustom1 != null">
+        up_custom1,
+      </if>
+      <if test="upCustom2 != null">
+        up_custom2,
+      </if>
+      <if test="upCustom3 != null">
+        up_custom3,
+      </if>
+      <if test="upCustom4 != null">
+        up_custom4,
+      </if>
+      <if test="upCustom5 != null">
+        up_custom5,
+      </if>
+      <if test="upCustom6 != null">
+        up_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        #{upId,jdbcType=VARCHAR},
+      </if>
+      <if test="upName != null">
+        #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAuditing != null">
+        #{upAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="upYn != null">
+        #{upYn,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom1 != null">
+        #{upCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom2 != null">
+        #{upCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom3 != null">
+        #{upCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom4 != null">
+        #{upCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom5 != null">
+        #{upCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom6 != null">
+        #{upCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Updown_program">
+    update updown_program
+    <set>
+      <if test="upName != null">
+        up_name = #{upName,jdbcType=VARCHAR},
+      </if>
+      <if test="upAuditing != null">
+        up_auditing = #{upAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="upYn != null">
+        up_yn = #{upYn,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom1 != null">
+        up_custom1 = #{upCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom2 != null">
+        up_custom2 = #{upCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom3 != null">
+        up_custom3 = #{upCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom4 != null">
+        up_custom4 = #{upCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom5 != null">
+        up_custom5 = #{upCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="upCustom6 != null">
+        up_custom6 = #{upCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Updown_program">
+    update updown_program
+    set up_name = #{upName,jdbcType=VARCHAR},
+      up_auditing = #{upAuditing,jdbcType=VARCHAR},
+      up_yn = #{upYn,jdbcType=VARCHAR},
+      up_custom1 = #{upCustom1,jdbcType=VARCHAR},
+      up_custom2 = #{upCustom2,jdbcType=VARCHAR},
+      up_custom3 = #{upCustom3,jdbcType=VARCHAR},
+      up_custom4 = #{upCustom4,jdbcType=VARCHAR},
+      up_custom5 = #{upCustom5,jdbcType=VARCHAR},
+      up_custom6 = #{upCustom6,jdbcType=VARCHAR}
+    where up_id = #{upId,jdbcType=VARCHAR}
+  </update>
+</mapper>

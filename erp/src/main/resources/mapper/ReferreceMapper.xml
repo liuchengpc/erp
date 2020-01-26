@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.ReferreceMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Referrece">
+    <id column="referrece_id" jdbcType="VARCHAR" property="referreceId" />
+    <result column="recedetail_id" jdbcType="VARCHAR" property="recedetailId" />
+    <result column="receivablesbill_id" jdbcType="VARCHAR" property="receivablesbillId" />
+    <result column="receivablesbill_number" jdbcType="VARCHAR" property="receivablesbillNumber" />
+    <result column="receivablesbill_type" jdbcType="VARCHAR" property="receivablesbillType" />
+    <result column="receivablesbill_advance" jdbcType="REAL" property="receivablesbillAdvance" />
+    <result column="receivablesbill_qyadvance" jdbcType="REAL" property="receivablesbillQyadvance" />
+    <result column="referrece_remarks" jdbcType="VARCHAR" property="referreceRemarks" />
+    <result column="referrece_Auditing" jdbcType="VARCHAR" property="referreceAuditing" />
+    <result column="referrece_yn" jdbcType="VARCHAR" property="referreceYn" />
+    <result column="referrece_custom1" jdbcType="VARCHAR" property="referreceCustom1" />
+    <result column="referrece_custom2" jdbcType="VARCHAR" property="referreceCustom2" />
+    <result column="referrece_custom3" jdbcType="VARCHAR" property="referreceCustom3" />
+    <result column="referrece_custom4" jdbcType="VARCHAR" property="referreceCustom4" />
+    <result column="referrece_custom5" jdbcType="VARCHAR" property="referreceCustom5" />
+    <result column="referrece_custom6" jdbcType="VARCHAR" property="referreceCustom6" />
+    <result column="referrece_custom7" jdbcType="VARCHAR" property="referreceCustom7" />
+    <result column="referrece_custom8" jdbcType="VARCHAR" property="referreceCustom8" />
+    <result column="referrece_custom9" jdbcType="VARCHAR" property="referreceCustom9" />
+    <result column="referrece_custom10" jdbcType="VARCHAR" property="referreceCustom10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    referrece_id, recedetail_id, receivablesbill_id, receivablesbill_number, receivablesbill_type, 
+    receivablesbill_advance, receivablesbill_qyadvance, referrece_remarks, referrece_Auditing, 
+    referrece_yn, referrece_custom1, referrece_custom2, referrece_custom3, referrece_custom4, 
+    referrece_custom5, referrece_custom6, referrece_custom7, referrece_custom8, referrece_custom9, 
+    referrece_custom10
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from referrece
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from referrece
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Referrece">
+    insert into referrece (referrece_id, recedetail_id, receivablesbill_id, 
+      receivablesbill_number, receivablesbill_type, 
+      receivablesbill_advance, receivablesbill_qyadvance, 
+      referrece_remarks, referrece_Auditing, referrece_yn, 
+      referrece_custom1, referrece_custom2, referrece_custom3, 
+      referrece_custom4, referrece_custom5, referrece_custom6, 
+      referrece_custom7, referrece_custom8, referrece_custom9, 
+      referrece_custom10)
+    values (#{referreceId,jdbcType=VARCHAR}, #{recedetailId,jdbcType=VARCHAR}, #{receivablesbillId,jdbcType=VARCHAR}, 
+      #{receivablesbillNumber,jdbcType=VARCHAR}, #{receivablesbillType,jdbcType=VARCHAR}, 
+      #{receivablesbillAdvance,jdbcType=REAL}, #{receivablesbillQyadvance,jdbcType=REAL}, 
+      #{referreceRemarks,jdbcType=VARCHAR}, #{referreceAuditing,jdbcType=VARCHAR}, #{referreceYn,jdbcType=VARCHAR}, 
+      #{referreceCustom1,jdbcType=VARCHAR}, #{referreceCustom2,jdbcType=VARCHAR}, #{referreceCustom3,jdbcType=VARCHAR}, 
+      #{referreceCustom4,jdbcType=VARCHAR}, #{referreceCustom5,jdbcType=VARCHAR}, #{referreceCustom6,jdbcType=VARCHAR}, 
+      #{referreceCustom7,jdbcType=VARCHAR}, #{referreceCustom8,jdbcType=VARCHAR}, #{referreceCustom9,jdbcType=VARCHAR}, 
+      #{referreceCustom10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Referrece">
+    insert into referrece
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="referreceId != null">
+        referrece_id,
+      </if>
+      <if test="recedetailId != null">
+        recedetail_id,
+      </if>
+      <if test="receivablesbillId != null">
+        receivablesbill_id,
+      </if>
+      <if test="receivablesbillNumber != null">
+        receivablesbill_number,
+      </if>
+      <if test="receivablesbillType != null">
+        receivablesbill_type,
+      </if>
+      <if test="receivablesbillAdvance != null">
+        receivablesbill_advance,
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        receivablesbill_qyadvance,
+      </if>
+      <if test="referreceRemarks != null">
+        referrece_remarks,
+      </if>
+      <if test="referreceAuditing != null">
+        referrece_Auditing,
+      </if>
+      <if test="referreceYn != null">
+        referrece_yn,
+      </if>
+      <if test="referreceCustom1 != null">
+        referrece_custom1,
+      </if>
+      <if test="referreceCustom2 != null">
+        referrece_custom2,
+      </if>
+      <if test="referreceCustom3 != null">
+        referrece_custom3,
+      </if>
+      <if test="referreceCustom4 != null">
+        referrece_custom4,
+      </if>
+      <if test="referreceCustom5 != null">
+        referrece_custom5,
+      </if>
+      <if test="referreceCustom6 != null">
+        referrece_custom6,
+      </if>
+      <if test="referreceCustom7 != null">
+        referrece_custom7,
+      </if>
+      <if test="referreceCustom8 != null">
+        referrece_custom8,
+      </if>
+      <if test="referreceCustom9 != null">
+        referrece_custom9,
+      </if>
+      <if test="referreceCustom10 != null">
+        referrece_custom10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="referreceId != null">
+        #{referreceId,jdbcType=VARCHAR},
+      </if>
+      <if test="recedetailId != null">
+        #{recedetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillId != null">
+        #{receivablesbillId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillNumber != null">
+        #{receivablesbillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillType != null">
+        #{receivablesbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillAdvance != null">
+        #{receivablesbillAdvance,jdbcType=REAL},
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        #{receivablesbillQyadvance,jdbcType=REAL},
+      </if>
+      <if test="referreceRemarks != null">
+        #{referreceRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceAuditing != null">
+        #{referreceAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceYn != null">
+        #{referreceYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom1 != null">
+        #{referreceCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom2 != null">
+        #{referreceCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom3 != null">
+        #{referreceCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom4 != null">
+        #{referreceCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom5 != null">
+        #{referreceCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom6 != null">
+        #{referreceCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom7 != null">
+        #{referreceCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom8 != null">
+        #{referreceCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom9 != null">
+        #{referreceCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom10 != null">
+        #{referreceCustom10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Referrece">
+    update referrece
+    <set>
+      <if test="recedetailId != null">
+        recedetail_id = #{recedetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillId != null">
+        receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillNumber != null">
+        receivablesbill_number = #{receivablesbillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillType != null">
+        receivablesbill_type = #{receivablesbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillAdvance != null">
+        receivablesbill_advance = #{receivablesbillAdvance,jdbcType=REAL},
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        receivablesbill_qyadvance = #{receivablesbillQyadvance,jdbcType=REAL},
+      </if>
+      <if test="referreceRemarks != null">
+        referrece_remarks = #{referreceRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceAuditing != null">
+        referrece_Auditing = #{referreceAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceYn != null">
+        referrece_yn = #{referreceYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom1 != null">
+        referrece_custom1 = #{referreceCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom2 != null">
+        referrece_custom2 = #{referreceCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom3 != null">
+        referrece_custom3 = #{referreceCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom4 != null">
+        referrece_custom4 = #{referreceCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom5 != null">
+        referrece_custom5 = #{referreceCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom6 != null">
+        referrece_custom6 = #{referreceCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom7 != null">
+        referrece_custom7 = #{referreceCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom8 != null">
+        referrece_custom8 = #{referreceCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom9 != null">
+        referrece_custom9 = #{referreceCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom10 != null">
+        referrece_custom10 = #{referreceCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Referrece">
+    update referrece
+    set recedetail_id = #{recedetailId,jdbcType=VARCHAR},
+      receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
+      receivablesbill_number = #{receivablesbillNumber,jdbcType=VARCHAR},
+      receivablesbill_type = #{receivablesbillType,jdbcType=VARCHAR},
+      receivablesbill_advance = #{receivablesbillAdvance,jdbcType=REAL},
+      receivablesbill_qyadvance = #{receivablesbillQyadvance,jdbcType=REAL},
+      referrece_remarks = #{referreceRemarks,jdbcType=VARCHAR},
+      referrece_Auditing = #{referreceAuditing,jdbcType=VARCHAR},
+      referrece_yn = #{referreceYn,jdbcType=VARCHAR},
+      referrece_custom1 = #{referreceCustom1,jdbcType=VARCHAR},
+      referrece_custom2 = #{referreceCustom2,jdbcType=VARCHAR},
+      referrece_custom3 = #{referreceCustom3,jdbcType=VARCHAR},
+      referrece_custom4 = #{referreceCustom4,jdbcType=VARCHAR},
+      referrece_custom5 = #{referreceCustom5,jdbcType=VARCHAR},
+      referrece_custom6 = #{referreceCustom6,jdbcType=VARCHAR},
+      referrece_custom7 = #{referreceCustom7,jdbcType=VARCHAR},
+      referrece_custom8 = #{referreceCustom8,jdbcType=VARCHAR},
+      referrece_custom9 = #{referreceCustom9,jdbcType=VARCHAR},
+      referrece_custom10 = #{referreceCustom10,jdbcType=VARCHAR}
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Referrece">
+    <id column="referrece_id" jdbcType="VARCHAR" property="referreceId" />
+    <result column="recedetail_id" jdbcType="VARCHAR" property="recedetailId" />
+    <result column="receivablesbill_id" jdbcType="VARCHAR" property="receivablesbillId" />
+    <result column="receivablesbill_number" jdbcType="VARCHAR" property="receivablesbillNumber" />
+    <result column="receivablesbill_type" jdbcType="VARCHAR" property="receivablesbillType" />
+    <result column="receivablesbill_advance" jdbcType="REAL" property="receivablesbillAdvance" />
+    <result column="receivablesbill_qyadvance" jdbcType="REAL" property="receivablesbillQyadvance" />
+    <result column="referrece_remarks" jdbcType="VARCHAR" property="referreceRemarks" />
+    <result column="referrece_Auditing" jdbcType="VARCHAR" property="referreceAuditing" />
+    <result column="referrece_yn" jdbcType="VARCHAR" property="referreceYn" />
+    <result column="referrece_custom1" jdbcType="VARCHAR" property="referreceCustom1" />
+    <result column="referrece_custom2" jdbcType="VARCHAR" property="referreceCustom2" />
+    <result column="referrece_custom3" jdbcType="VARCHAR" property="referreceCustom3" />
+    <result column="referrece_custom4" jdbcType="VARCHAR" property="referreceCustom4" />
+    <result column="referrece_custom5" jdbcType="VARCHAR" property="referreceCustom5" />
+    <result column="referrece_custom6" jdbcType="VARCHAR" property="referreceCustom6" />
+    <result column="referrece_custom7" jdbcType="VARCHAR" property="referreceCustom7" />
+    <result column="referrece_custom8" jdbcType="VARCHAR" property="referreceCustom8" />
+    <result column="referrece_custom9" jdbcType="VARCHAR" property="referreceCustom9" />
+    <result column="referrece_custom10" jdbcType="VARCHAR" property="referreceCustom10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    referrece_id, recedetail_id, receivablesbill_id, receivablesbill_number, receivablesbill_type, 
+    receivablesbill_advance, receivablesbill_qyadvance, referrece_remarks, referrece_Auditing, 
+    referrece_yn, referrece_custom1, referrece_custom2, referrece_custom3, referrece_custom4, 
+    referrece_custom5, referrece_custom6, referrece_custom7, referrece_custom8, referrece_custom9, 
+    referrece_custom10
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from referrece
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from referrece
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Referrece">
+    insert into referrece (referrece_id, recedetail_id, receivablesbill_id, 
+      receivablesbill_number, receivablesbill_type, 
+      receivablesbill_advance, receivablesbill_qyadvance, 
+      referrece_remarks, referrece_Auditing, referrece_yn, 
+      referrece_custom1, referrece_custom2, referrece_custom3, 
+      referrece_custom4, referrece_custom5, referrece_custom6, 
+      referrece_custom7, referrece_custom8, referrece_custom9, 
+      referrece_custom10)
+    values (#{referreceId,jdbcType=VARCHAR}, #{recedetailId,jdbcType=VARCHAR}, #{receivablesbillId,jdbcType=VARCHAR}, 
+      #{receivablesbillNumber,jdbcType=VARCHAR}, #{receivablesbillType,jdbcType=VARCHAR}, 
+      #{receivablesbillAdvance,jdbcType=REAL}, #{receivablesbillQyadvance,jdbcType=REAL}, 
+      #{referreceRemarks,jdbcType=VARCHAR}, #{referreceAuditing,jdbcType=VARCHAR}, #{referreceYn,jdbcType=VARCHAR}, 
+      #{referreceCustom1,jdbcType=VARCHAR}, #{referreceCustom2,jdbcType=VARCHAR}, #{referreceCustom3,jdbcType=VARCHAR}, 
+      #{referreceCustom4,jdbcType=VARCHAR}, #{referreceCustom5,jdbcType=VARCHAR}, #{referreceCustom6,jdbcType=VARCHAR}, 
+      #{referreceCustom7,jdbcType=VARCHAR}, #{referreceCustom8,jdbcType=VARCHAR}, #{referreceCustom9,jdbcType=VARCHAR}, 
+      #{referreceCustom10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Referrece">
+    insert into referrece
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="referreceId != null">
+        referrece_id,
+      </if>
+      <if test="recedetailId != null">
+        recedetail_id,
+      </if>
+      <if test="receivablesbillId != null">
+        receivablesbill_id,
+      </if>
+      <if test="receivablesbillNumber != null">
+        receivablesbill_number,
+      </if>
+      <if test="receivablesbillType != null">
+        receivablesbill_type,
+      </if>
+      <if test="receivablesbillAdvance != null">
+        receivablesbill_advance,
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        receivablesbill_qyadvance,
+      </if>
+      <if test="referreceRemarks != null">
+        referrece_remarks,
+      </if>
+      <if test="referreceAuditing != null">
+        referrece_Auditing,
+      </if>
+      <if test="referreceYn != null">
+        referrece_yn,
+      </if>
+      <if test="referreceCustom1 != null">
+        referrece_custom1,
+      </if>
+      <if test="referreceCustom2 != null">
+        referrece_custom2,
+      </if>
+      <if test="referreceCustom3 != null">
+        referrece_custom3,
+      </if>
+      <if test="referreceCustom4 != null">
+        referrece_custom4,
+      </if>
+      <if test="referreceCustom5 != null">
+        referrece_custom5,
+      </if>
+      <if test="referreceCustom6 != null">
+        referrece_custom6,
+      </if>
+      <if test="referreceCustom7 != null">
+        referrece_custom7,
+      </if>
+      <if test="referreceCustom8 != null">
+        referrece_custom8,
+      </if>
+      <if test="referreceCustom9 != null">
+        referrece_custom9,
+      </if>
+      <if test="referreceCustom10 != null">
+        referrece_custom10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="referreceId != null">
+        #{referreceId,jdbcType=VARCHAR},
+      </if>
+      <if test="recedetailId != null">
+        #{recedetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillId != null">
+        #{receivablesbillId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillNumber != null">
+        #{receivablesbillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillType != null">
+        #{receivablesbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillAdvance != null">
+        #{receivablesbillAdvance,jdbcType=REAL},
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        #{receivablesbillQyadvance,jdbcType=REAL},
+      </if>
+      <if test="referreceRemarks != null">
+        #{referreceRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceAuditing != null">
+        #{referreceAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceYn != null">
+        #{referreceYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom1 != null">
+        #{referreceCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom2 != null">
+        #{referreceCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom3 != null">
+        #{referreceCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom4 != null">
+        #{referreceCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom5 != null">
+        #{referreceCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom6 != null">
+        #{referreceCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom7 != null">
+        #{referreceCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom8 != null">
+        #{referreceCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom9 != null">
+        #{referreceCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom10 != null">
+        #{referreceCustom10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Referrece">
+    update referrece
+    <set>
+      <if test="recedetailId != null">
+        recedetail_id = #{recedetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillId != null">
+        receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillNumber != null">
+        receivablesbill_number = #{receivablesbillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillType != null">
+        receivablesbill_type = #{receivablesbillType,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesbillAdvance != null">
+        receivablesbill_advance = #{receivablesbillAdvance,jdbcType=REAL},
+      </if>
+      <if test="receivablesbillQyadvance != null">
+        receivablesbill_qyadvance = #{receivablesbillQyadvance,jdbcType=REAL},
+      </if>
+      <if test="referreceRemarks != null">
+        referrece_remarks = #{referreceRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceAuditing != null">
+        referrece_Auditing = #{referreceAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceYn != null">
+        referrece_yn = #{referreceYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom1 != null">
+        referrece_custom1 = #{referreceCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom2 != null">
+        referrece_custom2 = #{referreceCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom3 != null">
+        referrece_custom3 = #{referreceCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom4 != null">
+        referrece_custom4 = #{referreceCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom5 != null">
+        referrece_custom5 = #{referreceCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom6 != null">
+        referrece_custom6 = #{referreceCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom7 != null">
+        referrece_custom7 = #{referreceCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom8 != null">
+        referrece_custom8 = #{referreceCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom9 != null">
+        referrece_custom9 = #{referreceCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="referreceCustom10 != null">
+        referrece_custom10 = #{referreceCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Referrece">
+    update referrece
+    set recedetail_id = #{recedetailId,jdbcType=VARCHAR},
+      receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
+      receivablesbill_number = #{receivablesbillNumber,jdbcType=VARCHAR},
+      receivablesbill_type = #{receivablesbillType,jdbcType=VARCHAR},
+      receivablesbill_advance = #{receivablesbillAdvance,jdbcType=REAL},
+      receivablesbill_qyadvance = #{receivablesbillQyadvance,jdbcType=REAL},
+      referrece_remarks = #{referreceRemarks,jdbcType=VARCHAR},
+      referrece_Auditing = #{referreceAuditing,jdbcType=VARCHAR},
+      referrece_yn = #{referreceYn,jdbcType=VARCHAR},
+      referrece_custom1 = #{referreceCustom1,jdbcType=VARCHAR},
+      referrece_custom2 = #{referreceCustom2,jdbcType=VARCHAR},
+      referrece_custom3 = #{referreceCustom3,jdbcType=VARCHAR},
+      referrece_custom4 = #{referreceCustom4,jdbcType=VARCHAR},
+      referrece_custom5 = #{referreceCustom5,jdbcType=VARCHAR},
+      referrece_custom6 = #{referreceCustom6,jdbcType=VARCHAR},
+      referrece_custom7 = #{referreceCustom7,jdbcType=VARCHAR},
+      referrece_custom8 = #{referreceCustom8,jdbcType=VARCHAR},
+      referrece_custom9 = #{referreceCustom9,jdbcType=VARCHAR},
+      referrece_custom10 = #{referreceCustom10,jdbcType=VARCHAR}
+    where referrece_id = #{referreceId,jdbcType=VARCHAR}
+  </update>
+</mapper>

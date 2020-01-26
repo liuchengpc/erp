@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Casha_ccountMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Casha_ccount">
+    <id column="cc_id" jdbcType="VARCHAR" property="ccId" />
+    <result column="cc_name" jdbcType="VARCHAR" property="ccName" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="cc_subject" jdbcType="VARCHAR" property="ccSubject" />
+    <result column="cc_initialbalance" jdbcType="REAL" property="ccInitialbalance" />
+    <result column="cc_currentbalance" jdbcType="REAL" property="ccCurrentbalance" />
+    <result column="cc_remark" jdbcType="VARCHAR" property="ccRemark" />
+    <result column="cc_Auditing" jdbcType="VARCHAR" property="ccAuditing" />
+    <result column="cc_yn" jdbcType="VARCHAR" property="ccYn" />
+    <result column="cc_custom1" jdbcType="VARCHAR" property="ccCustom1" />
+    <result column="cc_custom2" jdbcType="VARCHAR" property="ccCustom2" />
+    <result column="cc_custom3" jdbcType="VARCHAR" property="ccCustom3" />
+    <result column="cc_custom4" jdbcType="VARCHAR" property="ccCustom4" />
+    <result column="cc_custom5" jdbcType="VARCHAR" property="ccCustom5" />
+    <result column="cc_custom6" jdbcType="VARCHAR" property="ccCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cc_id, cc_name, currency_id, cc_subject, cc_initialbalance, cc_currentbalance, cc_remark, 
+    cc_Auditing, cc_yn, cc_custom1, cc_custom2, cc_custom3, cc_custom4, cc_custom5, cc_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from casha_ccount
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from casha_ccount
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Casha_ccount">
+    insert into casha_ccount (cc_id, cc_name, currency_id, 
+      cc_subject, cc_initialbalance, cc_currentbalance, 
+      cc_remark, cc_Auditing, cc_yn, 
+      cc_custom1, cc_custom2, cc_custom3, 
+      cc_custom4, cc_custom5, cc_custom6
+      )
+    values (#{ccId,jdbcType=VARCHAR}, #{ccName,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, 
+      #{ccSubject,jdbcType=VARCHAR}, #{ccInitialbalance,jdbcType=REAL}, #{ccCurrentbalance,jdbcType=REAL}, 
+      #{ccRemark,jdbcType=VARCHAR}, #{ccAuditing,jdbcType=VARCHAR}, #{ccYn,jdbcType=VARCHAR}, 
+      #{ccCustom1,jdbcType=VARCHAR}, #{ccCustom2,jdbcType=VARCHAR}, #{ccCustom3,jdbcType=VARCHAR}, 
+      #{ccCustom4,jdbcType=VARCHAR}, #{ccCustom5,jdbcType=VARCHAR}, #{ccCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Casha_ccount">
+    insert into casha_ccount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="ccName != null">
+        cc_name,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="ccSubject != null">
+        cc_subject,
+      </if>
+      <if test="ccInitialbalance != null">
+        cc_initialbalance,
+      </if>
+      <if test="ccCurrentbalance != null">
+        cc_currentbalance,
+      </if>
+      <if test="ccRemark != null">
+        cc_remark,
+      </if>
+      <if test="ccAuditing != null">
+        cc_Auditing,
+      </if>
+      <if test="ccYn != null">
+        cc_yn,
+      </if>
+      <if test="ccCustom1 != null">
+        cc_custom1,
+      </if>
+      <if test="ccCustom2 != null">
+        cc_custom2,
+      </if>
+      <if test="ccCustom3 != null">
+        cc_custom3,
+      </if>
+      <if test="ccCustom4 != null">
+        cc_custom4,
+      </if>
+      <if test="ccCustom5 != null">
+        cc_custom5,
+      </if>
+      <if test="ccCustom6 != null">
+        cc_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        #{ccId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccName != null">
+        #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSubject != null">
+        #{ccSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="ccInitialbalance != null">
+        #{ccInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="ccCurrentbalance != null">
+        #{ccCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="ccRemark != null">
+        #{ccRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ccAuditing != null">
+        #{ccAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ccYn != null">
+        #{ccYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom1 != null">
+        #{ccCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom2 != null">
+        #{ccCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom3 != null">
+        #{ccCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom4 != null">
+        #{ccCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom5 != null">
+        #{ccCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom6 != null">
+        #{ccCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Casha_ccount">
+    update casha_ccount
+    <set>
+      <if test="ccName != null">
+        cc_name = #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSubject != null">
+        cc_subject = #{ccSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="ccInitialbalance != null">
+        cc_initialbalance = #{ccInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="ccCurrentbalance != null">
+        cc_currentbalance = #{ccCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="ccRemark != null">
+        cc_remark = #{ccRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ccAuditing != null">
+        cc_Auditing = #{ccAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ccYn != null">
+        cc_yn = #{ccYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom1 != null">
+        cc_custom1 = #{ccCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom2 != null">
+        cc_custom2 = #{ccCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom3 != null">
+        cc_custom3 = #{ccCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom4 != null">
+        cc_custom4 = #{ccCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom5 != null">
+        cc_custom5 = #{ccCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom6 != null">
+        cc_custom6 = #{ccCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Casha_ccount">
+    update casha_ccount
+    set cc_name = #{ccName,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      cc_subject = #{ccSubject,jdbcType=VARCHAR},
+      cc_initialbalance = #{ccInitialbalance,jdbcType=REAL},
+      cc_currentbalance = #{ccCurrentbalance,jdbcType=REAL},
+      cc_remark = #{ccRemark,jdbcType=VARCHAR},
+      cc_Auditing = #{ccAuditing,jdbcType=VARCHAR},
+      cc_yn = #{ccYn,jdbcType=VARCHAR},
+      cc_custom1 = #{ccCustom1,jdbcType=VARCHAR},
+      cc_custom2 = #{ccCustom2,jdbcType=VARCHAR},
+      cc_custom3 = #{ccCustom3,jdbcType=VARCHAR},
+      cc_custom4 = #{ccCustom4,jdbcType=VARCHAR},
+      cc_custom5 = #{ccCustom5,jdbcType=VARCHAR},
+      cc_custom6 = #{ccCustom6,jdbcType=VARCHAR}
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Casha_ccount">
+    <id column="cc_id" jdbcType="VARCHAR" property="ccId" />
+    <result column="cc_name" jdbcType="VARCHAR" property="ccName" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="cc_subject" jdbcType="VARCHAR" property="ccSubject" />
+    <result column="cc_initialbalance" jdbcType="REAL" property="ccInitialbalance" />
+    <result column="cc_currentbalance" jdbcType="REAL" property="ccCurrentbalance" />
+    <result column="cc_remark" jdbcType="VARCHAR" property="ccRemark" />
+    <result column="cc_Auditing" jdbcType="VARCHAR" property="ccAuditing" />
+    <result column="cc_yn" jdbcType="VARCHAR" property="ccYn" />
+    <result column="cc_custom1" jdbcType="VARCHAR" property="ccCustom1" />
+    <result column="cc_custom2" jdbcType="VARCHAR" property="ccCustom2" />
+    <result column="cc_custom3" jdbcType="VARCHAR" property="ccCustom3" />
+    <result column="cc_custom4" jdbcType="VARCHAR" property="ccCustom4" />
+    <result column="cc_custom5" jdbcType="VARCHAR" property="ccCustom5" />
+    <result column="cc_custom6" jdbcType="VARCHAR" property="ccCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cc_id, cc_name, currency_id, cc_subject, cc_initialbalance, cc_currentbalance, cc_remark, 
+    cc_Auditing, cc_yn, cc_custom1, cc_custom2, cc_custom3, cc_custom4, cc_custom5, cc_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from casha_ccount
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from casha_ccount
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Casha_ccount">
+    insert into casha_ccount (cc_id, cc_name, currency_id, 
+      cc_subject, cc_initialbalance, cc_currentbalance, 
+      cc_remark, cc_Auditing, cc_yn, 
+      cc_custom1, cc_custom2, cc_custom3, 
+      cc_custom4, cc_custom5, cc_custom6
+      )
+    values (#{ccId,jdbcType=VARCHAR}, #{ccName,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, 
+      #{ccSubject,jdbcType=VARCHAR}, #{ccInitialbalance,jdbcType=REAL}, #{ccCurrentbalance,jdbcType=REAL}, 
+      #{ccRemark,jdbcType=VARCHAR}, #{ccAuditing,jdbcType=VARCHAR}, #{ccYn,jdbcType=VARCHAR}, 
+      #{ccCustom1,jdbcType=VARCHAR}, #{ccCustom2,jdbcType=VARCHAR}, #{ccCustom3,jdbcType=VARCHAR}, 
+      #{ccCustom4,jdbcType=VARCHAR}, #{ccCustom5,jdbcType=VARCHAR}, #{ccCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Casha_ccount">
+    insert into casha_ccount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="ccName != null">
+        cc_name,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="ccSubject != null">
+        cc_subject,
+      </if>
+      <if test="ccInitialbalance != null">
+        cc_initialbalance,
+      </if>
+      <if test="ccCurrentbalance != null">
+        cc_currentbalance,
+      </if>
+      <if test="ccRemark != null">
+        cc_remark,
+      </if>
+      <if test="ccAuditing != null">
+        cc_Auditing,
+      </if>
+      <if test="ccYn != null">
+        cc_yn,
+      </if>
+      <if test="ccCustom1 != null">
+        cc_custom1,
+      </if>
+      <if test="ccCustom2 != null">
+        cc_custom2,
+      </if>
+      <if test="ccCustom3 != null">
+        cc_custom3,
+      </if>
+      <if test="ccCustom4 != null">
+        cc_custom4,
+      </if>
+      <if test="ccCustom5 != null">
+        cc_custom5,
+      </if>
+      <if test="ccCustom6 != null">
+        cc_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        #{ccId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccName != null">
+        #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSubject != null">
+        #{ccSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="ccInitialbalance != null">
+        #{ccInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="ccCurrentbalance != null">
+        #{ccCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="ccRemark != null">
+        #{ccRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ccAuditing != null">
+        #{ccAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ccYn != null">
+        #{ccYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom1 != null">
+        #{ccCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom2 != null">
+        #{ccCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom3 != null">
+        #{ccCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom4 != null">
+        #{ccCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom5 != null">
+        #{ccCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom6 != null">
+        #{ccCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Casha_ccount">
+    update casha_ccount
+    <set>
+      <if test="ccName != null">
+        cc_name = #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSubject != null">
+        cc_subject = #{ccSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="ccInitialbalance != null">
+        cc_initialbalance = #{ccInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="ccCurrentbalance != null">
+        cc_currentbalance = #{ccCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="ccRemark != null">
+        cc_remark = #{ccRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ccAuditing != null">
+        cc_Auditing = #{ccAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ccYn != null">
+        cc_yn = #{ccYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom1 != null">
+        cc_custom1 = #{ccCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom2 != null">
+        cc_custom2 = #{ccCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom3 != null">
+        cc_custom3 = #{ccCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom4 != null">
+        cc_custom4 = #{ccCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom5 != null">
+        cc_custom5 = #{ccCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ccCustom6 != null">
+        cc_custom6 = #{ccCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Casha_ccount">
+    update casha_ccount
+    set cc_name = #{ccName,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      cc_subject = #{ccSubject,jdbcType=VARCHAR},
+      cc_initialbalance = #{ccInitialbalance,jdbcType=REAL},
+      cc_currentbalance = #{ccCurrentbalance,jdbcType=REAL},
+      cc_remark = #{ccRemark,jdbcType=VARCHAR},
+      cc_Auditing = #{ccAuditing,jdbcType=VARCHAR},
+      cc_yn = #{ccYn,jdbcType=VARCHAR},
+      cc_custom1 = #{ccCustom1,jdbcType=VARCHAR},
+      cc_custom2 = #{ccCustom2,jdbcType=VARCHAR},
+      cc_custom3 = #{ccCustom3,jdbcType=VARCHAR},
+      cc_custom4 = #{ccCustom4,jdbcType=VARCHAR},
+      cc_custom5 = #{ccCustom5,jdbcType=VARCHAR},
+      cc_custom6 = #{ccCustom6,jdbcType=VARCHAR}
+    where cc_id = #{ccId,jdbcType=VARCHAR}
+  </update>
+</mapper>

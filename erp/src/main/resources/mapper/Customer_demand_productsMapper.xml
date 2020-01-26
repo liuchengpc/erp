@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Customer_demand_productsMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer_demand_products">
+    <id column="cdp_id" jdbcType="VARCHAR" property="cdpId" />
+    <result column="pc_id" jdbcType="VARCHAR" property="pcId" />
+    <result column="cdp_name" jdbcType="VARCHAR" property="cdpName" />
+    <result column="cdp_size" jdbcType="VARCHAR" property="cdpSize" />
+    <result column="cdp_unit" jdbcType="VARCHAR" property="cdpUnit" />
+    <result column="cdp_num" jdbcType="INTEGER" property="cdpNum" />
+    <result column="cdp_Affordable_Price" jdbcType="REAL" property="cdpAffordablePrice" />
+    <result column="cdp_Scheduled_quotation" jdbcType="REAL" property="cdpScheduledQuotation" />
+    <result column="cdp_Counterpart_Offer" jdbcType="REAL" property="cdpCounterpartOffer" />
+    <result column="cdp_advance_date" jdbcType="DATE" property="cdpAdvanceDate" />
+    <result column="cdp_remark" jdbcType="VARCHAR" property="cdpRemark" />
+    <result column="cdp_Auditing" jdbcType="VARCHAR" property="cdpAuditing" />
+    <result column="cdp_yn" jdbcType="VARCHAR" property="cdpYn" />
+    <result column="cdp_custom1" jdbcType="VARCHAR" property="cdpCustom1" />
+    <result column="cdp_custom2" jdbcType="VARCHAR" property="cdpCustom2" />
+    <result column="cdp_custom3" jdbcType="VARCHAR" property="cdpCustom3" />
+    <result column="cdp_custom4" jdbcType="VARCHAR" property="cdpCustom4" />
+    <result column="cdp_custom5" jdbcType="VARCHAR" property="cdpCustom5" />
+    <result column="cdp_custom6" jdbcType="VARCHAR" property="cdpCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cdp_id, pc_id, cdp_name, cdp_size, cdp_unit, cdp_num, cdp_Affordable_Price, cdp_Scheduled_quotation, 
+    cdp_Counterpart_Offer, cdp_advance_date, cdp_remark, cdp_Auditing, cdp_yn, cdp_custom1, 
+    cdp_custom2, cdp_custom3, cdp_custom4, cdp_custom5, cdp_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_demand_products
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_demand_products
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer_demand_products">
+    insert into customer_demand_products (cdp_id, pc_id, cdp_name, 
+      cdp_size, cdp_unit, cdp_num, 
+      cdp_Affordable_Price, cdp_Scheduled_quotation, cdp_Counterpart_Offer, 
+      cdp_advance_date, cdp_remark, cdp_Auditing, 
+      cdp_yn, cdp_custom1, cdp_custom2, 
+      cdp_custom3, cdp_custom4, cdp_custom5, 
+      cdp_custom6)
+    values (#{cdpId,jdbcType=VARCHAR}, #{pcId,jdbcType=VARCHAR}, #{cdpName,jdbcType=VARCHAR}, 
+      #{cdpSize,jdbcType=VARCHAR}, #{cdpUnit,jdbcType=VARCHAR}, #{cdpNum,jdbcType=INTEGER}, 
+      #{cdpAffordablePrice,jdbcType=REAL}, #{cdpScheduledQuotation,jdbcType=REAL}, #{cdpCounterpartOffer,jdbcType=REAL}, 
+      #{cdpAdvanceDate,jdbcType=DATE}, #{cdpRemark,jdbcType=VARCHAR}, #{cdpAuditing,jdbcType=VARCHAR}, 
+      #{cdpYn,jdbcType=VARCHAR}, #{cdpCustom1,jdbcType=VARCHAR}, #{cdpCustom2,jdbcType=VARCHAR}, 
+      #{cdpCustom3,jdbcType=VARCHAR}, #{cdpCustom4,jdbcType=VARCHAR}, #{cdpCustom5,jdbcType=VARCHAR}, 
+      #{cdpCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer_demand_products">
+    insert into customer_demand_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cdpId != null">
+        cdp_id,
+      </if>
+      <if test="pcId != null">
+        pc_id,
+      </if>
+      <if test="cdpName != null">
+        cdp_name,
+      </if>
+      <if test="cdpSize != null">
+        cdp_size,
+      </if>
+      <if test="cdpUnit != null">
+        cdp_unit,
+      </if>
+      <if test="cdpNum != null">
+        cdp_num,
+      </if>
+      <if test="cdpAffordablePrice != null">
+        cdp_Affordable_Price,
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        cdp_Scheduled_quotation,
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        cdp_Counterpart_Offer,
+      </if>
+      <if test="cdpAdvanceDate != null">
+        cdp_advance_date,
+      </if>
+      <if test="cdpRemark != null">
+        cdp_remark,
+      </if>
+      <if test="cdpAuditing != null">
+        cdp_Auditing,
+      </if>
+      <if test="cdpYn != null">
+        cdp_yn,
+      </if>
+      <if test="cdpCustom1 != null">
+        cdp_custom1,
+      </if>
+      <if test="cdpCustom2 != null">
+        cdp_custom2,
+      </if>
+      <if test="cdpCustom3 != null">
+        cdp_custom3,
+      </if>
+      <if test="cdpCustom4 != null">
+        cdp_custom4,
+      </if>
+      <if test="cdpCustom5 != null">
+        cdp_custom5,
+      </if>
+      <if test="cdpCustom6 != null">
+        cdp_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cdpId != null">
+        #{cdpId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcId != null">
+        #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpName != null">
+        #{cdpName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpSize != null">
+        #{cdpSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpUnit != null">
+        #{cdpUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpNum != null">
+        #{cdpNum,jdbcType=INTEGER},
+      </if>
+      <if test="cdpAffordablePrice != null">
+        #{cdpAffordablePrice,jdbcType=REAL},
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        #{cdpScheduledQuotation,jdbcType=REAL},
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        #{cdpCounterpartOffer,jdbcType=REAL},
+      </if>
+      <if test="cdpAdvanceDate != null">
+        #{cdpAdvanceDate,jdbcType=DATE},
+      </if>
+      <if test="cdpRemark != null">
+        #{cdpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpAuditing != null">
+        #{cdpAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpYn != null">
+        #{cdpYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom1 != null">
+        #{cdpCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom2 != null">
+        #{cdpCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom3 != null">
+        #{cdpCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom4 != null">
+        #{cdpCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom5 != null">
+        #{cdpCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom6 != null">
+        #{cdpCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer_demand_products">
+    update customer_demand_products
+    <set>
+      <if test="pcId != null">
+        pc_id = #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpName != null">
+        cdp_name = #{cdpName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpSize != null">
+        cdp_size = #{cdpSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpUnit != null">
+        cdp_unit = #{cdpUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpNum != null">
+        cdp_num = #{cdpNum,jdbcType=INTEGER},
+      </if>
+      <if test="cdpAffordablePrice != null">
+        cdp_Affordable_Price = #{cdpAffordablePrice,jdbcType=REAL},
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        cdp_Scheduled_quotation = #{cdpScheduledQuotation,jdbcType=REAL},
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        cdp_Counterpart_Offer = #{cdpCounterpartOffer,jdbcType=REAL},
+      </if>
+      <if test="cdpAdvanceDate != null">
+        cdp_advance_date = #{cdpAdvanceDate,jdbcType=DATE},
+      </if>
+      <if test="cdpRemark != null">
+        cdp_remark = #{cdpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpAuditing != null">
+        cdp_Auditing = #{cdpAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpYn != null">
+        cdp_yn = #{cdpYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom1 != null">
+        cdp_custom1 = #{cdpCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom2 != null">
+        cdp_custom2 = #{cdpCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom3 != null">
+        cdp_custom3 = #{cdpCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom4 != null">
+        cdp_custom4 = #{cdpCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom5 != null">
+        cdp_custom5 = #{cdpCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom6 != null">
+        cdp_custom6 = #{cdpCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer_demand_products">
+    update customer_demand_products
+    set pc_id = #{pcId,jdbcType=VARCHAR},
+      cdp_name = #{cdpName,jdbcType=VARCHAR},
+      cdp_size = #{cdpSize,jdbcType=VARCHAR},
+      cdp_unit = #{cdpUnit,jdbcType=VARCHAR},
+      cdp_num = #{cdpNum,jdbcType=INTEGER},
+      cdp_Affordable_Price = #{cdpAffordablePrice,jdbcType=REAL},
+      cdp_Scheduled_quotation = #{cdpScheduledQuotation,jdbcType=REAL},
+      cdp_Counterpart_Offer = #{cdpCounterpartOffer,jdbcType=REAL},
+      cdp_advance_date = #{cdpAdvanceDate,jdbcType=DATE},
+      cdp_remark = #{cdpRemark,jdbcType=VARCHAR},
+      cdp_Auditing = #{cdpAuditing,jdbcType=VARCHAR},
+      cdp_yn = #{cdpYn,jdbcType=VARCHAR},
+      cdp_custom1 = #{cdpCustom1,jdbcType=VARCHAR},
+      cdp_custom2 = #{cdpCustom2,jdbcType=VARCHAR},
+      cdp_custom3 = #{cdpCustom3,jdbcType=VARCHAR},
+      cdp_custom4 = #{cdpCustom4,jdbcType=VARCHAR},
+      cdp_custom5 = #{cdpCustom5,jdbcType=VARCHAR},
+      cdp_custom6 = #{cdpCustom6,jdbcType=VARCHAR}
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer_demand_products">
+    <id column="cdp_id" jdbcType="VARCHAR" property="cdpId" />
+    <result column="pc_id" jdbcType="VARCHAR" property="pcId" />
+    <result column="cdp_name" jdbcType="VARCHAR" property="cdpName" />
+    <result column="cdp_size" jdbcType="VARCHAR" property="cdpSize" />
+    <result column="cdp_unit" jdbcType="VARCHAR" property="cdpUnit" />
+    <result column="cdp_num" jdbcType="INTEGER" property="cdpNum" />
+    <result column="cdp_Affordable_Price" jdbcType="REAL" property="cdpAffordablePrice" />
+    <result column="cdp_Scheduled_quotation" jdbcType="REAL" property="cdpScheduledQuotation" />
+    <result column="cdp_Counterpart_Offer" jdbcType="REAL" property="cdpCounterpartOffer" />
+    <result column="cdp_advance_date" jdbcType="DATE" property="cdpAdvanceDate" />
+    <result column="cdp_remark" jdbcType="VARCHAR" property="cdpRemark" />
+    <result column="cdp_Auditing" jdbcType="VARCHAR" property="cdpAuditing" />
+    <result column="cdp_yn" jdbcType="VARCHAR" property="cdpYn" />
+    <result column="cdp_custom1" jdbcType="VARCHAR" property="cdpCustom1" />
+    <result column="cdp_custom2" jdbcType="VARCHAR" property="cdpCustom2" />
+    <result column="cdp_custom3" jdbcType="VARCHAR" property="cdpCustom3" />
+    <result column="cdp_custom4" jdbcType="VARCHAR" property="cdpCustom4" />
+    <result column="cdp_custom5" jdbcType="VARCHAR" property="cdpCustom5" />
+    <result column="cdp_custom6" jdbcType="VARCHAR" property="cdpCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cdp_id, pc_id, cdp_name, cdp_size, cdp_unit, cdp_num, cdp_Affordable_Price, cdp_Scheduled_quotation, 
+    cdp_Counterpart_Offer, cdp_advance_date, cdp_remark, cdp_Auditing, cdp_yn, cdp_custom1, 
+    cdp_custom2, cdp_custom3, cdp_custom4, cdp_custom5, cdp_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_demand_products
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_demand_products
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer_demand_products">
+    insert into customer_demand_products (cdp_id, pc_id, cdp_name, 
+      cdp_size, cdp_unit, cdp_num, 
+      cdp_Affordable_Price, cdp_Scheduled_quotation, cdp_Counterpart_Offer, 
+      cdp_advance_date, cdp_remark, cdp_Auditing, 
+      cdp_yn, cdp_custom1, cdp_custom2, 
+      cdp_custom3, cdp_custom4, cdp_custom5, 
+      cdp_custom6)
+    values (#{cdpId,jdbcType=VARCHAR}, #{pcId,jdbcType=VARCHAR}, #{cdpName,jdbcType=VARCHAR}, 
+      #{cdpSize,jdbcType=VARCHAR}, #{cdpUnit,jdbcType=VARCHAR}, #{cdpNum,jdbcType=INTEGER}, 
+      #{cdpAffordablePrice,jdbcType=REAL}, #{cdpScheduledQuotation,jdbcType=REAL}, #{cdpCounterpartOffer,jdbcType=REAL}, 
+      #{cdpAdvanceDate,jdbcType=DATE}, #{cdpRemark,jdbcType=VARCHAR}, #{cdpAuditing,jdbcType=VARCHAR}, 
+      #{cdpYn,jdbcType=VARCHAR}, #{cdpCustom1,jdbcType=VARCHAR}, #{cdpCustom2,jdbcType=VARCHAR}, 
+      #{cdpCustom3,jdbcType=VARCHAR}, #{cdpCustom4,jdbcType=VARCHAR}, #{cdpCustom5,jdbcType=VARCHAR}, 
+      #{cdpCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer_demand_products">
+    insert into customer_demand_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cdpId != null">
+        cdp_id,
+      </if>
+      <if test="pcId != null">
+        pc_id,
+      </if>
+      <if test="cdpName != null">
+        cdp_name,
+      </if>
+      <if test="cdpSize != null">
+        cdp_size,
+      </if>
+      <if test="cdpUnit != null">
+        cdp_unit,
+      </if>
+      <if test="cdpNum != null">
+        cdp_num,
+      </if>
+      <if test="cdpAffordablePrice != null">
+        cdp_Affordable_Price,
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        cdp_Scheduled_quotation,
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        cdp_Counterpart_Offer,
+      </if>
+      <if test="cdpAdvanceDate != null">
+        cdp_advance_date,
+      </if>
+      <if test="cdpRemark != null">
+        cdp_remark,
+      </if>
+      <if test="cdpAuditing != null">
+        cdp_Auditing,
+      </if>
+      <if test="cdpYn != null">
+        cdp_yn,
+      </if>
+      <if test="cdpCustom1 != null">
+        cdp_custom1,
+      </if>
+      <if test="cdpCustom2 != null">
+        cdp_custom2,
+      </if>
+      <if test="cdpCustom3 != null">
+        cdp_custom3,
+      </if>
+      <if test="cdpCustom4 != null">
+        cdp_custom4,
+      </if>
+      <if test="cdpCustom5 != null">
+        cdp_custom5,
+      </if>
+      <if test="cdpCustom6 != null">
+        cdp_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cdpId != null">
+        #{cdpId,jdbcType=VARCHAR},
+      </if>
+      <if test="pcId != null">
+        #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpName != null">
+        #{cdpName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpSize != null">
+        #{cdpSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpUnit != null">
+        #{cdpUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpNum != null">
+        #{cdpNum,jdbcType=INTEGER},
+      </if>
+      <if test="cdpAffordablePrice != null">
+        #{cdpAffordablePrice,jdbcType=REAL},
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        #{cdpScheduledQuotation,jdbcType=REAL},
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        #{cdpCounterpartOffer,jdbcType=REAL},
+      </if>
+      <if test="cdpAdvanceDate != null">
+        #{cdpAdvanceDate,jdbcType=DATE},
+      </if>
+      <if test="cdpRemark != null">
+        #{cdpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpAuditing != null">
+        #{cdpAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpYn != null">
+        #{cdpYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom1 != null">
+        #{cdpCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom2 != null">
+        #{cdpCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom3 != null">
+        #{cdpCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom4 != null">
+        #{cdpCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom5 != null">
+        #{cdpCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom6 != null">
+        #{cdpCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer_demand_products">
+    update customer_demand_products
+    <set>
+      <if test="pcId != null">
+        pc_id = #{pcId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpName != null">
+        cdp_name = #{cdpName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpSize != null">
+        cdp_size = #{cdpSize,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpUnit != null">
+        cdp_unit = #{cdpUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpNum != null">
+        cdp_num = #{cdpNum,jdbcType=INTEGER},
+      </if>
+      <if test="cdpAffordablePrice != null">
+        cdp_Affordable_Price = #{cdpAffordablePrice,jdbcType=REAL},
+      </if>
+      <if test="cdpScheduledQuotation != null">
+        cdp_Scheduled_quotation = #{cdpScheduledQuotation,jdbcType=REAL},
+      </if>
+      <if test="cdpCounterpartOffer != null">
+        cdp_Counterpart_Offer = #{cdpCounterpartOffer,jdbcType=REAL},
+      </if>
+      <if test="cdpAdvanceDate != null">
+        cdp_advance_date = #{cdpAdvanceDate,jdbcType=DATE},
+      </if>
+      <if test="cdpRemark != null">
+        cdp_remark = #{cdpRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpAuditing != null">
+        cdp_Auditing = #{cdpAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpYn != null">
+        cdp_yn = #{cdpYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom1 != null">
+        cdp_custom1 = #{cdpCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom2 != null">
+        cdp_custom2 = #{cdpCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom3 != null">
+        cdp_custom3 = #{cdpCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom4 != null">
+        cdp_custom4 = #{cdpCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom5 != null">
+        cdp_custom5 = #{cdpCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdpCustom6 != null">
+        cdp_custom6 = #{cdpCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer_demand_products">
+    update customer_demand_products
+    set pc_id = #{pcId,jdbcType=VARCHAR},
+      cdp_name = #{cdpName,jdbcType=VARCHAR},
+      cdp_size = #{cdpSize,jdbcType=VARCHAR},
+      cdp_unit = #{cdpUnit,jdbcType=VARCHAR},
+      cdp_num = #{cdpNum,jdbcType=INTEGER},
+      cdp_Affordable_Price = #{cdpAffordablePrice,jdbcType=REAL},
+      cdp_Scheduled_quotation = #{cdpScheduledQuotation,jdbcType=REAL},
+      cdp_Counterpart_Offer = #{cdpCounterpartOffer,jdbcType=REAL},
+      cdp_advance_date = #{cdpAdvanceDate,jdbcType=DATE},
+      cdp_remark = #{cdpRemark,jdbcType=VARCHAR},
+      cdp_Auditing = #{cdpAuditing,jdbcType=VARCHAR},
+      cdp_yn = #{cdpYn,jdbcType=VARCHAR},
+      cdp_custom1 = #{cdpCustom1,jdbcType=VARCHAR},
+      cdp_custom2 = #{cdpCustom2,jdbcType=VARCHAR},
+      cdp_custom3 = #{cdpCustom3,jdbcType=VARCHAR},
+      cdp_custom4 = #{cdpCustom4,jdbcType=VARCHAR},
+      cdp_custom5 = #{cdpCustom5,jdbcType=VARCHAR},
+      cdp_custom6 = #{cdpCustom6,jdbcType=VARCHAR}
+    where cdp_id = #{cdpId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,7 +1,7 @@
 package com.apatech.domain;
 
 /**
- * 
+ * 发票类型表
  * @author 刘成
  *
  */

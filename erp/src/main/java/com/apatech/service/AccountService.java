@@ -12,9 +12,8 @@ public class AccountService {
 	@Autowired
 	private AccountMapper dao;
 	
-    public int deleteByPrimaryKey(String accountId){
-    	return dao.deleteByPrimaryKey(accountId);
-    }
+    public int deleteByPrimaryKey(String apId){
+    	return dao.deleteByPrimaryKey(apId);    }
 
     public int insert(Account record){
     	return dao.insert(record);
@@ -24,8 +23,8 @@ public class AccountService {
     	return dao.insertSelective(record);
     }
 
-    public Account selectByPrimaryKey(String accountId){
-    	return dao.selectByPrimaryKey(accountId);
+    public Account selectByPrimaryKey(String apId){
+    	return dao.selectByPrimaryKey(apId);
     }
 
     public int updateByPrimaryKeySelective(Account record){

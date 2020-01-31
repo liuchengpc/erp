@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,16 +12,43 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Team;
-import com.apatech.domain.Team;
-import com.apatech.domain.Team;
-import com.apatech.mapper.TeamMapper;
 import com.apatech.service.TeamService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("TeamController")
 public class TeamController {
 	@Autowired
 	private TeamService dao;
+	
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Team> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入TeamController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Team> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+    	return dao.getno(billdate);
+    }
+
 	
 	
 	/**

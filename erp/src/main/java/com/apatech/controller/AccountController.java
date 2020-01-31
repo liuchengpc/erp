@@ -18,7 +18,7 @@ import com.apatech.service.AccountService;
 public class AccountController {
 	@Autowired
 	private AccountService dao;
-	
+//	fefseffwefe
 	
 	/**
 	 * 根据主键查询
@@ -45,14 +45,12 @@ public class AccountController {
 		System.out.println("实体："+record.toString());
 		Map<String, String> map=new HashMap<String,String>();
     	int i=dao.insertSelective(record);
-    	System.out.println("");
     	if (i>0) {
 			map.put("code", "1");
 			map.put("message", "新增成功！");
 		}else {
 			map.put("code", "2");
 			map.put("message", "新增失败！");
-			System.out.println("ma");
 		}
 		return map;
     }
@@ -76,9 +74,7 @@ public class AccountController {
 			map.put("code", "2");
 			map.put("message", "修改失败！");
 		}
-    	System.out.println("现在是根据逐渐修改");
 		return map;
-		
     }
 	/**
 	 * 根据主键删除

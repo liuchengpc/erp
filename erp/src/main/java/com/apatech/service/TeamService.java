@@ -1,18 +1,33 @@
 package com.apatech.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Team;
-import com.apatech.domain.Team;
 import com.apatech.mapper.TeamMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 @Transactional
 public class TeamService {
 	@Autowired
 	private TeamMapper dao;
+	
+	 public PageInfo<Team> selectAllpage(Integer pageNum,Integer pageSize){
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Team> list=dao.selectAll();
+    	PageInfo<Team> page=new PageInfo<Team>(list);
+    	return page;
+    }
+	 
+	 public String getno(String billdate){
+	    	System.out.println(billdate);
+	    	return dao.getno(billdate);
+    }
 	
     public int deleteByPrimaryKey(String teamId){
     	return dao.deleteByPrimaryKey(teamId);

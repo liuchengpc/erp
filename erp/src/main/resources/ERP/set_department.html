@@ -6,10 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
     <link rel="stylesheet" href="css/layui.css">
-    
+    <link rel="stylesheet" href="css/bootstrap.css" />    
     <link href="css/fontawesome.css" rel="stylesheet">
     <link href="css/brands.css" rel="stylesheet">
     <link href="css/solid.css" rel="stylesheet">
+    
+    <style>
+		/* !important 设置样式优先级最高
+		 * 防止数据加载完毕之前出现vue表达式 */
+		
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>  		
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>\
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
     
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -20,85 +34,229 @@
     </style>
 </head>
 <body>
+	
     <div id="app">
     	<form >
 		  	<div class="layui-row">
 	            <div class="layui-col-lg12">
-	                <div class="layui-form">
+	                <div class="layui-form" v-for="pages,index in page.list" >
 	                    <div class="layui-form-item">
-	                        <label class="layui-form-label" style="color:#009688;">类型编号</label>
+	                        <label class="layui-form-label" style="color:#009688;">部门编号</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamId">
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">
-	                        <label class="layui-form-label" style="color:#009688;">类型名称</label>
+	                        <label class="layui-form-label" style="color:#009688;">部门名称</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamName">
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label" style="color:#009688;">英文名称</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamEnglishName">
 	                        </div>
 	                    </div>
-	                    
-	                   
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label">备注</label>
 	                        <div class="layui-input-block">
-	                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+	                            <textarea placeholder="请输入内容" class="layui-textarea" v-model="pages.teamRemark"></textarea>
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">                       
 	                        <div class="layui-input-block">  
-					            <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-					            <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
-					            <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-								<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
-					            <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
-					            <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
-					            <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-					            <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
+					            <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" @click="goFirstPage"></i></button>
+					            <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true" @click="goPrePage"></i></button>				            
+					            <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true" @click="goNextPage"></i></button>
+								<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" @click="goLastPage"></i></button> 
+					            <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true" @click="insets"></i></button>          
+					            <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" @click="saves"></i></button>  
+					            <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg" @click="updates"></i></button>
+					            <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true" @click="deletes"> </i></button>							            
 								<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
-								<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
-								<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
+								<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true" @click="gopage"></i></button>    
+								<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
 								<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 		                    </div>
 	                	</div>
-	            </div>
+	            	</div>
+	        	</div>
 	        </div>
     		
     	</form>
-      
     </div>
-    <script>
-        /*layui.use('layer', function(){
-        var layer = layui.layer;
-        layer.open({
-            type: 1,
-            title: '小窗口模板',
-            content: $('#app'),
-            area: ['400px']
-        });
-    });*/
-   
-   		 $.ajax({
-				url : "http://localhost:8080/RCtexam/Stockorder/updateByPrimaryKeySelective",
-				type:"post",
-			  	data : JSON.stringify(obj),
-			  	dataType:'json',	
-			  	contentType : "application/json;charset=utf-8",
-			  	success:function (res) {
-			  		showAlertDialog("系统提示：" +res.message);
-			  		$("input").prop("disabled", true);//设置不可修改
-					$("select").prop("disabled", true);//设置不可修改
-		        }
-			}); 
-    </script>
-    
-    
+    	
+  
+
+
+	<script>
+		//必须设置允许跨域访问session中数据(cookie)
+		axios.default.withCredentials = true;
+		//创建vue实例
+		var listVm = new Vue({
+			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
+			data: {//保存vue.js中要显示到html页面的数据
+				page: [],
+			},
+			methods: {//定义函数
+//			     第一笔 goFirstPage
+//		            上一笔 goPrePage				            
+//		            下一笔 goNextPage
+//			    后一笔 goLastPage 
+//		            新增 insets          
+//		            保存 saves  
+//		            编辑 updates
+//		            删除 deletes				            
+//			    重置              
+//			    刷新  
+				
+				
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）
+					var this_ = this;					
+					$.ajax({
+						url : "http://127.0.0.1:8080/TeamController/selectAllpage",
+						type:"get",
+					  	data : "pageNum="+page+"&pageSize="+size,
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		//res.data获取服务器返回的数据
+							this_.page = res.data;
+							console.info("详表表数据：")
+							console.info(this_.page)							
+				        }
+					}); 					
+				},
+				goPrePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+						this.goPage(this.page.prePage, this.page.pageSize);
+					}
+				},
+				goNextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+						this.goPage(this.page.nextPage, this.page.pageSize);
+					}
+				},
+				goFirstPage: function() {//第一条
+					this.goPage(1, this.page.pageSize);
+				},
+				goLastPage: function() {//最后一条
+					this.goPage(this.page.pages, this.page.pageSize);
+				},
+				insets: function() {//新增
+					
+				},
+				saves: function() {//保存
+					
+				},
+				updates: function() {//编辑 
+					
+				},
+				deletes: function() {//删除
+					
+				},      
+				saves:function(){//修改
+					var this_ = this;
+					//修改信息
+					var obj={}
+					var list=[]
+					obj=this_.Stock_order;
+					console.info("obj");
+					console.info(obj);
+					list=this_.page.list;
+					console.info("list");
+					console.info(list);
+					obj["list"]=list;
+					console.info("obj2");
+					console.info(obj);
+					//alert(obj)
+					$.ajax({
+						url : "http://localhost:8080/RCtexam/Stockorder/updateByPrimaryKeySelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+					  		showAlertDialog("系统提示：" +res.message);
+					  		$("input").prop("disabled", true);//设置不可修改
+							$("select").prop("disabled", true);//设置不可修改								
+				        }
+					}); 
+								
+				},
+				updateStu(){//根据新增
+					axios.put(`http://localhost:8080/java28_vue/api/students/student`,this.student).then(function(res){
+						if(res.data.code == "200"){
+							showAlertDialog(res.data.message);
+							listVm.goPage(1,3);
+						}
+					});
+				},
+			/*	deleteStu : function(index, sid){//删除数据
+					var this_ = this;
+					if (confirm("是否删除")==true) {
+						axios.delete("http://localhost:8080/RCtexam/Stockorder/deleteByPrimaryKey?billno="+sid).then(function(res){
+							showAlertDialog(res.data.message);
+							if(res.data.code == "1"){
+								this_.page.list.splice(index, 1);//splice(index, 1) 删除从索引开始的一个元素
+							}
+						})
+					}
+				},*/
+				getdate(){ //获取时间
+			   	 		var this_=this;
+			   	 	
+				  		var time=new Date();
+				  		var year= time.getFullYear();
+				  		var month=("0"+( time.getMonth()+1)).slice(-2);
+				  		var day= ("0"+ time.getDate()).slice(-2);
+				  		//showAlertDialog(year+"-"+month+"-"+day)
+				  		this_.Tb_bill.billdate=year+"-"+month+"-"+day;
+			  		
+		  		},
+			  	getno(){//获取id
+				   	var this_=this;
+			  		var ss=this_.Tb_bill.billdate.split("-")[0]+this_.Tb_bill.billdate.split("-")[1]+this_.Tb_bill.billdate.split("-")[2];
+						$.ajax({
+							type:"get",
+						  url:"http://127.0.0.1:8080/vuezsgc/Tb_bill/getno",
+						  async:false,
+						  data:"billdate="+ss,
+						  dataType:"json",
+						  success:function(res){
+						   	listvm.Tb_bill.billno=ss+res;
+						  }
+						});
+						//alert(listvm.Tb_bill.billno)
+				}
+			},
+			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+				$("input").prop("disabled", true);//设置不可修改
+				$("select").prop("disabled", true);//设置不可修改
+				
+				
+				var this_ = this;
+				
+			
+			
+				this_.goPage(1, 1);
+				
+			},
+		
+		});
+		
+		
+		
+		 /*layui.use('layer', function(){
+	        var layer = layui.layer;
+	        layer.open({
+	            type: 1,
+	            title: '小窗口模板',
+	            content: $('#app'),
+	            area: ['400px']
+	        });
+	    });*/
+	</script>
     
 </body>
 </html>

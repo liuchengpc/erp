@@ -12,7 +12,7 @@ public class Material_type {
     private String mtSaveSubject;//存货科目
     private String mtSubjectA;//科目a
     private String mtSubjectB;//科目b
-    private String mtSubjectC;//varchar(50)	科目c
+    private String mtSubjectC;//科目c
     private String mtSaleinSubject;//销售收入科目
     private String mtSalecostSubject;//销售成本科目
     private String mtOtherinSubject;//其他收入科目

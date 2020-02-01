@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.InvoicetypeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Invoicetype">
+    <id column="invoicetype_id" jdbcType="VARCHAR" property="invoicetypeId" />
+    <result column="invoicetype_name" jdbcType="VARCHAR" property="invoicetypeName" />
+    <result column="invoicetype_engname" jdbcType="VARCHAR" property="invoicetypeEngname" />
+    <result column="invoicetype_remarks" jdbcType="VARCHAR" property="invoicetypeRemarks" />
+    <result column="invoicetype_Auditing" jdbcType="VARCHAR" property="invoicetypeAuditing" />
+    <result column="invoicetype_yn" jdbcType="VARCHAR" property="invoicetypeYn" />
+    <result column="invoicetype_custom1" jdbcType="VARCHAR" property="invoicetypeCustom1" />
+    <result column="invoicetype_custom2" jdbcType="VARCHAR" property="invoicetypeCustom2" />
+    <result column="invoicetype_custom3" jdbcType="VARCHAR" property="invoicetypeCustom3" />
+    <result column="invoicetype_custom4" jdbcType="VARCHAR" property="invoicetypeCustom4" />
+    <result column="invoicetype_custom5" jdbcType="VARCHAR" property="invoicetypeCustom5" />
+    <result column="invoicetype_custom6" jdbcType="VARCHAR" property="invoicetypeCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invoicetype_id, invoicetype_name, invoicetype_engname, invoicetype_remarks, invoicetype_Auditing, 
+    invoicetype_yn, invoicetype_custom1, invoicetype_custom2, invoicetype_custom3, invoicetype_custom4, 
+    invoicetype_custom5, invoicetype_custom6
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from invoicetype
+    where invoicetype_id = #{invoicetypeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from invoicetype
+    where invoicetype_id = #{invoicetypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Invoicetype">
+    insert into invoicetype (invoicetype_id, invoicetype_name, invoicetype_engname, 
+      invoicetype_remarks, invoicetype_Auditing, 
+      invoicetype_yn, invoicetype_custom1, invoicetype_custom2, 
+      invoicetype_custom3, invoicetype_custom4, 
+      invoicetype_custom5, invoicetype_custom6)
+    values (#{invoicetypeId,jdbcType=VARCHAR}, #{invoicetypeName,jdbcType=VARCHAR}, #{invoicetypeEngname,jdbcType=VARCHAR}, 
+      #{invoicetypeRemarks,jdbcType=VARCHAR}, #{invoicetypeAuditing,jdbcType=VARCHAR}, 
+      #{invoicetypeYn,jdbcType=VARCHAR}, #{invoicetypeCustom1,jdbcType=VARCHAR}, #{invoicetypeCustom2,jdbcType=VARCHAR}, 
+      #{invoicetypeCustom3,jdbcType=VARCHAR}, #{invoicetypeCustom4,jdbcType=VARCHAR}, 
+      #{invoicetypeCustom5,jdbcType=VARCHAR}, #{invoicetypeCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Invoicetype">
+    insert into invoicetype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invoicetypeId != null">
+        invoicetype_id,
+      </if>
+      <if test="invoicetypeName != null">
+        invoicetype_name,
+      </if>
+      <if test="invoicetypeEngname != null">
+        invoicetype_engname,
+      </if>
+      <if test="invoicetypeRemarks != null">
+        invoicetype_remarks,
+      </if>
+      <if test="invoicetypeAuditing != null">
+        invoicetype_Auditing,
+      </if>
+      <if test="invoicetypeYn != null">
+        invoicetype_yn,
+      </if>
+      <if test="invoicetypeCustom1 != null">
+        invoicetype_custom1,
+      </if>
+      <if test="invoicetypeCustom2 != null">
+        invoicetype_custom2,
+      </if>
+      <if test="invoicetypeCustom3 != null">
+        invoicetype_custom3,
+      </if>
+      <if test="invoicetypeCustom4 != null">
+        invoicetype_custom4,
+      </if>
+      <if test="invoicetypeCustom5 != null">
+        invoicetype_custom5,
+      </if>
+      <if test="invoicetypeCustom6 != null">
+        invoicetype_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invoicetypeId != null">
+        #{invoicetypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeName != null">
+        #{invoicetypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeEngname != null">
+        #{invoicetypeEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeRemarks != null">
+        #{invoicetypeRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeAuditing != null">
+        #{invoicetypeAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeYn != null">
+        #{invoicetypeYn,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom1 != null">
+        #{invoicetypeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom2 != null">
+        #{invoicetypeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom3 != null">
+        #{invoicetypeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom4 != null">
+        #{invoicetypeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom5 != null">
+        #{invoicetypeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom6 != null">
+        #{invoicetypeCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Invoicetype">
+    update invoicetype
+    <set>
+      <if test="invoicetypeName != null">
+        invoicetype_name = #{invoicetypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeEngname != null">
+        invoicetype_engname = #{invoicetypeEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeRemarks != null">
+        invoicetype_remarks = #{invoicetypeRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeAuditing != null">
+        invoicetype_Auditing = #{invoicetypeAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeYn != null">
+        invoicetype_yn = #{invoicetypeYn,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom1 != null">
+        invoicetype_custom1 = #{invoicetypeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom2 != null">
+        invoicetype_custom2 = #{invoicetypeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom3 != null">
+        invoicetype_custom3 = #{invoicetypeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom4 != null">
+        invoicetype_custom4 = #{invoicetypeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom5 != null">
+        invoicetype_custom5 = #{invoicetypeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetypeCustom6 != null">
+        invoicetype_custom6 = #{invoicetypeCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where invoicetype_id = #{invoicetypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Invoicetype">
+    update invoicetype
+    set invoicetype_name = #{invoicetypeName,jdbcType=VARCHAR},
+      invoicetype_engname = #{invoicetypeEngname,jdbcType=VARCHAR},
+      invoicetype_remarks = #{invoicetypeRemarks,jdbcType=VARCHAR},
+      invoicetype_Auditing = #{invoicetypeAuditing,jdbcType=VARCHAR},
+      invoicetype_yn = #{invoicetypeYn,jdbcType=VARCHAR},
+      invoicetype_custom1 = #{invoicetypeCustom1,jdbcType=VARCHAR},
+      invoicetype_custom2 = #{invoicetypeCustom2,jdbcType=VARCHAR},
+      invoicetype_custom3 = #{invoicetypeCustom3,jdbcType=VARCHAR},
+      invoicetype_custom4 = #{invoicetypeCustom4,jdbcType=VARCHAR},
+      invoicetype_custom5 = #{invoicetypeCustom5,jdbcType=VARCHAR},
+      invoicetype_custom6 = #{invoicetypeCustom6,jdbcType=VARCHAR}
+    where invoicetype_id = #{invoicetypeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

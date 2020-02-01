@@ -1,0 +1,1202 @@
+﻿@charset "utf-8";
+/*---
+------广州市金石开软件有限公司版权所有
+------2015年12月08日编
+*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, ul {margin: 0;padding: 0;word-break: normal;word-wrap: break-word;}
+body, button, input, select, textarea {font: 14px/1.5 "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","黑体",Arial,sans-serif; color:#222;background-color:#fff;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;}
+address, cite, dfn, em, var {font-style: normal;}
+code, kbd, pre, samp {font-family: courier new,courier,monospace;}
+small {font-size: 12px;}
+ul, ol {list-style: none outside none;}
+a {color:#525e71;text-decoration: none;}
+a:hover {color:#44b549;text-decoration:none;}
+sup {vertical-align: text-top;}
+sub {vertical-align: text-bottom;}
+legend {color: #000000;}
+fieldset, img {border: 0 none;}
+button, input, select, textarea {font-size: 100%;}
+table {border-collapse: collapse;border-spacing: 0;}
+.clear{clear:both;}
+input,img{vertical-align:middle}
+img{padding:0;margin:0;}
+a{*hide-focus: expression(this.hideFocus=true);} /* IE点击痕迹 */
+a:focus{outline:none;}/* FF点击痕迹 */
+html{background: #FFF;}
+.cf:after,.clearfix:after {clear:both;content:"";display:block;height:0;overflow:hidden;visibility:hidden;}
+.frm_tips {
+    color: #8d8d8d;
+}
+
+/*-- S header--*/
+.header{
+	background-color:#fff;
+	border-bottom:1px solid #DDD;
+	height:57px;
+}
+.header .top{
+	width:1240px;
+	margin:0 auto;
+	height:57px;
+	position:relative;
+	z-index:2;
+	overflow:visible;
+}
+.header .logo{
+	position:absolute;
+	top:4px;
+	left:0px; 
+	width:250px; 
+	height:60px;
+	background:url(http://www.poso2o.com/WeChat/style/img/logo.png) 0 0 no-repeat;
+	overflow:hidden;
+}
+.header .logo .logoimg{
+	line-height:9999px;
+	overflow:hidden;
+}
+.header .logo a{
+	display:block;
+	width:100%;
+	height:100%;
+}
+.header .logo a:hover{
+	opacity:0.6;
+}
+.header .header_right{
+	position:absolute;
+	top:19px;
+	right:0px;
+}
+.header .header_right a{
+	float:right;
+	border-right:1px solid #dfdfdf;
+    padding-left:8px;
+	padding-right:8px;
+	font-size:12px;
+	line-height:14px;
+}
+.header .header_right .Login{
+	border:none;
+	padding-right:0px;
+}
+.header .nav-menu{
+	display:block;
+	width:512px;
+	margin:0 auto;
+	font-weight:100;
+}
+.header .nav-menu li.nav-item{
+	float:left;
+	font-size:16px;
+	line-height:46px;
+	display:inline-block;
+	height:46px;
+	padding-top:34px;
+	text-align:center;
+	position:relative;
+	cursor:pointer;
+	padding-top:0px;
+	line-height:58px;
+	height:57px;
+}
+.header .nav-menu li.nav-item a{display:inline-block;height:46px;color:#222;}
+.header .nav-menu li.nav-item a span.text{
+	/*border-right:1px solid #dfdfdf;*/
+	padding-left:42px;
+	padding-right:42px;
+}
+.header .nav-menu li.nav-item a span.last{border-right:none;}
+.header .nav-menu li.nav-item a span.last.right{padding-right:30px}
+.header .nav-menu li.nav-item a:hover{color:#44b549}
+.header .nav-menu .nav-item{position:relative}
+.header .nav-menu .nav-item .text{position:relative}
+.header .nav-menu .nav-item .text .arrow{position:absolute;top:50%;right:11px;width:7px;height:10px;margin-top:-5px;background:url(http://www.poso2o.com/style/img/arrow-down.png) 50% 50% no-repeat}
+.header .nav-menu .nav-item .text-title{display:inline-block;height:100%;}
+.header .nav-menu .nav-item .text-title:after{content:'';display:block;margin:auto;height:3px;width:0px;margin-top:-3px;background:transparent;transition:width .5s ease, background-color .5s ease}
+.header .nav-menu .nav-item .home-link{
+	background:url(http://www.poso2o.com/WeChat/style/img/home.png) center 10px no-repeat;
+	background-position:center 16px;
+}
+.header .nav-menu .active .home-link, .header .nav-menu .nav-item .home-link:hover{
+	background-position:center -85px;
+	background-position:center -79px;
+}
+.header .nav-menu .nav-item .nav-item-child{display:none;position:absolute;top:80px;padding:10px 30px;background:#ffffff;text-align:left;box-shadow:0px 5px 20px -6px #000}
+.header .nav-menu .nav-item .nav-item-child a{font-size:16px}
+.header .nav-menu .nav-item .left{left:0}
+.header .nav-menu .nav-item .right{right:0}
+.header .nav-menu .active{cursor:default}
+.header .nav-menu .active .item-link{cursor:default;color:#44b549}
+.header .nav-menu .active .item-link:hover{color:#44b549}
+.header .nav-menu .children-list li a{display:block;height:35px;line-height:35px;white-space:nowrap}
+.header .nav-menu .children-list .choosed a{cursor:default;color:#44b549}
+.header .nav-menu .children-list .choosed a:hover{color:#44b549}
+.header .nav-menu a:hover .text-title:after{width:100%;background:#44b549}
+.header .user-box{height:30px;line-height:30px;float:right;position:relative;margin-top:30px;background-color:#f3f3f3;font-size:12px;*width:312px}.header .user-info{width:129px;float:right;padding-left:13px;padding-right:13px;margin-top:5px;line-height:20px;color:#333;border-right:1px solid #CCD1D9;overflow:hidden;position:relative;text-align:center}
+.header .user-info a{color:#333}.header .user-info .out{position:absolute;right:13px}
+.header .user-info .name{float:left;width:68px;overflow:hidden;display:block;-o-text-overflow:ellipsis;text-overflow:ellipsis;white-space:nowrap;text-align:left}.header .user-order{float:right;padding-left:10px;padding-right:10px;margin-top:5px;margin-right:75px;line-height:20px;border-right:1px solid #CCD1D9}.header .user-order a{color:#333}
+.header .head-prompt{height:0;overflow:hidden;position:relative;background-color:#fff4c7;color:#ff6c00;-webkit-transition:height 0.5s;-moz-transition:height 0.5s;-o-transition:height 0.5s;transition:height 0.5s}
+.header .head-prompt p{width:1240px;height:40px;line-height:40px;margin:0 auto;text-align:center}
+.header .head-prompt .hdclose{width:25px;height:25px;display:block;position:absolute;top:7px;right:20px;border-radius:12px;background:#ffdd8c url(http://www.poso2o.com/style/img/headclose.png) no-repeat;cursor:pointer}
+.header .head-prompt.show{height:40px}
+
+.header .rightDiv{
+	float:right;
+}
+.header .rightDiv .head {
+	float:right;
+	position:relative;
+	margin-top:10px;
+	padding-right:10px;
+}
+.header .rightDiv .head p{
+	line-height:18px;
+}
+.header .rightDiv .head .type span{
+	width:37px;
+	height:14px;
+	vertical-align:middle;
+	display:inline-block;
+	line-height:100px;
+	overflow:hidden;
+}
+.header .rightDiv .head .type span.success{
+	background:url(http://www.poso2o.com/style/img/layout_head.png) 0 -72px no-repeat;
+}
+/* .header .rightDiv .head .type span.unauthorized{
+	background:url(http://www.poso2o.com/style/img/layout_head.png) 0 -48px no-repeat;
+} */
+.header .rightDiv .head .nick{
+	margin-top: -10px;
+}
+.header .rightDiv .head .nick{
+	font-size:14px;
+}
+.header .rightDiv .head img{
+	position:absolute;
+	top:-1px;
+	left:-44px;
+	width:38px;
+	height:38px;
+	background-color:#f0f0f0;
+}
+.header .rightDiv .head:hover{
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity:0.8;
+	opacity:0.8;
+}
+.header .logout{
+	float:right;
+	padding-left:10px;
+	line-height:60px;
+	font-size:14px;
+	color:#9E9E9E;
+}
+
+@media screen and (min-width: 1px) and (max-width: 1260px){
+	.header .top{width:930px}
+	.header .head-prompt p{width:930px}
+	.header .nav-menu li.nav-item a span.text{padding-left:22px;padding-right:22px}
+	.header .nav-menu li.nav-item a span.text.last{padding-right:0}
+	.header .nav-menu li.nav-item a span.text.last.right{padding-right:22px}
+	.header .nav-menu li.nav-item .nav-item-child{padding:10px 22px}
+	.site-topbar .container{width:930px}
+	.index_info {width: 930px;}
+}
+@media screen and (min-width: 1px) and (max-width: 930px){
+	.header{width:930px}
+	.container{width:930px}
+	.index_info{width:930px}
+}
+
+.footer{margin-top:0}
+.container{width:100%}
+@media screen and (min-width: 1px) and (max-width: 930px){
+	.container{width:930px}
+}
+.navArea{
+	margin:0 auto;
+	width:1250px;
+}
+.navArea ul{
+	display:block;
+	float:left;
+	width:100%;
+	clear:both;
+}
+.navArea ul li{
+	float:left;
+	width:16.66%;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+.navArea ul li a{
+	display:block;
+	margin-left:4px;
+	margin-right:4px;
+	line-height:40px;
+	border:1px solid #DDD;
+	border-radius:4px;
+	font-size:16px;
+	font-weight:400;
+	text-align:center;
+	text-transform:uppercase;
+	vertical-align:middle;
+}
+.navArea ul li.current a{
+	color:#FFF!important;
+	background:#44b549!important;
+	border:1px solid #44b549!important;
+	cursor:default;
+}
+.navArea ul li a:hover{
+	color:#44b549;
+	background:#FFF;
+	border:1px solid #44b549;
+}
+
+@media screen and (min-width: 1px) and (max-width: 1260px){
+	.navArea{
+		width:940px;
+	}
+}
+/*-- S footer--*/
+.footer {
+    background: #fafafa  none repeat scroll 0 0;
+    border-top: 1px solid #dfdfdf;
+    float: left;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+.footer p {
+    color: #5e5e5e;
+}
+
+
+/* dropDownBox */
+.dropDownBox{
+	cursor:pointer;
+	float:left;
+	height:34px;
+	position:relative;
+	background-color: #FFF;
+	border: 1px solid #e7e7eb;
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+			border-radius: 2px;
+}
+.dropDownBox_hover{
+	border: 1px solid #44b549;
+}
+.dropDownBox .comboxText{
+	background-color:#FFF;
+    margin-top:7px;
+    padding-left:8px;
+    padding-right:26px;
+	
+	border: 0 none;
+    cursor: pointer;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+}
+.dropDownBox .comboxArrow{
+	background:url(http://www.poso2o.com/ECSHOP/style/img/mark.gif) 0 -58px no-repeat;
+	width:18px;
+	height:18px;
+	cursor:pointer;
+	opacity:.8;
+	filter:alpha(opacity=80);
+	position:absolute;
+	right:2px;
+	top:7px;
+	border-left:none;
+}
+.dropDownBox_hover .comboxArrow{
+	background-position: 0 -18px;
+}
+.dropDownBox .pannel{
+	top:34px;
+	_height:210px;
+	max-height:210px;
+	left: -1px;
+}
+.dropDownBox .pannel ul{
+	_height:210px;
+	max-height:210px;
+}
+.dropDownBox .pannel a.select {
+    background-color: #f4fff4;
+}
+.dropDownBox .pannel{position:absolute;display:none;background:#fff;border:1px #44b549 solid;overflow:hidden;z-index:100;}
+.dropDownBox .pannel ul{overflow:auto; text-align:left;}
+.dropDownBox .pannel a{
+	display:block;
+	height:32px;
+	line-height:30px;
+	padding:0 0 0 8px;
+	cursor:pointer;
+	overflow:hidden;
+	text-overflow:ellipsis; 
+}
+.dropDownBox .pannel a:hover{background-color:#f4fff4; color:#5E5E5E;}
+.dropDownBox .pannel a.out{background-color:#fff;}
+.dropDownBox .pannel a.select{background-color:#f4fff4;}
+/* 弹出页面
+---------------------------------------------- */
+.bgDialog {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #42A994;
+    display: block;
+    text-align: left;
+    z-index: 100;
+}
+.bgDialog .loading{
+	background:url(http://style1.buyinchina.com/img/loadinggreen.gif) no-repeat 0 7px;
+	color:#999;
+	cursor:default;
+	margin-left:6px;
+	padding-left:38px;
+	height:45px;
+	padding-right:12px;
+	text-align:left;
+	line-height:45px;
+	font-size:14px;
+}
+.bgDialog .hd {
+    float: left;
+}
+.bgDialog .hd h3 {
+    background: url(http://style1.buyinchina.com/img/collectionList.gif) repeat-x 0 0;
+    border-bottom: 2px solid #E6E5E5;
+    color: #57C9A7;
+    font-family: "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 0 6px 12px;
+    position: relative;
+}
+.bgDialog .hd .close{
+    background: url(http://style1.buyinchina.com/img/collectionList.gif) no-repeat 10px -42px;
+    display: inline-block;
+    height: 36px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 36px;
+}
+.bgDialog .hd .close:hover{
+    background: url(http://style1.buyinchina.com/img/collectionList.gif) no-repeat -227px -42px;
+}
+.bgDialogCont{
+	float:left;
+}
+.bgDialogCont .btnCont{
+	float:right;
+}
+.bgDialogCont .btnCont .bgDialogBnt{
+    background: url(http://style1.buyinchina.com/img/orderBtnT.gif) no-repeat right -516px;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: right;
+    height: 29px;
+    line-height: 29px;
+    overflow: hidden;
+    text-align: center;
+    width: 90px;
+}
+.bgDialogCont .btnCont .bgDialogBnt:hover {
+    background-position: right -516px;
+    color: #FFFFFF;
+}
+.itemOverlay {
+	float:left;
+	width:100%;
+	height:100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:9;
+	
+	BACKGROUND: #000;
+	FILTER: alpha(opacity:50);
+	opacity: 0.75;
+	_background:none;
+	_opacity: 0;
+	_FILTER: alpha(opacity:0);
+	_left:expression(eval(document.documentElement.scrollLeft));
+	_top:0;
+}
+
+/* top发布成功
+---------------------------------------------- */
+.topMessagebox{
+	float:left;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:100001;
+	/* IE6 头部固定 */
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
+}
+.topMessagebox{
+	background:#fff;
+	border-left:3px solid #777;
+	border-right:3px solid #777;
+	border-bottom:3px solid #777;
+	padding:20px 50px 20px 50px;
+	border-bottom-right-radius:8px;
+	border-bottom-left-radius:8px;
+	-moz-border-radius-bottomright:8px;
+	-moz-border-radius-bottomleft:8px;
+	-webkit-border-bottom-right-radius:8px;
+	-webkit-border-bottom-left-radius:8px;
+	display:block;
+	opacity:.9
+}
+.topMessagebox .messagetext{
+	background:url(http://style1.buyinchina.com/img/message-icon.gif) 0 0 no-repeat;
+	line-height:24px;
+	padding-left:34px;
+	font-size:18px;
+	display:block;
+	font-family:Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;_font-family:Tahoma,Arial,Helvetica,STHeiti;
+	font-size:18px;
+}
+.topMessagebox .error{
+	background-position:0 -48px;
+}
+/* dialog
+---------------------------------------------- */
+.dialog {
+	display:none;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0;
+    overflow: hidden;
+	z-index:6;
+}
+.dialog_hd {
+    background-color: #f4f5f9;
+    background-image: linear-gradient(to bottom, #f4f5f9 0px, #f4f5f9 100%);
+    border-bottom: 1px solid #e7e7eb;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 20px;
+    position: relative;
+	border-bottom-width: 0;
+    height: 52px;
+    line-height: 52px;
+}
+.dialog_hd h3 {
+    color: #222;
+	font-style: normal;
+    font-weight: 400;
+	line-height:52px;
+	font-size:16px;
+}
+.dialog .pop_closed {
+    height: 16px;
+    line-height: 999em;
+    margin-top: -8px;
+    overflow: hidden;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 16px;
+}
+.dialog .pop_closed {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -2833px;
+}
+.dialog .pop_closed:hover {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -2859px;
+}
+.dialog .dialog_bd {
+    padding: 20px;
+}
+.dialog .dialog_ft {
+    border-top: 1px solid transparent;
+    box-shadow: none;
+    margin: 0;
+    padding: 25px 0;
+    text-align: center;
+    background-color: #f4f5f9;
+    padding: 16px 0;
+}
+.dialog .dialog_ft .btn {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    overflow: visible;
+    padding: 0 22px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+	min-width:60px;
+}
+.dialog .dialog_ft .btn_primary {
+    background-color: #44b549;
+    background-image: linear-gradient(to bottom, #44b549 0px, #44b549 100%);
+    border-color: #44b549;
+    color: #fff;
+}
+.dialog .dialog_ft .btn_primary:hover {
+    background-color:#2f9833;
+	background-image:-moz-linear-gradient(top,#2f9833 0,#2f9833 100%);
+	background-image:-webkit-gradient(linear,0 0,0 100%,from(#2f9833),to(#2f9833));
+	background-image:-webkit-linear-gradient(top,#2f9833 0,#2f9833 100%);
+	background-image:-o-linear-gradient(top,#2f9833 0,#2f9833 100%);
+	background-image:linear-gradient(to bottom,#2f9833 0,#2f9833 100%);
+	border-color:#2f9833;box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+	color:#fff;
+}
+.dialog .dialog_ft .btn_default {
+    background-color: #fff;
+    background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);
+    border-color: #e7e7eb;
+    color: #222;
+}
+.dialog .dialog_ft .btn_default:hover {
+    background-color: #e7e7eb;
+    background-image: linear-gradient(to bottom, #e7e7eb 0px, #e7e7eb 100%);
+    border-color: #dadbe0;
+    box-shadow: none;
+    color: #222;
+}
+.dialog .dialog_ft .loadingBtn, .dialog .dialog_ft .loadingBtn:hover{
+	background:#2f9833 url(http://www.poso2o.com/WeChat/style/img/icon18_loading_primary218877.gif) 10px 7px no-repeat;
+	padding-left:22px;
+}
+/* wc_btn
+---------------------------------------------- */
+.wc_btn{display:inline-block;overflow:visible;padding:0 22px;height:30px;line-height:30px;*line-height:28px;vertical-align:middle;text-align:center;text-decoration:none;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;font-size:14px;border-width:1px;border-style:solid;cursor:pointer;min-width:60px;}
+.wc_btn:hover{text-decoration:none}
+.wc_btn_default{background-color:#fff;background-image:-moz-linear-gradient(top,#fff 0,#fff 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#fff));background-image:-webkit-linear-gradient(top,#fff 0,#fff 100%);background-image:-o-linear-gradient(top,#fff 0,#fff 100%);background-image:linear-gradient(to bottom,#fff 0,#fff 100%);border-color:#e7e7eb;color:#222}
+.wc_btn_default button{color:#222}
+.wc_btn_default:hover{background-color:#e7e7eb;background-image:-moz-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e7e7eb),to(#e7e7eb));background-image:-webkit-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-o-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:linear-gradient(to bottom,#e7e7eb 0,#e7e7eb 100%);border-color:#dadbe0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#222}
+.wc_btn_default:hover button{color:#222}
+.wc_btn_warn{background-color:#f24d4d;background-image:-moz-linear-gradient(top,#f24d4d 0,#f24d4d 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#f24d4d),to(#f24d4d));background-image:-webkit-linear-gradient(top,#f24d4d 0,#f24d4d 100%);background-image:-o-linear-gradient(top,#f24d4d 0,#f24d4d 100%);background-image:linear-gradient(to bottom,#f24d4d 0,#f24d4d 100%);border-color:#f24d4d;color:#fff}
+.wc_btn_warn button{color:#fff}
+.wc_btn_warn:hover{background-color:#d43d3d;background-image:-moz-linear-gradient(top,#d43d3d 0,#d43d3d 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#d43d3d),to(#d43d3d));background-image:-webkit-linear-gradient(top,#d43d3d 0,#d43d3d 100%);background-image:-o-linear-gradient(top,#d43d3d 0,#d43d3d 100%);background-image:linear-gradient(to bottom,#d43d3d 0,#d43d3d 100%);border-color:#d43d3d;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#fff}
+.wc_btn_warn:hover button{color:#fff}
+.wc_btn_primary{background-color:#44b549;background-image:-moz-linear-gradient(top,#44b549 0,#44b549 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#44b549),to(#44b549));background-image:-webkit-linear-gradient(top,#44b549 0,#44b549 100%);background-image:-o-linear-gradient(top,#44b549 0,#44b549 100%);background-image:linear-gradient(to bottom,#44b549 0,#44b549 100%);border-color:#44b549;color:#fff}
+.wc_btn_primary button{color:#fff}
+.wc_btn_primary:hover{background-color:#2f9833;background-image:-moz-linear-gradient(top,#2f9833 0,#2f9833 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#2f9833),to(#2f9833));background-image:-webkit-linear-gradient(top,#2f9833 0,#2f9833 100%);background-image:-o-linear-gradient(top,#2f9833 0,#2f9833 100%);background-image:linear-gradient(to bottom,#2f9833 0,#2f9833 100%);border-color:#2f9833;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#fff}
+.wc_btn_primary:hover button{color:#fff}
+.wc_btn_disabled{background-color:#e7e7eb;background-image:-moz-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e7e7eb),to(#e7e7eb));background-image:-webkit-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-o-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:linear-gradient(to bottom,#e7e7eb 0,#e7e7eb 100%);border-color:#dadbe0;color:#a5a6aa;cursor:default}
+.wc_btn_disabled button{color:#a5a6aa;cursor:default}
+.wc_btn_disabled:hover{background-color:#e7e7eb;background-image:-moz-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e7e7eb),to(#e7e7eb));background-image:-webkit-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-o-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:linear-gradient(to bottom,#e7e7eb 0,#e7e7eb 100%);box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-color:#dadbe0;color:#a5a6aa}
+.wc_btn_disabled:hover button{color:#a5a6aa;cursor:default}
+.wc_btn_loading{background-color:#e7e7eb;background-image:-moz-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e7e7eb),to(#e7e7eb));background-image:-webkit-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-o-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:linear-gradient(to bottom,#e7e7eb 0,#e7e7eb 100%);border-color:#dadbe0;color:#a5a6aa;cursor:default}
+.wc_btn_loading button{color:#a5a6aa;cursor:default}
+.wc_btn_loading:hover{background-color:#e7e7eb;background-image:-moz-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e7e7eb),to(#e7e7eb));background-image:-webkit-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:-o-linear-gradient(top,#e7e7eb 0,#e7e7eb 100%);background-image:linear-gradient(to bottom,#e7e7eb 0,#e7e7eb 100%);box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-color:#dadbe0;color:#a5a6aa}
+.wc_btn_loading, .wc_btn_loading:hover{
+	background:#e7e7eb url(http://www.poso2o.com/WeChat/style/img/icon18_loading_default218877.gif) 10px 7px no-repeat;
+	padding-left:22px;
+}
+.wc_btn_loading_a, .wc_btn_loading_a:hover{
+	background:#2f9833 url(http://www.poso2o.com/WeChat/style/img/icon18_loading_primary218877.gif) 10px 7px no-repeat;
+	padding-left:22px;
+}
+.wc_btn_loading_b, .wc_btn_loading_b:hover{
+	background:#2f9833 url(http://www.poso2o.com/WeChat/style/img/icon18_loading_default218877.gif) 10px 7px no-repeat;
+	padding-left:22px;
+}
+/* icon_radio
+---------------------------------------------- */
+.icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 0;
+    display: inline-block;
+    height: 16px;
+    margin-top: -0.2em;
+    vertical-align: middle;
+    width: 16px;
+}
+.icon_radio.selected, .selected .icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -26px;
+}
+.icon_radio.selected.disabled, .selected.disabled .icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -52px;
+}
+.icon_radio, .icon_checkbox {
+    margin-right: 3px;
+    margin-top: -2px;
+}
+.icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -182px;
+    display: inline-block;
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+.icon_radio.selected, .selected .icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -208px;
+}
+.icon_radio.disabled, .disabled .icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -234px;
+}
+.icon_radio.selected.disabled, .selected.disabled .icon_radio {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -260px;
+}
+.frm_radio_label, .frm_checkbox_label {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 1em;
+    text-align: left;
+}
+.icon_radio, .icon_checkbox {
+    margin-right: 3px;
+    margin-top: -2px;
+}
+.icon_checkbox {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -286px;
+    display: inline-block;
+    height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+.icon_checkbox.selected, .selected .icon_checkbox {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -312px;
+}
+.icon_checkbox.disabled, .disabled .icon_checkbox {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -338px;
+}
+.icon_checkbox.selected.disabled, .selected.disabled .icon_checkbox {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -364px;
+}
+.frm_radio, .frm_checkbox {
+    left: -999em;
+    position: absolute;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+/* pagination_wrp
+---------------------------------------------- */
+.js_pagebar{text-align:right;}
+.js_pagebar .pagination{padding:0 16px 20px}
+.page_nav_area,.goto_area{display:inline-block;vertical-align:middle;font-size:12px}
+.page_nav_area{letter-spacing:4px;*letter-spacing:normal}
+.page_nav_area .btn{letter-spacing:normal;*margin:0 3px}
+.page_nav_area .gap_prev,.page_nav_area .gap_next{letter-spacing:normal;display:inline-block;font-size:14px;vertical-align:middle;margin-left:4px;margin-right:4px}
+.btn.page_nav{margin:0;background-color:#fff;background-image:-moz-linear-gradient(top,#fff 0,#fff 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#fff));background-image:-webkit-linear-gradient(top,#fff 0,#fff 100%);background-image:-o-linear-gradient(top,#fff 0,#fff 100%);background-image:linear-gradient(to bottom,#fff 0,#fff 100%);border-color:#e6e7ec;color:#222;height:30px;line-height:30px;*line-height:28px;width:auto;padding-left:14px;padding-right:14px}
+.btn.page_nav button{color:#222}
+.btn.page_nav:hover{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);border-color:#dadbe0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#000}
+.btn.page_nav:hover button{color:#222}
+.btn.page_nav.current{border:0;background:0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;cursor:default}
+.btn.page_prev,.btn.page_next{position:relative;font-size:0;letter-spacing:-5px;background-color:#fff;background-image:-moz-linear-gradient(top,#fff 0,#fff 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#fff));background-image:-webkit-linear-gradient(top,#fff 0,#fff 100%);background-image:-o-linear-gradient(top,#fff 0,#fff 100%);background-image:linear-gradient(to bottom,#fff 0,#fff 100%);border-color:#e6e7ec;color:#222;height:30px;line-height:30px;*line-height:28px;width:auto;padding-left:14px;padding-right:14px}
+.btn.page_prev button,.btn.page_next button{color:#222}
+.btn.page_prev:hover,.btn.page_next:hover{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);border-color:#dadbe0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#000}
+.btn.page_prev:hover button,.btn.page_next:hover button{color:#222}
+.btn.page_prev .arrow,.btn.page_next .arrow{position:absolute;top:50%;left:50%;margin-top:-6px;margin-left:-2px}
+.btn.page_first,.btn.page_last,.btn.page_go{background-color:#fff;background-image:-moz-linear-gradient(top,#fff 0,#fff 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#fff));background-image:-webkit-linear-gradient(top,#fff 0,#fff 100%);background-image:-o-linear-gradient(top,#fff 0,#fff 100%);background-image:linear-gradient(to bottom,#fff 0,#fff 100%);border-color:#e6e7ec;color:#222;height:30px;line-height:30px;*line-height:28px;width:auto;padding-left:20px;padding-right:20px}
+.btn.page_first button,.btn.page_last button,.btn.page_go button{color:#222}
+.btn.page_first:hover,.btn.page_last:hover,.btn.page_go:hover{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);border-color:#dadbe0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#000}
+.btn.page_first:hover button,.btn.page_last:hover button,.btn.page_go:hover button{color:#222}
+.page_next .arrow{display:inline-block;width:0;height:0;border-width:6px;border-style:dashed;border-color:transparent;border-right-width:0;border-left-color:#919191;border-left-style:solid}
+.page_prev .arrow{display:inline-block;width:0;height:0;border-width:6px;border-style:dashed;border-color:transparent;border-left-width:0;border-right-color:#919191;border-right-style:solid}
+.page_num{line-height:32px;display:inline-block;vertical-align:middle;font-size:14px;*margin-right:4px;letter-spacing:normal}
+.goto_area{margin-left:8px}.goto_area input[type="text"]{vertical-align:middle;width:75px;height:22px;line-height:22px;padding:4px 0;border:1px solid #e7e7eb;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;text-align:center;font-size:14px;margin-right:4px}
+.js_pagebar .btn{min-width:0;}
+.js_pagebar .btn {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    overflow: visible;
+    padding: 0 14px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.js_pagebar .btn:hover {
+    text-decoration: none;
+}
+/* datepicker_switch
+---------------------------------------------- */
+.btn.datepicker_switch{background-color:#fff;background-image:-moz-linear-gradient(top,#fff 0,#fff 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#fff),to(#fff));background-image:-webkit-linear-gradient(top,#fff 0,#fff 100%);background-image:-o-linear-gradient(top,#fff 0,#fff 100%);background-image:linear-gradient(to bottom,#fff 0,#fff 100%);border-color:#e6e7ec;color:#222;height:30px;line-height:30px;*line-height:28px;width:80px;padding-left:4px;padding-right:4px;padding-right:30px;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    font-size: 14px;
+    overflow: visible;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.btn.datepicker_switch button{color:#222}
+.btn.datepicker_switch:hover{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);border-color:#dadbe0;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;color:#000}
+.btn.datepicker_switch:hover button{color:#222}
+.btn.datepicker_switch.disabled{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);border-color:#dadbe0;color:#a5a6aa;cursor:default;height:30px;line-height:30px;*line-height:28px;width:80px;padding-left:4px;padding-right:4px}.btn.datepicker_switch.disabled button{color:#a5a6aa;cursor:default}
+.btn.datepicker_switch.disabled:hover{background-color:#e6e7ec;background-image:-moz-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-webkit-gradient(linear,0 0,0 100%,from(#e6e7ec),to(#e6e7ec));background-image:-webkit-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:-o-linear-gradient(top,#e6e7ec 0,#e6e7ec 100%);background-image:linear-gradient(to bottom,#e6e7ec 0,#e6e7ec 100%);box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-color:#dadbe0;color:#a5a6aa}
+.btn.datepicker_switch.disabled:hover button{color:#a5a6aa;cursor:default}
+/* dropdown_data_container
+---------------------------------------------- */
+.dropdown_data_container{display:none;position:absolute;top:100%;margin-top:-1px;left:0;z-index:1;min-width:100%;*width:100%}
+.dropdown_data_list{max-height:150px;min-height:2em;overflow-x:hidden;*overflow-x:auto;overflow-y:auto;border:1px solid #d9dadc;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;background-color:#fff;font-size:14px}.dropdown_data_item{line-height:30px}
+.dropdown_data_item a{display:block;text-decoration:none;color:#222;white-space:nowrap;padding:0 28px 0 10px;*padding-right:10px}
+.dropdown_data_item:hover{background-color:#f4f5f9}
+
+/* icon_loading_small
+---------------------------------------------- */
+.icon_loading_small{width:40px;height:40px;vertical-align:middle;display:inline-block;line-height:100px;overflow:hidden}
+.icon_loading_small.white{background:url(http://www.poso2o.com/WeChat/style/img/icon40_loading_white.gif) no-repeat 0 0}
+
+/* 公众号选择框
+---------------------------------------------- */
+.appidDiv{
+	width:20.6%!important;
+	line-height:38px;
+	position:relative;
+	padding-top:20!important;
+}
+.appidDiv .label{
+	position:absolute;
+	left:6px;
+	top:18px;
+}
+.appidDiv .appidDivCont{
+	padding-left:66px;
+}
+.appidDiv .appidDivCont .textDiv{
+	border:1px solid #DDD;
+	display:block;
+	height:38px;
+	cursor:pointer;
+	border-radius:4px;
+}
+.appidDiv .appidDivCont .textDiv:hover, .appidDiv  .appidDivCont .textDiv_active{
+	border:1px solid #44b549;
+}
+.appidDiv .appidDivCont .textDiv .text{
+	display:block;
+	padding-left:6px;
+	line-height:36px;
+	overflow:hidden;
+}
+.appidDiv .appidDivCont .i{
+	position:absolute;
+	right:1px;
+	top:22px;
+	display:block;
+	width:32px;
+	height:32px;
+	overflow:hidden;
+	line-height:999px;
+	cursor:pointer;
+    background:#FFF url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat 8px -3557px;
+}
+.appidDiv .textDiv_hover .i, .appidDiv .textDiv_active .i{
+	background:#FFF url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat 8px -3581px;
+}
+.appidDialog{
+	position:absolute;
+	top:57px;
+	left:66px;
+	border:1px solid #44b549;
+	padding-top:8px;
+	display:block;
+	width:189px;
+	z-index:99;
+	background:#FFF;
+}
+.appidDialog a{
+	display:block;
+	width:100%;
+	padding-left:6px;
+	padding-bottom:10px;
+	line-height:22px;
+	cursor:pointer;
+	overflow:hidden;
+}
+.appidDialog a:hover{
+	color:#44b549;
+}
+/*--加载--*/
+.imfootloading{height:45px}
+.imfootloading .loading{background:url(http://www.poso2o.com/WeChat/style/img/loadinggray.gif) no-repeat 232px 7px;color:#999;cursor:default;width:619px;padding-right:0;padding-left:28px;height:45px;padding-right:12px;margin:0 auto;text-align:center;line-height:45px;font-size:14px}
+.bgDialog .loading{
+	background:url(http://style1.buyinchina.com/img/loadinggreen.gif) no-repeat 0 7px;
+	color:#999;
+	cursor:default;
+	margin-left:14px;
+	padding-left:38px;
+	height:45px;
+	padding-right:12px;
+	text-align:left;
+	line-height:45px;
+	font-size:14px;
+}
+.imfootloading .notmore{color:#999;text-align:center;font-size:14px;padding-left:0}
+.firstload,.firstloaderror{background:#fff url(http://style1.buyinchina.com/img/loadinggreen.gif) no-repeat 74px 19px;font-size:14px;width:128px;height:42px;padding:22px 0 0 110px;border:1px solid #dedede;border-radius:2px}
+
+.firstload{position:fixed;left:50%;top:50%;margin-left:-120px;margin-top:-21px;z-index:4}
+.firstloaderror{font-size:14px;width:160px;height:42px;padding:22px 0 0 78px;border:1px solid #dedede;border-radius:2px}
+.firstloaderror a{padding-left:6px}
+*html .firstload{position:absolute;left:expression(document.documentElement.scrollLeft+50+"%")}
+
+/* 文字提示
+---------------------------------------------- */
+.tooltip{position:absolute;z-index:10}
+.tooltip_inner{padding:0 10px;font-size:12px;line-height:20px;color:#fff;background-color:#555556;word-wrap:break-word;word-break:break-all}
+.tooltip_arrow{position:absolute;bottom:-5px;left:50%;margin-left:-6px;display:inline-block;width:0;height:0;border-width:6px;border-style:dashed;border-color:transparent;border-bottom-width:0;border-top-color:#555556;border-top-style:solid}
+
+/* 警告提示
+---------------------------------------------- */
+.warningDialogOverlay {
+	float:left;
+	width:100%;
+	height:100%;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:9;
+	
+	BACKGROUND: #000;
+	FILTER: alpha(opacity:50);
+	opacity: 0.75;
+	_background:none;
+	_opacity: 0;
+	_FILTER: alpha(opacity:0);
+	_left:expression(eval(document.documentElement.scrollLeft));
+	_top:0;
+}
+.warningDialog{
+	width:720px;
+	z-index:10;
+}
+.warningDialog .dialog_bd {
+	padding: 66px 45px 108px;
+    max-height: 485px;
+    overflow-y: auto;
+}
+.warningDialog .dialog_ft{
+	padding-left:40px;
+	padding-right:40px;
+}
+.warningDialog .dialog_ft .btn{
+	margin-left:10px;
+}
+.warningDialog .simple_dialog_content {
+	display: block;
+    width:400px;
+	margin:0 auto;
+    text-align: left;
+	padding: 12px 70px;
+	position: relative;
+}
+.warningDialog .simple_dialog_content .msg_icon_wrapper {
+    float:left;
+    margin-right:8px;
+}
+.warningDialog .simple_dialog_content .icon_msg {
+	background: #FFF url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat 0 -2298px;
+    display: block;
+    height: 50px;
+    vertical-align: middle;
+    width: 50px;
+}
+.warningDialog .simple_dialog_content h4 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+}
+.warningDialog .simple_dialog_content p {
+    color: #8d8d8d;
+    font-size: 16px;
+}
+/* searchArea
+---------------------------------------------- */
+.main_head .searchArea .inputDiv{
+	border:1px solid #DDD;
+	float:right;
+	width:251px;
+	height:40px;
+	overflow:hidden;
+}
+.main_head .searchArea .inputDiv_hover, .main_head .searchArea .inputDiv_focus{
+	border: 1px solid #44b549;
+}
+.main_head .searchArea .inputDiv:active {
+	border: 1px solid #44b549;
+}
+.main_head .searchArea .inputDiv .searchText{
+	border: 1px solid #FFF;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+	padding-left:4px;
+	padding-top:10px;
+	padding-bottom:10px;
+    vertical-align: middle;
+    width: 200px;
+}
+.main_head .searchArea .inputDiv .btn{
+	background:#FFF;
+	border-left: 1px solid #DDD;
+    float: right;
+    height: 40px;
+    width: 40px;
+}
+.main_head .searchArea .inputDiv .btn i{
+	background: url(http://style1.buyinchina.com/img/search.gif) no-repeat -2px -42px;
+	float:left;
+	width:30px;
+	height:30px;
+	margin-left: 4px;
+    margin-top: 4px;
+}
+.main_head .searchArea .addStoreBtn{
+    background: url(../img/bic.gif) no-repeat 0 -318px;
+    color: #33aa99;
+	float:right;
+	padding-left:16px;
+    overflow: hidden;
+	margin-top:7px;
+}
+.body .searchArea{
+	margin-right:30px;
+	margin-top:20px;
+	float:right;
+	position:relative;
+}
+.main_head .searchArea {
+    float: right;
+    position: relative;
+}
+.main_head .searchArea .r_btn_div{
+	float:right;
+}
+.main_head .searchArea .r_btn_div .btn {
+	float:left;
+	margin-left:6px;
+	border-color: #e7e7eb;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    overflow: visible;
+    padding: 0 12px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+	min-width:60px;
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+			border-radius: 2px;
+}
+.main_head .searchArea .r_btn_div .btn:hover {
+    border-color: #44b549;
+    color: #44b549;
+}
+.main_head .searchArea .r_btn_div .btn_primary {
+    background-color: #44b549;
+    border-color: #44b549;
+    color: #fff;
+}
+.main_head .searchArea .r_btn_div .btn_primary:hover {
+    background-color:#2f9833;
+	border-color:#2f9833;
+	color:#fff;
+}
+.main_head .searchArea .r_btn_div .btn_default {
+    background-color: #fff;
+    border-color: #e7e7eb;
+    color: #222;
+}
+.main_head .searchArea .list{
+	float:right;
+	margin-left:6px;
+}
+.main_head .searchArea .list label{
+	float:left;
+	line-height:36px;
+	padding-right:10px;
+}
+.main_head .searchArea .list .inputText{
+	background-color: #FFF;
+    border: 1px solid #e7e7eb;
+	float: left;
+    height: 16px;
+    line-height: 16px;
+    padding-bottom: 9px;
+    padding-left: 6px;
+    padding-top: 9px;
+    width: 220px;
+}
+.main_head .searchArea .list .inputText:hover, .main_head .searchArea .list .inputText:focus{
+	border: 1px solid #44b549;
+}
+.main_head .searchArea .positionList{
+    border: 1px solid #e7e7eb;
+	position: relative;
+    width: 220px;
+	height: 34px;
+	overflow:hidden;
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+			border-radius: 2px;
+}
+.main_head .searchArea .positionList:hover{
+	border: 1px solid #44b549;
+}
+.main_head .searchArea .positionList .inputText {
+	border:none!important;
+}
+.main_head .searchArea .positionList .btn{
+    background:#FFF url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 6px -4414px;
+    border: 0 none;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    height: 30px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-indent: -999em;
+    top: 2px;
+    width: 30px;
+}
+.main_head .searchArea .positionList .del_btn{
+    font-size: 0;
+    height: 34px;
+    position: absolute;
+    right: 30px;
+	top:0;
+    text-align: center;
+    width: 14px;
+}
+.main_head .searchArea .positionList .del_btn i {
+    background: rgba(0, 0, 0, 0) url(http://www.poso2o.com/WeChat/style/img/base_z2b638f.png) no-repeat scroll 0 -390px;
+    display: block;
+    height: 14px;
+    vertical-align: middle;
+    width: 14px;
+	margin-top:10px;
+}
+.main_head .searchArea .positionList.del_btn:hover i{
+	background-position:0 -414px;
+}
+/*! 
+ * angular-loading-bar v0.6.0
+ * https://chieffancypants.github.io/angular-loading-bar
+ * Copyright (c) 2014 Wes Cruver
+ * License: MIT
+ */
+#loading-bar,
+#loading-bar-spinner {
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -webkit-transition: 350ms linear all;
+  -moz-transition: 350ms linear all;
+  -o-transition: 350ms linear all;
+  transition: 350ms linear all;
+}
+#loading-bar.ng-enter,
+#loading-bar.ng-leave.ng-leave-active,
+#loading-bar-spinner.ng-enter,
+#loading-bar-spinner.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+#loading-bar.ng-enter.ng-enter-active,
+#loading-bar.ng-leave,
+#loading-bar-spinner.ng-enter.ng-enter-active,
+#loading-bar-spinner.ng-leave {
+  opacity: 1;
+}
+#loading-bar .bar {
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+
+  background: #44b549;
+  position: fixed;
+  z-index: 10002;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-bottom-right-radius: 1px;
+  border-top-right-radius: 1px;
+}
+/* Fancy blur effect */
+#loading-bar .peg {
+  position: absolute;
+  width: 70px;
+  right: 0;
+  top: 0;
+  height: 2px;
+  opacity: .45;
+  -moz-box-shadow: #44b549 1px 0 6px 1px;
+  -ms-box-shadow: #44b549 1px 0 6px 1px;
+  -webkit-box-shadow: #44b549 1px 0 6px 1px;
+  box-shadow: #44b549 1px 0 6px 1px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+#loading-bar-spinner {
+  display: block;
+  position: fixed;
+  z-index: 10002;
+  top: 10px;
+  left: 10px;
+}
+#loading-bar-spinner .spinner-icon {
+  width: 14px;
+  height: 14px;
+
+  border:  solid 2px transparent;
+  border-top-color:  #44b549;
+  border-left-color: #44b549;
+  border-radius: 50%;
+
+  -webkit-animation: loading-bar-spinner 400ms linear infinite;
+  -moz-animation:    loading-bar-spinner 400ms linear infinite;
+  -ms-animation:     loading-bar-spinner 400ms linear infinite;
+  -o-animation:      loading-bar-spinner 400ms linear infinite;
+  animation:         loading-bar-spinner 400ms linear infinite;
+}
+@-webkit-keyframes loading-bar-spinner {
+  0%   { -webkit-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes loading-bar-spinner {
+  0%   { -moz-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes loading-bar-spinner {
+  0%   { -o-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes loading-bar-spinner {
+  0%   { -ms-transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes loading-bar-spinner {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

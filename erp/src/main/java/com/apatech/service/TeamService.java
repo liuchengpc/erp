@@ -20,12 +20,13 @@ public class TeamService {
 	 public PageInfo<Team> selectAllpage(Integer pageNum,Integer pageSize){
     	PageHelper.startPage(pageNum, pageSize);
     	List<Team> list=dao.selectAll();
+//    	System.out.println("分页的集合："+dao.selectAll().toString());
     	PageInfo<Team> page=new PageInfo<Team>(list);
+//    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
 	 
 	 public String getno(String billdate){
-	    	System.out.println(billdate);
 	    	return dao.getno(billdate);
     }
 	

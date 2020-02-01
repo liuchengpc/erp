@@ -36,55 +36,52 @@
 <body>
 	
     <div id="app">
-    	<form >
 		  	<div class="layui-row">
 	            <div class="layui-col-lg12">
 	                <div class="layui-form" v-for="pages,index in page.list" >
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label" style="color:#009688;">部门编号</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamId">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamId" disabled>
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label" style="color:#009688;">部门名称</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamName">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamName" v-bind:disabled="diasabledInput">
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label" style="color:#009688;">英文名称</label>
 	                        <div class="layui-input-block">
-	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamEnglishName">
+	                            <input type="text" name="title"  class="layui-input" v-model="pages.teamEnglishName" v-bind:disabled="diasabledInput">
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">
 	                        <label class="layui-form-label">备注</label>
 	                        <div class="layui-input-block">
-	                            <textarea placeholder="请输入内容" class="layui-textarea" v-model="pages.teamRemark"></textarea>
+	                            <textarea placeholder="请输入内容" class="layui-textarea" v-model="pages.teamRemark" v-bind:disabled="diasabledInput"></textarea>
 	                        </div>
 	                    </div>
 	                    <div class="layui-form-item">                       
 	                        <div class="layui-input-block">  
-					            <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" @click="goFirstPage"></i></button>
-					            <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true" @click="goPrePage"></i></button>				            
-					            <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true" @click="goNextPage"></i></button>
-								<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" @click="goLastPage"></i></button> 
-					            <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true" @click="insets"></i></button>          
-					            <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" @click="saves"></i></button>  
-					            <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg" @click="updates"></i></button>
-					            <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true" @click="deletes"> </i></button>							            
-								<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
-								<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true" @click="gopage"></i></button>    
-								<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
-								<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+					            <button :class="[goFirstPage1 ? lay1 : '', lay2]" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+					            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+					            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+								<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+					            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+					            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
+					             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+					            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+					            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
+								<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+								<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
+								<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 		                    </div>
 	                	</div>
 	            	</div>
 	        	</div>
 	        </div>
-    		
-    	</form>
     </div>
     	
   
@@ -98,21 +95,29 @@
 			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
 			data: {//保存vue.js中要显示到html页面的数据
 				page: [],
+				diasabledInput:true,//input框是否可以编辑
+				isinsert:false,//是否是新增状态
+				isedit:false,//是否是编辑状态
+				
+		      	goFirstPage1:false,//第一笔
+	            goPrePage1:false,//上一笔				            
+             	goNextPage1:false,//下一笔
+		     	goLastPage1:false,//后一笔
+             	inset1:false,   //新增  
+             	return1:false,//取消
+             	saves1:true,//保存 
+             	update1:false,//编辑
+             	deletes1:false,//删除		
+			    Auditing1:true,//审核
+			    noAuditing1:true,//取消审核
+			    
+			    lay1:'layui-btn-primary',
+			    lay2:'layui-btn'
 			},
 			methods: {//定义函数
-//			     第一笔 goFirstPage
-//		            上一笔 goPrePage				            
-//		            下一笔 goNextPage
-//			    后一笔 goLastPage 
-//		            新增 insets          
-//		            保存 saves  
-//		            编辑 updates
-//		            删除 deletes				            
-//			    重置              
-//			    刷新  
-				
-				
-				goPage: function(page, size) {//获取分页数据（当前页，每页大小）
+
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
+//					alert("进入goPage")
 					var this_ = this;					
 					$.ajax({
 						url : "http://127.0.0.1:8080/TeamController/selectAllpage",
@@ -121,7 +126,7 @@
 					  	dataType:'json',	
 					  	success:function (res) {
 					  		//res.data获取服务器返回的数据
-							this_.page = res.data;
+							this_.page = res;
 							console.info("详表表数据：")
 							console.info(this_.page)							
 				        }
@@ -129,119 +134,218 @@
 				},
 				goPrePage: function() {//上一条
 					if(this.page.hasPreviousPage) {
+//						alert(this.page.prePage+"："+this.page.pageSize)
 						this.goPage(this.page.prePage, this.page.pageSize);
 					}
 				},
 				goNextPage: function() {//下一条
 					if(this.page.hasNextPage) {
+//						alert(this.page.nextPage+"："+this.page.pageSize)
 						this.goPage(this.page.nextPage, this.page.pageSize);
 					}
 				},
 				goFirstPage: function() {//第一条
+//					alert(1+"："+this.page.pageSize)
 					this.goPage(1, this.page.pageSize);
 				},
 				goLastPage: function() {//最后一条
+//					alert(this.page.pages+"："+this.page.pageSize)
 					this.goPage(this.page.pages, this.page.pageSize);
 				},
+				returns: function() {//取消
+					this.goPage(1,1);
+					
+					this.diasabledInput= true;//input不可编辑
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				},
+				inset: function() {//新增按钮
+					this.page.list[0].teamId="";
+					this.page.list[0].teamName="";
+					this.page.list[0].teamEnglishName="";
+					this.page.list[0].teamRemark="";
+					this.diasabledInput=false;//input可以编辑
+					this.isinsert=true;//开启新增模式
+					this.isedit=false;//关闭修改模式
+					this.getno();
+					
+					
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+             		this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				},
 				insets: function() {//新增
-					
-				},
-				saves: function() {//保存
-					
-				},
-				updates: function() {//编辑 
-					
-				},
-				deletes: function() {//删除
-					
-				},      
-				saves:function(){//修改
 					var this_ = this;
 					//修改信息
-					var obj={}
-					var list=[]
-					obj=this_.Stock_order;
-					console.info("obj");
-					console.info(obj);
-					list=this_.page.list;
-					console.info("list");
-					console.info(list);
-					obj["list"]=list;
-					console.info("obj2");
-					console.info(obj);
-					//alert(obj)
+					var obj=this.page.list[0];
+					
 					$.ajax({
-						url : "http://localhost:8080/RCtexam/Stockorder/updateByPrimaryKeySelective",
+						url : "http://127.0.0.1:8080/TeamController/insertSelective",
 						type:"post",
 					  	data : JSON.stringify(obj),
 					  	dataType:'json',	
 					  	contentType : "application/json;charset=utf-8",
 					  	success:function (res) {
-					  		showAlertDialog("系统提示：" +res.message);
-					  		$("input").prop("disabled", true);//设置不可修改
-							$("select").prop("disabled", true);//设置不可修改								
+					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
 				        }
 					}); 
-								
 				},
-				updateStu(){//根据新增
-					axios.put(`http://localhost:8080/java28_vue/api/students/student`,this.student).then(function(res){
-						if(res.data.code == "200"){
-							showAlertDialog(res.data.message);
-							listVm.goPage(1,3);
-						}
-					});
+				saves: function() {//保存
+					this.diasabledInput= true;//input不可编辑
+					
+					
+					
+					if(this.isinsert==true){//新增
+						alert("进入新增")
+						this.insets();
+					}else if(this.isedit==true){
+						alert("进入修改")
+						this.updates();
+					}else{
+						
+					}	
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
 				},
-			/*	deleteStu : function(index, sid){//删除数据
+				update: function() {//编辑按钮
+					this.diasabledInput=false;//input可以输入
+					this.isinsert=false;//关闭新增模式
+					this.isedit=true;//开启编辑模式
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+	             	this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
+				},
+				updates: function() {//编辑 
+					
 					var this_ = this;
+					//修改信息
+					var obj=this.page.list[0];
+					
+					$.ajax({
+						url : "http://127.0.0.1:8080/TeamController/updateByPrimaryKeySelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					}); 
+				
+				},
+				deletes: function() {//删除
+					var this_ = this;
+					//修改信息
+					var teamId=this.page.list[0].teamId;
 					if (confirm("是否删除")==true) {
-						axios.delete("http://localhost:8080/RCtexam/Stockorder/deleteByPrimaryKey?billno="+sid).then(function(res){
-							showAlertDialog(res.data.message);
-							if(res.data.code == "1"){
-								this_.page.list.splice(index, 1);//splice(index, 1) 删除从索引开始的一个元素
-							}
-						})
-					}
-				},*/
-				getdate(){ //获取时间
-			   	 		var this_=this;
-			   	 	
-				  		var time=new Date();
-				  		var year= time.getFullYear();
-				  		var month=("0"+( time.getMonth()+1)).slice(-2);
-				  		var day= ("0"+ time.getDate()).slice(-2);
-				  		//showAlertDialog(year+"-"+month+"-"+day)
-				  		this_.Tb_bill.billdate=year+"-"+month+"-"+day;
-			  		
-		  		},
-			  	getno(){//获取id
-				   	var this_=this;
-			  		var ss=this_.Tb_bill.billdate.split("-")[0]+this_.Tb_bill.billdate.split("-")[1]+this_.Tb_bill.billdate.split("-")[2];
 						$.ajax({
+							url : "http://127.0.0.1:8080/TeamController/deleteByPrimaryKey",
 							type:"get",
-						  url:"http://127.0.0.1:8080/vuezsgc/Tb_bill/getno",
-						  async:false,
-						  data:"billdate="+ss,
-						  dataType:"json",
-						  success:function(res){
-						   	listvm.Tb_bill.billno=ss+res;
-						  }
-						});
-						//alert(listvm.Tb_bill.billno)
+						  	data : "TeamId="+teamId,
+						  	dataType:'json',	
+						  	success:function (res) {
+						  		alert("系统提示：" +res.message);
+								this_.diasabledInput=false;//input不可以输入	
+								this_.goPage(1, 1);		
+					        }
+						}); 
+					}
+				},   
+				Auditing: function() {//审核
+					
+				},   
+				noAuditing: function() {//取消
+					
+				},   
+			  	getno:function(){//获取id
+				   	var this_=this;
+				   	
+				   	
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					$.ajax({
+						url:"http://127.0.0.1:8080/TeamController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (res) {
+					  		console.info("idfdsfhoewifhw")
+						  	console.info(res)
+						   	this_.page.list[0].teamId=ss+res;						
+				        }
+					}); 				
 				}
 			},
 			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
-				$("input").prop("disabled", true);//设置不可修改
-				$("select").prop("disabled", true);//设置不可修改
-				
-				
-				var this_ = this;
-				
-			
-			
-				this_.goPage(1, 1);
-				
-			},
+							
+				var this_ = this;				
+				this_.goPage(1, 1);				
+			}
 		
 		});
 		

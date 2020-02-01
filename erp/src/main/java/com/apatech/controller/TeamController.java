@@ -46,7 +46,9 @@ public class TeamController {
 	@ResponseBody
 	 public String getno(String billdate){
 		System.out.println(billdate);
-    	return dao.getno(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
     }
 
 	

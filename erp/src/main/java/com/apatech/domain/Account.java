@@ -1,18 +1,23 @@
 package com.apatech.domain;
 
+/**
+ * 会计科目表
+ * @author 刘成
+ *
+ */
 public class Account {
-    private String accountId;
-    private String accountInvoicetypename;
-    private String accountEngname;
-    private String accountRemark;
-    private String accountAuditing;
-    private String accountYn;
-    private String accountCustom1;
-    private String accountCustom2;
-    private String accountCustom3;
-    private String accountCustom4;
-    private String accountCustom5;
-    private String accountCustom6;
+    private String accountId;//科目id（主键 唯一）
+    private String accountInvoicetypename;//发票类型名称
+    private String accountEngname;//英文名称
+    private String accountRemark;//备注
+    private String accountAuditing;//是否审核
+    private String accountYn;//是否删除（0 否 1 是 ，默认0）
+    private String accountCustom1;//自定栏一
+    private String accountCustom2;//自定栏二
+    private String accountCustom3;//自定栏三
+    private String accountCustom4;//自定栏四
+    private String accountCustom5;//自定栏五
+    private String accountCustom6;//自定栏六
 
     public String getAccountId() {
         return accountId;

@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Select;
 import com.apatech.domain.Team;
 
 public interface TeamMapper {
-//	 @Select("select * from team ORDER BY team_id DESC")
 	 List<Team> selectAll();
 		 
 	 @Select("SELECT \r\n" + 

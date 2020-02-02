@@ -23,7 +23,9 @@
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from team ORDER BY team_id DESC
+    from team 
+    where team_Yn=0
+    ORDER BY team_id DESC
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

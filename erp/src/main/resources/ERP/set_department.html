@@ -170,10 +170,22 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
-					this.page.list[0].teamId="";
-					this.page.list[0].teamName="";
-					this.page.list[0].teamEnglishName="";
-					this.page.list[0].teamRemark="";
+					this.page.list[0].teamId="";//部门编号（主键 唯一）
+				    this.page.list[0].teamName="";//部门名称
+				    this.page.list[0].teamEnglishName="";//部门英文名称
+				    this.page.list[0].teamAbate="";//失效日期
+				    this.page.list[0].teamRemark="";//备注
+				    this.page.list[0].teamAuditing="";//是否审核
+				    this.page.list[0].teamYn="";//是否删除（0 否 1 是 ，默认0）
+				    this.page.list[0].teamCustom1="";//创建时间
+				    this.page.list[0].teamCustom2="";//自定义2
+				    this.page.list[0].teamCustom3="";//自定义3
+				    this.page.list[0].teamCustom4="";//自定义4
+				    this.page.list[0].teamCustom5="";//自定义5
+				    this.page.list[0].teamCustom6="";//自定义6
+					
+					
+					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
@@ -194,8 +206,30 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				insets: function() {//新增
+				 	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+					
+					
+					
 					var this_ = this;
 					//修改信息
+					this.page.list[0].teamCustom1=year+getNow(month)+getNow(date);//创建时间
 					var obj=this.page.list[0];
 					
 					$.ajax({
@@ -282,13 +316,15 @@
 				deletes: function() {//删除
 					var this_ = this;
 					//修改信息
-					var teamId=this.page.list[0].teamId;
+					this.page.list[0].teamYn=1;//是否删除（0 否 1 是 ，默认0）
+					var obj=this.page.list[0];
 					if (confirm("是否删除")==true) {
 						$.ajax({
-							url : "http://127.0.0.1:8080/TeamController/deleteByPrimaryKey",
-							type:"get",
-						  	data : "TeamId="+teamId,
+							url : "http://127.0.0.1:8080/TeamController/updateByPrimaryKeySelective",
+							type:"post",
+					  		data : JSON.stringify(obj),
 						  	dataType:'json',	
+						  	contentType : "application/json;charset=utf-8",
 						  	success:function (res) {
 						  		alert("系统提示：" +res.message);
 								this_.diasabledInput=false;//input不可以输入	

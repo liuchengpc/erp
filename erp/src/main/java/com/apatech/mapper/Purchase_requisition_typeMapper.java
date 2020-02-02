@@ -9,7 +9,7 @@ import com.apatech.domain.Purchase_requisition_type;
 import com.apatech.domain.Team;
 
 public interface Purchase_requisition_typeMapper {
- List<Team> selectAll();
+ List<Purchase_requisition_type> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Purchase_requisition_typeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Purchase_requisition_type WHERE prt_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String prtId);

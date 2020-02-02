@@ -22,6 +22,15 @@
     bank_remark, bank_yn, bank_custom1, bank_custom2, bank_custom3, bank_custom4, bank_custom5, 
     bank_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from bank 
+	    where bank_Yn=0
+	    ORDER BY bank_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

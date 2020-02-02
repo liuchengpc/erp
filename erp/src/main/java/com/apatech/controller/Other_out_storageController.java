@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Other_out_storage;
 import com.apatech.domain.Other_out_storage;
 import com.apatech.domain.Other_out_storage;
+import com.apatech.domain.Other_out_storage;
 import com.apatech.mapper.Other_out_storageMapper;
 import com.apatech.service.Other_out_storageService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Other_out_storageController")
 public class Other_out_storageController {
 	@Autowired
 	private Other_out_storageService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Other_out_storage> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Other_out_storageController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Other_out_storage> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

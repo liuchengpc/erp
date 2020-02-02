@@ -9,7 +9,7 @@ import com.apatech.domain.Team;
 import com.apatech.domain.Warehouse;
 
 public interface WarehouseMapper {
-	List<Team> selectAll();
+	List<Warehouse> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface WarehouseMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Warehouse WHERE Warehouse_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String warehouseId);

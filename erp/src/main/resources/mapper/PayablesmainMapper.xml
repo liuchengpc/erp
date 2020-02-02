@@ -41,6 +41,15 @@
     pade_audition, pade_yn, pade_custom1, pade_custom2, pade_custom3, pade_custom4, pade_custom5, 
     pade_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from payablesmain 
+	    where pade_Yn=0
+	    ORDER BY payablesmain_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

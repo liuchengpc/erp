@@ -18,7 +18,7 @@ public interface BankMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE bank_custom1=#{billdate}")
+	 		"Bank WHERE bank_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String bankId);

@@ -12,13 +12,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Material_type;
+import com.apatech.domain.Material_type;
 import com.apatech.service.Material_typeService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Material_typeController")
 public class Material_typeController {
 	@Autowired
 	private Material_typeService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Material_type> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Material_typeController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Material_type> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

@@ -40,6 +40,15 @@
     sol_production, sol_scheduling_single_number, sol_produced_quantity, sol_auditing, 
     sol_yn, sol_custom1, sol_custom2, sol_custom3, sol_custom4, sol_custom5, sol_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from salesorderlist 
+	    where sol_Yn=0
+	    ORDER BY sol_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

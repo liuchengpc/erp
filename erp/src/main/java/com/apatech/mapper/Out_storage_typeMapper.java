@@ -9,7 +9,7 @@ import com.apatech.domain.Out_storage_type;
 import com.apatech.domain.Team;
 
 public interface Out_storage_typeMapper {
-	 List<Team> selectAll();
+	 List<Out_storage_type> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Out_storage_typeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Out_storage_type WHERE ost_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String ostId);

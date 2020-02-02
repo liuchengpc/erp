@@ -9,7 +9,7 @@ import com.apatech.domain.Settle_accounts_type;
 import com.apatech.domain.Team;
 
 public interface Settle_accounts_typeMapper {
- List<Team> selectAll();
+	List<Settle_accounts_type> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Settle_accounts_typeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Settle_accounts_type WHERE sat_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String satId);

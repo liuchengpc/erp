@@ -50,6 +50,15 @@
     payables_custom3, payables_custom4, payables_custom5, payables_custom6, payables_custom7, 
     payables_custom8, payables_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from payables 
+	    where payables_Yn=0
+	    ORDER BY payables_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

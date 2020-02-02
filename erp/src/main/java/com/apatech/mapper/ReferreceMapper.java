@@ -9,7 +9,7 @@ import com.apatech.domain.Referrece;
 import com.apatech.domain.Team;
 
 public interface ReferreceMapper {
- List<Team> selectAll();
+ List<Referrece> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface ReferreceMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Referrece WHERE referrece_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String referreceId);

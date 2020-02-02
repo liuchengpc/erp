@@ -19,6 +19,15 @@
     ist_id, ist_name, ist_engname, ist_remark, ist_auditing, ist_yn, ist_custom1, ist_custom2, 
     ist_custom3, ist_custom4, ist_custom5, ist_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from input_storage_type 
+	    where ist_Yn=0
+	    ORDER BY ist_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

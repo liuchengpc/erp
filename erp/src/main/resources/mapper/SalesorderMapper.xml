@@ -40,6 +40,15 @@
     so_collection_time, so_collection_month, so_collection_terms, so_collection_terms_day, 
     so_auditing, so_yn, so_custom1, so_custom2, so_custom3, so_custom4, so_custom5, so_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from salesorder 
+	    where so_Yn=0
+	    ORDER BY so_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

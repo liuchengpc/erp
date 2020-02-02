@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Currency;
 import com.apatech.domain.Currency;
 import com.apatech.domain.Currency;
+import com.apatech.domain.Currency;
 import com.apatech.mapper.CurrencyMapper;
 import com.apatech.service.CurrencyService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("CurrencyController")
 public class CurrencyController {
 	@Autowired
 	private CurrencyService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Currency> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入CurrencyController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Currency> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

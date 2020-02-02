@@ -9,7 +9,7 @@ import com.apatech.domain.Material_type;
 import com.apatech.domain.Team;
 
 public interface Material_typeMapper {
-	 List<Team> selectAll();
+	 List<Material_type> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Material_typeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Material_type WHERE mt_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String mtId);

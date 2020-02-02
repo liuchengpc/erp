@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Input_storage_type;
 import com.apatech.domain.Input_storage_type;
 import com.apatech.domain.Input_storage_type;
+import com.apatech.domain.Input_storage_type;
 import com.apatech.mapper.Input_storage_typeMapper;
 import com.apatech.service.Input_storage_typeService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Input_storage_typeController")
 public class Input_storage_typeController {
 	@Autowired
 	private Input_storage_typeService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Input_storage_type> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Input_storage_typeController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Input_storage_type> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

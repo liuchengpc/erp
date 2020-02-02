@@ -28,6 +28,15 @@
     ap_remark, ap_audition, ap_yn, ap_custom1, ap_custom2, ap_custom3, ap_custom4, ap_custom5, 
     ap_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from assessment_procurement 
+	    where ap_Yn=0
+	    ORDER BY ap_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

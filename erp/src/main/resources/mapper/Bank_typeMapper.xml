@@ -19,6 +19,15 @@
     bt_id, bt_name, bt_english_name, bt_remark, bt_Auditing, bt_yn, bt_custom1, bt_custom2, 
     bt_custom3, bt_custom4, bt_custom5, bt_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from bank_type 
+	    where bt_Yn=0
+	    ORDER BY bt_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

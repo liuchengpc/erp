@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.domain.Sales_return_warehouse;
+import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.mapper.Sales_return_warehouseMapper;
 import com.apatech.service.Sales_return_warehouseService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Sales_return_warehouseController")
 public class Sales_return_warehouseController {
 	@Autowired
 	private Sales_return_warehouseService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_return_warehouse> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Sales_return_warehouseController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Sales_return_warehouse> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

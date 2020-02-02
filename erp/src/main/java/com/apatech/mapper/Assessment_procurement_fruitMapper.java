@@ -18,7 +18,7 @@ public interface Assessment_procurement_fruitMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE prt_custom1=#{billdate}")
+	 		"Assessment_procurement_fruit WHERE prt_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String apfId);

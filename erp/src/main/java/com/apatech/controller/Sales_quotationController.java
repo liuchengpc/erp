@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Sales_quotation;
 import com.apatech.mapper.Sales_quotationMapper;
 import com.apatech.service.Sales_quotationService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Sales_quotationController")
 public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_quotation> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Sales_quotationController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Sales_quotation> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

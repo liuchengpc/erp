@@ -9,7 +9,7 @@ import com.apatech.domain.Other_input_storage_detailed;
 import com.apatech.domain.Team;
 
 public interface Other_input_storage_detailedMapper {
-	 List<Team> selectAll();
+	 List<Other_input_storage_detailed> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Other_input_storage_detailedMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Other_input_storage_detailed WHERE oisd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String oisdId);

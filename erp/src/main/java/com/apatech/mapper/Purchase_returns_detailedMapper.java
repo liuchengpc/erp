@@ -9,7 +9,7 @@ import com.apatech.domain.Purchase_returns_detailed;
 import com.apatech.domain.Team;
 
 public interface Purchase_returns_detailedMapper {
- List<Team> selectAll();
+	List<Purchase_returns_detailed> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Purchase_returns_detailedMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Purchase_returns_detailed WHERE pured_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String puredId);

@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Measurement_unit;
 import com.apatech.domain.Measurement_unit;
 import com.apatech.domain.Measurement_unit;
+import com.apatech.domain.Measurement_unit;
 import com.apatech.mapper.Measurement_unitMapper;
 import com.apatech.service.Measurement_unitService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Measurement_unitController")
 public class Measurement_unitController {
 	@Autowired
 	private Measurement_unitService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Measurement_unit> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Measurement_unitController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Measurement_unit> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Subject_category;
 import com.apatech.domain.Subject_category;
 import com.apatech.domain.Subject_category;
+import com.apatech.domain.Subject_category;
 import com.apatech.mapper.Subject_categoryMapper;
 import com.apatech.service.Subject_categoryService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Subject_categoryController")
 public class Subject_categoryController {
 	@Autowired
 	private Subject_categoryService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Subject_category> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Subject_categoryController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Subject_category> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

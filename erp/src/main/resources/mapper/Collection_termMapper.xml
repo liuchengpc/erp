@@ -18,6 +18,15 @@
     cote_id, cote_name, cote_days, cote_Auditing, cote_yn, cote_custom1, cote_custom2, 
     cote_custom3, cote_custom4, cote_custom5, cote_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from collection_term 
+	    where cote_Yn=0
+	    ORDER BY cote_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

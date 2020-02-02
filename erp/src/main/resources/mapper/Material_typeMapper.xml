@@ -31,6 +31,15 @@
     mt_othersell_subject, mt_othersend_subject, mt_remark, mt_Auditing, mt_yn, mt_custom1, 
     mt_custom2, mt_custom3, mt_custom4, mt_custom5, mt_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from material_type 
+	    where mt_Yn=0
+	    ORDER BY mt_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

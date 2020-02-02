@@ -9,7 +9,7 @@ import com.apatech.domain.Other_out_storage;
 import com.apatech.domain.Team;
 
 public interface Other_out_storageMapper {
-	 List<Team> selectAll();
+	 List<Other_out_storage> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Other_out_storageMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Other_out_storageMapper WHERE oos_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String oosId);

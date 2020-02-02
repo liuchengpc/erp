@@ -9,7 +9,7 @@ import com.apatech.domain.Income_costs_type;
 import com.apatech.domain.Team;
 
 public interface Income_costs_typeMapper {
-	 List<Team> selectAll();
+	 List<Income_costs_type> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Income_costs_typeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Income_costs_type WHERE ict_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String ictId);

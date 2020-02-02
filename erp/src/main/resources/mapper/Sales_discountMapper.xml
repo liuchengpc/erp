@@ -44,6 +44,15 @@
     sd_header_provision, sd_end_clause, sd_remark, sd_auditing, sd_yn, sd_custom1, sd_custom2, 
     sd_custom3, sd_custom4, sd_custom5, sd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_discount 
+	    where sd_Yn=0
+	    ORDER BY sd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

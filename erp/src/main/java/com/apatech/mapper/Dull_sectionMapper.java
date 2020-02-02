@@ -9,7 +9,7 @@ import com.apatech.domain.Dull_section;
 import com.apatech.domain.Team;
 
 public interface Dull_sectionMapper {
-	 List<Team> selectAll();
+	 List<Dull_section> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Dull_sectionMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Dull_section WHERE ds_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String dsId);

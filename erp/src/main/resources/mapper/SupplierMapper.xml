@@ -73,6 +73,15 @@
     supplier_yn, supplier_custom1, supplier_custom2, supplier_custom3, supplier_custom4, 
     supplier_custom5, supplier_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from supplier 
+	    where supplier_Yn=0
+	    ORDER BY supplier_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

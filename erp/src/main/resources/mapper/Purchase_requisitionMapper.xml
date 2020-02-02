@@ -31,6 +31,15 @@
     pr_header_provision, pr_end_clause, pr_remark, pr_audition, pr_yn, pr_custom1, pr_custom2, 
     pr_custom3, pr_custom4, pr_custom5, pr_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_requisition 
+	    where pr_Yn=0
+	    ORDER BY pr_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

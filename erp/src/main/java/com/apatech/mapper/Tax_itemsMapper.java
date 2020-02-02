@@ -10,7 +10,7 @@ import com.apatech.domain.Team;
 
 public interface Tax_itemsMapper {
 	
- List<Team> selectAll();
+ List<Tax_items> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -19,7 +19,7 @@ public interface Tax_itemsMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Tax_items WHERE ti_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String tiId);

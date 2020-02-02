@@ -9,7 +9,7 @@ import com.apatech.domain.Customer;
 import com.apatech.domain.Team;
 
 public interface CustomerMapper {
-	 List<Team> selectAll();
+	 List<Customer> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface CustomerMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Customer WHERE Customer_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String customerId);

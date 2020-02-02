@@ -9,7 +9,7 @@ import com.apatech.domain.Requisition_detailed;
 import com.apatech.domain.Team;
 
 public interface Requisition_detailedMapper {
- List<Team> selectAll();
+ List<Requisition_detailed> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Requisition_detailedMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Requisition_detailed WHERE rd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String rdId);

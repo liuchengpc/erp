@@ -9,7 +9,7 @@ import com.apatech.domain.Staff;
 import com.apatech.domain.Team;
 
 public interface StaffMapper {
- List<Team> selectAll();
+	List<Staff> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface StaffMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Staff WHERE Staff_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String staffId);

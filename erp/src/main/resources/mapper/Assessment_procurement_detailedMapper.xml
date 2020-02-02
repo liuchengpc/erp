@@ -24,6 +24,15 @@
     apd_amount_standard_currency, apd_audition, apd_yn, apd_custom1, apd_custom2, apd_custom3, 
     apd_custom4, apd_custom5, apd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from assessment_procurement_detailed 
+	    where apd_Yn=0
+	    ORDER BY apd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

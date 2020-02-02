@@ -9,7 +9,7 @@ import com.apatech.domain.Team;
 import com.apatech.domain.Zone;
 
 public interface ZoneMapper {
- List<Team> selectAll();
+	List<Zone> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface ZoneMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Zone WHERE Zone_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String zoneId);

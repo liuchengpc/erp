@@ -6,10 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Check_detailed;
-import com.apatech.domain.Team;
 
 public interface Check_detailedMapper {
-	 List<Team> selectAll();
+	 List<Check_detailed> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +17,7 @@ public interface Check_detailedMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Check_detailed WHERE cd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String cdId);

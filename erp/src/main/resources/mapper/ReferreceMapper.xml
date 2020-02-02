@@ -30,6 +30,15 @@
     referrece_custom5, referrece_custom6, referrece_custom7, referrece_custom8, referrece_custom9, 
     referrece_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from referrece 
+	    where referrece_Yn=0
+	    ORDER BY referrece_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

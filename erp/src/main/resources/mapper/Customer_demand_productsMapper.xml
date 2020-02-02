@@ -27,6 +27,15 @@
     cdp_Counterpart_Offer, cdp_advance_date, cdp_remark, cdp_Auditing, cdp_yn, cdp_custom1, 
     cdp_custom2, cdp_custom3, cdp_custom4, cdp_custom5, cdp_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer_demand_products 
+	    where cdp_Yn=0
+	    ORDER BY cdp_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -9,7 +9,7 @@ import com.apatech.domain.Supplier;
 import com.apatech.domain.Team;
 
 public interface SupplierMapper {
- List<Team> selectAll();
+	List<Supplier> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface SupplierMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Supplier WHERE Supplier_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String supplierId);

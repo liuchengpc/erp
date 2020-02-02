@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Purchase_inquiry;
 import com.apatech.domain.Purchase_inquiry;
 import com.apatech.domain.Purchase_inquiry;
+import com.apatech.domain.Purchase_inquiry;
 import com.apatech.mapper.Purchase_inquiryMapper;
 import com.apatech.service.Purchase_inquiryService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Purchase_inquiryController")
 public class Purchase_inquiryController {
 	@Autowired
 	private Purchase_inquiryService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Purchase_inquiry> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Purchase_inquiryController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Purchase_inquiry> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

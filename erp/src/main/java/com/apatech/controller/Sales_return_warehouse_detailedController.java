@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Sales_return_warehouse_detailed;
 import com.apatech.domain.Sales_return_warehouse_detailed;
 import com.apatech.domain.Sales_return_warehouse_detailed;
+import com.apatech.domain.Sales_return_warehouse_detailed;
 import com.apatech.mapper.Sales_return_warehouse_detailedMapper;
 import com.apatech.service.Sales_return_warehouse_detailedService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Sales_return_warehouse_detailedController")
 public class Sales_return_warehouse_detailedController {
 	@Autowired
 	private Sales_return_warehouse_detailedService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_return_warehouse_detailed> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Sales_return_warehouse_detailedController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Sales_return_warehouse_detailed> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Supplier;
 import com.apatech.domain.Supplier;
 import com.apatech.domain.Supplier;
+import com.apatech.domain.Supplier;
 import com.apatech.mapper.SupplierMapper;
 import com.apatech.service.SupplierService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("SupplierController")
 public class SupplierController {
 	@Autowired
 	private SupplierService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Supplier> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入SupplierController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Supplier> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

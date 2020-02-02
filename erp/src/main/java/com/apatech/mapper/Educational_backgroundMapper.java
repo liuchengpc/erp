@@ -9,7 +9,7 @@ import com.apatech.domain.Educational_background;
 import com.apatech.domain.Team;
 
 public interface Educational_backgroundMapper {
-	 List<Team> selectAll();
+	 List<Educational_background> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Educational_backgroundMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Educational_background WHERE eb_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String ebId);

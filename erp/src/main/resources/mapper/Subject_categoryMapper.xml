@@ -19,6 +19,15 @@
     sc_id, sc_name, sc_engname, sc_remark, sc_Auditing, sc_yn, sc_custom1, sc_custom2, 
     sc_custom3, sc_custom4, sc_custom5, sc_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from subject_category 
+	    where sc_Yn=0
+	    ORDER BY sc_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

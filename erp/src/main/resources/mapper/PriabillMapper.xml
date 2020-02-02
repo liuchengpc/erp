@@ -51,6 +51,15 @@
     priabill_custom3, priabill_custom4, priabill_custom5, priabill_custom6, priabill_custom7, 
     priabill_custom8, priabill_custom9, priabill_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from priabill 
+	    where priabill_Yn=0
+	    ORDER BY priabill_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

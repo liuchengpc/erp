@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Casha_ccount;
-import com.apatech.domain.Team;
 
 public interface Casha_ccountMapper {
 	 List<Casha_ccount> selectAll();
@@ -18,7 +17,7 @@ public interface Casha_ccountMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE cc_custom1=#{billdate}")
+	 		"Casha_ccount WHERE cc_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String ccId);

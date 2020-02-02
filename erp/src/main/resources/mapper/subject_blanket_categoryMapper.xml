@@ -19,6 +19,15 @@
     sbc_id, sbc_name, sbc_engname, sbc_remark, sbc_Auditing, sbc_yn, sbc_custom1, sbc_custom2, 
     sbc_custom3, sbc_custom4, sbc_custom5, sbc_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from subject_blanket_category 
+	    where sbc_Yn=0
+	    ORDER BY sbc_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

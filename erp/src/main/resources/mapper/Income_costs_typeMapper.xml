@@ -20,6 +20,15 @@
     ict_id, ict_name, ict_english_name, ict_subject, ict_remark, ict_Auditing, ict_yn, 
     ict_custom1, ict_custom2, ict_custom3, ict_custom4, ict_custom5, ict_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from income_costs_type 
+	    where ict_Yn=0
+	    ORDER BY ict_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

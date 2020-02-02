@@ -28,6 +28,15 @@
     oos_auditing, oos_yn, oos_custom1, oos_custom2, oos_custom3, oos_custom4, oos_custom5, 
     oos_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from other_out_storage 
+	    where oos_Yn=0
+	    ORDER BY oos_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

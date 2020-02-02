@@ -21,6 +21,15 @@
     project_yn, project_custom1, project_custom2, project_custom3, project_custom4, project_custom5, 
     project_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from project 
+	    where project_Yn=0
+	    ORDER BY project_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Collection_term;
 import com.apatech.domain.Collection_term;
 import com.apatech.domain.Collection_term;
+import com.apatech.domain.Collection_term;
 import com.apatech.mapper.Collection_termMapper;
 import com.apatech.service.Collection_termService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Collection_termController")
 public class Collection_termController {
 	@Autowired
 	private Collection_termService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Collection_term> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Collection_termController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Collection_term> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

@@ -51,6 +51,15 @@
     payables_custom2, payables_custom3, payables_custom4, payables_custom5, payables_custom6, 
     payables_custom7, payables_custom8, payables_custom9, payables_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from receivable 
+	    where payables_auditstatus_Yn=0
+	    ORDER BY receivable_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

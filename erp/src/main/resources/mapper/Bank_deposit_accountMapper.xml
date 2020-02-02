@@ -29,6 +29,15 @@
     ada_Auditing, ada_yn, ada_custom1, ada_custom2, ada_custom3, ada_custom4, ada_custom5, 
     ada_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from bank_deposit_account 
+	    where ada_Yn=0
+	    ORDER BY ada_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

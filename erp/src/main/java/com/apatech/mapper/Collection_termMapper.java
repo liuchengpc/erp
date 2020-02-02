@@ -9,7 +9,7 @@ import com.apatech.domain.Collection_term;
 import com.apatech.domain.Team;
 
 public interface Collection_termMapper {
-	 List<Team> selectAll();
+	 List<Collection_term> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Collection_termMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Collection_term WHERE cote_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String coteId);

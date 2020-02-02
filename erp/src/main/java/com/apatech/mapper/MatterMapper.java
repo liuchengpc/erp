@@ -9,7 +9,7 @@ import com.apatech.domain.Matter;
 import com.apatech.domain.Team;
 
 public interface MatterMapper {
-	 List<Team> selectAll();
+	 List<Matter> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface MatterMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Matter WHERE Matter_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String matterId);

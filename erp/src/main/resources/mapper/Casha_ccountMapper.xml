@@ -22,6 +22,15 @@
     cc_id, cc_name, currency_id, cc_subject, cc_initialbalance, cc_currentbalance, cc_remark, 
     cc_Auditing, cc_yn, cc_custom1, cc_custom2, cc_custom3, cc_custom4, cc_custom5, cc_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from casha_ccount 
+	    where cc_Yn=0
+	    ORDER BY cc_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

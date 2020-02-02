@@ -9,7 +9,7 @@ import com.apatech.domain.Team;
 import com.apatech.domain.Updown_program;
 
 public interface Updown_programMapper {
- List<Team> selectAll();
+ List<Updown_program> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Updown_programMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Updown_program WHERE up_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String upId);

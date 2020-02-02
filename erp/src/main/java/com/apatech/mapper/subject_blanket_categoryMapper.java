@@ -9,7 +9,7 @@ import com.apatech.domain.Team;
 import com.apatech.domain.subject_blanket_category;
 
 public interface subject_blanket_categoryMapper {
- List<Team> selectAll();
+ List<subject_blanket_category> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface subject_blanket_categoryMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"subject_blanket_category WHERE sbc_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String sbcId);

@@ -28,6 +28,15 @@
     apf_amount, apf_money, apf_weight, apf_volume_wood, apf_contribution, prt_audition, 
     prt_yn, prt_custom1, prt_custom2, prt_custom3, prt_custom4, prt_custom5, prt_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from assessment_procurement_fruit 
+	    where apf_Yn=0
+	    ORDER BY prt_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

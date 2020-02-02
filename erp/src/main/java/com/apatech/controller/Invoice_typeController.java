@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Invoice_type;
 import com.apatech.domain.Invoice_type;
 import com.apatech.domain.Invoice_type;
+import com.apatech.domain.Invoice_type;
 import com.apatech.mapper.Invoice_typeMapper;
 import com.apatech.service.Invoice_typeService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Invoice_typeController")
 public class Invoice_typeController {
 	@Autowired
 	private Invoice_typeService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Invoice_type> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Invoice_typeController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Invoice_type> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

@@ -19,6 +19,15 @@
     sot_id, sot_name, sot_engname, sot_remark, sot_auditing, sot_yn, sot_custom1, sot_custom2, 
     sot_custom3, sot_custom4, sot_custom5, sot_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_order_type 
+	    where sot_Yn=0
+	    ORDER BY sot_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

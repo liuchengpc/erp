@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Sales_out_warehouse_type;
 import com.apatech.domain.Sales_out_warehouse_type;
 import com.apatech.domain.Sales_out_warehouse_type;
+import com.apatech.domain.Sales_out_warehouse_type;
 import com.apatech.mapper.Sales_out_warehouse_typeMapper;
 import com.apatech.service.Sales_out_warehouse_typeService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Sales_out_warehouse_typeController")
 public class Sales_out_warehouse_typeController {
 	@Autowired
 	private Sales_out_warehouse_typeService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_out_warehouse_type> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Sales_out_warehouse_typeController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Sales_out_warehouse_type> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

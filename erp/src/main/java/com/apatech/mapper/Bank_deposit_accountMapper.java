@@ -18,7 +18,7 @@ public interface Bank_deposit_accountMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE ada_custom1=#{billdate}")
+	 		"Bank_deposit_account WHERE ada_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String adaId);

@@ -9,7 +9,7 @@ import com.apatech.domain.Customer_grade;
 import com.apatech.domain.Team;
 
 public interface Customer_gradeMapper {
-	 List<Team> selectAll();
+	 List<Customer_grade> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Customer_gradeMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Customer_grade WHERE og_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String cgId);

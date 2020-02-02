@@ -9,7 +9,7 @@ import com.apatech.domain.Payables;
 import com.apatech.domain.Team;
 
 public interface PayablesMapper {
-	 List<Team> selectAll();
+	 List<Payables> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface PayablesMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Payables WHERE Payables_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String payablesId);

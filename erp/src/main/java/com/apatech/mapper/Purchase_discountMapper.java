@@ -9,7 +9,7 @@ import com.apatech.domain.Purchase_discount;
 import com.apatech.domain.Team;
 
 public interface Purchase_discountMapper {
-	 List<Team> selectAll();
+	 List<Purchase_discount> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface Purchase_discountMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Purchase_discount WHERE pd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String pdId);

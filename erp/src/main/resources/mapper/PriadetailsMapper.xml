@@ -27,6 +27,15 @@
     Priabill_custom4, Priabill_custom5, Priabill_custom6, Priabill_custom7, Priabill_custom8, 
     Priabill_custom9, Priabill_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from priadetails 
+	    where priadetails_Yn=0
+	    ORDER BY priadetails_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

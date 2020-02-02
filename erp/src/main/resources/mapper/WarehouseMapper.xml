@@ -25,6 +25,15 @@
     warehouse_custom1, warehouse_custom2, warehouse_custom3, warehouse_custom4, warehouse_custom5, 
     warehouse_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from warehouse 
+	    where warehouse_Yn=0
+	    ORDER BY warehouse_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

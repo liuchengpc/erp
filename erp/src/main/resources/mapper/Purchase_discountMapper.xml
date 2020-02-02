@@ -44,6 +44,15 @@
     pd_header_provision, pd_end_clause, pd_remark, pd_audition, pd_yn, pd_custom1, pd_custom2, 
     pd_custom3, pd_custom4, pd_custom5, pd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_discount 
+	    where pd_Yn=0
+	    ORDER BY pd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

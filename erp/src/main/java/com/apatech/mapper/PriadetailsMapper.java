@@ -9,7 +9,7 @@ import com.apatech.domain.Priadetails;
 import com.apatech.domain.Team;
 
 public interface PriadetailsMapper {
-	 List<Team> selectAll();
+	 List<Priadetails> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -18,7 +18,7 @@ public interface PriadetailsMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"team WHERE team_custom1=#{billdate}")
+	 		"Priadetails WHERE priabill_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String priadetailsId);

@@ -19,6 +19,15 @@
     ds_id, ds_startday, ds_enddate, ds_decoration, ds_auditing, ds_yn, ds_custom1, ds_custom2, 
     ds_custom3, ds_custom4, ds_custom5, ds_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from dull_section 
+	    where ds_Yn=0
+	    ORDER BY ds_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

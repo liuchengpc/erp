@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Project;
 import com.apatech.domain.Project;
 import com.apatech.domain.Project;
+import com.apatech.domain.Project;
 import com.apatech.mapper.ProjectMapper;
 import com.apatech.service.ProjectService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("ProjectController")
 public class ProjectController {
 	@Autowired
 	private ProjectService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Project> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入ProjectController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Project> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

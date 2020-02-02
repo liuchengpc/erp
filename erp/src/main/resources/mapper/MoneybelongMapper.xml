@@ -20,6 +20,15 @@
     moneybelong_yn, moneybelong_custom1, moneybelong_custom2, moneybelong_custom3, moneybelong_custom4, 
     moneybelong_custom5, moneybelong_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from moneybelong 
+	    where moneybelong_Yn=0
+	    ORDER BY moneybelong_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

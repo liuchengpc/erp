@@ -22,6 +22,15 @@
     wd_id, warehouse_id, mt_id, wd_unit_rice, wd_number, wd_inorout, wd_lastbalancenumber, 
     wd_Auditing, wd_yn, wd_custom1, wd_custom2, wd_custom3, wd_custom4, wd_custom5, wd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from warehouse_detail 
+	    where wd_Yn=0
+	    ORDER BY wd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

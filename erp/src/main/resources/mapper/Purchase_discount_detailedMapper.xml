@@ -34,6 +34,15 @@
     pdd_audition, pdd_yn, pdd_custom1, pdd_custom2, pdd_custom3, pdd_custom4, pdd_custom5, 
     pdd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_discount_detailed 
+	    where pdd_Yn=0
+	    ORDER BY pdd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

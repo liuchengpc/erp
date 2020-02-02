@@ -1,18 +1,38 @@
 package com.apatech.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Staff;
 import com.apatech.domain.Staff;
+import com.apatech.domain.Staff;
 import com.apatech.mapper.StaffMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 @Transactional
 public class StaffService {
 	@Autowired
 	private StaffMapper dao;
+	
+	public PageInfo<Staff> selectAllpage(Integer pageNum,Integer pageSize){
+    	System.out.println("分页的集合："+dao.selectAll().toString());
+		 
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Staff> list=dao.selectAll();
+
+    	PageInfo<Staff> page=new PageInfo<Staff>(list);
+//		    	System.out.println("分页的集合2："+page.getList().toString());
+    	return page;
+    }
+	 
+	 public String getno(String billdate){
+	    	return dao.getno(billdate);
+    }
 	
     public int deleteByPrimaryKey(String staffId){
     	return dao.deleteByPrimaryKey(staffId);

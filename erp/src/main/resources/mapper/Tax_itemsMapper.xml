@@ -19,6 +19,15 @@
     ti_id, ti_name, ti_english_name, ti_remark, ti_Auditing, ti_yn, ti_custom1, ti_custom2, 
     ti_custom3, ti_custom4, ti_custom5, ti_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tax_items 
+	    where ti_Yn=0
+	    ORDER BY ti_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -23,6 +23,14 @@
     ap_id, ap_dateid, materialid, updowmid, ap_price, ap_decoration, ap_doworkman, ap_recheckman, 
     ap_auditing, ap_yn, ap_custom1, ap_custom2, ap_custom3, ap_custom4, ap_custom5, ap_custom6
   </sql>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from adjust_price 
+	    where ap_Yn=0
+	    ORDER BY ap_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

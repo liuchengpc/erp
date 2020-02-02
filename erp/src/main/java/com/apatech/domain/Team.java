@@ -15,7 +15,7 @@ public class Team {
     private String teamRemark;//备注
     private String teamAuditing;//是否审核
     private String teamYn;//是否删除（0 否 1 是 ，默认0）
-    private String teamCustom1;//自定义1
+    private String teamCustom1;//创建时间
     private String teamCustom2;//自定义2
     private String teamCustom3;//自定义3
     private String teamCustom4;//自定义4

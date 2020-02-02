@@ -1,45 +1,31 @@
 package com.apatech.domain;
 
-/**
- * 发票类型表
- * @author 刘成
- *
- */
 public class Invoicetype {
-    private String invoicetypeId;//发票类型id（主键 唯一）
-    private String invoicetypeName;//发票类型名称
-    private String invoicetypeEngname;//英文名称
-    private String invoicetypeRemarks;//备注
-    private String invoicetypeAuditing;//是否审核
-    private String invoicetypeYn;//是否删除（0 否 1 是 ，默认0）
-    private String invoicetypeCustom1;//自定栏1
-    private String invoicetypeCustom2;//自定栏2
-    private String invoicetypeCustom3;//自定栏3
-    private String invoicetypeCustom4;//自定栏4
-    private String invoicetypeCustom5;//自定栏5
-    private String invoicetypeCustom6;//自定栏6
-    
-    
+    private String invoicetypeId;
 
-    public Invoicetype() {
-		super();
-	}
-    
-    
+    private String invoicetypeName;
 
-	@Override
-	public String toString() {
-		return "Invoicetype [invoicetypeId=" + invoicetypeId + ", invoicetypeName=" + invoicetypeName
-				+ ", invoicetypeEngname=" + invoicetypeEngname + ", invoicetypeRemarks=" + invoicetypeRemarks
-				+ ", invoicetypeAuditing=" + invoicetypeAuditing + ", invoicetypeYn=" + invoicetypeYn
-				+ ", invoicetypeCustom1=" + invoicetypeCustom1 + ", invoicetypeCustom2=" + invoicetypeCustom2
-				+ ", invoicetypeCustom3=" + invoicetypeCustom3 + ", invoicetypeCustom4=" + invoicetypeCustom4
-				+ ", invoicetypeCustom5=" + invoicetypeCustom5 + ", invoicetypeCustom6=" + invoicetypeCustom6 + "]";
-	}
+    private String invoicetypeEngname;
 
+    private String invoicetypeRemarks;
 
+    private String invoicetypeAuditing;
 
-	public String getInvoicetypeId() {
+    private String invoicetypeYn;
+
+    private String invoicetypeCustom1;
+
+    private String invoicetypeCustom2;
+
+    private String invoicetypeCustom3;
+
+    private String invoicetypeCustom4;
+
+    private String invoicetypeCustom5;
+
+    private String invoicetypeCustom6;
+
+    public String getInvoicetypeId() {
         return invoicetypeId;
     }
 

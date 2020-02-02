@@ -6,14 +6,6 @@
 	   <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
     	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"></link>	
     	<link rel="stylesheet" th:href="@{/css/layui.css}"  media="all">
-    	
-    	<!-- bootstrap树形菜单插件 -->
-		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css">
-		
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
-		
-		
-		
 		
 	 
  	    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
@@ -27,8 +19,9 @@
 		<script type="text/javascript" th:src="@{/js/axios.min.js}"></script>
 
 
-		<script src="/js/bootstrap-treeview.js"></script>
-		
+		<!-- bootstrap树形菜单插件 -->
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
 		<style type="text/css">
 		
 			/* !important 设置样式优先级最高
@@ -352,14 +345,110 @@
 										window.setInterval("reinitIframe7()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
 									</script>
 								</div>
-							</div>
+							</div> 
 							
 							
-								
+								<!-- <div class="container">
+								    <div class="row">
+								        <div>
+								            <h2>bootstrap treeview实现target功能，iframe中打开页面</h2>
+								            <div id="treeview" class="col-xs-3"></div>
+								        </div>
+								        <div class="col-sm-4">
+											<div class="col-lg-9">
+											    <iframe src="index.html" name='main' id="iframepage" frameborder="0" width="100%" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
+											</div> 
+								        </div>
+								    </div>
+								</div>
+								<script type="text/javascript">
+							  	/**/
+							
+							
+								$('#treeview').treeview({
+							          color: "#428bca",
+							          expandIcon: 'glyphicon glyphicon-chevron-right',
+							          collapseIcon: 'glyphicon glyphicon-chevron-down',
+							          nodeIcon: 'glyphicon glyphicon-bookmark',
+							          data: getTree()
+							        });
+							
+							
+								$('#treeview').on('nodeSelected', function(event, data) {
+									
+							      var arr = $('#treeview').treeview('getSelected');
+							      //var arr2=JSON.stringify(arr);
+							      if (arr[0].src!=undefined) {
+							      	document.getElementById("iframepage").src=arr[0].src;
+							      }
+							      
+							    });
+							
+							
+								   //定义树里的数据来源
+							  function getTree(){
+							    var data = [
+							    {
+							            text: 'Parent 1',
+							            href: '#parent1',
+							            tags: ['4'],
+							            nodes: [
+							              {
+							                text: 'Child 1',
+							                href: '#child1',
+							                tags: ['2'],
+							                nodes: [
+							                  {
+							                    text: 'Grandchild 1',
+							                    href: '#grandchild1',
+							                 	src:"index.html",
+							                    tags: ['0']
+							                  },
+							                  {
+							                    text: 'Grandchild 2',
+							                    href: '#grandchild2',
+							                	src:"index2.html",
+							                    tags: ['0']
+							                  }
+							                ]
+							              },
+							              {
+							                text: 'Child 2',
+							                href: '#child2',
+							                tags: ['0']
+							              }
+							            ]
+							          },
+							          {
+							            text: 'Parent 2',
+							            href: '#parent2',
+							            tags: ['0']
+							          },
+							          {
+							            text: 'Parent 3',
+							            href: '#parent3',
+							             tags: ['0']
+							          },
+							          {
+							            text: 'Parent 4',
+							            href: '#parent4',
+							            tags: ['0']
+							          },
+							          {
+							            text: 'Parent 5',
+							            href: '#parent5'  ,
+							            tags: ['0']
+							          }
+							    ];
+							    return data;
+							  }
+							 
+							
+							  </script> -->
 					    </div>
 	
 						<div class="layui-tab-item ">
-					    	<!-- <div class="main8" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+					    	<div class="main8" style="border: 1px solid #E7E7EB;border-left: none;"> 	
 								<div class="global-width ">
 									<iframe  frameBorder="0" id="left8" name="left8" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu7}"  width="195px"  target="main"></iframe>
 									<iframe  frameBorder="0" id="main8" name="main8" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/member_info}" width="99.9%";  ></iframe>
@@ -386,679 +475,7 @@
 										window.setInterval("reinitIframe8()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
 									</script>
 								</div>
-							</div> -->
-							<style>
-								#treeview>.list-group{
-									 min-width: 216.49px !important;
-								}
-								#treeview2>.list-group{
-									 min-width: 216.49px !important;
-								}
-							</style>
-							
-							
-							<div class="container">
-								    <div class="row">
-								        <div>
-								            <!-- <div id="treeview" class="col-lg-2" style="width: auto;padding: 0;"></div> -->
-								             <div id="treeview2" class="col-lg-2" style="width: auto;padding: 0;"></div>
-											<iframe src="/topage/page/claim/member_info" class="col-lg-10" name='main' id="iframepage" frameborder="0" width="100%" scrolling="no" marginheight="0" marginwidth="0" ></iframe>
-								        </div>
-								    </div>
-								</div>
-								<script type="text/javascript">
-								/* 自动适应高度 E */
-								function tzerp(){
-									var sxs=$("#iframepage").attr("src")
-									$("#iframepage").attr("src",sxs);
-								}
-								function reinitIframe8() {           
-										     var iframe = document.getElementById("iframepage");           
-										     try {               
-										            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
-										            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
-										            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
-										        } catch (ex) { }       
-										}       
-										window.setInterval("reinitIframe8()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
-								/* 自动适应高度 S */
-								
-								
-								/* $('#treeview').treeview({
-							          color: "#428bca",
-							          expandIcon: 'glyphicon glyphicon-chevron-right',
-							          collapseIcon: 'glyphicon glyphicon-chevron-down',
-							          nodeIcon: 'glyphicon glyphicon-bookmark',
-							          data: defaultData(),
-							          
-							            /*color: "#428bca",
-									     //backColor: "black",背景色
-									    //borderColor:'green',
-									    collapseIcon: "glyphicon glyphicon-minus",//可收缩的节点图标
-									    nodeIcon: "glyphicon glyphicon-user",
-									    //emptyIcon: "glyphicon glyphicon-ban-circle",//设置列表树中没有子节点的节点的图标
-									    expandIcon: "glyphicon glyphicon-plus",  //设置列表上中有子节点的图标
-									    highlightSearchResults:true,//是否高亮搜索结果 默认true
-									    highlightSelected:true,     //是否选中高亮显示
-									    onhoverColor: "#f5f5f5",    //鼠标滑过的颜色
-									    levels: 0 ,                 //设置初始化展开几级菜单 默认为2
-									    selectedIcon: 'glyphicon glyphicon-tint',
-									   // selectedBackColor: 'black',  //设置被选中的节点背景颜色
-									    //selectedColor : 'red',      //设置被选择节点的字体、图标颜色
-									    showBorder:true,                //是否显示边框
-									    showCheckbox:false,              //是否显示多选框
-									    //uncheckedIcon:'',             //设置未选择节点的图标
-									    data:defaultData,
-									    showTags:true,//显示徽章
-							        }); 
-							
-							
-								$('#treeview').on('nodeSelected', function(event, data) {
-									
-							      var arr = $('#treeview').treeview('getSelected');
-							      //var arr2=JSON.stringify(arr);
-							      if (arr[0].src!=undefined) {
-							      	document.getElementById("iframepage").src=arr[0].src;
-							      }
-							      
-							    });*/
-							
-							
-								   //定义树里的数据来源
-							 
-							 
-							
-							  
-							  
-							  
-						
-						         
-							  
-							  
-							
-						
-							  		$(function() {
-						
-						        var defaultData = [
-							    {
-							            text: '共用资料',
-							            href: '#parent1',
-							            tags: ['4'],
-							            nodes: [
-							              {
-							                text: '基本资料',
-							                href: '#child1',
-							                tags: ['2'],
-							                nodes: [
-							                  {
-							                    text: '部门设定',
-							                    href: '#grandchild1',
-							                 	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '项目设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '币别设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '地区设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '学历设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '银行设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '税目设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '发票类型设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '银行账户设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '银行存款账户设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '结算方式设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '人员主文件设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '收入费用类别设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '节假日设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '形事历设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                 
-							                ]
-							              },
-							              {
-							                text: '物料资料',
-							                href: '#child1',
-							                tags: ['2'],
-							                nodes: [
-							                  {
-							                    text: '仓库设定',
-							                    href: '#grandchild1',
-							                 	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '物料类别设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '计量单位设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '物料主文件设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '价格批次设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '物料组合一览表',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '原厂编号查询',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '子件一览表',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                ]
-							              },
-							              {
-							                text: '往来资料',
-							                href: '#child1',
-							                tags: ['2'],
-							                nodes: [
-							                  {
-							                    text: '客户类别设定',
-							                    href: '#grandchild1',
-							                 	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '客户等级设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '洽谈阶段设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '潜在客户主文件设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '客户主文件设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '潜在客户转正式客户',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '供应商类别设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '供应商主文件设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                ]
-							              },
-							              {
-							                text: '科目资料',
-							                href: '#child1',
-							                tags: ['2'],
-							                nodes: [
-							                  {
-							                    text: '科目总类设定',
-							                    href: '#grandchild1',
-							                 	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '科目类别设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  {
-							                    text: '会计科目设定',
-							                    href: '#grandchild2',
-							                	src:"/topage/page/claim/member_info",
-							                    tags: ['0']
-							                  },
-							                  
-							                ]
-							              },
-							             
-							            ]
-							          },
-							          {
-							            text: '采购管理',
-							            href: '#parent2',
-							            tags: ['0'],
-							            nodes: [
-								              {
-								                text: '基本资料',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '采购请购类型设定',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购入库类型设定',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购订单类型设定',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                ]
-								              },
-								              {
-								                text: '采购作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '采购订单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购询价单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购请购单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购入库单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购退货单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购折让确认单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '采购发票',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              {
-								                text: '分摊作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '采购分摊作业',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              
-								             
-								            ]
-							          },
-							          {
-							            text: '销售管理',
-							            href: '#parent3',
-							             tags: ['0'],
-							             nodes: [
-								              {
-								                text: '基本资料',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '销售订单类型设定',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售出库类型设定',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              {
-								                text: '销售作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '销售报价单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售订单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售出库单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售退货单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售折让确认单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '销售发票',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								              
-								                 
-								                ]
-								              },
-								              {
-								                text: '金税接口',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '销售发票导出',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              
-								             
-								            ]
-							          },
-							          {
-							            text: '库存管理',
-							            href: '#parent4',
-							            tags: ['0'],
-							            nodes: [
-								              {
-								                text: '基本资料',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '入库类型设定',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '出库类型设定',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                
-								                ]
-								              },
-								              {
-								                text: '其他出入库作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '其他入库单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '其他出库单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                
-								                 
-								                ]
-								              },
-								              {
-								                text: '调拨盘点作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '调拨单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '打印盘点卡',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '盘点单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              {
-								                text: '调价作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '调价单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              
-								             
-								            ]
-							          },
-							          {
-							            text: '账款管理',
-							            href: '#parent5'  ,
-							            tags: ['0'],
-							            nodes: [
-								              {
-								                text: '冲款作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '应收冲款单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '应付冲款单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								              {
-								                text: '其他应收付作业',
-								                href: '#child1',
-								                tags: ['2'],
-								                nodes: [
-								                  {
-								                    text: '其他应收单',
-								                    href: '#grandchild1',
-								                 	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                  {
-								                    text: '其他应付单',
-								                    href: '#grandchild2',
-								                	src:"/topage/page/claim/member_info",
-								                    tags: ['0']
-								                  },
-								                 
-								                ]
-								              },
-								             
-								              
-								             
-								            ]
-							          }
-							    ];
-							
-						
-						        
-						       
-						        $('#treeview2').treeview({
-						          levels: 1,
-						          data: defaultData,
-						        });
-						});
-	  	</script>
+							</div>
 					    </div>
 					  
 					  </div>

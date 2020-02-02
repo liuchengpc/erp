@@ -12,33 +12,14 @@ public class Account {
     private String accountRemark;//备注
     private String accountAuditing;//是否审核
     private String accountYn;//是否删除（0 否 1 是 ，默认0）
-    private String accountCustom1;//自定栏1
-    private String accountCustom2;//自定栏2
-    private String accountCustom3;//自定栏3
-    private String accountCustom4;//自定栏4
-    private String accountCustom5;//自定栏5
-    private String accountCustom6;//自定栏6
-    
-    
+    private String accountCustom1;//自定栏一
+    private String accountCustom2;//自定栏二
+    private String accountCustom3;//自定栏三
+    private String accountCustom4;//自定栏四
+    private String accountCustom5;//自定栏五
+    private String accountCustom6;//自定栏六
 
-    public Account() {
-		super();
-	}
-    
-    
-
-	@Override
-	public String toString() {
-		return "Account [accountId=" + accountId + ", accountInvoicetypename=" + accountInvoicetypename
-				+ ", accountEngname=" + accountEngname + ", accountRemark=" + accountRemark + ", accountAuditing="
-				+ accountAuditing + ", accountYn=" + accountYn + ", accountCustom1=" + accountCustom1
-				+ ", accountCustom2=" + accountCustom2 + ", accountCustom3=" + accountCustom3 + ", accountCustom4="
-				+ accountCustom4 + ", accountCustom5=" + accountCustom5 + ", accountCustom6=" + accountCustom6 + "]";
-	}
-
-
-
-	public String getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 

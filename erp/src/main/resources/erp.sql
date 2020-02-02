@@ -2675,6 +2675,11 @@ CREATE TABLE `team` (
 
 /*Data for the table `team` */
 
+insert  into `team`(`team_id`,`team_name`,`team_english_name`,`team_abate`,`team_remark`,`team_Auditing`,`team_yn`,`team_custom1`,`team_custom2`,`team_custom3`,`team_custom4`,`team_custom5`,`team_custom6`) values 
+('20200131001','财务部','caiwubus',NULL,NULL,NULL,NULL,'20200131',NULL,NULL,NULL,NULL,NULL),
+('20200131002','直销部','zhixiaobu',NULL,NULL,NULL,NULL,'20200131',NULL,NULL,NULL,NULL,NULL),
+('20200131003','渠道部','qudaobu',NULL,NULL,NULL,NULL,'20200131',NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `updown_program` */
 
 DROP TABLE IF EXISTS `updown_program`;

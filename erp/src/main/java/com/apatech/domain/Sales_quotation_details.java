@@ -1,249 +1,162 @@
 package com.apatech.domain;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * 销售报价表详表
  * @author 刘成
  *
  */
 public class Sales_quotation_details {
-    private String sqdId;//id（主键 唯一）
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date sqdDocumentTime;//单据时间（默认为创建时间）
-    private String sqdDocumentnumber;//单据号码（根据单据时间自动生成的单据号如（2019122001））
-    private String sqdDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
-    private String sotId;//销售订单类型
-    private String sqdCustomerorder;//客户订单
-    private Integer sqdTax;//是否含税（1=是，0=否）
-    private String currencyId;//币别id
-    private Integer sqdOderStatic;//单况（0=未结案，1=已结案，2=无效）默认为0
-    private String staffId;//业务人员编号
-    private String teamId;//所属部门编号（根据业务员自动获取所属部门，也可以根据部门自动获取业务人员）
-    private String sqdMonograph;//制单人（根据登录的账号获取制单人员）(人员表 外键)
-    private String sqdReviewer;//复核人员（根据复核人员获取的复核人员名称、）(人员表 外键)
-    private String sqdSubordinate;//所属项目
-    private String sqdWatchword;//表头条文
-    private String sqdTailclause;//表尾条文
-    private String sqdRemark;//备注
-    private String sqdAccountOwnership;//账款归属
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date sqdCollectionTime;//收款时间（自动获取开单时间）
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date sqdCollectionMonth;//收款月份
-    private String sqdCollectionTerms;//收款条件
-    private String sqdCollectionTermsDay;//收款条件天数
+    private String sqdProdid;//物料编号，来源物料主文件
+    private String sqdSerno;//栏号
+    private String sqdProdname;//物料名称，来源物料主文件
+    private String sqdProdsize;//规格型号，来源物料主文件
+    private String sqdUnitname;//单位名称，来源物料主文件
+    private Integer sqdSquantity;//数量,要有小兰标签，但如果为0，不可保存 
+    private Float sqdZkqprice;//折扣前单价
+    private Float sqdDiscount;//折数
+    private Float sqdUnitprice;//单价
+    private Float sqdPrice;//金额
+    private Float sqdTaxrate;//税率
+    private Float sqdTaxlimit;//税额
+    private Float sqdTaxinclusiveprice;//含税金额
+    private Integer sqdComplimentart;//赠品（0，1）
+    private String sqdItemremark;//分录备注
+    private String sqlId;//详表主键 关联主表
     private String sqdAuditing;//是否审核
     private String sqdYn;//是否删除（0 否 1 是 ，默认0）
-    private String sqdCustom1;//自定义1
-    private String sqdCustom2;//自定义2
-    private String sqdCustom3;//自定义3
-    private String sqdCustom4;//自定义4
-    private String sqdCustom5;//自定义5
-    private String sqdCustom6;//自定义6
-    
-    
+    private String sqdCustom1;//自定栏一
+    private String sqdCustom2;//自定栏二
+    private String sqdCustom3;//自定栏三
+    private String sqdCustom4;//自定栏四
+    private String sqdCustom5;//自定栏五
+    private String sqdCustom6;//自定栏六
 
-    public Sales_quotation_details() {
-		super();
-	}
-
-	@Override
-	public String toString() {
-		return "Sales_quotation_details [sqdId=" + sqdId + ", sqdDocumentTime=" + sqdDocumentTime
-				+ ", sqdDocumentnumber=" + sqdDocumentnumber + ", sqdDeliveryAddress=" + sqdDeliveryAddress + ", sotId="
-				+ sotId + ", sqdCustomerorder=" + sqdCustomerorder + ", sqdTax=" + sqdTax + ", currencyId=" + currencyId
-				+ ", sqdOderStatic=" + sqdOderStatic + ", staffId=" + staffId + ", teamId=" + teamId + ", sqdMonograph="
-				+ sqdMonograph + ", sqdReviewer=" + sqdReviewer + ", sqdSubordinate=" + sqdSubordinate
-				+ ", sqdWatchword=" + sqdWatchword + ", sqdTailclause=" + sqdTailclause + ", sqdRemark=" + sqdRemark
-				+ ", sqdAccountOwnership=" + sqdAccountOwnership + ", sqdCollectionTime=" + sqdCollectionTime
-				+ ", sqdCollectionMonth=" + sqdCollectionMonth + ", sqdCollectionTerms=" + sqdCollectionTerms
-				+ ", sqdCollectionTermsDay=" + sqdCollectionTermsDay + ", sqdAuditing=" + sqdAuditing + ", sqdYn="
-				+ sqdYn + ", sqdCustom1=" + sqdCustom1 + ", sqdCustom2=" + sqdCustom2 + ", sqdCustom3=" + sqdCustom3
-				+ ", sqdCustom4=" + sqdCustom4 + ", sqdCustom5=" + sqdCustom5 + ", sqdCustom6=" + sqdCustom6 + "]";
-	}
-
-	public String getSqdId() {
-        return sqdId;
+    public String getSqdProdid() {
+        return sqdProdid;
     }
 
-    public void setSqdId(String sqdId) {
-        this.sqdId = sqdId == null ? null : sqdId.trim();
+    public void setSqdProdid(String sqdProdid) {
+        this.sqdProdid = sqdProdid == null ? null : sqdProdid.trim();
     }
 
-    public Date getSqdDocumentTime() {
-        return sqdDocumentTime;
+    public String getSqdSerno() {
+        return sqdSerno;
     }
 
-    public void setSqdDocumentTime(Date sqdDocumentTime) {
-        this.sqdDocumentTime = sqdDocumentTime;
+    public void setSqdSerno(String sqdSerno) {
+        this.sqdSerno = sqdSerno == null ? null : sqdSerno.trim();
     }
 
-    public String getSqdDocumentnumber() {
-        return sqdDocumentnumber;
+    public String getSqdProdname() {
+        return sqdProdname;
     }
 
-    public void setSqdDocumentnumber(String sqdDocumentnumber) {
-        this.sqdDocumentnumber = sqdDocumentnumber == null ? null : sqdDocumentnumber.trim();
+    public void setSqdProdname(String sqdProdname) {
+        this.sqdProdname = sqdProdname == null ? null : sqdProdname.trim();
     }
 
-    public String getSqdDeliveryAddress() {
-        return sqdDeliveryAddress;
+    public String getSqdProdsize() {
+        return sqdProdsize;
     }
 
-    public void setSqdDeliveryAddress(String sqdDeliveryAddress) {
-        this.sqdDeliveryAddress = sqdDeliveryAddress == null ? null : sqdDeliveryAddress.trim();
+    public void setSqdProdsize(String sqdProdsize) {
+        this.sqdProdsize = sqdProdsize == null ? null : sqdProdsize.trim();
     }
 
-    public String getSotId() {
-        return sotId;
+    public String getSqdUnitname() {
+        return sqdUnitname;
     }
 
-    public void setSotId(String sotId) {
-        this.sotId = sotId == null ? null : sotId.trim();
+    public void setSqdUnitname(String sqdUnitname) {
+        this.sqdUnitname = sqdUnitname == null ? null : sqdUnitname.trim();
     }
 
-    public String getSqdCustomerorder() {
-        return sqdCustomerorder;
+    public Integer getSqdSquantity() {
+        return sqdSquantity;
     }
 
-    public void setSqdCustomerorder(String sqdCustomerorder) {
-        this.sqdCustomerorder = sqdCustomerorder == null ? null : sqdCustomerorder.trim();
+    public void setSqdSquantity(Integer sqdSquantity) {
+        this.sqdSquantity = sqdSquantity;
     }
 
-    public Integer getSqdTax() {
-        return sqdTax;
+    public Float getSqdZkqprice() {
+        return sqdZkqprice;
     }
 
-    public void setSqdTax(Integer sqdTax) {
-        this.sqdTax = sqdTax;
+    public void setSqdZkqprice(Float sqdZkqprice) {
+        this.sqdZkqprice = sqdZkqprice;
     }
 
-    public String getCurrencyId() {
-        return currencyId;
+    public Float getSqdDiscount() {
+        return sqdDiscount;
     }
 
-    public void setCurrencyId(String currencyId) {
-        this.currencyId = currencyId == null ? null : currencyId.trim();
+    public void setSqdDiscount(Float sqdDiscount) {
+        this.sqdDiscount = sqdDiscount;
     }
 
-    public Integer getSqdOderStatic() {
-        return sqdOderStatic;
+    public Float getSqdUnitprice() {
+        return sqdUnitprice;
     }
 
-    public void setSqdOderStatic(Integer sqdOderStatic) {
-        this.sqdOderStatic = sqdOderStatic;
+    public void setSqdUnitprice(Float sqdUnitprice) {
+        this.sqdUnitprice = sqdUnitprice;
     }
 
-    public String getStaffId() {
-        return staffId;
+    public Float getSqdPrice() {
+        return sqdPrice;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId == null ? null : staffId.trim();
+    public void setSqdPrice(Float sqdPrice) {
+        this.sqdPrice = sqdPrice;
     }
 
-    public String getTeamId() {
-        return teamId;
+    public Float getSqdTaxrate() {
+        return sqdTaxrate;
     }
 
-    public void setTeamId(String teamId) {
-        this.teamId = teamId == null ? null : teamId.trim();
+    public void setSqdTaxrate(Float sqdTaxrate) {
+        this.sqdTaxrate = sqdTaxrate;
     }
 
-    public String getSqdMonograph() {
-        return sqdMonograph;
+    public Float getSqdTaxlimit() {
+        return sqdTaxlimit;
     }
 
-    public void setSqdMonograph(String sqdMonograph) {
-        this.sqdMonograph = sqdMonograph == null ? null : sqdMonograph.trim();
+    public void setSqdTaxlimit(Float sqdTaxlimit) {
+        this.sqdTaxlimit = sqdTaxlimit;
     }
 
-    public String getSqdReviewer() {
-        return sqdReviewer;
+    public Float getSqdTaxinclusiveprice() {
+        return sqdTaxinclusiveprice;
     }
 
-    public void setSqdReviewer(String sqdReviewer) {
-        this.sqdReviewer = sqdReviewer == null ? null : sqdReviewer.trim();
+    public void setSqdTaxinclusiveprice(Float sqdTaxinclusiveprice) {
+        this.sqdTaxinclusiveprice = sqdTaxinclusiveprice;
     }
 
-    public String getSqdSubordinate() {
-        return sqdSubordinate;
+    public Integer getSqdComplimentart() {
+        return sqdComplimentart;
     }
 
-    public void setSqdSubordinate(String sqdSubordinate) {
-        this.sqdSubordinate = sqdSubordinate == null ? null : sqdSubordinate.trim();
+    public void setSqdComplimentart(Integer sqdComplimentart) {
+        this.sqdComplimentart = sqdComplimentart;
     }
 
-    public String getSqdWatchword() {
-        return sqdWatchword;
+    public String getSqdItemremark() {
+        return sqdItemremark;
     }
 
-    public void setSqdWatchword(String sqdWatchword) {
-        this.sqdWatchword = sqdWatchword == null ? null : sqdWatchword.trim();
+    public void setSqdItemremark(String sqdItemremark) {
+        this.sqdItemremark = sqdItemremark == null ? null : sqdItemremark.trim();
     }
 
-    public String getSqdTailclause() {
-        return sqdTailclause;
+    public String getSqlId() {
+        return sqlId;
     }
 
-    public void setSqdTailclause(String sqdTailclause) {
-        this.sqdTailclause = sqdTailclause == null ? null : sqdTailclause.trim();
-    }
-
-    public String getSqdRemark() {
-        return sqdRemark;
-    }
-
-    public void setSqdRemark(String sqdRemark) {
-        this.sqdRemark = sqdRemark == null ? null : sqdRemark.trim();
-    }
-
-    public String getSqdAccountOwnership() {
-        return sqdAccountOwnership;
-    }
-
-    public void setSqdAccountOwnership(String sqdAccountOwnership) {
-        this.sqdAccountOwnership = sqdAccountOwnership == null ? null : sqdAccountOwnership.trim();
-    }
-
-    public Date getSqdCollectionTime() {
-        return sqdCollectionTime;
-    }
-
-    public void setSqdCollectionTime(Date sqdCollectionTime) {
-        this.sqdCollectionTime = sqdCollectionTime;
-    }
-
-    public Date getSqdCollectionMonth() {
-        return sqdCollectionMonth;
-    }
-
-    public void setSqdCollectionMonth(Date sqdCollectionMonth) {
-        this.sqdCollectionMonth = sqdCollectionMonth;
-    }
-
-    public String getSqdCollectionTerms() {
-        return sqdCollectionTerms;
-    }
-
-    public void setSqdCollectionTerms(String sqdCollectionTerms) {
-        this.sqdCollectionTerms = sqdCollectionTerms == null ? null : sqdCollectionTerms.trim();
-    }
-
-    public String getSqdCollectionTermsDay() {
-        return sqdCollectionTermsDay;
-    }
-
-    public void setSqdCollectionTermsDay(String sqdCollectionTermsDay) {
-        this.sqdCollectionTermsDay = sqdCollectionTermsDay == null ? null : sqdCollectionTermsDay.trim();
+    public void setSqlId(String sqlId) {
+        this.sqlId = sqlId == null ? null : sqlId.trim();
     }
 
     public String getSqdAuditing() {

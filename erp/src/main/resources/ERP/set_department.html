@@ -239,7 +239,7 @@
 					  	dataType:'json',	
 					  	contentType : "application/json;charset=utf-8",
 					  	success:function (res) {
-					  		alert("系统提示：" +res.message);
+					  		//alert("系统提示：" +res.message);
 							this_.isinsert=false;//关闭新增模式
 							this_.isedit=false;//关闭编辑模式
 							this_.goPage(1, 1);		
@@ -252,10 +252,10 @@
 					
 					
 					if(this.isinsert==true){//新增
-						alert("进入新增")
+						//alert("进入新增")
 						this.insets();
 					}else if(this.isedit==true){
-						alert("进入修改")
+						//alert("进入修改")
 						this.updates();
 					}else{
 						
@@ -305,7 +305,7 @@
 					  	dataType:'json',	
 					  	contentType : "application/json;charset=utf-8",
 					  	success:function (res) {
-					  		alert("系统提示：" +res.message);
+					  		//alert("系统提示：" +res.message);
 							this_.isinsert=false;//关闭新增模式
 							this_.isedit=false;//关闭编辑模式
 							this_.goPage(1, 1);		
@@ -326,7 +326,7 @@
 						  	dataType:'json',	
 						  	contentType : "application/json;charset=utf-8",
 						  	success:function (res) {
-						  		alert("系统提示：" +res.message);
+						  		//alert("系统提示：" +res.message);
 								this_.diasabledInput=false;//input不可以输入	
 								this_.goPage(1, 1);		
 					        }

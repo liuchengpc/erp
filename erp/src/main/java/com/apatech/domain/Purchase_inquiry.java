@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 采购询价主表
  * @author 刘成
@@ -14,6 +18,8 @@ public class Purchase_inquiry {
     private String pitId;//采购订单类型id
     private String piPriceIncludeTax;//单价是否含税
     private String piSingleStatus;//单况
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date piDocumentDate;//单据日期
     private String piDocumentNumber;//单据号码
     private String currencyId;//币别id

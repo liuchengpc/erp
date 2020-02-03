@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 调拨表
  * @author 刘成
@@ -11,6 +15,8 @@ public class Requisition {
     private String requisitionId;//id（主键 唯一）
     private String requisitionOutWarehouse;//调出仓库id（仓库表的warehouse_id）
     private String requisitionInputWarehouse;//调入仓库id（仓库表的warehouse_id）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date requisitionDocumentationDate;//单据日期
     private String requisitionDocumentationNo;//单据号码
     private String requisitionForm;//制单人员

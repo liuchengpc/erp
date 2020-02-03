@@ -2,6 +2,11 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 项目表
  * @author 刘成
@@ -11,6 +16,8 @@ public class Project {
     private String projectId;//项目编号（主键 唯一）
     private String projectName;//项目名称
     private String projectEnglishName;//项目英文名称
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date projectAbate;//失效日期
     private String projectRemark;//备注
     private String projectAuditing;//是否审核

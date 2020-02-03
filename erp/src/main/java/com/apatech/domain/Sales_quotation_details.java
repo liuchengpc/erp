@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 销售报价表详表
  * @author 刘成
@@ -9,6 +13,8 @@ import java.util.Date;
  */
 public class Sales_quotation_details {
     private String sqdId;//id（主键 唯一）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sqdDocumentTime;//单据时间（默认为创建时间）
     private String sqdDocumentnumber;//单据号码（根据单据时间自动生成的单据号如（2019122001））
     private String sqdDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
@@ -26,7 +32,11 @@ public class Sales_quotation_details {
     private String sqdTailclause;//表尾条文
     private String sqdRemark;//备注
     private String sqdAccountOwnership;//账款归属
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sqdCollectionTime;//收款时间（自动获取开单时间）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sqdCollectionMonth;//收款月份
     private String sqdCollectionTerms;//收款条件
     private String sqdCollectionTermsDay;//收款条件天数

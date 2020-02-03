@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 应付冲款内容详表
  * @author 刘成
@@ -15,6 +19,8 @@ public class Payables_detail {
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String padeSourcelist;//来源单别
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date padeSourcetime;//来源日期
     private String padeSourcenumber;//来源单号
     private String padeInvoiceno;//发票号码

@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 预付款单主表
  * @author 刘成
@@ -22,7 +26,11 @@ public class Priabill {
     private Integer priabillSatName3;//结算方式表
     private Float priabillPrice3;//默认值：0.00
     private Integer priabillZhekou;//折扣率，默认值：0.00
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date priabillEndtime;//终止账月，默认值：当前年月
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date priabillPayablestime;//单据日期，默认值：当前日期
     private String priabillCurrencyName;//币别类型表快照    
     private String priabillCurrencyInexchange;//币别类型表快照

@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 供应商表
  * @author 刘成
@@ -32,15 +36,27 @@ public class Supplier {
     private String supplierEmail;//电子邮件
     private String supplierWebadd;//网址
     private String supplierFaxno;//传真号码
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierCufirstsaleinput;//最初销售入库日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierCufirstsalereturn;//最初销售退货日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierCurecentsaleinput;//最近销售入库日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierCurecentsalereturn;//最近销售退货日
     private String supplierTaxIncluded;//单价是否含税
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierTerminationdate;//终止交易日    
     private Float supplierCreditmoney;//账款额度
     private Float supplierResiduemonet;//剩余额度
     private String supplierCondition;//付款条件
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date supplierCuendorderday;//每月结账日
     private String supplierHonestlv;//信用等级
     private String supplierInvoiceType;//发票类型

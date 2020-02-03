@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 其他入库主表
  * @author 刘成
@@ -12,6 +16,8 @@ public class Other_input_storage {
     private String istId;//入库类型
     private String warehouseId;//仓库id
     private String oisDocumentationDate;//单据日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date oisDocumentationNo;//单据号码
     private String oisCertificateNumber;//凭证编号
     private String oisWarehousingPersonnel;//入库人员

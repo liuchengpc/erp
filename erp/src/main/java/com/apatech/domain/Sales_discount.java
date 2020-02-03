@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 销售折让确认主表
  * @author 刘成
@@ -11,9 +15,13 @@ public class Sales_discount {
     private String sdId;//id（主键 唯一）
     private String customerId;//客户id
     private String pdAttributionOfAccount;//账款归属（供应商id）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pdAccountsMonth;//账款月份
     private String psId;//采购入库单号(外键)
     private String warehouseId;//仓库id
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sdDocumentDate;//单据日期
     private String sdDocumentNumber;//单据号码
     private String currencyId;//币别id

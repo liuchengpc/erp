@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 销售订单主表
  * @author 刘成
@@ -9,9 +13,13 @@ import java.util.Date;
  */
 public class Salesorder {
     private String soId;//id（主键 唯一）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date soDocumentTime;//单据时间
     private String soDocumentnumber;//单据号码（根据单据时间自动生成的单据号如（2019122001））
     private Double soDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sotId;//销售订单类型
     private Integer soCustomerorder;//客户订单
     private String soTax;//是否含税（1=是，0=否）

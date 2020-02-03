@@ -6,16 +6,16 @@ package com.apatech.domain;
  *
  */
 public class Warehouse {
-    private String warehouseId;//
-    private String warehouseName;//
-    private String warehouseEasyName;//
-    private String warehouseEngname;//
-    private String warehouseLinkman;//
-    private String warehouseLinktel;//
-    private String warehouseAddress;//
-    private String warehouseDecoration;//
-    private String warehouseAuditing;//
-    private String warehouseYn;//
+    private String warehouseId;//仓库id（主键 唯一）
+    private String warehouseName;//仓库名称
+    private String warehouseEasyName;//仓库简称
+    private String warehouseEngname;//英文名称
+    private String warehouseLinkman;//联系人
+    private String warehouseLinktel;//电话
+    private String warehouseAddress;//地址
+    private String warehouseDecoration;//备注
+    private String warehouseAuditing;//是否审核
+    private String warehouseYn;//是否删除（0 否 1 是 ，默认0）
     private String warehouseCustom1;//自定义1
     private String warehouseCustom2;//自定义2
     private String warehouseCustom3;//自定义3

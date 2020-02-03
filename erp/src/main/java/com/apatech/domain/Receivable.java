@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 应收冲款单主表
  * @author 刘成
@@ -22,7 +26,11 @@ public class Receivable {
     private Integer payablesSatName3;//结算方式表
     private Float payablesPrice3;//默认值：0.00
     private Integer payablesZhekou;//折扣率,默认值：0.00
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesEndtime;//终止账月,默认值：当前年月
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesPayablestime;//单据日期,默认值：当前日期
     private String payablesCurrencyName;//币别类型表快照
     private String payablesCurrencyInexchange;//汇率

@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 采购入库详表
  * @author 刘成
@@ -15,6 +19,8 @@ public class Purchase_storage_detailed {
     private String psdRemark;//规格型号
     private String psdPriceIncludeTax;//单位名称
     private Integer psdSingleStatus;//数量
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date psdDocumentDate;//折扣前单价
     private String psdDocumentNumber;//折数
     private Float psdPrice;//单价

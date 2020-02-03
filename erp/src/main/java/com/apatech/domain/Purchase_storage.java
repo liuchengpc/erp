@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 采购入库类型表
  * @author 刘成
@@ -15,6 +19,8 @@ public class Purchase_storage {
     private String psPriceIncludeTax;//单价是否含税
     private Integer warehouseId;//仓库id
     private String psSingleStatus;//凭证编号
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date psDocumentDate;//单据日期
     private String psDocumentNumber;//单据号码
     private String currencyId;//币别id

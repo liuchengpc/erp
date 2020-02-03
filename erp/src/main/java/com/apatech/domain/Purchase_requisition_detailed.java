@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 采购请购详表
  * @author 刘成
@@ -20,7 +24,11 @@ public class Purchase_requisition_detailed {
     private Float prdStandardPurchaseAmount;//标准进价金额
     private Float prdUnitPrice;//单价
     private Float prdIncomingAmount;//进价金额
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date prdDemandDate;//需求日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date prdRecommendedProcurementDate;//建议采购日期
     private Integer prdUnpurchasedQuantity;//未采购量
     private String prdRemarks;//分录备注

@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 物料主文件表
  * @author 刘成
@@ -32,11 +36,21 @@ public class Matter {
     private Float matterStandardallcost;//标准总成本
     private Float matterDaystartallcost;//期初总成本
     private Float matterNowallcost;//现行总成本
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterFirstin;//最初出库日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterRecentout;//最近出库日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterRecentin;//最近入库
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterFirstout;//最初入库日
     private Integer matterAppearstartday;//呆滞起记天数
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterStopdate;//停用日期
     private String matterMdecoration;//物料说明
     private String mtId;//物料类型id，关联material_type物料类型表

@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 其他出库主表
  * @author 刘成
@@ -11,8 +15,10 @@ public class Other_out_storage {
     private String oosId;//id（主键 唯一）
     private Integer istId;//入库类型
     private String warehouseId;//仓库id
-    private String oosDocumentationDate;//单据日期
-    private Date oosDocumentationNo;//单据号码
+    private String oosDocumentationDate;//单据号码
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date oosDocumentationNo;//单据日期
     private String oosCertificateNumber;//凭证编号
     private String oosWarehousingPersonnel;//入库人员
     private String oosBelongsSection;//所属部门

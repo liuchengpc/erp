@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 人员表
  * @author 刘成
@@ -14,6 +18,8 @@ public class Staff {
     private String teamId;//所属部门（部门id）
     private String staffGender;//性别
     private String staffIdnumber;//身份证号
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffBirthday;//出生日期
     private Integer staffMaritalstatus;//婚姻状况(0 未婚|1 已婚|2离婚|3 丧偶)
     private Integer staffNativePlace;//血型（0 a型|1 b型|2 ab型|3 o型|5 rh+型|6 rh-型）
@@ -24,9 +30,15 @@ public class Staff {
     private String staffZipcode;//联系邮编
     private String staffMobilephone;//联系电话
     private String staffPoliticalstatus;//政治面貌
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffEntrydate;//入职日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffBecomeaRegularworker;//转正日期
     private String staffProbationperiod;//试用期长
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffDimissiondate;//离职日期
     private String staffTechnicaltitle;//技术职称
     private String staffEnglishposition;//英文职务
@@ -37,11 +49,21 @@ public class Staff {
     private String staffGraduateschool;//毕业学校
     private String staffMajor;//所学专业
     private String staffForeignlanguagelevel;//外语水平
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffPhysicalExaminationdate;//体检日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffAtmaturitydate;//到期日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffEntercountry;//入境日期
     private String staffPassportNumber;//护照号码
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffContractstartdate;//合同起始日期
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date staffContractenddate;//合同终止日期
     private String staffContractduration;//合同期长
     private String staffEmail;//电子邮件

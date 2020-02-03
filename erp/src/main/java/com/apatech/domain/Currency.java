@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 币别表
  * @author 刘成
@@ -12,6 +16,8 @@ public class Currency {
     private String currencyName;//币别名称
     private String currencyEasyname;//币别简称
     private String currencyEngname;//英文名称
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date currencyTransactionday;//异动日期
     private Float currencyStandardexchange;//固定汇率
     private Float currencyInexchange;//买进汇率

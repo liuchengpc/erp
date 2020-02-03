@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 销售退货主表
  * @author 刘成
@@ -16,6 +20,8 @@ public class Sales_return_warehouse {
     private Integer salescxrk;//是否重新入库(0否1是)
     private String warehouseId;//仓库id
     private String srwCertificateNumber;//凭证编号
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date srwDocumentDate;//单据日期
     private String srwDocumentNumber;//单据号码
     private String currencyId;//币别id
@@ -25,9 +31,13 @@ public class Sales_return_warehouse {
     private Float srwSunmoney;//总金额
     private Float srwTax;//总税额
     private String srwIncludingTaxAmount;//总含税金额
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date srwSaleszkgs;//账款归属
     private String srwSalesdate;//收款日期
     private Integer srwSalessktj;//收款条件
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date srwSalesday;//收款天数
     private String srwSalesyue;//账款月份
     private String srwBuyer;//业务人员

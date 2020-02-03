@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 采购分摊作业表
  * @author 刘成
@@ -9,6 +13,8 @@ import java.util.Date;
  */
 public class Assessment_procurement {
     private String apId;//单据号码（主键 唯一）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date apDateDocument;//单据日期
     private String apMethodAssessment;//分摊方式（0按金额，1按数量，2按材积，3按重量）
     private Float apPrincipalCurrencyAmortized;//待摊金额本位币

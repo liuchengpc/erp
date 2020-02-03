@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Team;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.mapper.Sales_quotationMapper;
 import com.apatech.service.Sales_quotationService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Sales_quotationController")
@@ -25,7 +27,19 @@ public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
 	
-	
+	/**
+	 * 分页查询
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+    public PageInfo<Sales_quotation> selectAllpage(Integer pageNum) {
+    	if(pageNum==null) {
+    		pageNum=1;
+    	}
+		System.out.println("进入Sales_quotationController分页查询");
+		PageInfo<Sales_quotation> page=dao.selectAllpage(pageNum);
+    	return page;
+	}
 	/**
 	 * 根据主键查询
 	 * @param sqId

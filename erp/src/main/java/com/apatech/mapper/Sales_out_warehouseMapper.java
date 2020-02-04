@@ -2,14 +2,23 @@ package com.apatech.mapper;
 
 import java.util.List;
 
+import javax.validation.constraints.Pattern;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Team;
 
 public interface Sales_out_warehouseMapper {
  List<Sales_out_warehouse> selectAll();
+ 
+ 	@Update("update Sales_out_warehouse set sow_yn=1 where sow_id=#{id}")
+ 	public int deletelist(String id);
+ 	
+ 	@Select("update Sales_out_warehouse set sow_Auditing=#{sid} where sow_id=#{id}")
+ 	public int selectlist(@Param("id")String id,@Param("sid")String sid);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

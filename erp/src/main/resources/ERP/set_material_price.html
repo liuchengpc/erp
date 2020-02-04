@@ -130,6 +130,33 @@
     </div>
 <script src="jquery-1.12.4.js"></script>
 <script src="layui.js"></script>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+	var pricevue = new Vue({
+		el:".layui-this",
+		data(){
+			return{
+				list:[]
+			}
+		},
+		methods:{
+			show:function(){
+				var that=this;
+				$.ajax({
+					url:"http://127.0.0.1:8080/MatterController/selectByPrimaryKey",/* 查询所有物料的路径 */
+					type:"post",
+					success:function(result){
+						alert(1);
+					}
+				});
+			}
+		},
+		created:function(){
+			this.show();
+		}
+	})
+
+</script>
 <script>
     /*layui.use('layer', function(){
         var layer = layui.layer;

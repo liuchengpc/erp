@@ -1,6 +1,7 @@
 package com.apatech.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -56,10 +57,18 @@ public class Sales_out_warehouse {
     private String sowCustom4;//自定义4
     private String sowCustom5;//自定义5
     private String sowCustom6;//自定义6
-    
+    List<Sales_out_warehouse_detailed> list;
     
 
-    public Sales_out_warehouse() {
+    public List<Sales_out_warehouse_detailed> getList() {
+		return list;
+	}
+
+	public void setList(List<Sales_out_warehouse_detailed> list) {
+		this.list = list;
+	}
+
+	public Sales_out_warehouse() {
 		super();
 	}
 

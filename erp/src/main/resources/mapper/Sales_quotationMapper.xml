@@ -32,9 +32,21 @@
     sq_tailclause, sq_remark, sq_auditing, sq_yn, sq_custom1, sq_custom2, sq_custom3, 
     sq_custom4, sq_custom5, sq_custom6
   </sql>
+<<<<<<< HEAD
   <select id="selectAllpage" resultMap="BaseResultMap">
   		select <include refid="Base_Column_List" /> from sales_quotation
   </select>
+=======
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_quotation 
+	    where sq_Yn=0
+	    ORDER BY sq_id DESC
+  </select>
+  
+>>>>>>> refs/heads/master
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

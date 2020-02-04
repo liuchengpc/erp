@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Check;
 import com.apatech.domain.Check;
 import com.apatech.domain.Check;
+import com.apatech.domain.Check;
 import com.apatech.mapper.CheckMapper;
 import com.apatech.service.CheckService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("CheckController")
 public class CheckController {
 	@Autowired
 	private CheckService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Check> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入CheckController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Check> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

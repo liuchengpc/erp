@@ -44,6 +44,15 @@
     ps_end_clause, ps_remark, ps_audition, ps_yn, ps_custom1, ps_custom2, ps_custom3, 
     ps_custom4, ps_custom5, ps_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_storage 
+	    where ps_Yn=0
+	    ORDER BY ps_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

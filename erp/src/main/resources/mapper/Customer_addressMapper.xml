@@ -25,6 +25,15 @@
     ca_way, ca_adecoration, customer_id, ca_Auditing, ca_yn, ca_custom1, ca_custom2, 
     ca_custom3, ca_custom4, ca_custom5, ca_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer_address 
+	    where ca_Yn=0
+	    ORDER BY ca_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

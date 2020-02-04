@@ -19,6 +19,15 @@
     st_id, st_name, st_engname, st_remark, st_Auditing, st_yn, st_custom1, st_custom2, 
     st_custom3, st_custom4, st_custom5, st_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from supplier_type 
+	    where st_Yn=0
+	    ORDER BY st_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

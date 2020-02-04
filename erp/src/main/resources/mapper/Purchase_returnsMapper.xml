@@ -44,6 +44,15 @@
     pure_checkagain_staff, pure_header_provision, pure_end_clause, pure_remark, pure_audition, 
     pure_yn, pure_custom1, pure_custom2, pure_custom3, pure_custom4, pure_custom5, pure_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_returns 
+	    where pure_Yn=0
+	    ORDER BY pure_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -12,13 +12,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Warehouse;
+import com.apatech.domain.Warehouse;
 import com.apatech.service.WarehouseService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("WarehouseController")
 public class WarehouseController {
 	@Autowired
 	private WarehouseService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Warehouse> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入WarehouseController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Warehouse> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

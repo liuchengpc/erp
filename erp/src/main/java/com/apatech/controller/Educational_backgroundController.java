@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Educational_background;
 import com.apatech.domain.Educational_background;
 import com.apatech.domain.Educational_background;
+import com.apatech.domain.Educational_background;
 import com.apatech.mapper.Educational_backgroundMapper;
 import com.apatech.service.Educational_backgroundService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Educational_backgroundController")
 public class Educational_backgroundController {
 	@Autowired
 	private Educational_backgroundService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Educational_background> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Educational_backgroundController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Educational_background> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

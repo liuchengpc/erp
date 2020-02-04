@@ -38,6 +38,15 @@
     psd_source_order, psd_source_no, psd_auditing, psd_yn, psd_custom1, psd_custom2, 
     psd_custom3, psd_custom4, psd_custom5, psd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_storage_detailed 
+	    where psd_Yn=0
+	    ORDER BY psd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

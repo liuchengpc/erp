@@ -19,6 +19,15 @@
     eb_id, eb_name, eb_english_name, eb_remark, eb_Auditing, eb_yn, eb_custom1, eb_custom2, 
     eb_custom3, eb_custom4, eb_custom5, eb_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from educational_background 
+	    where eb_Yn=0
+	    ORDER BY eb_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

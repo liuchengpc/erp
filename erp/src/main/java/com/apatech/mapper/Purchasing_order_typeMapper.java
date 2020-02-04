@@ -1,8 +1,26 @@
 package com.apatech.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import com.apatech.domain.Purchasing_order_type;
+import com.apatech.domain.Team;
 
 public interface Purchasing_order_typeMapper {
+ List<Purchasing_order_type> selectAll();
+	 
+	 @Select("SELECT \r\n" + 
+	 		"CASE\r\n" + 
+	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 
+	 		"WHEN COUNT(*)>8 THEN CONCAT('0',COUNT(*)+1)\r\n" + 
+	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
+	 		"END \r\n" + 
+	 		"FROM\r\n" + 
+	 		"Purchasing_order_type WHERE pot_custom1=#{billdate}")
+    String getno(@Param("billdate")String billdate);
+	
     int deleteByPrimaryKey(String potId);
 
     int insert(Purchasing_order_type record);

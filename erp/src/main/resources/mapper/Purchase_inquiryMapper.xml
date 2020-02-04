@@ -42,6 +42,15 @@
     pi_remark, pi_audition, pi_yn, pi_custom1, pi_custom2, pi_custom3, pi_custom4, pi_custom5, 
     pi_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_inquiry 
+	    where pi_Yn=0
+	    ORDER BY pi_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

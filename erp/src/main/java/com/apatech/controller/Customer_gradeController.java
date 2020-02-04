@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Customer_grade;
 import com.apatech.domain.Customer_grade;
 import com.apatech.domain.Customer_grade;
+import com.apatech.domain.Customer_grade;
 import com.apatech.mapper.Customer_gradeMapper;
 import com.apatech.service.Customer_gradeService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Customer_gradeController")
 public class Customer_gradeController {
 	@Autowired
 	private Customer_gradeService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Customer_grade> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Customer_gradeController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Customer_grade> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

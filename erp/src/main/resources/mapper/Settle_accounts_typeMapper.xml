@@ -20,6 +20,15 @@
     sat_id, sat_name, sat_english_name, sat_subject, sat_remark, sat_Auditing, sat_yn, 
     sat_custom1, sat_custom2, sat_custom3, sat_custom4, sat_custom5, sat_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from settle_accounts_type 
+	    where sat_Yn=0
+	    ORDER BY sat_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

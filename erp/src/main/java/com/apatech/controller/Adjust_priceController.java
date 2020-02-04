@@ -13,13 +13,44 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Adjust_price;
 import com.apatech.service.Adjust_priceService;
+import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("Adjust_priceController")
 public class Adjust_priceController {
 	@Autowired
 	private Adjust_priceService dao;
 	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Adjust_price> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Adjust_priceController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Adjust_price> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	/**
 	 * 根据主键查询

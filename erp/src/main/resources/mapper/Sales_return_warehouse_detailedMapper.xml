@@ -39,6 +39,15 @@
     srwd_nomake_invoice_num, srwd_remarks, srwd_source_order, srwd_source_no, srwd_auditing, 
     srwd_yn, srwd_custom1, srwd_custom2, srwd_custom3, srwd_custom4, srwd_custom5, srwd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_return_warehouse_detailed 
+	    where sowd_Yn=0
+	    ORDER BY sowd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

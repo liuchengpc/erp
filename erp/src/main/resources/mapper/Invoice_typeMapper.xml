@@ -19,6 +19,15 @@
     it_id, it_name, it_english_name, it_remark, it_Auditing, it_yn, it_custom1, it_custom2, 
     it_custom3, it_custom4, it_custom5, it_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from invoice_type 
+	    where it_Yn=0
+	    ORDER BY it_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

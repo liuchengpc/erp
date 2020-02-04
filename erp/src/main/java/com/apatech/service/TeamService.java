@@ -18,9 +18,11 @@ public class TeamService {
 	private TeamMapper dao;
 	
 	 public PageInfo<Team> selectAllpage(Integer pageNum,Integer pageSize){
+    	System.out.println("分页的集合："+dao.selectAll().toString());
+		 
     	PageHelper.startPage(pageNum, pageSize);
     	List<Team> list=dao.selectAll();
-//    	System.out.println("分页的集合："+dao.selectAll().toString());
+
     	PageInfo<Team> page=new PageInfo<Team>(list);
 //    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;

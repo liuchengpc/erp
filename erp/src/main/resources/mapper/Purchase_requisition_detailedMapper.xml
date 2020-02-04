@@ -36,6 +36,15 @@
     prd_remarks, prd_source_order, prd_source_no, prd_audition, prd_yn, prd_custom1, 
     prd_custom2, prd_custom3, prd_custom4, prd_custom5, prd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_requisition_detailed 
+	    where did_Yn=0
+	    ORDER BY did_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

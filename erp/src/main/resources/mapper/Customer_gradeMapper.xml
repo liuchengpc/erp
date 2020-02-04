@@ -18,6 +18,15 @@
     cg_id, cg_name, cg_remark, cg_Auditing, cg_yn, cg_custom1, cg_custom2, cg_custom3, 
     cg_custom4, cg_custom5, cg_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer_grade 
+	    where cg_Yn=0
+	    ORDER BY cg_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

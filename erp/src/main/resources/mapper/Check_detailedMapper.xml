@@ -31,6 +31,15 @@
     cd_cause, cd_auditing, cd_yn, cd_custom1, cd_custom2, cd_custom3, cd_custom4, cd_custom5, 
     cd_custom6, matter_id
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from check_detailed 
+	    where cd_Yn=0
+	    ORDER BY cd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

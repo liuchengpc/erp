@@ -19,6 +19,15 @@
     cuty_id, cuty_name, cuty_engname, cuty_remark, cuty_Auditing, cuty_yn, cuty_custom1, 
     cuty_custom2, cuty_custom3, cuty_custom4, cuty_custom5, cuty_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer_type 
+	    where cuty_Yn=0
+	    ORDER BY cuty_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

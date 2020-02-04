@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Receivable;
 import com.apatech.domain.Receivable;
 import com.apatech.domain.Receivable;
+import com.apatech.domain.Receivable;
 import com.apatech.mapper.ReceivableMapper;
 import com.apatech.service.ReceivableService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("ReceivableController")
 public class ReceivableController {
 	@Autowired
 	private ReceivableService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Receivable> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入ReceivableController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Receivable> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

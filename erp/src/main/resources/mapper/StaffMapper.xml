@@ -77,6 +77,15 @@
     staff_remark, staff_Auditing, staff_yn, staff_custom1, staff_custom2, staff_custom3, 
     staff_custom4, staff_custom5, staff_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from staff 
+	    where staff_Yn=0
+	    ORDER BY staff_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

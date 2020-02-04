@@ -20,11 +20,15 @@
     team_id, team_name, team_english_name, team_abate, team_remark, team_Auditing, team_yn, 
     team_custom1, team_custom2, team_custom3, team_custom4, team_custom5, team_custom6
   </sql>
+  
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from team ORDER BY team_id DESC
+    from team 
+    where team_Yn=0
+    ORDER BY team_id DESC
   </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

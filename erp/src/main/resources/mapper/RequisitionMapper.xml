@@ -25,6 +25,15 @@
     requisition_auditing, requisition_yn, requisition_custom1, requisition_custom2, requisition_custom3, 
     requisition_custom4, requisition_custom5, requisition_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from requisition 
+	    where requisition_Yn=0
+	    ORDER BY requisition_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

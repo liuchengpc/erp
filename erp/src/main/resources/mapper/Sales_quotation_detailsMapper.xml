@@ -41,6 +41,15 @@
     sqd_auditing, sqd_yn, sqd_custom1, sqd_custom2, sqd_custom3, sqd_custom4, sqd_custom5, 
     sqd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_quotation_details 
+	    where sqd_Yn=0
+	    ORDER BY sqd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

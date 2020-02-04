@@ -17,6 +17,15 @@
     up_id, up_name, up_auditing, up_yn, up_custom1, up_custom2, up_custom3, up_custom4, 
     up_custom5, up_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from updown_program 
+	    where up_Yn=0
+	    ORDER BY up_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -41,6 +41,15 @@
     sowd_source_no, sowd_auditing, sowd_yn, sowd_custom1, sowd_custom2, sowd_custom3, 
     sowd_custom4, sowd_custom5, sowd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_out_warehouse_detailed 
+	    where sowd_Yn=0
+	    ORDER BY sowd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

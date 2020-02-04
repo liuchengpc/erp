@@ -27,6 +27,15 @@
     currency_mpointset, currency_Auditing, urrency_yn, currency_custom1, currency_custom2, 
     currency_custom3, currency_custom4, currency_custom5, currency_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from currency 
+	    where currency_Yn=0
+	    ORDER BY currency_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

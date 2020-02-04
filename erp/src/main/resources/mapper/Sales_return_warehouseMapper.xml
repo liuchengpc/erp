@@ -50,6 +50,15 @@
     srw_remark, srw_auditing, srw_yn, srw_custom1, srw_custom2, srw_custom3, srw_custom4, 
     srw_custom5, srw_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_return_warehouse 
+	    where srw_Yn=0
+	    ORDER BY srw_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

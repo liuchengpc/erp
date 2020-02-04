@@ -1,18 +1,38 @@
 package com.apatech.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Warehouse_detail;
 import com.apatech.domain.Warehouse_detail;
+import com.apatech.domain.Warehouse_detail;
 import com.apatech.mapper.Warehouse_detailMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 @Transactional
 public class Warehouse_detailService {
 	@Autowired
 	private Warehouse_detailMapper dao;
+	
+	public PageInfo<Warehouse_detail> selectAllpage(Integer pageNum,Integer pageSize){
+    	System.out.println("分页的集合："+dao.selectAll().toString());
+		 
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Warehouse_detail> list=dao.selectAll();
+
+    	PageInfo<Warehouse_detail> page=new PageInfo<Warehouse_detail>(list);
+//		    	System.out.println("分页的集合2："+page.getList().toString());
+    	return page;
+    }
+	 
+	 public String getno(String billdate){
+	    	return dao.getno(billdate);
+    }
 	
     public int deleteByPrimaryKey(String wdId){
     	return dao.deleteByPrimaryKey(wdId);

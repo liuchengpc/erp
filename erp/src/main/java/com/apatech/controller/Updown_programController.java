@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Updown_program;
 import com.apatech.domain.Updown_program;
 import com.apatech.domain.Updown_program;
+import com.apatech.domain.Updown_program;
 import com.apatech.mapper.Updown_programMapper;
 import com.apatech.service.Updown_programService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Updown_programController")
 public class Updown_programController {
 	@Autowired
 	private Updown_programService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Updown_program> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Updown_programController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Updown_program> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

@@ -72,6 +72,15 @@
     bank_id, customer_Auditing, customer_yn, customer_custom1, customer_custom2, customer_custom3, 
     customer_custom4, customer_custom5, customer_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer 
+	    where customer_Yn=0
+	    ORDER BY customer_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -19,6 +19,15 @@
     pot_id, pot_name, pot_engname, pot_remark, pot_audition, pot_yn, pot_custom1, pot_custom2, 
     pot_custom3, pot_custom4, pot_custom5, pot_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchasing_order_type 
+	    where pot_Yn=0
+	    ORDER BY pot_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

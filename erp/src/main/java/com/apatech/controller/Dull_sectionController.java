@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Dull_section;
 import com.apatech.domain.Dull_section;
 import com.apatech.domain.Dull_section;
+import com.apatech.domain.Dull_section;
 import com.apatech.mapper.Dull_sectionMapper;
 import com.apatech.service.Dull_sectionService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Dull_sectionController")
 public class Dull_sectionController {
 	@Autowired
 	private Dull_sectionService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Dull_section> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Dull_sectionController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Dull_section> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

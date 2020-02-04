@@ -28,6 +28,15 @@
     oisd_price, oisd_money, oisd_remarks, oisd_source_order, oisd_source_no, oisd_auditing, 
     oisd_yn, oisd_custom1, oisd_custom2, oisd_custom3, oisd_custom4, oisd_custom5, oisd_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from other_input_storage_detailed 
+	    where oisd_Yn=0
+	    ORDER BY oisd_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

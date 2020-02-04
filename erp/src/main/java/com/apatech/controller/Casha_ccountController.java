@@ -16,14 +16,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Casha_ccount;
 import com.apatech.domain.Casha_ccount;
 import com.apatech.domain.Casha_ccount;
+import com.apatech.domain.Casha_ccount;
 import com.apatech.mapper.Casha_ccountMapper;
 import com.apatech.service.Casha_ccountService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("Casha_ccountController")
 public class Casha_ccountController {
 	@Autowired
 	private Casha_ccountService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Casha_ccount> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入Casha_ccountController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Casha_ccount> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
+
 	
 	
 	/**

@@ -19,6 +19,15 @@
     mu_id, mu_name, mu_englist_name, mu_remark, mu_Auditing, mu_yn, mu_custom1, mu_custom2, 
     mu_custom3, mu_custom4, mu_custom5, mu_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from measurement_unit 
+	    where mu_Yn=0
+	    ORDER BY mu_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

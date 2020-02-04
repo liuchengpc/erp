@@ -19,6 +19,15 @@
     zone_id, zone_name, zone_english_name, zone_remark, zone_Auditing, zone_yn, zone_custom1, 
     zone_custom2, zone_custom3, zone_custom4, zone_custom5, zone_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from zone 
+	    where zone_Yn=0
+	    ORDER BY zone_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -19,6 +19,15 @@
     sowt_id, sowt_name, sowt_engname, sowt_remark, sowt_auditing, sowt_yn, sowt_custom1, 
     sowt_custom2, sowt_custom3, sowt_custom4, sowt_custom5, sowt_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_out_warehouse_type 
+	    where sowt_Yn=0
+	    ORDER BY sowt_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

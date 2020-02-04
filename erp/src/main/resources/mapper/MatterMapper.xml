@@ -55,6 +55,15 @@
     matter_mdecoration, mt_id, mu_id, currency_id, matter_Auditing, matter_yn, matter_custom1, 
     matter_custom2, matter_custom3, matter_custom4, matter_custom5, matter_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from matter 
+	    where matter_Yn=0
+	    ORDER BY matter_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

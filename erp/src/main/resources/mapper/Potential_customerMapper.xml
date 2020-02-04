@@ -63,6 +63,15 @@
     pc_discountpoint, pc_honestlv, pc_cuiftax, It_deposit_received_subject, pc_remark, 
     pc_Auditing, pc_yn, pc_custom1, pc_custom2, pc_custom3, pc_custom4, pc_custom5, pc_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from potential_customer 
+	    where pc_Yn=0
+	    ORDER BY pc_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

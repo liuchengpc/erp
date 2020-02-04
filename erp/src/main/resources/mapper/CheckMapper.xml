@@ -28,6 +28,15 @@
     check_remark, check_auditing, check_yn, check_custom1, check_custom2, check_custom3, 
     check_custom4, check_custom5, check_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from check 
+	    where check_Yn=0
+	    ORDER BY check_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

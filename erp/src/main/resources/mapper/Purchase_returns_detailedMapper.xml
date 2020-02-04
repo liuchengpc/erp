@@ -39,6 +39,15 @@
     pured_auditing, pured_yn, pured_custom1, pured_custom2, pured_custom3, pured_custom4, 
     pured_custom5, pured_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_returns_detailed 
+	    where pured_Yn=0
+	    ORDER BY pured_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -27,6 +27,15 @@
     recedetail_custom3, recedetail_custom4, recedetail_custom5, recedetail_custom6, recedetail_custom7, 
     recedetail_custom8, recedetail_custom9, recedetail_custom10
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from receivablesdetails 
+	    where recedetail_Yn=0
+	    ORDER BY recedetail_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -16,14 +16,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
+import com.apatech.domain.Salesorder;
 import com.apatech.mapper.SalesorderMapper;
 import com.apatech.service.SalesorderService;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping("SalesorderController")
 public class SalesorderController {
 	@Autowired
 	private SalesorderService dao;
+	
+	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Salesorder> selectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入SalesorderController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Salesorder> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	/**
+	 * 获取单号
+	 * @param billdate
+	 * @return
+	 */
+	@RequestMapping(value="getno",method=RequestMethod.GET)
+	@ResponseBody
+	 public String getno(String billdate){
+		System.out.println(billdate);
+		System.out.println(dao.getno(billdate));
+		String s=dao.getno(billdate);
+    	return s;
+    }
 	
 	
 	/**

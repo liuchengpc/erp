@@ -28,6 +28,15 @@
     ois_auditing, ois_yn, ois_custom1, ois_custom2, ois_custom3, ois_custom4, ois_custom5, 
     ois_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from other_input_storage 
+	    where ois_Yn=0
+	    ORDER BY ois_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -50,6 +50,15 @@
     sow_remark, sow_auditing, sow_yn, sow_custom1, sow_custom2, sow_custom3, sow_custom4, 
     sow_custom5, sow_custom6
   </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_out_warehouse 
+	    where sow_Yn=0
+	    ORDER BY sow_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

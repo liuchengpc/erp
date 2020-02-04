@@ -28,8 +28,6 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
-
-	
 	/**
 
 	 * 分页
@@ -123,7 +121,7 @@ public class Sales_quotationController {
 	 */
 	@RequestMapping(value = "deleteByPrimaryKey",method = RequestMethod.GET)
 	@ResponseBody
-    public Map<String, String> deleteByPrimaryKey(String sqId,Model model) {
+    public Map<String, String> deleteByPrimaryKey(String sqId,Model model){
 		System.out.println("进入Sales_quotationController根据主键删除");
 		System.out.println("sqId："+sqId);
 		Map<String, String> map=new HashMap<String,String>();

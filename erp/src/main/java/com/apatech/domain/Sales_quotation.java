@@ -1,6 +1,7 @@
 package com.apatech.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,13 +13,27 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public class Sales_quotation {
-    private String sqId;//id（主键 唯一）
+	private static  String sqId;//id（主键 唯一）
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sqDocumentTime;//单据时间（默认创建时间）
     private String currencyId;//币别id
     private Float sqExchangeRate;//汇率(根据币别编号获取的汇率)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    /**
+	 * @return the listinfo
+	 */
+	public List<Sales_quotation_details> getListinfo() {
+		return listinfo;
+	}
+
+	/**
+	 * @param listinfo the listinfo to set
+	 */
+	public void setListinfo(List<Sales_quotation_details> listinfo) {
+		this.listinfo = listinfo;
+	}
+
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sqEffectiveTime;//有效时间（该报价单截止时间）
     private Integer sqTax;//是否含税（1=是，0=否）默认为0
@@ -40,8 +55,8 @@ public class Sales_quotation {
     private String sqCustom5;//自定义4
     private String sqCustom6;//自定义5
     
+    private List<Sales_quotation_details> listinfo; //销售报价单详表
     
-
     public Sales_quotation() {
 		super();
 	}
@@ -58,7 +73,7 @@ public class Sales_quotation {
 				+ ", sqCustom6=" + sqCustom6 + "]";
 	}
 
-	public String getSqId() {
+	public static  String getSqId(){
         return sqId;
     }
 

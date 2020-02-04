@@ -29,6 +29,9 @@ public class Sales_quotation_detailsService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	public List<Sales_quotation_details> querybysqlid(String sqlId){
+		return dao.querybysqlid(sqlId);
+	}
 	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);

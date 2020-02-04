@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.Team;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.mapper.Sales_quotationMapper;
+import com.apatech.mapper.Sales_quotation_detailsMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -20,8 +22,8 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationService {
 	@Autowired
 	private Sales_quotationMapper dao;
-
-	 
+	@Autowired
+	private Sales_quotation_detailsMapper dao2;
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
@@ -31,15 +33,15 @@ public class Sales_quotationService {
 		 
     	PageHelper.startPage(pageNum, pageSize);
     	List<Sales_quotation> list=dao.selectAll();
-
+    	
     	PageInfo<Sales_quotation> page=new PageInfo<Sales_quotation>(list);
-//		    	System.out.println("分页的集合2："+page.getList().toString());
+    	List<Sales_quotation_details> listinfo=dao2.querybysqlid((Sales_quotation.getSqId().toString()));
+    	System.out.println("分页的集合详表数据："+dao2.querybysqlid(Sales_quotation.getSqId().toString()));
     	return page;
     }
 	 
-	
-	
-    public int deleteByPrimaryKey(String sqId){
+
+	public int deleteByPrimaryKey(String sqId){
     	return dao.deleteByPrimaryKey(sqId);
     }
 

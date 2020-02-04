@@ -42,6 +42,13 @@
 	    ORDER BY sqd_Prodid DESC
   </select>
   
+  <select id="querybysqlid" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	  	select 
+	    <include refid="Base_Column_List" />
+	    from sales_quotation_details 
+	    where sqd_Yn=0 and sql_id=#{sqlId,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -27,21 +27,7 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
-	
-	/**
-<<<<<<< HEAD
-	 * 分页查询
-	 */
-	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
-	@ResponseBody
-    public PageInfo<Sales_quotation> selectAllpage(Integer pageNum) {
-    	if(pageNum==null) {
-    		pageNum=1;
-    	}
-		System.out.println("进入Sales_quotationController分页查询");
-		PageInfo<Sales_quotation> page=dao.selectAllpage(pageNum);
-    	return page;
-	}
+
     /*
 	 * 分页
 	 * @param pageNum

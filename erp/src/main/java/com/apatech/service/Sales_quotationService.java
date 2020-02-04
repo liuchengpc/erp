@@ -23,15 +23,6 @@ public class Sales_quotationService {
 	 * 分页处理
 	 * 
 	 */
-	public PageInfo<Sales_quotation> selectAllpage(Integer pageNum){
-    	PageHelper.startPage(pageNum,1);
-    	List<Sales_quotation> list=dao.selectAllpage();
-//    	System.out.println("分页的集合："+dao.selectAll().toString());
-    	PageInfo<Sales_quotation> page=new PageInfo<Sales_quotation>(list);
-//    	System.out.println("分页的集合2："+page.getList().toString());
-    	return page;
-    }
-	
 	public PageInfo<Sales_quotation> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

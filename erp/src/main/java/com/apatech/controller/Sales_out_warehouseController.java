@@ -41,7 +41,7 @@ public class Sales_out_warehouseController {
 		daoo.deletelist(stu.getSowId());
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
 			daoo.insert(item);
-		}//dfs
+		}
 		return dao.updateByPrimaryKey(stu);
 		
 	}

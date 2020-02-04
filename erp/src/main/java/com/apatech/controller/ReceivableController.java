@@ -122,7 +122,7 @@ public class ReceivableController {
 	@RequestMapping(value = "deleteByPrimaryKey",method = RequestMethod.GET)
 	@ResponseBody
     public Map<String, String> deleteByPrimaryKey(String receivableId,Model model) {
-		System.out.println("进入ReceivableController根据主键删除");
+		System.out.println("进入ReceivableController根据主键删除");//*
 		System.out.println("receivableId："+receivableId);
 		Map<String, String> map=new HashMap<String,String>();
     	int i =dao.deleteByPrimaryKey(receivableId);

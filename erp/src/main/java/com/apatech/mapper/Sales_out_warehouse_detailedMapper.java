@@ -12,7 +12,7 @@ import com.apatech.domain.Team;
 public interface Sales_out_warehouse_detailedMapper {
 	List<Sales_out_warehouse_detailed> selectAll();
 	
-	@Select("select * from Sales_out_warehouse_detailed WHERE sow_id=#{id}")
+	
 	List<Sales_out_warehouse_detailed> selectlist(String id);
 	
 	@Delete("delete from Sales_out_warehouse_detailed WHERE sow_id=#{id}")

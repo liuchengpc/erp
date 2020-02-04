@@ -91,6 +91,7 @@ public class Sales_out_warehouseController {
     	for (Sales_out_warehouse item : page.getList()) {
 			item.setList(daoo.selectlist(item.getSowId()));
 		}
+    	
     	return page;
     }
 	

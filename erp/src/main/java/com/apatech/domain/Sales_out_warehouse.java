@@ -57,10 +57,10 @@ public class Sales_out_warehouse {
     private String sowCustom4;//自定义4
     private String sowCustom5;//自定义5
     private String sowCustom6;//自定义6
-    List<Sales_out_warehouse_detailed> list;
-    
+    private List<Sales_out_warehouse_detailed> list;
+  
 
-    public List<Sales_out_warehouse_detailed> getList() {
+	public List<Sales_out_warehouse_detailed> getList() {
 		return list;
 	}
 
@@ -87,7 +87,7 @@ public class Sales_out_warehouse {
 				+ ", sowProject=" + sowProject + ", sowHeaderProvision=" + sowHeaderProvision + ", sowEndClause="
 				+ sowEndClause + ", sowRemark=" + sowRemark + ", sowAuditing=" + sowAuditing + ", sowYn=" + sowYn
 				+ ", sowCustom1=" + sowCustom1 + ", sowCustom2=" + sowCustom2 + ", sowCustom3=" + sowCustom3
-				+ ", sowCustom4=" + sowCustom4 + ", sowCustom5=" + sowCustom5 + ", sowCustom6=" + sowCustom6 + "]";
+				+ ", sowCustom4=" + sowCustom4 + ", sowCustom5=" + sowCustom5 + ", sowCustom6=" + sowCustom6 + ",list="+list+"]";
 	}
 
 	public String getSowId() {

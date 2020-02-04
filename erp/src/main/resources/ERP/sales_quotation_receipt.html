@@ -269,7 +269,7 @@
 						$.ajax({
 								url : "http://127.0.0.1:8080/Sales_quotationController/selectAllpage",
 								type: "get",
-								data: "pageNum="+page,
+								data: "pageNum="+page+"&pageSize=1",
 								success:function(res){
 									this_.page = res;
 									console.info(this_.page);

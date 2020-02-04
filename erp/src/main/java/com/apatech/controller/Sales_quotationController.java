@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Team;
+import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
@@ -26,8 +28,10 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
+
 	
 	/**
+
 	 * 分页
 	 * @param pageNum
 	 * @param pageSize
@@ -55,8 +59,6 @@ public class Sales_quotationController {
 		String s=dao.getno(billdate);
     	return s;
     }
-	
-	
 	/**
 	 * 根据主键查询
 	 * @param sqId

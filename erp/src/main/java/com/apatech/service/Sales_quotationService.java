@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Team;
+import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.mapper.Sales_quotationMapper;
@@ -18,6 +20,11 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationService {
 	@Autowired
 	private Sales_quotationMapper dao;
+
+	 
+	 public String getno(String billdate){
+	    	return dao.getno(billdate);
+    }
 	
 	public PageInfo<Sales_quotation> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
@@ -30,9 +37,7 @@ public class Sales_quotationService {
     	return page;
     }
 	 
-	 public String getno(String billdate){
-	    	return dao.getno(billdate);
-    }
+	
 	
     public int deleteByPrimaryKey(String sqId){
     	return dao.deleteByPrimaryKey(sqId);

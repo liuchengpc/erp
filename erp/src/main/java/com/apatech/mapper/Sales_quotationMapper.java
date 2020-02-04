@@ -9,7 +9,9 @@ import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Team;
 
 public interface Sales_quotationMapper {
+
  List<Sales_quotation> selectAll();
+
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

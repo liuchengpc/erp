@@ -21,7 +21,7 @@ public class Sales_out_warehouse_detailed {
     private Integer sowdSingleStatus;//数量
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date sowdDocumentDate;//折扣前单价
+    private Float sowdDocumentDate;//折扣前单价
     private Float sowdDocumentNumber;//折数
     private Float sowdPrice;//单价
     private Float sowdMoney;//金额
@@ -52,21 +52,25 @@ public class Sales_out_warehouse_detailed {
 		super();
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Sales_out_warehouse_detailed [sowdId=" + sowdId + ", sowId=" + sowId + ", matterId=" + matterId
 				+ ", sowdEngname=" + sowdEngname + ", sowdRemark=" + sowdRemark + ", sowdPriceIncludeTax="
-				+ sowdPriceIncludeTax + ", sowdSingleStatus=" + sowdSingleStatus + ", sowdDocumentDate="
-				+ sowdDocumentDate + ", sowdDocumentNumber=" + sowdDocumentNumber + ", sowdPrice=" + sowdPrice
-				+ ", sowdMoney=" + sowdMoney + ", sowdTaxRate=" + sowdTaxRate + ", sowdTaxAmount=" + sowdTaxAmount
-				+ ", sowdIncludingTaxAmount=" + sowdIncludingTaxAmount + ", sowdBatchNumber=" + sowdBatchNumber
-				+ ", sowdMaterialCombination=" + sowdMaterialCombination + ", sowdIfgift=" + sowdIfgift
-				+ ", sowdInvoiceDetails=" + sowdInvoiceDetails + ", sowdNomakeInvoiceNum=" + sowdNomakeInvoiceNum
-				+ ", sowdRemarks=" + sowdRemarks + ", sowdSourceOrder=" + sowdSourceOrder + ", sowdSourceNo="
-				+ sowdSourceNo + ", sowdAuditing=" + sowdAuditing + ", sowdYn=" + sowdYn + ", sowdCustom1="
-				+ sowdCustom1 + ", sowdCustom2=" + sowdCustom2 + ", sowdCustom3=" + sowdCustom3 + ", sowdCustom4="
-				+ sowdCustom4 + ", sowdCustom5=" + sowdCustom5 + ", sowdCustom6=" + sowdCustom6 + "]";
+				+ sowdPriceIncludeTax + ", sowdSingleStatus=" + sowdSingleStatus + ", sowdDocumentNumber="
+				+ sowdDocumentNumber + ", sowdPrice=" + sowdPrice + ", sowdMoney=" + sowdMoney + ", sowdTaxRate="
+				+ sowdTaxRate + ", sowdTaxAmount=" + sowdTaxAmount + ", sowdIncludingTaxAmount="
+				+ sowdIncludingTaxAmount + ", sowdBatchNumber=" + sowdBatchNumber + ", sowdMaterialCombination="
+				+ sowdMaterialCombination + ", sowdIfgift=" + sowdIfgift + ", sowdInvoiceDetails=" + sowdInvoiceDetails
+				+ ", sowdNomakeInvoiceNum=" + sowdNomakeInvoiceNum + ", sowdRemarks=" + sowdRemarks
+				+ ", sowdSourceOrder=" + sowdSourceOrder + ", sowdSourceNo=" + sowdSourceNo + ", sowdAuditing="
+				+ sowdAuditing + ", sowdYn=" + sowdYn + ", sowdCustom1=" + sowdCustom1 + ", sowdCustom2=" + sowdCustom2
+				+ ", sowdCustom3=" + sowdCustom3 + ", sowdCustom4=" + sowdCustom4 + ", sowdCustom5=" + sowdCustom5
+				+ ", sowdCustom6=" + sowdCustom6 + "]";
 	}
+
+
 
 	public String getSowdId() {
         return sowdId;
@@ -124,11 +128,11 @@ public class Sales_out_warehouse_detailed {
         this.sowdSingleStatus = sowdSingleStatus;
     }
 
-    public Date getSowdDocumentDate() {
+    public Float getSowdDocumentDate() {
         return sowdDocumentDate;
     }
 
-    public void setSowdDocumentDate(Date sowdDocumentDate) {
+    public void setSowdDocumentDate(Float sowdDocumentDate) {
         this.sowdDocumentDate = sowdDocumentDate;
     }
 

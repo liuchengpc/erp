@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ import com.github.pagehelper.PageInfo;
 public class WarehouseController {
 	@Autowired
 	private WarehouseService dao;
+	
+	//查询所有仓库
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<Warehouse> selectAll(){
+		return dao.selectAll();
+	}
 	
 	/**
 	 * 分页

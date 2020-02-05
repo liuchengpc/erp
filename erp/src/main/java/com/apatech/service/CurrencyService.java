@@ -19,6 +19,11 @@ public class CurrencyService {
 	@Autowired
 	private CurrencyMapper dao;
 	
+	//查询所有货币
+	public List<Currency> selectAll(){
+		return dao.selectAll();
+	}
+	
 	public PageInfo<Currency> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

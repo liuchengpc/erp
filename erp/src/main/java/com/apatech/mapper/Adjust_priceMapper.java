@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.wd_Adjust_price;
 
 public interface Adjust_priceMapper {
 	 List<Adjust_price> selectAll();
@@ -31,4 +32,13 @@ public interface Adjust_priceMapper {
     int updateByPrimaryKeySelective(Adjust_price record);
 
     int updateByPrimaryKey(Adjust_price record);
+    
+    @Select("SELECT \n" + 
+    		"adj.ap_dateid,adj.ap_price,adj.ap_decoration,adj.ap_custom1,\n" + 
+    		"upd.up_name,upd.up_custom1,\n" + 
+    		"mat.matter_name,mat.matter_id,mat.matter_size,mat.matter_nowcount,mat.matter_nowavgcost,(mat.matter_nowallcost/matter_nowcount)AS onePrice,\n" + 
+    		"mu.mu_name\n" + 
+    		"FROM adjust_price AS adj,updown_program AS upd,matter AS mat,measurement_unit AS mu \n" + 
+    		"WHERE adj.materialid=mat.matter_id AND adj.updowmid=upd.up_id AND mat.mu_id=mu.mu_id")
+    List<wd_Adjust_price> wdselectAll();
 }

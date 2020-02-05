@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.wd_Adjust_price;
 import com.apatech.domain.Adjust_price;
 import com.apatech.service.Adjust_priceService;
+import com.apatech.service.wd_Adjust_priceService;
 import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("Adjust_priceController")
 public class Adjust_priceController {
 	@Autowired
 	private Adjust_priceService dao;
-	
+	@Autowired
+	private wd_Adjust_priceService wddao;
+
 	/**
 	 * 分页
 	 * @param pageNum
@@ -36,6 +40,24 @@ public class Adjust_priceController {
     	PageInfo<Adjust_price> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	
+	@RequestMapping(value = "wdselectAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<wd_Adjust_price> wdselectAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 获取单号

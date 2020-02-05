@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -31,7 +31,7 @@
 			<form class="layui-form" action="">
 				<div class="layui-tab">
 				  <ul class="layui-tab-title">
-				    <li class="layui-this">设定</li>
+				    <li class="layui-this">币别设定</li>
 				  </ul>
 				  <div class="layui-tab-content">
 				    <div class="layui-tab-item layui-show">
@@ -190,4 +190,626 @@
 				});
 			</script>
 	</body>
+</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/bootstrap.css" />    
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/brands.css" rel="stylesheet">
+    <link href="css/solid.css" rel="stylesheet">
+    
+    <style>
+		/* !important 设置样式优先级最高
+		 * 防止数据加载完毕之前出现vue表达式 */
+		
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>  		
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>\
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
+    
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+    
+    
+    
+    	
+    <style>
+        #app{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-bottom: 15px;
+	    	}
+	    	#app2{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-left: 8%;
+	    	}
+    </style>
+</head>
+<body>
+	
+    <div id="app" >
+    	<div v-for="pages,index in page.list">
+    		<form class="layui-form" action="">
+				<div class="layui-tab">
+					<ul class="layui-tab-title">
+						<li class="layui-this">币别设定</li>
+					</ul>
+				  	<div class="layui-tab-content">
+					    <div class="layui-tab-item layui-show">
+					      	<div class="layui-form-item">
+					      		<div class="layui-row">
+								    <div class="layui-col-xs6">
+								      	<div class="grid-demo grid-demo-bg1">
+									      	<div class="grid-demo">
+										      	<label class="layui-form-label">币别编号</label>
+											    <div class="layui-input-block">
+											     	<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR" v-model="pages.currencyId" disabled>
+											    </div>
+									      	</div>
+								    	</div>
+								    </div>
+							    </div>
+							    <div class="layui-col-xs6">
+								    <div class="grid-demo">
+								      	<label class="layui-form-label">币别名称</label>
+									    <div class="layui-input-block">
+									      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元" v-model="pages.currencyName" v-bind:disabled="diasabledInput">
+									    </div>
+								    </div>
+							    </div>
+							</div>
+								
+							<div class="layui-row">
+							    <div class="layui-col-xs6">
+								    <div class="grid-demo grid-demo-bg1">
+								      	<div class="grid-demo">
+									      	<label class="layui-form-label">币别简称</label>
+										    <div class="layui-input-block">
+										      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元" v-model="pages.currencyEasyname" v-bind:disabled="diasabledInput">
+										    </div>
+								      	</div>
+								    </div>
+							     </div>
+						    </div>
+						    <div class="layui-col-xs6" style="padding-bottom: 15px;">
+								<div class="grid-demo">
+									<label class="layui-form-label">英文名称</label>
+									<div class="layui-input-block">
+										<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR" v-model="pages.currencyEngname" v-bind:disabled="diasabledInput">
+									</div>
+								</div>
+						    </div>
+						</div>
+							
+						<div class="layui-row">
+						    <div class="layui-col-xs6">
+							    <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+								      	<label class="layui-form-label">异动日期</label>
+									    <div class="layui-input-block">
+									      <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.currencyTransactionday" v-bind:disabled="diasabledInput">
+									    </div>
+								    </div>
+							    </div>
+						    </div>
+					    </div>
+					    <div class="layui-col-xs6" style="padding-bottom: 15px;">
+					      <div class="grid-demo">
+					      	<label class="layui-form-label">固定汇率</label>
+						    <div class="layui-input-block">
+						      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180" v-model="pages.currencyStandardexchange" v-bind:disabled="diasabledInput">
+						    </div>
+					      </div>
+					    </div>
+					</div>
+							
+					<div class="layui-tab-content">
+						<div class="layui-row">
+						    <div class="layui-col-xs6">
+							    <div class="grid-demo grid-demo-bg1">
+							      	<div class="grid-demo">
+								      	<label class="layui-form-label">买进汇率</label>
+									    <div class="layui-input-block">
+									      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180" v-model="pages.currencyInexchange" v-bind:disabled="diasabledInput"> 
+									    </div>
+								    </div>
+							    </div>
+						    </div>
+					    </div>
+					    <div class="layui-col-xs6" style="padding-bottom: 15px;">
+						      <div class="grid-demo">
+						      	<label class="layui-form-label">卖出汇率</label>
+							    <div class="layui-input-block">
+							      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180" v-model="pages.currencyOutexchange" v-bind:disabled="diasabledInput">
+							    </div>
+						      </div>
+					    </div>
+					</div>
+								
+					<div class="layui-row">
+					    <div class="layui-col-xs6" style="padding-left: 1%;">
+						    <div class="grid-demo grid-demo-bg1">
+						      	<div class="grid-demo">
+							      	<label class="layui-form-label">单价位数</label>
+								    <div class="layui-input-block" lay-filter="test2">
+								      	<select  v-model="pages.currencyMpointset" :value="pages.currencyMpointset">
+										    <option value=""></option>
+										    <option value="1">整数</option>
+										    <option value="2">小数一位</option>
+										    <option value="3">小数二位</option>
+										    <option value="4">小数三位</option>
+										    <option value="5">小数四位</option>
+										    <option value="6">小数五位</option>
+										    <option value="7">小数六位</option>
+										    <option value="8">小数七位</option>
+										</select>
+								    </div>
+							    </div>
+						    </div>
+				      	</div>
+				    </div>
+				    
+				    <div class="layui-col-xs6" style="padding-bottom: 15px;padding-left: 1%;">
+					    <div class="grid-demo">
+					      	<label class="layui-form-label">千位逗号</label>
+						    <div class="layui-input-block">
+						      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="123456789.123" v-model="pages.currencyIfthousand" v-bind:disabled="diasabledInput">
+						    </div>
+					    </div>
+				    </div>		    
+				</div>
+				     
+				
+				<div class="layui-btn-group" style="margin-left:5%;">
+				    <button type="button" class="layui-btn" >汇率异动</button>
+				    <button type="button" class="layui-btn ">汇率走势</button>
+				</div>
+			</form>	
+			
+		    <div class="layui-form-item">                       
+                <div class="layui-input-block">  
+		             <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+		            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+		            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+					<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+		            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+		            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
+		             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+		            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+		            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
+					<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+					<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
+					<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+                </div>
+            </div>
+				
+				
+								
+      	</div>
+	</div>    
+
+  
+
+
+	<script>
+		//必须设置允许跨域访问session中数据(cookie)
+		axios.default.withCredentials = true;
+		//创建vue实例
+		var listVm = new Vue({
+			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
+			data: {//保存vue.js中要显示到html页面的数据
+				page: [],
+				diasabledInput:true,//input框是否可以编辑
+				diasabledInput2:false,//input框是否可以编辑
+				isinsert:false,//是否是新增状态
+				isedit:false,//是否是编辑状态
+				
+		      	goFirstPage1:false,//第一笔
+	            goPrePage1:false,//上一笔				            
+             	goNextPage1:false,//下一笔
+		     	goLastPage1:false,//后一笔
+             	inset1:false,   //新增  
+             	return1:true,//取消
+             	saves1:true,//保存 
+             	update1:false,//编辑
+             	deletes1:false,//删除		
+			    Auditing1:true,//审核
+			    noAuditing1:true,//取消审核
+			    
+			    lay1:'layui-btn-primary',
+			    lay2:'layui-btn',
+			    
+			},
+			
+	          updated: function () {
+//	                layui.form.render('select','test2');
+//	                console.log(layui.form);
+
+					this.$nextTick(function () {
+			            layui.use(['layer', 'form'], function(){
+			              var form = layui.form();         
+			              form.render();
+			            });
+		          	})
+					
+	          },
+			methods: {//定义函数
+
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
+//					alert("进入goPage")
+					var this_ = this;					
+					$.ajax({
+						url : "http://127.0.0.1:8080/CurrencyController/selectAllpage",
+						type:"get",
+					  	data : "pageNum="+page+"&pageSize="+size,
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		//res.data获取服务器返回的数据
+							this_.page = res;
+							console.info("详表表数据：")
+							console.info(this_.page)	
+							
+							
+				        }
+					}); 					
+				},
+				goPrePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+//						alert(this.page.prePage+"："+this.page.pageSize)
+						this.goPage(this.page.prePage, this.page.pageSize);
+					}
+				},
+				goNextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+//						alert(this.page.nextPage+"："+this.page.pageSize)
+						this.goPage(this.page.nextPage, this.page.pageSize);
+					}
+				},
+				goFirstPage: function() {//第一条
+//					alert(1+"："+this.page.pageSize)
+					this.goPage(1, this.page.pageSize);
+				},
+				goLastPage: function() {//最后一条
+//					alert(this.page.pages+"："+this.page.pageSize)
+					this.goPage(this.page.pages, this.page.pageSize);
+				},
+				returns: function() {//取消
+					this.goPage(1,1);
+					
+					this.diasabledInput= true;//input不可编辑
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				},
+				inset: function() {//新增按钮
+
+				    
+//			       	this.page.list[0].currencyId="";//项目编号（主键 唯一）
+//				    this.page.list[0].projectName="";//项目名称
+//				    this.page.list[0].projectEnglishName="";//项目英文名称
+//				    this.page.list[0].projectAbate="";//失效日期
+//				    this.page.list[0].projectRemark="";//备注
+//				    this.page.list[0].projectAuditing="";//是否审核
+//				    this.page.list[0].projectYn="";//是否删除（0 否 1 是 ，默认0）
+//				    this.page.list[0].projectCustom1="";//自定义1
+//				    this.page.list[0].projectCustom2="";//自定义2
+//				    this.page.list[0].projectCustom3="";//自定义3
+//				    this.page.list[0].projectCustom4="";//自定义4
+//				    this.page.list[0].projectCustom5="";//自定义5
+//				    this.page.list[0].projectCustom6;//自定义6
+
+				    this.page.list[0].currencyId="";//币别id（主键 唯一）
+				    this.page.list[0].currencyName="";//币别名称
+				    this.page.list[0].currencyEasyname="";//币别简称
+				    this.page.list[0].currencyEngname="";//英文名称
+				    this.page.list[0].currencyTransactionday="";//异动日期
+				    this.page.list[0].currencyStandardexchange="";//固定汇率
+				    this.page.list[0].currencyInexchange="";//买进汇率
+				    this.page.list[0].currencyOutexchange="";//卖出汇率
+				    this.page.list[0].currencyIfthousand="";//千位逗号，每三位数用逗号隔开（0,1表示）
+				    this.page.list[0].currencyMpointset="";//小数点设置，保留小数点后几位（默认值，2）
+				    this.page.list[0].currencyAuditing="";//是否审核
+//				    this.page.list[0].urrencyYn="";//是否删除（0 否 1 是 ，默认0）
+				    this.page.list[0].currencyCustom1="";//自定栏1
+				    this.page.list[0].currencyCustom2="";//自定栏2
+				    this.page.list[0].currencyCustom3="";//自定栏3
+				    this.page.list[0].currencyCustom4="";//自定栏4
+				    this.page.list[0].currencyCustom5="";//自定栏5
+				    this.page.list[0].currencyCustom6="";//自定栏6
+				    
+					
+					
+					
+					this.diasabledInput=false;//input可以编辑
+					this.isinsert=true;//开启新增模式
+					this.isedit=false;//关闭修改模式
+					this.getno();
+					
+					
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+             		this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				},
+				insets: function() {//新增
+				 	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+					
+					
+					
+					var this_ = this;
+					//新增信息
+					this.page.list[0].currencyCustom1=year+getNow(month)+getNow(date);//创建时间
+					var obj=this.page.list[0];
+					
+					
+					$.ajax({
+						url : "http://127.0.0.1:8080/CurrencyController/insertSelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+//					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					}); 
+				},
+				saves: function() {//保存
+					this.diasabledInput= true;//input不可编辑
+					
+					if(this.isinsert==true){//新增
+//						alert("进入新增")
+						this.insets();
+					}else if(this.isedit==true){
+//						alert("进入修改")
+						this.updates();
+					}else{
+						
+					}	
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
+				},
+				update: function() {//编辑按钮
+					this.diasabledInput=false;//input可以输入
+					this.isinsert=false;//关闭新增模式
+					this.isedit=true;//开启编辑模式
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+	             	this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
+				},
+				updates: function() {//编辑 
+					
+					var this_ = this;
+					//修改信息
+					var obj=this.page.list[0];
+					
+//					alert(this.page.list[0].currencyTransactionday)
+					
+					$.ajax({
+						url : "http://127.0.0.1:8080/CurrencyController/updateByPrimaryKeySelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+//					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					}); 
+				
+				},
+				deletes: function() {//删除
+					var this_ = this;
+					//修改信息
+					this.page.list[0].urrencyYn=1;//是否删除（0 否 1 是 ，默认0）
+					var obj=this.page.list[0];
+					if (confirm("是否删除")==true) {
+						$.ajax({
+							url : "http://127.0.0.1:8080/CurrencyController/updateByPrimaryKeySelective",
+							type:"post",
+					  		data : JSON.stringify(obj),
+						  	dataType:'json',	
+						  	contentType : "application/json;charset=utf-8",
+						  	success:function (res) {
+//						  		alert("系统提示：" +res.message);
+								this_.diasabledInput=false;//input不可以输入	
+								this_.goPage(1, 1);		
+					        }
+						}); 
+					}
+				},   
+				Auditing: function() {//审核
+					
+				},   
+				noAuditing: function() {//取消
+					
+				},   
+			  	getno:function(){//获取id
+				   	var this_=this;
+				   	
+				   	
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					$.ajax({
+						url:"http://127.0.0.1:8080/CurrencyController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (res) {
+					  		console.info("idfdsfhoewifhw")
+						  	console.info(res)
+						   	this_.page.list[0].currencyId=ss+res;						
+				        }
+					}); 				
+				}
+			},
+			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+							
+				var this_ = this;				
+				this_.goPage(1, 1);		
+				
+				
+				
+				
+				
+				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
+					layui.use('laydate',function(){
+						var laydate=layui.laydate;
+						
+						//执行一个laydate实例
+						laydate.render({
+							elem:'#file-time',//指定元素
+							done:function(value){
+								this_.page.list[0].currencyTransactionday=value;
+								console.log(this_.page.list[0].currencyTransactionday);
+								console.log(value)
+							}
+						})
+					})
+					
+					
+					/*var mountedSelf = this; // 当前的vue对象
+			        laydate.render({
+			            elem: '#laydate', //指定元素 绑定laydate的元素，即id= laydate的那个input
+			            done: function (value) { // value 是laydate选择的日期
+			                 mountedSelf.data = value; // vue对象的属性设置为当前的日期
+			            },
+			        });*/
+
+					
+				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
+			}
+		
+		});
+		
+		
+		
+		 
+	</script>
+  <script>
+		layui.use('form', function(){
+		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+		  
+		  //……
+		  
+		  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+		  //因此你需要在相应的地方，执行下述方法来进行渲染
+		  form.render();
+		}); 
+		
+		layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		  //常规用法
+		  laydate.render({
+		    elem: '#test1'
+		  });
+		  
+		});
+	</script>
+</body>
 </html>

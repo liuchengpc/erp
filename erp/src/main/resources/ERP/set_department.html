@@ -67,7 +67,7 @@
 	                    </div>
 	                    <div class="layui-form-item">                       
 	                        <div class="layui-input-block">  
-					            <button :class="[goFirstPage1 ? lay1 : '', lay2]" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+					            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
 					            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
 					            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
 								<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
@@ -178,7 +178,6 @@
 				    this.page.list[0].teamAbate="";//失效日期
 				    this.page.list[0].teamRemark="";//备注
 				    this.page.list[0].teamAuditing="";//是否审核
-				    this.page.list[0].teamYn="";//是否删除（0 否 1 是 ，默认0）
 				    this.page.list[0].teamCustom1="";//创建时间
 				    this.page.list[0].teamCustom2="";//自定义2
 				    this.page.list[0].teamCustom3="";//自定义3

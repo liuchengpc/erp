@@ -32,7 +32,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from currency 
-	    where currency_Yn=0
+	    where urrency_yn=0
 	    ORDER BY currency_id DESC
   </select>
   

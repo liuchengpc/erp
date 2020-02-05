@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
 import com.apatech.domain.Sales_quotation;
+import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.Team;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
@@ -21,6 +24,7 @@ import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Sales_quotation;
 import com.apatech.mapper.Sales_quotationMapper;
 import com.apatech.service.Sales_quotationService;
+import com.apatech.service.Sales_quotation_detailsService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -28,8 +32,9 @@ import com.github.pagehelper.PageInfo;
 public class Sales_quotationController {
 	@Autowired
 	private Sales_quotationService dao;
+	@Autowired
+	private Sales_quotation_detailsService dao1;
 	/**
-
 	 * 分页
 	 * @param pageNum
 	 * @param pageSize
@@ -38,12 +43,33 @@ public class Sales_quotationController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<Sales_quotation> selectAllpage( Integer pageNum,Integer pageSize){
+		if(pageNum==null) {
+			pageNum=1;
+		}
+		if(pageSize==null){
+			pageSize=1;
+		}
 		System.out.println("进入Sales_quotationController分页");
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Sales_quotation> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
-	
+	/*
+	 * 根据id获取详表数据
+	 * */
+	@RequestMapping(value = "querybysqid",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> querybysqid(String sqlid){
+		System.out.println("进入详表查询方法！ 查询ID"+sqlid);
+		List<Sales_quotation_details> data=dao1.querybysqlid(sqlid);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",1000);
+		map.put("data",data);
+		System.out.println(map);
+    	return map;
+    }
 	/**
 	 * 获取单号
 	 * @param billdate
@@ -57,18 +83,6 @@ public class Sales_quotationController {
 		String s=dao.getno(billdate);
     	return s;
     }
-	/**
-	 * 根据主键查询
-	 * @param sqId
-	 * @return
-	 */
-	@RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
-	@ResponseBody
-    public Sales_quotation selectByPrimaryKey(String sqId) {
-		System.out.println("进入Sales_quotationController根据主键查询");
-		System.out.println("sqId="+sqId);
-    	return dao.selectByPrimaryKey(sqId);
-	}
 	
 	/**
 	 * 新增
@@ -129,7 +143,7 @@ public class Sales_quotationController {
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");
-		}else {
+		}else{
 			map.put("code", "2");
 			map.put("message", "删除失败！");
 		}

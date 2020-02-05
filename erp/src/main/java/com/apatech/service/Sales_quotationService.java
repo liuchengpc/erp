@@ -30,13 +30,9 @@ public class Sales_quotationService {
 	
 	public PageInfo<Sales_quotation> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
-		 
     	PageHelper.startPage(pageNum, pageSize);
     	List<Sales_quotation> list=dao.selectAll();
-    	
     	PageInfo<Sales_quotation> page=new PageInfo<Sales_quotation>(list);
-    	List<Sales_quotation_details> listinfo=dao2.querybysqlid((Sales_quotation.getSqId().toString()));
-    	System.out.println("分页的集合详表数据："+dao2.querybysqlid(Sales_quotation.getSqId().toString()));
     	return page;
     }
 	 

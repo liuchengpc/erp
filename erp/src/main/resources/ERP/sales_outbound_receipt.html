@@ -17,46 +17,67 @@
 </head>
 <body>
 <div id="app">
+	<template v-for="stu in page.list">
     <div class="layui-row">
         <div class="layui-col-lg6">
             <div class="layui-form">
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">客户</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                    	<template v-for="cust in customerlist">
+                    		<template v-if="stu.customerId==cust.customerId">
+                    			<input type="text" name="title" v-model="cust.customerName" class="layui-input">
+                    		</template>
+                    	</template>
+                        
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">送货地址</label>
                     <div class="layui-input-block">
                         <input type="text" name="title"  class="layui-input" style="width: 30%; float: left;">
-                        <input type="text" name="title"  class="layui-input" style="width: 68%; float: right;">
+                        <input type="text" name="title" v-model="stu.sowAddress"  class="layui-input" style="width: 68%; float: right;">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">销售出库类型</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <template v-for="sales in saletype">
+                    		<template v-if="sales.sowtId==stu.sowtId">
+                    			<input type="text" name="title" v-model="sales.sowtName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
                         <select name="interest">
-                            
+                        	<template v-if="stu.sowPriceIncludeTax==0">
+                        		 <option value="0" selected="selected">不含税</option>
+                            	 <option value="1">含税</option>
+                        	</template>
+                        	<template v-else>
+                        		 <option value="0">不含税</option>
+                                 <option value="1" selected="selected">含税</option>
+                        	</template>                          
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">仓库</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                         <template v-for="ware in warelist">
+                    		<template v-if="ware.warehouseId==stu.warehouseId">
+                    			<input type="text" name="title" v-model="ware.warehouseName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">凭证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowCertificateNumber"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -64,34 +85,45 @@
         <div class="layui-col-lg6">
             <div class="layui-form">
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">单据日期</label>
+                    <label class="layui-form-label" v-model="stu.sowDocumentDate" style="color:#009688;">单据日期</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowDocumentDate"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">单据号码</label>
+                    <label class="layui-form-label" v-model="stu.sowDocumentNumber" style="color:#009688;">单据号码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowDocumentNumber"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <template v-for="curr in currencylist">
+                    		<template v-if="curr.currencyId==stu.currencyId">
+                    			<input type="text" name="title" v-model="curr.currencyName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">汇率</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowExchangeRate" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">国外贸易</label>
                     <div class="layui-input-block">
                         <select name="interest">
-                            
+                            <template v-if="stu.sowForeignTrade==0">
+                        		 <option value="0" selected="selected">否</option>
+                            	 <option value="1">是</option>
+                        	</template>
+                        	<template v-else>
+                        		 <option value="0">否</option>
+                                 <option value="1" selected="selected">是</option>
+                        	</template>  
                         </select>
                     </div>
                 </div>
@@ -107,8 +139,38 @@
             </ul>
             <div class="layui-tab-content" style="padding: 10px 0;">
                 <div class="layui-tab-item layui-show">
+                	
                     <table id="materialsContent" class="layui-hide">
-
+                    	
+						<!--<template v-for="sky,index in stu.list">
+							<tr>
+								<td>{{index+1}}</td>
+								<td>{{sky.matterId}}</td>
+								<td>{{sky.sowdEngname}}</td>
+								<td>{{sky.sowdRemark}}</td>
+								<td>{{sky.sowdPriceIncludeTax}}</td>
+								<td>{{sky.sowdSingleStatus}}</td>
+								<td>{{sky.sowdDocumentDate}}</td>
+								<td>{{sky.sowdDocumentNumber}}</td>
+								<td>{{sky.sowdPrice}}</td>
+								<td>{{sky.sowdMoney}}</td>
+								<td>{{sky.sowdTaxRate}}</td>
+								<td>{{sky.sowdTaxAmount}}</td>
+								<td>{{sky.sowdIncludingTaxAmount}}</td>
+								<td>{{sky.sowdBatchNumber}}</td>
+								<td>{{sky.sowdMaterialCombination}}</td>
+								<template v-if="sky.sowdIfgift==0">
+									<td>否</td>
+								</template>
+								<template v-else>
+									<td>是</td>
+								</template>
+								
+								<td>{{sky.sowdInvoiceDetails}}</td>
+								<td>{{sky.sowdNomakeInvoiceNum}}</td>
+								<td>{{sky.sowdRemarks}}</td>
+							</tr>
+						</template>-->
                     </table>
                 </div>
                 <div class="layui-tab-item">
@@ -118,7 +180,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label" style="color:#009688;">账款归属</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" v-model="stu.sowSaleszkgs" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -126,12 +188,37 @@
                                         <label class="layui-form-label">收款条件</label>
                                         <div class="layui-input-inline">
                                             <select name="interest">
+                                            	 <template v-if="stu.sowSalessktj==0">
+					                        		 <option value="0" selected="selected">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else-if="stu.sowSalessktj==1">
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1" selected="selected">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else-if="stu.sowSalessktj==2">
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2" selected="selected">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else>
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3" selected="selected">其他</option>
+					                        	</template>
+					                        	
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" v-model="stu.sowSalesday" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -141,13 +228,13 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">付款日期</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" v-model="stu.sowSalesdate" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">账款月份</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title"       class="layui-input">
+                                        <input type="text" name="title"   v-model="stu.sowSalesyue"    class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +248,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏一</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" v-model="stu.sowCustom1" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +258,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏二</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" v-model="stu.sowCustom2" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +270,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                        <textarea placeholder="请输入内容" v-model="stu.sowRemark" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -199,19 +286,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">采购人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowBuyer"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">所属部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowBelongsSection" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">所属项目</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowBelongsProject"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -221,13 +308,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">制单人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowForm"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">复核人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowCheckagainStaff"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -277,10 +364,10 @@
         </div>
 		<div class="layui-form-item">
 		    <div class="layui-input-block">  
-		        <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-		        <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
-		        <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-				<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
+		        <button class="layui-btn" @click="selectpage(1)" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+		        <button class="layui-btn" @click="selectpage(page.prePage)" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
+		        <button class="layui-btn" @click="selectpage(page.nextPage)" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+				<button class="layui-btn" @click="selectpage(page.pages)" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
 		        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
 		        <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
 		        <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
@@ -292,10 +379,71 @@
 		    </div>
 		</div>
     </div>
+    </template>
 </div>
 <script src="jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/vue.js" ></script>
 <script src="layui.js"></script>
 <script>
+	var host="http://127.0.0.1:8080/";
+	var sales_outboundvue=new Vue({
+		el:"#app",
+		data:{
+			page:{},
+			customerlist:[],
+			saletype:[],
+			currencylist:[],
+			warelist:[]
+			
+		},
+		methods:{
+			selectpage:function(pageNum){
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectAllpage",
+					data:{pageNum:pageNum,pageSize:1},
+					success:function(res){
+						sales_outboundvue.page=res;
+					}
+				});		
+			}
+		},
+		created:function(){
+			
+		this.selectpage(1);
+		
+		$.ajax({
+			type:"get",
+			url:host+"CustomerController/selectAll",
+			success:function(res){
+				sales_outboundvue.customerlist=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"Sales_out_warehouse_typeController/selectAll",
+			success:function(res){
+				sales_outboundvue.saletype=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"CurrencyController/selectAll",
+			success:function(res){
+				sales_outboundvue.currencylist=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"WarehouseController/selectAll",
+			success:function(res){
+				sales_outboundvue.warelist=res;
+			}
+		});
+		}
+		
+	})
+	
    /* layui.use('layer', function(){
         var layer = layui.layer;
         layer.open({

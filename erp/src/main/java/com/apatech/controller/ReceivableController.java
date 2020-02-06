@@ -138,6 +138,6 @@ public class ReceivableController {
 	
 	/**
 	 * 3
-	 * 31
+	 * 3
 	 */
 }

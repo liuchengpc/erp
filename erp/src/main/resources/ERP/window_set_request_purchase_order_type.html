@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单选--采购请购类型设定</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <style>
+        #app{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        layui.use('layer', function(){
+        var layer = layui.layer;
+        layer.open({
+            type: 1,
+            title: '单选--采购请购类型设定',
+            content: $('#app'),
+            area: ['400px']
+        });
+    });
+    </script>
+</body>
+</html>

@@ -142,35 +142,8 @@
                 	
                     <table id="materialsContent" class="layui-hide">
                     	
-						<!--<template v-for="sky,index in stu.list">
-							<tr>
-								<td>{{index+1}}</td>
-								<td>{{sky.matterId}}</td>
-								<td>{{sky.sowdEngname}}</td>
-								<td>{{sky.sowdRemark}}</td>
-								<td>{{sky.sowdPriceIncludeTax}}</td>
-								<td>{{sky.sowdSingleStatus}}</td>
-								<td>{{sky.sowdDocumentDate}}</td>
-								<td>{{sky.sowdDocumentNumber}}</td>
-								<td>{{sky.sowdPrice}}</td>
-								<td>{{sky.sowdMoney}}</td>
-								<td>{{sky.sowdTaxRate}}</td>
-								<td>{{sky.sowdTaxAmount}}</td>
-								<td>{{sky.sowdIncludingTaxAmount}}</td>
-								<td>{{sky.sowdBatchNumber}}</td>
-								<td>{{sky.sowdMaterialCombination}}</td>
-								<template v-if="sky.sowdIfgift==0">
-									<td>否</td>
-								</template>
-								<template v-else>
-									<td>是</td>
-								</template>
-								
-								<td>{{sky.sowdInvoiceDetails}}</td>
-								<td>{{sky.sowdNomakeInvoiceNum}}</td>
-								<td>{{sky.sowdRemarks}}</td>
-							</tr>
-						</template>-->
+                    	
+						
                     </table>
                 </div>
                 <div class="layui-tab-item">
@@ -372,8 +345,8 @@
 		        <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
 		        <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
 		        <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
-				<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
-				<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
+				<button class="layui-btn" @click="chongzhi" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
+				<button class="layui-btn" @click="shuax" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
 				<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
 				<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 		    </div>
@@ -384,6 +357,9 @@
 <script src="jquery-1.12.4.js"></script>
 <script type="text/javascript" src="js/vue.js" ></script>
 <script src="layui.js"></script>
+<script id="xuhao">
+	 {{d.LAY_TABLE_INDEX+1}}
+</script>
 <script>
 	var host="http://127.0.0.1:8080/";
 	var sales_outboundvue=new Vue({
@@ -397,15 +373,79 @@
 			
 		},
 		methods:{
-			selectpage:function(pageNum){
+			shuax:function(){
+				location.reload();
+			}
+			,selectpage:function(pageNum){
 				$.ajax({
 					type:"get",
 					url:host+"Sales_out_warehouseController/selectAllpage",
 					data:{pageNum:pageNum,pageSize:1},
 					success:function(res){
-						sales_outboundvue.page=res;
+						sales_outboundvue.page=res;						
+						 layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#materialsContent'
+            ,data:res.list[0].list               
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[
+                {title: '(栏号)',templet: '#xuhao',sort: true}
+                , {field: 'matterId', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {field: 'sowdEngname', title: '(物料名称)', sort: true}
+                , {field: 'sowdRemark', title: '(规格型号)'}
+                , {field: 'sowdPriceIncludeTax', title: '(单位名称)'}
+                , {field: 'sowdSingleStatus', title: '数量', align: 'center'} //单元格内容水平居中
+                , {field: 'sowdDocumentDate', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                , {field: 'sowdDocumentNumber', title: '折数(%)', sort: true, align: 'right'}
+                , {field: 'sowdPrice', title: '单价', sort: true, align: 'right'}
+                , {field: 'sowdMoney', title: '金额', sort: true, align: 'right'}
+                , {field: 'sowdTaxRate', title: '税率(%)', sort: true, align: 'right'}
+                , {field: 'sowdTaxAmount', title: '(税额)', sort: true, align: 'right'}
+                , {field: 'sowdIncludingTaxAmount', title: '(含税金额)', sort: true, align: 'right'}
+                , {field: 'sowdBatchNumber', title: '(批号)', sort: true, align: 'right'}
+                , {field: 'sowdIfgift', title: '赠品', sort: true, align: 'right'}
+                , {field: 'sowdInvoiceDetails', title: '(发票明细)', sort: true, align: 'right'}
+                , {field: 'sowdNomakeInvoiceNum', title: '(未开票数量)', sort: true, align: 'right'}
+                , {field: 'sowdRemarks', title: '分录备注', sort: true, align: 'right'}
+            ]]
+        });
+    });
 					}
 				});		
+			}
+			,chongzhi:function(){
+				layui.use('table', function(){
+      			  var table = layui.table;
+      			  table.render({
+            elem: '#materialsContent'
+            ,data:[]              
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[
+                {title: '(栏号)',templet: '#xuhao',sort: true}
+                , {field: 'matterId', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {field: 'sowdEngname', title: '(物料名称)', sort: true}
+                , {field: 'sowdRemark', title: '(规格型号)'}
+                , {field: 'sowdPriceIncludeTax', title: '(单位名称)'}
+                , {field: 'sowdSingleStatus', title: '数量', align: 'center'} //单元格内容水平居中
+                , {field: 'sowdDocumentDate', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                , {field: 'sowdDocumentNumber', title: '折数(%)', sort: true, align: 'right'}
+                , {field: 'sowdPrice', title: '单价', sort: true, align: 'right'}
+                , {field: 'sowdMoney', title: '金额', sort: true, align: 'right'}
+                , {field: 'sowdTaxRate', title: '税率(%)', sort: true, align: 'right'}
+                , {field: 'sowdTaxAmount', title: '(税额)', sort: true, align: 'right'}
+                , {field: 'sowdIncludingTaxAmount', title: '(含税金额)', sort: true, align: 'right'}
+                , {field: 'sowdBatchNumber', title: '(批号)', sort: true, align: 'right'}
+                , {field: 'sowdIfgift', title: '赠品', sort: true, align: 'right'}
+                , {field: 'sowdInvoiceDetails', title: '(发票明细)', sort: true, align: 'right'}
+                , {field: 'sowdNomakeInvoiceNum', title: '(未开票数量)', sort: true, align: 'right'}
+                , {field: 'sowdRemarks', title: '分录备注', sort: true, align: 'right'}
+            ]]
+        });
+      			  $("input").val("");
+				$("textarea").val("");
+       	 
+      })
 			}
 		},
 		created:function(){
@@ -495,35 +535,7 @@
         });
     });
 
-    layui.use('table', function(){
-        var table = layui.table;
-
-        table.render({
-            elem: '#materialsContent'
-            ,url:'https://www.layui.com/demo/table/user/'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , cols: [[
-                {field: 'id', title: '(栏号)', sort: true}
-                , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'sex', title: '(物料名称)', sort: true}
-                , {field: 'city', title: '(规格型号)'}
-                , {field: 'sign', title: '(单位名称)'}
-                , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
-                , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
-                , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '单价', sort: true, align: 'right'}
-                , {field: 'wealth', title: '金额', sort: true, align: 'right'}
-                , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
-            ]]
-        });
-    });
+   
 </script>
 </body>
 </html>

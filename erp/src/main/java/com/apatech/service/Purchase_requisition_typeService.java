@@ -1,11 +1,7 @@
 package com.apatech.service;
 
-<<<<<<< HEAD
 import java.util.List;
-
-=======
 import com.apatech.domain.Team;
->>>>>>> dev-shaw
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,7 +60,7 @@ public class Purchase_requisition_typeService {
     	return dao.updateByPrimaryKey(record);
     }
 
-    public List<Team> selectAll(){
-        return dao.selectAll();
-    }
+//    public List<Team> selectAll(){
+//        return dao.selectAll();
+//    }
 }

@@ -135,9 +135,9 @@ public class Purchase_requisition_typeController {
 		return map;
     }
 
-	@GetMapping("/teams")
-	@ResponseBody
-	public List<Team> selectAll() {
-		return dao.selectAll();
-	}
+//	@GetMapping("/teams")
+//	@ResponseBody
+//	public List<Team> selectAll() {
+//		return dao.selectAll();
+//	}
 }

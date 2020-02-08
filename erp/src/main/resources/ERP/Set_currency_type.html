@@ -1,209 +1,3 @@
-<!--<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="renderer" content="webkit">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="css/layui.css">
-		
-		<link href="css/fontawesome.css" rel="stylesheet">
-		<link href="css/brands.css" rel="stylesheet">
-		<link href="css/solid.css" rel="stylesheet">
-	    <script src="jquery-1.12.4.js"></script>
-	    <script src="layui.js"></script>
-	    <style>
-	    	#app{
-	    		padding-right: 8%;
-	    		padding-top: 15px;
-	    		padding-bottom: 15px;
-	    	}
-	    	#app2{
-	    		padding-right: 8%;
-	    		padding-top: 15px;
-	    		padding-left: 8%;
-	    	}
-	    </style>
-	</head>
-	<body>
-		<div id="app2">
-			<form class="layui-form" action="">
-				<div class="layui-tab">
-				  <ul class="layui-tab-title">
-				    <li class="layui-this">币别设定</li>
-				  </ul>
-				  <div class="layui-tab-content">
-				    <div class="layui-tab-item layui-show">
-				      <div class="layui-form-item">
-				      		<div class="layui-row">
-							    <div class="layui-col-xs6">
-							      <div class="grid-demo grid-demo-bg1">
-							      	<div class="grid-demo">
-							      	<label class="layui-form-label">币别编号</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR">
-								    </div>
-							      </div>
-							    </div>
-							      </div>
-							    </div>
-							    <div class="layui-col-xs6">
-							      <div class="grid-demo">
-							      	<label class="layui-form-label">币别名称</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元">
-								    </div>
-							      </div>
-							    </div>
-							</div>
-							
-							<div class="layui-row">
-							    <div class="layui-col-xs6">
-							      <div class="grid-demo grid-demo-bg1">
-							      	<div class="grid-demo">
-							      	<label class="layui-form-label">币别简称</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="欧元">
-								    </div>
-							      </div>
-							    </div>
-							      </div>
-							    </div>
-							    <div class="layui-col-xs6" style="padding-bottom: 15px;">
-							      <div class="grid-demo">
-							      	<label class="layui-form-label">英文名称</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="EUR">
-								    </div>
-							      </div>
-							    </div>
-							</div>
-							
-							<div class="layui-row">
-							    <div class="layui-col-xs6">
-							      <div class="grid-demo grid-demo-bg1">
-							      	<div class="grid-demo">
-							      	<label class="layui-form-label">异动日期</label>
-								    <div class="layui-input-block">
-								      <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
-								    </div>
-							      </div>
-							    </div>
-							      </div>
-							    </div>
-							    <div class="layui-col-xs6" style="padding-bottom: 15px;">
-							      <div class="grid-demo">
-							      	<label class="layui-form-label">固定汇率</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
-								    </div>
-							      </div>
-							    </div>
-							</div>
-							
-							<div class="layui-row">
-							    <div class="layui-col-xs6" style="padding-left: 1%;">
-							      <div class="grid-demo grid-demo-bg1">
-							      	<div class="grid-demo">
-							      	<label class="layui-form-label">买进汇率</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
-								    </div>
-							      </div>
-							    </div>
-							      </div>
-							    </div>
-							    <div class="layui-col-xs6" style="padding-bottom: 15px;padding-left: 1%;">
-							      <div class="grid-demo">
-							      	<label class="layui-form-label">卖出汇率</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="7.6180">
-								    </div>
-							      </div>
-							    </div>
-							</div>
-								
-							<div class="layui-row">
-							    <div class="layui-col-xs6" style="padding-left: 1%;">
-							      <div class="grid-demo grid-demo-bg1">
-							      	<div class="grid-demo">
-							      	<label class="layui-form-label">单价位数</label>
-								    <div class="layui-input-block">
-								      <select name="modules" lay-verify="required" lay-search="" >
-									      <option value=""></option>
-									      <option value="1">整数</option>
-									      <option value="2">小数一位</option>
-									      <option value="3">小数二位</option>
-									      <option value="4">小数三位</option>
-									      <option value="5">小数四位</option>
-									      <option value="6">小数五位</option>
-									      <option value="7">小数六位</option>
-									      <option value="8">小数七位</option>
-									  </select>
-								    </div>
-							      </div>
-							    </div>
-							      </div>
-							    </div>
-							    <div class="layui-col-xs6" style="padding-bottom: 15px;padding-left: 1%;">
-							      <div class="grid-demo">
-							      	<label class="layui-form-label">千位逗号</label>
-								    <div class="layui-input-block">
-								      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input" value="123456789.123">
-								    </div>
-							      </div>
-							    </div>
-							</div>
-				      </div>
-					</div>    
-				  </div>
-				</div>	
-				
-				  <div class="layui-btn-group" style="margin-left:5%;">
-				    <button type="button" class="layui-btn">汇率异动</button>
-				    <button type="button" class="layui-btn ">汇率走势</button>
-				  </div>
-			</form>	
-			
-		</div>
-		
-			<script>
-				layui.use('form', function(){
-				  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-				  
-				  //……
-				  
-				  //但是，如果你的HTML是动态生成的，自动渲染就会失效
-				  //因此你需要在相应的地方，执行下述方法来进行渲染
-				  form.render();
-				}); 
-				
-				layui.use('laydate', function(){
-				  var laydate = layui.laydate;
-				  
-				  //常规用法
-				  laydate.render({
-				    elem: '#test1'
-				  });
-				  
-				});
-			</script>
-	</body>
-</html>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,7 +49,7 @@
 	
     <div id="app" >
     	<div v-for="pages,index in page.list">
-    		<form class="layui-form" action="">
+    		<form class="layui-form" action="" >
 				<div class="layui-tab">
 					<ul class="layui-tab-title">
 						<li class="layui-this">币别设定</li>
@@ -357,8 +151,8 @@
 						    <div class="grid-demo grid-demo-bg1">
 						      	<div class="grid-demo">
 							      	<label class="layui-form-label">单价位数</label>
-								    <div class="layui-input-block" lay-filter="test2">
-								      	<select  v-model="pages.currencyMpointset" :value="pages.currencyMpointset">
+								    <div class="layui-input-block" >
+								      	<select  v-model="pages.currencyMpointset" :value="pages.currencyMpointset" v-bind:disabled="diasabledInput" lay-filter="selectCate1">
 										    <option value=""></option>
 										    <option value="1">整数</option>
 										    <option value="2">小数一位</option>
@@ -414,10 +208,7 @@
       	</div>
 	</div>    
 
-  
-
-
-	<script>
+  <script>
 		//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
 		//创建vue实例
@@ -446,18 +237,22 @@
 			    lay2:'layui-btn',
 			    
 			},
-			
-	          updated: function () {
-//	                layui.form.render('select','test2');
-//	                console.log(layui.form);
+	        updated: function () {
+	        	var this_=this;
+					layui.use('form', function(){
+					  	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+					  	//但是，如果你的HTML是动态生成的，自动渲染就会失效
+					  	//因此你需要在相应的地方，执行下述方法来进行渲染
+					  	form.render();
+//					  	form.on('select', 'selectCate1'); //更新 lay-filter="test2" 所在容器内的全部 select 状态
+					  	form.on('select(selectCate1)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+					        this_.page.list[0].currencyMpointset=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
 
-					this.$nextTick(function () {
-			            layui.use(['layer', 'form'], function(){
-			              var form = layui.form();         
-			              form.render();
-			            });
-		          	})
-					
+					    })
+					}); 
 	          },
 			methods: {//定义函数
 
@@ -479,21 +274,35 @@
 				        }
 					}); 					
 				},
+				formrender: function() {//layui更新渲染
+					layui.use('form', function(){
+					  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+					  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+					  //因此你需要在相应的地方，执行下述方法来进行渲染
+					  form.render();
+					}); 
+				},
 				goPrePage: function() {//上一条
 					if(this.page.hasPreviousPage) {
 //						alert(this.page.prePage+"："+this.page.pageSize)
 						this.goPage(this.page.prePage, this.page.pageSize);
 					}
+					
+					
 				},
 				goNextPage: function() {//下一条
 					if(this.page.hasNextPage) {
 //						alert(this.page.nextPage+"："+this.page.pageSize)
 						this.goPage(this.page.nextPage, this.page.pageSize);
 					}
+					
+					
 				},
 				goFirstPage: function() {//第一条
 //					alert(1+"："+this.page.pageSize)
 					this.goPage(1, this.page.pageSize);
+					
+					
 				},
 				goLastPage: function() {//最后一条
 //					alert(this.page.pages+"："+this.page.pageSize)
@@ -517,21 +326,6 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
-
-				    
-//			       	this.page.list[0].currencyId="";//项目编号（主键 唯一）
-//				    this.page.list[0].projectName="";//项目名称
-//				    this.page.list[0].projectEnglishName="";//项目英文名称
-//				    this.page.list[0].projectAbate="";//失效日期
-//				    this.page.list[0].projectRemark="";//备注
-//				    this.page.list[0].projectAuditing="";//是否审核
-//				    this.page.list[0].projectYn="";//是否删除（0 否 1 是 ，默认0）
-//				    this.page.list[0].projectCustom1="";//自定义1
-//				    this.page.list[0].projectCustom2="";//自定义2
-//				    this.page.list[0].projectCustom3="";//自定义3
-//				    this.page.list[0].projectCustom4="";//自定义4
-//				    this.page.list[0].projectCustom5="";//自定义5
-//				    this.page.list[0].projectCustom6;//自定义6
 
 				    this.page.list[0].currencyId="";//币别id（主键 唯一）
 				    this.page.list[0].currencyName="";//币别名称
@@ -665,8 +459,8 @@
 					var this_ = this;
 					//修改信息
 					var obj=this.page.list[0];
-					
-//					alert(this.page.list[0].currencyTransactionday)
+					this.formrender();
+					alert(this.page.list[0].currencyMpointset)
 					
 					$.ajax({
 						url : "http://127.0.0.1:8080/CurrencyController/updateByPrimaryKeySelective",
@@ -790,8 +584,9 @@
 		
 		 
 	</script>
-  <script>
-		layui.use('form', function(){
+  
+  	<script>
+  		layui.use('form', function(){
 		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 		  
 		  //……
@@ -810,6 +605,6 @@
 		  });
 		  
 		});
-	</script>
+  	</script>
 </body>
 </html>

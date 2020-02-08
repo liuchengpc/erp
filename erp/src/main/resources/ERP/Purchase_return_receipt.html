@@ -24,7 +24,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="title" class="layui-input" @keyup.f4="showSupplierWindow()">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -37,8 +37,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
-                        <select name="interest">
-
+                        <select>
+                            <option value="0">含税</option>
+                            <option value="0">未税</option>
                         </select>
                     </div>
                 </div>
@@ -51,8 +52,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">重新入库</label>
                     <div class="layui-input-block">
-                        <select name="interest">
-
+                        <select>
+                            <option value="0">是</option>
+                            <option value="0">否</option>
                         </select>
                     </div>
                 </div>
@@ -202,19 +204,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">采购人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="buyer" class="layui-input" v-model="buyer">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">所属部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="department" class="layui-input" v-model="department">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">所属项目</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="project" class="layui-input" v-model="project">
                     </div>
                 </div>
             </div>
@@ -224,13 +226,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">制单人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="executor" class="layui-input" v-model="executor">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">复核人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title" class="layui-input">
+                        <input type="text" name="reviewer" class="layui-input" v-model="reviewer">
                     </div>
                 </div>
             </div>
@@ -384,6 +386,6 @@
         });
     });
 </script>
-<script src="js/Purchase_return_receipt.js"></script>
+    <script src="js/Purchase_return_receipt.js"></script>
 </body>
 </html>

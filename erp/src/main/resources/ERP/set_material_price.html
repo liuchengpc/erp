@@ -138,8 +138,8 @@
 						<button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
 						<button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="重置" type="reset" @click="chongzhi"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="刷新"  @click="freash"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
@@ -150,8 +150,8 @@
 		<script src="jquery-1.12.4.js"></script>
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
-		<script type="text/html" id="indexs">
-		 {{d.Lay_Table_INDEX+1}}
+		<script id="indexs">
+		{{d.LAY_TABLE_INDEX+1}}
 		</script>
 		<script>
 			/*layui.use('layer', function(){
@@ -175,8 +175,11 @@
 					}
 				},
 				methods: {
-					//查询相对应单号下的物料信息
-					
+					//刷新
+					freash:function(){
+						location.reload();
+					}
+					,
 					
 					goPage: function(page){
 						//alert("进入gopage");
@@ -231,12 +234,38 @@
 						});
 					},
 					
+					//重置
+					chongzhi:function(){
+						layui.use('table', function(){
+			      			  var table = layui.table;
+			      			  table.render({
+			            elem: '#materialsContent'
+			            ,data:[]              
+			            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+			            , cols: [[
+							{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
+							{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
+							{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
+							{field: 'muName',title: '(单位)',align: 'center'}, 
+							{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
+							{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
+							{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
+							{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
+							{field: 'apDecoration',title: '分录备注',align: 'center'}
+							]]
+			        });
+			      			  $("input").val("");
+							$("textarea").val("");
+			       	 
+			      })
+						},
+					
 				goFirstPage: function() { //第一条
-					alert("显示第一条")
+					//alert("显示第一条")
 					this.goPage(1);
 				},
 				goLastPage: function() { //最后一条
-					alert("显示最后一条")
+					//alert("显示最后一条")
 					this.goPage(this.page.pages);
 				},
 				goPrePage: function() { //上一条

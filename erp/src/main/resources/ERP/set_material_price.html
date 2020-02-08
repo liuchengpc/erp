@@ -31,7 +31,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据日期</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apCustom1">
+									<input type="date" class="layui-input" v-model="pages.apCustom1">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -113,31 +113,15 @@
 					<div class="layui-col-lg6">
 						<div class="layui-form">
 							<div class="layui-form-item">
-								<label class="layui-form-label" style="color:#009688;">业务人员</label>
-								<div class="layui-input-block">
-									<input type="text" class="layui-input">
-								</div>
-							</div>
-							<div class="layui-form-item">
-								<label class="layui-form-label" style="color:#009688;">所属部门</label>
-								<div class="layui-input-block">
-									<input type="text" class="layui-input">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="layui-col-lg6">
-						<div class="layui-form">
-							<div class="layui-form-item">
 								<label class="layui-form-label">制单人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input">
+									<input type="text" class="layui-input" v-model="pages.apDoworkman">
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">复核人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input">
+									<input type="text" class="layui-input" v-model="pages.apRecheckman">
 								</div>
 							</div>
 						</div>
@@ -180,9 +164,7 @@
         });
     });*/
 			var host="http://127.0.0.1:8080/";
-    		//单号
-   			var matterCustom6=$("[name=apDateid").val();
-			alert(matterCustom6);
+//  		var tableData;
 			//创建vue实例
 			var receiptvue=new Vue({
 				el:"#app",
@@ -193,8 +175,11 @@
 					}
 				},
 				methods: {
+					//查询相对应单号下的物料信息
+					
+					
 					goPage: function(page){
-						alert("进入gopage");
+						//alert("进入gopage");
 						var this_ = this;
 						$.ajax({
 								url : host+"wd_adjustController/selectAllpage",
@@ -203,19 +188,48 @@
 								success:function(res){
 									this_.page = res;
 									console.info(this_.page);
+									//单号
+   									var matterCustom6=this_.page.list[0].apDateid
+										//alert(matterCustom6);
+									$.ajax({
+										url:host+"wd_adjustController/queryMater",
+										type:"get",
+										data:{matterCustom6:matterCustom6},
+										dataType:"json",
+										success:function(result){
+											//alert(matterCustom6);
+//											this.list = result;
+											var tableData = result;
+											console.info(tableData);
+											layui.use('table', function() {
+												/* var matterCustom6=$("[name=apDateid").val();
+												alert(matterCustom6); */
+												var table = layui.table;
+												console.log(tableData);
+												table.render({
+													elem: '#materialsContent',
+													data:tableData.data,
+													/* url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
+													 */
+													 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+														,cols: [[
+															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
+															{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
+															{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
+															{field: 'muName',title: '(单位)',align: 'center'}, 
+															{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
+															{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
+															{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
+															{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
+															{field: 'apDecoration',title: '分录备注',align: 'center'}
+															]]
+												});
+											});
+										}
+									});
 								}
-							});
+						});
 					},
-					//查询相对应单号下的物料信息
-					queryMater:function(matterCustom6){
-						url:"http://127.0.0.1:8080/wd_adjustController/queryMater",
-						data:{matterCustom6 : matterCustom6},
-						dataType:"json",
-						success:function(result){
-							this_.list = result;
-							console.info(this_.list);
-						}
-					}
 					
 				goFirstPage: function() { //第一条
 					alert("显示第一条")
@@ -239,7 +253,7 @@
 				},
 				created:function(){
 					this.goPage(1);
-					this.queryMater(matterCustom6);
+					
 				}
 			});
 			layui.use('element', function() {
@@ -285,30 +299,7 @@
 				});
 			});
 
-			layui.use('table', function() {
-				/* var matterCustom6=$("[name=apDateid").val();
-				alert(matterCustom6); */
-				var table = layui.table;
-				table.render({
-					elem: '#materialsContent',
-					data:res.list[0].list,
-					/* url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
-					 */
-					 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-						,cols: [[
-							{templet:"#indexs",title: '(栏号)',sort: true}, 
-							{field: 'materialid',title: '物料编号'}, 
-							{field: 'matterName',title: '(物料名称)',sort: true}, 
-							{field: 'matterSize',title: '(规格型号)'}, 
-							{field: 'muName',title: '(单位)',sort: true}, 
-							{field: 'matterNowcount',title: '(库存量)',sort: true}, 
-							{field: 'matterNowavgcost',title: '(平均成本)',sort: true}, 
-							{field: 'onePrice',title: '(单价)',sort: true}, 
-							{field: 'apPrice',title: '(调价金额)',sort: true}, 
-							{field: 'apDecoration',title: '分录备注',sort: true}
-							]]
-				});
-			});
+			
 		</script>
 	</body>
 </html>

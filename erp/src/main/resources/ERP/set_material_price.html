@@ -37,7 +37,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据号码</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.aapDateid">
+									<input type="text" name="apDateid" class="layui-input" v-model="pages.apDateid">
 								</div>
 							</div>
 						</div>
@@ -49,13 +49,13 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">增值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.up_name">
+									<input type="text" class="layui-input" v-model="pages.upName">
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">减值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.up_Custom1">
+									<input type="text" class="layui-input" v-model="pages.upCustom6">
 								</div>
 							</div>
 						</div>
@@ -75,22 +75,6 @@
 							</div>
 							<div class="layui-tab-item">
 								<div class="layui-row">
-									<div class="layui-col-lg6">
-										<div class="layui-form">
-											<div class="layui-form-item">
-												<label class="layui-form-label">表头条文</label>
-												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input">
-												</div>
-											</div>
-											<div class="layui-form-item">
-												<label class="layui-form-label">表头尾文</label>
-												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input">
-												</div>
-											</div>
-										</div>
-									</div>
 									<div class="layui-col-lg6">
 										<div class="layui-form">
 											<div class="layui-form-item">
@@ -160,7 +144,7 @@
 					</div>
 				</div>
 				
-			<!-- 	<div class="layui-form-item">
+			<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" title="第一笔" @click="goFirstPage"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="上一笔" @click="goPrePage"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
@@ -175,13 +159,16 @@
 						<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
-				</div> -->
+				</div>
 			</div>
 			</div>
 		</div>
 		<script src="jquery-1.12.4.js"></script>
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
+		<script type="text/html" id="indexs">
+		 {{d.Lay_Table_INDEX+1}}
+		</script>
 		<script>
 			/*layui.use('layer', function(){
         var layer = layui.layer;
@@ -192,12 +179,17 @@
             area: ['800px', '650px']
         });
     });*/
+			var host="http://127.0.0.1:8080/";
+    		//单号
+   			var matterCustom6=$("[name=apDateid").val();
+			alert(matterCustom6);
 			//创建vue实例
 			var receiptvue=new Vue({
 				el:"#app",
 				data(){
 					return{
-						page:[]
+						page:[],
+						list:[]
 					}
 				},
 				methods: {
@@ -205,7 +197,7 @@
 						alert("进入gopage");
 						var this_ = this;
 						$.ajax({
-								url : "http://127.0.0.1:8080/wd_adjustController/selectAllpage",
+								url : host+"wd_adjustController/selectAllpage",
 								type: "get",
 								data: "pageNum="+page+"&pageSize=1",
 								success:function(res){
@@ -214,27 +206,40 @@
 								}
 							});
 					},
-					/* goFirstPage: function() { //第一条
-						alert("显示第一条")
-						this.goPage(1);
-					},
-					goLastPage: function() { //最后一条
-						alert("显示最后一条")
-						this.goPage(this.page.pages);
-					},
-					goPrePage: function() { //上一条
-						if (this.page.hasPreviousPage) {
-							this.goPage(this.page.prePage);
+					//查询相对应单号下的物料信息
+					queryMater:function(matterCustom6){
+						url:"http://127.0.0.1:8080/wd_adjustController/queryMater",
+						data:{matterCustom6 : matterCustom6},
+						dataType:"json",
+						success:function(result){
+							this_.list = result;
+							console.info(this_.list);
 						}
-					},
-					goNextPage: function() { //下一条
-						if (this.page.hasNextPage) {
-							this.goPage(this.page.nextPage);
-						}
-					}, */
-				},
-				mounted:function(){
+					}
+					
+				goFirstPage: function() { //第一条
+					alert("显示第一条")
 					this.goPage(1);
+				},
+				goLastPage: function() { //最后一条
+					alert("显示最后一条")
+					this.goPage(this.page.pages);
+				},
+				goPrePage: function() { //上一条
+					if (this.page.hasPreviousPage) {
+						this.goPage(this.page.prePage);
+					}
+				},
+				goNextPage: function() { //下一条
+					if (this.page.hasNextPage) {
+						this.goPage(this.page.nextPage);
+					}
+				}, 
+					
+				},
+				created:function(){
+					this.goPage(1);
+					this.queryMater(matterCustom6);
 				}
 			});
 			layui.use('element', function() {
@@ -281,27 +286,27 @@
 			});
 
 			layui.use('table', function() {
+				/* var matterCustom6=$("[name=apDateid").val();
+				alert(matterCustom6); */
 				var table = layui.table;
 				table.render({
 					elem: '#materialsContent',
-					url: 'https://www.layui.com/demo/table/user/',
-					cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-						,
-					cols: [
-						[
-							{field: 'matter_id',title: '(栏号)',sort: true}, 
-							{field: 'matter_id',title: '物料编号'}, 
-							{field: 'matter_name',title: '(物料名称)',sort: true}, 
-							{field: 'matter_size',title: '(规格型号)'}, 
-							{field: 'matter_id',title: '(单位)',sort: true}, 
-							{field: 'matter_id',title: '(库存量)',sort: true}, 
-							{field: 'matter_id',title: '(平均成本)',sort: true}, 
-							{field: 'matter_id',title: '(单价)',sort: true}, 
-							{field: 'matter_id',title: '(调价金额)',sort: true}, 
-							{field: 'matter_id',title: '分录备注',sort: true}, 
-							
-							]
-					]
+					data:res.list[0].list,
+					/* url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
+					 */
+					 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+						,cols: [[
+							{templet:"#indexs",title: '(栏号)',sort: true}, 
+							{field: 'materialid',title: '物料编号'}, 
+							{field: 'matterName',title: '(物料名称)',sort: true}, 
+							{field: 'matterSize',title: '(规格型号)'}, 
+							{field: 'muName',title: '(单位)',sort: true}, 
+							{field: 'matterNowcount',title: '(库存量)',sort: true}, 
+							{field: 'matterNowavgcost',title: '(平均成本)',sort: true}, 
+							{field: 'onePrice',title: '(单价)',sort: true}, 
+							{field: 'apPrice',title: '(调价金额)',sort: true}, 
+							{field: 'apDecoration',title: '分录备注',sort: true}
+							]]
 				});
 			});
 		</script>

@@ -1,8 +1,11 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -14,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_out_warehouse;
+import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.mapper.Sales_out_warehouseMapper;
 import com.apatech.service.Sales_out_warehouseService;
+import com.apatech.service.Sales_out_warehouse_detailedService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -26,6 +31,51 @@ import com.github.pagehelper.PageInfo;
 public class Sales_out_warehouseController {
 	@Autowired
 	private Sales_out_warehouseService dao;
+	
+	@Autowired
+	private Sales_out_warehouse_detailedService daoo;	
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public int update(@RequestBody Sales_out_warehouse stu) {
+		daoo.deletelist(stu.getSowId());
+		for (Sales_out_warehouse_detailed item : stu.getList()) {
+			item.setSowId(stu.getSowId());
+			daoo.insert(item);
+		}
+		return dao.updateByPrimaryKey(stu);
+		
+	}
+	
+	@RequestMapping("/autddert")
+	@ResponseBody
+	public int autddert(String id,String sid) {
+		return dao.selectlist(id, sid);
+		
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int delete(String sowId) {
+		return dao.deletelist(sowId);
+				
+	}
+	
+	
+	@RequestMapping("/insert")
+	@ResponseBody
+	public int insert(@RequestBody Sales_out_warehouse record) {
+		int i=dao.insert(record);
+		if(i>0) {
+			for (Sales_out_warehouse_detailed item : record.getList()) {
+				item.setSowId(record.getSowId());
+				daoo.insert(item);
+			}
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 	
 	/**
 	 * 分页
@@ -39,6 +89,9 @@ public class Sales_out_warehouseController {
 		System.out.println("进入Sales_out_warehouseController分页");
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Sales_out_warehouse> page=dao.selectAllpage(pageNum, pageSize);
+    	for (Sales_out_warehouse item : page.getList()) {
+			item.setList(daoo.selectlist(item.getSowId()));
+		}
     	return page;
     }
 	

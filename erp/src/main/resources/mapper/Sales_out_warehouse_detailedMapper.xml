@@ -9,7 +9,7 @@
     <result column="sowd_remark" jdbcType="VARCHAR" property="sowdRemark" />
     <result column="sowd_price_include_tax" jdbcType="VARCHAR" property="sowdPriceIncludeTax" />
     <result column="sowd_single_status" jdbcType="INTEGER" property="sowdSingleStatus" />
-    <result column="sowd_document_date" jdbcType="DATE" property="sowdDocumentDate" />
+    <result column="sowd_document_date" jdbcType="REAL" property="sowdDocumentDate" />
     <result column="sowd_document_number" jdbcType="REAL" property="sowdDocumentNumber" />
     <result column="sowd_price" jdbcType="REAL" property="sowdPrice" />
     <result column="sowd_money" jdbcType="REAL" property="sowdMoney" />
@@ -48,6 +48,10 @@
 	    from sales_out_warehouse_detailed 
 	    where sowd_Yn=0
 	    ORDER BY sowd_id DESC
+  </select>
+  
+  <select id="selectlist" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  select * from Sales_out_warehouse_detailed WHERE sow_id=#{id} and sowd_Yn=0
   </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

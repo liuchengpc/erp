@@ -19,6 +19,11 @@ public class WarehouseService {
 	@Autowired
 	private WarehouseMapper dao;
 	
+	//查询所有仓库
+	public List<Warehouse> selectAll(){
+		return dao.selectAll();
+	}
+	
 	public PageInfo<Warehouse> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

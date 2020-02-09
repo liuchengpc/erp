@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,13 @@ import com.github.pagehelper.PageInfo;
 public class CurrencyController {
 	@Autowired
 	private CurrencyService dao;
+	
+	//查询所有货币
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<Currency> selectAll(){
+		return dao.selectAll();
+	}
 	
 	/**
 	 * 分页

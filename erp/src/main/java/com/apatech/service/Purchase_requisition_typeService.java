@@ -2,6 +2,7 @@ package com.apatech.service;
 
 import java.util.List;
 
+import com.apatech.domain.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ import com.apatech.domain.Purchase_requisition_type;
 import com.apatech.mapper.Purchase_requisition_typeMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -57,4 +60,8 @@ public class Purchase_requisition_typeService {
     public int updateByPrimaryKey(Purchase_requisition_type record){
     	return dao.updateByPrimaryKey(record);
     }
+
+//    public List<Team> selectAll(){
+//        return dao.selectAll();
+//    }
 }

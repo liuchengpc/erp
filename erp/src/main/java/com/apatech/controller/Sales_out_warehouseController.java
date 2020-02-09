@@ -40,6 +40,7 @@ public class Sales_out_warehouseController {
 	public int update(@RequestBody Sales_out_warehouse stu) {
 		daoo.deletelist(stu.getSowId());
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
+			item.setSowId(stu.getSowId());
 			daoo.insert(item);
 		}
 		return dao.updateByPrimaryKey(stu);

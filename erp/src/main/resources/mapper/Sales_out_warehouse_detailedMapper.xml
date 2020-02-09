@@ -51,7 +51,7 @@
   </select>
   
   <select id="selectlist" parameterType="java.lang.String" resultMap="BaseResultMap">
-	  select * from Sales_out_warehouse_detailed WHERE sow_id=#{id}
+	  select * from Sales_out_warehouse_detailed WHERE sow_id=#{id} and sowd_Yn=0
   </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

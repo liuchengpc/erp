@@ -20,10 +20,12 @@ public class Sales_out_warehouseService {
 	private Sales_out_warehouseMapper dao;
 	
 	public int deletelist(String id) {
+		dao.deletelist2(id);
 		return dao.deletelist(id);
 	}
 	
 	public int selectlist(String id,String sid) {
+		dao.selectlist2(id, sid);
 		return dao.selectlist(id, sid);
 	}
 	

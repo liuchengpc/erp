@@ -17,8 +17,14 @@ public interface Sales_out_warehouseMapper {
  	@Update("update Sales_out_warehouse set sow_yn=1 where sow_id=#{id}")
  	public int deletelist(String id);
  	
- 	@Select("update Sales_out_warehouse set sow_Auditing=#{sid} where sow_id=#{id}")
+ 	@Update("update Sales_out_warehouse_detailed set sowd_yn=1 where sow_id=#{id}")
+ 	public int deletelist2(String id);
+ 	
+ 	@Update("update Sales_out_warehouse set sow_auditing=#{sid} where sow_id=#{id}")
  	public int selectlist(@Param("id")String id,@Param("sid")String sid);
+ 	
+ 	@Update("update Sales_out_warehouse_detailed set sowd_auditing=#{sid} where sow_id=#{id}")
+ 	public int selectlist2(@Param("id")String id,@Param("sid")String sid);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

@@ -17,46 +17,67 @@
 </head>
 <body>
 <div id="app">
+	<template v-for="stu in page.list">
     <div class="layui-row">
         <div class="layui-col-lg6">
             <div class="layui-form">
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">客户</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                    	<template v-for="cust in customerlist">
+                    		<template v-if="stu.customerId==cust.customerId">
+                    			<input type="text" name="title" readonly="readonly" v-model="cust.customerName" class="layui-input">
+                    		</template>
+                    	</template>
+                        
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">送货地址</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input" style="width: 30%; float: left;">
-                        <input type="text" name="title"  class="layui-input" style="width: 68%; float: right;">
+                        <input type="text" name="title" readonly="readonly"  class="layui-input" style="width: 30%; float: left;">
+                        <input type="text" name="title" v-model="stu.sowAddress" readonly="readonly"  class="layui-input" style="width: 68%; float: right;">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">销售出库类型</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <template v-for="sales in saletype">
+                    		<template v-if="sales.sowtId==stu.sowtId">
+                    			<input type="text" name="title" readonly="readonly" v-model="sales.sowtName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
-                        <select name="interest">
-                            
+                        <select name="interest" disabled="disabled">
+                        	<template v-if="stu.sowPriceIncludeTax==0">
+                        		 <option value="0" selected="selected">不含税</option>
+                            	 <option value="1">含税</option>
+                        	</template>
+                        	<template v-else>
+                        		 <option value="0">不含税</option>
+                                 <option value="1" selected="selected">含税</option>
+                        	</template>                          
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">仓库</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                         <template v-for="ware in warelist">
+                    		<template v-if="ware.warehouseId==stu.warehouseId">
+                    			<input type="text" name="title" readonly="readonly" v-model="ware.warehouseName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">凭证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowCertificateNumber"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -66,32 +87,43 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据日期</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowDocumentDate"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据号码</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowDocumentNumber"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <template v-for="curr in currencylist">
+                    		<template v-if="curr.currencyId==stu.currencyId">
+                    			<input type="text" name="title" readonly="readonly" v-model="curr.currencyName" class="layui-input">
+                    		</template>
+                    	</template>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">汇率</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowExchangeRate" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">国外贸易</label>
                     <div class="layui-input-block">
-                        <select name="interest">
-                            
+                        <select name="interest" disabled="disabled">
+                            <template v-if="stu.sowForeignTrade==0">
+                        		 <option value="0" selected="selected">否</option>
+                            	 <option value="1">是</option>
+                        	</template>
+                        	<template v-else>
+                        		 <option value="0">否</option>
+                                 <option value="1" selected="selected">是</option>
+                        	</template>  
                         </select>
                     </div>
                 </div>
@@ -107,8 +139,11 @@
             </ul>
             <div class="layui-tab-content" style="padding: 10px 0;">
                 <div class="layui-tab-item layui-show">
+                	
                     <table id="materialsContent" class="layui-hide">
-
+                    	
+                    	
+						
                     </table>
                 </div>
                 <div class="layui-tab-item">
@@ -118,20 +153,45 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label" style="color:#009688;">账款归属</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" readonly="readonly" v-model="stu.sowSaleszkgs" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <div class="layui-inline">
                                         <label class="layui-form-label">收款条件</label>
                                         <div class="layui-input-inline">
-                                            <select name="interest">
+                                            <select name="interest" disabled="disabled">
+                                            	 <template v-if="stu.sowSalessktj==0">
+					                        		 <option value="0" selected="selected">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else-if="stu.sowSalessktj==1">
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1" selected="selected">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else-if="stu.sowSalessktj==2">
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2" selected="selected">月结</option>
+					                            	 <option value="3">其他</option>
+					                        	</template>
+					                        	<template v-else>
+					                        		 <option value="0">货到</option>
+					                            	 <option value="1">次月</option>
+					                            	 <option value="2">月结</option>
+					                            	 <option value="3" selected="selected">其他</option>
+					                        	</template>
+					                        	
 
                                             </select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" readonly="readonly" v-model="stu.sowSalesday" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -141,13 +201,13 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">付款日期</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" readonly="readonly" v-model="stu.sowSalesdate" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">账款月份</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title"       class="layui-input">
+                                        <input type="text" name="title" readonly="readonly"   v-model="stu.sowSalesyue"    class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +221,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏一</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" readonly="readonly" v-model="stu.sowCustom1" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +231,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏二</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                        <input type="text" name="title" readonly="readonly" v-model="stu.sowCustom2" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +243,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                                        <textarea placeholder="请输入内容" readonly="readonly" v-model="stu.sowRemark" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -199,19 +259,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">采购人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" v-model="stu.sowBuyer" readonly="readonly"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">所属部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowBelongsSection" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">所属项目</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowBelongsProject"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -221,13 +281,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">制单人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowForm"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">复核人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                        <input type="text" name="title" readonly="readonly" v-model="stu.sowCheckagainStaff"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -251,7 +311,7 @@
             <div class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="interest" lay-filter="aihao">
+                        <select name="interest" lay-filter="aihao" disabled="disabled">
                             <option value="">转单</option>
                             <option value="0" disabled>采购询价转入</option>
                             <option value="0" disabled>采购订单转入</option>
@@ -277,25 +337,226 @@
         </div>
 		<div class="layui-form-item">
 		    <div class="layui-input-block">  
-		        <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-		        <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
-		        <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-				<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
+		        <button class="layui-btn" @click="selectpage(1)" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+		        <button class="layui-btn" @click="selectpage(page.prePage)" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
+		        <button class="layui-btn" @click="selectpage(page.nextPage)" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+				<button class="layui-btn" @click="selectpage(page.pages)" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
 		        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
-		        <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
-		        <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-		        <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
-				<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
-				<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
-				<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
-				<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+		        <button class="layui-btn" @click="baocun" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
+		        <button class="layui-btn" @click="bianji" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+		        <button class="layui-btn" @click="del(stu.sowId)" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
+				<button class="layui-btn" @click="chongzhi" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
+				<button class="layui-btn" @click="shuax" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
+				<button class="layui-btn" @click="shenhe(stu.sowId,1)" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
+				<button class="layui-btn" @click="shenhe(stu.sowId,0)" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 		    </div>
 		</div>
     </div>
+    </template>
 </div>
 <script src="jquery-1.12.4.js"></script>
+<script type="text/javascript" src="js/vue.js" ></script>
 <script src="layui.js"></script>
-<script>
+<script id="xuhao">
+	 {{d.LAY_TABLE_INDEX+1}}
+</script>
+<script>	  
+	var host="http://127.0.0.1:8080/";
+	var sales_outboundvue=new Vue({
+		el:"#app",
+		data:{
+			page:{},
+			customerlist:[],
+			saletype:[],
+			currencylist:[],
+			warelist:[]
+			
+		},
+		methods:{
+			del:function(id){
+				$.ajax({
+					type:"get",
+					data:{sowId:id},
+					url:host+"Sales_out_warehouseController/delete",
+					success:function(resulet){
+						
+					}
+				});
+			},
+			shenhe:function(id,sid){
+				$.ajax({
+					type:"get",
+					data:{id:id,sid:sid},
+					url:host+"Sales_out_warehouseController/autddert",
+					success:function(resulet){
+						
+					}
+				});
+			},
+			baocun:function(){
+				let user=$("#app input:eq(0)").val();
+				let type=$("#app input:eq(3)").val();
+				let ck=$("#app input:eq(5)").val();
+				let moeey=$("#app input:eq(9)").val();
+				$.each(sales_outboundvue.customerlist,function(a,b){
+					if(b.customerName==user){
+						sales_outboundvue.page.list[0].customerId=b.customerId;
+					}
+				})
+				$.each(sales_outboundvue.saletype,function(a,b){
+					if(b.sowtName==type){
+						sales_outboundvue.page.list[0].sowtId=b.sowtId;
+					}
+				})
+				$.each(sales_outboundvue.warelist,function(a,b){
+					if(b.warehouseName==ck){
+						sales_outboundvue.page.list[0].warehouseId=b.warehouseId;
+					}
+				})
+				$.each(sales_outboundvue.currencylist,function(a,b){
+					if(b.currencyName==moeey){
+						sales_outboundvue.page.list[0].currencyId=b.currencyId;
+					}
+				})
+				sales_outboundvue.page.list[0].sowPriceIncludeTax=$("#app select:eq(0)").val();
+				sales_outboundvue.page.list[0].sowForeignTrade=$("#app select:eq(1)").val();
+				sales_outboundvue.page.list[0].sowSalessktj=$("#app select:eq(2)").val();
+				sales_outboundvue.page.list[0].list=layui.table.cache["materialsContent"];
+				$.ajax({
+					type:"post",
+					url:host+"Sales_out_warehouseController/update",
+					data:JSON.stringify(sales_outboundvue.page.list[0]),
+                    contentType:"application/json;charset=utf-8",
+                    success:function(res){
+                    	
+                    }
+				});
+				
+				
+			},
+			bianji:function(){
+				$("input").removeAttr("readonly");
+				$("textarea").removeAttr("readonly");
+				layui.use('form', function(){
+			    var form = layui.form;
+			    $("select").removeAttr("disabled");
+			    form.render('select');
+			});
+			$("table td").attr("data-edit","text");
+			},
+			shuax:function(){
+				location.reload();
+			}
+			,selectpage:function(pageNum){
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectAllpage",
+					data:{pageNum:pageNum,pageSize:1},
+					success:function(res){
+						sales_outboundvue.page=res;						
+						 layui.use('table', function(){
+			        var table = layui.table;
+			        table.render({
+			            elem: '#materialsContent'
+			            ,data:res.list[0].list               
+			            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+			            , cols: [[
+			                {title: '(栏号)',templet: '#xuhao',sort: true}
+			                , {field: 'matterId', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+			                , {field: 'sowdEngname', title: '(物料名称)', sort: true}
+			                , {field: 'sowdRemark', title: '(规格型号)'}
+			                , {field: 'sowdPriceIncludeTax', title: '(单位名称)'}
+			                , {field: 'sowdSingleStatus', title: '数量', align: 'center'} //单元格内容水平居中
+			                , {field: 'sowdDocumentDate', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+			                , {field: 'sowdDocumentNumber', title: '折数(%)', sort: true, align: 'right'}
+			                , {field: 'sowdPrice', title: '单价', sort: true, align: 'right'}
+			                , {field: 'sowdMoney', title: '金额', sort: true, align: 'right'}
+			                , {field: 'sowdTaxRate', title: '税率(%)', sort: true, align: 'right'}
+			                , {field: 'sowdTaxAmount', title: '(税额)', sort: true, align: 'right'}
+			                , {field: 'sowdIncludingTaxAmount', title: '(含税金额)', sort: true, align: 'right'}
+			                , {field: 'sowdBatchNumber', title: '(批号)', sort: true, align: 'right'}
+			                , {field: 'sowdIfgift', title: '赠品', sort: true, align: 'right'}
+			                , {field: 'sowdInvoiceDetails', title: '(发票明细)', sort: true, align: 'right'}
+			                , {field: 'sowdNomakeInvoiceNum', title: '(未开票数量)', sort: true, align: 'right'}
+			                , {field: 'sowdRemarks', title: '分录备注', sort: true, align: 'right'}
+			            ]]
+			        });
+			    });
+			  
+			    
+					}
+				});		
+			}
+			,chongzhi:function(){
+				layui.use('table', function(){
+      			  var table = layui.table;
+      			  table.render({
+            elem: '#materialsContent'
+            ,data:[]              
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[
+                {title: '(栏号)',templet: '#xuhao',sort: true}
+                , {field: 'matterId', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {field: 'sowdEngname', title: '(物料名称)', sort: true}
+                , {field: 'sowdRemark', title: '(规格型号)'}
+                , {field: 'sowdPriceIncludeTax', title: '(单位名称)'}
+                , {field: 'sowdSingleStatus', title: '数量', align: 'center'} //单元格内容水平居中
+                , {field: 'sowdDocumentDate', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                , {field: 'sowdDocumentNumber', title: '折数(%)', sort: true, align: 'right'}
+                , {field: 'sowdPrice', title: '单价', sort: true, align: 'right'}
+                , {field: 'sowdMoney', title: '金额', sort: true, align: 'right'}
+                , {field: 'sowdTaxRate', title: '税率(%)', sort: true, align: 'right'}
+                , {field: 'sowdTaxAmount', title: '(税额)', sort: true, align: 'right'}
+                , {field: 'sowdIncludingTaxAmount', title: '(含税金额)', sort: true, align: 'right'}
+                , {field: 'sowdBatchNumber', title: '(批号)', sort: true, align: 'right'}
+                , {field: 'sowdIfgift', title: '赠品', sort: true, align: 'right'}
+                , {field: 'sowdInvoiceDetails', title: '(发票明细)', sort: true, align: 'right'}
+                , {field: 'sowdNomakeInvoiceNum', title: '(未开票数量)', sort: true, align: 'right'}
+                , {field: 'sowdRemarks', title: '分录备注', sort: true, align: 'right'}
+            ]]
+        });
+      			  $("input").val("");
+				$("textarea").val("");				
+       	 
+      })
+			}
+		},
+		created:function(){
+			
+		this.selectpage(1);
+		
+		$.ajax({
+			type:"get",
+			url:host+"CustomerController/selectAll",
+			success:function(res){
+				sales_outboundvue.customerlist=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"Sales_out_warehouse_typeController/selectAll",
+			success:function(res){
+				sales_outboundvue.saletype=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"CurrencyController/selectAll",
+			success:function(res){
+				sales_outboundvue.currencylist=res;
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:host+"WarehouseController/selectAll",
+			success:function(res){
+				sales_outboundvue.warelist=res;
+			}
+		});
+		}
+		
+	})
+	
    /* layui.use('layer', function(){
         var layer = layui.layer;
         layer.open({
@@ -347,35 +608,7 @@
         });
     });
 
-    layui.use('table', function(){
-        var table = layui.table;
-
-        table.render({
-            elem: '#materialsContent'
-            ,url:'https://www.layui.com/demo/table/user/'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , cols: [[
-                {field: 'id', title: '(栏号)', sort: true}
-                , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'sex', title: '(物料名称)', sort: true}
-                , {field: 'city', title: '(规格型号)'}
-                , {field: 'sign', title: '(单位名称)'}
-                , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
-                , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
-                , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '单价', sort: true, align: 'right'}
-                , {field: 'wealth', title: '金额', sort: true, align: 'right'}
-                , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
-            ]]
-        });
-    });
+   
 </script>
 </body>
 </html>

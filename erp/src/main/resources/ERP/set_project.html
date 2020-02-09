@@ -71,7 +71,7 @@
 	                    </div>
 	                    <div class="layui-form-item">                       
 	                        <div class="layui-input-block">  
-					            <button :class="[goFirstPage1 ? lay1 : '', lay2]" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+					            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
 					            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
 					            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
 								<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
@@ -176,19 +176,6 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
-//					this.page.list[0].teamId="";//部门编号（主键 唯一）
-//				    this.page.list[0].teamName="";//部门名称
-//				    this.page.list[0].teamEnglishName="";//部门英文名称
-//				    this.page.list[0].teamAbate="";//失效日期
-//				    this.page.list[0].teamRemark="";//备注
-//				    this.page.list[0].teamAuditing="";//是否审核
-//				    this.page.list[0].teamYn="";//是否删除（0 否 1 是 ，默认0）
-//				    this.page.list[0].teamCustom1="";//创建时间
-//				    this.page.list[0].teamCustom2="";//自定义2
-//				    this.page.list[0].teamCustom3="";//自定义3
-//				    this.page.list[0].teamCustom4="";//自定义4
-//				    this.page.list[0].teamCustom5="";//自定义5
-//				    this.page.list[0].teamCustom6="";//自定义6
 				    
 			       	this.page.list[0].projectId="";//项目编号（主键 唯一）
 				    this.page.list[0].projectName="";//项目名称
@@ -196,7 +183,7 @@
 				    this.page.list[0].projectAbate="";//失效日期
 				    this.page.list[0].projectRemark="";//备注
 				    this.page.list[0].projectAuditing="";//是否审核
-				    this.page.list[0].projectYn="";//是否删除（0 否 1 是 ，默认0）
+//				    this.page.list[0].projectYn="";//是否删除
 				    this.page.list[0].projectCustom1="";//自定义1
 				    this.page.list[0].projectCustom2="";//自定义2
 				    this.page.list[0].projectCustom3="";//自定义3

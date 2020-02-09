@@ -19,6 +19,16 @@ public class Sales_out_warehouseService {
 	@Autowired
 	private Sales_out_warehouseMapper dao;
 	
+	public int deletelist(String id) {
+		dao.deletelist2(id);
+		return dao.deletelist(id);
+	}
+	
+	public int selectlist(String id,String sid) {
+		dao.selectlist2(id, sid);
+		return dao.selectlist(id, sid);
+	}
+	
 	public PageInfo<Sales_out_warehouse> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

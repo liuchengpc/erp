@@ -19,6 +19,11 @@ public class Sales_out_warehouse_typeService {
 	@Autowired
 	private Sales_out_warehouse_typeMapper dao;
 	
+	//查询所有销售出库类型
+	public List<Sales_out_warehouse_type> selectAll(){
+		return dao.selectAll();
+	}
+	
 	public PageInfo<Sales_out_warehouse_type> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

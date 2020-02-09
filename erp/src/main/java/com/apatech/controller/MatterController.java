@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,8 @@ public class MatterController {
 	@ResponseBody
     public Matter selectByPrimaryKey(String matterId) {
 		System.out.println("进入MatterController根据主键查询");
-		System.out.println("matterId="+matterId);
-    	return dao.selectByPrimaryKey(matterId);
+		System.out.println("matterId=" +matterId);
+		return dao.selectByPrimaryKey(matterId);
 	}
 	
 	/**

@@ -19,6 +19,11 @@ public class CustomerService {
 	@Autowired
 	private CustomerMapper dao;
 	
+	//查询所有客户
+	public List<Customer> selectAll(){
+		return dao.selectAll();
+	}
+	
 	public PageInfo<Customer> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

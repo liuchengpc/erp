@@ -12,7 +12,7 @@ import com.apatech.mapper.Adjust_priceMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-
+@Service
 public class wd_Adjust_priceService {
 	@Autowired
 	private Adjust_priceMapper dao;

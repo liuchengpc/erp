@@ -36,7 +36,7 @@ public class Sales_out_warehouse_detailedController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<Sales_out_warehouse_detailed> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入Sales_out_warehouse_detailedController分页");
+		System.out.println("进入Sales_out_warehouse_detailedController分页"); 
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Sales_out_warehouse_detailed> page=dao.selectAllpage(pageNum, pageSize);
     	return page;

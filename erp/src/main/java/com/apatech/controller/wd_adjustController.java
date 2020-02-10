@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,40 @@ public class wd_adjustController {
     	PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	
+	@RequestMapping(value = "queryMater",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> queryMater(String matterCustom6){
+		System.out.println("查询物料信息！ 查询ID"+matterCustom6);
+		List<wd_Adjust_price> data=wddao.queryMater(matterCustom6);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		  map.put("code",0);
+		  map.put("msg","");
+		  map.put("count",1000);
+		  map.put("data",data);
+		  System.out.println(map);
+		     return map;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 获取单号

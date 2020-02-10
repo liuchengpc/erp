@@ -62,31 +62,12 @@ let viewModel = new Vue({
             this.orderStatus = orderStatusMeta.unReview;
         },
         showSupplierWindow(){
-            // var targetWindowContent;
-            $.ajax({
-                url: "http://localhost:63342/erp/ERP/window_set_request_purchase_order_type.html",
-                type: "get",
-                success: function (resp) {
-                    // targetWindowContent = resp;
-                    layer.open({
-                        type: 2,
-                        title:"单选--采购请购类型设定",
-                        content: "window_set_request_purchase_order_type.html",
-                        area: ['762px', '450px']
-                    })
-                }/*,
-                async: false*/
-            });
-
-            /*layui.use('layer', function(){
-                var layer = layui.layer;
-                layer.open({
-                    type: 1,
-                    title: '单选--采购请购类型设定',
-                    content: targetWindowContent,
-                    area: ['745px', '450px']
-                });
-            });*/
+            layer.open({
+                type: 2,
+                title:"单选--采购请购类型设定",
+                content: "window_set_request_purchase_order_type.html",
+                area: ['762px', '450px']
+            })
         }
     },
     watch: {

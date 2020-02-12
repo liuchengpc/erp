@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,8 +37,8 @@ public class wd_adjustController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<wd_Adjust_price> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入分页");
-		System.out.println(pageNum+"/"+pageSize);
+		//System.out.println("进入分页");
+		//System.out.println(pageNum+"/"+pageSize);
     	PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	return page;
     }
@@ -46,7 +47,7 @@ public class wd_adjustController {
 	@RequestMapping(value = "queryMater",method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> queryMater(String matterCustom6){
-		System.out.println("查询物料信息！ 查询ID"+matterCustom6);
+		//System.out.println("查询物料信息！ 查询ID"+matterCustom6);
 		List<wd_Adjust_price> data=wddao.queryMater(matterCustom6);
 		HashMap<String,Object> map=new HashMap<String,Object>();
 		  map.put("code",0);
@@ -56,24 +57,7 @@ public class wd_adjustController {
 		  System.out.println(map);
 		     return map;
     }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	
 	/**
@@ -133,17 +117,18 @@ public class wd_adjustController {
 	 */
 	@RequestMapping(value = "updateByPrimaryKeySelective",method = RequestMethod.POST)
 	@ResponseBody
-    public Map<String, String> updateByPrimaryKeySelective(@RequestBody Adjust_price record) {
-		System.out.println("进入Adjust_priceController根据主键修改");
-		System.out.println("实体："+record.toString());
+    public Map<String, String> updateByPrimaryKeySelective(@RequestParam String apDateId) {
+		System.out.println("进入删除controller");
+		System.out.println("实体："+apDateId.toString());
 		Map<String, String> map=new HashMap<String, String>();
-    	int i=dao.updateByPrimaryKeySelective(record);
+    	int i=dao.wdupdateByPrimaryKeySelective(apDateId);
+    	System.out.println(i);
     	if (i>0) {
 			map.put("code", "1");
 			map.put("message", "修改成功！");
 		}else {
 			map.put("code", "2");
-			map.put("message", "修改失败！");
+			map.put("message","失败"+ apDateId);
 		}
 		return map;
     }

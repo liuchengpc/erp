@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +30,9 @@
 <div id="app">
     <div class="layui-row">
         <!-- 4 1 1 3-->
-        <div class="layui-col-lg6">
+        <div class="layui-col-xs6">
             <div class="layui-row">
-                <div class="layui-col-lg4">
+                <div class="layui-col-xs4">
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
@@ -47,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-lg1">
+                <div class="layui-col-xs1">
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 3px;">
@@ -56,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-lg1" style="margin-left: 3px;">
+                <div class="layui-col-xs1" style="margin-left: 3px;">
                     <div class="layui-btn-group">
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
                                 style="height:24px;width: 50%;padding: 0;" @click="charLengthMinute()">
@@ -68,7 +67,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="layui-col-lg3">
+                <div class="layui-col-xs3">
                     <div class="layui-form">
                         <div class="layui-form-item" pane="">
                             <div class="layui-input-block" style="margin-left: 3px;">
@@ -81,9 +80,9 @@
         </div>
     </div>
     <div class="layui-row">
-        <div class="layui-col-lg6">
+        <div class="layui-col-xs6">
             <div class="layui-row">
-                <div class="layui-col-lg5">
+                <div class="layui-col-xs5">
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0px;">
@@ -93,9 +92,9 @@
                     </div>
                 </div>
 
-                <div class="layui-col-lg1" style="margin-left: 3px;">
+                <div class="layui-col-xs1" style="margin-left: 3px;">
                     <div class="layui-row">
-                        <div class="layui-col-lg12">
+                        <div class="layui-col-xs12">
                             <div class="layui-btn-group" style="display:block;">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
                                         style="height: 12px;display:block;width: 100%;">
@@ -106,7 +105,7 @@
                         </div>
                     </div>
                     <div class="layui-row">
-                        <div class="layui-col-lg12">
+                        <div class="layui-col-xs12">
                             <div class="layui-btn-group" style="display:block;">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
                                         style="height: 12px;display:block;width:100%;">
@@ -117,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-lg1" style="margin-left: 3px;">
+                <div class="layui-col-xs1" style="margin-left: 3px;">
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">取回</button>
                 </div>
             </div>
@@ -137,10 +136,10 @@
         </div>
     </div>
     <div class="layui-row">
-        <div class="layui-col-lg2" style="height: 296px;">
+        <div class="layui-col-xs2" style="height: 296px;">
 
         </div>
-        <div class="layui-col-lg10" style="height: 296px;">
+        <div class="layui-col-xs10" style="height: 296px;">
             <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
                 <colgroup>
                     <col width="150">
@@ -194,7 +193,7 @@
     </div>
 </div>
 <script>
-    layui.use('layer', function(){
+    /*layui.use('layer', function(){
         var layer = layui.layer;
         layer.open({
             type: 1,
@@ -202,7 +201,7 @@
             content: $('#app'),
             area: ['745px', '450px']
         });
-    });
+    });*/
     layui.use(['form'], function () {
         var form = layui.form;
     });

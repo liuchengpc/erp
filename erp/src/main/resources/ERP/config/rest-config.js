@@ -1,3 +1,9 @@
+/*
+* ret-config.js
+* author:dev-shaw
+* data:2020-2-10 22:35:26
+* */
+import axios from "js/axios"
 let rest = axios.create({
     baseUrl: "http://localhost:8080/",
     timeout: 5000

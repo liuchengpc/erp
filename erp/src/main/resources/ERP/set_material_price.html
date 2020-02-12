@@ -438,6 +438,7 @@
 				element.tabChange('test', layid);
 
 				element.on('tab(test)', function(elem) {
+					
 					location.hash = 'test=' + $(this).attr('lay-id');
 				});
 			});

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Bank_deposit_accountMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Bank_deposit_account">
+    <id column="ada_id" jdbcType="VARCHAR" property="adaId" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="bank_id" jdbcType="VARCHAR" property="bankId" />
+    <result column="ada_bankaddress" jdbcType="VARCHAR" property="adaBankaddress" />
+    <result column="ada_phone" jdbcType="VARCHAR" property="adaPhone" />
+    <result column="ada_initialbalance" jdbcType="REAL" property="adaInitialbalance" />
+    <result column="ada_name" jdbcType="VARCHAR" property="adaName" />
+    <result column="ada_subject" jdbcType="VARCHAR" property="adaSubject" />
+    <result column="ada_cyber bankaddress" jdbcType="VARCHAR" property="adaCyberBankaddress" />
+    <result column="ada_linkman" jdbcType="VARCHAR" property="adaLinkman" />
+    <result column="ada_currentbalance" jdbcType="REAL" property="adaCurrentbalance" />
+    <result column="ada_remark" jdbcType="VARCHAR" property="adaRemark" />
+    <result column="ada_Auditing" jdbcType="VARCHAR" property="adaAuditing" />
+    <result column="ada_yn" jdbcType="VARCHAR" property="adaYn" />
+    <result column="ada_custom1" jdbcType="VARCHAR" property="adaCustom1" />
+    <result column="ada_custom2" jdbcType="VARCHAR" property="adaCustom2" />
+    <result column="ada_custom3" jdbcType="VARCHAR" property="adaCustom3" />
+    <result column="ada_custom4" jdbcType="VARCHAR" property="adaCustom4" />
+    <result column="ada_custom5" jdbcType="VARCHAR" property="adaCustom5" />
+    <result column="ada_custom6" jdbcType="VARCHAR" property="adaCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ada_id, currency_id, bank_id, ada_bankaddress, ada_phone, ada_initialbalance, ada_name, 
+    ada_subject, "ada_cyber bankaddress", ada_linkman, ada_currentbalance, ada_remark, 
+    ada_Auditing, ada_yn, ada_custom1, ada_custom2, ada_custom3, ada_custom4, ada_custom5, 
+    ada_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from bank_deposit_account 
+	    where ada_Yn=0
+	    ORDER BY ada_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bank_deposit_account
+    where ada_id = #{adaId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bank_deposit_account
+    where ada_id = #{adaId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Bank_deposit_account">
+    insert into bank_deposit_account (ada_id, currency_id, bank_id, 
+      ada_bankaddress, ada_phone, ada_initialbalance, 
+      ada_name, ada_subject, "ada_cyber bankaddress", 
+      ada_linkman, ada_currentbalance, ada_remark, 
+      ada_Auditing, ada_yn, ada_custom1, 
+      ada_custom2, ada_custom3, ada_custom4, 
+      ada_custom5, ada_custom6)
+    values (#{adaId,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{bankId,jdbcType=VARCHAR}, 
+      #{adaBankaddress,jdbcType=VARCHAR}, #{adaPhone,jdbcType=VARCHAR}, #{adaInitialbalance,jdbcType=REAL}, 
+      #{adaName,jdbcType=VARCHAR}, #{adaSubject,jdbcType=VARCHAR}, #{adaCyberBankaddress,jdbcType=VARCHAR}, 
+      #{adaLinkman,jdbcType=VARCHAR}, #{adaCurrentbalance,jdbcType=REAL}, #{adaRemark,jdbcType=VARCHAR}, 
+      #{adaAuditing,jdbcType=VARCHAR}, #{adaYn,jdbcType=VARCHAR}, #{adaCustom1,jdbcType=VARCHAR}, 
+      #{adaCustom2,jdbcType=VARCHAR}, #{adaCustom3,jdbcType=VARCHAR}, #{adaCustom4,jdbcType=VARCHAR}, 
+      #{adaCustom5,jdbcType=VARCHAR}, #{adaCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Bank_deposit_account">
+    insert into bank_deposit_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adaId != null">
+        ada_id,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="adaBankaddress != null">
+        ada_bankaddress,
+      </if>
+      <if test="adaPhone != null">
+        ada_phone,
+      </if>
+      <if test="adaInitialbalance != null">
+        ada_initialbalance,
+      </if>
+      <if test="adaName != null">
+        ada_name,
+      </if>
+      <if test="adaSubject != null">
+        ada_subject,
+      </if>
+      <if test="adaCyberBankaddress != null">
+        "ada_cyber bankaddress",
+      </if>
+      <if test="adaLinkman != null">
+        ada_linkman,
+      </if>
+      <if test="adaCurrentbalance != null">
+        ada_currentbalance,
+      </if>
+      <if test="adaRemark != null">
+        ada_remark,
+      </if>
+      <if test="adaAuditing != null">
+        ada_Auditing,
+      </if>
+      <if test="adaYn != null">
+        ada_yn,
+      </if>
+      <if test="adaCustom1 != null">
+        ada_custom1,
+      </if>
+      <if test="adaCustom2 != null">
+        ada_custom2,
+      </if>
+      <if test="adaCustom3 != null">
+        ada_custom3,
+      </if>
+      <if test="adaCustom4 != null">
+        ada_custom4,
+      </if>
+      <if test="adaCustom5 != null">
+        ada_custom5,
+      </if>
+      <if test="adaCustom6 != null">
+        ada_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adaId != null">
+        #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="adaBankaddress != null">
+        #{adaBankaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="adaPhone != null">
+        #{adaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaInitialbalance != null">
+        #{adaInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="adaName != null">
+        #{adaName,jdbcType=VARCHAR},
+      </if>
+      <if test="adaSubject != null">
+        #{adaSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCyberBankaddress != null">
+        #{adaCyberBankaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="adaLinkman != null">
+        #{adaLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCurrentbalance != null">
+        #{adaCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="adaRemark != null">
+        #{adaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="adaAuditing != null">
+        #{adaAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="adaYn != null">
+        #{adaYn,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom1 != null">
+        #{adaCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom2 != null">
+        #{adaCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom3 != null">
+        #{adaCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom4 != null">
+        #{adaCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom5 != null">
+        #{adaCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom6 != null">
+        #{adaCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Bank_deposit_account">
+    update bank_deposit_account
+    <set>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="adaBankaddress != null">
+        ada_bankaddress = #{adaBankaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="adaPhone != null">
+        ada_phone = #{adaPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaInitialbalance != null">
+        ada_initialbalance = #{adaInitialbalance,jdbcType=REAL},
+      </if>
+      <if test="adaName != null">
+        ada_name = #{adaName,jdbcType=VARCHAR},
+      </if>
+      <if test="adaSubject != null">
+        ada_subject = #{adaSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCyberBankaddress != null">
+        "ada_cyber bankaddress" = #{adaCyberBankaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="adaLinkman != null">
+        ada_linkman = #{adaLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCurrentbalance != null">
+        ada_currentbalance = #{adaCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="adaRemark != null">
+        ada_remark = #{adaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="adaAuditing != null">
+        ada_Auditing = #{adaAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="adaYn != null">
+        ada_yn = #{adaYn,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom1 != null">
+        ada_custom1 = #{adaCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom2 != null">
+        ada_custom2 = #{adaCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom3 != null">
+        ada_custom3 = #{adaCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom4 != null">
+        ada_custom4 = #{adaCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom5 != null">
+        ada_custom5 = #{adaCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="adaCustom6 != null">
+        ada_custom6 = #{adaCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ada_id = #{adaId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Bank_deposit_account">
+    update bank_deposit_account
+    set currency_id = #{currencyId,jdbcType=VARCHAR},
+      bank_id = #{bankId,jdbcType=VARCHAR},
+      ada_bankaddress = #{adaBankaddress,jdbcType=VARCHAR},
+      ada_phone = #{adaPhone,jdbcType=VARCHAR},
+      ada_initialbalance = #{adaInitialbalance,jdbcType=REAL},
+      ada_name = #{adaName,jdbcType=VARCHAR},
+      ada_subject = #{adaSubject,jdbcType=VARCHAR},
+      "ada_cyber bankaddress" = #{adaCyberBankaddress,jdbcType=VARCHAR},
+      ada_linkman = #{adaLinkman,jdbcType=VARCHAR},
+      ada_currentbalance = #{adaCurrentbalance,jdbcType=REAL},
+      ada_remark = #{adaRemark,jdbcType=VARCHAR},
+      ada_Auditing = #{adaAuditing,jdbcType=VARCHAR},
+      ada_yn = #{adaYn,jdbcType=VARCHAR},
+      ada_custom1 = #{adaCustom1,jdbcType=VARCHAR},
+      ada_custom2 = #{adaCustom2,jdbcType=VARCHAR},
+      ada_custom3 = #{adaCustom3,jdbcType=VARCHAR},
+      ada_custom4 = #{adaCustom4,jdbcType=VARCHAR},
+      ada_custom5 = #{adaCustom5,jdbcType=VARCHAR},
+      ada_custom6 = #{adaCustom6,jdbcType=VARCHAR}
+    where ada_id = #{adaId,jdbcType=VARCHAR}
+  </update>
+</mapper>

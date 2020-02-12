@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Tax_itemsMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Tax_items">
+    <id column="ti_id" jdbcType="VARCHAR" property="tiId" />
+    <result column="ti_name" jdbcType="VARCHAR" property="tiName" />
+    <result column="ti_english_name" jdbcType="VARCHAR" property="tiEnglishName" />
+    <result column="ti_remark" jdbcType="VARCHAR" property="tiRemark" />
+    <result column="ti_Auditing" jdbcType="VARCHAR" property="tiAuditing" />
+    <result column="ti_yn" jdbcType="VARCHAR" property="tiYn" />
+    <result column="ti_custom1" jdbcType="VARCHAR" property="tiCustom1" />
+    <result column="ti_custom2" jdbcType="VARCHAR" property="tiCustom2" />
+    <result column="ti_custom3" jdbcType="VARCHAR" property="tiCustom3" />
+    <result column="ti_custom4" jdbcType="VARCHAR" property="tiCustom4" />
+    <result column="ti_custom5" jdbcType="VARCHAR" property="tiCustom5" />
+    <result column="ti_custom6" jdbcType="VARCHAR" property="tiCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ti_id, ti_name, ti_english_name, ti_remark, ti_Auditing, ti_yn, ti_custom1, ti_custom2, 
+    ti_custom3, ti_custom4, ti_custom5, ti_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tax_items 
+	    where ti_Yn=0
+	    ORDER BY ti_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tax_items
+    where ti_id = #{tiId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tax_items
+    where ti_id = #{tiId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Tax_items">
+    insert into tax_items (ti_id, ti_name, ti_english_name, 
+      ti_remark, ti_Auditing, ti_yn, 
+      ti_custom1, ti_custom2, ti_custom3, 
+      ti_custom4, ti_custom5, ti_custom6
+      )
+    values (#{tiId,jdbcType=VARCHAR}, #{tiName,jdbcType=VARCHAR}, #{tiEnglishName,jdbcType=VARCHAR}, 
+      #{tiRemark,jdbcType=VARCHAR}, #{tiAuditing,jdbcType=VARCHAR}, #{tiYn,jdbcType=VARCHAR}, 
+      #{tiCustom1,jdbcType=VARCHAR}, #{tiCustom2,jdbcType=VARCHAR}, #{tiCustom3,jdbcType=VARCHAR}, 
+      #{tiCustom4,jdbcType=VARCHAR}, #{tiCustom5,jdbcType=VARCHAR}, #{tiCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Tax_items">
+    insert into tax_items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tiId != null">
+        ti_id,
+      </if>
+      <if test="tiName != null">
+        ti_name,
+      </if>
+      <if test="tiEnglishName != null">
+        ti_english_name,
+      </if>
+      <if test="tiRemark != null">
+        ti_remark,
+      </if>
+      <if test="tiAuditing != null">
+        ti_Auditing,
+      </if>
+      <if test="tiYn != null">
+        ti_yn,
+      </if>
+      <if test="tiCustom1 != null">
+        ti_custom1,
+      </if>
+      <if test="tiCustom2 != null">
+        ti_custom2,
+      </if>
+      <if test="tiCustom3 != null">
+        ti_custom3,
+      </if>
+      <if test="tiCustom4 != null">
+        ti_custom4,
+      </if>
+      <if test="tiCustom5 != null">
+        ti_custom5,
+      </if>
+      <if test="tiCustom6 != null">
+        ti_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tiId != null">
+        #{tiId,jdbcType=VARCHAR},
+      </if>
+      <if test="tiName != null">
+        #{tiName,jdbcType=VARCHAR},
+      </if>
+      <if test="tiEnglishName != null">
+        #{tiEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="tiRemark != null">
+        #{tiRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tiAuditing != null">
+        #{tiAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="tiYn != null">
+        #{tiYn,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom1 != null">
+        #{tiCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom2 != null">
+        #{tiCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom3 != null">
+        #{tiCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom4 != null">
+        #{tiCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom5 != null">
+        #{tiCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom6 != null">
+        #{tiCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Tax_items">
+    update tax_items
+    <set>
+      <if test="tiName != null">
+        ti_name = #{tiName,jdbcType=VARCHAR},
+      </if>
+      <if test="tiEnglishName != null">
+        ti_english_name = #{tiEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="tiRemark != null">
+        ti_remark = #{tiRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tiAuditing != null">
+        ti_Auditing = #{tiAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="tiYn != null">
+        ti_yn = #{tiYn,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom1 != null">
+        ti_custom1 = #{tiCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom2 != null">
+        ti_custom2 = #{tiCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom3 != null">
+        ti_custom3 = #{tiCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom4 != null">
+        ti_custom4 = #{tiCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom5 != null">
+        ti_custom5 = #{tiCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="tiCustom6 != null">
+        ti_custom6 = #{tiCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ti_id = #{tiId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Tax_items">
+    update tax_items
+    set ti_name = #{tiName,jdbcType=VARCHAR},
+      ti_english_name = #{tiEnglishName,jdbcType=VARCHAR},
+      ti_remark = #{tiRemark,jdbcType=VARCHAR},
+      ti_Auditing = #{tiAuditing,jdbcType=VARCHAR},
+      ti_yn = #{tiYn,jdbcType=VARCHAR},
+      ti_custom1 = #{tiCustom1,jdbcType=VARCHAR},
+      ti_custom2 = #{tiCustom2,jdbcType=VARCHAR},
+      ti_custom3 = #{tiCustom3,jdbcType=VARCHAR},
+      ti_custom4 = #{tiCustom4,jdbcType=VARCHAR},
+      ti_custom5 = #{tiCustom5,jdbcType=VARCHAR},
+      ti_custom6 = #{tiCustom6,jdbcType=VARCHAR}
+    where ti_id = #{tiId,jdbcType=VARCHAR}
+  </update>
+</mapper>

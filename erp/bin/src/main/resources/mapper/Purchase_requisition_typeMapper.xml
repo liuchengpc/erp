@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_requisition_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_requisition_type">
+    <id column="prt_id" jdbcType="VARCHAR" property="prtId" />
+    <result column="prt_name" jdbcType="VARCHAR" property="prtName" />
+    <result column="prt_engname" jdbcType="VARCHAR" property="prtEngname" />
+    <result column="prt_remark" jdbcType="VARCHAR" property="prtRemark" />
+    <result column="prt_audition" jdbcType="VARCHAR" property="prtAudition" />
+    <result column="prt_yn" jdbcType="VARCHAR" property="prtYn" />
+    <result column="prt_custom1" jdbcType="VARCHAR" property="prtCustom1" />
+    <result column="prt_custom2" jdbcType="VARCHAR" property="prtCustom2" />
+    <result column="prt_custom3" jdbcType="VARCHAR" property="prtCustom3" />
+    <result column="prt_custom4" jdbcType="VARCHAR" property="prtCustom4" />
+    <result column="prt_custom5" jdbcType="VARCHAR" property="prtCustom5" />
+    <result column="prt_custom6" jdbcType="VARCHAR" property="prtCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prt_id, prt_name, prt_engname, prt_remark, prt_audition, prt_yn, prt_custom1, prt_custom2, 
+    prt_custom3, prt_custom4, prt_custom5, prt_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_requisition_type 
+	    where prt_Yn=0
+	    ORDER BY prt_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_requisition_type
+    where prt_id = #{prtId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_requisition_type
+    where prt_id = #{prtId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_requisition_type">
+    insert into purchase_requisition_type (prt_id, prt_name, prt_engname, 
+      prt_remark, prt_audition, prt_yn, 
+      prt_custom1, prt_custom2, prt_custom3, 
+      prt_custom4, prt_custom5, prt_custom6
+      )
+    values (#{prtId,jdbcType=VARCHAR}, #{prtName,jdbcType=VARCHAR}, #{prtEngname,jdbcType=VARCHAR}, 
+      #{prtRemark,jdbcType=VARCHAR}, #{prtAudition,jdbcType=VARCHAR}, #{prtYn,jdbcType=VARCHAR}, 
+      #{prtCustom1,jdbcType=VARCHAR}, #{prtCustom2,jdbcType=VARCHAR}, #{prtCustom3,jdbcType=VARCHAR}, 
+      #{prtCustom4,jdbcType=VARCHAR}, #{prtCustom5,jdbcType=VARCHAR}, #{prtCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_requisition_type">
+    insert into purchase_requisition_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prtId != null">
+        prt_id,
+      </if>
+      <if test="prtName != null">
+        prt_name,
+      </if>
+      <if test="prtEngname != null">
+        prt_engname,
+      </if>
+      <if test="prtRemark != null">
+        prt_remark,
+      </if>
+      <if test="prtAudition != null">
+        prt_audition,
+      </if>
+      <if test="prtYn != null">
+        prt_yn,
+      </if>
+      <if test="prtCustom1 != null">
+        prt_custom1,
+      </if>
+      <if test="prtCustom2 != null">
+        prt_custom2,
+      </if>
+      <if test="prtCustom3 != null">
+        prt_custom3,
+      </if>
+      <if test="prtCustom4 != null">
+        prt_custom4,
+      </if>
+      <if test="prtCustom5 != null">
+        prt_custom5,
+      </if>
+      <if test="prtCustom6 != null">
+        prt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prtId != null">
+        #{prtId,jdbcType=VARCHAR},
+      </if>
+      <if test="prtName != null">
+        #{prtName,jdbcType=VARCHAR},
+      </if>
+      <if test="prtEngname != null">
+        #{prtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="prtRemark != null">
+        #{prtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="prtAudition != null">
+        #{prtAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prtYn != null">
+        #{prtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom1 != null">
+        #{prtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom2 != null">
+        #{prtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom3 != null">
+        #{prtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom4 != null">
+        #{prtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom5 != null">
+        #{prtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom6 != null">
+        #{prtCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_requisition_type">
+    update purchase_requisition_type
+    <set>
+      <if test="prtName != null">
+        prt_name = #{prtName,jdbcType=VARCHAR},
+      </if>
+      <if test="prtEngname != null">
+        prt_engname = #{prtEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="prtRemark != null">
+        prt_remark = #{prtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="prtAudition != null">
+        prt_audition = #{prtAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prtYn != null">
+        prt_yn = #{prtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom1 != null">
+        prt_custom1 = #{prtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom2 != null">
+        prt_custom2 = #{prtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom3 != null">
+        prt_custom3 = #{prtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom4 != null">
+        prt_custom4 = #{prtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom5 != null">
+        prt_custom5 = #{prtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prtCustom6 != null">
+        prt_custom6 = #{prtCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prt_id = #{prtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_requisition_type">
+    update purchase_requisition_type
+    set prt_name = #{prtName,jdbcType=VARCHAR},
+      prt_engname = #{prtEngname,jdbcType=VARCHAR},
+      prt_remark = #{prtRemark,jdbcType=VARCHAR},
+      prt_audition = #{prtAudition,jdbcType=VARCHAR},
+      prt_yn = #{prtYn,jdbcType=VARCHAR},
+      prt_custom1 = #{prtCustom1,jdbcType=VARCHAR},
+      prt_custom2 = #{prtCustom2,jdbcType=VARCHAR},
+      prt_custom3 = #{prtCustom3,jdbcType=VARCHAR},
+      prt_custom4 = #{prtCustom4,jdbcType=VARCHAR},
+      prt_custom5 = #{prtCustom5,jdbcType=VARCHAR},
+      prt_custom6 = #{prtCustom6,jdbcType=VARCHAR}
+    where prt_id = #{prtId,jdbcType=VARCHAR}
+  </update>
+</mapper>

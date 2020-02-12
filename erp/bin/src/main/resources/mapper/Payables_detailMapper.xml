@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Payables_detailMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Payables_detail">
+    <id column="paydetail_id" jdbcType="VARCHAR" property="paydetailId" />
+    <result column="Payables_id" jdbcType="VARCHAR" property="payablesId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="project_id" jdbcType="VARCHAR" property="projectId" />
+    <result column="pade_sourcelist" jdbcType="VARCHAR" property="padeSourcelist" />
+    <result column="pade_sourcetime" jdbcType="DATE" property="padeSourcetime" />
+    <result column="pade_sourcenumber" jdbcType="VARCHAR" property="padeSourcenumber" />
+    <result column="pade_invoiceno" jdbcType="VARCHAR" property="padeInvoiceno" />
+    <result column="pade_transaction" jdbcType="VARCHAR" property="padeTransaction" />
+    <result column="pade_transactionname" jdbcType="VARCHAR" property="padeTransactionname" />
+    <result column="pade_team_name" jdbcType="VARCHAR" property="padeTeamName" />
+    <result column="pade_staff_name" jdbcType="VARCHAR" property="padeStaffName" />
+    <result column="pade_project_name" jdbcType="VARCHAR" property="padeProjectName" />
+    <result column="pade_currency_name" jdbcType="VARCHAR" property="padeCurrencyName" />
+    <result column="pade_currency_inexchange" jdbcType="INTEGER" property="padeCurrencyInexchange" />
+    <result column="pade_price" jdbcType="REAL" property="padePrice" />
+    <result column="pade_Currentbalance" jdbcType="REAL" property="padeCurrentbalance" />
+    <result column="pade_Discountamount" jdbcType="REAL" property="padeDiscountamount" />
+    <result column="pade_Amountcharged" jdbcType="REAL" property="padeAmountcharged" />
+    <result column="pade_Offsetamount" jdbcType="REAL" property="padeOffsetamount" />
+    <result column="pade_Auditing" jdbcType="VARCHAR" property="padeAuditing" />
+    <result column="pade_yn" jdbcType="VARCHAR" property="padeYn" />
+    <result column="pade_custom1" jdbcType="VARCHAR" property="padeCustom1" />
+    <result column="pade_custom2" jdbcType="VARCHAR" property="padeCustom2" />
+    <result column="pade_custom3" jdbcType="VARCHAR" property="padeCustom3" />
+    <result column="pade_custom4" jdbcType="VARCHAR" property="padeCustom4" />
+    <result column="pade_custom5" jdbcType="VARCHAR" property="padeCustom5" />
+    <result column="pade_custom6" jdbcType="VARCHAR" property="padeCustom6" />
+    <result column="pade_custom7" jdbcType="VARCHAR" property="padeCustom7" />
+    <result column="pade_custom8" jdbcType="VARCHAR" property="padeCustom8" />
+    <result column="pade_custom9" jdbcType="VARCHAR" property="padeCustom9" />
+    <result column="pade_custom10" jdbcType="VARCHAR" property="padeCustom10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    paydetail_id, Payables_id, supplier_id, staff_id, currency_id, project_id, pade_sourcelist, 
+    pade_sourcetime, pade_sourcenumber, pade_invoiceno, pade_transaction, pade_transactionname, 
+    pade_team_name, pade_staff_name, pade_project_name, pade_currency_name, pade_currency_inexchange, 
+    pade_price, pade_Currentbalance, pade_Discountamount, pade_Amountcharged, pade_Offsetamount, 
+    pade_Auditing, pade_yn, pade_custom1, pade_custom2, pade_custom3, pade_custom4, pade_custom5, 
+    pade_custom6, pade_custom7, pade_custom8, pade_custom9, pade_custom10
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from payables_detail 
+	    where pade_Yn=0
+	    ORDER BY pade_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payables_detail
+    where paydetail_id = #{paydetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from payables_detail
+    where paydetail_id = #{paydetailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Payables_detail">
+    insert into payables_detail (paydetail_id, Payables_id, supplier_id, 
+      staff_id, currency_id, project_id, 
+      pade_sourcelist, pade_sourcetime, pade_sourcenumber, 
+      pade_invoiceno, pade_transaction, pade_transactionname, 
+      pade_team_name, pade_staff_name, pade_project_name, 
+      pade_currency_name, pade_currency_inexchange, 
+      pade_price, pade_Currentbalance, pade_Discountamount, 
+      pade_Amountcharged, pade_Offsetamount, pade_Auditing, 
+      pade_yn, pade_custom1, pade_custom2, 
+      pade_custom3, pade_custom4, pade_custom5, 
+      pade_custom6, pade_custom7, pade_custom8, 
+      pade_custom9, pade_custom10)
+    values (#{paydetailId,jdbcType=VARCHAR}, #{payablesId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{padeSourcelist,jdbcType=VARCHAR}, #{padeSourcetime,jdbcType=DATE}, #{padeSourcenumber,jdbcType=VARCHAR}, 
+      #{padeInvoiceno,jdbcType=VARCHAR}, #{padeTransaction,jdbcType=VARCHAR}, #{padeTransactionname,jdbcType=VARCHAR}, 
+      #{padeTeamName,jdbcType=VARCHAR}, #{padeStaffName,jdbcType=VARCHAR}, #{padeProjectName,jdbcType=VARCHAR}, 
+      #{padeCurrencyName,jdbcType=VARCHAR}, #{padeCurrencyInexchange,jdbcType=INTEGER}, 
+      #{padePrice,jdbcType=REAL}, #{padeCurrentbalance,jdbcType=REAL}, #{padeDiscountamount,jdbcType=REAL}, 
+      #{padeAmountcharged,jdbcType=REAL}, #{padeOffsetamount,jdbcType=REAL}, #{padeAuditing,jdbcType=VARCHAR}, 
+      #{padeYn,jdbcType=VARCHAR}, #{padeCustom1,jdbcType=VARCHAR}, #{padeCustom2,jdbcType=VARCHAR}, 
+      #{padeCustom3,jdbcType=VARCHAR}, #{padeCustom4,jdbcType=VARCHAR}, #{padeCustom5,jdbcType=VARCHAR}, 
+      #{padeCustom6,jdbcType=VARCHAR}, #{padeCustom7,jdbcType=VARCHAR}, #{padeCustom8,jdbcType=VARCHAR}, 
+      #{padeCustom9,jdbcType=VARCHAR}, #{padeCustom10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Payables_detail">
+    insert into payables_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paydetailId != null">
+        paydetail_id,
+      </if>
+      <if test="payablesId != null">
+        Payables_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="staffId != null">
+        staff_id,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="padeSourcelist != null">
+        pade_sourcelist,
+      </if>
+      <if test="padeSourcetime != null">
+        pade_sourcetime,
+      </if>
+      <if test="padeSourcenumber != null">
+        pade_sourcenumber,
+      </if>
+      <if test="padeInvoiceno != null">
+        pade_invoiceno,
+      </if>
+      <if test="padeTransaction != null">
+        pade_transaction,
+      </if>
+      <if test="padeTransactionname != null">
+        pade_transactionname,
+      </if>
+      <if test="padeTeamName != null">
+        pade_team_name,
+      </if>
+      <if test="padeStaffName != null">
+        pade_staff_name,
+      </if>
+      <if test="padeProjectName != null">
+        pade_project_name,
+      </if>
+      <if test="padeCurrencyName != null">
+        pade_currency_name,
+      </if>
+      <if test="padeCurrencyInexchange != null">
+        pade_currency_inexchange,
+      </if>
+      <if test="padePrice != null">
+        pade_price,
+      </if>
+      <if test="padeCurrentbalance != null">
+        pade_Currentbalance,
+      </if>
+      <if test="padeDiscountamount != null">
+        pade_Discountamount,
+      </if>
+      <if test="padeAmountcharged != null">
+        pade_Amountcharged,
+      </if>
+      <if test="padeOffsetamount != null">
+        pade_Offsetamount,
+      </if>
+      <if test="padeAuditing != null">
+        pade_Auditing,
+      </if>
+      <if test="padeYn != null">
+        pade_yn,
+      </if>
+      <if test="padeCustom1 != null">
+        pade_custom1,
+      </if>
+      <if test="padeCustom2 != null">
+        pade_custom2,
+      </if>
+      <if test="padeCustom3 != null">
+        pade_custom3,
+      </if>
+      <if test="padeCustom4 != null">
+        pade_custom4,
+      </if>
+      <if test="padeCustom5 != null">
+        pade_custom5,
+      </if>
+      <if test="padeCustom6 != null">
+        pade_custom6,
+      </if>
+      <if test="padeCustom7 != null">
+        pade_custom7,
+      </if>
+      <if test="padeCustom8 != null">
+        pade_custom8,
+      </if>
+      <if test="padeCustom9 != null">
+        pade_custom9,
+      </if>
+      <if test="padeCustom10 != null">
+        pade_custom10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paydetailId != null">
+        #{paydetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="payablesId != null">
+        #{payablesId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="padeSourcelist != null">
+        #{padeSourcelist,jdbcType=VARCHAR},
+      </if>
+      <if test="padeSourcetime != null">
+        #{padeSourcetime,jdbcType=DATE},
+      </if>
+      <if test="padeSourcenumber != null">
+        #{padeSourcenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="padeInvoiceno != null">
+        #{padeInvoiceno,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTransaction != null">
+        #{padeTransaction,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTransactionname != null">
+        #{padeTransactionname,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTeamName != null">
+        #{padeTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeStaffName != null">
+        #{padeStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeProjectName != null">
+        #{padeProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCurrencyName != null">
+        #{padeCurrencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCurrencyInexchange != null">
+        #{padeCurrencyInexchange,jdbcType=INTEGER},
+      </if>
+      <if test="padePrice != null">
+        #{padePrice,jdbcType=REAL},
+      </if>
+      <if test="padeCurrentbalance != null">
+        #{padeCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="padeDiscountamount != null">
+        #{padeDiscountamount,jdbcType=REAL},
+      </if>
+      <if test="padeAmountcharged != null">
+        #{padeAmountcharged,jdbcType=REAL},
+      </if>
+      <if test="padeOffsetamount != null">
+        #{padeOffsetamount,jdbcType=REAL},
+      </if>
+      <if test="padeAuditing != null">
+        #{padeAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="padeYn != null">
+        #{padeYn,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom1 != null">
+        #{padeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom2 != null">
+        #{padeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom3 != null">
+        #{padeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom4 != null">
+        #{padeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom5 != null">
+        #{padeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom6 != null">
+        #{padeCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom7 != null">
+        #{padeCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom8 != null">
+        #{padeCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom9 != null">
+        #{padeCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom10 != null">
+        #{padeCustom10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Payables_detail">
+    update payables_detail
+    <set>
+      <if test="payablesId != null">
+        Payables_id = #{payablesId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null">
+        staff_id = #{staffId,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="padeSourcelist != null">
+        pade_sourcelist = #{padeSourcelist,jdbcType=VARCHAR},
+      </if>
+      <if test="padeSourcetime != null">
+        pade_sourcetime = #{padeSourcetime,jdbcType=DATE},
+      </if>
+      <if test="padeSourcenumber != null">
+        pade_sourcenumber = #{padeSourcenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="padeInvoiceno != null">
+        pade_invoiceno = #{padeInvoiceno,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTransaction != null">
+        pade_transaction = #{padeTransaction,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTransactionname != null">
+        pade_transactionname = #{padeTransactionname,jdbcType=VARCHAR},
+      </if>
+      <if test="padeTeamName != null">
+        pade_team_name = #{padeTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeStaffName != null">
+        pade_staff_name = #{padeStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeProjectName != null">
+        pade_project_name = #{padeProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCurrencyName != null">
+        pade_currency_name = #{padeCurrencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCurrencyInexchange != null">
+        pade_currency_inexchange = #{padeCurrencyInexchange,jdbcType=INTEGER},
+      </if>
+      <if test="padePrice != null">
+        pade_price = #{padePrice,jdbcType=REAL},
+      </if>
+      <if test="padeCurrentbalance != null">
+        pade_Currentbalance = #{padeCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="padeDiscountamount != null">
+        pade_Discountamount = #{padeDiscountamount,jdbcType=REAL},
+      </if>
+      <if test="padeAmountcharged != null">
+        pade_Amountcharged = #{padeAmountcharged,jdbcType=REAL},
+      </if>
+      <if test="padeOffsetamount != null">
+        pade_Offsetamount = #{padeOffsetamount,jdbcType=REAL},
+      </if>
+      <if test="padeAuditing != null">
+        pade_Auditing = #{padeAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="padeYn != null">
+        pade_yn = #{padeYn,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom1 != null">
+        pade_custom1 = #{padeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom2 != null">
+        pade_custom2 = #{padeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom3 != null">
+        pade_custom3 = #{padeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom4 != null">
+        pade_custom4 = #{padeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom5 != null">
+        pade_custom5 = #{padeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom6 != null">
+        pade_custom6 = #{padeCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom7 != null">
+        pade_custom7 = #{padeCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom8 != null">
+        pade_custom8 = #{padeCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom9 != null">
+        pade_custom9 = #{padeCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="padeCustom10 != null">
+        pade_custom10 = #{padeCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where paydetail_id = #{paydetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Payables_detail">
+    update payables_detail
+    set Payables_id = #{payablesId,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=VARCHAR},
+      staff_id = #{staffId,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      pade_sourcelist = #{padeSourcelist,jdbcType=VARCHAR},
+      pade_sourcetime = #{padeSourcetime,jdbcType=DATE},
+      pade_sourcenumber = #{padeSourcenumber,jdbcType=VARCHAR},
+      pade_invoiceno = #{padeInvoiceno,jdbcType=VARCHAR},
+      pade_transaction = #{padeTransaction,jdbcType=VARCHAR},
+      pade_transactionname = #{padeTransactionname,jdbcType=VARCHAR},
+      pade_team_name = #{padeTeamName,jdbcType=VARCHAR},
+      pade_staff_name = #{padeStaffName,jdbcType=VARCHAR},
+      pade_project_name = #{padeProjectName,jdbcType=VARCHAR},
+      pade_currency_name = #{padeCurrencyName,jdbcType=VARCHAR},
+      pade_currency_inexchange = #{padeCurrencyInexchange,jdbcType=INTEGER},
+      pade_price = #{padePrice,jdbcType=REAL},
+      pade_Currentbalance = #{padeCurrentbalance,jdbcType=REAL},
+      pade_Discountamount = #{padeDiscountamount,jdbcType=REAL},
+      pade_Amountcharged = #{padeAmountcharged,jdbcType=REAL},
+      pade_Offsetamount = #{padeOffsetamount,jdbcType=REAL},
+      pade_Auditing = #{padeAuditing,jdbcType=VARCHAR},
+      pade_yn = #{padeYn,jdbcType=VARCHAR},
+      pade_custom1 = #{padeCustom1,jdbcType=VARCHAR},
+      pade_custom2 = #{padeCustom2,jdbcType=VARCHAR},
+      pade_custom3 = #{padeCustom3,jdbcType=VARCHAR},
+      pade_custom4 = #{padeCustom4,jdbcType=VARCHAR},
+      pade_custom5 = #{padeCustom5,jdbcType=VARCHAR},
+      pade_custom6 = #{padeCustom6,jdbcType=VARCHAR},
+      pade_custom7 = #{padeCustom7,jdbcType=VARCHAR},
+      pade_custom8 = #{padeCustom8,jdbcType=VARCHAR},
+      pade_custom9 = #{padeCustom9,jdbcType=VARCHAR},
+      pade_custom10 = #{padeCustom10,jdbcType=VARCHAR}
+    where paydetail_id = #{paydetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

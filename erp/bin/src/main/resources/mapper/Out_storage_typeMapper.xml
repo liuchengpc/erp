@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Out_storage_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Out_storage_type">
+    <id column="ost_id" jdbcType="VARCHAR" property="ostId" />
+    <result column="ost_name" jdbcType="VARCHAR" property="ostName" />
+    <result column="ost_engname" jdbcType="VARCHAR" property="ostEngname" />
+    <result column="ost_remark" jdbcType="VARCHAR" property="ostRemark" />
+    <result column="ost_auditing" jdbcType="VARCHAR" property="ostAuditing" />
+    <result column="ost_yn" jdbcType="VARCHAR" property="ostYn" />
+    <result column="ost_custom1" jdbcType="VARCHAR" property="ostCustom1" />
+    <result column="ost_custom2" jdbcType="VARCHAR" property="ostCustom2" />
+    <result column="ost_custom3" jdbcType="VARCHAR" property="ostCustom3" />
+    <result column="ost_custom4" jdbcType="VARCHAR" property="ostCustom4" />
+    <result column="ost_custom5" jdbcType="VARCHAR" property="ostCustom5" />
+    <result column="ost_custom6" jdbcType="VARCHAR" property="ostCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ost_id, ost_name, ost_engname, ost_remark, ost_auditing, ost_yn, ost_custom1, ost_custom2, 
+    ost_custom3, ost_custom4, ost_custom5, ost_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from out_storage_type 
+	    where ost_Yn=0
+	    ORDER BY ost_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from out_storage_type
+    where ost_id = #{ostId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from out_storage_type
+    where ost_id = #{ostId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Out_storage_type">
+    insert into out_storage_type (ost_id, ost_name, ost_engname, 
+      ost_remark, ost_auditing, ost_yn, 
+      ost_custom1, ost_custom2, ost_custom3, 
+      ost_custom4, ost_custom5, ost_custom6
+      )
+    values (#{ostId,jdbcType=VARCHAR}, #{ostName,jdbcType=VARCHAR}, #{ostEngname,jdbcType=VARCHAR}, 
+      #{ostRemark,jdbcType=VARCHAR}, #{ostAuditing,jdbcType=VARCHAR}, #{ostYn,jdbcType=VARCHAR}, 
+      #{ostCustom1,jdbcType=VARCHAR}, #{ostCustom2,jdbcType=VARCHAR}, #{ostCustom3,jdbcType=VARCHAR}, 
+      #{ostCustom4,jdbcType=VARCHAR}, #{ostCustom5,jdbcType=VARCHAR}, #{ostCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Out_storage_type">
+    insert into out_storage_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ostId != null">
+        ost_id,
+      </if>
+      <if test="ostName != null">
+        ost_name,
+      </if>
+      <if test="ostEngname != null">
+        ost_engname,
+      </if>
+      <if test="ostRemark != null">
+        ost_remark,
+      </if>
+      <if test="ostAuditing != null">
+        ost_auditing,
+      </if>
+      <if test="ostYn != null">
+        ost_yn,
+      </if>
+      <if test="ostCustom1 != null">
+        ost_custom1,
+      </if>
+      <if test="ostCustom2 != null">
+        ost_custom2,
+      </if>
+      <if test="ostCustom3 != null">
+        ost_custom3,
+      </if>
+      <if test="ostCustom4 != null">
+        ost_custom4,
+      </if>
+      <if test="ostCustom5 != null">
+        ost_custom5,
+      </if>
+      <if test="ostCustom6 != null">
+        ost_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ostId != null">
+        #{ostId,jdbcType=VARCHAR},
+      </if>
+      <if test="ostName != null">
+        #{ostName,jdbcType=VARCHAR},
+      </if>
+      <if test="ostEngname != null">
+        #{ostEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="ostRemark != null">
+        #{ostRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ostAuditing != null">
+        #{ostAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ostYn != null">
+        #{ostYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom1 != null">
+        #{ostCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom2 != null">
+        #{ostCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom3 != null">
+        #{ostCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom4 != null">
+        #{ostCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom5 != null">
+        #{ostCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom6 != null">
+        #{ostCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Out_storage_type">
+    update out_storage_type
+    <set>
+      <if test="ostName != null">
+        ost_name = #{ostName,jdbcType=VARCHAR},
+      </if>
+      <if test="ostEngname != null">
+        ost_engname = #{ostEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="ostRemark != null">
+        ost_remark = #{ostRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ostAuditing != null">
+        ost_auditing = #{ostAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ostYn != null">
+        ost_yn = #{ostYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom1 != null">
+        ost_custom1 = #{ostCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom2 != null">
+        ost_custom2 = #{ostCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom3 != null">
+        ost_custom3 = #{ostCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom4 != null">
+        ost_custom4 = #{ostCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom5 != null">
+        ost_custom5 = #{ostCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ostCustom6 != null">
+        ost_custom6 = #{ostCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ost_id = #{ostId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Out_storage_type">
+    update out_storage_type
+    set ost_name = #{ostName,jdbcType=VARCHAR},
+      ost_engname = #{ostEngname,jdbcType=VARCHAR},
+      ost_remark = #{ostRemark,jdbcType=VARCHAR},
+      ost_auditing = #{ostAuditing,jdbcType=VARCHAR},
+      ost_yn = #{ostYn,jdbcType=VARCHAR},
+      ost_custom1 = #{ostCustom1,jdbcType=VARCHAR},
+      ost_custom2 = #{ostCustom2,jdbcType=VARCHAR},
+      ost_custom3 = #{ostCustom3,jdbcType=VARCHAR},
+      ost_custom4 = #{ostCustom4,jdbcType=VARCHAR},
+      ost_custom5 = #{ostCustom5,jdbcType=VARCHAR},
+      ost_custom6 = #{ostCustom6,jdbcType=VARCHAR}
+    where ost_id = #{ostId,jdbcType=VARCHAR}
+  </update>
+</mapper>

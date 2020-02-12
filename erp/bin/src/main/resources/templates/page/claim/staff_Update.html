@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" th:href="@{/css2/bootstrap.css}" />
+		<script type="text/javascript" th:src="@{/js2/jquery-1.12.4.js}"></script>
+		<script type="text/javascript" th:src="@{/js2/bootstrap.js}"></script>
+		<script type="text/javascript" th:src="@{/js2/dialog.js}"></script>
+		<script type="text/javascript" th:src="@{/js2/vue.js}"></script>
+	</head>
+	<body>
+		<div style="height: 500px;height: 400px;">
+			<form class="form-inline" style="margin-left: 18%;width: 650px;">
+			  <div class="row" style="margin-top: 4%;">
+				  <div class="form-group">
+				    <label for="exampleInputName2" style="font-size: 16px;">店&nbsp&nbsp铺&nbsp&nbsp</label>
+				    <select id="dp" name="shopid" style="height: 32px;width: 196px;border: 1px solid gainsboro;border-radius: 5px;">
+						<option selected=\"selected\">请选择店铺</option>
+					</select>
+				  </div>
+				  <div class="form-group" style="margin-left: 15%;">
+				    <label for="exampleInputEmail2" style="font-size: 16px;">职&nbsp&nbsp位&nbsp&nbsp</label>
+				    <select id="zw" name="roleid" style="height: 32px;width: 196px;border: 1px solid gainsboro;border-radius: 5px;">
+						<option selected="selected">请选择职位</option>			
+					</select>
+				  </div>
+			  </div>
+			  <div class="row" style="margin-top: 8%;">
+				  <div class="form-group">
+				    <label for="exampleInputName2" style="font-size: 16px;">工&nbsp&nbsp号&nbsp&nbsp</label>
+				    <input disabled="disabled" type="text" class="form-control" name="userid" id="" placeholder="请填写员工工号">
+				  </div>
+				  <span id="zhyz" for="exampleInputName2" style="font-size: 13px;color:red;"></span>
+				  <div class="form-group" style="margin-left: 15%;">
+				    <label for="exampleInputEmail2" style="font-size: 16px;">姓&nbsp&nbsp名&nbsp&nbsp</label>
+				    <input type="text" class="form-control" name="username" id="" placeholder="请填写员工姓名">
+				  </div>
+			  </div>
+			  <div class="row" style="margin-top: 8%;">
+				  <div class="form-group">
+				    <label for="exampleInputName2" style="font-size: 16px;">密&nbsp&nbsp码&nbsp&nbsp</label>
+				    <input type="password" class="form-control" name="password" id="" placeholder="请填写密码">
+				  </div>
+			  </div>
+			 <button id="qx" type="button" class="btn btn-default col-md-3" style="margin-left: 3%;margin-top: 15%;">取消</button>
+			  <button id="sc" type="button" class="btn btn-danger col-md-3" style="margin-left: 2.5%;margin-top: 15%;">删除</button>
+		      <button id="bc" type="button" class="btn btn-success col-md-3" style="margin-left: 2.5%;margin-top: 15%;">保存</button>
+			</form>
+		</div>
+		
+		<script>
+			$(function(){
+				qx();	//权限判断 下拉框显示的内容
+				bc();	//新增
+				load();
+				sc();
+				$("#qx").click(function(){
+					history.go(-1);
+				});
+			});
+			
+			var user = JSON.parse(window.sessionStorage.getItem("user"));
+			var useridXG = JSON.parse(window.sessionStorage.getItem("useridXG_xz"));
+			
+			function sc(){
+				$("#sc").click(function(){
+					$.ajax({
+						url:"[[@{/UsersController/deleteUser}]]",
+						type:"get",
+						dataType:"json",
+						data:"userid="+useridXG,
+						success:function(result){
+							if(result.code=="1"){
+								alert(result.message);
+								location.href="[[@{/topage/page/claim/employee_management}]]";
+							}else{
+								alert(result.message);
+							}
+						}
+					});
+				});
+			}
+			
+			function load(){
+				$.ajax({
+					url:"[[@{/UsersController/queryByUserIDBykey}]]",
+					type:"get",
+					dataType:"json",
+					data:"userid="+useridXG,
+					success:function(result){
+						$("#dp").html("");
+						var op = $("<option seleted=\"selected\" class=\"opt\" value=\""+result.shopid+"\">"+result.shop.shopname+"</option>");
+						$("#dp").append(op);
+						$("#dp").attr({
+							disabled:"disabled"
+						});
+						
+						$("[name=roleid]").val(result.roleid);
+						$("[name=userid]").val(result.userid);
+						$("[name=username]").val(result.username);
+						$("[name=password]").val(result.password);
+					}
+				});
+			}
+			
+			function bc(){	//新增
+				$("#bc").click(function(){
+					var shopid = $("[name=shopid]").val();
+					var roleid = $("[name=roleid]").val();
+					var userid = $("[name=userid]").val();
+					var username = $("[name=username]").val();
+					var password = $("[name=password]").val();					
+					
+					$.ajax({
+						url:"[[@{/UsersController/insertdeleteUser}]]",
+						type:"post",
+						dataType:"json",
+						data:"shopid="+shopid+"&roleid="+roleid+"&userid="+userid+"&username="+username+"&password="+password,
+						success:function(result){
+							if(result.code=="1"){
+								alert(result.message);
+								location.href="[[@{/topage/page/claim/employee_management}]]";
+							}else{
+								alert(result.message);
+							}
+						}
+					});
+				});
+			}
+			
+			
+			function qx(){	//权限判断 下拉框显示的内容
+				if(user.roleid!=3){		//不是管理员的时候
+					
+					var shopid = user.shopid;//获取店铺
+					$.ajax({	//根据店铺ID 赋值店铺名 给 下拉框
+						url:"[[@{/ShopController/queryshopnameByshopid}]]",
+						type:"get",
+						dataType:"json",
+						data:"shopid="+shopid,
+						success:function(result){
+							$("#dp").html("");
+							var op = $("<option seleted=\"selected\" class=\"opt\" value=\""+result.shopid+"\">"+result.shopname+"</option>");
+							$("#dp").append(op);
+							$("#dp").attr({
+								disabled:"disabled"
+							});
+						}
+					});
+					
+					$.ajax({	//职位下拉框
+						url:"[[@{/ShopController/queryByRoleName}]]",
+						type:"get",
+						dataType:"json",
+						success:function(result3){
+							$.each(result3,function(i,obj){
+								if(user.roleid!=obj.roleid && obj.roleid!=3 && obj.rolename!="管理员"){
+									var op = $("<option value=\""+obj.roleid+"\">"+obj.rolename+"</option>");
+									$("#zw").append(op);
+								}
+							});
+						}
+					});
+					
+				}else{		//管理员
+					
+					var shopid = user.shopid;//获取店铺
+					$.ajax({	//根据店铺ID 赋值店铺名 给 下拉框
+						url:"[[@{/ShopController/queryshopnameByshopid}]]",
+						type:"get",
+						dataType:"json",
+						data:"shopid="+shopid,
+						success:function(result){
+							$("#dp").html("");
+							var op = $("<option seleted=\"selected\" class=\"opt\" value=\""+result.shopid+"\">"+result.shopname+"</option>");
+							$("#dp").append(op);
+							$("#dp").attr({
+								disabled:"disabled"
+							});
+						}
+					});
+					
+					/* $.ajax({	//店铺下拉框
+						url:"[[@{/ShopController/queryByAll2}]]",
+						type:"get",
+						dataType:"json",
+						success:function(result2){
+							$.each(result2,function(i,obj){
+								var op = $("<option class=\"opt\" value=\""+obj.shopid+"\">"+obj.shopname+"</option>");
+								$("#dp").append(op);
+							});
+						}
+					}); */
+					
+					$.ajax({	//职位下拉框
+						url:"[[@{/ShopController/queryByRoleName}]]",
+						type:"get",
+						dataType:"json",
+						success:function(result3){
+							$.each(result3,function(i,obj){
+								if(obj.roleid!=1 && obj.rolename!="管理员"){
+									var op = $("<option value=\""+obj.roleid+"\">"+obj.rolename+"</option>");
+									$("#zw").append(op);
+								}
+							});
+						}
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

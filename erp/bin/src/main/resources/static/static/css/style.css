@@ -1,0 +1,79 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+/*主容器*/
+.con-FangDa{
+	width: 350px;
+}
+/*正常容器*/
+.con-fangDaIMg{
+	width: 350px;
+	height: 350px;
+	position: relative;
+	box-sizing: border-box;
+	z-index: 99999;
+}
+.con-fangDaIMg > img{
+	width: 350px;
+	height: 350px;
+}
+/*滑块*/
+.magnifyingBegin{
+	width: 200px;
+	height: 215px;
+	left: 0;
+	top: 0;
+	background-color: #454545;
+	opacity: 0.5;
+	filter:alpha(opacity=50);
+	position: absolute;
+	cursor: move;
+	display: none;
+}
+/*放大镜显示区域*/
+.magnifyingShow{
+	width: 456px;
+	height: 524px;
+	display: none;
+	position: absolute;
+	right: -470px;
+	top: 0;
+	overflow: hidden;
+	background-color: #454545;
+}
+.magnifyingShow > img{
+	width: 830px;
+	height: 835px;
+	margin-left:0;
+	margin-top: 0;
+}
+/*设置选择图片容器*/
+.con-FangDa-ImgList{
+	margin-top:10px;
+	height:50px;
+	width:400px;
+	list-style: none;
+}
+.con-FangDa-ImgList > li{
+	margin-left:15px;
+	width: 45px;
+	height: 45px;
+	float: left;
+	cursor: pointer;
+	border: 1px solid #9b9b9b;
+	text-align:center;
+	
+}
+
+.con-FangDa-ImgList > li > img{
+	vertical-align:top;
+	display:inline;
+	width:auto;
+	height:43px;
+	width: 43px;
+}
+.con-FangDa-ImgList > .active{
+	border-color: red;
+}

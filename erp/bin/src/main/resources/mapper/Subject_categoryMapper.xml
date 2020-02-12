@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Subject_categoryMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Subject_category">
+    <id column="sc_id" jdbcType="VARCHAR" property="scId" />
+    <result column="sc_name" jdbcType="VARCHAR" property="scName" />
+    <result column="sc_engname" jdbcType="VARCHAR" property="scEngname" />
+    <result column="sc_remark" jdbcType="VARCHAR" property="scRemark" />
+    <result column="sc_Auditing" jdbcType="VARCHAR" property="scAuditing" />
+    <result column="sc_yn" jdbcType="VARCHAR" property="scYn" />
+    <result column="sc_custom1" jdbcType="VARCHAR" property="scCustom1" />
+    <result column="sc_custom2" jdbcType="VARCHAR" property="scCustom2" />
+    <result column="sc_custom3" jdbcType="VARCHAR" property="scCustom3" />
+    <result column="sc_custom4" jdbcType="VARCHAR" property="scCustom4" />
+    <result column="sc_custom5" jdbcType="VARCHAR" property="scCustom5" />
+    <result column="sc_custom6" jdbcType="VARCHAR" property="scCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sc_id, sc_name, sc_engname, sc_remark, sc_Auditing, sc_yn, sc_custom1, sc_custom2, 
+    sc_custom3, sc_custom4, sc_custom5, sc_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from subject_category 
+	    where sc_Yn=0
+	    ORDER BY sc_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from subject_category
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from subject_category
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Subject_category">
+    insert into subject_category (sc_id, sc_name, sc_engname, 
+      sc_remark, sc_Auditing, sc_yn, 
+      sc_custom1, sc_custom2, sc_custom3, 
+      sc_custom4, sc_custom5, sc_custom6
+      )
+    values (#{scId,jdbcType=VARCHAR}, #{scName,jdbcType=VARCHAR}, #{scEngname,jdbcType=VARCHAR}, 
+      #{scRemark,jdbcType=VARCHAR}, #{scAuditing,jdbcType=VARCHAR}, #{scYn,jdbcType=VARCHAR}, 
+      #{scCustom1,jdbcType=VARCHAR}, #{scCustom2,jdbcType=VARCHAR}, #{scCustom3,jdbcType=VARCHAR}, 
+      #{scCustom4,jdbcType=VARCHAR}, #{scCustom5,jdbcType=VARCHAR}, #{scCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Subject_category">
+    insert into subject_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        sc_id,
+      </if>
+      <if test="scName != null">
+        sc_name,
+      </if>
+      <if test="scEngname != null">
+        sc_engname,
+      </if>
+      <if test="scRemark != null">
+        sc_remark,
+      </if>
+      <if test="scAuditing != null">
+        sc_Auditing,
+      </if>
+      <if test="scYn != null">
+        sc_yn,
+      </if>
+      <if test="scCustom1 != null">
+        sc_custom1,
+      </if>
+      <if test="scCustom2 != null">
+        sc_custom2,
+      </if>
+      <if test="scCustom3 != null">
+        sc_custom3,
+      </if>
+      <if test="scCustom4 != null">
+        sc_custom4,
+      </if>
+      <if test="scCustom5 != null">
+        sc_custom5,
+      </if>
+      <if test="scCustom6 != null">
+        sc_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="scName != null">
+        #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scEngname != null">
+        #{scEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="scRemark != null">
+        #{scRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="scAuditing != null">
+        #{scAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="scYn != null">
+        #{scYn,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom1 != null">
+        #{scCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom2 != null">
+        #{scCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom3 != null">
+        #{scCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom4 != null">
+        #{scCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom5 != null">
+        #{scCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom6 != null">
+        #{scCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Subject_category">
+    update subject_category
+    <set>
+      <if test="scName != null">
+        sc_name = #{scName,jdbcType=VARCHAR},
+      </if>
+      <if test="scEngname != null">
+        sc_engname = #{scEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="scRemark != null">
+        sc_remark = #{scRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="scAuditing != null">
+        sc_Auditing = #{scAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="scYn != null">
+        sc_yn = #{scYn,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom1 != null">
+        sc_custom1 = #{scCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom2 != null">
+        sc_custom2 = #{scCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom3 != null">
+        sc_custom3 = #{scCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom4 != null">
+        sc_custom4 = #{scCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom5 != null">
+        sc_custom5 = #{scCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="scCustom6 != null">
+        sc_custom6 = #{scCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Subject_category">
+    update subject_category
+    set sc_name = #{scName,jdbcType=VARCHAR},
+      sc_engname = #{scEngname,jdbcType=VARCHAR},
+      sc_remark = #{scRemark,jdbcType=VARCHAR},
+      sc_Auditing = #{scAuditing,jdbcType=VARCHAR},
+      sc_yn = #{scYn,jdbcType=VARCHAR},
+      sc_custom1 = #{scCustom1,jdbcType=VARCHAR},
+      sc_custom2 = #{scCustom2,jdbcType=VARCHAR},
+      sc_custom3 = #{scCustom3,jdbcType=VARCHAR},
+      sc_custom4 = #{scCustom4,jdbcType=VARCHAR},
+      sc_custom5 = #{scCustom5,jdbcType=VARCHAR},
+      sc_custom6 = #{scCustom6,jdbcType=VARCHAR}
+    where sc_id = #{scId,jdbcType=VARCHAR}
+  </update>
+</mapper>

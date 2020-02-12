@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Other_input_storageMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Other_input_storage">
+    <id column="ois_id" jdbcType="VARCHAR" property="oisId" />
+    <result column="ist_id" jdbcType="VARCHAR" property="istId" />
+    <result column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
+    <result column="ois_documentation_date" jdbcType="VARCHAR" property="oisDocumentationDate" />
+    <result column="ois_documentation_no" jdbcType="TIMESTAMP" property="oisDocumentationNo" />
+    <result column="ois_certificate_number" jdbcType="CHAR" property="oisCertificateNumber" />
+    <result column="ois_warehousing_personnel" jdbcType="VARCHAR" property="oisWarehousingPersonnel" />
+    <result column="ois_belongs_section" jdbcType="VARCHAR" property="oisBelongsSection" />
+    <result column="ois_form" jdbcType="VARCHAR" property="oisForm" />
+    <result column="ois_review_staff" jdbcType="VARCHAR" property="oisReviewStaff" />
+    <result column="ois_remark" jdbcType="VARCHAR" property="oisRemark" />
+    <result column="ois_auditing" jdbcType="VARCHAR" property="oisAuditing" />
+    <result column="ois_yn" jdbcType="VARCHAR" property="oisYn" />
+    <result column="ois_custom1" jdbcType="VARCHAR" property="oisCustom1" />
+    <result column="ois_custom2" jdbcType="VARCHAR" property="oisCustom2" />
+    <result column="ois_custom3" jdbcType="VARCHAR" property="oisCustom3" />
+    <result column="ois_custom4" jdbcType="VARCHAR" property="oisCustom4" />
+    <result column="ois_custom5" jdbcType="VARCHAR" property="oisCustom5" />
+    <result column="ois_custom6" jdbcType="VARCHAR" property="oisCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ois_id, ist_id, warehouse_id, ois_documentation_date, ois_documentation_no, ois_certificate_number, 
+    ois_warehousing_personnel, ois_belongs_section, ois_form, ois_review_staff, ois_remark, 
+    ois_auditing, ois_yn, ois_custom1, ois_custom2, ois_custom3, ois_custom4, ois_custom5, 
+    ois_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from other_input_storage 
+	    where ois_Yn=0
+	    ORDER BY ois_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from other_input_storage
+    where ois_id = #{oisId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from other_input_storage
+    where ois_id = #{oisId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Other_input_storage">
+    insert into other_input_storage (ois_id, ist_id, warehouse_id, 
+      ois_documentation_date, ois_documentation_no, 
+      ois_certificate_number, ois_warehousing_personnel, 
+      ois_belongs_section, ois_form, ois_review_staff, 
+      ois_remark, ois_auditing, ois_yn, 
+      ois_custom1, ois_custom2, ois_custom3, 
+      ois_custom4, ois_custom5, ois_custom6
+      )
+    values (#{oisId,jdbcType=VARCHAR}, #{istId,jdbcType=VARCHAR}, #{warehouseId,jdbcType=VARCHAR}, 
+      #{oisDocumentationDate,jdbcType=VARCHAR}, #{oisDocumentationNo,jdbcType=TIMESTAMP}, 
+      #{oisCertificateNumber,jdbcType=CHAR}, #{oisWarehousingPersonnel,jdbcType=VARCHAR}, 
+      #{oisBelongsSection,jdbcType=VARCHAR}, #{oisForm,jdbcType=VARCHAR}, #{oisReviewStaff,jdbcType=VARCHAR}, 
+      #{oisRemark,jdbcType=VARCHAR}, #{oisAuditing,jdbcType=VARCHAR}, #{oisYn,jdbcType=VARCHAR}, 
+      #{oisCustom1,jdbcType=VARCHAR}, #{oisCustom2,jdbcType=VARCHAR}, #{oisCustom3,jdbcType=VARCHAR}, 
+      #{oisCustom4,jdbcType=VARCHAR}, #{oisCustom5,jdbcType=VARCHAR}, #{oisCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Other_input_storage">
+    insert into other_input_storage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="oisId != null">
+        ois_id,
+      </if>
+      <if test="istId != null">
+        ist_id,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="oisDocumentationDate != null">
+        ois_documentation_date,
+      </if>
+      <if test="oisDocumentationNo != null">
+        ois_documentation_no,
+      </if>
+      <if test="oisCertificateNumber != null">
+        ois_certificate_number,
+      </if>
+      <if test="oisWarehousingPersonnel != null">
+        ois_warehousing_personnel,
+      </if>
+      <if test="oisBelongsSection != null">
+        ois_belongs_section,
+      </if>
+      <if test="oisForm != null">
+        ois_form,
+      </if>
+      <if test="oisReviewStaff != null">
+        ois_review_staff,
+      </if>
+      <if test="oisRemark != null">
+        ois_remark,
+      </if>
+      <if test="oisAuditing != null">
+        ois_auditing,
+      </if>
+      <if test="oisYn != null">
+        ois_yn,
+      </if>
+      <if test="oisCustom1 != null">
+        ois_custom1,
+      </if>
+      <if test="oisCustom2 != null">
+        ois_custom2,
+      </if>
+      <if test="oisCustom3 != null">
+        ois_custom3,
+      </if>
+      <if test="oisCustom4 != null">
+        ois_custom4,
+      </if>
+      <if test="oisCustom5 != null">
+        ois_custom5,
+      </if>
+      <if test="oisCustom6 != null">
+        ois_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="oisId != null">
+        #{oisId,jdbcType=VARCHAR},
+      </if>
+      <if test="istId != null">
+        #{istId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="oisDocumentationDate != null">
+        #{oisDocumentationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="oisDocumentationNo != null">
+        #{oisDocumentationNo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oisCertificateNumber != null">
+        #{oisCertificateNumber,jdbcType=CHAR},
+      </if>
+      <if test="oisWarehousingPersonnel != null">
+        #{oisWarehousingPersonnel,jdbcType=VARCHAR},
+      </if>
+      <if test="oisBelongsSection != null">
+        #{oisBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="oisForm != null">
+        #{oisForm,jdbcType=VARCHAR},
+      </if>
+      <if test="oisReviewStaff != null">
+        #{oisReviewStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="oisRemark != null">
+        #{oisRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oisAuditing != null">
+        #{oisAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oisYn != null">
+        #{oisYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom1 != null">
+        #{oisCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom2 != null">
+        #{oisCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom3 != null">
+        #{oisCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom4 != null">
+        #{oisCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom5 != null">
+        #{oisCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom6 != null">
+        #{oisCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Other_input_storage">
+    update other_input_storage
+    <set>
+      <if test="istId != null">
+        ist_id = #{istId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="oisDocumentationDate != null">
+        ois_documentation_date = #{oisDocumentationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="oisDocumentationNo != null">
+        ois_documentation_no = #{oisDocumentationNo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oisCertificateNumber != null">
+        ois_certificate_number = #{oisCertificateNumber,jdbcType=CHAR},
+      </if>
+      <if test="oisWarehousingPersonnel != null">
+        ois_warehousing_personnel = #{oisWarehousingPersonnel,jdbcType=VARCHAR},
+      </if>
+      <if test="oisBelongsSection != null">
+        ois_belongs_section = #{oisBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="oisForm != null">
+        ois_form = #{oisForm,jdbcType=VARCHAR},
+      </if>
+      <if test="oisReviewStaff != null">
+        ois_review_staff = #{oisReviewStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="oisRemark != null">
+        ois_remark = #{oisRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="oisAuditing != null">
+        ois_auditing = #{oisAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="oisYn != null">
+        ois_yn = #{oisYn,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom1 != null">
+        ois_custom1 = #{oisCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom2 != null">
+        ois_custom2 = #{oisCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom3 != null">
+        ois_custom3 = #{oisCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom4 != null">
+        ois_custom4 = #{oisCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom5 != null">
+        ois_custom5 = #{oisCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="oisCustom6 != null">
+        ois_custom6 = #{oisCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ois_id = #{oisId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Other_input_storage">
+    update other_input_storage
+    set ist_id = #{istId,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      ois_documentation_date = #{oisDocumentationDate,jdbcType=VARCHAR},
+      ois_documentation_no = #{oisDocumentationNo,jdbcType=TIMESTAMP},
+      ois_certificate_number = #{oisCertificateNumber,jdbcType=CHAR},
+      ois_warehousing_personnel = #{oisWarehousingPersonnel,jdbcType=VARCHAR},
+      ois_belongs_section = #{oisBelongsSection,jdbcType=VARCHAR},
+      ois_form = #{oisForm,jdbcType=VARCHAR},
+      ois_review_staff = #{oisReviewStaff,jdbcType=VARCHAR},
+      ois_remark = #{oisRemark,jdbcType=VARCHAR},
+      ois_auditing = #{oisAuditing,jdbcType=VARCHAR},
+      ois_yn = #{oisYn,jdbcType=VARCHAR},
+      ois_custom1 = #{oisCustom1,jdbcType=VARCHAR},
+      ois_custom2 = #{oisCustom2,jdbcType=VARCHAR},
+      ois_custom3 = #{oisCustom3,jdbcType=VARCHAR},
+      ois_custom4 = #{oisCustom4,jdbcType=VARCHAR},
+      ois_custom5 = #{oisCustom5,jdbcType=VARCHAR},
+      ois_custom6 = #{oisCustom6,jdbcType=VARCHAR}
+    where ois_id = #{oisId,jdbcType=VARCHAR}
+  </update>
+</mapper>

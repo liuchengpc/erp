@@ -19,6 +19,10 @@ public class Sales_out_warehouse_detailedService {
 	@Autowired
 	private Sales_out_warehouse_detailedMapper dao;
 	
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
 	public List<Sales_out_warehouse_detailed> selectlist(String id){
 		return dao.selectlist(id);
 	}

@@ -12,6 +12,9 @@ import com.apatech.domain.Team;
 public interface Sales_out_warehouse_detailedMapper {
 	List<Sales_out_warehouse_detailed> selectAll();
 	
+	@Select("select count(*) from Sales_out_warehouse_detailed")
+	int selectcount();
+	
 	
 	List<Sales_out_warehouse_detailed> selectlist(String id);
 	

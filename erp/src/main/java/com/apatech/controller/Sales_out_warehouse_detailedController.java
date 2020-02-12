@@ -27,6 +27,12 @@ public class Sales_out_warehouse_detailedController {
 	@Autowired
 	private Sales_out_warehouse_detailedService dao;
 	
+	@RequestMapping("/selectcount")
+	@ResponseBody
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
 	/**
 	 * 分页
 	 * @param pageNum

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public class Sales_out_warehouse_detailed {
-    private String sowdId;//id（主键 唯一）
+    private String sowdId;//id（主键 唯一） 
     private String sowId;//销售出库id（外键）
     private String matterId;//物料编号
     private String sowdEngname;//物料名称

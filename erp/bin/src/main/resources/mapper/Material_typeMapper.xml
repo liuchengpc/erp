@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Material_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Material_type">
+    <id column="mt_id" jdbcType="VARCHAR" property="mtId" />
+    <result column="mt_name" jdbcType="VARCHAR" property="mtName" />
+    <result column="mt_english_name" jdbcType="VARCHAR" property="mtEnglishName" />
+    <result column="mt_save_subject" jdbcType="VARCHAR" property="mtSaveSubject" />
+    <result column="mt_subject_a" jdbcType="VARCHAR" property="mtSubjectA" />
+    <result column="mt_subject_b" jdbcType="VARCHAR" property="mtSubjectB" />
+    <result column="mt_subject_c" jdbcType="VARCHAR" property="mtSubjectC" />
+    <result column="mt_salein_subject" jdbcType="VARCHAR" property="mtSaleinSubject" />
+    <result column="mt_salecost_subject" jdbcType="VARCHAR" property="mtSalecostSubject" />
+    <result column="mt_otherin_subject" jdbcType="VARCHAR" property="mtOtherinSubject" />
+    <result column="mt_othercost_subject" jdbcType="VARCHAR" property="mtOthercostSubject" />
+    <result column="mt_othersell_subject" jdbcType="VARCHAR" property="mtOthersellSubject" />
+    <result column="mt_othersend_subject" jdbcType="VARCHAR" property="mtOthersendSubject" />
+    <result column="mt_remark" jdbcType="VARCHAR" property="mtRemark" />
+    <result column="mt_Auditing" jdbcType="VARCHAR" property="mtAuditing" />
+    <result column="mt_yn" jdbcType="VARCHAR" property="mtYn" />
+    <result column="mt_custom1" jdbcType="VARCHAR" property="mtCustom1" />
+    <result column="mt_custom2" jdbcType="VARCHAR" property="mtCustom2" />
+    <result column="mt_custom3" jdbcType="VARCHAR" property="mtCustom3" />
+    <result column="mt_custom4" jdbcType="VARCHAR" property="mtCustom4" />
+    <result column="mt_custom5" jdbcType="VARCHAR" property="mtCustom5" />
+    <result column="mt_custom6" jdbcType="VARCHAR" property="mtCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    mt_id, mt_name, mt_english_name, mt_save_subject, mt_subject_a, mt_subject_b, mt_subject_c, 
+    mt_salein_subject, mt_salecost_subject, mt_otherin_subject, mt_othercost_subject, 
+    mt_othersell_subject, mt_othersend_subject, mt_remark, mt_Auditing, mt_yn, mt_custom1, 
+    mt_custom2, mt_custom3, mt_custom4, mt_custom5, mt_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from material_type 
+	    where mt_Yn=0
+	    ORDER BY mt_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from material_type
+    where mt_id = #{mtId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from material_type
+    where mt_id = #{mtId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Material_type">
+    insert into material_type (mt_id, mt_name, mt_english_name, 
+      mt_save_subject, mt_subject_a, mt_subject_b, 
+      mt_subject_c, mt_salein_subject, mt_salecost_subject, 
+      mt_otherin_subject, mt_othercost_subject, mt_othersell_subject, 
+      mt_othersend_subject, mt_remark, mt_Auditing, 
+      mt_yn, mt_custom1, mt_custom2, 
+      mt_custom3, mt_custom4, mt_custom5, 
+      mt_custom6)
+    values (#{mtId,jdbcType=VARCHAR}, #{mtName,jdbcType=VARCHAR}, #{mtEnglishName,jdbcType=VARCHAR}, 
+      #{mtSaveSubject,jdbcType=VARCHAR}, #{mtSubjectA,jdbcType=VARCHAR}, #{mtSubjectB,jdbcType=VARCHAR}, 
+      #{mtSubjectC,jdbcType=VARCHAR}, #{mtSaleinSubject,jdbcType=VARCHAR}, #{mtSalecostSubject,jdbcType=VARCHAR}, 
+      #{mtOtherinSubject,jdbcType=VARCHAR}, #{mtOthercostSubject,jdbcType=VARCHAR}, #{mtOthersellSubject,jdbcType=VARCHAR}, 
+      #{mtOthersendSubject,jdbcType=VARCHAR}, #{mtRemark,jdbcType=VARCHAR}, #{mtAuditing,jdbcType=VARCHAR}, 
+      #{mtYn,jdbcType=VARCHAR}, #{mtCustom1,jdbcType=VARCHAR}, #{mtCustom2,jdbcType=VARCHAR}, 
+      #{mtCustom3,jdbcType=VARCHAR}, #{mtCustom4,jdbcType=VARCHAR}, #{mtCustom5,jdbcType=VARCHAR}, 
+      #{mtCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Material_type">
+    insert into material_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mtId != null">
+        mt_id,
+      </if>
+      <if test="mtName != null">
+        mt_name,
+      </if>
+      <if test="mtEnglishName != null">
+        mt_english_name,
+      </if>
+      <if test="mtSaveSubject != null">
+        mt_save_subject,
+      </if>
+      <if test="mtSubjectA != null">
+        mt_subject_a,
+      </if>
+      <if test="mtSubjectB != null">
+        mt_subject_b,
+      </if>
+      <if test="mtSubjectC != null">
+        mt_subject_c,
+      </if>
+      <if test="mtSaleinSubject != null">
+        mt_salein_subject,
+      </if>
+      <if test="mtSalecostSubject != null">
+        mt_salecost_subject,
+      </if>
+      <if test="mtOtherinSubject != null">
+        mt_otherin_subject,
+      </if>
+      <if test="mtOthercostSubject != null">
+        mt_othercost_subject,
+      </if>
+      <if test="mtOthersellSubject != null">
+        mt_othersell_subject,
+      </if>
+      <if test="mtOthersendSubject != null">
+        mt_othersend_subject,
+      </if>
+      <if test="mtRemark != null">
+        mt_remark,
+      </if>
+      <if test="mtAuditing != null">
+        mt_Auditing,
+      </if>
+      <if test="mtYn != null">
+        mt_yn,
+      </if>
+      <if test="mtCustom1 != null">
+        mt_custom1,
+      </if>
+      <if test="mtCustom2 != null">
+        mt_custom2,
+      </if>
+      <if test="mtCustom3 != null">
+        mt_custom3,
+      </if>
+      <if test="mtCustom4 != null">
+        mt_custom4,
+      </if>
+      <if test="mtCustom5 != null">
+        mt_custom5,
+      </if>
+      <if test="mtCustom6 != null">
+        mt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mtId != null">
+        #{mtId,jdbcType=VARCHAR},
+      </if>
+      <if test="mtName != null">
+        #{mtName,jdbcType=VARCHAR},
+      </if>
+      <if test="mtEnglishName != null">
+        #{mtEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSaveSubject != null">
+        #{mtSaveSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectA != null">
+        #{mtSubjectA,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectB != null">
+        #{mtSubjectB,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectC != null">
+        #{mtSubjectC,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSaleinSubject != null">
+        #{mtSaleinSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSalecostSubject != null">
+        #{mtSalecostSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOtherinSubject != null">
+        #{mtOtherinSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthercostSubject != null">
+        #{mtOthercostSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthersellSubject != null">
+        #{mtOthersellSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthersendSubject != null">
+        #{mtOthersendSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtRemark != null">
+        #{mtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="mtAuditing != null">
+        #{mtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="mtYn != null">
+        #{mtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom1 != null">
+        #{mtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom2 != null">
+        #{mtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom3 != null">
+        #{mtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom4 != null">
+        #{mtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom5 != null">
+        #{mtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom6 != null">
+        #{mtCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Material_type">
+    update material_type
+    <set>
+      <if test="mtName != null">
+        mt_name = #{mtName,jdbcType=VARCHAR},
+      </if>
+      <if test="mtEnglishName != null">
+        mt_english_name = #{mtEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSaveSubject != null">
+        mt_save_subject = #{mtSaveSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectA != null">
+        mt_subject_a = #{mtSubjectA,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectB != null">
+        mt_subject_b = #{mtSubjectB,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSubjectC != null">
+        mt_subject_c = #{mtSubjectC,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSaleinSubject != null">
+        mt_salein_subject = #{mtSaleinSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtSalecostSubject != null">
+        mt_salecost_subject = #{mtSalecostSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOtherinSubject != null">
+        mt_otherin_subject = #{mtOtherinSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthercostSubject != null">
+        mt_othercost_subject = #{mtOthercostSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthersellSubject != null">
+        mt_othersell_subject = #{mtOthersellSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtOthersendSubject != null">
+        mt_othersend_subject = #{mtOthersendSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="mtRemark != null">
+        mt_remark = #{mtRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="mtAuditing != null">
+        mt_Auditing = #{mtAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="mtYn != null">
+        mt_yn = #{mtYn,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom1 != null">
+        mt_custom1 = #{mtCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom2 != null">
+        mt_custom2 = #{mtCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom3 != null">
+        mt_custom3 = #{mtCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom4 != null">
+        mt_custom4 = #{mtCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom5 != null">
+        mt_custom5 = #{mtCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="mtCustom6 != null">
+        mt_custom6 = #{mtCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mt_id = #{mtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Material_type">
+    update material_type
+    set mt_name = #{mtName,jdbcType=VARCHAR},
+      mt_english_name = #{mtEnglishName,jdbcType=VARCHAR},
+      mt_save_subject = #{mtSaveSubject,jdbcType=VARCHAR},
+      mt_subject_a = #{mtSubjectA,jdbcType=VARCHAR},
+      mt_subject_b = #{mtSubjectB,jdbcType=VARCHAR},
+      mt_subject_c = #{mtSubjectC,jdbcType=VARCHAR},
+      mt_salein_subject = #{mtSaleinSubject,jdbcType=VARCHAR},
+      mt_salecost_subject = #{mtSalecostSubject,jdbcType=VARCHAR},
+      mt_otherin_subject = #{mtOtherinSubject,jdbcType=VARCHAR},
+      mt_othercost_subject = #{mtOthercostSubject,jdbcType=VARCHAR},
+      mt_othersell_subject = #{mtOthersellSubject,jdbcType=VARCHAR},
+      mt_othersend_subject = #{mtOthersendSubject,jdbcType=VARCHAR},
+      mt_remark = #{mtRemark,jdbcType=VARCHAR},
+      mt_Auditing = #{mtAuditing,jdbcType=VARCHAR},
+      mt_yn = #{mtYn,jdbcType=VARCHAR},
+      mt_custom1 = #{mtCustom1,jdbcType=VARCHAR},
+      mt_custom2 = #{mtCustom2,jdbcType=VARCHAR},
+      mt_custom3 = #{mtCustom3,jdbcType=VARCHAR},
+      mt_custom4 = #{mtCustom4,jdbcType=VARCHAR},
+      mt_custom5 = #{mtCustom5,jdbcType=VARCHAR},
+      mt_custom6 = #{mtCustom6,jdbcType=VARCHAR}
+    where mt_id = #{mtId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -35,6 +35,12 @@ public class Sales_out_warehouseController {
 	@Autowired
 	private Sales_out_warehouse_detailedService daoo;	
 	
+	@RequestMapping("/selectcount")
+	@ResponseBody
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
 	@RequestMapping("/update")
 	@ResponseBody
 	public int update(@RequestBody Sales_out_warehouse stu) {

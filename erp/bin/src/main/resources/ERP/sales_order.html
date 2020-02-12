@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>销售订单</title>
+   <link rel="stylesheet" href="css/layui.css">
+   <link href="css/fontawesome.css" rel="stylesheet">
+   <link href="css/brands.css" rel="stylesheet">
+   <link href="css/solid.css" rel="stylesheet">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <style>
+        #app{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="layui-row">
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">客户</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">送货地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input" style="width: 30%;float: left;">
+                            <input type="text" name="title"       class="layui-input" style="width: 68%;float: right;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">单据日期</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input" id="test1" placeholder="">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">单据号码</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">销售订单类型</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
+                        <div class="layui-input-block">
+                            <select name="interest">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">单况</label>
+                        <div class="layui-input-block">
+                            <select name="interest">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客户订单</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">币别</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">汇率</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">内容</li>
+                    <li>账款</li>
+                    <li>备注</li>
+                </ul>
+                <div class="layui-tab-content" style="padding: 10px 0;">
+                    <div class="layui-tab-item layui-show">
+                        <table id="materialsContent" class="layui-hide">
+
+                        </table>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">账款归属</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">付款条件</label>
+                                            <div class="layui-input-inline">
+                                                <select name="interest">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <input type="text" name="title" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">付款日期</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">账款月份</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title"       class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">表头条文</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">表头尾文</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">自定栏一</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title"       class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">自定栏二</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title"       class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-lg12">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">备注</label>
+                                        <div class="layui-input-block">
+                                            <textare class="layui-textarea"></textare>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">业务人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color: #009688;">所属部门</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">所属项目</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">制单人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">复核人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title"       class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="interest" lay-filter="aihao">
+                                <option value="">查询</option>
+                                <option value="0">历史交易查询</option>
+                                <option value="0">转单记录查询</option>
+                                <option value="0">利润预估查询</option>
+                                <option value="0">订金查询</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="interest" lay-filter="aihao">
+                                <option value="">转单</option>
+                                <option value="0" disabled>转销售出库单</option>
+                                <option value="0">销售报价转入</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="interest" lay-filter="aihao">
+                                <option value="">功能</option>
+                                <option value="0" disabled>批次变更单价</option>
+                                <option value="0">物料组合设定</option>
+                                <option value="0">单况状态切换</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="layui-form-item">
+			    <div class="layui-input-block">  
+			        <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+			        <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
+			        <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+					<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
+			        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
+			        <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
+			        <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+			        <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
+					<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
+					<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
+					<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
+					<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+			    </div>
+			</div>
+        </div>
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script>
+        /*layui.use('layer', function(){
+            var layer = layui.layer;
+            layer.open({
+                type: 1,
+                title: '销售订单',
+                content: $('#app'),
+                area: ['800px', '700px']
+            });
+        });*/
+
+        layui.use('element', function () {
+            var $ = layui.jquery
+                , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+            //触发事件
+            var active = {
+                tabAdd: function(){
+                    //新增一个Tab项
+                    element.tabAdd('demo', {
+                        title: '新选项'+ (Math.random()*1000|0) //用于演示
+                        ,content: '内容'+ (Math.random()*1000|0)
+                        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                    })
+                }
+                ,tabDelete: function(othis){
+                    //删除指定Tab项
+                    element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                    othis.addClass('layui-btn-disabled');
+                }
+                ,tabChange: function(){
+                    //切换到指定Tab项
+                    element.tabChange('demo', '22'); //切换到：用户管理
+                }
+            };
+
+            $('.site-demo-active').on('click', function(){
+                var othis = $(this), type = othis.data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+
+            //Hash地址的定位
+            var layid = location.hash.replace(/^#test=/, '');
+            element.tabChange('test', layid);
+
+            element.on('tab(test)', function(elem){
+                location.hash = 'test='+ $(this).attr('lay-id');
+            });
+        });
+
+        layui.use('table', function(){
+            var table = layui.table;
+
+            table.render({
+                elem: '#materialsContent'
+                ,url:'https://www.layui.com/demo/table/user/'
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [[
+                    {field: 'id', title: '(栏号)', sort: true}
+                    , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , {field: 'sex', title: '(物料名称)', sort: true}
+                    , {field: 'city', title: '(规格型号)'}
+                    , {field: 'sign', title: '(单位名称)'}
+                ]]
+            });
+        });
+    </script>
+</body>
+</html>

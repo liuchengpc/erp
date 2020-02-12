@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.SupplierMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Supplier">
+    <id column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="supplier_name" jdbcType="VARCHAR" property="supplierName" />
+    <result column="supplier_easyname" jdbcType="VARCHAR" property="supplierEasyname" />
+    <result column="supplier_engname" jdbcType="VARCHAR" property="supplierEngname" />
+    <result column="supplier_easyengname" jdbcType="VARCHAR" property="supplierEasyengname" />
+    <result column="supplier_account_attribution" jdbcType="VARCHAR" property="supplierAccountAttribution" />
+    <result column="supplier_type" jdbcType="VARCHAR" property="supplierType" />
+    <result column="supplier_zone" jdbcType="VARCHAR" property="supplierZone" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="supplier_principalman" jdbcType="VARCHAR" property="supplierPrincipalman" />
+    <result column="supplier_linkman" jdbcType="VARCHAR" property="supplierLinkman" />
+    <result column="supplier_linktela" jdbcType="VARCHAR" property="supplierLinktela" />
+    <result column="supplier_linktelb" jdbcType="VARCHAR" property="supplierLinktelb" />
+    <result column="supplier_linktelc" jdbcType="VARCHAR" property="supplierLinktelc" />
+    <result column="supplier_mobilephone" jdbcType="VARCHAR" property="supplierMobilephone" />
+    <result column="ada_id" jdbcType="VARCHAR" property="adaId" />
+    <result column="bank_id" jdbcType="VARCHAR" property="bankId" />
+    <result column="supplier_procurement _staff" jdbcType="VARCHAR" property="supplierProcurementStaff" />
+    <result column="supplier_taxcheckno" jdbcType="VARCHAR" property="supplierTaxcheckno" />
+    <result column="supplier_capitalmoney" jdbcType="REAL" property="supplierCapitalmoney" />
+    <result column="supplier_job" jdbcType="VARCHAR" property="supplierJob" />
+    <result column="supplier_email" jdbcType="VARCHAR" property="supplierEmail" />
+    <result column="supplier_webadd" jdbcType="VARCHAR" property="supplierWebadd" />
+    <result column="supplier_faxno" jdbcType="VARCHAR" property="supplierFaxno" />
+    <result column="supplier_cufirstsaleinput" jdbcType="DATE" property="supplierCufirstsaleinput" />
+    <result column="supplier_cufirstsalereturn" jdbcType="DATE" property="supplierCufirstsalereturn" />
+    <result column="supplier_curecentsaleinput" jdbcType="DATE" property="supplierCurecentsaleinput" />
+    <result column="supplier_curecentsalereturn" jdbcType="DATE" property="supplierCurecentsalereturn" />
+    <result column="supplier_tax_included" jdbcType="VARCHAR" property="supplierTaxIncluded" />
+    <result column="supplier_terminationdate" jdbcType="DATE" property="supplierTerminationdate" />
+    <result column="supplier_creditmoney" jdbcType="REAL" property="supplierCreditmoney" />
+    <result column="supplier_residuemonet" jdbcType="REAL" property="supplierResiduemonet" />
+    <result column="supplier_condition" jdbcType="VARCHAR" property="supplierCondition" />
+    <result column="supplier_cuendorderday" jdbcType="DATE" property="supplierCuendorderday" />
+    <result column="supplier_honestlv" jdbcType="VARCHAR" property="supplierHonestlv" />
+    <result column="supplier_invoice_type" jdbcType="VARCHAR" property="supplierInvoiceType" />
+    <result column="supplier_cufirstcollect" jdbcType="REAL" property="supplierCufirstcollect" />
+    <result column="supplier_houldcollect" jdbcType="REAL" property="supplierHouldcollect" />
+    <result column="supplier_cuendcollect" jdbcType="REAL" property="supplierCuendcollect" />
+    <result column="supplier_cuendshouldcollect" jdbcType="REAL" property="supplierCuendshouldcollect" />
+    <result column="supplier_cudecoration" jdbcType="VARCHAR" property="supplierCudecoration" />
+    <result column="supplier_collectiontermid" jdbcType="INTEGER" property="supplierCollectiontermid" />
+    <result column="supplier_invoicetypeid" jdbcType="INTEGER" property="supplierInvoicetypeid" />
+    <result column="supplier_houldcollectmoney" jdbcType="INTEGER" property="supplierHouldcollectmoney" />
+    <result column="supplier_curecollectmoney" jdbcType="INTEGER" property="supplierCurecollectmoney" />
+    <result column="supplier_address_no" jdbcType="VARCHAR" property="supplierAddressNo" />
+    <result column="supplier_remark" jdbcType="VARCHAR" property="supplierRemark" />
+    <result column="supplier_Auditing" jdbcType="VARCHAR" property="supplierAuditing" />
+    <result column="supplier_yn" jdbcType="VARCHAR" property="supplierYn" />
+    <result column="supplier_custom1" jdbcType="VARCHAR" property="supplierCustom1" />
+    <result column="supplier_custom2" jdbcType="VARCHAR" property="supplierCustom2" />
+    <result column="supplier_custom3" jdbcType="VARCHAR" property="supplierCustom3" />
+    <result column="supplier_custom4" jdbcType="VARCHAR" property="supplierCustom4" />
+    <result column="supplier_custom5" jdbcType="VARCHAR" property="supplierCustom5" />
+    <result column="supplier_custom6" jdbcType="VARCHAR" property="supplierCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    supplier_id, supplier_name, supplier_easyname, supplier_engname, supplier_easyengname, 
+    supplier_account_attribution, supplier_type, supplier_zone, currency_id, supplier_principalman, 
+    supplier_linkman, supplier_linktela, supplier_linktelb, supplier_linktelc, supplier_mobilephone, 
+    ada_id, bank_id, "supplier_procurement _staff", supplier_taxcheckno, supplier_capitalmoney, 
+    supplier_job, supplier_email, supplier_webadd, supplier_faxno, supplier_cufirstsaleinput, 
+    supplier_cufirstsalereturn, supplier_curecentsaleinput, supplier_curecentsalereturn, 
+    supplier_tax_included, supplier_terminationdate, supplier_creditmoney, supplier_residuemonet, 
+    supplier_condition, supplier_cuendorderday, supplier_honestlv, supplier_invoice_type, 
+    supplier_cufirstcollect, supplier_houldcollect, supplier_cuendcollect, supplier_cuendshouldcollect, 
+    supplier_cudecoration, supplier_collectiontermid, supplier_invoicetypeid, supplier_houldcollectmoney, 
+    supplier_curecollectmoney, supplier_address_no, supplier_remark, supplier_Auditing, 
+    supplier_yn, supplier_custom1, supplier_custom2, supplier_custom3, supplier_custom4, 
+    supplier_custom5, supplier_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from supplier 
+	    where supplier_Yn=0
+	    ORDER BY supplier_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplier_id = #{supplierId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from supplier
+    where supplier_id = #{supplierId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Supplier">
+    insert into supplier (supplier_id, supplier_name, supplier_easyname, 
+      supplier_engname, supplier_easyengname, supplier_account_attribution, 
+      supplier_type, supplier_zone, currency_id, 
+      supplier_principalman, supplier_linkman, 
+      supplier_linktela, supplier_linktelb, supplier_linktelc, 
+      supplier_mobilephone, ada_id, bank_id, 
+      "supplier_procurement _staff", supplier_taxcheckno, 
+      supplier_capitalmoney, supplier_job, supplier_email, 
+      supplier_webadd, supplier_faxno, supplier_cufirstsaleinput, 
+      supplier_cufirstsalereturn, supplier_curecentsaleinput, 
+      supplier_curecentsalereturn, supplier_tax_included, 
+      supplier_terminationdate, supplier_creditmoney, 
+      supplier_residuemonet, supplier_condition, supplier_cuendorderday, 
+      supplier_honestlv, supplier_invoice_type, 
+      supplier_cufirstcollect, supplier_houldcollect, 
+      supplier_cuendcollect, supplier_cuendshouldcollect, 
+      supplier_cudecoration, supplier_collectiontermid, 
+      supplier_invoicetypeid, supplier_houldcollectmoney, 
+      supplier_curecollectmoney, supplier_address_no, 
+      supplier_remark, supplier_Auditing, supplier_yn, 
+      supplier_custom1, supplier_custom2, supplier_custom3, 
+      supplier_custom4, supplier_custom5, supplier_custom6
+      )
+    values (#{supplierId,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR}, #{supplierEasyname,jdbcType=VARCHAR}, 
+      #{supplierEngname,jdbcType=VARCHAR}, #{supplierEasyengname,jdbcType=VARCHAR}, #{supplierAccountAttribution,jdbcType=VARCHAR}, 
+      #{supplierType,jdbcType=VARCHAR}, #{supplierZone,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, 
+      #{supplierPrincipalman,jdbcType=VARCHAR}, #{supplierLinkman,jdbcType=VARCHAR}, 
+      #{supplierLinktela,jdbcType=VARCHAR}, #{supplierLinktelb,jdbcType=VARCHAR}, #{supplierLinktelc,jdbcType=VARCHAR}, 
+      #{supplierMobilephone,jdbcType=VARCHAR}, #{adaId,jdbcType=VARCHAR}, #{bankId,jdbcType=VARCHAR}, 
+      #{supplierProcurementStaff,jdbcType=VARCHAR}, #{supplierTaxcheckno,jdbcType=VARCHAR}, 
+      #{supplierCapitalmoney,jdbcType=REAL}, #{supplierJob,jdbcType=VARCHAR}, #{supplierEmail,jdbcType=VARCHAR}, 
+      #{supplierWebadd,jdbcType=VARCHAR}, #{supplierFaxno,jdbcType=VARCHAR}, #{supplierCufirstsaleinput,jdbcType=DATE}, 
+      #{supplierCufirstsalereturn,jdbcType=DATE}, #{supplierCurecentsaleinput,jdbcType=DATE}, 
+      #{supplierCurecentsalereturn,jdbcType=DATE}, #{supplierTaxIncluded,jdbcType=VARCHAR}, 
+      #{supplierTerminationdate,jdbcType=DATE}, #{supplierCreditmoney,jdbcType=REAL}, 
+      #{supplierResiduemonet,jdbcType=REAL}, #{supplierCondition,jdbcType=VARCHAR}, #{supplierCuendorderday,jdbcType=DATE}, 
+      #{supplierHonestlv,jdbcType=VARCHAR}, #{supplierInvoiceType,jdbcType=VARCHAR}, 
+      #{supplierCufirstcollect,jdbcType=REAL}, #{supplierHouldcollect,jdbcType=REAL}, 
+      #{supplierCuendcollect,jdbcType=REAL}, #{supplierCuendshouldcollect,jdbcType=REAL}, 
+      #{supplierCudecoration,jdbcType=VARCHAR}, #{supplierCollectiontermid,jdbcType=INTEGER}, 
+      #{supplierInvoicetypeid,jdbcType=INTEGER}, #{supplierHouldcollectmoney,jdbcType=INTEGER}, 
+      #{supplierCurecollectmoney,jdbcType=INTEGER}, #{supplierAddressNo,jdbcType=VARCHAR}, 
+      #{supplierRemark,jdbcType=VARCHAR}, #{supplierAuditing,jdbcType=VARCHAR}, #{supplierYn,jdbcType=VARCHAR}, 
+      #{supplierCustom1,jdbcType=VARCHAR}, #{supplierCustom2,jdbcType=VARCHAR}, #{supplierCustom3,jdbcType=VARCHAR}, 
+      #{supplierCustom4,jdbcType=VARCHAR}, #{supplierCustom5,jdbcType=VARCHAR}, #{supplierCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Supplier">
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="supplierName != null">
+        supplier_name,
+      </if>
+      <if test="supplierEasyname != null">
+        supplier_easyname,
+      </if>
+      <if test="supplierEngname != null">
+        supplier_engname,
+      </if>
+      <if test="supplierEasyengname != null">
+        supplier_easyengname,
+      </if>
+      <if test="supplierAccountAttribution != null">
+        supplier_account_attribution,
+      </if>
+      <if test="supplierType != null">
+        supplier_type,
+      </if>
+      <if test="supplierZone != null">
+        supplier_zone,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="supplierPrincipalman != null">
+        supplier_principalman,
+      </if>
+      <if test="supplierLinkman != null">
+        supplier_linkman,
+      </if>
+      <if test="supplierLinktela != null">
+        supplier_linktela,
+      </if>
+      <if test="supplierLinktelb != null">
+        supplier_linktelb,
+      </if>
+      <if test="supplierLinktelc != null">
+        supplier_linktelc,
+      </if>
+      <if test="supplierMobilephone != null">
+        supplier_mobilephone,
+      </if>
+      <if test="adaId != null">
+        ada_id,
+      </if>
+      <if test="bankId != null">
+        bank_id,
+      </if>
+      <if test="supplierProcurementStaff != null">
+        "supplier_procurement _staff",
+      </if>
+      <if test="supplierTaxcheckno != null">
+        supplier_taxcheckno,
+      </if>
+      <if test="supplierCapitalmoney != null">
+        supplier_capitalmoney,
+      </if>
+      <if test="supplierJob != null">
+        supplier_job,
+      </if>
+      <if test="supplierEmail != null">
+        supplier_email,
+      </if>
+      <if test="supplierWebadd != null">
+        supplier_webadd,
+      </if>
+      <if test="supplierFaxno != null">
+        supplier_faxno,
+      </if>
+      <if test="supplierCufirstsaleinput != null">
+        supplier_cufirstsaleinput,
+      </if>
+      <if test="supplierCufirstsalereturn != null">
+        supplier_cufirstsalereturn,
+      </if>
+      <if test="supplierCurecentsaleinput != null">
+        supplier_curecentsaleinput,
+      </if>
+      <if test="supplierCurecentsalereturn != null">
+        supplier_curecentsalereturn,
+      </if>
+      <if test="supplierTaxIncluded != null">
+        supplier_tax_included,
+      </if>
+      <if test="supplierTerminationdate != null">
+        supplier_terminationdate,
+      </if>
+      <if test="supplierCreditmoney != null">
+        supplier_creditmoney,
+      </if>
+      <if test="supplierResiduemonet != null">
+        supplier_residuemonet,
+      </if>
+      <if test="supplierCondition != null">
+        supplier_condition,
+      </if>
+      <if test="supplierCuendorderday != null">
+        supplier_cuendorderday,
+      </if>
+      <if test="supplierHonestlv != null">
+        supplier_honestlv,
+      </if>
+      <if test="supplierInvoiceType != null">
+        supplier_invoice_type,
+      </if>
+      <if test="supplierCufirstcollect != null">
+        supplier_cufirstcollect,
+      </if>
+      <if test="supplierHouldcollect != null">
+        supplier_houldcollect,
+      </if>
+      <if test="supplierCuendcollect != null">
+        supplier_cuendcollect,
+      </if>
+      <if test="supplierCuendshouldcollect != null">
+        supplier_cuendshouldcollect,
+      </if>
+      <if test="supplierCudecoration != null">
+        supplier_cudecoration,
+      </if>
+      <if test="supplierCollectiontermid != null">
+        supplier_collectiontermid,
+      </if>
+      <if test="supplierInvoicetypeid != null">
+        supplier_invoicetypeid,
+      </if>
+      <if test="supplierHouldcollectmoney != null">
+        supplier_houldcollectmoney,
+      </if>
+      <if test="supplierCurecollectmoney != null">
+        supplier_curecollectmoney,
+      </if>
+      <if test="supplierAddressNo != null">
+        supplier_address_no,
+      </if>
+      <if test="supplierRemark != null">
+        supplier_remark,
+      </if>
+      <if test="supplierAuditing != null">
+        supplier_Auditing,
+      </if>
+      <if test="supplierYn != null">
+        supplier_yn,
+      </if>
+      <if test="supplierCustom1 != null">
+        supplier_custom1,
+      </if>
+      <if test="supplierCustom2 != null">
+        supplier_custom2,
+      </if>
+      <if test="supplierCustom3 != null">
+        supplier_custom3,
+      </if>
+      <if test="supplierCustom4 != null">
+        supplier_custom4,
+      </if>
+      <if test="supplierCustom5 != null">
+        supplier_custom5,
+      </if>
+      <if test="supplierCustom6 != null">
+        supplier_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null">
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEasyname != null">
+        #{supplierEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEngname != null">
+        #{supplierEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEasyengname != null">
+        #{supplierEasyengname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAccountAttribution != null">
+        #{supplierAccountAttribution,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null">
+        #{supplierType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierZone != null">
+        #{supplierZone,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPrincipalman != null">
+        #{supplierPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkman != null">
+        #{supplierLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktela != null">
+        #{supplierLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelb != null">
+        #{supplierLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelc != null">
+        #{supplierLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMobilephone != null">
+        #{supplierMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierProcurementStaff != null">
+        #{supplierProcurementStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTaxcheckno != null">
+        #{supplierTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCapitalmoney != null">
+        #{supplierCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierJob != null">
+        #{supplierJob,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEmail != null">
+        #{supplierEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierWebadd != null">
+        #{supplierWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierFaxno != null">
+        #{supplierFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstsaleinput != null">
+        #{supplierCufirstsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCufirstsalereturn != null">
+        #{supplierCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsaleinput != null">
+        #{supplierCurecentsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsalereturn != null">
+        #{supplierCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierTaxIncluded != null">
+        #{supplierTaxIncluded,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTerminationdate != null">
+        #{supplierTerminationdate,jdbcType=DATE},
+      </if>
+      <if test="supplierCreditmoney != null">
+        #{supplierCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierResiduemonet != null">
+        #{supplierResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="supplierCondition != null">
+        #{supplierCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCuendorderday != null">
+        #{supplierCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="supplierHonestlv != null">
+        #{supplierHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInvoiceType != null">
+        #{supplierInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstcollect != null">
+        #{supplierCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierHouldcollect != null">
+        #{supplierHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendcollect != null">
+        #{supplierCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendshouldcollect != null">
+        #{supplierCuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCudecoration != null">
+        #{supplierCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCollectiontermid != null">
+        #{supplierCollectiontermid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierInvoicetypeid != null">
+        #{supplierInvoicetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierHouldcollectmoney != null">
+        #{supplierHouldcollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierCurecollectmoney != null">
+        #{supplierCurecollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierAddressNo != null">
+        #{supplierAddressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierRemark != null">
+        #{supplierRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAuditing != null">
+        #{supplierAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierYn != null">
+        #{supplierYn,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom1 != null">
+        #{supplierCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom2 != null">
+        #{supplierCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom3 != null">
+        #{supplierCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom4 != null">
+        #{supplierCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom5 != null">
+        #{supplierCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom6 != null">
+        #{supplierCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Supplier">
+    update supplier
+    <set>
+      <if test="supplierName != null">
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEasyname != null">
+        supplier_easyname = #{supplierEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEngname != null">
+        supplier_engname = #{supplierEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEasyengname != null">
+        supplier_easyengname = #{supplierEasyengname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAccountAttribution != null">
+        supplier_account_attribution = #{supplierAccountAttribution,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null">
+        supplier_type = #{supplierType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierZone != null">
+        supplier_zone = #{supplierZone,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPrincipalman != null">
+        supplier_principalman = #{supplierPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkman != null">
+        supplier_linkman = #{supplierLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktela != null">
+        supplier_linktela = #{supplierLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelb != null">
+        supplier_linktelb = #{supplierLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelc != null">
+        supplier_linktelc = #{supplierLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMobilephone != null">
+        supplier_mobilephone = #{supplierMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        ada_id = #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierProcurementStaff != null">
+        "supplier_procurement _staff" = #{supplierProcurementStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTaxcheckno != null">
+        supplier_taxcheckno = #{supplierTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCapitalmoney != null">
+        supplier_capitalmoney = #{supplierCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierJob != null">
+        supplier_job = #{supplierJob,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEmail != null">
+        supplier_email = #{supplierEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierWebadd != null">
+        supplier_webadd = #{supplierWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierFaxno != null">
+        supplier_faxno = #{supplierFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstsaleinput != null">
+        supplier_cufirstsaleinput = #{supplierCufirstsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCufirstsalereturn != null">
+        supplier_cufirstsalereturn = #{supplierCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsaleinput != null">
+        supplier_curecentsaleinput = #{supplierCurecentsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsalereturn != null">
+        supplier_curecentsalereturn = #{supplierCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierTaxIncluded != null">
+        supplier_tax_included = #{supplierTaxIncluded,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTerminationdate != null">
+        supplier_terminationdate = #{supplierTerminationdate,jdbcType=DATE},
+      </if>
+      <if test="supplierCreditmoney != null">
+        supplier_creditmoney = #{supplierCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierResiduemonet != null">
+        supplier_residuemonet = #{supplierResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="supplierCondition != null">
+        supplier_condition = #{supplierCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCuendorderday != null">
+        supplier_cuendorderday = #{supplierCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="supplierHonestlv != null">
+        supplier_honestlv = #{supplierHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInvoiceType != null">
+        supplier_invoice_type = #{supplierInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstcollect != null">
+        supplier_cufirstcollect = #{supplierCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierHouldcollect != null">
+        supplier_houldcollect = #{supplierHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendcollect != null">
+        supplier_cuendcollect = #{supplierCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendshouldcollect != null">
+        supplier_cuendshouldcollect = #{supplierCuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCudecoration != null">
+        supplier_cudecoration = #{supplierCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCollectiontermid != null">
+        supplier_collectiontermid = #{supplierCollectiontermid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierInvoicetypeid != null">
+        supplier_invoicetypeid = #{supplierInvoicetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierHouldcollectmoney != null">
+        supplier_houldcollectmoney = #{supplierHouldcollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierCurecollectmoney != null">
+        supplier_curecollectmoney = #{supplierCurecollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierAddressNo != null">
+        supplier_address_no = #{supplierAddressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierRemark != null">
+        supplier_remark = #{supplierRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAuditing != null">
+        supplier_Auditing = #{supplierAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierYn != null">
+        supplier_yn = #{supplierYn,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom1 != null">
+        supplier_custom1 = #{supplierCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom2 != null">
+        supplier_custom2 = #{supplierCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom3 != null">
+        supplier_custom3 = #{supplierCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom4 != null">
+        supplier_custom4 = #{supplierCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom5 != null">
+        supplier_custom5 = #{supplierCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom6 != null">
+        supplier_custom6 = #{supplierCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Supplier">
+    update supplier
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
+      supplier_easyname = #{supplierEasyname,jdbcType=VARCHAR},
+      supplier_engname = #{supplierEngname,jdbcType=VARCHAR},
+      supplier_easyengname = #{supplierEasyengname,jdbcType=VARCHAR},
+      supplier_account_attribution = #{supplierAccountAttribution,jdbcType=VARCHAR},
+      supplier_type = #{supplierType,jdbcType=VARCHAR},
+      supplier_zone = #{supplierZone,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      supplier_principalman = #{supplierPrincipalman,jdbcType=VARCHAR},
+      supplier_linkman = #{supplierLinkman,jdbcType=VARCHAR},
+      supplier_linktela = #{supplierLinktela,jdbcType=VARCHAR},
+      supplier_linktelb = #{supplierLinktelb,jdbcType=VARCHAR},
+      supplier_linktelc = #{supplierLinktelc,jdbcType=VARCHAR},
+      supplier_mobilephone = #{supplierMobilephone,jdbcType=VARCHAR},
+      ada_id = #{adaId,jdbcType=VARCHAR},
+      bank_id = #{bankId,jdbcType=VARCHAR},
+      "supplier_procurement _staff" = #{supplierProcurementStaff,jdbcType=VARCHAR},
+      supplier_taxcheckno = #{supplierTaxcheckno,jdbcType=VARCHAR},
+      supplier_capitalmoney = #{supplierCapitalmoney,jdbcType=REAL},
+      supplier_job = #{supplierJob,jdbcType=VARCHAR},
+      supplier_email = #{supplierEmail,jdbcType=VARCHAR},
+      supplier_webadd = #{supplierWebadd,jdbcType=VARCHAR},
+      supplier_faxno = #{supplierFaxno,jdbcType=VARCHAR},
+      supplier_cufirstsaleinput = #{supplierCufirstsaleinput,jdbcType=DATE},
+      supplier_cufirstsalereturn = #{supplierCufirstsalereturn,jdbcType=DATE},
+      supplier_curecentsaleinput = #{supplierCurecentsaleinput,jdbcType=DATE},
+      supplier_curecentsalereturn = #{supplierCurecentsalereturn,jdbcType=DATE},
+      supplier_tax_included = #{supplierTaxIncluded,jdbcType=VARCHAR},
+      supplier_terminationdate = #{supplierTerminationdate,jdbcType=DATE},
+      supplier_creditmoney = #{supplierCreditmoney,jdbcType=REAL},
+      supplier_residuemonet = #{supplierResiduemonet,jdbcType=REAL},
+      supplier_condition = #{supplierCondition,jdbcType=VARCHAR},
+      supplier_cuendorderday = #{supplierCuendorderday,jdbcType=DATE},
+      supplier_honestlv = #{supplierHonestlv,jdbcType=VARCHAR},
+      supplier_invoice_type = #{supplierInvoiceType,jdbcType=VARCHAR},
+      supplier_cufirstcollect = #{supplierCufirstcollect,jdbcType=REAL},
+      supplier_houldcollect = #{supplierHouldcollect,jdbcType=REAL},
+      supplier_cuendcollect = #{supplierCuendcollect,jdbcType=REAL},
+      supplier_cuendshouldcollect = #{supplierCuendshouldcollect,jdbcType=REAL},
+      supplier_cudecoration = #{supplierCudecoration,jdbcType=VARCHAR},
+      supplier_collectiontermid = #{supplierCollectiontermid,jdbcType=INTEGER},
+      supplier_invoicetypeid = #{supplierInvoicetypeid,jdbcType=INTEGER},
+      supplier_houldcollectmoney = #{supplierHouldcollectmoney,jdbcType=INTEGER},
+      supplier_curecollectmoney = #{supplierCurecollectmoney,jdbcType=INTEGER},
+      supplier_address_no = #{supplierAddressNo,jdbcType=VARCHAR},
+      supplier_remark = #{supplierRemark,jdbcType=VARCHAR},
+      supplier_Auditing = #{supplierAuditing,jdbcType=VARCHAR},
+      supplier_yn = #{supplierYn,jdbcType=VARCHAR},
+      supplier_custom1 = #{supplierCustom1,jdbcType=VARCHAR},
+      supplier_custom2 = #{supplierCustom2,jdbcType=VARCHAR},
+      supplier_custom3 = #{supplierCustom3,jdbcType=VARCHAR},
+      supplier_custom4 = #{supplierCustom4,jdbcType=VARCHAR},
+      supplier_custom5 = #{supplierCustom5,jdbcType=VARCHAR},
+      supplier_custom6 = #{supplierCustom6,jdbcType=VARCHAR}
+    where supplier_id = #{supplierId,jdbcType=VARCHAR}
+  </update>
+</mapper>

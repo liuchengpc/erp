@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_requisitionMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_requisition">
+    <id column="pr_id" jdbcType="VARCHAR" property="prId" />
+    <result column="prt_id" jdbcType="VARCHAR" property="prtId" />
+    <result column="pr_single_status" jdbcType="VARCHAR" property="prSingleStatus" />
+    <result column="pr_document_date" jdbcType="DATE" property="prDocumentDate" />
+    <result column="pr_document_number" jdbcType="VARCHAR" property="prDocumentNumber" />
+    <result column="pr_buyer" jdbcType="VARCHAR" property="prBuyer" />
+    <result column="pr_belongs_section" jdbcType="VARCHAR" property="prBelongsSection" />
+    <result column="pr_executor" jdbcType="VARCHAR" property="prExecutor" />
+    <result column="pr_checkagain_staff" jdbcType="VARCHAR" property="prCheckagainStaff" />
+    <result column="pr_sumnum" jdbcType="INTEGER" property="prSumnum" />
+    <result column="pr_nopurchase_num" jdbcType="INTEGER" property="prNopurchaseNum" />
+    <result column="pr_header_provision" jdbcType="VARCHAR" property="prHeaderProvision" />
+    <result column="pr_end_clause" jdbcType="VARCHAR" property="prEndClause" />
+    <result column="pr_remark" jdbcType="VARCHAR" property="prRemark" />
+    <result column="pr_audition" jdbcType="VARCHAR" property="prAudition" />
+    <result column="pr_yn" jdbcType="VARCHAR" property="prYn" />
+    <result column="pr_custom1" jdbcType="VARCHAR" property="prCustom1" />
+    <result column="pr_custom2" jdbcType="VARCHAR" property="prCustom2" />
+    <result column="pr_custom3" jdbcType="VARCHAR" property="prCustom3" />
+    <result column="pr_custom4" jdbcType="VARCHAR" property="prCustom4" />
+    <result column="pr_custom5" jdbcType="VARCHAR" property="prCustom5" />
+    <result column="pr_custom6" jdbcType="VARCHAR" property="prCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pr_id, prt_id, pr_single_status, pr_document_date, pr_document_number, pr_buyer, 
+    pr_belongs_section, pr_executor, pr_checkagain_staff, pr_sumnum, pr_nopurchase_num, 
+    pr_header_provision, pr_end_clause, pr_remark, pr_audition, pr_yn, pr_custom1, pr_custom2, 
+    pr_custom3, pr_custom4, pr_custom5, pr_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_requisition 
+	    where pr_Yn=0
+	    ORDER BY pr_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_requisition
+    where pr_id = #{prId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_requisition
+    where pr_id = #{prId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_requisition">
+    insert into purchase_requisition (pr_id, prt_id, pr_single_status, 
+      pr_document_date, pr_document_number, pr_buyer, 
+      pr_belongs_section, pr_executor, pr_checkagain_staff, 
+      pr_sumnum, pr_nopurchase_num, pr_header_provision, 
+      pr_end_clause, pr_remark, pr_audition, 
+      pr_yn, pr_custom1, pr_custom2, 
+      pr_custom3, pr_custom4, pr_custom5, 
+      pr_custom6)
+    values (#{prId,jdbcType=VARCHAR}, #{prtId,jdbcType=VARCHAR}, #{prSingleStatus,jdbcType=VARCHAR}, 
+      #{prDocumentDate,jdbcType=DATE}, #{prDocumentNumber,jdbcType=VARCHAR}, #{prBuyer,jdbcType=VARCHAR}, 
+      #{prBelongsSection,jdbcType=VARCHAR}, #{prExecutor,jdbcType=VARCHAR}, #{prCheckagainStaff,jdbcType=VARCHAR}, 
+      #{prSumnum,jdbcType=INTEGER}, #{prNopurchaseNum,jdbcType=INTEGER}, #{prHeaderProvision,jdbcType=VARCHAR}, 
+      #{prEndClause,jdbcType=VARCHAR}, #{prRemark,jdbcType=VARCHAR}, #{prAudition,jdbcType=VARCHAR}, 
+      #{prYn,jdbcType=VARCHAR}, #{prCustom1,jdbcType=VARCHAR}, #{prCustom2,jdbcType=VARCHAR}, 
+      #{prCustom3,jdbcType=VARCHAR}, #{prCustom4,jdbcType=VARCHAR}, #{prCustom5,jdbcType=VARCHAR}, 
+      #{prCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_requisition">
+    insert into purchase_requisition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        pr_id,
+      </if>
+      <if test="prtId != null">
+        prt_id,
+      </if>
+      <if test="prSingleStatus != null">
+        pr_single_status,
+      </if>
+      <if test="prDocumentDate != null">
+        pr_document_date,
+      </if>
+      <if test="prDocumentNumber != null">
+        pr_document_number,
+      </if>
+      <if test="prBuyer != null">
+        pr_buyer,
+      </if>
+      <if test="prBelongsSection != null">
+        pr_belongs_section,
+      </if>
+      <if test="prExecutor != null">
+        pr_executor,
+      </if>
+      <if test="prCheckagainStaff != null">
+        pr_checkagain_staff,
+      </if>
+      <if test="prSumnum != null">
+        pr_sumnum,
+      </if>
+      <if test="prNopurchaseNum != null">
+        pr_nopurchase_num,
+      </if>
+      <if test="prHeaderProvision != null">
+        pr_header_provision,
+      </if>
+      <if test="prEndClause != null">
+        pr_end_clause,
+      </if>
+      <if test="prRemark != null">
+        pr_remark,
+      </if>
+      <if test="prAudition != null">
+        pr_audition,
+      </if>
+      <if test="prYn != null">
+        pr_yn,
+      </if>
+      <if test="prCustom1 != null">
+        pr_custom1,
+      </if>
+      <if test="prCustom2 != null">
+        pr_custom2,
+      </if>
+      <if test="prCustom3 != null">
+        pr_custom3,
+      </if>
+      <if test="prCustom4 != null">
+        pr_custom4,
+      </if>
+      <if test="prCustom5 != null">
+        pr_custom5,
+      </if>
+      <if test="prCustom6 != null">
+        pr_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        #{prId,jdbcType=VARCHAR},
+      </if>
+      <if test="prtId != null">
+        #{prtId,jdbcType=VARCHAR},
+      </if>
+      <if test="prSingleStatus != null">
+        #{prSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="prDocumentDate != null">
+        #{prDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="prDocumentNumber != null">
+        #{prDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prBuyer != null">
+        #{prBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="prBelongsSection != null">
+        #{prBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="prExecutor != null">
+        #{prExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="prCheckagainStaff != null">
+        #{prCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="prSumnum != null">
+        #{prSumnum,jdbcType=INTEGER},
+      </if>
+      <if test="prNopurchaseNum != null">
+        #{prNopurchaseNum,jdbcType=INTEGER},
+      </if>
+      <if test="prHeaderProvision != null">
+        #{prHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="prEndClause != null">
+        #{prEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="prRemark != null">
+        #{prRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="prAudition != null">
+        #{prAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prYn != null">
+        #{prYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom1 != null">
+        #{prCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom2 != null">
+        #{prCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom3 != null">
+        #{prCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom4 != null">
+        #{prCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom5 != null">
+        #{prCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom6 != null">
+        #{prCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_requisition">
+    update purchase_requisition
+    <set>
+      <if test="prtId != null">
+        prt_id = #{prtId,jdbcType=VARCHAR},
+      </if>
+      <if test="prSingleStatus != null">
+        pr_single_status = #{prSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="prDocumentDate != null">
+        pr_document_date = #{prDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="prDocumentNumber != null">
+        pr_document_number = #{prDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prBuyer != null">
+        pr_buyer = #{prBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="prBelongsSection != null">
+        pr_belongs_section = #{prBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="prExecutor != null">
+        pr_executor = #{prExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="prCheckagainStaff != null">
+        pr_checkagain_staff = #{prCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="prSumnum != null">
+        pr_sumnum = #{prSumnum,jdbcType=INTEGER},
+      </if>
+      <if test="prNopurchaseNum != null">
+        pr_nopurchase_num = #{prNopurchaseNum,jdbcType=INTEGER},
+      </if>
+      <if test="prHeaderProvision != null">
+        pr_header_provision = #{prHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="prEndClause != null">
+        pr_end_clause = #{prEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="prRemark != null">
+        pr_remark = #{prRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="prAudition != null">
+        pr_audition = #{prAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="prYn != null">
+        pr_yn = #{prYn,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom1 != null">
+        pr_custom1 = #{prCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom2 != null">
+        pr_custom2 = #{prCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom3 != null">
+        pr_custom3 = #{prCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom4 != null">
+        pr_custom4 = #{prCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom5 != null">
+        pr_custom5 = #{prCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="prCustom6 != null">
+        pr_custom6 = #{prCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pr_id = #{prId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_requisition">
+    update purchase_requisition
+    set prt_id = #{prtId,jdbcType=VARCHAR},
+      pr_single_status = #{prSingleStatus,jdbcType=VARCHAR},
+      pr_document_date = #{prDocumentDate,jdbcType=DATE},
+      pr_document_number = #{prDocumentNumber,jdbcType=VARCHAR},
+      pr_buyer = #{prBuyer,jdbcType=VARCHAR},
+      pr_belongs_section = #{prBelongsSection,jdbcType=VARCHAR},
+      pr_executor = #{prExecutor,jdbcType=VARCHAR},
+      pr_checkagain_staff = #{prCheckagainStaff,jdbcType=VARCHAR},
+      pr_sumnum = #{prSumnum,jdbcType=INTEGER},
+      pr_nopurchase_num = #{prNopurchaseNum,jdbcType=INTEGER},
+      pr_header_provision = #{prHeaderProvision,jdbcType=VARCHAR},
+      pr_end_clause = #{prEndClause,jdbcType=VARCHAR},
+      pr_remark = #{prRemark,jdbcType=VARCHAR},
+      pr_audition = #{prAudition,jdbcType=VARCHAR},
+      pr_yn = #{prYn,jdbcType=VARCHAR},
+      pr_custom1 = #{prCustom1,jdbcType=VARCHAR},
+      pr_custom2 = #{prCustom2,jdbcType=VARCHAR},
+      pr_custom3 = #{prCustom3,jdbcType=VARCHAR},
+      pr_custom4 = #{prCustom4,jdbcType=VARCHAR},
+      pr_custom5 = #{prCustom5,jdbcType=VARCHAR},
+      pr_custom6 = #{prCustom6,jdbcType=VARCHAR}
+    where pr_id = #{prId,jdbcType=VARCHAR}
+  </update>
+</mapper>

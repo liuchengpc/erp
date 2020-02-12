@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Customer_addressMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Customer_address">
+    <id column="ca_addressid" jdbcType="VARCHAR" property="caAddressid" />
+    <result column="ca_address" jdbcType="VARCHAR" property="caAddress" />
+    <result column="ca_postcode" jdbcType="VARCHAR" property="caPostcode" />
+    <result column="ca_alinkman" jdbcType="VARCHAR" property="caAlinkman" />
+    <result column="ca_linkmaneasyname" jdbcType="VARCHAR" property="caLinkmaneasyname" />
+    <result column="ca_afaxno" jdbcType="VARCHAR" property="caAfaxno" />
+    <result column="ca_way" jdbcType="VARCHAR" property="caWay" />
+    <result column="ca_adecoration" jdbcType="VARCHAR" property="caAdecoration" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="ca_Auditing" jdbcType="VARCHAR" property="caAuditing" />
+    <result column="ca_yn" jdbcType="VARCHAR" property="caYn" />
+    <result column="ca_custom1" jdbcType="VARCHAR" property="caCustom1" />
+    <result column="ca_custom2" jdbcType="VARCHAR" property="caCustom2" />
+    <result column="ca_custom3" jdbcType="VARCHAR" property="caCustom3" />
+    <result column="ca_custom4" jdbcType="VARCHAR" property="caCustom4" />
+    <result column="ca_custom5" jdbcType="VARCHAR" property="caCustom5" />
+    <result column="ca_custom6" jdbcType="VARCHAR" property="caCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ca_addressid, ca_address, ca_postcode, ca_alinkman, ca_linkmaneasyname, ca_afaxno, 
+    ca_way, ca_adecoration, customer_id, ca_Auditing, ca_yn, ca_custom1, ca_custom2, 
+    ca_custom3, ca_custom4, ca_custom5, ca_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from customer_address 
+	    where ca_Yn=0
+	    ORDER BY ca_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer_address
+    where ca_addressid = #{caAddressid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from customer_address
+    where ca_addressid = #{caAddressid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Customer_address">
+    insert into customer_address (ca_addressid, ca_address, ca_postcode, 
+      ca_alinkman, ca_linkmaneasyname, ca_afaxno, 
+      ca_way, ca_adecoration, customer_id, 
+      ca_Auditing, ca_yn, ca_custom1, 
+      ca_custom2, ca_custom3, ca_custom4, 
+      ca_custom5, ca_custom6)
+    values (#{caAddressid,jdbcType=VARCHAR}, #{caAddress,jdbcType=VARCHAR}, #{caPostcode,jdbcType=VARCHAR}, 
+      #{caAlinkman,jdbcType=VARCHAR}, #{caLinkmaneasyname,jdbcType=VARCHAR}, #{caAfaxno,jdbcType=VARCHAR}, 
+      #{caWay,jdbcType=VARCHAR}, #{caAdecoration,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{caAuditing,jdbcType=VARCHAR}, #{caYn,jdbcType=VARCHAR}, #{caCustom1,jdbcType=VARCHAR}, 
+      #{caCustom2,jdbcType=VARCHAR}, #{caCustom3,jdbcType=VARCHAR}, #{caCustom4,jdbcType=VARCHAR}, 
+      #{caCustom5,jdbcType=VARCHAR}, #{caCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Customer_address">
+    insert into customer_address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caAddressid != null">
+        ca_addressid,
+      </if>
+      <if test="caAddress != null">
+        ca_address,
+      </if>
+      <if test="caPostcode != null">
+        ca_postcode,
+      </if>
+      <if test="caAlinkman != null">
+        ca_alinkman,
+      </if>
+      <if test="caLinkmaneasyname != null">
+        ca_linkmaneasyname,
+      </if>
+      <if test="caAfaxno != null">
+        ca_afaxno,
+      </if>
+      <if test="caWay != null">
+        ca_way,
+      </if>
+      <if test="caAdecoration != null">
+        ca_adecoration,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="caAuditing != null">
+        ca_Auditing,
+      </if>
+      <if test="caYn != null">
+        ca_yn,
+      </if>
+      <if test="caCustom1 != null">
+        ca_custom1,
+      </if>
+      <if test="caCustom2 != null">
+        ca_custom2,
+      </if>
+      <if test="caCustom3 != null">
+        ca_custom3,
+      </if>
+      <if test="caCustom4 != null">
+        ca_custom4,
+      </if>
+      <if test="caCustom5 != null">
+        ca_custom5,
+      </if>
+      <if test="caCustom6 != null">
+        ca_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caAddressid != null">
+        #{caAddressid,jdbcType=VARCHAR},
+      </if>
+      <if test="caAddress != null">
+        #{caAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="caPostcode != null">
+        #{caPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="caAlinkman != null">
+        #{caAlinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="caLinkmaneasyname != null">
+        #{caLinkmaneasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="caAfaxno != null">
+        #{caAfaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="caWay != null">
+        #{caWay,jdbcType=VARCHAR},
+      </if>
+      <if test="caAdecoration != null">
+        #{caAdecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="caAuditing != null">
+        #{caAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="caYn != null">
+        #{caYn,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom1 != null">
+        #{caCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom2 != null">
+        #{caCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom3 != null">
+        #{caCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom4 != null">
+        #{caCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom5 != null">
+        #{caCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom6 != null">
+        #{caCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Customer_address">
+    update customer_address
+    <set>
+      <if test="caAddress != null">
+        ca_address = #{caAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="caPostcode != null">
+        ca_postcode = #{caPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="caAlinkman != null">
+        ca_alinkman = #{caAlinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="caLinkmaneasyname != null">
+        ca_linkmaneasyname = #{caLinkmaneasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="caAfaxno != null">
+        ca_afaxno = #{caAfaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="caWay != null">
+        ca_way = #{caWay,jdbcType=VARCHAR},
+      </if>
+      <if test="caAdecoration != null">
+        ca_adecoration = #{caAdecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="caAuditing != null">
+        ca_Auditing = #{caAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="caYn != null">
+        ca_yn = #{caYn,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom1 != null">
+        ca_custom1 = #{caCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom2 != null">
+        ca_custom2 = #{caCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom3 != null">
+        ca_custom3 = #{caCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom4 != null">
+        ca_custom4 = #{caCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom5 != null">
+        ca_custom5 = #{caCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="caCustom6 != null">
+        ca_custom6 = #{caCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ca_addressid = #{caAddressid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Customer_address">
+    update customer_address
+    set ca_address = #{caAddress,jdbcType=VARCHAR},
+      ca_postcode = #{caPostcode,jdbcType=VARCHAR},
+      ca_alinkman = #{caAlinkman,jdbcType=VARCHAR},
+      ca_linkmaneasyname = #{caLinkmaneasyname,jdbcType=VARCHAR},
+      ca_afaxno = #{caAfaxno,jdbcType=VARCHAR},
+      ca_way = #{caWay,jdbcType=VARCHAR},
+      ca_adecoration = #{caAdecoration,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      ca_Auditing = #{caAuditing,jdbcType=VARCHAR},
+      ca_yn = #{caYn,jdbcType=VARCHAR},
+      ca_custom1 = #{caCustom1,jdbcType=VARCHAR},
+      ca_custom2 = #{caCustom2,jdbcType=VARCHAR},
+      ca_custom3 = #{caCustom3,jdbcType=VARCHAR},
+      ca_custom4 = #{caCustom4,jdbcType=VARCHAR},
+      ca_custom5 = #{caCustom5,jdbcType=VARCHAR},
+      ca_custom6 = #{caCustom6,jdbcType=VARCHAR}
+    where ca_addressid = #{caAddressid,jdbcType=VARCHAR}
+  </update>
+</mapper>

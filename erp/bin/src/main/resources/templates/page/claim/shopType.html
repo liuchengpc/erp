@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/shop_type.css}">
+    <link rel="stylesheet" th:href="@{/css/shop_managerment.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+   	 <script type="text/javascript" th:src="@{/js/vue.js}"></script>  
+</head>
+<body>
+<div class="rightarea clearfix" id="lists" >
+    <div class="mainarea clearfix">
+        <div class="user_list_main clearfix">
+            <div class="user_list_body clearfix" style="margin-bottom: 360px;">
+	            <div class="searchArea" style="top: 8px;">
+	                <div class="btn-div">
+	                    <a th:href="@{/topage/shop_upload}" class="btn btn-success" @click="insertStu()">
+	                        添加类别
+	                    </a>
+	                </div>
+	            </div>
+                <div class="mainhead">
+		            <span class="title">商品类型</span>
+		        </div>
+                <table class="clearfix settable">
+                    <thead>
+                        <tr>
+                            <th width="20%">序号</th>
+                            <th width="*">名称</th>
+                            <th width="40%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="pages,index in page">
+                            <td>{{pages.commoditytypeid}}</td>
+                            <td>{{pages.commoditytypename}}</td>
+                            <td>
+                                <a href="javascript:;" @click="updateStu(pages.commoditytypeid,pages.commoditytypename,index)">修改</a>
+                                <a href="javascript:;" @click="deleteStu(index,pages.commoditytypeid)">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+		var vm = new Vue({
+			el:"#lists",
+			 data: function () {
+				    return {
+				      page:[
+				    	  
+				      ]
+				    }
+			  },methods:{
+				selectAll:function(){//查询所有
+					var this_=this;
+					$.ajax({
+						url:"[[@{/CommoditytypeController/selectAll}]]",
+						type:"get",
+						data:"",
+						dataType:"json",
+						success:function(res){
+							console.info("分页数据")
+							console.info(res)
+							this_.page = res;
+							console.info(this_.page)
+						}	
+					})
+				},
+				insertStu(){//跳转新增
+					$("#gridSystemModalLabel").html("新增类别")
+					var this_ = this;
+					//alert("新增")
+					$('#smModal').modal("show");
+					$('.qd').hide();
+					$('#xz').show();
+					 console.log("当前行新增数据");
+					 console.log(index);
+				      console.log(row);
+				 
+					
+				},
+				updateStu(id,name,index,row){//跳转修改
+					var this_ = this;
+				//alert(id + "===" +name)
+					$("#gridSystemModalLabel").html("修改类别")
+					$('#smModal').modal("show");
+					$('.qd').hide();
+					$('#xg').show();
+					$('#commoditytypename').val(name);
+					$('#commoditytypename').attr("id",id);
+					 console.log("当前行修改数据");
+					 console.log(index);
+				      console.log(row);
+				      
+			         
+				},
+				deleteStu(index,id){//删除
+					var this_ = this;
+					if (confirm("是否删除")==true) {
+						$.ajax({
+							url:"[[@{/CommoditytypeController/selecttypeid}]]",
+							type:"get",
+							data:"commoditytypeid="+id,
+							dataType:"json",
+							success:function(res){
+								alert(res.message);
+								if(res.code == "1"){
+									this_.page.list.splice(index, 1);//splice(index, 1) 删除从索引开始的一个元素
+								}
+							}
+						})
+					}
+				},
+				prePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+						this.selectAll(this.page.prePage);
+					}
+				},
+				nextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+						this.selectAll(this.page.nextPage);
+					}
+				},
+			},created:function(){
+				this.selectAll();
+			}
+		})
+		function selectAll(){//查询所有分页
+			$.ajax({
+				url:"[[@{/CommoditytypeController/selectAll}]]",
+				type:"get",
+				data:"",
+				dataType:"json",
+				success:function(res){
+					console.info("分页数据")
+					console.info(res)
+					this_.page = res;
+					console.info(this_.page)
+				}	
+			})
+		}
+		
+		//新增
+		$(document).on('click', '#xz', function() {
+				//alert(1)
+      			 var obj={
+		        	 commoditytypename:$('#commoditytypename').val()
+		          }
+		          console.log(obj);
+		          $.ajax({
+						url : "[[@{/CommoditytypeController/insertSelective}]]",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+					  		alert(res.message);
+							selectAll();
+					  		
+					  		$('#commoditytypename').attr("commoditytypeid","")
+					  		$('#commoditytypename').val("")
+					  		
+					  		$('#smModal').modal("hide");
+					  		
+				        }
+					}); 
+		});
+		//修改
+		$(document).on('click', '#xg', function() {
+			//alert($("#aaa").val())
+			//alert($('#commoditytypename').val())
+			 var obj={
+			    commoditytypeid:$('#commoditytypename').attr("commoditytypeid"),
+			    commoditytypename:$('#commoditytypename').val()
+	          };
+	          console.log(obj);
+	          $.ajax({
+					url : "[[@{/CommoditytypeController/updateByPrimaryKeySelective}]]",
+					type:"post",
+				  	data : JSON.stringify(obj),
+				  	dataType:'json',	
+				  	contentType:"application/json;charset=utf-8",
+				  	success:function (res) {
+				  		alert(res.message);
+						selectAll();
+				  		
+				  		$('#commoditytypename').attr("commoditytypeid","")
+				  		$('#commoditytypename').val("")
+				  		$('#smModal').modal("hide");
+				  		
+			        }
+				}); 
+	         
+		});
+	</script>
+	
+
+	
+	
+			
+			<div class="modal fade" id="smModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header" style="background: #F3F5F9;">
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+					        <h4 class="modal-title" id="gridSystemModalLabel">添加类别</h4>
+					      </div>
+					      <div class="modal-body">
+					      <div class="container-fluid" style="padding: 0px;">
+					      	<br>
+							<div class="row">
+								<div class="col-md-6  col-md-offset-3" style="padding-left: 10px;">
+									<span style="color: red;">*</span>名称 
+									<input type="text" class="form-control" id="commoditytypename" style="display: inline-block;width: auto;">
+								</div>
+							</div>
+							<br>
+							
+						      <div class="modal-footer" style="text-align: center;">
+						        <button type="button" class="btn btn-default" id="qx" data-dismiss="modal">取消</button>
+						        <button type="button" class="btn btn-primary qd" id="xz"  style="background: green">确定</button>
+						        <button type="button" class="btn btn-primary qd" id="xg" style="background: green">确定</button>
+						      </div>
+					    </div><!-- /.modal-content -->
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+		</div>	
+			
+			
+			
+			<!-- <script>
+			$(function(){
+				//shown.bs.modal 先显示模态框，再执行代码
+				//show.bs.modal  先执行代码，再显示模态框
+				$("#smModal").on("shown.bs.modal",function(e){
+					   window.sessionStorage.setItem("content",row.content);//将用户信息保存到js中的session中
+					    window.sessionStorage.setItem("topic",row.topic);//将用户信息保存到js中的session中
+					    window.sessionStorage.setItem("outboxeid",row.outboxeid);//将发件员工编号保存到js中的session中
+					
+					//e.relatedTarget  获取当前触发模态框显示的元素
+					var obj = $(e.relatedTarget);
+					var stuId = $(obj).parents("tr").find("td:eq(0)").text();
+					
+					
+					alert("获取到编辑的学生ID："+stuId+"利用ajax加载数据并填充");
+					$(".form-horizontal").find("[type='email']").val(1);
+					$(".form-horizontal").find("[type='password']").val(1234567);
+					
+				});
+			});
+		</script> -->
+</body>
+</html>

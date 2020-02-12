@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<base target="main8">		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.js}" ></script>
+		<script src="https://cdn.bootcss.com/bootstrap-treeview/1.2.0/bootstrap-treeview.min.js"></script>
+		<style type="text/css">
+			/* BootStrap表格鼠标悬停颜色修改 */
+			.table-hover>tbody>tr:hover {
+			    background-color: wheat!important;
+			}
+			/* bootstrap表格通过css样式实现隔行换色 */
+			table tr:nth-child(even){ 
+				background: #f6f7f9; 
+			}
+			.demo10 {
+			  color: #fff;/* 第一层文字阴影	第二层文字阴影*/
+			  text-shadow: 1px 1px black,2px 2px black;
+			}
+			.panel>.panel-heading{
+				height: 50px;
+			}
+			a:link{text-decoration:none; }  /* 指正常的未被访问过的链接*/
+
+			a:visited{text-decoration:none; }/*指已经访问过的链接*/
+			
+			a:hover{text-decoration:none;}/*指鼠标在链接*/}
+			
+			a:active{text-decoration:none;}/* 指正在点的链接*/ 
+		</style>
+	</head>
+	<body style="background: #F8F8F8;">
+		<div class="row"style="margin: 0;">
+			<div  class="setheight" style="">		
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+				
+				  <div class="panel panel-default" style="margin: 0;">
+				    <div class="panel-heading" role="tab" id="headingOne">
+				      <h4 class="panel-title"  style="margin-top: 7px;">
+				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+				          <img th:src="@{/images/zd.png}" >
+						  	共用资料
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true" style="">
+				      
+			          <ul class="nav nav-pills nav-stacked">
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">基本资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">物料资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">基本资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">物料资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">基本资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">物料资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">基本资料</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">物料资料</a></li>
+					  </ul>		
+				     
+				    </div>
+				  </div>
+				  
+				  
+				  
+			
+				  <div class="panel panel-default" style="margin: 0;">
+				    <div class="panel-heading" role="tab" id="headingTwo">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				           <img th:src="@{/images/zd.png}" >
+						  	订单管理
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+				      <ul class="nav nav-pills nav-stacked">
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">查看订单列表</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">查看订单列表</a></li>
+					  </ul>	
+				    </div>
+				  </div>
+				  
+				  <div class="panel panel-default" style="margin: 0;">
+				    <div class="panel-heading" role="tab" id="headingThree">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				           <img th:src="@{/images/zd.png}" >
+						  	订单管理
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
+				       <ul class="nav nav-pills nav-stacked">
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">查看订单列表</a></li>
+					  	<li role="presentation" ><a target="main8" th:href="@{/topage/page/claim/member_info}">查看订单列表</a></li>
+					  </ul>	
+				    </div>
+				  </div>
+				  
+				  
+				</div>
+				
+				 
+				</div> 
+				
+				
+				
+				
+				
+				<div id="treeview2" class=""> </div>
+				<script type="text/javascript">
+					$('#treeview2').treeview({
+			          color: "#428bca",
+			          expandIcon: 'glyphicon glyphicon-chevron-right',
+			          collapseIcon: 'glyphicon glyphicon-chevron-down',
+			          nodeIcon: 'glyphicon glyphicon-bookmark',
+			          data: getTree()
+			        });
+					
+					  //定义树里的数据来源
+					  function getTree(){
+					    var data = [
+					    {
+					            text: 'Parent 1',
+					            href: '#parent1',
+					            tags: ['4'],
+					            nodes: [
+					              {
+					                text: 'Child 1',
+					                href: '#child1',
+					                tags: ['2'],
+					                nodes: [
+					                  {
+					                    text: '<a target="main8" href="/topage/page/claim/member_info">child1</a>',
+					                    href: '#grandchild1',
+					                    tags: ['0']
+					                  },
+					                 /*  {
+					                    text: '<a target="main8" href="/topage/page/claim/member_info">grandchild2</a>',
+					                    href: '#grandchild2',
+					                    tags: ['0']
+					                  } */
+					                ]
+					              },
+					              {
+					                text: 'Child 2',
+					                href: '#child2',
+					                tags: ['0']
+					              }
+					            ]
+					          },
+					          {
+					            text: 'Parent 2',
+					            href: '#parent2',
+					            tags: ['0']
+					          },
+					          {
+					            text: 'Parent 3',
+					            href: '#parent3',
+					             tags: ['0']
+					          },
+					          {
+					            text: 'Parent 4',
+					            href: '#parent4',
+					            tags: ['0']
+					          },
+					          {
+					            text: 'Parent 5',
+					            href: '#parent5'  ,
+					            tags: ['0']
+					          }
+					    ];
+					    return data;
+					  }
+				</script>
+			</div>
+			
+			
+			
+			
+			
+			
+		</div>
+		
+		
+		
+		<style type="text/css">
+			.current-item {
+			    background: #FFF !important;
+			    border-right: 1px solid #FFF !important;
+			}
+			.current-item2 {
+			    background: #FFF !important;
+			    border-right: 1px solid #FFF !important;
+			}
+		</style>
+		<script type="text/javascript">
+			$(".panel-default").eq(0).addClass("current-item")
+	   		$(".panel-title>a").click(function(){
+	   			$(".panel-default").removeClass("current-item")
+	   			$(this).parents(".panel-default").addClass("current-item")
+	   		})
+	   		$(".panel-default").hover(function(){
+	   			$(".panel-default").removeClass("current-item2")
+	   			$(this).addClass("current-item2")
+	   		})
+   		</script>
+	</body>
+</html>

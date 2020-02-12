@@ -1,0 +1,62 @@
+.top{
+    width: 1240px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo{
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 250px;
+    height: 60px;
+    overflow: hidden;
+    background: url("../images/home/logo-7.png") no-repeat;
+
+}
+.nav-menu{
+    float: right;
+    display: inline-block;
+    justify-content: space-around;
+}
+.nav-items{
+    float: left;
+    font-size: 16px;
+    line-height: 46px;
+    height: 46px;
+    padding-top: 34px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.text{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.text-title{
+    display: inline-block;
+    height: 100%;
+}
+.home-link:nth-of-type(1){
+    background: url("../images/home/home.png") center 10px no-repeat ;
+}
+.nav-items a{
+    display: inline-block;
+    height: 46px;
+    color: #5f6a7d;
+}
+.active{
+    cursor: default;
+    color: #2996cc;
+}
+.registerORlogin{
+    display: block;
+    position: absolute;
+    top: 19px;
+    right: 50px;
+    font-size: 12px;
+}
+.register{
+    border-left: 1px solid #dfdfdf;
+    padding-left: 8px;
+    padding-right: 8px;
+}

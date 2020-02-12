@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.ZoneMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Zone">
+    <id column="zone_id" jdbcType="VARCHAR" property="zoneId" />
+    <result column="zone_name" jdbcType="VARCHAR" property="zoneName" />
+    <result column="zone_english_name" jdbcType="VARCHAR" property="zoneEnglishName" />
+    <result column="zone_remark" jdbcType="VARCHAR" property="zoneRemark" />
+    <result column="zone_Auditing" jdbcType="VARCHAR" property="zoneAuditing" />
+    <result column="zone_yn" jdbcType="VARCHAR" property="zoneYn" />
+    <result column="zone_custom1" jdbcType="VARCHAR" property="zoneCustom1" />
+    <result column="zone_custom2" jdbcType="VARCHAR" property="zoneCustom2" />
+    <result column="zone_custom3" jdbcType="VARCHAR" property="zoneCustom3" />
+    <result column="zone_custom4" jdbcType="VARCHAR" property="zoneCustom4" />
+    <result column="zone_custom5" jdbcType="VARCHAR" property="zoneCustom5" />
+    <result column="zone_custom6" jdbcType="VARCHAR" property="zoneCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    zone_id, zone_name, zone_english_name, zone_remark, zone_Auditing, zone_yn, zone_custom1, 
+    zone_custom2, zone_custom3, zone_custom4, zone_custom5, zone_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from zone 
+	    where zone_Yn=0
+	    ORDER BY zone_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zone
+    where zone_id = #{zoneId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zone
+    where zone_id = #{zoneId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Zone">
+    insert into zone (zone_id, zone_name, zone_english_name, 
+      zone_remark, zone_Auditing, zone_yn, 
+      zone_custom1, zone_custom2, zone_custom3, 
+      zone_custom4, zone_custom5, zone_custom6
+      )
+    values (#{zoneId,jdbcType=VARCHAR}, #{zoneName,jdbcType=VARCHAR}, #{zoneEnglishName,jdbcType=VARCHAR}, 
+      #{zoneRemark,jdbcType=VARCHAR}, #{zoneAuditing,jdbcType=VARCHAR}, #{zoneYn,jdbcType=VARCHAR}, 
+      #{zoneCustom1,jdbcType=VARCHAR}, #{zoneCustom2,jdbcType=VARCHAR}, #{zoneCustom3,jdbcType=VARCHAR}, 
+      #{zoneCustom4,jdbcType=VARCHAR}, #{zoneCustom5,jdbcType=VARCHAR}, #{zoneCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Zone">
+    insert into zone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zoneId != null">
+        zone_id,
+      </if>
+      <if test="zoneName != null">
+        zone_name,
+      </if>
+      <if test="zoneEnglishName != null">
+        zone_english_name,
+      </if>
+      <if test="zoneRemark != null">
+        zone_remark,
+      </if>
+      <if test="zoneAuditing != null">
+        zone_Auditing,
+      </if>
+      <if test="zoneYn != null">
+        zone_yn,
+      </if>
+      <if test="zoneCustom1 != null">
+        zone_custom1,
+      </if>
+      <if test="zoneCustom2 != null">
+        zone_custom2,
+      </if>
+      <if test="zoneCustom3 != null">
+        zone_custom3,
+      </if>
+      <if test="zoneCustom4 != null">
+        zone_custom4,
+      </if>
+      <if test="zoneCustom5 != null">
+        zone_custom5,
+      </if>
+      <if test="zoneCustom6 != null">
+        zone_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zoneId != null">
+        #{zoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneName != null">
+        #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneEnglishName != null">
+        #{zoneEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneRemark != null">
+        #{zoneRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneAuditing != null">
+        #{zoneAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneYn != null">
+        #{zoneYn,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom1 != null">
+        #{zoneCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom2 != null">
+        #{zoneCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom3 != null">
+        #{zoneCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom4 != null">
+        #{zoneCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom5 != null">
+        #{zoneCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom6 != null">
+        #{zoneCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Zone">
+    update zone
+    <set>
+      <if test="zoneName != null">
+        zone_name = #{zoneName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneEnglishName != null">
+        zone_english_name = #{zoneEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneRemark != null">
+        zone_remark = #{zoneRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneAuditing != null">
+        zone_Auditing = #{zoneAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneYn != null">
+        zone_yn = #{zoneYn,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom1 != null">
+        zone_custom1 = #{zoneCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom2 != null">
+        zone_custom2 = #{zoneCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom3 != null">
+        zone_custom3 = #{zoneCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom4 != null">
+        zone_custom4 = #{zoneCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom5 != null">
+        zone_custom5 = #{zoneCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="zoneCustom6 != null">
+        zone_custom6 = #{zoneCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where zone_id = #{zoneId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Zone">
+    update zone
+    set zone_name = #{zoneName,jdbcType=VARCHAR},
+      zone_english_name = #{zoneEnglishName,jdbcType=VARCHAR},
+      zone_remark = #{zoneRemark,jdbcType=VARCHAR},
+      zone_Auditing = #{zoneAuditing,jdbcType=VARCHAR},
+      zone_yn = #{zoneYn,jdbcType=VARCHAR},
+      zone_custom1 = #{zoneCustom1,jdbcType=VARCHAR},
+      zone_custom2 = #{zoneCustom2,jdbcType=VARCHAR},
+      zone_custom3 = #{zoneCustom3,jdbcType=VARCHAR},
+      zone_custom4 = #{zoneCustom4,jdbcType=VARCHAR},
+      zone_custom5 = #{zoneCustom5,jdbcType=VARCHAR},
+      zone_custom6 = #{zoneCustom6,jdbcType=VARCHAR}
+    where zone_id = #{zoneId,jdbcType=VARCHAR}
+  </update>
+</mapper>

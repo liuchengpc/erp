@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <!--<link rel="stylesheet" th:href="@{/css/accountindex.css">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <style type="text/css">
+    	a:link, 
+			a:visited,
+			a:hover,
+			a:active 
+			{
+				text-decoration: none;
+			}
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="main6" style="border: 1px solid #E7E7EB;border-left: none;"> 	
+				<div class="global-width ">
+					<iframe  frameBorder="0" id="left6" name="left6" class="col-lg-2"  style="border: 1px solid #E7E7EB;border-top: none;border-bottom: none; padding-right: 0px;padding-left: 0px;"   scrolling="no" th:src="@{/topage/page/common/body_menu6}"  width="195px"  target="main"></iframe>
+					<iframe  frameBorder="0" id="main6" name="main6" class="col-lg-10" style="overflow:hidden; padding-right: 0px;"  scrolling="yes" th:src="@{/topage/page/claim/users_home}" width="79.4%"; onload="this.height=this.contentWindow.document.documentElement.scrollHeight" ></iframe>
+					<script type="text/javascript">									
+						function setheight6(){
+							var s=$("#main6").height();
+							$(".main6").height(s);
+							$("#left6").height(s);
+							
+						}
+					　	t = setInterval("setheight6()", 1);
+					
+						function reinitIframe6() {           
+						     var iframe = document.getElementById("main6");           
+						     try {               
+						            var bHeight =iframe.contentWindow.document.body.scrollHeight;               
+						            var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;              
+						            var height = Math.max(bHeight, dHeight);            iframe.height = height;           
+						        } catch (ex) { }       
+						}       
+						window.setInterval("reinitIframe6()", 1);//定时去检查iframe的高度,这样保证时时都是自动高了
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+   <!-- <script type="text/javascript">
+        $(function () {
+                var newDiv = $(`<div data-id="accountinfo"  class="tab-pane active">`);
+                newDiv.load("accountinfo.html");
+                $(".tab-content").append(newDiv)
+            });
+        $(".navlist li ").click(function () {
+
+            $(".navlist li").click(function () {
+
+                let dataid=$(this).attr("data-id");
+
+                $(".navlist li").removeClass("active");
+                $(this).addClass("active");
+
+                $(".tab-content div").removeClass("active");
+                var newDiv = $(`<div data-id="${dataid}"  class="tab-pane active">`);
+                newDiv.load(dataid+".html");
+                $(".tab-content").append(newDiv)
+
+            });
+        });
+    </script>-->
+</body>
+</html>

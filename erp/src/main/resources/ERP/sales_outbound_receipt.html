@@ -341,7 +341,7 @@
 		        <button class="layui-btn" @click="selectpage(page.prePage)" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
 		        <button class="layui-btn" @click="selectpage(page.nextPage)" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
 				<button class="layui-btn" @click="selectpage(page.pages)" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
-		        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
+		        <button class="layui-btn" @click="xz" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
 		        <button class="layui-btn" @click="baocun" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
 		        <button class="layui-btn" @click="bianji" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
 		        <button class="layui-btn" @click="del(stu.sowId)" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
@@ -373,15 +373,35 @@
 			
 		},
 		methods:{
+			xz:function(){
+				//目前不知道怎么编辑table，所以注释清空这行
+				//sales_outboundvue.chongzhi();
+				sales_outboundvue.bianji();
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectcount",
+					success:function(res){
+						sales_outboundvue.page.list[0].sowId=res+1;
+					}
+					
+				});
+							
+			},
 			del:function(id){
+				if(confirm("是否删除？")){
 				$.ajax({
 					type:"get",
 					data:{sowId:id},
 					url:host+"Sales_out_warehouseController/delete",
 					success:function(resulet){
-						
+						if(resulet>0){
+                    		alert("删除成功！");
+                    	}else{
+                    		alert("删除失败！");
+                    	}
 					}
 				});
+				}
 			},
 			shenhe:function(id,sid){
 				$.ajax({
@@ -421,6 +441,35 @@
 				sales_outboundvue.page.list[0].sowPriceIncludeTax=$("#app select:eq(0)").val();
 				sales_outboundvue.page.list[0].sowForeignTrade=$("#app select:eq(1)").val();
 				sales_outboundvue.page.list[0].sowSalessktj=$("#app select:eq(2)").val();
+				if(sales_outboundvue.page.list[0].sowId>sales_outboundvue.page.pages){
+					$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouse_detailedController/selectcount",
+					async:false,
+					success:function(res){
+						sales_outboundvue.page.list[0].list=layui.table.cache["materialsContent"];
+						$.each(sales_outboundvue.page.list[0].list,function(a,b) {
+							b.sowdId=res+(a+1);
+						});
+						
+					}
+					
+				});
+				$.ajax({
+					type:"post",
+					url:host+"Sales_out_warehouseController/insert",
+					data:JSON.stringify(sales_outboundvue.page.list[0]),
+                    contentType:"application/json;charset=utf-8",
+                    success:function(res){
+                    	if(res>0){
+                    		alert("新增成功！");
+                    	}else{
+                    		alert("新增失败！");
+                    	}
+                    }
+				});
+				
+				}else{
 				sales_outboundvue.page.list[0].list=layui.table.cache["materialsContent"];
 				$.ajax({
 					type:"post",
@@ -428,10 +477,14 @@
 					data:JSON.stringify(sales_outboundvue.page.list[0]),
                     contentType:"application/json;charset=utf-8",
                     success:function(res){
-                    	
+                    	if(res>0){
+                    		alert("修改成功！");
+                    	}else{
+                    		alert("修改失败！");
+                    	}
                     }
 				});
-				
+				}
 				
 			},
 			bianji:function(){

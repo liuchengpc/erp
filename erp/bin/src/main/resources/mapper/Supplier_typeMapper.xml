@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Supplier_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Supplier_type">
+    <id column="st_id" jdbcType="VARCHAR" property="stId" />
+    <result column="st_name" jdbcType="VARCHAR" property="stName" />
+    <result column="st_engname" jdbcType="VARCHAR" property="stEngname" />
+    <result column="st_remark" jdbcType="VARCHAR" property="stRemark" />
+    <result column="st_Auditing" jdbcType="VARCHAR" property="stAuditing" />
+    <result column="st_yn" jdbcType="VARCHAR" property="stYn" />
+    <result column="st_custom1" jdbcType="VARCHAR" property="stCustom1" />
+    <result column="st_custom2" jdbcType="VARCHAR" property="stCustom2" />
+    <result column="st_custom3" jdbcType="VARCHAR" property="stCustom3" />
+    <result column="st_custom4" jdbcType="VARCHAR" property="stCustom4" />
+    <result column="st_custom5" jdbcType="VARCHAR" property="stCustom5" />
+    <result column="st_custom6" jdbcType="VARCHAR" property="stCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    st_id, st_name, st_engname, st_remark, st_Auditing, st_yn, st_custom1, st_custom2, 
+    st_custom3, st_custom4, st_custom5, st_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from supplier_type 
+	    where st_Yn=0
+	    ORDER BY st_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_type
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from supplier_type
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Supplier_type">
+    insert into supplier_type (st_id, st_name, st_engname, 
+      st_remark, st_Auditing, st_yn, 
+      st_custom1, st_custom2, st_custom3, 
+      st_custom4, st_custom5, st_custom6
+      )
+    values (#{stId,jdbcType=VARCHAR}, #{stName,jdbcType=VARCHAR}, #{stEngname,jdbcType=VARCHAR}, 
+      #{stRemark,jdbcType=VARCHAR}, #{stAuditing,jdbcType=VARCHAR}, #{stYn,jdbcType=VARCHAR}, 
+      #{stCustom1,jdbcType=VARCHAR}, #{stCustom2,jdbcType=VARCHAR}, #{stCustom3,jdbcType=VARCHAR}, 
+      #{stCustom4,jdbcType=VARCHAR}, #{stCustom5,jdbcType=VARCHAR}, #{stCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Supplier_type">
+    insert into supplier_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stId != null">
+        st_id,
+      </if>
+      <if test="stName != null">
+        st_name,
+      </if>
+      <if test="stEngname != null">
+        st_engname,
+      </if>
+      <if test="stRemark != null">
+        st_remark,
+      </if>
+      <if test="stAuditing != null">
+        st_Auditing,
+      </if>
+      <if test="stYn != null">
+        st_yn,
+      </if>
+      <if test="stCustom1 != null">
+        st_custom1,
+      </if>
+      <if test="stCustom2 != null">
+        st_custom2,
+      </if>
+      <if test="stCustom3 != null">
+        st_custom3,
+      </if>
+      <if test="stCustom4 != null">
+        st_custom4,
+      </if>
+      <if test="stCustom5 != null">
+        st_custom5,
+      </if>
+      <if test="stCustom6 != null">
+        st_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stId != null">
+        #{stId,jdbcType=VARCHAR},
+      </if>
+      <if test="stName != null">
+        #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="stEngname != null">
+        #{stEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="stRemark != null">
+        #{stRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stAuditing != null">
+        #{stAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="stYn != null">
+        #{stYn,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom1 != null">
+        #{stCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom2 != null">
+        #{stCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom3 != null">
+        #{stCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom4 != null">
+        #{stCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom5 != null">
+        #{stCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom6 != null">
+        #{stCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Supplier_type">
+    update supplier_type
+    <set>
+      <if test="stName != null">
+        st_name = #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="stEngname != null">
+        st_engname = #{stEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="stRemark != null">
+        st_remark = #{stRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stAuditing != null">
+        st_Auditing = #{stAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="stYn != null">
+        st_yn = #{stYn,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom1 != null">
+        st_custom1 = #{stCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom2 != null">
+        st_custom2 = #{stCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom3 != null">
+        st_custom3 = #{stCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom4 != null">
+        st_custom4 = #{stCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom5 != null">
+        st_custom5 = #{stCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="stCustom6 != null">
+        st_custom6 = #{stCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Supplier_type">
+    update supplier_type
+    set st_name = #{stName,jdbcType=VARCHAR},
+      st_engname = #{stEngname,jdbcType=VARCHAR},
+      st_remark = #{stRemark,jdbcType=VARCHAR},
+      st_Auditing = #{stAuditing,jdbcType=VARCHAR},
+      st_yn = #{stYn,jdbcType=VARCHAR},
+      st_custom1 = #{stCustom1,jdbcType=VARCHAR},
+      st_custom2 = #{stCustom2,jdbcType=VARCHAR},
+      st_custom3 = #{stCustom3,jdbcType=VARCHAR},
+      st_custom4 = #{stCustom4,jdbcType=VARCHAR},
+      st_custom5 = #{stCustom5,jdbcType=VARCHAR},
+      st_custom6 = #{stCustom6,jdbcType=VARCHAR}
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </update>
+</mapper>

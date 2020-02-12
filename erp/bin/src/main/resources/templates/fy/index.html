@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+    <head>
+        <meta charset="UTF-8" />
+        <title>Dashboard | Nadhif - Responsive Admin Template</title>
+ 		<link rel="stylesheet" href="../css/bootstrap.min.css">
+ 		<link rel="stylesheet" href="../css/bootstrap-table.css">
+        
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../css/bootstrap-table.css"></script>
+        <script src="../js/bootstrap-table.js"></script>
+        <script src="../js/bootstrap-table-zh-CN.js"></script>
+    </head>
+ 
+   <body>
+
+        <h2>前端分页</h2>
+        <!-- 自定义搜索条件区域 -->
+         <div id="toolbar" class="btn-group" style="margin-top:15px">
+            <input id="id" placeholder="请输入编号查询">
+            <input id="name" placeholder="请输入姓名查询">
+            <button id="search_btn">查询</button>
+        </div>
+        
+         <!-- bootstrap table自动渲染区域 -->
+		<table id="mytable" class="table table-hover" data-toolbar="#toolbar"></table>
+		
+        <script type="text/javascript">
+            //初始化Table
+                $('#mytable').bootstrapTable({
+                	url: '/skmg/Skmg/getUserListPage',   //请求后台的URL（*）
+                    method: 'get',                      //请求方式（*）
+                    striped : true, 					//是否显示行间隔色
+                    pageNumber:1,                       //初始化加载第一页，默认第一页
+                	pagination : true,					//是否分页
+                	sidePagination : 'client',			//server:服务器端分页|client：前端分页
+                	pageSize :5,						//单页记录数
+                	pageList : [ 5, 10, 20, 30 ],		//可选择单页记录数
+                	showRefresh : true,					//刷新按钮                   
+                    queryParams : function (params) {
+                        var temp = {
+                    		id:$('#id').val(),
+                       		name:$('#name').val()
+                        };
+                        return temp;
+                    },                    				//得到查询的参数
+                	contentType: "application/x-www-form-urlencoded",//必须要有！！！！
+                    toolbar: '#toolbar',                //工具按钮用哪个容器                
+                    toolbarAlign:'left',				//工具栏对齐方式
+                    buttonsAlign:'right',				//按钮对齐方式
+                    cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                    sortable: false,                    //是否启用排序
+                    sortOrder: "asc",                   //排序方式
+                    search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                    strictSearch: true,
+                    showColumns: true,                  //是否显示所有的列
+                    minimumCountColumns: 2,             //最少允许的列数
+                    clickToSelect: true,                //是否启用点击选中行
+                    //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                    showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,                  //是否显示父子表
+                    locale:'zh-CN',						//中文支持
+                    columns : [{
+                        title:'全选',
+                        field:'state',
+                        checkbox:true,
+                        width:25,
+                        align:'center',
+                        valign:'middle'
+                    },{  
+ 		        	   title : '供应商编码',
+ 		            	field : 'id',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            }, {
+ 		            	title : '供应商名称',
+ 		            	field : 'name',	        	    	
+ 		                sortable : true,
+ 		            }, {      	   
+ 		            	title : '联系人',
+         	    	 	field : 'contacts',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            },  {      	   
+ 		            	title : '联系电话',
+         	    	 	field : 'phone',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '传真',
+         	    	 	field : 'fax',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		        	    
+         	    	 	field : 'address',
+ 	        	    	title : '联系地址',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		        	    
+         	    	 	field : 'creationtime',
+ 	        	    	title : '创建时间',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		        	    
+         	    	 	field : 'depict',
+ 	        	    	title : '描述',
+ 		                sortable : true,
+ 		                
+ 		            }, {
+ 						/* field:'id',
+ 						title: '操作',
+ 						width: 120,
+ 						align: 'center',
+ 						valign: 'middle',
+ 						formatter: actionFormatter */
+ 						field: 'operator',
+ 						title: '操作',
+ 						align: 'center',
+ 						valign: 'middle',
+ 						width: 120,
+ 						// visible: false,
+ 						formatter: function (value, row, index) {
+ 						    // var sid_code = base64encode(row.sid + '');   //  sid 加密处理
+ 						    // alert(sid_code);
+ 						    return '<a href="#">' + 
+ 						        '<i class="glyphicon glyphicon-eye-open" title="显示"></i> ' + 
+ 						        '</a>'+ 
+ 						        '<a href="#editProject" data-toggle="modal" title="修改">' + 
+ 						        '<i class="glyphicon glyphicon-pencil"></i> ' + 
+ 						        '</a>'+
+ 						        '<a href="javascript:void(0)" title="删除">' +
+ 						        '<i class="glyphicon glyphicon-trash text-danger"></i> ' + 
+ 						        '</a>';
+ 						},
+ 						events: {
+ 						  'click a[title=删除]': function (e, value, row, index) {
+ 							  console.info(e)
+ 							  console.info(value)
+ 							  console.info(row)
+ 							  console.info(index)
+ 							  alert(row.id)
+ 						      if(confirm('此操作不可逆，请确认是否删除？')==true){
+ 						    	 // 获取当前行 				              
+ 						    	 var id=row.id;
+ 						    	 $.ajax({
+	 									url:"/skmg/Skmg/deleteByPid",
+	 									type:"post",
+	 									data:"id="+id,
+	 									dataType:"json",						
+	 									success:function(res){	
+	 										console.info("删除：")
+	 										console.info(res);
+ 											alert(res.message)
+	 										$('#mytable').bootstrapTable('refresh');
+	 									}
+	 							}) 
+ 						      }
+ 						  },
+ 						  'click a[title=修改]': function (e, value, row, index) {
+ 						      // e.preventDefault();
+ 						      alert('click change button');
+ 						  },
+ 						}
+ 		            } ],
+ 		          
+                });           
+                         
+                //查询按钮事件
+                $('#search_btn').click(function() {
+                	alert(11)
+                	var id=$('#id').val();
+               		var name=$('#name').val();
+               		alert("id="+id+","+"name="+name+",")
+                	$('#mytable').bootstrapTable('refresh', {
+                		url : '/skmg/Skmg/getUserListPage'
+                	});
+                })
+        </script>
+   </body>
+ 
+            
+</html>

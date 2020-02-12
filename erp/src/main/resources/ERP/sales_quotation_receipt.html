@@ -15,7 +15,6 @@
             padding: 15px;
 			/* !important 设置样式优先级最高
 			 * 防止数据加载完毕之前出现vue表达式 */
-			
 			[v-cloak] {
 				display: none !important;
 			}
@@ -31,13 +30,13 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">正式客户</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.customerId" disabled>
+									<input type="text" class="layui-input" v-model="pages.customerId" >
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">供应商地址</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" style="width:30%;float: left;" disabled>
+									<input type="text" class="layui-input" style="width:30%;float: left;" >
 									<input type="text" class="layui-input" style="width:68%;float: right;" v-model="pages.sqDeliveryAddress" disabled>
 								</div>
 							</div>
@@ -54,7 +53,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据号码</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.sqId" name="sqId">
+									<input type="text" class="layui-input" v-model="pages.sqId" name="sqId" disabled> 
 								</div>
 							</div>
 						</div>
@@ -72,9 +71,18 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
 								<div class="layui-input-block">
-									<select name="interest">
-											
-									</select>
+									<template v-if="pages.sqTax==1">
+										<select name="interest">
+											            <option selected="selected">含税</option>
+											            <option>未含税</option>
+										</select>
+									 </template>
+									<template v-if="pages.sqTax==0">
+										<select name="interest">
+											            <option >含税</option>
+											            <option selected="selected">未含税</option>
+										</select>
+									 </template>
 								</div>
 							</div>
 						</div>
@@ -84,7 +92,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">汇率</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input"  v-model="pages.sqExchangeRate">
+									<input type="text" class="layui-input"  v-model="pages.sqExchangeRate" disabled>
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -172,7 +180,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">所属部门</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.teamId">
+									<input type="text" class="layui-input" v-model="pages.sqCustom3">
 								</div>
 							</div>
 						</div>
@@ -188,7 +196,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">复核人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.sqReviewer">
+									<input type="text" class="layui-input" v-model="pages.sqReviewer" id="fhname">
 								</div>
 							</div>
 						</div>
@@ -228,13 +236,13 @@
 						<button class="layui-btn" title="上一笔" @click="goPrePage"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="下一笔" @click="goNextPage"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="后一笔" @click="goLastPage"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="新增" @click="addinfo"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-						<button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="删除" @click="gomove"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="审核" @click="audit"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
 				</div>
@@ -248,7 +256,6 @@
 			$(function(){
 				
 			});
-			
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -267,8 +274,6 @@
 					tabDelete: function(othis) {
 						//删除指定Tab项
 						element.tabDelete('demo', '44'); //删除：“商品管理”
-			
-			
 						othis.addClass('layui-btn-disabled');
 					},
 					tabChange: function() {
@@ -318,7 +323,6 @@
 								data: "pageNum="+page+"&pageSize=1",
 								success:function(res){
 									this_.page = res;
-									console.info(this_.page.list);
 								}
 							});
 					},
@@ -340,6 +344,36 @@
 						if (this.page.hasNextPage) {
 							this.goPage(this.page.nextPage);
 							this.logininfo();
+						}
+					},
+					//新增订单
+					addinfo:function(){
+						  $(":input").val("");
+					},
+					//删除订单
+					gomove:function(){
+					 var a=confirm("是否删除该张单据？");
+					 if(a){
+						 var sqid=$("[name=sqId]").val();
+						 alert(sqid);
+					 }
+					},
+					//修改订单审核状态
+					audit:function(){
+					  var name=$("#fhname").val();
+						if(name!=""){
+							alert("该订单已复核！");
+						}else{
+							//发ajax请求修改订单审核状态
+							var sqid=$("[name=sqId]").val();
+							$.ajax({
+								url : "http://127.0.0.1:8080/Sales_quotationController/updateByPrimaryKeySelective",
+								type: "post",
+								data: "record="+record,
+								success:function(res){
+									alert(res.message);
+								}
+							});
 						}
 					},
 					logininfo:function(){

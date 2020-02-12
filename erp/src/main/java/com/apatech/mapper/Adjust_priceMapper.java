@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Adjust_price;
 import com.apatech.domain.wd_Adjust_price;
@@ -48,4 +49,7 @@ public interface Adjust_priceMapper {
     		"WHERE mat.matter_custom6=#{matterCustom6} AND adj.updowmid=upd.up_id AND mat.mu_id=mu.mu_id GROUP BY mat.matter_name\n" + 
     		"")
     List<wd_Adjust_price> queryMater(String matterCustom6);
+    
+    @Update("UPDATE `adjust_price` SET ap_yn=1 WHERE ap_dateid=#{apDateid}")
+    int updateByPrimaryKeySelectives (String apDateid);
 }

@@ -63,12 +63,12 @@ let viewModel = new Vue({
         },
         showSupplierWindow(){
             layer.open({
-                type: 2,
-                title:"单选--采购请购类型设定",
-                content: "window_set_request_purchase_order_type.html",
-                area: ['762px', '450px']
-            })
-        }
+            type: 2,
+            title:"单选--采购请购类型设定",
+            content: "window_set_request_purchase_order_type.html",
+            area: ['762px', '450px']
+        })
+    }
     },
     watch: {
         /**

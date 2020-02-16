@@ -21,6 +21,9 @@ public interface Requisition_detailedMapper {
 	 		"Requisition_detailed WHERE rd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
+	//@Select("SELECT * FROM requisition_detailed WHERE requisition_id=#{requisitionId}")
+	List<Requisition_detailed> queryAllByR_ID(String requisitionId); 
+	
     int deleteByPrimaryKey(String rdId);
 
     int insert(Requisition_detailed record);

@@ -31,13 +31,13 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据日期</label>
 								<div class="layui-input-block">
-									<input type="date" class="layui-input" v-model="pages.apCustom1">
+									<input type="date" class="layui-input" v-model="pages.apCustom6" disabled>
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据号码</label>
 								<div class="layui-input-block">
-									<input type="text" name="apDateid" class="layui-input" v-model="pages.apDateid">
+									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid" disabled>
 								</div>
 							</div>
 						</div>
@@ -49,13 +49,13 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">增值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.upName">
+									<input type="text" class="layui-input" v-model="pages.upName" disabled>
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">减值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.upCustom6">
+									<input type="text" class="layui-input" v-model="pages.upCustom6" disabled>
 								</div>
 							</div>
 						</div>
@@ -115,13 +115,13 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">制单人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apDoworkman">
+									<input type="text" class="layui-input" v-model="pages.apDoworkman" disabled>
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">复核人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apRecheckman">
+									<input type="text" class="layui-input" v-model="pages.apRecheckman" disabled>
 								</div>
 							</div>
 						</div>
@@ -130,18 +130,18 @@
 				
 			<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" title="第一笔" @click="goFirstPage"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="上一笔" @click="goPrePage"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="下一笔" @click="goNextPage"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="后一笔" @click="goLastPage"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-						<button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="重置" type="reset" @click="chongzhi"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
+						<button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage" v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+						<button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
+						<button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+						<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
+						<button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
+						<button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
+						<button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+						<button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+						<button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" type="reset" @click="deset" v-bind:disabled="return1"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="刷新"  @click="freash"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+						<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+						<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
 				</div>
 			</div>
@@ -151,7 +151,7 @@
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
 		<script id="indexs">
-		{{d.LAY_TABLE_INDEX+1}}
+			{{d.LAY_TABLE_INDEX+1}}
 		</script>
 		<script>
 			/*layui.use('layer', function(){
@@ -171,7 +171,25 @@
 				data(){
 					return{
 						page:[],
-						list:[]
+						list:[],
+						diasabledInput:true,//input框是否可以编辑
+						isinsert:false,//是否是新增状态
+						isedit:false,//是否是编辑状态
+						
+				      	goFirstPage1:false,//第一笔
+			            goPrePage1:false,//上一笔				            
+		             	goNextPage1:false,//下一笔
+				     	goLastPage1:false,//后一笔
+		             	inset1:false,   //新增  
+		             	return1:true,//取消
+		             	saves1:true,//保存 
+		             	update1:false,//编辑
+		             	deletes1:false,//删除
+					    Auditing1:true,//审核
+					    noAuditing1:true,//取消审核
+					    
+					    lay1:'layui-btn-primary',
+					    lay2:'layui-btn'
 					}
 				},
 				methods: {
@@ -180,7 +198,7 @@
 						location.reload();
 					}
 					,
-					
+					//查询
 					goPage: function(page){
 						//alert("进入gopage");
 						var this_ = this;
@@ -212,7 +230,7 @@
 												table.render({
 													elem: '#materialsContent',
 													data:tableData.data,
-													/* url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
+													/*  url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
 													 */
 													 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 														,cols: [[
@@ -233,54 +251,150 @@
 								}
 						});
 					},
-					
+					goFirstPage: function() { //第一条
+						//alert("显示第一条")
+						this.goPage(1);
+					},
+					goLastPage: function() { //最后一条
+						//alert("显示最后一条")
+						this.goPage(this.page.pages);
+					},
+					goPrePage: function() { //上一条
+						if (this.page.hasPreviousPage) {
+							this.goPage(this.page.prePage);
+						}
+					},
+					goNextPage: function() { //下一条
+						if (this.page.hasNextPage) {
+							this.goPage(this.page.nextPage);
+						}
+					}, 
 					//重置
-					chongzhi:function(){
-						layui.use('table', function(){
-			      			  var table = layui.table;
-			      			  table.render({
-			            elem: '#materialsContent'
-			            ,data:[]              
-			            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-			            , cols: [[
-							{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
-							{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
-							{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
-							{field: 'muName',title: '(单位)',align: 'center'}, 
-							{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
-							{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
-							{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
-							{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
-							{field: 'apDecoration',title: '分录备注',align: 'center'}
-							]]
-			        });
-			      			  $("input").val("");
-							$("textarea").val("");
-			       	 
-			      })
+					deset:function(){
+						this.goPage(1,1);
 						},
 					
-				goFirstPage: function() { //第一条
-					//alert("显示第一条")
-					this.goPage(1);
-				},
-				goLastPage: function() { //最后一条
-					//alert("显示最后一条")
-					this.goPage(this.page.pages);
-				},
-				goPrePage: function() { //上一条
-					if (this.page.hasPreviousPage) {
-						this.goPage(this.page.prePage);
-					}
-				},
-				goNextPage: function() { //下一条
-					if (this.page.hasNextPage) {
-						this.goPage(this.page.nextPage);
-					}
-				}, 
+				//点击新增
+				inset:function(){
+					layui.use('table', function(){
+						  $("input").val("");
+						$("textarea").val("");
+		      			  var table = layui.table;
+		      			  table.render({
+		            elem: '#materialsContent'
+		            ,data:[]              
+		            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+		            ,cols: [[
+						{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
+						{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
+						{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
+						{field: 'muName',title: '(单位)',align: 'center'}, 
+						{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
+						{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
+						{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
+						{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
+						{field: 'apDecoration',title: '分录备注',align: 'center'}
+						]]
+		        });
+		      			
+		       	 
+		      })
+					//按钮改变		    
+					this.diasabledInput=false;//input可以编辑
+					this.isinsert=true;//开启新增模式
+					this.isedit=false;//关闭修改模式
 					
+					this.getno();//获取单号
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+             		this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
 				},
-				created:function(){
+				//删除
+				deletes: function(apDateid) {
+					var this_ = this;
+					//修改信息
+					this.page.list[0].teamYn=1;//是否删除（0 否 1 是 ，默认0）
+					var apDateid=$("[name=apDateid]").val();
+					if (confirm("是否删除")==true) {
+						var obj = {"apDateId":apDateid};
+						var data = JSON.stringify(obj);
+						$.ajax({
+							url : "http://127.0.0.1:8080/wd_adjustController/updateByPrimaryKeySelective",
+							type:"post",
+					  		data :obj,
+						  	dataType:'json',	
+//						  	contentType : "application/json;charset=utf-8",
+						  	success:function (res) {
+						  		alert(apDateid);
+						  		alert("系统提示：" +res.message);
+								this_.diasabledInput=false;//input不可以输入	
+								this_.goPage(1, 1);		
+					        }
+						}); 
+					}
+				},
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//获取单号
+				getno:function(){
+				   	var this_=this;
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					$.ajax({
+						url:"http://127.0.0.1:8080/wd_adjustController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (result) {
+					  		console.info("哈哈哈·")
+						  	console.info(result)
+						   	this_.page.list[0].teamId=ss+result;						
+				        }
+					}); 				
+				}
+				
+				},created:function(){
 					this.goPage(1);
 					
 				}
@@ -324,6 +438,7 @@
 				element.tabChange('test', layid);
 
 				element.on('tab(test)', function(elem) {
+					
 					location.hash = 'test=' + $(this).attr('lay-id');
 				});
 			});

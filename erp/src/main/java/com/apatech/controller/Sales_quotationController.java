@@ -83,7 +83,27 @@ public class Sales_quotationController {
 		String s=dao.getno(billdate);
     	return s;
     }
-	
+	/**
+	 * 新增1
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "insertSelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> insertSelective1(@RequestBody Sales_quotation record) {
+		System.out.println("进入Sales_quotationController新增1");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.insertSelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "新增失败！");
+		}
+		return map;
+    }
 	/**
 	 * 新增
 	 * @param student
@@ -105,7 +125,48 @@ public class Sales_quotationController {
 		}
 		return map;
     }
-
+	/**
+	 * 根据主键修改订单审批状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Sales_quotation record) {
+		System.out.println("进入Sales_quotationController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "审核成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "审核失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改订单状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective1(@RequestBody Sales_quotation record) {
+		System.out.println("进入Sales_quotationController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
 	/**
 	 * 根据主键修改
 	 * @param student

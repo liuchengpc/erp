@@ -3,6 +3,7 @@ package com.apatech.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -135,25 +136,25 @@ public class Purchase_returnsController {
 
     @GetMapping("/selectLast")
 	@ResponseBody
-    public Purchase_returns selectLast(){
+    public PurchaseReturnsPojo selectLast(){
 		return dao.selectLast();
 	}
 
 	@GetMapping("/selectPrev")
 	@ResponseBody
-	public Purchase_returns selectPrev(Integer lineId){
+	public PurchaseReturnsPojo selectPrev(Integer lineId){
 		return dao.selectPrev(lineId);
 	}
 
 	@GetMapping("/selectNext")
 	@ResponseBody
-	public Purchase_returns selectNext(Integer lineId){
+	public PurchaseReturnsPojo selectNext(Integer lineId){
 		return dao.selectNext(lineId);
 	}
 
 	@GetMapping("/selectFirst")
 	@ResponseBody
-	public Purchase_returns selectFirst(){
+	public PurchaseReturnsPojo selectFirst(){
 		return dao.selectFirst();
 	}
 

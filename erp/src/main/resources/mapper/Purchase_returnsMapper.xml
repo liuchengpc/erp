@@ -432,16 +432,29 @@
       pure_custom6 = #{pureCustom6,jdbcType=VARCHAR}
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
-    <select id="selectLast" resultMap="BaseResultMap">
-      select * from erp.purchase_returns order by pure_id desc limit 0,1;
+  <resultMap id="purchaseReturnMap" type="com.apatech.pojo.PurchaseReturnsPojo" extends="BaseResultMap">
+    <association property="supplier" column="supplier_id"
+                 select="com.apatech.mapper.SupplierMapper.selectByPrimaryKey"/>
+    <association property="warehouse" column="warehouse_id"
+                 select="com.apatech.mapper.WarehouseMapper.selectByPrimaryKey"/>
+    <association property="currency" column="currency_id"
+                 select="com.apatech.mapper.CurrencyMapper.selectByPrimaryKey"/>
+    <association property="purchaseStorage" column="puret_id"
+                 select="com.apatech.mapper.Purchase_storageMapper.selectByPrimaryKey"/>
+    <collection property="details" column="pure_id"
+                select="com.apatech.mapper.Purchase_returns_detailedMapper.selectByPureId"
+                ofType="com.apatech.domain.Purchase_returns_detailed"/>
+  </resultMap>
+    <select id="selectLast" resultMap="purchaseReturnMap">
+      select <include refid="Base_Column_List"/> from erp.purchase_returns order by pure_id desc limit 0,1;
     </select>
-  <select id="selectPrev" resultMap="BaseResultMap">
-    select * from erp.purchase_returns where pure_id &lt; #{lineId,jdbcType=INTEGER} order by pure_id desc limit 0,1;
+  <select id="selectPrev" resultMap="purchaseReturnMap">
+    select <include refid="Base_Column_List"/> from erp.purchase_returns where pure_id &lt; #{lineId,jdbcType=INTEGER} order by pure_id desc limit 0,1;
   </select>
-  <select id="selectNext" resultMap="BaseResultMap">
-    select * from erp.purchase_returns where pure_id &gt; #{lineId,jdbcType=INTEGER} limit 0,1;
+  <select id="selectNext" resultMap="purchaseReturnMap">
+    select <include refid="Base_Column_List"/> from erp.purchase_returns where pure_id &gt; #{lineId,jdbcType=INTEGER} limit 0,1;
   </select>
-  <select id="selectFirst" resultMap="BaseResultMap">
-  select * from erp.purchase_returns order by pure_id asc limit 0,1;
+  <select id="selectFirst" resultMap="purchaseReturnMap">
+  select <include refid="Base_Column_List"/> from erp.purchase_returns order by pure_id asc limit 0,1;
   </select>
 </mapper>

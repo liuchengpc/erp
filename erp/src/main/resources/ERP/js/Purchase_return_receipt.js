@@ -36,16 +36,22 @@ let viewModel = new Vue({
             reviewer: "", // 审核人员
             project: "", //所属项目,
             lineId: 1,
-            purchaseReturn:{
+            purechaseReturn: {
 
             }
         };
     },
     methods: {
+        /**
+         *
+         */
         insertOrder() {
             this.orderStatus = orderStatusMeta.insert;
             this.emptyPurchaseReturnProp();
         },
+        /**
+         *
+         */
         saveOrder() {
             this.orderStatus = orderStatusMeta.save;
         },
@@ -61,11 +67,16 @@ let viewModel = new Vue({
         refreshOrder() {
             this.orderStatus = orderStatusMeta.refresh;
         },
+        /**
+         * 审核订单
+         */
         reviewOrder() {
             this.orderStatus = orderStatusMeta.review;
+            this.purechaseReturn.pureAudition = "1";
 
         },
         unReviewOrder() {
+            this.purechaseReturn.pureAudition = "0";
             this.orderStatus = orderStatusMeta.unReview;
         },
         showSupplierWindow() {
@@ -81,13 +92,15 @@ let viewModel = new Vue({
         },
         getLast() {
             getLast().then(resp => {
-                this.purchaseReturn = resp.data;
+                this.purechaseReturn = resp.data;
+                console.log(resp);
             }).catch(error => {
                 console.log(error);
             });
         },
         getPrev() {
             getPrev(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -95,6 +108,7 @@ let viewModel = new Vue({
         },
         getNext() {
             getNext(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -102,13 +116,14 @@ let viewModel = new Vue({
         },
         getFirst() {
             getFirst().then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
             })
         },
         emptyPurchaseReturnProp(){
-            this.purchaseReturn = {
+            this.purechaseReturn = {
                 pureId: "",
                 supplierId: "",
                 pureEngname: "",

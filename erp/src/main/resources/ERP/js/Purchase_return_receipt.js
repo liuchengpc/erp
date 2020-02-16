@@ -1,4 +1,6 @@
-layui.use('layer', function(){
+import {getLast, getPage, getFirst, getNext, getPrev} from "../rest/purchase_return_receipt_rest.js";
+
+layui.use('layer', function () {
     var layer = layui.layer;
 });
 const orderStatusMeta = {
@@ -29,15 +31,20 @@ let viewModel = new Vue({
             currencyType: "", // 货币类型
             enterWareHouse: "", // 重新入库
             buyer: "", // 采购人员
-            executor:"", // 制单人员
-            department:"", // 所属部门
-            reviewer:"", // 审核人员
-            project:"" //所属项目
+            executor: "", // 制单人员
+            department: "", // 所属部门
+            reviewer: "", // 审核人员
+            project: "", //所属项目,
+            lineId: 1,
+            purchaseReturn:{
+
+            }
         };
     },
     methods: {
         insertOrder() {
             this.orderStatus = orderStatusMeta.insert;
+            this.emptyPurchaseReturnProp();
         },
         saveOrder() {
             this.orderStatus = orderStatusMeta.save;
@@ -61,21 +68,81 @@ let viewModel = new Vue({
         unReviewOrder() {
             this.orderStatus = orderStatusMeta.unReview;
         },
-        showSupplierWindow(){
+        showSupplierWindow() {
             layer.open({
-            type: 2,
-            title:"单选--采购请购类型设定",
-            content: "window_set_request_purchase_order_type.html",
-            area: ['762px', '450px']
-        })
-    }
+                type: 2,
+                title: "单选--采购请购类型设定",
+                content: "window_set_request_purchase_order_type.html",
+                area: ['762px', '450px']
+            })
+        },
+        getPage(pageNum) {
+
+        },
+        getLast() {
+            getLast().then(resp => {
+                this.purchaseReturn = resp.data;
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        getPrev() {
+            getPrev(this.lineId).then(resp => {
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        getNext() {
+            getNext(this.lineId).then(resp => {
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        getFirst() {
+            getFirst().then(resp => {
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        emptyPurchaseReturnProp(){
+            this.purchaseReturn = {
+                pureId: "",
+                supplierId: "",
+                pureEngname: "",
+                puretId: "",
+                purePriceIncludeTax: "",
+                warehouseId: "",
+                pureSingleStatus: "",
+                pureDocumentDate: "",
+                pureDocumentNumber: "",
+                currencyId: "",
+                pureExchangeRate: "",
+                pureForeignTrade: "",
+                pureSunnum: "",
+                pureSunmoney: "",
+                pureTax: "",
+                pureIncludeTaxAmount: "",
+                pureDeliveryAddress: "",
+                pureBuyer: "",
+                pureBelongsSection: "",
+                pureBelongsProject: "",
+                pureExecutor: "",
+                pureCheckagainStaff: "",
+                pureHeaderProvision: "",
+                pureEndClause: "",
+                pureRemark: "",
+                pureAudition: "",
+                pureYn: ""
+            };
+        }
+    },
+    created: function () {
+        this.getLast();
     },
     watch: {
-        /**
-         *
-         * @param newOrderStatus 新状态
-         * @param originalOrderStatus 原来的状态
-         */
         orderStatus: function (newOrderStatus, originalOrderStatus) {
             console.log("newOrderStatus:" + newOrderStatus);
             console.log("originalOrderStatus:" + originalOrderStatus);

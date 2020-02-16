@@ -204,19 +204,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">采购人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="buyer" class="layui-input" v-model="buyer">
+                        <input type="text" name="buyer" class="layui-input" v-model="purchaseReturn.pureBuyer">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">所属部门</label>
                     <div class="layui-input-block">
-                        <input type="text" name="department" class="layui-input" v-model="department">
+                        <input type="text" name="department" class="layui-input" v-model="purchaseReturn.pureBelongsSection">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">所属项目</label>
                     <div class="layui-input-block">
-                        <input type="text" name="project" class="layui-input" v-model="project">
+                        <input type="text" name="project" class="layui-input" v-model="purchaseReturn.pureBelongsProject">
                     </div>
                 </div>
             </div>
@@ -226,13 +226,13 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">制单人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="executor" class="layui-input" v-model="executor">
+                        <input type="text" name="executor" class="layui-input" v-model="purchaseReturn.pureExecutor">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">复核人员</label>
                     <div class="layui-input-block">
-                        <input type="text" name="reviewer" class="layui-input" v-model="reviewer">
+                        <input type="text" name="reviewer" class="layui-input" v-model="purchaseReturn.pureCheckagainStaff">
                     </div>
                 </div>
             </div>
@@ -267,12 +267,17 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
+                <button class="layui-btn" title="第一笔" @click="getFirst()">
+                    <i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
                 </button>
-                <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
-                <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                <button class="layui-btn" title="上一笔" @click="getPrev()">
+                    <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
                 </button>
-                <button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
+                <button class="layui-btn" title="下一笔" @click="getNext()">
+                    <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                </button>
+                <button class="layui-btn" title="后一笔" @click="getLast()">
+                    <i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
                 </button>
                 <button class="layui-btn" title="新增" @click="insertOrder()">
                     <i class="fa fa-file fa-lg" aria-hidden="true"></i>
@@ -301,10 +306,10 @@
             </div>
         </div>
     </div>
+    <i class="layui-icon layui-icon-auz"
+       style="position: fixed;color:#FF5722;font-size: 100px;z-index: 1000;top: 50px;right: 50px;">
+    </i>
 </div>
-<i class="layui-icon layui-icon-auz"
-   style="position: fixed;color:#FF5722;font-size: 100px;z-index: 1000;top: 50px;right: 50px;">
-</i>
 <script src="jquery-1.12.4.js"></script>
 <script src="layui.js"></script>
 <script>
@@ -379,6 +384,7 @@
         });
     });
 </script>
-    <script src="js/ .js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/Purchase_return_receipt.js" type="module"></script>
 </body>
 </html>

@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.apatech.domain.Purchase_returns;
 import com.apatech.domain.Purchase_returns;
@@ -72,7 +69,7 @@ public class Purchase_returnsController {
 	
 	/**
 	 * 新增
-	 * @param student
+	 * @param record
 	 * @return
 	 */
 	@RequestMapping(value = "insertSelective",method = RequestMethod.POST)
@@ -94,7 +91,7 @@ public class Purchase_returnsController {
 
 	/**
 	 * 根据主键修改
-	 * @param student
+	 * @param record
 	 * @return
 	 */
 	@RequestMapping(value = "updateByPrimaryKeySelective",method = RequestMethod.POST)
@@ -135,4 +132,30 @@ public class Purchase_returnsController {
 		}
 		return map;
     }
+
+    @GetMapping("/selectLast")
+	@ResponseBody
+    public Purchase_returns selectLast(){
+		return dao.selectLast();
+	}
+
+	@GetMapping("/selectPrev")
+	@ResponseBody
+	public Purchase_returns selectPrev(Integer lineId){
+		return dao.selectPrev(lineId);
+	}
+
+	@GetMapping("/selectNext")
+	@ResponseBody
+	public Purchase_returns selectNext(Integer lineId){
+		return dao.selectNext(lineId);
+	}
+
+	@GetMapping("/selectFirst")
+	@ResponseBody
+	public Purchase_returns selectFirst(){
+		return dao.selectFirst();
+	}
+
+
 }

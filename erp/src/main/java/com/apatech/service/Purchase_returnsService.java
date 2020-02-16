@@ -18,7 +18,9 @@ import com.github.pagehelper.PageInfo;
 public class Purchase_returnsService {
 	@Autowired
 	private Purchase_returnsMapper dao;
-	
+	@Autowired
+	private Purchase_returnsMapper purchase_returnsMapper;
+
 	public PageInfo<Purchase_returns> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -57,4 +59,20 @@ public class Purchase_returnsService {
     public int updateByPrimaryKey(Purchase_returns record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public Purchase_returns selectLast() {
+        return purchase_returnsMapper.selectLast();
+    }
+
+	public Purchase_returns selectPrev(Integer lineId) {
+		return dao.selectPrev(lineId);
+	}
+
+	public Purchase_returns selectNext(Integer lineId) {
+		return dao.selectNext(lineId);
+	}
+
+	public Purchase_returns selectFirst() {
+		return dao.selectFirst();
+	}
 }

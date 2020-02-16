@@ -32,4 +32,12 @@ public interface Purchase_returnsMapper {
     int updateByPrimaryKeySelective(Purchase_returns record);
 
     int updateByPrimaryKey(Purchase_returns record);
+
+    Purchase_returns selectLast();
+
+    Purchase_returns selectPrev(Integer lineId);
+
+    Purchase_returns selectNext(Integer lineId);
+
+    Purchase_returns selectFirst();
 }

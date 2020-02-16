@@ -432,4 +432,16 @@
       pure_custom6 = #{pureCustom6,jdbcType=VARCHAR}
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
+    <select id="selectLast" resultMap="BaseResultMap">
+      select * from erp.purchase_returns order by pure_id desc limit 0,1;
+    </select>
+  <select id="selectPrev" resultMap="BaseResultMap">
+    select * from erp.purchase_returns where pure_id &lt; #{lineId,jdbcType=INTEGER} order by pure_id desc limit 0,1;
+  </select>
+  <select id="selectNext" resultMap="BaseResultMap">
+    select * from erp.purchase_returns where pure_id &gt; #{lineId,jdbcType=INTEGER} limit 0,1;
+  </select>
+  <select id="selectFirst" resultMap="BaseResultMap">
+  select * from erp.purchase_returns order by pure_id asc limit 0,1;
+  </select>
 </mapper>

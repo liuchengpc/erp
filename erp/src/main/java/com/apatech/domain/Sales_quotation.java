@@ -41,8 +41,23 @@ public class Sales_quotation {
     private String sqCustom5;//自定义4
     private String sqCustom6;//自定义5
     
+    private String teamName;//连表查部门姓名
     
-    public Sales_quotation() {
+    /**
+	 * @return the teamName
+	 */
+	public String getTeamName() {
+		return teamName;
+	}
+
+	/**
+	 * @param teamName the teamName to set
+	 */
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+
+	public Sales_quotation() {
 		super();
 	}
 

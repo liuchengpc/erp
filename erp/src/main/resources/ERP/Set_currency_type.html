@@ -27,7 +27,7 @@
     
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
-    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+    <script src="js/vue-resource.js"></script>
     
     
     
@@ -243,7 +243,8 @@
 					  	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 					  	//但是，如果你的HTML是动态生成的，自动渲染就会失效
 					  	//因此你需要在相应的地方，执行下述方法来进行渲染
-					  	form.render();
+					  	form.render(); //更新全部
+//					  	form.render('select'); //刷新select选择框渲染
 //					  	form.on('select', 'selectCate1'); //更新 lay-filter="test2" 所在容器内的全部 select 状态
 					  	form.on('select(selectCate1)',function(data){
 					        console.log("显示select");
@@ -338,7 +339,7 @@
 				    this.page.list[0].currencyIfthousand="";//千位逗号，每三位数用逗号隔开（0,1表示）
 				    this.page.list[0].currencyMpointset="";//小数点设置，保留小数点后几位（默认值，2）
 				    this.page.list[0].currencyAuditing="";//是否审核
-//				    this.page.list[0].urrencyYn="";//是否删除（0 否 1 是 ，默认0）
+				    this.page.list[0].urrencyYn=0;//是否删除（0 否 1 是 ，默认0）
 				    this.page.list[0].currencyCustom1="";//自定栏1
 				    this.page.list[0].currencyCustom2="";//自定栏2
 				    this.page.list[0].currencyCustom3="";//自定栏3
@@ -459,8 +460,7 @@
 					var this_ = this;
 					//修改信息
 					var obj=this.page.list[0];
-					this.formrender();
-					alert(this.page.list[0].currencyMpointset)
+//					alert(this.page.list[0].currencyMpointset)
 					
 					$.ajax({
 						url : "http://127.0.0.1:8080/CurrencyController/updateByPrimaryKeySelective",

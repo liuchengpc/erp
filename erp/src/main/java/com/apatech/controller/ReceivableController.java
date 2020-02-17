@@ -42,6 +42,22 @@ public class ReceivableController {
     	return page;
     }
 	
+	
+	/**
+	 * 判断是预收款或应收款 分页 刘成
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpagelc",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Receivable> selectAllpagelc( Integer pageNum,Integer pageSize,String payablesCustom2){
+		System.out.println("进入ReceivableController分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Receivable> page=dao.selectAllpagelc(pageNum, pageSize,payablesCustom2);
+    	return page;
+    }
+	
 	/**
 	 * 获取单号
 	 * @param billdate

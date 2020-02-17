@@ -35,6 +35,7 @@
     <result column="pure_custom4" jdbcType="VARCHAR" property="pureCustom4" />
     <result column="pure_custom5" jdbcType="VARCHAR" property="pureCustom5" />
     <result column="pure_custom6" jdbcType="VARCHAR" property="pureCustom6" />
+    <result column="createDate" jdbcType="DATE" property="createDate" />
   </resultMap>
   <sql id="Base_Column_List">
     pure_id, supplier_id, pure_engname, puret_id, pure_price_include_tax, warehouse_id, 
@@ -42,7 +43,7 @@
     pure_foreign_trade, pure_sunnum, pure_sunmoney, pure_tax, pure_include_tax_amount, 
     pure_delivery_address, pure_buyer, pure_belongs_section, pure_belongs_project, pure_executor, 
     pure_checkagain_staff, pure_header_provision, pure_end_clause, pure_remark, pure_audition, 
-    pure_yn, pure_custom1, pure_custom2, pure_custom3, pure_custom4, pure_custom5, pure_custom6
+    pure_yn, pure_custom1, pure_custom2, pure_custom3, pure_custom4, pure_custom5, pure_custom6,createDate
   </sql>
   
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -75,7 +76,7 @@
       pure_end_clause, pure_remark, pure_audition, 
       pure_yn, pure_custom1, pure_custom2, 
       pure_custom3, pure_custom4, pure_custom5, 
-      pure_custom6)
+      pure_custom6),createDate
     values (#{pureId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{pureEngname,jdbcType=VARCHAR}, 
       #{puretId,jdbcType=VARCHAR}, #{purePriceIncludeTax,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, 
       #{pureSingleStatus,jdbcType=VARCHAR}, #{pureDocumentDate,jdbcType=DATE}, #{pureDocumentNumber,jdbcType=VARCHAR}, 
@@ -87,7 +88,7 @@
       #{pureEndClause,jdbcType=VARCHAR}, #{pureRemark,jdbcType=VARCHAR}, #{pureAudition,jdbcType=VARCHAR}, 
       #{pureYn,jdbcType=VARCHAR}, #{pureCustom1,jdbcType=VARCHAR}, #{pureCustom2,jdbcType=VARCHAR}, 
       #{pureCustom3,jdbcType=VARCHAR}, #{pureCustom4,jdbcType=VARCHAR}, #{pureCustom5,jdbcType=VARCHAR}, 
-      #{pureCustom6,jdbcType=VARCHAR})
+      #{pureCustom6,jdbcType=VARCHAR},{createDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_returns">
     insert into purchase_returns
@@ -191,6 +192,9 @@
       <if test="pureCustom6 != null">
         pure_custom6,
       </if>
+       <if test="pureDocumentDate != null">
+        createDate,
+       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="pureId != null">
@@ -292,6 +296,9 @@
       <if test="pureCustom6 != null">
         #{pureCustom6,jdbcType=VARCHAR},
       </if>
+      <if test="pureDocumentDate != null">
+      	#{createDate,jdbcType=DATE},
+       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_returns">
@@ -393,6 +400,9 @@
       <if test="pureCustom6 != null">
         pure_custom6 = #{pureCustom6,jdbcType=VARCHAR},
       </if>
+      <if test="pureDocumentDate != null">
+        createDate,
+       </if>
     </set>
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
@@ -429,7 +439,8 @@
       pure_custom3 = #{pureCustom3,jdbcType=VARCHAR},
       pure_custom4 = #{pureCustom4,jdbcType=VARCHAR},
       pure_custom5 = #{pureCustom5,jdbcType=VARCHAR},
-      pure_custom6 = #{pureCustom6,jdbcType=VARCHAR}
+      pure_custom6 = #{pureCustom6,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=DATE},
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
     <select id="selectLast" resultMap="BaseResultMap">

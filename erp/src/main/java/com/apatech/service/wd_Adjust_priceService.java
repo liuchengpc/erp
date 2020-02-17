@@ -22,7 +22,7 @@ public class wd_Adjust_priceService {
 		 
     	PageHelper.startPage(pageNum, pageSize);	
     	List<wd_Adjust_price> list=dao.wdselectAll();
-    	PageInfo<wd_Adjust_price> page=new PageInfo<wd_Adjust_price>(list);
+    	PageInfo<wd_Adjust_price> page=new PageInfo<wd_Adjust_price>(list	);
 //	    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }

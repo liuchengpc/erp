@@ -32,4 +32,7 @@ public interface Updown_programMapper {
     int updateByPrimaryKeySelective(Updown_program record);
 
     int updateByPrimaryKey(Updown_program record);
+    
+    @Select("select * from Updown_program")
+    List<Updown_program>selectkm();
 }

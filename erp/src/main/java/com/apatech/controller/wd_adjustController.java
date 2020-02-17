@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Team;
+import com.apatech.domain.Updown_program;
 import com.apatech.domain.wd_Adjust_price;
 import com.apatech.domain.Adjust_price;
 import com.apatech.service.Adjust_priceService;
@@ -41,6 +43,15 @@ public class wd_adjustController {
 		//System.out.println(pageNum+"/"+pageSize);
     	PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	
+	@RequestMapping(value = "selectkm",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Updown_program> selectkm(){
+		
+		System.out.println("进入查询科目");
+		return wddao.selectkm();
     }
 	
 	
@@ -110,28 +121,72 @@ public class wd_adjustController {
 		return map;
     }
 
-	/**
-	 * 根据主键修改
-	 * @param student
-	 * @return
-	 */
-	@RequestMapping(value = "updateByPrimaryKeySelective",method = RequestMethod.POST)
+	
+	@RequestMapping("/selectcount")
 	@ResponseBody
-    public Map<String, String> updateByPrimaryKeySelective(@RequestParam String apDateId) {
-		System.out.println("进入删除controller");
-		System.out.println("实体："+apDateId.toString());
+	public int selectcount() {
+		return wddao.selectcount();
+	}
+	
+	@RequestMapping(value = "wdupdateByPrimaryKeySelective",method = RequestMethod.POST)
+	@ResponseBody
+	 public Map<String, String> wdupdateByPrimaryKeySelective(@RequestBody wd_Adjust_price record) {
+		System.out.println("进入Controller根据apdateid修改");
+		System.out.println("实体："+record.toString());
 		Map<String, String> map=new HashMap<String, String>();
-    	int i=dao.wdupdateByPrimaryKeySelective(apDateId);
-    	System.out.println(i);
+		//修改主单信息
+    	int i=wddao.updateByPrimaryKeySelective(record);
+    	System.out.println(record.getApDateid());
     	if (i>0) {
 			map.put("code", "1");
 			map.put("message", "修改成功！");
 		}else {
 			map.put("code", "2");
-			map.put("message","失败"+ apDateId);
+			map.put("message", "修改失败！");
 		}
 		return map;
     }
+	
+	
+	@RequestMapping(value = "wdupdatekm",method = RequestMethod.POST)
+	@ResponseBody
+	 public Map<String, String> wdupdatekm(@RequestBody wd_Adjust_price record) {
+		System.out.println("进入修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+		//修改主单信息
+    	int i=wddao.wdupdatekm(record);
+    	System.out.println(record.getApDateid());
+    	//修改币别信息
+    	int ia=wddao.updateCoin(record);
+    	System.out.println(record.getApDateid());
+    	
+    	//修改物料信息
+    	
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 根据主键删除
 	 * @param Adjust_priceid

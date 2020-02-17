@@ -41,6 +41,9 @@ public class PriabillController {
     	return page;
     }
 	
+	
+	
+	
 	/**
 	 * 获取单号
 	 * @param billdate

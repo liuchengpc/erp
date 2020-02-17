@@ -13,7 +13,7 @@ public class Priadetails {
     private String priabillNumber;//来源单号
     private String priabillRemarks;//摘要
     private String priabillAuditing;//是否审核
-    private String priabillYn;//是否删除（0 否 1 是 ，默认0）
+    private String priabillYn;//是否删除（0 否 1 是 ,默认0）
     private String priabillCustom1;//自定义1
     private String priabillCustom2;//自定义2
     private String priabillCustom3;//自定义3

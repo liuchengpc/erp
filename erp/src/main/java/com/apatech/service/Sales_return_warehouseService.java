@@ -20,7 +20,7 @@ public class Sales_return_warehouseService {
 	private Sales_return_warehouseMapper dao;
 	
 	public int selectcount() {
-		return dao.selectcount();
+		return dao.selectcount(); 
 	}
 	
 	

@@ -57,7 +57,7 @@
 	    from payables 
 	    where payables_Yn=0
 	    ORDER BY payables_id DESC
-  </select>
+  </select>  
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

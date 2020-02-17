@@ -59,7 +59,7 @@
 	    where priabill_Yn=0
 	    ORDER BY priabill_id DESC
   </select>
-  
+    
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

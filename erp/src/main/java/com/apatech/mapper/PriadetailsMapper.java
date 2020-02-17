@@ -32,4 +32,6 @@ public interface PriadetailsMapper {
     int updateByPrimaryKeySelective(Priadetails record);
 
     int updateByPrimaryKey(Priadetails record);
+    
+    int selectCount();
 }

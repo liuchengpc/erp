@@ -19,15 +19,10 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public PageInfo<Priadetails> selectAllpage(Integer pageNum,Integer pageSize){
-    	System.out.println("分页的集合："+dao.selectAll().toString());
-		 
-    	PageHelper.startPage(pageNum, pageSize);
-    	List<Priadetails> list=dao.selectAll();
+	public List<Priadetails> selectAllpage(){
+    	System.out.println("分页的集合："+dao.selectAll());
 
-    	PageInfo<Priadetails> page=new PageInfo<Priadetails>(list);
-//		    	System.out.println("分页的集合2："+page.getList().toString());
-    	return page;
+    	return dao.selectAll();
     }
 	 
 	 public String getno(String billdate){
@@ -56,5 +51,9 @@ public class PriadetailsService {
 
     public int updateByPrimaryKey(Priadetails record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    public int selectCount() {
+    	return dao.selectCount();
     }
 }

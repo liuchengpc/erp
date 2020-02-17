@@ -11,6 +11,7 @@ import com.apatech.domain.Team;
 public interface PayablesMapper {
 	 List<Payables> selectAll();
 	 
+	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 

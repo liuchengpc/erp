@@ -32,8 +32,12 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from priadetails 
-	    where priadetails_Yn=0
-	    ORDER BY priadetails_id DESC
+	    where Priabill_yn=0   
+	    ORDER BY Priadetails_id DESC
+  </select>
+  
+  <select id="selectCount"  resultType="Integer">
+  		SELECT COUNT(*) FROM priadetails  WHERE Priabill_yn=0 
   </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

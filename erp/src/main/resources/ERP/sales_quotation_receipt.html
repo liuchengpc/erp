@@ -30,7 +30,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">正式客户</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.customerId" name="customerId">
+									<input type="text" class="layui-input" v-model="pages.customerId" name="customerId" @keyup.f4="showSupplierWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -99,7 +99,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">币别</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId">
+									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId" @keyup.f4="showSupplierWindow()">
 								</div>
 							</div>
 						</div>
@@ -113,7 +113,7 @@
 						</ul>
 						<div class="layui-tab-content" style="padding: 10px 0;">
 							<div class="layui-tab-item layui-show">
-								<table id="materialsContent" class="layui-hide">
+								<table id="materialsContent" class="layui-hide" >
 									
 								</table>
 							</div>
@@ -175,7 +175,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">业务人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId">
+									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId" @keyup.f4="showSupplierWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -233,18 +233,18 @@
 				</div>
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" title="第一笔" @click="goFirstPage"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="上一笔" @click="goPrePage"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="下一笔" @click="goNextPage"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="后一笔" @click="goLastPage"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="新增" @click="addinfo"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="保存" @click="add"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-						<button class="layui-btn" title="删除" @click="gomove"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="刷新" @click="renovate"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="审核" @click="audit"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" title="取消审核" @click="cancelaudit"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="fistinfo" title="第一笔" v-on:click="goFirstPage"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="preinfo" title="上一笔" v-on:click="goPrePage"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="nextinfo" title="下一笔" v-on:click="goNextPage"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="lastinfo" title="后一笔" v-on:click="goLastPage"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" title="新增" v-on:click="addinfo"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn layui-btn-disabled" id="save" style="border: 1px solid #008000;" title="保存"  @click="add" ><i   class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="updateinfo" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+						<button class="layui-btn" id="deleinfo" title="删除" v-on:click="gomove"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="resetinfo" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="renovateinfo" title="刷新" v-on:click="renovate"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="auditinfo" title="审核" v-on:click="audit"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+						<button class="layui-btn" id="cancelauditinfo" title="取消审核" v-on:click="cancelaudit"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
 				</div>
 			</div>
@@ -255,7 +255,13 @@
 		<script src="js/vue.js"></script>
 		<script>
 			$(function() {
-
+				var name = $("#fhname").val();
+				if (name != "") {
+					$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
+				}else{
+					$("#auditinfo").attr("class","layui-btn");
+				}
+				
 			});
 			layui.use('element', function() {
 				var $ = layui.jquery,
@@ -317,6 +323,7 @@
 				},
 				methods: {
 					goPage: function(page) {
+						
 						var this_ = this;
 						$.ajax({
 							url: "http://127.0.0.1:8080/Sales_quotationController/selectAllpage",
@@ -347,6 +354,15 @@
 							this.goPage(this.page.nextPage);
 							this.logininfo();
 						}
+					},
+					//客户资料弹窗
+					showSupplierWindow(){
+						layer.open({
+							type:2,
+							title:"客户资料",
+							content:"set_customer_infomation.html",
+							area:['762px','450px']
+						})
 					},
 					//取消省和
 					cancelaudit: function() {
@@ -382,6 +398,15 @@
 					//刷新
 					renovate: function() {
 						this.goPage(1);
+						$("#save").attr("class","layui-btn layui-btn-disabled");
+						$("#fistinfo").attr("class","layui-btn");
+						$("#preinfo").attr("class","layui-btn");
+						$("#nextinfo").attr("class","layui-btn");
+						$("#lastinfo").attr("class","layui-btn");
+						$("#updateinfo").attr("class","layui-btn");
+						$("#deleinfo").attr("class","layui-btn");
+						$("#auditinfo").attr("class","layui-btn");
+						$("#cancelauditinfo").attr("class","layui-btn");
 					},
 					//保存数据
 					add:function(){
@@ -443,13 +468,22 @@
 							 var  rand= parseInt(Math.random() * (x - y + 1) + y);
 							var sqId1=year+mon+date+rand
 							$("[name=sqId]").val(sqId1);
+							//改变保存的按钮属性
+							$("#save").attr("class","layui-btn");
+							$("#fistinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#preinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#nextinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#lastinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#updateinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#deleinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#cancelauditinfo").attr("class","layui-btn layui-btn-disabled");
 					},
 					//删除订单
 					gomove: function() {
 						var a = confirm("是否删除该张单据？");
 						if (a) {
 							var sqid = $("[name=sqId]").val();
-							alert(sqid);
 							var sq_yn = 1;
 							var record = {
 								sqId: sqid,

@@ -26,7 +26,8 @@
                         <label class="layui-form-label" style="color:#009688;">供应商</label>
                         <div class="layui-input-block">
                             <input type="text" name="title" class="layui-input" @keyup.f4="showSupplierWindow()"
-                                   v-model="purechaseReturn.supplierId" :disabled="edit" lay-verify="required">
+                                   v-model="purechaseReturn.supplierId" :disabled="edit" lay-verify="required"
+                                   lay-reqtext="供应商是必填项，岂能为空？">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -49,7 +50,8 @@
                         <label class="layui-form-label" style="color:#009688;">仓库</label>
                         <div class="layui-input-block">
                             <input type="text" name="title" class="layui-input" v-model="purechaseReturn.warehouseId"
-                                   :disabled="edit">
+                                   :readonly="edit" lay-verify="required"
+                                   lay-reqtext="仓库是必填项，岂能为空？">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -75,7 +77,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">单据日期</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" class="layui-input">
+                            <input type="text" name="date" id="date"
+                                   lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -213,21 +216,24 @@
                         <label class="layui-form-label" style="color:#009688;">采购人员</label>
                         <div class="layui-input-block">
                             <input type="text" name="buyer" class="layui-input" v-model="purechaseReturn.pureBuyer"
-                                   :disabled="edit">
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="采购人员是必填项，岂能为空？">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">所属部门</label>
                         <div class="layui-input-block">
                             <input type="text" name="department" class="layui-input" v-model="purechaseReturn.pureBelongsSection"
-                                   :disabled="edit">
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="所属部门是必填项，岂能为空？">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">所属项目</label>
                         <div class="layui-input-block">
                             <input type="text" name="project" class="layui-input" v-model="purechaseReturn.pureBelongsProject"
-                                   :disabled="edit">
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="所属项目是必填项，岂能为空？">
                         </div>
                     </div>
                 </div>
@@ -237,94 +243,98 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">制单人员</label>
                         <div class="layui-input-block">
-                            <input type="text" name="executor" class="layui-input" v-model="purechaseReturn.pureExecutor" :disabled="edit">
+                            <input type="text" name="executor" class="layui-input"
+                                   v-model="purechaseReturn.pureExecutor" :disabled="edit" lay-verify="required"
+                                   lay-reqtext="制单人员是必填项，岂能为空？">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">复核人员</label>
                         <div class="layui-input-block">
-                            <input type="text" name="reviewer" class="layui-input" v-model="purechaseReturn.pureCheckagainStaff" :disabled="edit">
+                            <input type="text" name="reviewer" class="layui-input"
+                                   v-model="purechaseReturn.pureCheckagainStaff" :disabled="edit"
+                                   lay-verify="required" lay-reqtext="复核人员是必填项，岂能为空？">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="layui-row">
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="transferOrder" id="transferOrder">
+                                <option value="">转单</option>
+                                <option value="0" disabled>采购入库转入</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="interest" lay-filter="aihao">
+                                <option value="">功能</option>
+                                <option value="0">批号设定</option>
+                                <option value="0">条码打印</option>
+                                <option value="0" disabled>批次变更价格</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" title="第一笔" @click="getFirst()">
+                        <i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="上一笔" @click="getPrev()">
+                        <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="下一笔" @click="getNext()">
+                        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="后一笔" @click="getLast()">
+                        <i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="新增" @click="insertOrder()">
+                        <i class="fa fa-file fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" class="layui-btn" title="保存"
+                            @lick="saveOrder()"
+                            id="form-getvalue"
+                            lay-submit=""
+                            lay-filter="demo1">
+                        <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="编辑" @click="editOrder()">
+                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="删除" @click="deleteOrder()">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="重置" type="reset" @click="resetOrder()">
+                        <i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="刷新" @click="refreshOrder()">
+                        <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="审核" @click="reviewOrder()">
+                        <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="取消审核" @click="unReviewOrder()">
+                        <i class="fa fa-close fa-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <i class="layui-icon layui-icon-auz" v-show="purechaseReturn.pureAudition == '1'"
+           style="position: fixed;color:#FF5722;font-size: 100px;z-index: 1000;top: 50px;right: 50px;">
+        </i>
     </form>
-    <div class="layui-row">
-        <div class="layui-col-lg2">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="transferOrder" id="transferOrder">
-                            <option value="">转单</option>
-                            <option value="0" disabled>采购入库转入</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-lg2">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="interest" lay-filter="aihao">
-                            <option value="">功能</option>
-                            <option value="0">批号设定</option>
-                            <option value="0">条码打印</option>
-                            <option value="0" disabled>批次变更价格</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" title="第一笔" @click="getFirst()">
-                    <i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="上一笔" @click="getPrev()">
-                    <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="下一笔" @click="getNext()">
-                    <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="后一笔" @click="getLast()">
-                    <i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="新增" @click="insertOrder()">
-                    <i class="fa fa-file fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="保存"
-                        type="button"
-                        @lick="saveOrder()"
-                        id="form-getvalue"
-                        lay-filter="submit">
-                    <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="编辑" @click="editOrder()">
-                    <i class="fa fa-pencil-square-o fa-lg"></i>
-                </button>
-                <button class="layui-btn" title="删除" @click="deleteOrder()">
-                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="重置" type="reset" @click="resetOrder()">
-                    <i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="刷新" @click="refreshOrder()">
-                    <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="审核" @click="reviewOrder()">
-                    <i class="fa fa-check fa-lg" aria-hidden="true"></i>
-                </button>
-                <button class="layui-btn" title="取消审核" @click="unReviewOrder()">
-                    <i class="fa fa-close fa-lg" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <i class="layui-icon layui-icon-auz" v-show="purechaseReturn.pureAudition == '1'"
-       style="position: fixed;color:#FF5722;font-size: 100px;z-index: 1000;top: 50px;right: 50px;">
-    </i>
 </div>
 <script src="jquery-1.12.4.js"></script>
 <script src="layui.js"></script>

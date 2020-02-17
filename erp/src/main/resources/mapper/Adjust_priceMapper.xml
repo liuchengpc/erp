@@ -227,5 +227,5 @@
       ap_custom5 = #{apCustom5,jdbcType=VARCHAR},
       ap_custom6 = #{apCustom6,jdbcType=VARCHAR}
     where ap_id = #{apId,jdbcType=VARCHAR}
-  </update>
+  </update> 
 </mapper>

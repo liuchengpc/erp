@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apatech.domain.Payables;
 import com.apatech.domain.Priadetails;
 import com.apatech.domain.Priadetails;
 import com.apatech.domain.Priadetails;
@@ -19,10 +20,13 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public List<Priadetails> selectAllpage(){
+	public PageInfo<Priadetails> selectAllpage(Integer page,Integer limit){
     	System.out.println("分页的集合："+dao.selectAll());
+    	PageHelper.startPage(page, limit);
+    	List<Priadetails> list=dao.selectAll();
 
-    	return dao.selectAll();
+    	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
+    	return pageFy;
     }
 	 
 	 public String getno(String billdate){

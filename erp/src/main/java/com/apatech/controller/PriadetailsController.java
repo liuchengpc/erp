@@ -36,15 +36,16 @@ public class PriadetailsController {
 	 */
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> selectAllpage(){
-		System.out.println(" 进入Priadetails查询");
-		List<Priadetails> list = dao.selectAllpage();
-		Map<String,Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("code","200");	//默认0，状态200表示成功
-		resultMap.put("msg","");
-		resultMap.put("count",dao.selectCount());	//显示总条数
-		resultMap.put("data",list);	//保存集合
-    	return resultMap;
+	public PageInfo<Priadetails> selectAllpage(Integer page,Integer limit){
+		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
+		/*
+		 * Map<String,Object> resultMap = new HashMap<String, Object>();
+		 * resultMap.put("code","200"); //默认0，状态200表示成功 resultMap.put("msg","");
+		 * resultMap.put("count",dao.selectCount()); //显示总条数
+		 * resultMap.put("data",dao.selectAllpage(page,limit)); //保存集合
+		 */    	
+		PageInfo<Priadetails> pageFy = dao.selectAllpage(page, limit);
+		return pageFy;
     }
 	
 	/**

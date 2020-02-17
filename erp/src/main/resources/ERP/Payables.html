@@ -8,8 +8,7 @@
     <link href="css/fontawesome.css" rel="stylesheet">
 	<link href="css/brands.css" rel="stylesheet">
 	<link href="css/solid.css" rel="stylesheet">
-    <script src="jquery-1.12.4.js"></script>
-    <script src="layui.js"></script>
+
     
     <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
@@ -30,40 +29,40 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName">
+                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式一</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.priabillPrice1" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName1" v-model="pages.priabillSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
+                        <input type="text" id="priabillPrice1" v-model="pages.priabillPrice1" name="title"  class="layui-input" style="width: 40%; float: right;">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式二</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.priabillPrice2" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName2" v-model="pages.priabillSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
+                        <input type="text" id="priabillPrice2" v-model="pages.priabillPrice2" name="title"  class="layui-input" style="width: 40%; float: right;">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式三</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.priabillPrice3" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName3" v-model="pages.priabillSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
+                        <input type="text" id="priabillPrice3" v-model="pages.priabillPrice3" name="title"  class="layui-input" style="width: 40%; float: right;">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">折扣率(%)</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillZhekou" name="title"  class="layui-input">
+                        <input type="text" id="priabillZhekou" v-model="pages.priabillZhekou" name="title"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">终止帐月</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillEndtime" name="title"  class="layui-input">
+                        <input type="text" id="priabillEndtime" v-model="pages.priabillEndtime" name="title"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -73,31 +72,31 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据日期</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillPayablestime"  name="title"  class="layui-input">
+                        <input type="text" id="priabillPayablestime" v-model="pages.priabillPayablestime"  name="title"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据号码</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillCustom2" name="title"  class="layui-input" disabled="disabled">
+                        <input type="text" id="priabillCustom2" v-model="pages.priabillCustom2" name="title"  class="layui-input" disabled="disabled">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillCurrencyName" name="title"  class="layui-input">
+                        <input type="text" id="priabillCurrencyName" v-model="pages.priabillCurrencyName" name="title"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">汇率</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillCurrencyInexchange" name="title"  class="layui-input">
+                        <input type="text" id="priabillCurrencyInexchange" v-model="pages.priabillCurrencyInexchange" name="title"  class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">应付冲款类型</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillType" name="title"  class="layui-input" disabled="disabled">
+                        <input type="text" id="priabillType" v-model="pages.priabillType" name="title"  class="layui-input" disabled="disabled">
                     </div>
                 </div>
                <!-- <div class="layui-form-item">
@@ -113,7 +112,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">凭证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.priabillVoucherno" name="title"  class="layui-input">
+                        <input type="text" id="priabillVoucherno" v-model="pages.priabillVoucherno" name="title"  class="layui-input">
                     </div>
                 </div>
             </div>
@@ -178,13 +177,13 @@
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.priabillTeamName" name="title"  class="layui-input">
+					                        <input type="text" id="priabillTeamName" v-model="pages.priabillTeamName" name="title"  class="layui-input">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">所属项目</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.priabillProjectName" name="title"  class="layui-input">
+					                        <input type="text" id="priabillProjectName" v-model="pages.priabillProjectName" name="title"  class="layui-input">
 					                    </div>
 					                </div>
 					            </div>
@@ -194,13 +193,13 @@
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">制单人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.priabillBillpersonnel" name="title"  class="layui-input">
+					                        <input type="text" id="priabillBillpersonnel" v-model="pages.priabillBillpersonnel" name="title"  class="layui-input">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">复核人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.priabillReviewers" name="title"  class="layui-input">
+					                        <input type="text" id="priabillReviewers" v-model="pages.priabillReviewers" name="title"  class="layui-input">
 					                    </div>
 					                </div>
 					            </div>
@@ -217,7 +216,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏一</label>
                                     <div class="layui-input-block">
-                                        <input type="text" v-model="pages.priabillCustom3" name="title" class="layui-input">
+                                        <input type="text" id="priabillCustom3" v-model="pages.priabillCustom3" name="title" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +226,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏二</label>
                                     <div class="layui-input-block">
-                                        <input type="text" v-model="pages.priabillCustom4" name="title" class="layui-input">
+                                        <input type="text" id="priabillCustom4" v-model="pages.priabillCustom4" name="title" class="layui-input">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +238,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea" v-model="pages.priabillRemarks"></textarea>
+                                        <textarea placeholder="请输入内容" id="priabillRemarks" class="layui-textarea" v-model="pages.priabillRemarks"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -297,6 +296,7 @@
     </div>
 </div>
 
+<script src="layui.js"></script>
 <script>
 	//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
@@ -404,41 +404,41 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
-					this.page.list[0].payablesId="";//应付冲款单ID（主键 唯一）
+					this.page.list[0].priabillId="";//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId="";//供应商表id,外键
 				    this.page.list[0].scsId="";//结算方式id,外键
 				    this.page.list[0].staffId="";//部门员工表id,外键
 				    this.page.list[0].currencyId="";//币别类型表id,外键
 				    this.page.list[0].projectId="";//项目表id,外键
-				    this.page.list[0].payablesSupplierName="";//供应商表，名称
-				    this.page.list[0].payablesSatName1="";//结算方式表，结算方式1，名称
-				    this.page.list[0].payablesPrice1="";//结算方式表，结算方式1，值
-				    this.page.list[0].payablesSatName2="";//结算方式表，结算方式2，名称
-				    this.page.list[0].payablesPrice2="";//结算方式表，结算方式2，值
-				    this.page.list[0].payablesSatName3="";//结算方式表，结算方式3，名称
-				    this.page.list[0].payablesPrice3="";//结算方式表，结算方式3，值
-				    this.page.list[0].payablesZhekou="";//折扣率，【默认值】：0.00
-				    this.page.list[0].payablesEndtime="";//终止账月，【默认值】：当前年月
-				    this.page.list[0].payablesPayablestime="";//单据日期,【默认值】：当前日期
-				    this.page.list[0].payablesCurrencyName="";//币别类型表，名称
-				    this.page.list[0].payablesCurrencyInexchange="";//币别类型表，汇率
-				    this.page.list[0].payablesType="付款冲款";//应付冲款类型，【默认值】：付款冲款
-				    this.page.list[0].payablesVoucherno="";//凭证编号
-				    this.page.list[0].payablesTeamName="";//部门表，名称
-				    this.page.list[0].payablesProjectName="";//项目表，名称
-				    this.page.list[0].payablesBillpersonnel="";//制单人员，【默认值】：当前人员
-				    this.page.list[0].payablesReviewers="";//复合人员，【默认值】：
-				    this.page.list[0].payablesRemarks="";//备注
-				    this.page.list[0].payablesAuditstatus="";//审核状态，【默认值】：0
-				    this.page.list[0].payablesAuditing="";//是否审核，【默认值】：当前人员
-				    this.page.list[0].payablesYn="";//是否删除，【默认值】：0
+				    this.page.list[0].priabillSupplierName="";//供应商表，名称
+				    this.page.list[0].priabillSatName1="";//结算方式表，结算方式1，名称
+				    this.page.list[0].priabillPrice1="";//结算方式表，结算方式1，值
+				    this.page.list[0].priabillSatName2="";//结算方式表，结算方式2，名称
+				    this.page.list[0].priabillPrice2="";//结算方式表，结算方式2，值
+				    this.page.list[0].priabillSatName3="";//结算方式表，结算方式3，名称
+				    this.page.list[0].priabillPrice3="";//结算方式表，结算方式3，值
+				    this.page.list[0].priabillZhekou="";//折扣率，【默认值】：0.00
+				    this.page.list[0].priabillEndtime="";//终止账月，【默认值】：当前年月
+				    this.page.list[0].priabillPayablestime="";//单据日期,【默认值】：当前日期
+				    this.page.list[0].priabillCurrencyName="";//币别类型表，名称
+				    this.page.list[0].priabillCurrencyInexchange="";//币别类型表，汇率
+				    this.page.list[0].priabillType="预付款";//应付冲款类型，【默认值】：付款冲款
+				    this.page.list[0].priabillVoucherno="";//凭证编号
+				    this.page.list[0].priabillTeamName="";//部门表，名称
+				    this.page.list[0].priabillProjectName="";//项目表，名称
+				    this.page.list[0].priabillBillpersonnel="";//制单人员，【默认值】：当前人员
+				    this.page.list[0].priabillReviewers="";//复合人员，【默认值】：
+				    this.page.list[0].priabillRemarks="";//备注
+				    this.page.list[0].priabillAuditstatus="";//审核状态，【默认值】：0
+				    this.page.list[0].priabillAuditing="";//是否审核，【默认值】：当前人员
+				    this.page.list[0].priabillYn="";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].payablesCustom1="";//创建时间
-				    this.page.list[0].payablesCustom2="";//自定义2，单据号码
-				    this.page.list[0].payablesCustom3="";//自定义3
-				    this.page.list[0].payablesCustom4="";//自定义4
-				    this.page.list[0].payablesCustom5="";//自定义5
-				    this.page.list[0].payablesCustom6="";//自定义6
+				    this.page.list[0].priabillCustom1="";//创建时间
+				    this.page.list[0].priabillCustom2="";//自定义2，单据号码
+				    this.page.list[0].priabillCustom3="";//自定义3
+				    this.page.list[0].priabillCustom4="";//自定义4
+				    this.page.list[0].priabillCustom5="";//自定义5
+				    this.page.list[0].priabillCustom6="";//自定义6
 					
 					
 					
@@ -472,10 +472,106 @@
 					
 				},
 				insets: function() {//新增
-				 	
+				 	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+					
+					
+					
+					var this_ = this;
+					//修改信息
+					this.page.list[0].priabillId="20200217";//预付冲款单ID（主键 唯一）
+				    this.page.list[0].supplierId="1";//供应商表id,外键
+				    this.page.list[0].scsId="1";//结算方式id,外键
+				    this.page.list[0].staffId="1";//部门员工表id,外键
+				    this.page.list[0].currencyId="1";//币别类型表id,外键
+				    this.page.list[0].projectId="1";//项目表id,外键
+				    this.page.list[0].priabillSupplierName=$("#priabillSupplierName").val();//供应商表，名称
+				    this.page.list[0].priabillSatName1=$("#priabillSatName1").val();//结算方式表，结算方式1，名称
+				    this.page.list[0].priabillPrice1=$("#priabillPrice1").val();//结算方式表，结算方式1，值
+				    this.page.list[0].priabillSatName2=$("#priabillSatName2").val();//结算方式表，结算方式2，名称
+				    this.page.list[0].priabillPrice2=$("#priabillPrice2").val();//结算方式表，结算方式2，值
+				    this.page.list[0].priabillSatName3=$("#priabillSatName3").val();//结算方式表，结算方式3，名称
+				    this.page.list[0].priabillPrice3=$("#priabillPrice3").val();//结算方式表，结算方式3，值
+				    this.page.list[0].priabillZhekou=$("#priabillZhekou").val();//折扣率，【默认值】：0.00
+				    this.page.list[0].priabillEndtime=$("#priabillEndtime").val();//终止账月，【默认值】：当前年月
+				    this.page.list[0].priabillPayablestime=$("#priabillPayablestime").val();//单据日期,【默认值】：当前日期
+				    this.page.list[0].priabillCurrencyName=$("#priabillCurrencyName").val();//币别类型表，名称
+				    this.page.list[0].priabillCurrencyInexchange=$("#priabillCurrencyInexchange").val();//币别类型表，汇率
+				    this.page.list[0].priabillType="预付款";//应付冲款类型，【默认值】：付款冲款
+				    this.page.list[0].priabillVoucherno=$("#priabillVoucherno").val();//凭证编号
+				    this.page.list[0].priabillTeamName=$("#priabillTeamName").val();//部门表，名称
+				    this.page.list[0].priabillProjectName=$("#priabillProjectName").val();//项目表，名称
+				    this.page.list[0].priabillBillpersonnel=$("#priabillBillpersonnel").val();//制单人员，【默认值】：当前人员
+				    this.page.list[0].priabillReviewers=$("#priabillReviewers").val();//复合人员，【默认值】：
+				    this.page.list[0].priabillRemarks=$("#priabillRemarks").val();//备注
+				    this.page.list[0].priabillAuditstatus="0";//审核状态，【默认值】：0
+				    this.page.list[0].priabillAuditing="admin";//是否审核，【默认值】：当前人员
+				    this.page.list[0].priabillYn="0";//是否删除，【默认值】：0
+//				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
+				    this.page.list[0].priabillCustom1=year+getNow(month)+getNow(date);//创建时间
+				    this.page.list[0].priabillCustom2="";//自定义2，单据号码
+				    this.page.list[0].priabillCustom3="";//自定义3
+				    this.page.list[0].priabillCustom4="";//自定义4
+				    this.page.list[0].priabillCustom5="";//自定义5
+				    this.page.list[0].priabillCustom6="";//自定义6
+					var obj=this.page.list[0];
+					
+					$.ajax({
+						url : "http://127.0.0.1:8080/PriabillController/insertSelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+					  		//alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					});
 				},
 				saves: function() {//保存
+					this.diasabledInput= true;//input不可编辑
 					
+					
+					
+					if(this.isinsert==true){//新增
+						//alert("进入新增")
+						this.insets();
+					}else if(this.isedit==true){
+						//alert("进入修改")
+						this.updates();
+					}else{
+						
+					}	
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
 					
 				},
 				update: function() {//编辑按钮
@@ -532,7 +628,7 @@
 					  	success:function (res) {
 					  		console.info("idfdsfhoewifhw")
 						  	console.info(res)
-						   	this_.page.list[0].payablesCustom2="p"+ss+res;
+						   	this_.page.list[0].priabillCustom2="y"+ss+res;
 				        }
 					});
 					
@@ -628,31 +724,28 @@
         table.render({
             elem: '#materialsContent2'
             ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllpage'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,response: {
-			    statusName: 'code' //数据状态的字段名称，默认：code
-			    ,statusCode: 200 //成功的状态码，默认：0
-			    ,msgName: 'msg' //状态信息的字段名称，默认：msg
-			    ,countName: 'count' //数据总数的字段名称，默认：count
-			    ,dataName: 'data' //数据列表的字段名称，默认：data
-			    ,data:[]
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增           
+			,parseData: function(res){
+				console.log('返回的值',res)
+				return {
+					"code":0,
+					"msg":"",
+					"count":res.total,
+					data:res.list
+				};
 			}
-            /*,parseData:function(res){
-            	console.log(res)
-            	return{
-            		data:res.data
-            	}
-            }*/
-			,page:true//是否开启分页
-            ,limits:[1,5]//选择每页显示多少条数据
-            ,limit:5//初始每页显示条数
+
             , cols: [[
-                {field: 'priadetailsId', title: '预付金额 '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            	{field: 'priadetailsId', title: '(栏号)',sort:true}
+                ,{field: 'priabillPrice', title: '预付金额 ',sort:true} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                 , {field: 'priabillType', title: '来源别'}
                 /*, {field: 'sex', title: '来源别', sort: true}*/
                 , {field: 'priabillNumber', title: '来源单号'}
                 , {field: 'priabillRemarks', title: '摘要'}
             ]]
+            ,page:true//是否开启分页
+            ,limits:[1,2,3]//选择每页显示多少条数据
+            ,limit:2//初始每页显示条数
         });
     });
 </script>

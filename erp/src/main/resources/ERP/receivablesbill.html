@@ -353,9 +353,10 @@
 							/*加载表格数据*/
 							layui.use('table', function(){
 							  var table = layui.table;
+								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 							  
-							  
-							   table.render({
+							
+							  table.render({
 							    elem: '#test'
 							    ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
 							    ,toolbar: '#toolbarDemo'
@@ -380,11 +381,26 @@
 							      {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
 							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
 							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
-							      ,{field:'recedetailType', title:'来源别',  edit: 'text', sort: true,edit: 'text'}
+							      ,{field:'recedetailType', title:'来源别',
+							       templet: function (d) {
+							                        // 模板的实现方式也是多种多样，这里简单返回固定的
+							                        return '<select name="city" lay-filter="testSelect" lay-verify="required" data-value="' + d.city + '" >\n' +
+							                            '        <option value=""></option>\n' +
+							                            '        <option value="18000">销售订单</option>\n' +
+							                            '        <option value="20000">S/C</option>\n' +
+							                            '      </select>';
+							                    }
+							       }
 							      ,{field:'recedetailNumber', title:'来源单号',  sort: true, edit: 'text'}
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
 							      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
+							      
 							    ]]
+							    ,done: function(res, curr, count){
+							      //数据渲染完的回调。
+							      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
+							      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
+							     }
 							    ,page:{
 							    	limit:3,//指定每页显示的条数
 							    	limits:[3,5,10,15,20,25,30],//每页条数的选择项
@@ -410,23 +426,21 @@
 							      layer.alert('编辑行：<br>'+ JSON.stringify(data))
 							    }
 							  });
-							  //监听按钮全选
+							  //监听全选
 							  table.on('toolbar(test)', function(obj){
-							  	console.info("监听按钮全选")
-							  	console.info(obj)
 							    var checkStatus = table.checkStatus(obj.config.id);
 							    switch(obj.event){
-							      	case 'getCheckData':
-								      	var data = checkStatus.data;
-								      	layer.alert(JSON.stringify(data));
-								      	break;
-							      	case 'getCheckLength':
-							    		var data = checkStatus.data;
-							        	layer.msg('选中了：'+ data.length + ' 个');
-							      		break;
-							      	case 'isAll':
-							        	layer.msg(checkStatus.isAll ? '全选': '未全选')
-							      		break;
+							      case 'getCheckData':
+							        var data = checkStatus.data;
+							        layer.alert(JSON.stringify(data));
+							      break;
+							      case 'getCheckLength':
+							        var data = checkStatus.data;
+							        layer.msg('选中了：'+ data.length + ' 个');
+							      break;
+							      case 'isAll':
+							        layer.msg(checkStatus.isAll ? '全选': '未全选')
+							      break;
 							    };
 							  });
 							  
@@ -435,16 +449,37 @@
 							    active[type] ? active[type].call(this) : '';
 							  });
 							  
-						   	//监听行单击事件（双击事件为：rowDouble）
-						  	table.on('rowDouble(test)', function(obj){
-							    var data = obj.data;
-							    
-							    layer.alert(JSON.stringify(data), {
-							      title: '当前行数据：'
-							    });
-							    
-							    //标注选中样式
-							    obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+							   //监听行单击事件（双击事件为：rowDouble）
+							  table.on('rowDouble(test)', function(obj){
+							//  var data = obj.data;
+							//  
+							//  layer.alert(JSON.stringify(data), {
+							//    title: '当前行数据：'
+							//  });
+							//  
+							//  //标注选中样式
+							//  obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+							
+									/*//iframe层-父子操作
+									layer.open({
+									  type: 2,
+									  area: ['900px', '500px'],
+									  fixed: false, //不固定
+									  maxmin: true,
+									  content: 'receivablesbillTC1.html'
+									});*/
+									
+									
+									
+							        layer.open({
+							            type: 2,
+							            title: '单选--销售订单',
+							            content: $('#app'),
+							            fixed: false, //不固定
+							            area: ['680px', '470px'],
+							            content: 'receivablesbillTC1.html'
+							        });
+							   
 							  });
 							  //------------------------工具栏事件-------------------
 							  
@@ -750,6 +785,8 @@
 				
 				
 				
+				// 表格单元格禁用编辑
+				$(layero).find('td').data('edit', false)
 				
 				
 				

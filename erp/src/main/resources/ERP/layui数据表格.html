@@ -52,6 +52,7 @@
 <script>
 layui.use('table', function(){
   var table = layui.table;
+	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
   
 
   table.render({
@@ -79,11 +80,26 @@ layui.use('table', function(){
       {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
       ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
       ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
-      ,{field:'recedetailType', title:'来源别',  edit: 'text', sort: true,edit: 'text'}
+      ,{field:'recedetailType', title:'来源别',
+       templet: function (d) {
+                        // 模板的实现方式也是多种多样，这里简单返回固定的
+                        return '<select name="city" lay-filter="testSelect" lay-verify="required" data-value="' + d.city + '" >\n' +
+                            '        <option value=""></option>\n' +
+                            '        <option value="18000">销售订单</option>\n' +
+                            '        <option value="20000">S/C</option>\n' +
+                            '      </select>';
+                    }
+       }
       ,{field:'recedetailNumber', title:'来源单号',  sort: true, edit: 'text'}
       ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
+      
     ]]
+    ,done: function(res, curr, count){
+      //数据渲染完的回调。
+      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
+      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
+     }
     ,page:{
     	limit:3,//指定每页显示的条数
     	limits:[3,5,10,15,20,25,30],//每页条数的选择项
@@ -156,10 +172,10 @@ layui.use('table', function(){
 		
         layer.open({
             type: 2,
-            title: '单选--采购请购类型设定',
+            title: '单选--销售订单',
             content: $('#app'),
             fixed: false, //不固定
-            area: ['745px', '450px'],
+            area: ['680px', '470px'],
             content: 'receivablesbillTC1.html'
         });
    
@@ -169,7 +185,7 @@ layui.use('table', function(){
 
   
   
-  
+
 });
 </script>
 

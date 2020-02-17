@@ -158,5 +158,9 @@ public class Purchase_returnsController {
 		return dao.selectFirst();
 	}
 
-
+	@GetMapping("/selectPureId")
+	@ResponseBody
+	public String selectPureId(){
+		return dao.selectPureId();
+	}
 }

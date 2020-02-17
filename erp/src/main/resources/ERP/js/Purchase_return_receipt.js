@@ -1,8 +1,18 @@
-import {getLast, getPage, getFirst, getNext, getPrev} from "../rest/purchase_return_receipt_rest.js";
-
-layui.use('layer', function () {
-    var layer = layui.layer;
+import {
+    getLast,
+    getPage,
+    getFirst,
+    getNext,
+    getPrev,
+    getPureId
+}from "../rest/purchase_return_receipt_rest.js";
+layui.use(['form', 'layedit', 'laydate','layer'], function () {
+    var form = layui.form
+        ,layer = layui.layer
+        ,layedit = layui.layedit
+        ,laydate = layui.laydate;
 });
+
 const orderStatusMeta = {
     "insert": 0, // 新增
     "browse": 1, // 浏览
@@ -16,13 +26,13 @@ const orderStatusMeta = {
     "refresh": 9 // 刷新
 };
 // 默认订单状态为新增
-const defaultOrderStatus = orderStatusMeta.insert;
+const defaultOrderStatus = orderStatusMeta.browse;
 
 let viewModel = new Vue({
     el: "#app",
     data() {
         return {
-            orderStatus: defaultOrderStatus,
+            orderStatus: defaultOrderStatus, // 订单状态
             supplier: "", // 供应商
             orderDate: "", // 订单日期
             supplierAddress: "", // 供应商地址
@@ -38,7 +48,8 @@ let viewModel = new Vue({
             lineId: 1,
             purechaseReturn: {
 
-            }
+            },
+            edit: true
         };
     },
     methods: {
@@ -46,17 +57,25 @@ let viewModel = new Vue({
          *
          */
         insertOrder() {
+            console.log(orderStatusMeta.insert);
             this.orderStatus = orderStatusMeta.insert;
             this.emptyPurchaseReturnProp();
+            this.getPureId();
         },
         /**
          *
          */
         saveOrder() {
-            this.orderStatus = orderStatusMeta.save;
+            // this.orderStatus = orderStatusMeta.save;
+            if(this.orderStatus === orderStatusMeta.browse
+             || this.orderStatus === orderStatusMeta.edit){
+                // 修改
+            }else if(this.orderStatus === orderStatusMeta.insert){
+                // 新增
+            }
         },
         editOrder() {
-            this.orderStatus = orderStatusMeta.edit;
+            // this.orderStatus = orderStatusMeta.edit;
         },
         deleteOrder() {
             this.orderStatus = orderStatusMeta.delete;
@@ -152,6 +171,13 @@ let viewModel = new Vue({
                 pureAudition: "",
                 pureYn: ""
             };
+        },
+        getPureId(){
+            getPureId().then(resp => {
+                this.purechaseReturn.pureId = resp.data;
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
     created: function () {
@@ -161,6 +187,8 @@ let viewModel = new Vue({
         orderStatus: function (newOrderStatus, originalOrderStatus) {
             console.log("newOrderStatus:" + newOrderStatus);
             console.log("originalOrderStatus:" + originalOrderStatus);
+            this.edit = newOrderStatus !== 0 && newOrderStatus !== 7;
+            console.log(this.edit);
         }
     }
 });

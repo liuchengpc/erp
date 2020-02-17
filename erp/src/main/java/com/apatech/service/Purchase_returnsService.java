@@ -76,4 +76,8 @@ public class Purchase_returnsService {
 	public PurchaseReturnsPojo selectFirst() {
 		return dao.selectFirst();
 	}
+
+	public String selectPureId() {
+		return purchase_returnsMapper.selectPureId();
+	}
 }

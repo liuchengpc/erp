@@ -41,3 +41,31 @@ export function getFirst() {
         method: "get"
     });
 }
+
+export function getPureId() {
+    return rest({
+        url: "http://localhost:8080/Purchase_returnsController/selectPureId",
+        method: "get"
+    });
+}
+
+export function insertPure() {
+    return rest({
+        url: "",
+        method: "post"
+    })
+}
+
+export function updatePure() {
+    return rest({
+        url: "",
+        method: "put"
+    })
+}
+
+export function deletePure() {
+    return rest({
+        url: "",
+        method: "delete"
+    });
+}

@@ -41,4 +41,6 @@ public interface Purchase_returnsMapper {
     PurchaseReturnsPojo selectNext(Integer lineId);
 
     PurchaseReturnsPojo selectFirst();
+
+    String selectPureId();
 }

@@ -19,6 +19,21 @@ public class Sales_return_warehouseService {
 	@Autowired
 	private Sales_return_warehouseMapper dao;
 	
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
+	
+	public int deletelist(String id) {
+		dao.deletelist2(id);
+		return dao.deletelist(id);
+	}
+	
+	public int selectlist(String id,String sid) {
+		dao.selectlist2(id, sid);
+		return dao.selectlist(id, sid);
+	}
+		
 	public PageInfo<Sales_return_warehouse> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

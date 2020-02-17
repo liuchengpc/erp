@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Sales_return_warehouse_detailed;
-import com.apatech.domain.Sales_return_warehouse_detailed;
-import com.apatech.domain.Sales_return_warehouse_detailed;
 import com.apatech.mapper.Sales_return_warehouse_detailedMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -18,6 +16,19 @@ import com.github.pagehelper.PageInfo;
 public class Sales_return_warehouse_detailedService {
 	@Autowired
 	private Sales_return_warehouse_detailedMapper dao;
+	
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
+	public List<Sales_return_warehouse_detailed> selectlist(String id){
+		return dao.selectlist(id);
+	}
+	
+	public int deletelist(String id){
+		return dao.deletelist(id);
+	}
+	
 	
 	public PageInfo<Sales_return_warehouse_detailed> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());

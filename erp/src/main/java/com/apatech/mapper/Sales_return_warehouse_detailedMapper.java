@@ -2,14 +2,24 @@ package com.apatech.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Sales_return_warehouse_detailed;
-import com.apatech.domain.Team;
+
 
 public interface Sales_return_warehouse_detailedMapper {
  List<Sales_return_warehouse_detailed> selectAll();
+ 
+ @Select("select count(*) from Sales_return_warehouse_detailed")
+	int selectcount();
+	
+	
+	List<Sales_return_warehouse_detailed> selectlist(String id);
+	
+	@Delete("delete from Sales_return_warehouse_detailed WHERE srw_id=#{id}")
+	int deletelist(String id);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

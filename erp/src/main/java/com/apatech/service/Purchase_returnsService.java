@@ -2,6 +2,7 @@ package com.apatech.service;
 
 import java.util.List;
 
+import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,19 +61,23 @@ public class Purchase_returnsService {
     	return dao.updateByPrimaryKey(record);
     }
 
-    public Purchase_returns selectLast() {
+    public PurchaseReturnsPojo selectLast() {
         return purchase_returnsMapper.selectLast();
     }
 
-	public Purchase_returns selectPrev(Integer lineId) {
+	public PurchaseReturnsPojo selectPrev(Integer lineId) {
 		return dao.selectPrev(lineId);
 	}
 
-	public Purchase_returns selectNext(Integer lineId) {
+	public PurchaseReturnsPojo selectNext(Integer lineId) {
 		return dao.selectNext(lineId);
 	}
 
-	public Purchase_returns selectFirst() {
+	public PurchaseReturnsPojo selectFirst() {
 		return dao.selectFirst();
+	}
+
+	public String selectPureId() {
+		return purchase_returnsMapper.selectPureId();
 	}
 }

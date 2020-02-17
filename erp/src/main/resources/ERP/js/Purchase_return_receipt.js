@@ -1,8 +1,47 @@
-import {getLast, getPage, getFirst, getNext, getPrev} from "../rest/purchase_return_receipt_rest.js";
+import {
+    getLast,
+    getPage,
+    getFirst,
+    getNext,
+    getPrev,
+    getPureId
+}from "../rest/purchase_return_receipt_rest.js";
+layui.use(['form', 'layedit', 'laydate','layer'], function () {
+    var form = layui.form
+        ,layer = layui.layer
+        ,layedit = layui.layedit
+        ,laydate = layui.laydate;
 
-layui.use('layer', function () {
-    var layer = layui.layer;
+    //日期
+    laydate.render({
+        elem: '#date'
+    });
+
+    //自定义验证规则
+    form.verify({
+        title: function(value){
+            if(value.length < 5){
+                return '标题至少得5个字符啊';
+            }
+        }
+        ,pass: [
+            /^[\S]{6,12}$/
+            ,'密码必须6到12位，且不能出现空格'
+        ]
+        ,content: function(value){
+            layedit.sync(editIndex);
+        }
+    });
+
+    //监听提交
+    form.on('submit(demo1)', function(data){
+        layer.alert(JSON.stringify(data.field), {
+            title: '最终的提交信息'
+        });
+        return false;
+    });
 });
+
 const orderStatusMeta = {
     "insert": 0, // 新增
     "browse": 1, // 浏览
@@ -16,13 +55,13 @@ const orderStatusMeta = {
     "refresh": 9 // 刷新
 };
 // 默认订单状态为新增
-const defaultOrderStatus = orderStatusMeta.insert;
+const defaultOrderStatus = orderStatusMeta.browse;
 
 let viewModel = new Vue({
     el: "#app",
     data() {
         return {
-            orderStatus: defaultOrderStatus,
+            orderStatus: defaultOrderStatus, // 订单状态
             supplier: "", // 供应商
             orderDate: "", // 订单日期
             supplierAddress: "", // 供应商地址
@@ -36,18 +75,33 @@ let viewModel = new Vue({
             reviewer: "", // 审核人员
             project: "", //所属项目,
             lineId: 1,
-            purchaseReturn:{
+            purechaseReturn: {
 
-            }
+            },
+            edit: true
         };
     },
     methods: {
+        /**
+         *
+         */
         insertOrder() {
+            console.log(orderStatusMeta.insert);
             this.orderStatus = orderStatusMeta.insert;
             this.emptyPurchaseReturnProp();
+            this.getPureId();
         },
+        /**
+         *
+         */
         saveOrder() {
-            this.orderStatus = orderStatusMeta.save;
+            // this.orderStatus = orderStatusMeta.save;
+            if(this.orderStatus === orderStatusMeta.browse
+             || this.orderStatus === orderStatusMeta.edit){
+                // 修改
+            }else if(this.orderStatus === orderStatusMeta.insert){
+                // 新增
+            }
         },
         editOrder() {
             this.orderStatus = orderStatusMeta.edit;
@@ -61,11 +115,16 @@ let viewModel = new Vue({
         refreshOrder() {
             this.orderStatus = orderStatusMeta.refresh;
         },
+        /**
+         * 审核订单
+         */
         reviewOrder() {
             this.orderStatus = orderStatusMeta.review;
+            this.purechaseReturn.pureAudition = "1";
 
         },
         unReviewOrder() {
+            this.purechaseReturn.pureAudition = "0";
             this.orderStatus = orderStatusMeta.unReview;
         },
         showSupplierWindow() {
@@ -81,13 +140,15 @@ let viewModel = new Vue({
         },
         getLast() {
             getLast().then(resp => {
-                this.purchaseReturn = resp.data;
+                this.purechaseReturn = resp.data;
+                console.log(resp);
             }).catch(error => {
                 console.log(error);
             });
         },
         getPrev() {
             getPrev(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -95,6 +156,7 @@ let viewModel = new Vue({
         },
         getNext() {
             getNext(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -102,13 +164,14 @@ let viewModel = new Vue({
         },
         getFirst() {
             getFirst().then(resp => {
+                this.purechaseReturn = resp.data;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
             })
         },
         emptyPurchaseReturnProp(){
-            this.purchaseReturn = {
+            this.purechaseReturn = {
                 pureId: "",
                 supplierId: "",
                 pureEngname: "",
@@ -137,6 +200,13 @@ let viewModel = new Vue({
                 pureAudition: "",
                 pureYn: ""
             };
+        },
+        getPureId(){
+            getPureId().then(resp => {
+                this.purechaseReturn.pureId = resp.data;
+            }).catch(error => {
+                console.log(error);
+            });
         }
     },
     created: function () {
@@ -146,6 +216,8 @@ let viewModel = new Vue({
         orderStatus: function (newOrderStatus, originalOrderStatus) {
             console.log("newOrderStatus:" + newOrderStatus);
             console.log("originalOrderStatus:" + originalOrderStatus);
+            this.edit = newOrderStatus !== 0 && newOrderStatus !== 7;
+            console.log(this.edit);
         }
     }
 });

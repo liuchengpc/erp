@@ -373,4 +373,7 @@
       pured_custom6 = #{puredCustom6,jdbcType=VARCHAR}
     where pured_id = #{puredId,jdbcType=VARCHAR}
   </update>
+  <select id="selectByPureId" resultMap="BaseResultMap">
+    select * from erp.purchase_returns_detailed where pure_id = #{pureId,jdbcType=VARCHAR}
+  </select>
 </mapper>

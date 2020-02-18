@@ -11,6 +11,8 @@ import com.apatech.domain.Team;
 public interface RequisitionMapper {
 	List<Requisition> selectAll();
 	 
+	//@Select("SELECT * FROM requisition GROUP BY requisition_documentation_date DESC")
+	List<Requisition> queryAllByTime();
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 

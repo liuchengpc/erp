@@ -1,0 +1,104 @@
+
+.header{
+    border-bottom: 1px solid #ddd;
+}
+.top{
+    width: 1240px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo{
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    width: 250px;
+    height: 60px;
+    overflow: hidden;
+    background: url("../images/index/index.png")   0 0 no-repeat;
+
+}
+.nav-menu{
+    display: block;
+    width: 512px;
+    margin: 0 auto;
+    font-weight: 100;
+}
+.nav-item{
+    float: left;
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+    line-height: 58px;
+    height: 57px;
+
+}
+
+.text{
+    padding-left: 42px;
+    padding-right: 42px;
+    position: relative;
+}
+.text-title{
+    display: inline-block;
+    height: 100%;
+}
+.divUser{
+    float: right;
+    margin: 0;
+    padding: 0;
+    word-break: normal;
+    word-wrap: break-word;
+}
+.logout{
+    float: right;
+    padding-left: 10px;
+    line-height: 60px;
+    font-size: 14px;
+    color:#9E9E9E;
+    position: relative;
+    top: 10px;
+}
+.head{
+    float: right;
+    position: relative;
+    margin-top: 10px;
+    padding-right: 10px;
+}
+.head p{
+    line-height: 18px;
+}
+.type span{
+    width: 37px;
+    height: 14px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 100px;
+    overflow: hidden;
+}
+.head .nick{
+    font-size: 14px;
+    margin-top: -17px;
+}
+.head img {
+    position: absolute;
+    top: -1px;
+    left: -44px;
+    width: 38px;
+    height: 38px;
+    background-color: #f0f0f0;
+}
+/*账户div暂时隐藏*/
+.divUser{
+   /* display: none;*/
+}
+/*内容区域*/
+.nav-tabs{
+    border-bottom: none !important;
+}
+.content{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

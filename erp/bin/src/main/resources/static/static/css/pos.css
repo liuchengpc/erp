@@ -1,0 +1,142 @@
+body { font-family:"微软雅黑", arial;margin:0; padding:0; background: #FFF; font-size:12px; color:#000;}
+div,form,img,ul,ol,li,dl,dt,dd {margin: 0; padding: 0; border: 0; }
+li{list-style-type:none;}
+img{vertical-align:top;}
+h1,h2,h3,h4,h5,h6 { margin:0; padding:0;font-size:12px; font-weight:normal;}
+
+a:link {color: #1f3a87; text-decoration:none;}
+a:visited {color: #83006f;text-decoration:none;}
+a:hover {color: #bc2931; text-decoration:underline;}
+a:active {color: #bc2931;}
+
+body,html,#app{
+    width: 100%;
+    height: 100%;
+}
+.left-nav{
+    color: #FFF;
+    font-size: 12px;
+    height: 100%;
+    background: #1d8ce0;
+    float: left;
+    width: 60px;
+}
+.left-nav li {
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #e7e7e7;
+    transition: all .5s;
+}
+.left-nav li:hover{
+    background: #F90
+}
+.left-nav li.active{
+    background: #F90
+}
+.icon {
+    font-size: 36px;
+    display: block
+}
+
+.pos{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+.pos .el-row,
+.pos .el-col{
+    height: 100%;
+}
+.pos-order{
+    padding: 10px;
+    background: #fbfcff;
+    border-right: 1px solid #e7e7e7
+}
+.goods-type{
+    padding: 10px
+}
+.foot-statistical{
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    border-top: none;
+}
+.foot-statistical span{
+    margin: 0 10px;
+    font-size: 16px
+}
+.foot-statistical span small{
+    font-size: 12px
+}
+.foot-btn{
+    padding: 10px;
+    text-align: center
+}
+.title{
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    border-bottom:1px solid #D3DCE6;
+    background-color: #F9FAFC;
+    padding:10px;
+    padding-left: 15px;
+}
+.often-goods-list{ 
+    padding: 8px;
+    overflow: hidden
+}
+.often-goods-list ul li{
+   list-style: none;
+   float:left;
+   border:1px solid #E5E9F2;
+   padding:10px;
+   margin:5px;
+   background-color:#fff;
+   cursor: pointer
+}
+.o-price{
+   color:#58B7FF; 
+}
+.cookList li{
+    list-style: none;
+    width:23%;
+    border:1px solid #E5E9F2;
+    height: auot;
+    overflow: hidden;
+    background-color:#fff;
+    padding: 2px;
+    float:left;
+    margin: 5px;
+    cursor: pointer
+}
+.cookList li span{ 
+     display: block;
+     float:left;
+}
+.foodImg{
+    width: 35%;
+}
+.food-content{
+	width: 60%;
+    float: left
+}
+.food-content span{
+    display: block;
+    width:100%
+}
+.foodName{
+    font-size: 16px;
+    padding-left: 10px;
+    color:brown;
+}
+.foodPrice{
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top:10px;
+}
+.qr-code{
+    text-align: center
+}

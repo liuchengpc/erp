@@ -29,6 +29,12 @@ public class Requisition_detailedService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	
+	/**
+	 */
+	public List<Requisition_detailed> queryAllByR_Id(String requisitionId){
+		return dao.queryAllByR_ID(requisitionId);
+	}
 	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);

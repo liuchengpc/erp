@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Educational_backgroundMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Educational_background">
+    <id column="eb_id" jdbcType="VARCHAR" property="ebId" />
+    <result column="eb_name" jdbcType="VARCHAR" property="ebName" />
+    <result column="eb_english_name" jdbcType="VARCHAR" property="ebEnglishName" />
+    <result column="eb_remark" jdbcType="VARCHAR" property="ebRemark" />
+    <result column="eb_Auditing" jdbcType="VARCHAR" property="ebAuditing" />
+    <result column="eb_yn" jdbcType="VARCHAR" property="ebYn" />
+    <result column="eb_custom1" jdbcType="VARCHAR" property="ebCustom1" />
+    <result column="eb_custom2" jdbcType="VARCHAR" property="ebCustom2" />
+    <result column="eb_custom3" jdbcType="VARCHAR" property="ebCustom3" />
+    <result column="eb_custom4" jdbcType="VARCHAR" property="ebCustom4" />
+    <result column="eb_custom5" jdbcType="VARCHAR" property="ebCustom5" />
+    <result column="eb_custom6" jdbcType="VARCHAR" property="ebCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    eb_id, eb_name, eb_english_name, eb_remark, eb_Auditing, eb_yn, eb_custom1, eb_custom2, 
+    eb_custom3, eb_custom4, eb_custom5, eb_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from educational_background 
+	    where eb_Yn=0
+	    ORDER BY eb_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from educational_background
+    where eb_id = #{ebId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from educational_background
+    where eb_id = #{ebId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Educational_background">
+    insert into educational_background (eb_id, eb_name, eb_english_name, 
+      eb_remark, eb_Auditing, eb_yn, 
+      eb_custom1, eb_custom2, eb_custom3, 
+      eb_custom4, eb_custom5, eb_custom6
+      )
+    values (#{ebId,jdbcType=VARCHAR}, #{ebName,jdbcType=VARCHAR}, #{ebEnglishName,jdbcType=VARCHAR}, 
+      #{ebRemark,jdbcType=VARCHAR}, #{ebAuditing,jdbcType=VARCHAR}, #{ebYn,jdbcType=VARCHAR}, 
+      #{ebCustom1,jdbcType=VARCHAR}, #{ebCustom2,jdbcType=VARCHAR}, #{ebCustom3,jdbcType=VARCHAR}, 
+      #{ebCustom4,jdbcType=VARCHAR}, #{ebCustom5,jdbcType=VARCHAR}, #{ebCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Educational_background">
+    insert into educational_background
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ebId != null">
+        eb_id,
+      </if>
+      <if test="ebName != null">
+        eb_name,
+      </if>
+      <if test="ebEnglishName != null">
+        eb_english_name,
+      </if>
+      <if test="ebRemark != null">
+        eb_remark,
+      </if>
+      <if test="ebAuditing != null">
+        eb_Auditing,
+      </if>
+      <if test="ebYn != null">
+        eb_yn,
+      </if>
+      <if test="ebCustom1 != null">
+        eb_custom1,
+      </if>
+      <if test="ebCustom2 != null">
+        eb_custom2,
+      </if>
+      <if test="ebCustom3 != null">
+        eb_custom3,
+      </if>
+      <if test="ebCustom4 != null">
+        eb_custom4,
+      </if>
+      <if test="ebCustom5 != null">
+        eb_custom5,
+      </if>
+      <if test="ebCustom6 != null">
+        eb_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ebId != null">
+        #{ebId,jdbcType=VARCHAR},
+      </if>
+      <if test="ebName != null">
+        #{ebName,jdbcType=VARCHAR},
+      </if>
+      <if test="ebEnglishName != null">
+        #{ebEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="ebRemark != null">
+        #{ebRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ebAuditing != null">
+        #{ebAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ebYn != null">
+        #{ebYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom1 != null">
+        #{ebCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom2 != null">
+        #{ebCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom3 != null">
+        #{ebCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom4 != null">
+        #{ebCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom5 != null">
+        #{ebCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom6 != null">
+        #{ebCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Educational_background">
+    update educational_background
+    <set>
+      <if test="ebName != null">
+        eb_name = #{ebName,jdbcType=VARCHAR},
+      </if>
+      <if test="ebEnglishName != null">
+        eb_english_name = #{ebEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="ebRemark != null">
+        eb_remark = #{ebRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="ebAuditing != null">
+        eb_Auditing = #{ebAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ebYn != null">
+        eb_yn = #{ebYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom1 != null">
+        eb_custom1 = #{ebCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom2 != null">
+        eb_custom2 = #{ebCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom3 != null">
+        eb_custom3 = #{ebCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom4 != null">
+        eb_custom4 = #{ebCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom5 != null">
+        eb_custom5 = #{ebCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ebCustom6 != null">
+        eb_custom6 = #{ebCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eb_id = #{ebId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Educational_background">
+    update educational_background
+    set eb_name = #{ebName,jdbcType=VARCHAR},
+      eb_english_name = #{ebEnglishName,jdbcType=VARCHAR},
+      eb_remark = #{ebRemark,jdbcType=VARCHAR},
+      eb_Auditing = #{ebAuditing,jdbcType=VARCHAR},
+      eb_yn = #{ebYn,jdbcType=VARCHAR},
+      eb_custom1 = #{ebCustom1,jdbcType=VARCHAR},
+      eb_custom2 = #{ebCustom2,jdbcType=VARCHAR},
+      eb_custom3 = #{ebCustom3,jdbcType=VARCHAR},
+      eb_custom4 = #{ebCustom4,jdbcType=VARCHAR},
+      eb_custom5 = #{ebCustom5,jdbcType=VARCHAR},
+      eb_custom6 = #{ebCustom6,jdbcType=VARCHAR}
+    where eb_id = #{ebId,jdbcType=VARCHAR}
+  </update>
+</mapper>

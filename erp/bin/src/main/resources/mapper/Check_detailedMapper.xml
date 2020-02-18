@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Check_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Check_detailed">
+    <id column="cd_id" jdbcType="VARCHAR" property="cdId" />
+    <result column="proof_number" jdbcType="VARCHAR" property="proofNumber" />
+    <result column="check_id" jdbcType="VARCHAR" property="checkId" />
+    <result column="cd_name" jdbcType="VARCHAR" property="cdName" />
+    <result column="cd_format" jdbcType="VARCHAR" property="cdFormat" />
+    <result column="cd_include_tax" jdbcType="VARCHAR" property="cdIncludeTax" />
+    <result column="cd_volume" jdbcType="INTEGER" property="cdVolume" />
+    <result column="cd_inventories_number" jdbcType="INTEGER" property="cdInventoriesNumber" />
+    <result column="cd_profits_losses_number" jdbcType="INTEGER" property="cdProfitsLossesNumber" />
+    <result column="cd_unit_price" jdbcType="REAL" property="cdUnitPrice" />
+    <result column="cd_loss_amount_profit" jdbcType="REAL" property="cdLossAmountProfit" />
+    <result column="cd_batch_number" jdbcType="VARCHAR" property="cdBatchNumber" />
+    <result column="cd_cause" jdbcType="VARCHAR" property="cdCause" />
+    <result column="cd_auditing" jdbcType="VARCHAR" property="cdAuditing" />
+    <result column="cd_yn" jdbcType="VARCHAR" property="cdYn" />
+    <result column="cd_custom1" jdbcType="VARCHAR" property="cdCustom1" />
+    <result column="cd_custom2" jdbcType="VARCHAR" property="cdCustom2" />
+    <result column="cd_custom3" jdbcType="VARCHAR" property="cdCustom3" />
+    <result column="cd_custom4" jdbcType="VARCHAR" property="cdCustom4" />
+    <result column="cd_custom5" jdbcType="VARCHAR" property="cdCustom5" />
+    <result column="cd_custom6" jdbcType="VARCHAR" property="cdCustom6" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cd_id, proof_number, check_id, cd_name, cd_format, cd_include_tax, cd_volume, cd_inventories_number, 
+    cd_profits_losses_number, cd_unit_price, cd_loss_amount_profit, cd_batch_number, 
+    cd_cause, cd_auditing, cd_yn, cd_custom1, cd_custom2, cd_custom3, cd_custom4, cd_custom5, 
+    cd_custom6, matter_id
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from check_detailed 
+	    where cd_Yn=0
+	    ORDER BY cd_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from check_detailed
+    where cd_id = #{cdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from check_detailed
+    where cd_id = #{cdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Check_detailed">
+    insert into check_detailed (cd_id, proof_number, check_id, 
+      cd_name, cd_format, cd_include_tax, 
+      cd_volume, cd_inventories_number, cd_profits_losses_number, 
+      cd_unit_price, cd_loss_amount_profit, cd_batch_number, 
+      cd_cause, cd_auditing, cd_yn, 
+      cd_custom1, cd_custom2, cd_custom3, 
+      cd_custom4, cd_custom5, cd_custom6, 
+      matter_id)
+    values (#{cdId,jdbcType=VARCHAR}, #{proofNumber,jdbcType=VARCHAR}, #{checkId,jdbcType=VARCHAR}, 
+      #{cdName,jdbcType=VARCHAR}, #{cdFormat,jdbcType=VARCHAR}, #{cdIncludeTax,jdbcType=VARCHAR}, 
+      #{cdVolume,jdbcType=INTEGER}, #{cdInventoriesNumber,jdbcType=INTEGER}, #{cdProfitsLossesNumber,jdbcType=INTEGER}, 
+      #{cdUnitPrice,jdbcType=REAL}, #{cdLossAmountProfit,jdbcType=REAL}, #{cdBatchNumber,jdbcType=VARCHAR}, 
+      #{cdCause,jdbcType=VARCHAR}, #{cdAuditing,jdbcType=VARCHAR}, #{cdYn,jdbcType=VARCHAR}, 
+      #{cdCustom1,jdbcType=VARCHAR}, #{cdCustom2,jdbcType=VARCHAR}, #{cdCustom3,jdbcType=VARCHAR}, 
+      #{cdCustom4,jdbcType=VARCHAR}, #{cdCustom5,jdbcType=VARCHAR}, #{cdCustom6,jdbcType=VARCHAR}, 
+      #{matterId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Check_detailed">
+    insert into check_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cdId != null">
+        cd_id,
+      </if>
+      <if test="proofNumber != null">
+        proof_number,
+      </if>
+      <if test="checkId != null">
+        check_id,
+      </if>
+      <if test="cdName != null">
+        cd_name,
+      </if>
+      <if test="cdFormat != null">
+        cd_format,
+      </if>
+      <if test="cdIncludeTax != null">
+        cd_include_tax,
+      </if>
+      <if test="cdVolume != null">
+        cd_volume,
+      </if>
+      <if test="cdInventoriesNumber != null">
+        cd_inventories_number,
+      </if>
+      <if test="cdProfitsLossesNumber != null">
+        cd_profits_losses_number,
+      </if>
+      <if test="cdUnitPrice != null">
+        cd_unit_price,
+      </if>
+      <if test="cdLossAmountProfit != null">
+        cd_loss_amount_profit,
+      </if>
+      <if test="cdBatchNumber != null">
+        cd_batch_number,
+      </if>
+      <if test="cdCause != null">
+        cd_cause,
+      </if>
+      <if test="cdAuditing != null">
+        cd_auditing,
+      </if>
+      <if test="cdYn != null">
+        cd_yn,
+      </if>
+      <if test="cdCustom1 != null">
+        cd_custom1,
+      </if>
+      <if test="cdCustom2 != null">
+        cd_custom2,
+      </if>
+      <if test="cdCustom3 != null">
+        cd_custom3,
+      </if>
+      <if test="cdCustom4 != null">
+        cd_custom4,
+      </if>
+      <if test="cdCustom5 != null">
+        cd_custom5,
+      </if>
+      <if test="cdCustom6 != null">
+        cd_custom6,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cdId != null">
+        #{cdId,jdbcType=VARCHAR},
+      </if>
+      <if test="proofNumber != null">
+        #{proofNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkId != null">
+        #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdName != null">
+        #{cdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdFormat != null">
+        #{cdFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="cdIncludeTax != null">
+        #{cdIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="cdVolume != null">
+        #{cdVolume,jdbcType=INTEGER},
+      </if>
+      <if test="cdInventoriesNumber != null">
+        #{cdInventoriesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdProfitsLossesNumber != null">
+        #{cdProfitsLossesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdUnitPrice != null">
+        #{cdUnitPrice,jdbcType=REAL},
+      </if>
+      <if test="cdLossAmountProfit != null">
+        #{cdLossAmountProfit,jdbcType=REAL},
+      </if>
+      <if test="cdBatchNumber != null">
+        #{cdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCause != null">
+        #{cdCause,jdbcType=VARCHAR},
+      </if>
+      <if test="cdAuditing != null">
+        #{cdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdYn != null">
+        #{cdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom1 != null">
+        #{cdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom2 != null">
+        #{cdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom3 != null">
+        #{cdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom4 != null">
+        #{cdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom5 != null">
+        #{cdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom6 != null">
+        #{cdCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Check_detailed">
+    update check_detailed
+    <set>
+      <if test="proofNumber != null">
+        proof_number = #{proofNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkId != null">
+        check_id = #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdName != null">
+        cd_name = #{cdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdFormat != null">
+        cd_format = #{cdFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="cdIncludeTax != null">
+        cd_include_tax = #{cdIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="cdVolume != null">
+        cd_volume = #{cdVolume,jdbcType=INTEGER},
+      </if>
+      <if test="cdInventoriesNumber != null">
+        cd_inventories_number = #{cdInventoriesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdProfitsLossesNumber != null">
+        cd_profits_losses_number = #{cdProfitsLossesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdUnitPrice != null">
+        cd_unit_price = #{cdUnitPrice,jdbcType=REAL},
+      </if>
+      <if test="cdLossAmountProfit != null">
+        cd_loss_amount_profit = #{cdLossAmountProfit,jdbcType=REAL},
+      </if>
+      <if test="cdBatchNumber != null">
+        cd_batch_number = #{cdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCause != null">
+        cd_cause = #{cdCause,jdbcType=VARCHAR},
+      </if>
+      <if test="cdAuditing != null">
+        cd_auditing = #{cdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdYn != null">
+        cd_yn = #{cdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom1 != null">
+        cd_custom1 = #{cdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom2 != null">
+        cd_custom2 = #{cdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom3 != null">
+        cd_custom3 = #{cdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom4 != null">
+        cd_custom4 = #{cdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom5 != null">
+        cd_custom5 = #{cdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom6 != null">
+        cd_custom6 = #{cdCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cd_id = #{cdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Check_detailed">
+    update check_detailed
+    set proof_number = #{proofNumber,jdbcType=VARCHAR},
+      check_id = #{checkId,jdbcType=VARCHAR},
+      cd_name = #{cdName,jdbcType=VARCHAR},
+      cd_format = #{cdFormat,jdbcType=VARCHAR},
+      cd_include_tax = #{cdIncludeTax,jdbcType=VARCHAR},
+      cd_volume = #{cdVolume,jdbcType=INTEGER},
+      cd_inventories_number = #{cdInventoriesNumber,jdbcType=INTEGER},
+      cd_profits_losses_number = #{cdProfitsLossesNumber,jdbcType=INTEGER},
+      cd_unit_price = #{cdUnitPrice,jdbcType=REAL},
+      cd_loss_amount_profit = #{cdLossAmountProfit,jdbcType=REAL},
+      cd_batch_number = #{cdBatchNumber,jdbcType=VARCHAR},
+      cd_cause = #{cdCause,jdbcType=VARCHAR},
+      cd_auditing = #{cdAuditing,jdbcType=VARCHAR},
+      cd_yn = #{cdYn,jdbcType=VARCHAR},
+      cd_custom1 = #{cdCustom1,jdbcType=VARCHAR},
+      cd_custom2 = #{cdCustom2,jdbcType=VARCHAR},
+      cd_custom3 = #{cdCustom3,jdbcType=VARCHAR},
+      cd_custom4 = #{cdCustom4,jdbcType=VARCHAR},
+      cd_custom5 = #{cdCustom5,jdbcType=VARCHAR},
+      cd_custom6 = #{cdCustom6,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR}
+    where cd_id = #{cdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

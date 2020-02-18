@@ -1,0 +1,82 @@
+body{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.login-body{
+    background-color: #FFF;
+    border: 1px solid #e7e7eb;
+    width: 890px;
+    padding: 20px;
+    margin: 0 auto;
+    min-height: 450px;
+}
+.login-header{
+    border-bottom: 1px solid #e7e7eb;
+    font-size: 16px;
+    line-height: 26px;
+    padding-bottom: 18px;
+    position: relative;
+}
+.register-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 14px;
+}
+.register-right>span{
+    float: left;
+}
+.register-right>a>span{
+    float: left;
+    background-image: url(http://www.poso2o.com/UserAccount/style/img/taobao_wan.gif);
+    height: 20px;
+    text-decoration: none;
+    width: 26px;
+    background-position: -80px 0;
+}
+.login-form{
+    display: block;
+    width: 284px;
+    margin: 0 auto;
+    text-align: left;
+}
+.form-item{
+    float: left;
+    width: 100%;
+    padding-top: 14px;
+    position: relative;
+}
+.form-item:nth-child(1){
+    padding-top: 100px;
+}
+.form-item:nth-child(1)>.form-control,.form-item:nth-child(2)>.form-control {
+    padding: 5px 2px 7px 6px ;
+    font-size: 14px;
+    background: #FFF;
+    width: 271px;
+    /*
+    height: 22px;
+    */
+    vertical-align: top;
+    float: left;
+}
+.form-control{
+    float: left;
+}
+.code>input{
+    width: 140px;
+}
+.code-pane{
+    width: 120px;
+    float: left;
+    margin-left: 5px;
+}
+.btn-success{
+    width: 100%;
+}
+.forgetpwd{
+    float: right;
+}
+.checkbox{
+    float: left;
+}

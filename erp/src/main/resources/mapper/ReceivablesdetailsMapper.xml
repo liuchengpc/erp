@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.apatech.domain.Receivablesdetails">
     <id column="recedetail_id" jdbcType="VARCHAR" property="recedetailId" />
     <result column="receivablesbill_id" jdbcType="VARCHAR" property="receivablesbillId" />
-    <result column="recedetail _price" jdbcType="REAL" property="recedetailPrice" />
-    <result column="recedetail _type" jdbcType="VARCHAR" property="recedetailType" />
-    <result column="recedetail _number" jdbcType="VARCHAR" property="recedetailNumber" />
-    <result column="recedetail _remarks" jdbcType="VARCHAR" property="recedetailRemarks" />
+    <result column="recedetail_price" jdbcType="REAL" property="recedetailPrice" />
+    <result column="recedetail_type" jdbcType="VARCHAR" property="recedetailType" />
+    <result column="recedetail_number" jdbcType="VARCHAR" property="recedetailNumber" />
+    <result column="recedetail_remarks" jdbcType="VARCHAR" property="recedetailRemarks" />
     <result column="recedetail_Auditing" jdbcType="VARCHAR" property="recedetailAuditing" />
     <result column="recedetail_yn" jdbcType="VARCHAR" property="recedetailYn" />
     <result column="recedetail_custom1" jdbcType="VARCHAR" property="recedetailCustom1" />
@@ -33,6 +33,13 @@
 	    <include refid="Base_Column_List" />
 	    from receivablesdetails 
 	    where recedetail_Yn=0
+	    ORDER BY recedetail_id DESC
+  </select>
+  <select id="selectAllpagebyidlc" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from receivablesdetails 
+	    where recedetail_Yn=0 and receivablesbill_id=#{receivablesbillId,jdbcType=VARCHAR}
 	    ORDER BY recedetail_id DESC
   </select>
   

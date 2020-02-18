@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Sales_quotation_detailsMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_quotation_details">
+    <id column="Sqd_ProdID" jdbcType="VARCHAR" property="sqdProdid" />
+    <result column="Sqd_SerNO" jdbcType="VARCHAR" property="sqdSerno" />
+    <result column="Sqd_ProdName" jdbcType="VARCHAR" property="sqdProdname" />
+    <result column="Sqd_ProdSize" jdbcType="VARCHAR" property="sqdProdsize" />
+    <result column="Sqd_UnitName" jdbcType="VARCHAR" property="sqdUnitname" />
+    <result column="Sqd_sQuantity" jdbcType="INTEGER" property="sqdSquantity" />
+    <result column="Sqd_ZkqPrice" jdbcType="REAL" property="sqdZkqprice" />
+    <result column="Sqd_Discount" jdbcType="REAL" property="sqdDiscount" />
+    <result column="Sqd_UnitPrice" jdbcType="REAL" property="sqdUnitprice" />
+    <result column="Sqd_Price" jdbcType="REAL" property="sqdPrice" />
+    <result column="Sqd_TaxRate" jdbcType="REAL" property="sqdTaxrate" />
+    <result column="Sqd_Taxlimit" jdbcType="REAL" property="sqdTaxlimit" />
+    <result column="Sqd_TaxInclusivePrice" jdbcType="REAL" property="sqdTaxinclusiveprice" />
+    <result column="Sqd_Complimentart" jdbcType="INTEGER" property="sqdComplimentart" />
+    <result column="Sqd_ItemRemark" jdbcType="VARCHAR" property="sqdItemremark" />
+    <result column="sql_id" jdbcType="VARCHAR" property="sqlId" />
+    <result column="Sqd_auditing" jdbcType="VARCHAR" property="sqdAuditing" />
+    <result column="Sqd_yn" jdbcType="VARCHAR" property="sqdYn" />
+    <result column="Sqd_custom1" jdbcType="VARCHAR" property="sqdCustom1" />
+    <result column="Sqd_custom2" jdbcType="VARCHAR" property="sqdCustom2" />
+    <result column="Sqd_custom3" jdbcType="VARCHAR" property="sqdCustom3" />
+    <result column="Sqd_custom4" jdbcType="VARCHAR" property="sqdCustom4" />
+    <result column="Sqd_custom5" jdbcType="VARCHAR" property="sqdCustom5" />
+    <result column="Sqd_custom6" jdbcType="VARCHAR" property="sqdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Sqd_ProdID, Sqd_SerNO, Sqd_ProdName, Sqd_ProdSize, Sqd_UnitName, Sqd_sQuantity, Sqd_ZkqPrice, 
+    Sqd_Discount, Sqd_UnitPrice, Sqd_Price, Sqd_TaxRate, Sqd_Taxlimit, Sqd_TaxInclusivePrice, 
+    Sqd_Complimentart, Sqd_ItemRemark, sql_id, Sqd_auditing, Sqd_yn, Sqd_custom1, Sqd_custom2, 
+    Sqd_custom3, Sqd_custom4, Sqd_custom5, Sqd_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_quotation_details 
+	    where sqd_Yn=0
+	    ORDER BY sqd_Prodid DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_quotation_details
+    where Sqd_ProdID = #{sqdProdid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sales_quotation_details
+    where Sqd_ProdID = #{sqdProdid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details (Sqd_ProdID, Sqd_SerNO, Sqd_ProdName, 
+      Sqd_ProdSize, Sqd_UnitName, Sqd_sQuantity, 
+      Sqd_ZkqPrice, Sqd_Discount, Sqd_UnitPrice, 
+      Sqd_Price, Sqd_TaxRate, Sqd_Taxlimit, 
+      Sqd_TaxInclusivePrice, Sqd_Complimentart, Sqd_ItemRemark, 
+      sql_id, Sqd_auditing, Sqd_yn, 
+      Sqd_custom1, Sqd_custom2, Sqd_custom3, 
+      Sqd_custom4, Sqd_custom5, Sqd_custom6
+      )
+    values (#{sqdProdid,jdbcType=VARCHAR}, #{sqdSerno,jdbcType=VARCHAR}, #{sqdProdname,jdbcType=VARCHAR}, 
+      #{sqdProdsize,jdbcType=VARCHAR}, #{sqdUnitname,jdbcType=VARCHAR}, #{sqdSquantity,jdbcType=INTEGER}, 
+      #{sqdZkqprice,jdbcType=REAL}, #{sqdDiscount,jdbcType=REAL}, #{sqdUnitprice,jdbcType=REAL}, 
+      #{sqdPrice,jdbcType=REAL}, #{sqdTaxrate,jdbcType=REAL}, #{sqdTaxlimit,jdbcType=REAL}, 
+      #{sqdTaxinclusiveprice,jdbcType=REAL}, #{sqdComplimentart,jdbcType=INTEGER}, #{sqdItemremark,jdbcType=VARCHAR}, 
+      #{sqlId,jdbcType=VARCHAR}, #{sqdAuditing,jdbcType=VARCHAR}, #{sqdYn,jdbcType=VARCHAR}, 
+      #{sqdCustom1,jdbcType=VARCHAR}, #{sqdCustom2,jdbcType=VARCHAR}, #{sqdCustom3,jdbcType=VARCHAR}, 
+      #{sqdCustom4,jdbcType=VARCHAR}, #{sqdCustom5,jdbcType=VARCHAR}, #{sqdCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    insert into sales_quotation_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sqdProdid != null">
+        Sqd_ProdID,
+      </if>
+      <if test="sqdSerno != null">
+        Sqd_SerNO,
+      </if>
+      <if test="sqdProdname != null">
+        Sqd_ProdName,
+      </if>
+      <if test="sqdProdsize != null">
+        Sqd_ProdSize,
+      </if>
+      <if test="sqdUnitname != null">
+        Sqd_UnitName,
+      </if>
+      <if test="sqdSquantity != null">
+        Sqd_sQuantity,
+      </if>
+      <if test="sqdZkqprice != null">
+        Sqd_ZkqPrice,
+      </if>
+      <if test="sqdDiscount != null">
+        Sqd_Discount,
+      </if>
+      <if test="sqdUnitprice != null">
+        Sqd_UnitPrice,
+      </if>
+      <if test="sqdPrice != null">
+        Sqd_Price,
+      </if>
+      <if test="sqdTaxrate != null">
+        Sqd_TaxRate,
+      </if>
+      <if test="sqdTaxlimit != null">
+        Sqd_Taxlimit,
+      </if>
+      <if test="sqdTaxinclusiveprice != null">
+        Sqd_TaxInclusivePrice,
+      </if>
+      <if test="sqdComplimentart != null">
+        Sqd_Complimentart,
+      </if>
+      <if test="sqdItemremark != null">
+        Sqd_ItemRemark,
+      </if>
+      <if test="sqlId != null">
+        sql_id,
+      </if>
+      <if test="sqdAuditing != null">
+        Sqd_auditing,
+      </if>
+      <if test="sqdYn != null">
+        Sqd_yn,
+      </if>
+      <if test="sqdCustom1 != null">
+        Sqd_custom1,
+      </if>
+      <if test="sqdCustom2 != null">
+        Sqd_custom2,
+      </if>
+      <if test="sqdCustom3 != null">
+        Sqd_custom3,
+      </if>
+      <if test="sqdCustom4 != null">
+        Sqd_custom4,
+      </if>
+      <if test="sqdCustom5 != null">
+        Sqd_custom5,
+      </if>
+      <if test="sqdCustom6 != null">
+        Sqd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sqdProdid != null">
+        #{sqdProdid,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSerno != null">
+        #{sqdSerno,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdname != null">
+        #{sqdProdname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdsize != null">
+        #{sqdProdsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdUnitname != null">
+        #{sqdUnitname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSquantity != null">
+        #{sqdSquantity,jdbcType=INTEGER},
+      </if>
+      <if test="sqdZkqprice != null">
+        #{sqdZkqprice,jdbcType=REAL},
+      </if>
+      <if test="sqdDiscount != null">
+        #{sqdDiscount,jdbcType=REAL},
+      </if>
+      <if test="sqdUnitprice != null">
+        #{sqdUnitprice,jdbcType=REAL},
+      </if>
+      <if test="sqdPrice != null">
+        #{sqdPrice,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxrate != null">
+        #{sqdTaxrate,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxlimit != null">
+        #{sqdTaxlimit,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxinclusiveprice != null">
+        #{sqdTaxinclusiveprice,jdbcType=REAL},
+      </if>
+      <if test="sqdComplimentart != null">
+        #{sqdComplimentart,jdbcType=INTEGER},
+      </if>
+      <if test="sqdItemremark != null">
+        #{sqdItemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlId != null">
+        #{sqlId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    <set>
+      <if test="sqdSerno != null">
+        Sqd_SerNO = #{sqdSerno,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdname != null">
+        Sqd_ProdName = #{sqdProdname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdsize != null">
+        Sqd_ProdSize = #{sqdProdsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdUnitname != null">
+        Sqd_UnitName = #{sqdUnitname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSquantity != null">
+        Sqd_sQuantity = #{sqdSquantity,jdbcType=INTEGER},
+      </if>
+      <if test="sqdZkqprice != null">
+        Sqd_ZkqPrice = #{sqdZkqprice,jdbcType=REAL},
+      </if>
+      <if test="sqdDiscount != null">
+        Sqd_Discount = #{sqdDiscount,jdbcType=REAL},
+      </if>
+      <if test="sqdUnitprice != null">
+        Sqd_UnitPrice = #{sqdUnitprice,jdbcType=REAL},
+      </if>
+      <if test="sqdPrice != null">
+        Sqd_Price = #{sqdPrice,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxrate != null">
+        Sqd_TaxRate = #{sqdTaxrate,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxlimit != null">
+        Sqd_Taxlimit = #{sqdTaxlimit,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxinclusiveprice != null">
+        Sqd_TaxInclusivePrice = #{sqdTaxinclusiveprice,jdbcType=REAL},
+      </if>
+      <if test="sqdComplimentart != null">
+        Sqd_Complimentart = #{sqdComplimentart,jdbcType=INTEGER},
+      </if>
+      <if test="sqdItemremark != null">
+        Sqd_ItemRemark = #{sqdItemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlId != null">
+        sql_id = #{sqlId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        Sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        Sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        Sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        Sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        Sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        Sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        Sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        Sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Sqd_ProdID = #{sqdProdid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    set Sqd_SerNO = #{sqdSerno,jdbcType=VARCHAR},
+      Sqd_ProdName = #{sqdProdname,jdbcType=VARCHAR},
+      Sqd_ProdSize = #{sqdProdsize,jdbcType=VARCHAR},
+      Sqd_UnitName = #{sqdUnitname,jdbcType=VARCHAR},
+      Sqd_sQuantity = #{sqdSquantity,jdbcType=INTEGER},
+      Sqd_ZkqPrice = #{sqdZkqprice,jdbcType=REAL},
+      Sqd_Discount = #{sqdDiscount,jdbcType=REAL},
+      Sqd_UnitPrice = #{sqdUnitprice,jdbcType=REAL},
+      Sqd_Price = #{sqdPrice,jdbcType=REAL},
+      Sqd_TaxRate = #{sqdTaxrate,jdbcType=REAL},
+      Sqd_Taxlimit = #{sqdTaxlimit,jdbcType=REAL},
+      Sqd_TaxInclusivePrice = #{sqdTaxinclusiveprice,jdbcType=REAL},
+      Sqd_Complimentart = #{sqdComplimentart,jdbcType=INTEGER},
+      Sqd_ItemRemark = #{sqdItemremark,jdbcType=VARCHAR},
+      sql_id = #{sqlId,jdbcType=VARCHAR},
+      Sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      Sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      Sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      Sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      Sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      Sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      Sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      Sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR}
+    where Sqd_ProdID = #{sqdProdid,jdbcType=VARCHAR}
+  </update>
+</mapper>
+
+

@@ -50,7 +50,10 @@ public class Adjust_priceService {
     public int updateByPrimaryKeySelective(Adjust_price record){
     	return dao.updateByPrimaryKeySelective(record);
     }
-
+    public int wdupdateByPrimaryKeySelective(String apDateid){
+    	System.out.println(apDateid);
+    	return dao.updateByPrimaryKeySelectives(apDateid);
+    }
     public int updateByPrimaryKey(Adjust_price record){
     	return dao.updateByPrimaryKey(record);
     }

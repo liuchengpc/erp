@@ -2,6 +2,7 @@ package com.apatech.mapper;
 
 import java.util.List;
 
+import com.apatech.pojo.PurchaseReturnsPojo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,4 +33,14 @@ public interface Purchase_returnsMapper {
     int updateByPrimaryKeySelective(Purchase_returns record);
 
     int updateByPrimaryKey(Purchase_returns record);
+
+    PurchaseReturnsPojo selectLast();
+
+    PurchaseReturnsPojo selectPrev(Integer lineId);
+
+    PurchaseReturnsPojo selectNext(Integer lineId);
+
+    PurchaseReturnsPojo selectFirst();
+
+    String selectPureId();
 }

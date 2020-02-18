@@ -41,7 +41,7 @@ public class PayablesController {
     	PageInfo<Payables> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
-	
+		
 	/**
 	 * 获取单号
 	 * @param billdate

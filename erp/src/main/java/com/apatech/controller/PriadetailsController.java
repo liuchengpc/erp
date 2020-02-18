@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +36,16 @@ public class PriadetailsController {
 	 */
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo<Priadetails> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入PriadetailsController分页");
-		System.out.println(pageNum+"/"+pageSize);
-    	PageInfo<Priadetails> page=dao.selectAllpage(pageNum, pageSize);
-    	return page;
+	public PageInfo<Priadetails> selectAllpage(Integer page,Integer limit){
+		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
+		/*
+		 * Map<String,Object> resultMap = new HashMap<String, Object>();
+		 * resultMap.put("code","200"); //默认0，状态200表示成功 resultMap.put("msg","");
+		 * resultMap.put("count",dao.selectCount()); //显示总条数
+		 * resultMap.put("data",dao.selectAllpage(page,limit)); //保存集合
+		 */    	
+		PageInfo<Priadetails> pageFy = dao.selectAllpage(page, limit);
+		return pageFy;
     }
 	
 	/**

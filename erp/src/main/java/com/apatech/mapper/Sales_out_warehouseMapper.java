@@ -14,6 +14,9 @@ import com.apatech.domain.Team;
 public interface Sales_out_warehouseMapper {
  List<Sales_out_warehouse> selectAll();
  
+	@Select("select count(*) from Sales_out_warehouse")
+	int selectcount();
+ 
  	@Update("update Sales_out_warehouse set sow_yn=1 where sow_id=#{id}")
  	public int deletelist(String id);
  	

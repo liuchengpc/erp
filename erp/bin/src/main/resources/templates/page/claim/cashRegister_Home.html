@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css2/bootstrap.css}">
+		<script th:src="@{/js/jquery-1.12.4.js}"></script>
+   		 <script th:src="@{/js/bootstrap.js}"></script>
+		<link rel="stylesheet" type="text/css" th:href="@{/css2/easyui.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css2/icon.css}">
+
+		 <link th:href="@{/css2/style3.css}" rel="stylesheet" type="text/css"/>
+		 <link rel="stylesheet" th:href="@{/css2/style5.css}">
+        <script th:src="@{/js2/jquery.js}"></script>
+        <script th:src="@{/js2/jquery.SuperSlide.2.1.1.js}"></script>
+		
+		<script type="text/javascript" th:src="@{/js2/jquery.easyui.min.js}"></script>
+		
+		
+		<style type="text/css">
+			.set-content{
+				autoPlay:false;trigger:"click";delayTime:700;pnLoop:false;
+			}
+			.box{
+				height: 44px;
+				position: absolute;
+				overflow: hidden;
+				top: 95%;
+				margin-top: -15px;
+				margin-left: -30px;
+				left: 14%;
+			}
+			.box span{
+				display: inline-block;
+				 background-image: -webkit-gradient(linear,0 0,0 bottom,from(#fef637),to(#f90));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				width: 30px;
+				height: 44px;
+				font-size: 44px;
+				line-height: 44px;
+			}
+			.box .sign-box span{
+			width: 15px;
+			}
+			.box .digit-container{
+			width: 30px;
+			text-align: center;
+			overflow: hidden;
+			font-size: 0;
+			}
+			.l{
+			float: left;
+			}
+
+			
+			
+			.raise:hover,
+			.raise:focus {
+			  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+			  -webkit-transform: translateY(-0.25em);
+			          transform: translateY(-0.25em);
+			}					
+			.raise {
+			  --color: #8B8989;
+			  --hover: #CD0000;
+			}			
+			button {
+			  color: var(--color);
+			  -webkit-transition: 0.25s;
+			  transition: 0.25s;
+			}
+			button:hover, button:focus {
+			  border-color: var(--hover);
+			  color: #CD0000;
+			  font-weight: bolder;
+			}
+			
+			/*body {
+			  color: #fff;
+			  background: #17181c;
+			  font: 300 1em 'Fira Sans', sans-serif;
+			  -webkit-box-pack: center;
+			      -ms-flex-pack: center;
+			          justify-content: center;
+			  -ms-flex-line-pack: center;
+			      align-content: center;
+			  -webkit-box-align: center;
+			      -ms-flex-align: center;
+			          align-items: center;
+			  text-align: center;
+			  min-height: 100vh;
+			  display: -webkit-box;
+			  display: -ms-flexbox;
+			  display: flex;
+			}*/
+			
+			button {
+			  background: none;
+			  border: 2px solid;
+			  font: inherit;
+			  line-height: 1;
+			  margin: 0.5em;
+			  padding: 1em 2em;
+			}
+			
+			h1 {
+			  font-weight: 400;
+			}
+			
+			code {
+			  color: #e4cb58;
+			  font: inherit;
+			}
+			
+			/*
+			  As a bonus, I will now begin including a shoddily written limerick or other high literary masterpiece in all my pens. Misspelled visual rhymes and two left feet are the spice of life. You're welcome.
+			
+			  [1/?] Glass cannon 
+			  There was a young dev on the frontend
+			  delighted to see folks affronted
+			    They claimed satisfaction
+			    provoking a reaction
+			  but threw quite a fit when confronted
+			*/
+
+			
+			
+			.products{
+				list-style:none;
+				margin-right:300px;
+				padding:0px;
+				height:100%;
+			}
+			.products li{
+				display:inline;
+				float:left;
+				margin:10px;
+			}
+			.item{
+				margin-left: 30px;
+				display:block;
+				text-decoration:none;
+			}
+			.item img{
+				border:1px solid #333;
+				width: 75px;
+			}
+			.item p{
+				margin:0;
+				font-weight:bold;
+				font-size:12px;
+				text-align:center;
+				color:gray;
+			}
+			.cart{
+				position:fixed;
+				right:0;
+				top:0;
+				width:300px;
+				height:100%;
+				background:#ccc;
+				padding:0px 10px;
+			}
+			h1{
+				text-align:center;
+				color:#555;
+			}
+			h2{
+				position:absolute;
+				font-size:16px;
+				left:10px;
+				bottom:20px;
+				color:#555;
+			}
+			.total{
+				margin:0;
+				text-align:right;
+				padding-right:20px;
+			}
+			.ayo:hover{
+				transform: scale(1.1);
+			}
+			.ayo:hover p{
+				color: #000000;
+			}
+		</style>
+		<script>
+			var data = {"total":0,"rows":[]};
+			var totalCost = 0;
+			var gd = 0;
+			
+			var register = {};
+			var totalCost2 = 0;
+			
+			$(function(){
+				$('#cartcontent').datagrid({
+					singleSelect:true
+				});
+						
+				ayo();		//点击增加商品
+				
+				
+				awu();
+				awu2();
+			});
+			 
+			 var g = 0;
+			 document.addEventListener('mousewheel',function(event){ //判断鼠标上滚 下滚
+			    if(event.wheelDelta>0){
+			    	g = 1;
+			    }else{
+			    	g = -1;
+			    }
+			})
+			 
+			function ayo(){
+				$(".ayo").live("click",function(){
+					if($("#syTab").attr("class")=="on"){
+						//商品条码ID
+						var commoditydetailid = $(this).find('a').attr("i");				
+						//商品名称
+					  	var name = $(this).find('p:eq(0)').html();	
+						//商品数量
+						var num = $(this).find('p:eq(0)').attr("i2");
+					  	//商品规格
+					  	var commoditySize = $(this).find('p:eq(1)').html();
+					  	//商品单价
+						var price = $(this).find('p:eq(2)').html();
+						//合计
+						var moneyamt = parseFloat(price.split('$')[1]);
+						//删除
+						var span = "<span class=\"glyphicon glyphicon-remove\"></span>&nbsp&nbsp&nbsp";
+						addProduct(commoditydetailid,name,num, commoditySize,parseFloat(price.split('$')[1]),moneyamt,span); 
+					}else if($("#gdTab").attr("class")=="on"){
+						if($(".bt").html()!=""){
+							console.info(register);
+							//商品条码ID
+							var commoditydetailid = $(this).find('a').attr("i");				
+							//商品名称
+						  	var commodityname = $(this).find('p:eq(0)').html();	
+							//商品数量
+							var count = $(this).find('p:eq(0)').attr("i2");
+						  	//商品规格
+						  	var specifications = $(this).find('p:eq(1)').html();
+						  	//商品单价
+							var price = $(this).find('p:eq(2)').html();
+							var index = price.lastIndexOf("$");
+							price =price.substring(index+1,price.length);
+							//合计
+							var moneyamt = parseFloat(price);
+							for(var f=0;f<register.list.length;f++){
+								if(commoditydetailid == register.list[f].commoditydetailid){
+									register.list[f].count += 1;
+									register.list[f].moneyamt += parseInt(price);
+									register.list[f].sbtotal += parseInt(price);
+									totalCost2 += parseInt(price);
+									
+									$(".wuyu:eq("+f+")").find(".count").html(register.list[f].count);
+									$(".wuyu:eq("+f+")").find(".moneyamt").html(register.list[f].moneyamt);
+									$(".wuyu:eq("+f+")").find(".sbtotal").html(register.list[f].sbtotal);
+									$("[name=pp1]").val(totalCost2);
+									
+									if($("#VIPbutton44").attr("checked")=="checked"){
+										$("[name=pp2]").val(totalCost2/100*parseInt(register.memberlv.discount));
+										$("[name=pp3]").val(register.member.integral);
+										$("[name=pp4]").val(register.memberlv.discount);
+									}else{
+										$("[name=pp2]").val("无");
+										$("[name=pp3]").val("0");
+										$("[name=pp4]").val("无");
+									}
+									return;
+								}
+							}
+							totalCost2 += parseInt(price);
+							var bt = $(".bt").html();
+							var index = bt.lastIndexOf("：");
+							bt =bt.substring(index+1,bt.length);
+							var zhekou = $("[name=pp4]").val();
+							if(zhekou=="无"){
+								zhekou = 100;
+							}
+							var commoditydetail = {
+									count:count
+							}
+							var registerdetail2 = {
+									cashregisterid:bt,
+									commodityname:commodityname,
+									commoditydetailid:commoditydetailid,
+									specifications:specifications,
+									price:price,
+									sbtotal:moneyamt,
+									count:1,
+									zhekou:zhekou,
+									moneyamt:moneyamt,
+									commoditydetail:commoditydetail
+							}
+							var tr = $("<tr class=\"wuyu\"><td class=\"commodityname\">"+registerdetail2.commodityname+"</td><td class=\"specifications\">"+registerdetail2.specifications+"</td><td class=\"count\">"+registerdetail2.count+"</td><td class=\"price\">"+registerdetail2.price+"</td><td class=\"moneyamt\">"+registerdetail2.moneyamt+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");
+							$("#contentXQ").append(tr);
+							$("[name=pp1]").val(totalCost2);
+							if($("#VIPbutton44").attr("checked")=="checked"){
+								$("[name=pp2]").val(totalCost2/100*parseInt(register.memberlv.discount));
+								$("[name=pp3]").val(register.member.integral);
+								$("[name=pp4]").val(register.memberlv.discount);
+							}else{
+								$("[name=pp2]").val("无");
+								$("[name=pp3]").val("0");
+								$("[name=pp4]").val("无");
+							}
+							register.list.push(registerdetail2);
+						}
+					}
+				});
+			}
+			
+			 function awu2(){								
+					$(".wuyu").live("mousewheel",function(){
+						var ind = $(this).index();
+						if(g>0){
+							var num = register.list[ind].commoditydetail.count;
+							if(register.list[ind].count<num){
+								register.list[ind].count += 1;
+								register.count += 1;
+								register.list[ind].moneyamt += parseFloat($(this).find(".price").html());
+								$(this).find(".count").html(register.list[ind].count);
+								$(this).find(".moneyamt").html(register.list[ind].moneyamt);
+								totalCost2 += parseFloat($(this).find(".price").html());
+							}else if(register.list[ind].count==num){
+								$(this).find(".count").css("color","red");
+							}
+						}else{
+							/*$(this).find(".datagrid-cell-c1-quantity").html(data.rows[ind].quantity -=1);
+							totalCost -= parseFloat($(this).find(".datagrid-cell-c1-price").html());*/
+							if(parseInt($(this).find(".count").html())>1){
+								$(this).find(".count").css("color","#000000");
+								register.list[ind].count -= 1;
+								register.list[ind].moneyamt-=parseFloat($(this).find(".price").html());
+								$(this).find(".count").html(register.list[ind].count);
+								$(this).find(".moneyamt").html(register.list[ind].moneyamt);
+								totalCost2 -= parseFloat($(this).find(".price").html());
+							}
+						}
+						if($("#VIPbutton44").attr("checked")=="checked"){
+							$("[name=pp1]").val(totalCost2);
+							$('[name=pp2]').val(parseFloat(totalCost2/100*zhekou));
+							register.moneyamt = parseInt(totalCost2/100*zhekou);
+						}else{
+							$('[name=pp2]').val("无");
+							$("[name=pp1]").val(totalCost2);
+							$('[name=pp3]').val("无");
+							$('[name=pp4]').val("无");
+							register.moneyamt = parseInt(totalCost2);
+						}
+					});
+				}
+			 
+			function awu(){								
+				$(".datagrid-row").live("mousewheel",function(){
+					var ind = $(this).index();
+					if(g>0){
+						var num = data.rows[ind].num;
+						if(data.rows[ind].quantity<num){
+							data.rows[ind].quantity += 1;
+							data.rows[ind].moneyamt += parseFloat($(this).find(".datagrid-cell-c1-price").html());
+							$(this).find(".datagrid-cell-c1-quantity").html(data.rows[ind].quantity);	
+							$(this).find(".datagrid-cell-c1-moneyamt").html(data.rows[ind].moneyamt);
+							totalCost += parseFloat($(this).find(".datagrid-cell-c1-price").html());
+						}else if(data.rows[ind].quantity==num){
+							$(this).find(".datagrid-cell-c1-quantity").css("color","red");
+						}
+					}else{
+						/*$(this).find(".datagrid-cell-c1-quantity").html(data.rows[ind].quantity -=1);
+						totalCost -= parseFloat($(this).find(".datagrid-cell-c1-price").html());*/
+						if(parseInt($(this).find(".datagrid-cell-c1-quantity").html())>1){
+							$(this).find(".datagrid-cell-c1-quantity").css("color","#000000");
+							data.rows[ind].quantity -= 1;
+							data.rows[ind].moneyamt-=parseFloat($(this).find(".datagrid-cell-c1-price").html());
+							$(this).find(".datagrid-cell-c1-quantity").html(data.rows[ind].quantity);
+							$(this).find(".datagrid-cell-c1-moneyamt").html(data.rows[ind].moneyamt);
+							totalCost -= parseFloat($(this).find(".datagrid-cell-c1-price").html());
+						}
+					}
+					if($("#VIPbutton2").attr("checked")=="checked"){
+						$("[name=tt1]").val(totalCost);
+						$('[name=tt2]').val(parseFloat(totalCost/100*zhekou));
+					}else{
+						$('[name=tt2]').val("无");
+						$("[name=tt1]").val(totalCost);
+						$('[name=tt3]').val("无");
+						$('[name=tt4]').val("无");
+					}
+				});
+			}
+			
+			function addProduct(commoditydetailid,name,num,commoditySize,price,moneyamt,span){
+				function add(){
+					for(var i=0; i<data.total; i++){
+						var row = data.rows[i];
+						if (row.commoditydetailid == commoditydetailid){
+							row.num = num;
+							row.quantity += 1;
+							row.moneyamt += price;
+							row.span = span;
+							return;
+						}
+					}
+					data.total += 1;
+
+					data.rows.push({
+						commoditydetailid:commoditydetailid,
+						name:name,
+						commoditySize:commoditySize,
+						quantity:1,
+						price:price,
+						moneyamt:moneyamt,	
+						num:num,
+						span:span
+					});
+				}
+				add();
+				totalCost += price;
+				
+				$('#cartcontent').datagrid('loadData', data);
+				if($("#VIPbutton2").attr("checked")=="checked"){
+					$("[name=tt1]").val(totalCost);
+					$('[name=tt2]').val(parseFloat(totalCost/100*zhekou));
+				}else{
+					$('[name=tt2]').val("无");
+					$("[name=tt1]").val(totalCost);
+					$('[name=tt3]').val("无");
+					$('[name=tt4]').val("无");
+				}
+							
+				$("#VIPbutton").click(function(){		
+					if($("#VIPbutton2").attr("checked")=="checked"){
+						$("#VIPbutton2").val("0");
+						$('[name=tt1]').val(totalCost);
+						$('[name=tt2]').val("无");
+					}else{
+						$("#VIPbutton").val("1");
+						$('[name=tt2]').val("无");
+						$('[name=tt1]').val(totalCost);
+						$('[name=tt3]').val("无");
+						$('[name=tt4]').val("无");
+					}
+				});
+				
+				
+				
+				$("#qk").click(function(){
+					$(".datagrid-row").html("");	//清除所有表单
+					data={"total":0,"rows":[]};
+					dataTwo={"total":0,"rows":[]};
+					totalCost = 0;
+					$("#VIPbutton").removeAttr("checked");
+					$("#VIPbutton").val("1");
+					$('[name=tt2]').val("无");
+					$('[name=tt1]').val(totalCost);
+					
+				});
+				
+				/*$(".datagrid-row").live("mousewheel",function(){
+					if (data.rows[ind].name == name){
+						data.rows[ind].quantity += 1;
+						$(this).find(".datagrid-cell-c1-quantity").html(data.rows[ind].quantity);
+					}
+				});*/
+				
+			}
+		</script>
+	</head>
+
+	<body style="margin:0;padding:0;height:100%;background:#fafafa;">
+		<ul id="fz" class="products" style="height: 380px;width: 805px;margin-top: 0px;overflow: hidden;overflow-y:scroll;border-bottom: 1px solid gainsboro;margin-left:-2%;">
+			<!-- <li class="ayo">
+				<a href="#" class="item">
+					<img src="/images/shirt1.gif" style="border-width: 0px;" class="iga">
+					<div>
+						<p>Balloon</p>
+						<p>L</p>
+						<p>价格:$15.5</p>
+					</div>
+				</a>
+			</li> -->
+		</ul>
+
+		
+		<div class="set-content" style="position: absolute;left: 60.5%;margin-top:-30.0%;height:503px;width: 506px;background-color: #ccc;">
+            
+            <div class="set-title hd">
+                <ul class="clearfix">
+                    <li id="syTab" class="on">收银</li>
+                    <li id="gdTab">挂单</li>
+                </ul>
+            </div>
+            <div class="set-middle bd" style="border-top:#000000;height: 70.6%;background-color: #ccc;">
+                <ul class="set-middle-item">
+                    <li>
+                    	<div class="checkbox" style="position: absolute;">
+						  <label>
+						   <span id="VIPbutton" data-toggle="modal" data-target="#myModal3" style="display:inline-block;position: absolute;width: 50px;top: -3px;">会员：</span>
+						   <input id="VIPbutton2" disabled="disabled" type="checkbox" value="0" aria-label="..." style="zoom:150%;margin-left: 35px;margin-top: -5%;">
+						  </label>
+						</div>
+                        <h3 style="margin-left:40%;">收银系统</h3>
+						<div style="background:#fff">
+						<table id="cartcontent" fitColumns="true" style="width:450px;height:auto;">
+							<thead>
+								<tr>
+									<th field="name" width="15">商品</th>
+									<th field="commoditySize" width="15" align="right">规格</th>
+									<th field="quantity" width="10" align="right">数量</th>
+									<th field="price" width="10" align="right">单价</th>
+									<th field="moneyamt" width="10" align="right">合计</th>
+									<th field="span" width="5" align="right">操作</th>
+								</tr>
+							</thead>
+						</table>
+						</div>
+												
+					    <div class="form-group col-md-6" style="position: absolute;top:75%;left:1%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="tt1" class="form-control total" id="exampleInputAmount" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">总金额</div>
+						    </div>
+					    </div>
+					    
+					    <div class="form-group col-md-6" style="position: absolute;top:82%;left:1%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="tt2" class="form-control total" id="exampleInputAmount" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">会员价</div>
+						    </div>
+					    </div>
+					     <div class="form-group col-md-6" style="position: absolute;top:75%;left:49%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="tt3" class="form-control total" id="exampleInputAmount" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">积分抵扣 </div>
+						    </div>
+					    </div>
+					    
+					    <div class="form-group col-md-6" style="position: absolute;top:82%;left:49%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">%</div>
+						      <input type="text" name="tt4" class="form-control total" id="exampleInputAmount" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">会员折扣</div>
+						    </div>
+					    </div>
+						<div style="position: absolute;top: 92%;left: 30%;">
+							<input class="btn btn-default" type="button" value="挂单" id="gdGo" style="width: 70px;height: 30px;font-size: 13px;cursor:pointer;">
+							<input class="btn btn-default" type="button" value="清空" id="qk" style="width: 70px;height: 30px;font-size: 13px;cursor:pointer;">
+							<input class="btn btn-default" type="button" value="结账" id="jz" style="width: 70px;height: 30px;font-size: 13px;cursor:pointer;">
+						</div>
+                    </li>
+                </ul>
+                <ul class="set-middle-item">
+                    <li class="li1">
+                    	<h3 style="margin-left:40%;margin-top:-10px;">待付款</h3>
+                    	<form class="form-inline" style="margin-left:130px;margin-top:10px;">
+						  <div class="form-group">
+						    <input type="text" name="ashregisterid" class="form-control" id="" placeholder="请输入订单号">
+						  </div>
+						  <button type="button" id="ash" class="btn btn-default" style="margin-top:-2px;">查询单号</button>
+						</form>
+                       <table class="table table-hover" style="border:0px;margin-left:-15px;">
+                       		<thead style="border:0px;">
+									<tr>
+										<th>序号</th>
+										<th>订单编号</th>
+										<th>应收金额</th>
+										<th>挂单时间</th>
+										<th>操作</th>
+									</tr>
+							</thead>
+                       </table>
+                       <div style="height:230px;overflow: hidden;overflow-y:scroll;">
+							<table class="table table-hover">
+								<tbody id="contentGd">
+									<!-- <tr>
+										<td>1</td>
+										<td>112331231231232</td>
+										<td>2000.0</td>
+										<td>2019-10-12 00:00:00</td>
+										<td><a href="#" data-toggle="modal" data-target="#myModal">查看</a></td>
+									</tr> -->
+								</tbody>
+							</table>	
+					   </div>
+                    </li>
+                    <li class="li2">
+                    	<div class="checkbox" style="position: absolute;">
+						  <label>
+						   <span id="VIPbutton33" data-toggle="modal" data-target="#myModal303" style="display:inline-block;position: absolute;width: 50px;top: -3px;left:400px;">会员：</span>
+						   <input id="VIPbutton44" disabled="disabled" type="checkbox" value="0" aria-label="..." style="zoom:150%;margin-left: 290px;margin-top: -5%;">
+						  </label>
+						</div>
+                    	<h3 class="bt"></h3>
+                    	</br>
+                    	<table class="table table-hover">
+						  <thead>
+						  	<tr>
+						  		<th>商品</th>
+						  		<th>规格</th>
+						  		<th>数量</th>
+						  		<th>单价</th>
+						  		<th>合计</th>
+						  		<th>操作</th>
+						  	</tr>
+						  </thead>
+						  <tbody id="contentXQ">
+						  	<!-- <tr>
+						  		<td>1</td>
+						  		<td>1</td>
+						  		<td>1</td>
+						  		<td>1</td>
+						  		<td>1</td>
+						  		<td>1</td>
+						  	</tr> -->
+						  </tbody>
+						</table>
+						<div class="form-group col-md-6" style="position: absolute;top:75%;left:1%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="pp1" class="form-control total" id="" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">总金额</div>
+						    </div>
+					    </div>
+						
+						<div class="form-group col-md-6" style="position: absolute;top:82%;left:1%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="pp2" class="form-control total" id="" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">会员价</div>
+						    </div>
+					    </div>
+					     <div class="form-group col-md-6" style="position: absolute;top:75%;left:49%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">$</div>
+						      <input type="text" name="pp3" class="form-control total" id="" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">积分抵扣 </div>
+						    </div>
+					    </div>
+					    
+					    <div class="form-group col-md-6" style="position: absolute;top:82%;left:49%;">
+						    <div class="input-group">
+						      <div class="input-group-addon">%</div>
+						      <input type="text" name="pp4" class="form-control total" id="" placeholder="" readonly="readonly">
+						      <div class="input-group-addon">会员折扣</div>
+						    </div>
+					    </div>
+					    <div style="position:absolute;left:80px;top:450px;">
+					    	<button id="qx2" type="button" class="btn btn-default" style="width:100px;">取消</button>
+						    <button id="sc2" type="button" class="btn btn-default" style="width:100px;">删除</button>
+						    <button id="jz2" type="button" class="btn btn-default" style="width:100px;">结账</button>
+					    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>		
+		
+		<div id="splx" style="width: 60.7%;margin-top: 3%;">
+			<!-- <button class="raise" style="margin-left: 6.6%;width: 13%;cursor:pointer;">上衣</button>
+			<button class="raise" style="margin-left: 4%;width: 13%;cursor:pointer;">裤/裙</button> -->
+			<!-- <button class="raise" style="margin-left: 4%;width: 13%;cursor:pointer;">鞋子</button>
+			<button class="raise" style="margin-left: 4%;width: 13%;cursor:pointer;">帽子</button>
+			<button class="raise" style="margin-left: 4%;width: 13%;cursor:pointer;">饰品</button> -->
+		</div>
+		<img id="prePage1" src="/img/lt.png" width="1.5%" style="position: absolute;top:90%;left: 1.1%;">
+		<img id="nextPage1" src="/img/rt.png" width="1.5%" style="position: absolute;top:90%;left: 58.1%;opacity: 0.3;cursor:pointer;">
+				
+	       
+        </button>
+        <!-- 模态框（Modal） -->
+        <div data-backdrop="static" data-keyboard="false" class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            输入会员号
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+							<div class="row">
+			                  <div class="form-group col-md-9" >
+							    <input type="text" class="form-control" name="phone" id="" placeholder="请填写会员号">
+							  </div>
+							  <div class="form-group  col-md-9">
+							    <input type="password" class="form-control" name="password" id="" placeholder="请填写密码">
+							  </div>
+							  <div hidden="hidden" class="ts" style="width:300px; height:25px;color:red;"></div>
+							  <button id="hyqx" data-dismiss="modal" type="button" class="btn btn-default">关闭会员</button>
+							  <button id="hyqr" data-dismiss="modal" type="button" class="btn btn-default">确认</button>
+		                    </div>
+	                   </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            提交更改
+                        </button>
+                    </div> -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+        
+        <!-- 模态框（Modal） -->
+        <div data-backdrop="static" data-keyboard="false" class="modal fade" id="myModal303" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            输入会员号
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+	                  <div class="row">
+			                  <div class="form-group col-md-9" >
+							    <input type="text" class="form-control" name="phone2" id="" placeholder="请填写会员号">
+							  </div>
+							  <div class="form-group  col-md-9">
+							    <input type="password" class="form-control" name="password2" id="" placeholder="请填写密码">
+							  </div>
+							  <div hidden="hidden" class="ts" style="width:300px; height:25px;color:red;"></div>
+							  <button id="hyqx2" data-dismiss="modal" type="button" class="btn btn-default">关闭会员</button>
+							  <button id="hyqr2" data-dismiss="modal" type="button" class="btn btn-default">确认</button>
+		                    </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            提交更改
+                        </button>
+                    </div> -->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+	<script>
+		
+		
+		$(function(){
+			jQuery(".set-content").slide({autoPlay:false,trigger:"click",delayTime:700,pnLoop:false});
+			
+			gdGo();		//挂单功能
+			
+			qk();	//清空表单
+			
+			count();
+			
+			lx1(1);
+			
+			$(document).on("mouseenter", ".suspension .a", function(){
+					var _this = $(this);
+					var s = $(".suspension");
+					var isService = _this.hasClass("a-service");
+					var isServicePhone = _this.hasClass("a-service-phone");
+					var isQrcode = _this.hasClass("a-qrcode");
+					if(isService){ s.find(".d-service").show().siblings(".d").hide();}
+					if(isServicePhone){ s.find(".d-service-phone").show().siblings(".d").hide();}
+					if(isQrcode){ s.find(".d-qrcode").show().siblings(".d").hide();}
+			});
+			$(document).on("mouseleave", ".suspension, .suspension .a-top", function(){
+				$(".suspension").find(".d").hide();
+			});
+			$(document).on("mouseenter", ".suspension .a-top", function(){
+				$(".suspension").find(".d").hide(); 
+			});
+			$(document).on("click", ".suspension .a-top", function(){
+				$("html,body").animate({scrollTop: 0});
+			});
+			$(window).scroll(function(){
+				var st = $(document).scrollTop();
+				var $top = $(".suspension .a-top");
+				if(st > 400){
+					$top.css({display: 'block'});
+				}else{
+					if ($top.is(":visible")) {
+						$top.hide();
+					}
+				}
+			});
+			
+			fz(0);
+			aa();
+			bb();
+			sc();
+			no1(1);
+			no();
+			tab();
+			sca();
+			ash();
+			jz();
+			qx2();
+			sc2();
+			jz2();
+		});
+		
+		
+						
+		var user = JSON.parse(window.sessionStorage.getItem("user"));
+		
+		var zhekou = 100;
+			
+		
+		function jz2(){
+			$("#jz2").click(function(){
+				var bt = $(".bt").html();
+				var index=bt.lastIndexOf("：");
+				bt=bt.substring(index+1,bt.length);
+				var list=[] 
+				
+				
+				var memberid = $("#VIPbutton44").val();
+				if(register=="" || $("[name=pp1]").val()==0){
+					alert("收银表为空！");
+				}else{
+					if(memberid != 0 || memberid != "0"){
+						alert("进入会员结账");
+
+						var count2 = 0;
+						for(var l=0;l<register.list.length;l++){
+							count2 += register.list[l].count;
+						}
+
+						var ashregisterid=$(".bt").html();
+						var index = ashregisterid .lastIndexOf("：");
+						ashregisterid =ashregisterid .substring(index+1,ashregisterid.length);
+						
+						register.ashregisterid = ashregisterid;
+						register.count = count2;
+						register.ispresent = 1;
+						register.memberid = $("#VIPbutton44").val();						
+						register.moneyamt = $("[name=pp2]").val();
+						
+						var y = 0;
+						var memberid = $("#VIPbutton44").val();
+						
+						$.ajax({	//查询会员卡余额是否充足
+							url:"[[@{/MemberController/selectByPrimaryKey}]]",
+							type:"get",
+							dataType:"json",
+							async:false,
+							data:"memberid="+memberid,
+							success:function(result){
+								var mn = parseFloat(result.price)-parseFloat(register.moneyamt);
+								if(mn>0){
+									y++;									
+								}else{
+									alert("余额不足！");
+								}
+							}
+						});
+						
+						
+						if(y>0){	//余额充足后，查询积分抵扣
+							var integral2 = $("[name=pp3]").val();
+							$.ajax({	//查询会员卡余额是否充足
+								url:"[[@{/IntegralController/queryByIntegral}]]",
+								type:"get",
+								dataType:"json",
+								async:false,
+								success:function(result){
+									var integral3 = parseInt(result.integral);
+									var price2 = parseFloat(result.price);
+									
+									var integral = parseInt(parseInt(integral2)/integral3);
+									//可以抵扣的钱
+									var price = integral*price2;
+									//剩余积分
+									var integral = parseInt(parseInt(integral2)%integral3);
+									
+									register.moneyamt -= price;
+									
+									$.ajax({	//修改会员积分
+										url:"[[@{/MemberController/updateByPrimaryKeySelective2}]]",
+										type:"post",
+										dataType:"json",
+										async:false,
+										data:"memberid="+memberid+"&integral="+integral,
+										success:function(result2){
+											if(result2.code == "1"){
+												$.ajax({	//查询会员所有消费金额
+													url:"[[@{/CashregisterController/queryByMemberID}]]",
+													type:"get",
+													dataType:"json",
+													async:false,
+													data:"memberid="+memberid,
+													success:function(result3){
+														var moneylv = parseFloat(result3);//某会员消费所有金额
+														if(moneylv>0){
+															$.ajax({	//查询会员当前等级
+																url:"[[@{/MemberController/selectByPrimaryKey222}]]",
+																type:"get",
+																dataType:"json",
+																async:false,
+																data:"memberid="+memberid,
+																success:function(result4){
+																	var startmoney = parseFloat(result4.lv.moneylv);
+																	$.ajax({	//查询会员当前等级
+																		url:"[[@{/MemberlvController/queryByMemberlvMoney}]]",
+																		type:"get",
+																		dataType:"json",
+																		async:false,
+																		data:"moneylv="+moneylv+"&startmoney="+startmoney,
+																		success:function(result5){
+																			var memberlvid = result5.memberlvid;
+																			$.ajax({	//修改会员当前等级
+																				url:"[[@{/MemberController/updateByPrimaryKeySelective2}]]",
+																				type:"post",
+																				dataType:"json",
+																				async:false,
+																				data:"memberid="+memberid+"&memberlvid="+memberlvid,
+																				success:function(result6){
+																					if(result6.code=="1"){																						$.ajax({
+																							url:"[[@{/CashregisterController/deleteZByX}]]",
+																							type:"get",
+																							async:false,
+																							jdbcType:"json",
+																							data:"ashregisterid="+ashregisterid,
+																							success:function(result8){
+																								if(result8.code=="1"){
+																									$.ajax({
+																										url:"[[@{/CashregisterController/insertCashregister3}]]",
+																										type:"post",
+																										async:false,
+																										contentType:"application/json",
+																										data:JSON.stringify(register),
+																										success:function(result9){
+																											alert(result9.message);
+																											$(".wuyu").html("");	//清除所有表单
+																											register.list=[];
+																											totalCost2=0;
+																											
+																											$("#VIPbutton44").val("0");
+																											$('[name=pp2]').val("无");
+																											$('[name=pp1]').val("0");
+																											$('[name=pp3]').val("0");
+																											$('[name=pp4]').val("无");
+																											$("#VIPbutton44").removeAttr("checked");
+																											
+																											fz(0);
+																										}
+																									});
+																								}else{
+																									alert(result8.message);
+																								}
+																							}
+																						});
+						
+																					}else{
+																						alert("结账失败");
+																					}
+																				}
+																			});
+																		}
+																	});
+																}
+															});
+															
+														}else{
+															$.ajax({
+																url:"[[@{/CashregisterController/insertCashregister3}]]",
+																type:"post",
+																async:false,
+																contentType:"application/json",
+																data:JSON.stringify(register),
+																success:function(result7){
+																	alert(result7.message);
+																	$(".wuyu").html("");	//清除所有表单
+																	register.list=[];
+																	totalCost2=0;
+																	
+																	$("#VIPbutton44").val("0");
+																	$('[name=pp2]').val("无");
+																	$('[name=pp1]').val("0");
+																	$('[name=pp3]').val("0");
+																	$('[name=pp4]').val("无");
+																	$("#VIPbutton44").removeAttr("checked");
+																	
+																	fz(0);
+																}
+															});
+														}
+													}
+												});
+											}else{
+												alert("结账失败");
+											}
+										}
+									});
+								}
+							});
+						}else{
+							
+						}
+						
+					}else{
+						var count2 = 0;
+						for(var l=0;l<register.list.length;l++){
+							count2 += register.list[l].count;
+						}
+
+						var ashregisterid=$(".bt").html();
+						var index = ashregisterid .lastIndexOf("：");
+						ashregisterid =ashregisterid .substring(index+1,ashregisterid.length);
+						register.ashregisterid = ashregisterid;
+						register.count = count2;
+						register.ispresent = 1;
+						register.memberid = $("#VIPbutton44").val();
+						
+						
+						$.ajax({
+							url:"[[@{/CashregisterController/deleteZByX}]]",
+							type:"get",
+							async:false,
+							jdbcType:"json",
+							data:"ashregisterid="+ashregisterid,
+							success:function(result){
+								if(result.code=="1"){
+									console.info(register.list);
+									console.info(register);
+									$.ajax({
+										url:"[[@{/CashregisterController/insertCashregister4}]]",
+										type:"post",
+										async:false,
+										contentType:"application/json",
+										data:JSON.stringify(register),
+										success:function(result2){
+											alert(result2.message);
+											$(".wuyu").html("");	//清除所有表单
+											register.list=[];
+											totalCost2=0;
+											
+											$("#VIPbutton44").val("0");
+											$('[name=pp2]').val("无");
+											$('[name=pp1]').val("0");
+											$('[name=pp3]').val("0");
+											$('[name=pp4]').val("无");
+											$("#VIPbutton44").removeAttr("checked");
+											
+											fz(0);
+										}
+									});
+								}else{
+									alert(result.message);
+								}
+							}
+						});					
+					}
+				}
+			});
+		}
+		
+		
+		function jz(){
+			$("#jz").click(function(){
+				var memberid = $("#VIPbutton2").val();
+				if(data.rows==""){
+					alert("收银表为空！");
+				}else{
+					if(memberid != 0 || memberid != "0"){
+						var list=[] 	
+
+						var count2 = 0;
+						for(var l=0;l<data.rows.length;l++){
+							count2 += data.rows[l].quantity;
+						}
+
+						var str = data.rows[0].commoditySize;					
+						var index = str.lastIndexOf("/");
+						var commoditysize =str.substring(0,index);
+						var color  =str.substring(index+1,str.length);
+						var ashregisterid=getRandomCode(11);
+						
+						for(var l = 0;l<data.rows.length;l++){
+							var s={};
+							//alert(list[l].commoditydetailid )
+							//alert(data.rows[l].commoditydetailid)
+							s.cashregisterid = ashregisterid;
+							s.commoditydetailid = data.rows[l].commoditydetailid;
+							s.commodityname = data.rows[l].name;
+							s.specifications = data.rows[l].commoditySize;
+							s.price = data.rows[l].price;
+							s.sbtotal = data.rows[l].moneyamt;
+							s.moneyamt = data.rows[l].moneyamt/100*zhekou;
+							s.zhekou = zhekou;
+							s.count = data.rows[l].quantity;
+							list.push(s);
+						}
+						
+						console.info(list);
+						
+						dataTwo={
+							moneyamt:$("[name=tt2]").val(),
+							ispresent:1,
+							ashregisterid:ashregisterid,
+							memberid:$("#VIPbutton2").val(),
+							shopid:user.shopid,
+							cashregistername:user.username,
+							count:count2,
+							list:list
+						}
+						
+						var y = 0;
+						var memberid = $("#VIPbutton2").val();
+						
+						$.ajax({	//查询会员卡余额是否充足
+							url:"[[@{/MemberController/selectByPrimaryKey}]]",
+							type:"get",
+							dataType:"json",
+							async:false,
+							data:"memberid="+memberid,
+							success:function(result){
+								var mn = parseFloat(result.price)-parseFloat(dataTwo.moneyamt);
+								if(mn>0){
+									y++;									
+									$(".datagrid-row").html("");	//清除所有表单
+									data.rows=[];
+									data.total=0;
+									totalCost=0;
+								}else{
+									alert("余额不足！");
+								}
+							}
+						});
+						
+						
+						if(y>0){	//余额充足后，查询积分抵扣
+							var integral2 = $("[name=tt3]").val();
+							$.ajax({	//查询会员卡余额是否充足
+								url:"[[@{/IntegralController/queryByIntegral}]]",
+								type:"get",
+								dataType:"json",
+								async:false,
+								success:function(result){
+									var integral3 = parseInt(result.integral);
+									var price2 = parseFloat(result.price);
+									var integral = parseInt(parseInt(integral2)/integral3);
+									//可以抵扣的钱
+									var price = integral*price2;
+									//剩余积分
+									var integral = parseInt(parseInt(integral2)%integral3);
+									dataTwo.moneyamt -= price;
+									
+									$.ajax({	//修改会员积分
+										url:"[[@{/MemberController/updateByPrimaryKeySelective2}]]",
+										type:"post",
+										dataType:"json",
+										async:false,
+										data:"memberid="+memberid+"&integral="+integral,
+										success:function(result2){
+											if(result2.code == "1"){
+												$.ajax({	//查询会员所有消费金额
+													url:"[[@{/CashregisterController/queryByMemberID}]]",
+													type:"get",
+													dataType:"json",
+													async:false,
+													data:"memberid="+memberid,
+													success:function(result3){
+														var moneylv = parseFloat(result3);//某会员消费所有金额
+														if(moneylv>0){
+															$.ajax({	//查询会员当前等级
+																url:"[[@{/MemberController/selectByPrimaryKey222}]]",
+																type:"get",
+																dataType:"json",
+																async:false,
+																data:"memberid="+memberid,
+																success:function(result4){
+																	var startmoney = parseFloat(result4.lv.moneylv);
+																	$.ajax({	//查询会员当前等级
+																		url:"[[@{/MemberlvController/queryByMemberlvMoney}]]",
+																		type:"get",
+																		dataType:"json",
+																		async:false,
+																		data:"moneylv="+moneylv+"&startmoney="+startmoney,
+																		success:function(result5){
+																			var memberlvid = result5.memberlvid;
+																			$.ajax({	//修改会员当前等级
+																				url:"[[@{/MemberController/updateByPrimaryKeySelective2}]]",
+																				type:"post",
+																				dataType:"json",
+																				async:false,
+																				data:"memberid="+memberid+"&memberlvid="+memberlvid,
+																				success:function(result6){
+																					if(result6.code=="1"){
+																						$.ajax({
+																							url:"[[@{/CashregisterController/insertCashregister3}]]",
+																							type:"post",
+																							async:false,
+																							contentType:"application/json",
+																							data:JSON.stringify(dataTwo),
+																							success:function(result7){
+																								alert(result7.message);
+																								
+																								$("#VIPbutton2").val("0");
+																								$('[name=tt2]').val("无");
+																								$('[name=tt1]').val("0");
+																								$('[name=tt3]').val("0");
+																								$('[name=tt4]').val("无");
+																								$("#VIPbutton2").removeAttr("checked");
+																								
+																								fz(0);
+																							}
+																						});
+																					}else{
+																						alert("结账失败");
+																					}
+																				}
+																			});
+																		}
+																	});
+																}
+															});
+															
+														}else{
+															$.ajax({
+																url:"[[@{/CashregisterController/insertCashregister3}]]",
+																type:"post",
+																async:false,
+																contentType:"application/json",
+																data:JSON.stringify(dataTwo),
+																success:function(result7){
+																	alert(result7.message);
+																	
+																	$("#VIPbutton2").val("0");
+																	$('[name=tt2]').val("无");
+																	$('[name=tt1]').val("0");
+																	$('[name=tt3]').val("0");
+																	$('[name=tt4]').val("无");
+																	$("#VIPbutton2").removeAttr("checked");
+																	
+																	fz(0);
+																}
+															});
+														}
+													}
+												});
+											}else{
+												alert("结账失败");
+											}
+										}
+									});
+								}
+							});
+						}else{
+							
+						}
+						
+					}else{
+						var list=[] 	
+						var count2 = 0;
+						for(var l=0;l<data.rows.length;l++){
+							count2 += data.rows[l].quantity;
+						}
+
+						var str = data.rows[0].commoditySize;					
+						var index = str.lastIndexOf("/");
+						var commoditysize =str.substring(0,index);
+						var color  =str.substring(index+1,str.length);
+						var ashregisterid=getRandomCode(11);
+						
+						for(var l = 0;l<data.rows.length;l++){
+							var s={};
+							//alert(list[l].commoditydetailid )
+							//alert(data.rows[l].commoditydetailid)
+							s.cashregisterid = ashregisterid;
+							s.commoditydetailid = data.rows[l].commoditydetailid;
+							s.commodityname = data.rows[l].name;
+							s.specifications = data.rows[l].commoditySize;
+							s.price = data.rows[l].price;
+							s.sbtotal = data.rows[l].moneyamt;
+							s.moneyamt = data.rows[l].moneyamt/100*zhekou;
+							s.zhekou = zhekou;
+							s.count = data.rows[l].quantity;
+							list.push(s);
+						}
+						
+						dataTwo={
+							moneyamt:totalCost,
+							ispresent:1,
+							ashregisterid:ashregisterid,
+							memberid:0,
+							shopid:user.shopid,
+							cashregistername:user.username,
+							count:count2,
+							list:list
+						}
+						
+						$.ajax({
+							url:"[[@{/CashregisterController/insertCashregister4}]]",
+							type:"post",
+							async:false,
+							contentType:"application/json",
+							data:JSON.stringify(dataTwo),
+							success:function(result){
+								alert(result.message);
+							}
+						});
+						
+						$(".datagrid-row").html("");	//清除所有表单
+						data.rows=[];
+						data.total=0;
+						totalCost=0;
+						
+						$("#VIPbutton2").val("0");
+						$('[name=tt2]').val("无");
+						$('[name=tt1]').val("0");
+						$('[name=tt3]').val("0");
+						$('[name=tt4]').val("无");
+						$("#VIPbutton2").removeAttr("checked");
+						
+						fz(0);
+					}
+				}
+			});
+		}
+		
+		function sc2(){
+			$("#sc2").click(function(){
+				var bt = $(".bt").html();
+				var index=bt.lastIndexOf("：");
+				bt=bt.substring(index+1,bt.length);
+				
+				$.ajax({	//根据订单号删除挂单
+					url:"[[@{/CashregisterController/deleteZByX}]]",
+					type:"get",
+					dataType:"json",
+					async:false,
+					data:"ashregisterid="+bt,
+					success:function(result){
+						if(result.code=="1"){
+							alert(result.message);
+							$("#gdTab").trigger("click");
+						}else{
+							alert(result.message);
+						}
+					}
+				});
+			});
+		}
+		
+		function qx2(){
+			$("#qx2").click(function(){
+				$("#gdTab").trigger("click");
+			});
+		}
+		
+		function tab(){
+			$("#gdTab,#syTab").click(function(){
+				if($("#gdTab").attr("class")=="on"){
+					totalCost2 = 0;
+				}else if($("#syTab").attr("class")=="on"){
+					
+				}
+			});
+		}
+		
+		function no(){
+			$("#gdTab").click(function(){
+				no1(1);
+				$(".li1").removeAttr("hidden");
+				$(".li2").attr("hidden","hidden");
+			});
+		}
+		
+		function ash(){
+			$("#ash").click(function(){
+				no1();
+			});
+		}
+		
+		function no1(){
+			var ashregisterid = $("[name=ashregisterid]").val();
+			$("#contentGd").html("");
+			$("#ye").html("");
+			$.ajax({
+				url:"[[@{/CashregisterController/queryByGd}]]",
+				type:"get",
+				async:false,
+				dataType:"json",
+				data:"ashregisterid="+ashregisterid,
+				success:function(result){
+					$.each(result,function(i,obj){
+						var tr= $("<tr><td>"+(i+1)+"</td><td>"+obj.ashregisterid+"</td><td>"+obj.moneyamt+"</td><td>"+obj.time+"</td><td><a class=\"motai\" i=\""+obj.ashregisterid+"\" href=\"#\">查看</a></td></tr>");
+						$("#contentGd").append(tr);
+					});
+					/* var a = result.lastPage;
+					var tr3 = $("<div class=\"container\"><div class=\"row\"><input style=\"margin-left:9%;\" class=\"btn btn-default\" type=\"button\" id=\"home\" value=\"首页\"><input class=\"btn btn-default\" type=\"button\" id=\"prePage\" value=\"上一页\"><span id=\"oh2\"></span><input class=\"btn btn-default\" type=\"button\" id=\"nextPage\" value=\"下一页\"><input class=\"btn btn-default\" type=\"button\" id=\"end\" value=\"尾页\"></div></div>");
+					$("#ye").append(tr3);
+					//页数
+					for(var b=1;b<=a;b++){
+						var li = $("<input class=\"btn btn-default yeshu\" type=\"button\" value=\""+b+"\">");
+						$("#oh2").append(li);
+					}
+					//首页
+					$("#home").click(function(){
+						no1(result.firstPage);
+					});
+					//尾页
+					$("#end").click(function(){
+						no1(result.lastPage);
+					});
+					//上一页
+					$("#prePage").attr("pageNum",result.prePage);
+					//下一页
+					$("#nextPage").attr("pageNum",result.nextPage);
+					//上一页下一页
+					$("#prePage,#nextPage").click(function(){
+						var page = $(this).attr("pageNum");
+						if(result.firstPage<=page && page<=result.lastPage){
+							no1(page);
+						}
+					});
+					
+					$(".yeshu").click(function(){
+						$(".yeshu").css("background","#fff");
+						$(this).css("background","#87CEEB");
+						var page = $(this).val();
+						no1(page);
+					}); */
+					
+					$(".motai").click(function(){
+						$(".li1").attr("hidden","hidden");
+						$(".li2").removeAttr("hidden");
+						
+						var ashregisterid = $(this).attr("i");
+						$("#contentXQ").html("");
+						$(".bt").html("");
+						var cp = 0;
+						var zhekou = 0;
+						
+						$.ajax({
+							url:"[[@{/CashregisterController/queryByao}]]",
+							type:"get",
+							async:false,
+							dataType:"json",
+							data:"ashregisterid="+ashregisterid,
+							success:function(result99){
+								if(result99==0){
+									$("#VIPbutton44").val("0");
+									$("#VIPbutton44").removeAttr("checked");
+									var list=[];
+									$.ajax({
+										url:"[[@{/CashregisterController/queryByao2}]]",
+										type:"get",
+										async:false,
+										dataType:"json",
+										data:"ashregisterid="+ashregisterid,
+										success:function(result88){
+											for(var k=0;k<result88.list.length;k++){
+												if(result88.list[k].commodity.spxj == 1){
+													var tr = $("<tr class=\"wuyu\" i=\""+result88.list[k].commodity.spxj+"\" style=\"color:red;\"><td class=\"commodityname\">"+result88.list[k].commodityname+"(已下架)</td><td class=\"specifications\">"+result88.list[k].specifications+"</td><td class=\"count\">"+result88.list[k].count+"</td><td class=\"price\">"+result88.list[k].price+"</td><td class=\"moneyamt\">"+(result88.list[k].count)*(result88.list[k].price)+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");					
+													result88.moneyamt = result88.moneyamt - (result88.list[k].count)*(result88.list[k].price);
+												}else{
+													if(result88.list[k].commoditydetail.count>=result88.list[k].count){
+														var tr = $("<tr class=\"wuyu\"><td class=\"commodityname\">"+result88.list[k].commodityname+"</td><td class=\"specifications\">"+result88.list[k].specifications+"</td><td class=\"count\">"+result88.list[k].count+"</td><td class=\"price\">"+result88.list[k].price+"</td><td class=\"moneyamt\">"+(result88.list[k].count)*(result88.list[k].price)+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");
+														totalCost2 += result88.list[k].sbtotal;
+														var commoditydetail = {
+																productcodeid : result88.list[k].commoditydetail.productcodeid,
+																colorid : result88.list[k].commoditydetail.colorid,
+																commoditysizeid : result88.list[k].commoditydetail.commoditysizeid,
+																count : result88.list[k].commoditydetail.count
+														};
+														var cashregisterdetail = {
+																cashregisterid:result88.list[k].cashregisterid,
+																commodityname:result88.list[k].commodityname,
+																commoditydetailid:result88.list[k].commoditydetailid,
+																specifications:result88.list[k].specifications,
+																price:result88.list[k].price,
+																sbtotal:result88.list[k].sbtotal,
+																count:result88.list[k].count,
+																zhekou:100,
+																moneyamt:result88.list[k].moneyamt,
+																cashregisterdetailid : result88.list[k].cashregisterdetailid,
+																commoditydetail:commoditydetail
+														};
+														list.push(cashregisterdetail);
+														register = {
+																ashregisterid:result88.ashregisterid,
+																shopid:result88.shopid,
+																count:result88.count,
+																moneyamt:result88.moneyamt,
+																memberid:0,
+																cashregistername:result88.cashregistername,
+																ispresent:result88.ispresent,
+																list:list
+														}
+													}else{
+														var tr = $("<tr class=\"wuyu\" i=\""+result88.list[k].commodity.spxj+"\" style=\"color:red;\"><td class=\"commodityname\">"+result88.list[k].commodityname+"</td><td class=\"specifications\">"+result88.list[k].specifications+"</td><td class=\"count\">库存空</td><td class=\"price\">"+0+"</td><td class=\"moneyamt\">"+0+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");					
+														result88.moneyamt = result88.moneyamt - (result88.list[k].count)*(result88.list[k].price);
+													}
+													
+												}
+												$("#contentXQ").append(tr);	
+												
+											}
+											console.info(list);
+											console.info(register);
+											$("[name=pp1]").val(result88.moneyamt);
+											$(".bt").html("订单号："+result88.ashregisterid);
+											$("[name=pp2]").val("无");
+											$("[name=pp3]").val("0");
+											$("[name=pp4]").val("无");
+										}
+									});	
+								}else{
+									$("#VIPbutton44").attr("checked","checked");
+									$("#VIPbutton44").val(result99);
+									var list=[];
+									cp++;
+									$.ajax({
+										url:"[[@{/CashregisterController/queryBy}]]",
+										type:"get",
+										async:false,
+										dataType:"json",
+										data:"ashregisterid="+ashregisterid,
+										success:function(result33){
+											var list = [];
+											for(var k=0;k<result33.list.length;k++){
+												alert(result33.list[k].commodity.spxj);
+												if(result33.list[k].commodity.spxj == 1){
+													var tr = $("<tr i=\""+result88.list[k].commodity.spxj+"\" style=\"color:red;\" class=\"wuyu\"><td class=\"commodityname\">"+result33.list[k].commodityname+"(已下架)</td><td class=\"specifications\">"+result33.list[k].specifications+"</td><td class=\"count\">"+result33.list[k].count+"</td><td class=\"price\">"+result33.list[k].price+"</td><td class=\"moneyamt\">"+result33.list[k].moneyamt+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");
+													result33.moneyamt = result33.moneyamt - (result33.list[k].count)*(result33.list[k].price);
+												}else{
+													if(result33.list[k].commoditydetail.count>=result33.list[k].count){
+														var tr = $("<tr class=\"wuyu\"><td class=\"commodityname\">"+result33.list[k].commodityname+"</td><td class=\"specifications\">"+result33.list[k].specifications+"</td><td class=\"count\">"+result33.list[k].count+"</td><td class=\"price\">"+result33.list[k].price+"</td><td class=\"moneyamt\">"+result33.list[k].moneyamt+"</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");
+														totalCost2 += result33.list[k].sbtotal;
+														var commoditydetail = {
+																productcodeid : result33.list[k].commoditydetail.productcodeid,
+																colorid : result33.list[k].commoditydetail.colorid,
+																commoditysizeid : result33.list[k].commoditydetail.commoditysizeid,
+																count : result33.list[k].commoditydetail.count,
+														};
+														var cashregisterdetail = {
+																cashregisterid:result33.list[k].cashregisterid,
+																commodityname:result33.list[k].commodityname,
+																commoditydetailid:result33.list[k].commoditydetailid,
+																specifications:result33.list[k].specifications,
+																price:result33.list[k].price,
+																sbtotal:result33.list[k].sbtotal,
+																count:result33.list[k].count,
+																zhekou:result33.list[k].zhekou,
+																moneyamt:result33.list[k].moneyamt,
+																cashregisterdetailid:result33.list[k].cashregisterdetailid,
+																commoditydetail:commoditydetail
+														};
+														list.push(cashregisterdetail);
+													}else{
+														var tr = $("<tr i=\""+result88.list[k].commodity.spxj+"\" style=\"color:red;\" class=\"wuyu\"><td class=\"commodityname\">"+result33.list[k].commodityname+"</td><td class=\"specifications\">"+result33.list[k].specifications+"</td><td class=\"count\">库存空</td><td class=\"price\">0</td><td class=\"moneyamt\">0</td><td><span class=\"glyphicon glyphicon-remove-circle sca\"></span></td></tr>");
+														result33.moneyamt = result33.moneyamt - (result33.list[k].count)*(result33.list[k].price);
+													}
+													
+												}
+												$("#contentXQ").append(tr);	
+											}
+											
+											var member = {
+												memberid:result33.member.memberid,
+												phone:result33.member.phone,
+												name:result33.member.name,
+												memberlvid:result33.member.memberlvid,
+												password:result33.member.password,
+												province:result33.member.province,
+												city:result33.member.city,
+												region:result33.member.region,
+												street:result33.member.street,
+												price:result33.member.price,
+												integral:result33.member.integral
+											};
+											
+											var memberlv = {
+												memberlvid:result33.memberlv.memberlvid,
+												name:result33.memberlv.name,
+												discount:result33.memberlv.discount,
+												moneylv:result33.memberlv.moneylv
+											};
+											
+											register = {
+													ashregisterid:result33.ashregisterid,
+													shopid:result33.shopid,
+													count:result33.count,
+													moneyamt:result33.moneyamt,
+													memberid:result33.memberid,
+													cashregistername:result33.cashregistername,
+													ispresent:result33.ispresent,
+													member:member,
+													memberlv:memberlv,
+													list:list
+											}
+											console.info(register);
+											$("[name=pp1]").val(result33.moneyamt*100/parseInt(result33.memberlv.discount));
+											$("[name=pp2]").val(result33.moneyamt);
+											$("[name=pp3]").val(result33.member.integral);
+											$("[name=pp4]").val(result33.memberlv.discount);
+											$(".bt").html("订单号："+result33.ashregisterid);
+										}
+									});
+								}
+							}
+						});
+															
+					});
+				}
+			});
+		}
+		
+		function sca(){
+			$(".sca").live("click",function(){
+				/* alert($(this).parent().parent().parent().index()); */
+				/* .splice(1,1) */
+				var ind = $(this).parent().parent().index();
+				register.list.splice(ind,1);
+				if($(this).parent().parent().attr("i") != 1){
+					totalCost2 = totalCost2-parseFloat($(this).parent().parent().find(".moneyamt").html());
+				}
+				if($("#VIPbutton44").attr("checked")=="checked"){
+					$('[name=pp1]').val(totalCost2);
+					var zhekou =$("[name=pp4]").val();
+					$('[name=pp2]').val(totalCost2/100*zhekou);
+				}else{
+					$("#VIPbutton33").val("0");
+					$("#VIPbutton44").val("0");
+					$('[name=pp2]').val("无");
+					$('[name=pp1]').val(totalCost2);
+					$('[name=pp3]').val("0");
+					$('[name=pp4]').val("无");
+				}
+				/* var son=document.getElementById("datagrid-row-r1-2-"+ind+"");
+				son.parentNode.removeChild(son); */
+				$(".wuyu:eq("+ind+")").remove();
+			});
+		}
+		
+		function sc(){
+			$(".glyphicon-remove").live("click",function(){
+				/* alert($(this).parent().parent().parent().index()); */
+				/* .splice(1,1) */
+				var ind = $(this).parent().parent().parent().index();
+				totalCost = totalCost-data.rows[ind].moneyamt;
+				if($("#VIPbutton2").attr("checked")=="checked"){
+					$('[name=tt1]').val(totalCost);
+					var zhekou =$("[name=tt4]").val();
+					$('[name=tt2]').val(totalCost/100*zhekou);
+				}else{
+					$("#VIPbutton").val("0");
+					$("#VIPbutton2").val("0");
+					$('[name=tt2]').val("无");
+					$('[name=tt1]').val(totalCost);
+					$('[name=tt3]').val("0");
+					$('[name=tt4]').val("无");
+				}
+				data.rows.splice(ind,1);
+				data.total -= 1;
+				/* var son=document.getElementById("datagrid-row-r1-2-"+ind+"");
+				son.parentNode.removeChild(son); */
+				$("#datagrid-row-r1-2-"+ind+"").remove();
+			});
+		}
+		
+		function aa(){
+			$("#hyqr").click(function(){
+				var phone = $("[name=phone]").val();
+				var password = $("[name=password]").val();
+				var speak ="";
+				if(phone == "" || password == ""){
+					if(phone ==""){
+						speak+="会员号 ";
+					}
+					if(password == ""){
+						speak+="密码 ";
+					}
+					alert(speak+" 不能为空！");
+				}else{
+					var sl = 0;
+					$.ajax({
+						url:"[[@{/MemberController/queryMemberByPhone}]]",
+						type:"get",
+						async:false,
+						dataType:"json",
+						data:"phone="+phone+"&password="+password,
+						success:function(result6){						
+							/* $(".ts").removeAttr("hidden"); */
+							if(result6==0){
+								alert("账号或密码错误！");
+								$("#VIPbutton").removeAttr("checked");
+							}else{
+								sl++;
+							}	
+						}
+					});	
+								
+					
+					if(sl>0){
+						$.ajax({
+							url:"[[@{/MemberController/queryMemberByPhoneTwo2}]]",
+							type:"get",
+							async:false,
+							dataType:"json",
+							data:"phone="+phone+"&password="+password,
+							success:function(result7){	
+								/* $('[name=tt2]').val(parseFloat(totalCost/100*parseInt(result7.discount))); */
+								zhekou = parseInt(result7.lv.discount);
+								$("#VIPbutton2").attr("checked","checked");
+								if($("#VIPbutton2").attr("checked")=="checked"){
+									$("#VIPbutton2").val(result7.memberid);
+									$("[name=tt1]").val(totalCost);
+									$('[name=tt2]').val(parseFloat(totalCost/100*zhekou));
+									if(result7.integral==undefined||result7.integral == "undefined"){
+										$('[name=tt3]').val("0");
+									}else{
+										$('[name=tt3]').val(result7.integral);
+									}
+									$('[name=tt4]').val(parseInt(zhekou));
+								}else{
+									$("[name=tt1]").val(totalCost);
+									$('[name=tt2]').val("无");
+									$('[name=tt3]').val("无");
+									$('[name=tt4]').val("无");
+								}
+							}
+						});
+					}
+				}				
+			});	
+			
+			$("#hyqx").click(function(){
+				$("#VIPbutton2").removeAttr("checked");
+				$('[name=tt3]').val("无");
+				$('[name=tt4]').val("无");
+			});
+		}
+		
+		function bb(){
+			$("#hyqr2").click(function(){
+				var phone = $("[name=phone2]").val();
+				var password = $("[name=password2]").val();
+				var speak ="";
+				if(phone == "" || password == ""){
+					if(phone ==""){
+						speak+="会员号 ";
+					}
+					if(password == ""){
+						speak+="密码 ";
+					}
+					alert(speak+" 不能为空！");
+				}else{
+					var sl = 0;
+					$.ajax({
+						url:"[[@{/MemberController/queryMemberByPhone}]]",
+						type:"get",
+						async:false,
+						dataType:"json",
+						data:"phone="+phone+"&password="+password,
+						success:function(result6){						
+							/* $(".ts").removeAttr("hidden"); */
+							if(result6==0){
+								alert("账号或密码错误！");
+								$("#VIPbutton33").removeAttr("checked");
+							}else{
+								sl++;
+							}	
+						}
+					});	
+					
+					if(sl>0){
+						$.ajax({
+							url:"[[@{/MemberController/queryMemberByPhoneTwo}]]",
+							type:"get",
+							async:false,
+							dataType:"json",
+							data:"phone="+phone+"&password="+password,
+							success:function(result7){	
+								/* $('[name=tt2]').val(parseFloat(totalCost/100*parseInt(result7.discount))); */
+								zhekou = parseInt(result7.lv.discount);
+								$("#VIPbutton44").attr("checked","checked");
+								if($("#VIPbutton44").attr("checked")=="checked"){
+									$("#VIPbutton44").val(result7.memberid);
+									$("[name=pp1]").val(totalCost2);
+									$('[name=pp2]').val(parseFloat(totalCost2/100*zhekou));
+									if(result7.integral==undefined||result7.integral == "undefined"){
+										$('[name=pp3]').val("0");
+									}else{
+										$('[name=pp3]').val(result7.integral);
+									}
+									$('[name=pp4]').val(parseInt(zhekou));
+								}else{
+									$("[name=pp1]").val(totalCost);
+									$('[name=pp2]').val("无");
+									$('[name=pp3]').val("无");
+									$('[name=pp4]').val("无");
+								}
+							}
+						});
+					}
+				}				
+			});	
+			
+			$("#hyqx2").click(function(){
+				$("#VIPbutton44").removeAttr("checked");
+				$('[name=pp3]').val("无");
+				$('[name=pp4]').val("无");
+			});
+		}
+		
+		function fz(commoditytypeid){
+			$("#fz").html("");			
+			$.ajax({
+				url:"[[@{/CommodityController/queryCommodityXZ}]]",
+				type:"get",
+				async:false,
+				dataType:"json",
+				data:"commoditytypeid="+commoditytypeid,
+				success:function(result){
+					$.each(result,function(i,obj){
+						for(var lc=0;lc<obj.commoditydetailXZ.length;lc++){
+							if(obj.commoditydetailXZ[lc].count!=0){
+								var li = $("<li class=\"ayo\"><a i=\""+obj.commoditydetailXZ[lc].commoditydetailid+"\" href=\"#\" class=\"item\"><img src=\""+obj.commodityimg+"\" style=\"border-width: 0px;width:100px;height:50;\" class=\"iga\"><div><p i2=\""+obj.commoditydetailXZ[lc].count+"\">"+obj.name+"</p><p>"+obj.commoditydetailXZ[lc].commoditysize+"/"+obj.commoditydetailXZ[lc].color+"</p><p>价格：$"+obj.price+"</p></div></a></li>");
+								$("#fz").append(li);
+							}
+							
+						}
+						
+					});
+				}
+			});
+		}
+		
+		
+		function lx1(pageNum){
+			$("#splx").html("");
+			if(pageNum==1){
+				var btn = $("<button i=\"0\" id=\"suoyou\" class=\"raise\" style=\"margin-left: 6.6%;width: 13%;cursor:pointer;\">所有</button>");
+				$("#splx").append(btn);
+				$(".raise:eq(0)").trigger("click");
+			}
+			$.ajax({
+				url:"[[@{/CommoditytypeController/queryCommodityType}]]",
+				type:"get",
+				async:false,
+				data:"pageNum="+pageNum+"&pageSize=4",
+				dataType:"json",
+				success:function(result){
+					$.each(result.list,function(i,obj){
+						if(pageNum!=1){
+							var btn = $("<button i=\""+obj.commoditytypeid+"\" class=\"raise\" style=\"margin-left: 6%;width: 13%;cursor:pointer;\">"+obj.commoditytypename+"</button>");
+							$("#splx").append(btn);
+						}else{
+							var btn = $("<button i=\""+obj.commoditytypeid+"\" class=\"raise\" style=\"margin-left: 4%;width: 13%;cursor:pointer;\">"+obj.commoditytypename+"</button>");
+							$("#splx").append(btn);
+						}
+					});					
+					$("#prePage1").attr("pageNum",result.prePage);
+					$("#nextPage1").attr("pageNum",result.nextPage);
+					
+					if($("#prePage1").attr("pageNum")==result.firstPage){
+						$("#prePage1").css("opacity",1);
+					}else{
+						$("#prePage1").css("opacity",0.3);
+					}
+					
+					if($("#nextPage1").attr("pageNum")==result.lastPage){
+						$("#nextPage1").css("opacity",1);
+					}else{
+						$("#nextPage1").css("opacity",0.3);
+					}
+					
+					$("#prePage1,#nextPage1").click(function(){
+						var page = $(this).attr("pageNum");
+						if(result.firstPage<=page && page<=result.lastPage){
+							lx1(page);
+							fz(0);
+						}
+					});			
+					
+					$(".raise").click(function(){
+						var commoditytypeid = $(this).attr("i");
+						fz(commoditytypeid);
+					});		
+					
+				}
+			});
+		}
+		
+
+		function getRandomCode(length) {
+		   if (length > 0) {
+		      var data = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+		      var nums = "";
+		      for (var i = 0; i < length; i++) {
+		         var r = parseInt(Math.random() * 61);
+		         nums += data[r];
+		      }
+		      return nums;
+		   } else {
+		      return false;
+		   }
+		}
+		
+		function gdGo(){	//挂单功能
+			$("#gdGo").click(function(){
+				if(data.rows==""){
+					alert("收银表为空！");
+				}else{
+
+					var list=[] 	
+
+					var count2 = 0;
+					for(var l=0;l<data.rows.length;l++){
+						count2 += data.rows[l].quantity;
+					}
+
+					var str = data.rows[0].commoditySize;					
+					var index = str.lastIndexOf("/");
+					var commoditysize =str.substring(0,index);
+					var color  =str.substring(index+1,str.length);
+					var ashregisterid=getRandomCode(11);
+					
+					for(var l = 0;l<data.rows.length;l++){
+						var s={};
+						//alert(list[l].commoditydetailid )
+						//alert(data.rows[l].commoditydetailid)
+						s.cashregisterid = ashregisterid;
+						s.commoditydetailid = data.rows[l].commoditydetailid;
+						s.commodityname = data.rows[l].name;
+						s.specifications = data.rows[l].commoditySize;
+						s.price = data.rows[l].price;
+						s.sbtotal = data.rows[l].moneyamt;
+						s.moneyamt = data.rows[l].moneyamt/100*zhekou;
+						s.zhekou = zhekou;
+						s.count = data.rows[l].quantity;
+						list.push(s);
+					}
+					
+					console.info(list);
+					
+					
+					if($("#VIPbutton2").attr("checked")=="checked"){
+						/* dataTwo.moneyamt = $("[name;=tt2]").val(); *///订单会员 总金额
+						/* dataTwo.ispresent=1; */	//是否付款（挂单）
+						dataTwo={
+							moneyamt:$("[name=tt2]").val(),
+							ispresent:0,
+							ashregisterid:ashregisterid,
+							memberid:$("#VIPbutton2").val(),
+							shopid:user.shopid,
+							cashregistername:user.username,
+							count:count2,
+							list:list
+						}
+						$.ajax({
+							url:"[[@{/CashregisterController/insertCashregister}]]",
+							type:"post",
+							async:false,
+							contentType:"application/json",
+							data:JSON.stringify(dataTwo),
+							success:function(result){
+								alert(result.message);
+							}
+						});
+					}else{
+						/* dataTwo.moneyamt = totalCost; *///订单普通会员 总金额
+						/* dataTwo.ispresent=0; */	//是否库款（挂单）
+						dataTwo={
+							moneyamt:totalCost,
+							ispresent:0,
+							ashregisterid:ashregisterid,
+							memberid:0,
+							shopid:user.shopid,
+							cashregistername:user.username,
+							count:count2,
+							list:list
+						}
+						$.ajax({
+							url:"[[@{/CashregisterController/insertCashregister}]]",
+							type:"post",
+							async:false,
+							contentType:"application/json",
+							data:JSON.stringify(dataTwo),
+							success:function(result){
+								alert(result.message);
+							}
+						});
+					}
+					$(".datagrid-row").html("");	//清除所有表单
+					data.rows=[];
+					data.total=0;
+					totalCost=0;
+					console.info(dataTwo);
+					/* $.ajax({
+						url:"[[@{/CashregisterController/insertCashregister}]]",
+						type:"post",
+						async:false,
+						contentType:"application/json",
+						data:JSON.stringify(dataTwo),
+						success:function(result){
+							
+						}
+					}); */
+				}
+			});
+		}
+		
+		function qk(){
+			$("#qk").click(function(){
+				$(".datagrid-row").html("");	//清除所有表单
+				var data = {"total":0,"rows":[]};
+				data.rows=[];
+				data.total=0;
+				totalCost=0;
+			});
+		}
+		
+		function count(){
+			/*$(".datagrid-row").live("mousewheel",function(){
+				$(this).find(".datagrid-cell-c1-quantity").html(parseInt($(this).find(".datagrid-cell-c1-quantity").html())+1);
+			});*/
+		}
+		
+	</script>
+	</body>
+</html>

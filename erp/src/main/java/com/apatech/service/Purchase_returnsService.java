@@ -2,6 +2,7 @@ package com.apatech.service;
 
 import java.util.List;
 
+import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,9 @@ import com.github.pagehelper.PageInfo;
 public class Purchase_returnsService {
 	@Autowired
 	private Purchase_returnsMapper dao;
-	
+	@Autowired
+	private Purchase_returnsMapper purchase_returnsMapper;
+
 	public PageInfo<Purchase_returns> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -57,4 +60,24 @@ public class Purchase_returnsService {
     public int updateByPrimaryKey(Purchase_returns record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public PurchaseReturnsPojo selectLast() {
+        return purchase_returnsMapper.selectLast();
+    }
+
+	public PurchaseReturnsPojo selectPrev(Integer lineId) {
+		return dao.selectPrev(lineId);
+	}
+
+	public PurchaseReturnsPojo selectNext(Integer lineId) {
+		return dao.selectNext(lineId);
+	}
+
+	public PurchaseReturnsPojo selectFirst() {
+		return dao.selectFirst();
+	}
+
+	public String selectPureId() {
+		return purchase_returnsMapper.selectPureId();
+	}
 }

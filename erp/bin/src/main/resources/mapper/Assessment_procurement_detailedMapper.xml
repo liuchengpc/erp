@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Assessment_procurement_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Assessment_procurement_detailed">
+    <id column="apd_id" jdbcType="VARCHAR" property="apdId" />
+    <result column="ap_id" jdbcType="VARCHAR" property="apId" />
+    <result column="apd_ict_id" jdbcType="VARCHAR" property="apdIctId" />
+    <result column="apd_ict_name" jdbcType="VARCHAR" property="apdIctName" />
+    <result column="apd_currency_id" jdbcType="VARCHAR" property="apdCurrencyId" />
+    <result column="apd_exchange_rate" jdbcType="REAL" property="apdExchangeRate" />
+    <result column="apd_money" jdbcType="INTEGER" property="apdMoney" />
+    <result column="apd_amount_standard_currency" jdbcType="REAL" property="apdAmountStandardCurrency" />
+    <result column="apd_audition" jdbcType="VARCHAR" property="apdAudition" />
+    <result column="apd_yn" jdbcType="VARCHAR" property="apdYn" />
+    <result column="apd_custom1" jdbcType="VARCHAR" property="apdCustom1" />
+    <result column="apd_custom2" jdbcType="VARCHAR" property="apdCustom2" />
+    <result column="apd_custom3" jdbcType="VARCHAR" property="apdCustom3" />
+    <result column="apd_custom4" jdbcType="VARCHAR" property="apdCustom4" />
+    <result column="apd_custom5" jdbcType="VARCHAR" property="apdCustom5" />
+    <result column="apd_custom6" jdbcType="VARCHAR" property="apdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    apd_id, ap_id, apd_ict_id, apd_ict_name, apd_currency_id, apd_exchange_rate, apd_money, 
+    apd_amount_standard_currency, apd_audition, apd_yn, apd_custom1, apd_custom2, apd_custom3, 
+    apd_custom4, apd_custom5, apd_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from assessment_procurement_detailed 
+	    where apd_Yn=0
+	    ORDER BY apd_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assessment_procurement_detailed
+    where apd_id = #{apdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from assessment_procurement_detailed
+    where apd_id = #{apdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Assessment_procurement_detailed">
+    insert into assessment_procurement_detailed (apd_id, ap_id, apd_ict_id, 
+      apd_ict_name, apd_currency_id, apd_exchange_rate, 
+      apd_money, apd_amount_standard_currency, apd_audition, 
+      apd_yn, apd_custom1, apd_custom2, 
+      apd_custom3, apd_custom4, apd_custom5, 
+      apd_custom6)
+    values (#{apdId,jdbcType=VARCHAR}, #{apId,jdbcType=VARCHAR}, #{apdIctId,jdbcType=VARCHAR}, 
+      #{apdIctName,jdbcType=VARCHAR}, #{apdCurrencyId,jdbcType=VARCHAR}, #{apdExchangeRate,jdbcType=REAL}, 
+      #{apdMoney,jdbcType=INTEGER}, #{apdAmountStandardCurrency,jdbcType=REAL}, #{apdAudition,jdbcType=VARCHAR}, 
+      #{apdYn,jdbcType=VARCHAR}, #{apdCustom1,jdbcType=VARCHAR}, #{apdCustom2,jdbcType=VARCHAR}, 
+      #{apdCustom3,jdbcType=VARCHAR}, #{apdCustom4,jdbcType=VARCHAR}, #{apdCustom5,jdbcType=VARCHAR}, 
+      #{apdCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Assessment_procurement_detailed">
+    insert into assessment_procurement_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apdId != null">
+        apd_id,
+      </if>
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="apdIctId != null">
+        apd_ict_id,
+      </if>
+      <if test="apdIctName != null">
+        apd_ict_name,
+      </if>
+      <if test="apdCurrencyId != null">
+        apd_currency_id,
+      </if>
+      <if test="apdExchangeRate != null">
+        apd_exchange_rate,
+      </if>
+      <if test="apdMoney != null">
+        apd_money,
+      </if>
+      <if test="apdAmountStandardCurrency != null">
+        apd_amount_standard_currency,
+      </if>
+      <if test="apdAudition != null">
+        apd_audition,
+      </if>
+      <if test="apdYn != null">
+        apd_yn,
+      </if>
+      <if test="apdCustom1 != null">
+        apd_custom1,
+      </if>
+      <if test="apdCustom2 != null">
+        apd_custom2,
+      </if>
+      <if test="apdCustom3 != null">
+        apd_custom3,
+      </if>
+      <if test="apdCustom4 != null">
+        apd_custom4,
+      </if>
+      <if test="apdCustom5 != null">
+        apd_custom5,
+      </if>
+      <if test="apdCustom6 != null">
+        apd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apdId != null">
+        #{apdId,jdbcType=VARCHAR},
+      </if>
+      <if test="apId != null">
+        #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdIctId != null">
+        #{apdIctId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdIctName != null">
+        #{apdIctName,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCurrencyId != null">
+        #{apdCurrencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdExchangeRate != null">
+        #{apdExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="apdMoney != null">
+        #{apdMoney,jdbcType=INTEGER},
+      </if>
+      <if test="apdAmountStandardCurrency != null">
+        #{apdAmountStandardCurrency,jdbcType=REAL},
+      </if>
+      <if test="apdAudition != null">
+        #{apdAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="apdYn != null">
+        #{apdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom1 != null">
+        #{apdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom2 != null">
+        #{apdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom3 != null">
+        #{apdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom4 != null">
+        #{apdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom5 != null">
+        #{apdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom6 != null">
+        #{apdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Assessment_procurement_detailed">
+    update assessment_procurement_detailed
+    <set>
+      <if test="apId != null">
+        ap_id = #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdIctId != null">
+        apd_ict_id = #{apdIctId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdIctName != null">
+        apd_ict_name = #{apdIctName,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCurrencyId != null">
+        apd_currency_id = #{apdCurrencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="apdExchangeRate != null">
+        apd_exchange_rate = #{apdExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="apdMoney != null">
+        apd_money = #{apdMoney,jdbcType=INTEGER},
+      </if>
+      <if test="apdAmountStandardCurrency != null">
+        apd_amount_standard_currency = #{apdAmountStandardCurrency,jdbcType=REAL},
+      </if>
+      <if test="apdAudition != null">
+        apd_audition = #{apdAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="apdYn != null">
+        apd_yn = #{apdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom1 != null">
+        apd_custom1 = #{apdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom2 != null">
+        apd_custom2 = #{apdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom3 != null">
+        apd_custom3 = #{apdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom4 != null">
+        apd_custom4 = #{apdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom5 != null">
+        apd_custom5 = #{apdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apdCustom6 != null">
+        apd_custom6 = #{apdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apd_id = #{apdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Assessment_procurement_detailed">
+    update assessment_procurement_detailed
+    set ap_id = #{apId,jdbcType=VARCHAR},
+      apd_ict_id = #{apdIctId,jdbcType=VARCHAR},
+      apd_ict_name = #{apdIctName,jdbcType=VARCHAR},
+      apd_currency_id = #{apdCurrencyId,jdbcType=VARCHAR},
+      apd_exchange_rate = #{apdExchangeRate,jdbcType=REAL},
+      apd_money = #{apdMoney,jdbcType=INTEGER},
+      apd_amount_standard_currency = #{apdAmountStandardCurrency,jdbcType=REAL},
+      apd_audition = #{apdAudition,jdbcType=VARCHAR},
+      apd_yn = #{apdYn,jdbcType=VARCHAR},
+      apd_custom1 = #{apdCustom1,jdbcType=VARCHAR},
+      apd_custom2 = #{apdCustom2,jdbcType=VARCHAR},
+      apd_custom3 = #{apdCustom3,jdbcType=VARCHAR},
+      apd_custom4 = #{apdCustom4,jdbcType=VARCHAR},
+      apd_custom5 = #{apdCustom5,jdbcType=VARCHAR},
+      apd_custom6 = #{apdCustom6,jdbcType=VARCHAR}
+    where apd_id = #{apdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

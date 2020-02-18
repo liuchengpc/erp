@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/member_info.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<body>
+    <!--会员信息-->
+    <div class="rightarea clearfix">
+        <div class="mainarea clearfix">
+            <div class="mainhead">
+                <span class="title">业绩排名</span>
+                <!--<div class="searchArea">
+                    <div class="btn-div">
+                        <a href="javascript:;" class="btn btn-success">
+                            添加会员
+                        </a>
+                    </div>
+                </div>-->
+              
+                <div class="list">
+                    <a href="javascript:;" class="btn btn-default">导出数据</a>
+                    <!--<a href="javascript:;" class="btn btn-default">批量导入</a>-->
+                </div>
+                <div class="list search" style="width: 100px;">
+                    <input class="inputtext" type="text" placeholder="查找" >
+                    <a href="javascript:;" class="search-btn"></a>
+                </div>
+                <div class="list">
+	                <input type="date" class="form-control" style="width: 140px;">
+	            </div>
+	            <div class="list">
+	                -
+	            </div>
+	            <div class="list">
+	                <input type="date" class="form-control" style="width: 140px;">
+	            </div>
+	             <div class="list">
+               		<span class="title">按人员</span>
+	               	 <input type="radio" name="a" checked="">
+	            </div>
+               <div class="list">
+               		<span class="title">按店铺</span>
+                     <input type="radio" name="a" >
+	            </div>
+               
+              <!--  <div class="list">
+ 					<select name="" id="" class="form-control">
+                        <option value="全部等级">全部类别</option>
+                    </select>
+                </div>
+                 <div class="list">
+                    <select name="" id="" class="form-control">
+                        <option value="全部等级">来米棋</option>
+                    </select>
+                </div>-->
+              	
+            </div>
+            <div class="mainbody">
+                <table class="settable table table-striped">
+                    
+					<thead>
+						<tr>                 
+						<th width="6%">排名</th>
+						<th width="*">所属店铺</th>
+						<th width="12%">营业员</th>
+						<th width="12%">销售</th>
+						<th width="12%">任务额</th>
+						<th width="12%">达成率</th>
+						<th width="12%">占比</th>
+						<th width="8%">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="" czy="9527" shopid="18670802166">
+							<td>1<i class="jsonListData" style="display:none;">{"completion_rate":"0","completion_rate_all":"100.0","czy":"9527","assignments":"0","sales_amounts":"37359.00","shopname":"莱米琪","shopid":"18670802166","realname":"欧媛"}</i></td>
+							<td class="shopname">莱米琪</td><td class="realname">欧媛</td><td>37,359.00</td><td>0.00</td><td>0.00%</td><td>100.00%</td>
+							<td><a href="javascript:void(0);" class="seeBtn">查看</a></td></tr><tr class="bgli" czy="18670802166" shopid="18670802166">
+							<td>2<i class="jsonListData" style="display:none;">{"completion_rate":"0","completion_rate_all":"0.0","czy":"18670802166","assignments":"0","sales_amounts":"0.00","shopname":"莱米琪","shopid":"18670802166","realname":"总账号"}</i></td>
+							<td class="shopname">莱米琪</td><td class="realname">总账号</td><td>0.00</td><td>0.00</td><td>0.00%</td>
+							<td>0.00%</td><td><a href="javascript:void(0);" class="seeBtn">查看</a></td>
+						</tr>
+				</tbody>
+
+                </table>
+                <!--分页按钮-->
+                <div class="pagebar">
+                    <div class="pagetion">
+                       <div class="page">
+                               <ul class="pagination">
+                                   <li>
+                                       <a href="javascript:;">
+                                           首页
+                                       </a>
+                                   </li>
+                                   <li>
+                                       <a href="javascript:;">
+                                           &laquo;
+                                       </a>
+                                   </li>
+                                   <li>
+                                       <span style="font-size: 14px;">1/5</span>
+                                   </li>
+                                   <li>
+                                       <a href="javascript:;">
+                                           &raquo;
+                                       </a>
+                                   </li>
+                                   <li>
+                                       <a href="javascript:;">
+                                           尾页
+                                       </a>
+                                   </li>
+                                   <li style="margin-left: 20px; float:left;">
+                                       <input type="text" class="form-control" style="width: 100px;">
+                                   </li>
+                                   <li style="margin-left: 15px; float:left;">
+                                       <a href="javascript:;" class="btn btn-default">
+                                           跳转
+                                       </a>
+                                   </li>
+                               </ul>
+                       </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/supplier.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+     <link  rel="stylesheet"  th:href="@{/js/bootstrap-datetimepicker.min.css}"/>  
+    
+    <script th:src="@{/js/jquery-1.12.4.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+     <script th:src="@{/js/bootstrap-table.js}"></script>
+     <script th:src="@{/js/bootstrap-table-zh-CN.js}"></script>
+     
+     <script th:src="@{/js/dialogUtil.js}" ></script>
+      <script th:src="@{/js/dialog.js}"></script>
+     
+     <!-- bootstrap-table-export数据导出---后面两个是Excel2007所需要的js -->
+	<script th:src="@{/js/bootstrap-table-export.js}"></script>
+	<script th:src="@{/js/tableExport.min.js}"></script>
+	<script th:src="@{/js/xlsx.core.min.js}"></script>
+	<script th:src="@{/js/FileSaver.min.js}"></script>
+	
+	<!-- 时间空间所需插件 -->
+	<script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>  
+	<script th:src="@{/js/bootstrap-datetimepicker.zh-CN.js}"></script>  
+	
+	<!-- 日期所需插件 -->
+	<script src="/js/distpicker.data.js"></script>
+	  <script src="/js/distpicker.js"></script>
+	  <script src="/js/main.js"></script>
+	  
+
+	<script src="/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/axios.min.js" type="text/javascript" charset="utf-8"></script>
+	  
+	  
+	  <style type="text/css">
+	  /* 设置table隔行变色 E*/
+	  	#mytable tr:nth-child(even){
+			background: #fafafa;
+		}
+		#mytable th{
+			background: #efefef;
+		}
+		/* 设置table隔行变色  S*/
+	  </style>
+</head>
+<body>
+<div class="rightarea clearfix">
+    <div class="mainarea clearfix">
+        <div class="mainhead">
+            <span class="title">供应商</span>
+            <div class="searchArea">
+               	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="float: right;">添加供应商</button>
+            </div>
+
+            <div class="list search">
+                <input class="inputtext" type="text" placeholder="查找" id="selectqb" th:onchange="selectAll()">
+                <a href="javascript:;" class="search-btn"></a>
+            </div>
+            <div class="list">
+			    <form class="form-inline">
+			      <div id="distpicker5">
+			        <div class="form-group">
+			          <label class="sr-only" for="province10">Province</label>
+			          <select class="form-control" id="province10" th:onchange="selectAll()"></select>
+			        </div>
+			        <div class="form-group">
+			          <label class="sr-only" for="city10">City</label>
+			          <select class="form-control" id="city10" th:onchange="selectAll()"></select>
+			        </div>
+			        <div class="form-group">
+			          <label class="sr-only" for="district10">District</label>
+			          <select class="form-control" id="district10" th:onchange="selectAll()"></select>
+			        </div>
+			      </div>
+			    </form>
+            </div>
+          
+
+            <div class="list">
+                <span style="position: relative;top: 10px;">地&nbsp;&nbsp;&nbsp;&nbsp;区</span>
+            </div>
+        </div>
+        <div class="mainbody">
+            
+            
+              <!-- bootstrap table自动渲染区域 -->
+			<table id="mytable" class="table table-hover" data-toolbar="#toolbar"></table>
+        </div>
+    </div>
+</div>
+
+
+
+  <script type="text/javascript">        
+            //初始化Table
+                $('#mytable').bootstrapTable({
+                	url: '[[@{/SupplierController/selectAll2}]]',   //请求后台的URL（*）
+                	method: 'get',                      //请求方式（*）
+                    striped : true, 					//是否显示行间隔色
+                    pageNumber:1,                       //初始化加载第一页，默认第一页
+                 	pagination : true,					//是否分页
+                 	sidePagination : 'client',			//server:服务器端分页|client：前端分页
+                 	pageSize :12,						//单页记录数
+                 	pageList : [12,24],		//可选择单页记录数
+                 	showRefresh : true,					//刷新按钮                   
+                 	queryParams : function (params) {
+                        var temp = {
+                       		province:$('#province10').val(),
+                       		city:$('#city10').val(),
+                       		region:$('#district10').val(),
+                       		selectqb:$('#selectqb').val()
+                        };
+                        return temp;
+                    },                    				//得到查询条件
+                 	contentType: "application/x-www-form-urlencoded",//一种编码。在post请求的时候需要用到。这里用的get请求，注释掉这句话也能拿到数据,必须要有！！！！
+                     toolbar: '#toolbar',                //工具按钮用哪个容器                
+                     toolbarAlign:'left',				//工具栏对齐方式
+                     buttonsAlign:'right',				//按钮对齐方式
+                     cache: false,                       // 设置为 false 禁用 AJAX 数据缓存， 默认为true,是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                     sortable: true,                    //是否启用排序
+                     sortOrder: "asc",                   //排序方式
+                     sortName: 'id', 					// 要排序的字段
+                     search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                     strictSearch: true,
+                     showColumns: true,                  //是否显示所有的列
+                     minimumCountColumns: 2,             //最少允许的列数
+                     clickToSelect: true,                //是否启用点击选中行
+                     //height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                     uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                     showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+                     cardView: false,                    //是否显示详细视图
+                     detailView: false,                  //是否显示父子表
+                     locale:'zh-CN',						//中文支持
+                     paginationLoop: false, //当前页是边界时是否可以继续按         
+                    columns : [{
+                    	title: '序号',//标题  可不加
+                    	field : 'no',	        	   
+ 						formatter: function (value, row, index) {
+ 							return index+1;
+ 						}
+                    }, {
+ 		            	title : '供应商编号',
+ 		            	field : 'supplierid',	        	    	
+ 		                sortable : true,
+ 		                visible: false   //这一列隐藏
+ 		            }, {      	   
+ 		            	title : '简称',
+ 		            	field : 'companyabbreviation',	        	    	
+ 		                sortable : true,
+ 		            }, {      	   
+ 		            	title : '公司名称',
+         	    	 	field : 'companyname',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            },  {      	   
+ 		            	title : '联系人',
+         	    	 	field : 'contacts',	        	    	
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '手机',
+         	    	 	field : 'phone',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '电话',
+         	    	 	field : 'telephone',
+ 		                sortable : true,
+ 		                
+ 		            }, {      	   
+ 		            	title : '邮箱',
+         	    	 	field : 'email',
+ 		                sortable : true,
+ 		                
+ 		            }, {
+ 		            	title : '地区',
+         	    	 	field : 'dq',
+ 		                sortable : true,
+ 		               formatter: function (value, row, index) {
+                         
+                           return row.province+"-"+row.city+"-"+row.region+"-"+row.street;
+                       }
+ 		           }, {
+						/* field:'id',
+						title: '操作',
+						width: 120,
+						align: 'center',
+						valign: 'middle',
+						formatter: actionFormatter */
+						field: 'operator',
+						title: '操作',
+						align: 'center',
+						valign: 'middle',
+						width: 120,
+						// visible: false,
+						formatter: function (value, row, index) {
+						    // var sid_code = base64encode(row.sid + '');   //  sid 加密处理
+						    // alert(sid_code);
+						    return '<a href="javascript:;" @click="update(item.commoditytypeid)" title="修改">' + 
+						        '<i class="glyphicon glyphicon-pencil"></i> ' + 
+						        '</a>'+
+						        '<a href="javascript:void(0)" title="删除">' +
+						        '<i class="glyphicon glyphicon-trash text-danger"></i> ' + 
+						        '</a>';
+						},
+						events: {
+						  'click a[title=删除]': function (e, value, row, index) {
+							  console.info(e)
+							  console.info(value)
+							  console.info(row)
+							  console.info(index)
+							 // alert(row.supplierid)
+						      if(confirm('此操作不可逆，请确认是否删除？')==true){
+						    	 // 获取当前行 				              
+						    	 var id=row.supplierid;
+						    	  $.ajax({
+	 									url:"[[@{/SupplierController/deleteByPrimaryKey}]]",
+	 									type:"get",
+	 									data:"supplierid="+id,
+	 									dataType:"json",						
+	 									success:function(res){	
+	 										console.info("删除：")
+	 										console.info(res);
+											alert(res.message)
+	 										$('#mytable').bootstrapTable('refresh');
+	 									}
+	 							})
+						      }
+						  },
+						  'click a[title=修改]': function (e, value, row, index) {
+						      // e.preventDefault();
+						    	$("#supplierid2").val(row.supplierid);//编号，主键
+						    	$("#companyname2").val(row.companyname);//公司名称
+						    	$("#companyabbreviation2").val(row.companyabbreviation);//公司简称
+						    	$("#contacts2").val(row.contacts);//联系人
+						    	$("#phone2").val(row.phone);//手机号
+						    	$("#email2").val(row.email);//邮箱
+						    	$("#telephone2").val(row.telephone);//电话
+						    	$("#province2").val(row.province).trigger("change");//省（地址）//trigger方法触发被选元素的指定事件类型。
+						    	$("#city2").val(row.city).trigger("change");//市（地址）
+						    	$("#region2").val(row.region).trigger("change");//地区（地址）
+						    	$("#street2").val(row.street);//街道
+						      
+						     //alert(row.supplierid+"/"+row.companyname+"/"+row.companyabbreviation+"/"+row.contacts+"/"+row.phone+"/"+row.email+"/"+row.telephone+"/"+row.province+"/"+row.city+"/"+row.region+"/"+row.street)
+					       //	alert($("#companyname2").val())
+						    
+						      $('#myModal2').modal("show");
+						     
+					       	
+						  },
+						}
+		            }  ],
+		           onLoadSuccess: function(){ //加载成功时执行
+	        	  	console.info("加载成功");
+	        	  },
+	        	  	onLoadError: function(){ //加载失败时执行
+	        	  	console.info("加载数据失败");
+	        	  },
+		           //>>>>>>>>>>>>>>导出excel表格设置
+	 		   		showExport: phoneOrPc(), //是否显示导出按钮(此方法是自己写的目的是判断终端是电脑还是手机,电脑则返回true,手机返回falsee,手机不显示按钮)
+	 		   		exportDataType: "all", //basic', 'all', 'selected'.
+	 		   		//exportTypes:['excel','xlsx'], //导出类型 默认： ['json', 'xml', 'csv', 'txt', 'sql', 'excel']
+	 		   		//exportButton: $('#btn_export'), //为按钮btn_export 绑定导出事件 自定义导出按钮(可以不用)
+	 		   		exportOptions:{
+		 		   		//ignoreColumn: [0,0], //忽略某一列的索引
+		 		   		fileName: '数据导出', //文件名称设置
+		 		   		worksheetName: 'Sheet1', //表格工作区名称
+		 		   		tableName: '商品数据表',
+		 		   		excelstyles: ['background-color', 'color', 'font-size', 'font-weight'],
+		 		   		//onMsoNumberFormat: DoOnMsoNumberFormat
+	 		   		}
+		   			//导出excel表格设置<<<<<<<<<<<<<<<<		 
+ 		          
+                });        
+                /*判断终端是手机还是电脑--用于判断文件是否导出(电脑需要导出)*/
+        		function phoneOrPc(){
+        			var sUserAgent = navigator.userAgent.toLowerCase();
+        			var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        			var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        			var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        			var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        			var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        			var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        			var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        			if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+        				//alert("手机")
+        				return false;
+        			} else {
+        				//alert("电脑")
+        				return true;
+        			}
+        		}
+            
+                         
+                //查询事件
+                function selectAll() {
+                	//alert(11)
+                    var province=$('#province10').val();
+               		var city=$('#city10').val();
+               		var region=$('#district10').val();
+               		var selectqb=$('#selectqb').val()
+               		//alert(province+"-"+city+"-"+region+"-"+selectqb)
+                	$('#mytable').bootstrapTable('refresh', {
+                		url : '[[@{/SupplierController/selectAll2}]]'
+                	});
+                }
+
+        </script>
+        
+        
+   
+        	<!-- 模态框（Modal）新增 -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog" style="width: 768px;">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">编辑类别</h4>
+			            </div>
+			            <div class="modal-body" style="padding:50px">
+			            	<form class="form-horizontal">
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">公司名称</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="companyname" class="form-control"  >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label"><em>*</em>公司简称</label>
+									 <div class="col-sm-4">
+										<input type="text" id="companyabbreviation" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">联&nbsp;系&nbsp;人</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="contacts" class="form-control" >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label"><em>*</em>手　　机</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="phone" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">邮　　箱</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="email" class="form-control" >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label">电　　话</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="telephone" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">地　　址</label>
+								      <div data-toggle="distpicker">
+								        <div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="province" style="display: inline-block;" ></select>
+										 </div>
+										<div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="city" style="display: inline-block;" ></select>
+										 </div>
+										<div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="region" style="display: inline-block;" ></select>
+										 </div>
+								      </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">街　　道</label>
+									 <div class="col-sm-10">
+										 <input type="text" id="street" class="form-control" >
+									</div>
+								</div>							
+							</form>
+			            </div>
+			            <div class="modal-footer" style="text-align: center;">
+			                <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 16.66%;">取消</button>
+			                <button type="button" class="btn btn-success" style="width: 16.66%;" id="btn1" onclick="btn1()">确认</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+			
+			<!-- 模态框（Modal）修改 -->
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog" style="width: 768px;">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title" id="myModalLabel">编辑供应商</h4>
+			            </div>
+			            <div class="modal-body" style="padding:50px">
+			            	<form class="form-horizontal">
+								<div class="form-group">
+									 <div class="col-sm-4" style="display: none;">
+										 <input type="text" id="supplierid2" class="form-control"  >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label">公司名称</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="companyname2" class="form-control" >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label"><em>*</em>公司简称</label>
+									 <div class="col-sm-4">
+										<input type="text" id="companyabbreviation2" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">联&nbsp;系&nbsp;人</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="contacts2" class="form-control" >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label"><em>*</em>手　　机</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="phone2" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">邮　　箱</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="email2" class="form-control" >
+									</div>
+									<label for="inputEmail3" class="col-sm-2 control-label">电　　话</label>
+									 <div class="col-sm-4">
+										 <input type="text" id="telephone2" class="form-control" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">地　　址</label>
+								      <div data-toggle="distpicker">
+								        <div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="province2" style="display: inline-block;" value="Supplier2.province"></select>
+										 </div>
+										<div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="city2" style="display: inline-block;" value="Supplier2.city"></select>
+										 </div>
+										<div class="col-sm-3" >
+									          <select class="form-control col-sm-4" id="region2" style="display: inline-block;" value="Supplier2.region"></select>
+										 </div>
+								      </div>
+								</div>
+								<div class="form-group">
+									<label for="inputEmail3" class="col-sm-2 control-label">街　　道</label>
+									 <div class="col-sm-10">
+										 <input type="text" id="street2" class="form-control" >
+									</div>
+								</div>							
+							</form>
+			            </div>
+			            <div class="modal-footer" style="text-align: center;">
+			                <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 16.66%;">取消</button>
+			                <button type="button" class="btn btn-success" style="width: 16.66%;" id="btn2" onclick="btn2()">确认</button>
+			            </div>
+			        </div><!-- /.modal-content -->
+			    </div><!-- /.modal -->
+			</div>
+		<script type="text/javascript">
+			//新增
+			function btn1(){
+			    var supplierid=$("#supplierid").val();//编号，主键
+			 	var companyname=$("#companyname").val();//公司名称
+			 	var companyabbreviation=$("#companyabbreviation").val();//公司简称
+			 	var contacts=$("#contacts").val();//联系人
+			 	var phone=$("#phone").val();//手机号
+			 	var email=$("#email").val();//邮箱
+			 	var telephone=$("#telephone").val();//电话
+			 	var province=$("#province").val();//省（地址）//trigger方法触发被选元素的指定事件类型。
+			 	var city=$("#city").val();//市（地址）
+			 	var region=$("#region").val();//地区（地址）
+			 	var street=$("#street").val();//街道 */
+			 	//alert(telephone)
+		      
+			     //alert(supplierid+"/"+companyname+"/"+companyabbreviation+"/"+contacts+"/"+phone+"/"+email+"/"+telephone+"/"+province+"/"+city+"/"+region+"/"+street)
+			     if(supplierid==""||companyname==""||companyabbreviation==""||contacts==""||phone==""||email==""||telephone==""||province==""||city==""||region==""||street==""){
+			    	 alert("请填写完整信息！")
+			    	 return false;
+			     }
+			      var obj={
+			    	supplierid:supplierid,//编号，主键
+				 	companyname:companyname,//公司名称
+				 	companyabbreviation:companyabbreviation,//公司简称
+				 	contacts:contacts,//联系人
+				 	phone:phone,//手机号
+				 	email:email,//邮箱
+				 	telephone:telephone,//电话
+				 	province:province,//省（地址）//trigger方法触发被选元素的指定事件类型。
+				 	city:city,//市（地址）
+				 	region:region,//地区（地址）
+				 	street:street//街道
+		          }
+	
+				$.ajax({
+					url:"[[@{/SupplierController/insertSelective}]]",
+					type:"post",
+					data:JSON.stringify(obj),
+					dataType:"json",
+					contentType:"application/json;charset=utf-8",
+					success:function(data){
+						//alert(data.message);
+						$('#myModal').modal('hide');
+						selectAll();
+					}
+				});
+			}
+				
+			//修改
+			function btn2(){
+			    var supplierid=$("#supplierid2").val();//编号，主键
+			 	var companyname=$("#companyname2").val();//公司名称
+			 	var companyabbreviation=$("#companyabbreviation2").val();//公司简称
+			 	var contacts=$("#contacts2").val();//联系人
+			 	var phone=$("#phone2").val();//手机号
+			 	var email=$("#email2").val();//邮箱
+			 	var telephone=$("#telephone2").val();//电话
+			 	var province=$("#province2").val();//省（地址）//trigger方法触发被选元素的指定事件类型。
+			 	var city=$("#city2").val();//市（地址）
+			 	var region=$("#region2").val();//地区（地址）
+			 	var street=$("#street2").val();//街道 */
+			 //	alert(telephone)
+		      
+			     //alert(supplierid+"/"+companyname+"/"+companyabbreviation+"/"+contacts+"/"+phone+"/"+email+"/"+telephone+"/"+province+"/"+city+"/"+region+"/"+street)
+			     if(supplierid==""||companyname==""||companyabbreviation==""||contacts==""||phone==""||email==""||telephone==""||province==""||city==""||region==""||street==""){
+			    	 alert("请填写完整信息！")
+			    	 return false;
+			     }
+			     var obj={
+			    	supplierid:supplierid,//编号，主键
+				 	companyname:companyname,//公司名称
+				 	companyabbreviation:companyabbreviation,//公司简称
+				 	contacts:contacts,//联系人
+				 	phone:phone,//手机号
+				 	email:email,//邮箱
+				 	telephone:telephone,//电话
+				 	province:province,//省（地址）//trigger方法触发被选元素的指定事件类型。
+				 	city:city,//市（地址）
+				 	region:region,//地区（地址）
+				 	street:street//街道
+		          }
+
+				$.ajax({
+					url:"[[@{/SupplierController/updateByPrimaryKeySelective}]]",
+					type:"post",
+					data:JSON.stringify(obj),
+					dataType:"json",
+					contentType:"application/json;charset=utf-8",
+					success:function(data){
+						//alert(data.message);
+						 $('#myModal2').modal("hide");
+						selectAll();
+					}
+				});
+			}
+			
+			
+		
+		</script>
+	
+</body>
+</html>

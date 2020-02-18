@@ -2,6 +2,7 @@ package com.apatech.mapper;
 
 import java.util.List;
 
+import com.apatech.domain.Supplier;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,4 +33,5 @@ public interface Supplier_typeMapper {
     int updateByPrimaryKeySelective(Supplier_type record);
 
     int updateByPrimaryKey(Supplier_type record);
+
 }

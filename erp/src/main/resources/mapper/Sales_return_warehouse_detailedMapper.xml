@@ -48,6 +48,10 @@
 	    ORDER BY sowd_id DESC
   </select>
   
+  <select id="selectlist" parameterType="java.lang.String" resultMap="BaseResultMap">
+	  select * from Sales_return_warehouse_detailed WHERE srw_id=#{id} and srwd_Yn=0
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -30,7 +30,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">正式客户</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.customerId" name="customerId" @keyup.f4="showSupplierWindow()">
+									<input type="text" class="layui-input" v-model="pages.customerId" name="customerId" @keyup.f4="showClientWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -99,7 +99,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">币别</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId" @keyup.f4="showSupplierWindow()">
+									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId" @keyup.f4="showCurrencyWindow()">
 								</div>
 							</div>
 						</div>
@@ -175,7 +175,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">业务人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId" @keyup.f4="showSupplierWindow()">
+									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId" @keyup.f4="showSalesmanWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -356,10 +356,28 @@
 						}
 					},
 					//客户资料弹窗
-					showSupplierWindow(){
+					showClientWindow(){
 						layer.open({
 							type:2,
 							title:"客户资料",
+							content:"set_customer_infomation.html",
+							area:['762px','450px']
+						})
+					},
+					//币别资料弹窗
+					showCurrencyWindow(){
+						layer.open({
+							type:2,
+							title:"币别资料",
+							content:"set_customer_infomation.html",
+							area:['762px','450px']
+						})
+					},
+					//业务人员资料弹窗
+					showSalesmanWindow(){
+						layer.open({
+							type:2,
+							title:"业务人员资料",
 							content:"set_customer_infomation.html",
 							area:['762px','450px']
 						})

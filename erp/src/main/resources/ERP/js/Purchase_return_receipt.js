@@ -189,6 +189,10 @@ let viewModel = new Vue({
             console.log("newOrderStatus:" + newOrderStatus);
             console.log("originalOrderStatus:" + originalOrderStatus);
             this.edit = newOrderStatus !== 0 && newOrderStatus !== 7;
+            if(!this.edit){
+                console.log("render");
+                layui.form.render();
+            }
             console.log(this.edit);
         }
     }

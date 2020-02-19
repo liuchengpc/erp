@@ -20,7 +20,7 @@ public class Salesorder {
     private Double soDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date sotId;//销售订单类型
+    private String sotId;//销售订单类型
     private Integer soCustomerorder;//客户订单
     private String soTax;//是否含税（1=是，0=否）
     private String currencyId;//币别id
@@ -100,11 +100,11 @@ public class Salesorder {
         this.soDeliveryAddress = soDeliveryAddress;
     }
 
-    public Date getSotId() {
+    public String getSotId() {
         return sotId;
     }
 
-    public void setSotId(Date sotId) {
+    public void setSotId(String sotId) {
         this.sotId = sotId;
     }
 

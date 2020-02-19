@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.Salesorder;
+import com.apatech.domain.Salesorderlist;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.mapper.SalesorderMapper;
 import com.apatech.service.SalesorderService;
+import com.apatech.service.SalesorderlistService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -26,7 +30,7 @@ import com.github.pagehelper.PageInfo;
 public class SalesorderController {
 	@Autowired
 	private SalesorderService dao;
-	
+	private SalesorderlistService dao1;
 	/**
 	 * 分页
 	 * @param pageNum
@@ -43,6 +47,37 @@ public class SalesorderController {
     }
 	
 	/**
+	 * 分页2
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllbypage2",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Salesorder> selectAllbypage2( Integer pageNum,Integer pageSize){
+		System.out.println("进入SalesorderController2分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Salesorder> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	/*
+	 * 根据id查询详表数据
+	 * 
+	 */
+	@RequestMapping(value = "querybysolId",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> querybysqid(String solId){
+		System.out.println("进入详表查询方法！ 查询ID:"+solId);
+		List<Salesorderlist> data=dao1.selectquerybysolId(solId);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",1000);
+		map.put("data",data);
+		System.out.println(map);
+    	return map;
+    }
+	/**
 	 * 获取单号
 	 * @param billdate
 	 * @return
@@ -52,7 +87,7 @@ public class SalesorderController {
 	 public String getno(String billdate){
 		System.out.println(billdate);
 		System.out.println(dao.getno(billdate));
-		String s=dao.getno(billdate);
+		String s=dao.getno(billdate); 
     	return s;
     }
 	

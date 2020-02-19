@@ -10,7 +10,7 @@ import com.apatech.domain.Team;
 
 public interface SalesorderMapper {
 	List<Salesorder> selectAll();
-	 
+	List<Salesorder> selectAllbypage();
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 
@@ -21,6 +21,7 @@ public interface SalesorderMapper {
 	 		"Salesorder WHERE so_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
+	 
     int deleteByPrimaryKey(String soId);
 
     int insert(Salesorder record);

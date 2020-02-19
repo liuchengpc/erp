@@ -6,7 +6,7 @@
     <result column="so_document_time" jdbcType="DATE" property="soDocumentTime" />
     <result column="so_documentnumber" jdbcType="VARCHAR" property="soDocumentnumber" />
     <result column="so_delivery_address" jdbcType="DOUBLE" property="soDeliveryAddress" />
-    <result column="sot_id" jdbcType="DATE" property="sotId" />
+    <result column="sot_id" jdbcType="VARCHAR" property="sotId" />
     <result column="so_customerorder" jdbcType="INTEGER" property="soCustomerorder" />
     <result column="so_tax" jdbcType="VARCHAR" property="soTax" />
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
@@ -48,7 +48,13 @@
 	    where so_Yn=0
 	    ORDER BY so_id DESC
   </select>
-  
+  <select id="selectAllbypage" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from salesorder 
+	    where so_Yn=0
+	    ORDER BY so_id DESC
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -72,7 +78,7 @@
       so_custom4, so_custom5, so_custom6
       )
     values (#{soId,jdbcType=VARCHAR}, #{soDocumentTime,jdbcType=DATE}, #{soDocumentnumber,jdbcType=VARCHAR}, 
-      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=DATE}, #{soCustomerorder,jdbcType=INTEGER}, 
+      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=VARCHAR}, #{soCustomerorder,jdbcType=INTEGER}, 
       #{soTax,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{soOderStatic,jdbcType=VARCHAR}, 
       #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{soMonograph,jdbcType=VARCHAR}, 
       #{soReviewer,jdbcType=VARCHAR}, #{soSubordinate,jdbcType=VARCHAR}, #{soWatchword,jdbcType=VARCHAR}, 
@@ -191,7 +197,7 @@
         #{soDeliveryAddress,jdbcType=DOUBLE},
       </if>
       <if test="sotId != null">
-        #{sotId,jdbcType=DATE},
+        #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
         #{soCustomerorder,jdbcType=INTEGER},
@@ -283,7 +289,7 @@
         so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
       </if>
       <if test="sotId != null">
-        sot_id = #{sotId,jdbcType=DATE},
+        sot_id = #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
         so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
@@ -368,7 +374,7 @@
     set so_document_time = #{soDocumentTime,jdbcType=DATE},
       so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
       so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
-      sot_id = #{sotId,jdbcType=DATE},
+      sot_id = #{sotId,jdbcType=VARCHAR},
       so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
       so_tax = #{soTax,jdbcType=VARCHAR},
       currency_id = #{currencyId,jdbcType=VARCHAR},

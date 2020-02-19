@@ -153,9 +153,9 @@
  
 								<script type="text/html" id="toolbarDemo">
 								  <div class="layui-btn-container">
-								    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-								    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-								    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
 								  </div>
 								</script>
 								<script type="text/html" id="barDemo">
@@ -240,13 +240,13 @@
 			
 			<div class="layui-form-item">                       
                 <div class="layui-input-block">  
-		             <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+		            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
 		            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
 		            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
 					<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
 		            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
 		            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
-		             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+		            <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
 		            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
 		            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
 					<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
@@ -293,9 +293,6 @@
 	        updated: function () {
 	        	var this_=this;
 				
-					
-					
-					
 				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
 					layui.use('laydate',function(){
 						var laydate=layui.laydate;
@@ -444,6 +441,23 @@
 							    };
 							  });
 							  
+							  var $ = layui.$, active = {
+							    getCheckData: function(){ //获取选中数据
+							      var checkStatus = table.checkStatus('idTest')
+							      ,data = checkStatus.data;
+							      layer.alert(JSON.stringify(data));
+							    }
+							    ,getCheckLength: function(){ //获取选中数目
+							      var checkStatus = table.checkStatus('idTest')
+							      ,data = checkStatus.data;
+							      layer.msg('选中了：'+ data.length + ' 个');
+							    }
+							    ,isAll: function(){ //验证是否全选
+							      var checkStatus = table.checkStatus('idTest');
+							      layer.msg(checkStatus.isAll ? '全选': '未全选')
+							    }
+							  };
+							  
 							  $('.demoTable .layui-btn').on('click', function(){
 							    var type = $(this).data('type');
 							    active[type] ? active[type].call(this) : '';
@@ -580,13 +594,6 @@
 				    this.page.list[0].payablesCustom10="";//自定义10
     
     
-    
-    
-    
-    
-					
-					
-					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
@@ -786,7 +793,7 @@
 				
 				
 				// 表格单元格禁用编辑
-				$(layero).find('td').data('edit', false)
+//				$(layero).find('td').data('edit', false)
 				
 				
 				

@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
 import com.apatech.mapper.Purchase_returnsMapper;
 import com.apatech.service.Purchase_returnsService;
 import com.github.pagehelper.PageInfo;
@@ -162,5 +159,39 @@ public class Purchase_returnsController {
 	@ResponseBody
 	public String selectPureId(){
 		return dao.selectPureId();
+	}
+
+	@PutMapping("/updateWithDetails")
+	@ResponseBody
+	public Map<String,String> updateWithDetails(@RequestBody PurchaseReturnsPojo purchaseReturnsPojo){
+		return null;
+	}
+
+	@PostMapping("/insertWithDetails")
+	@ResponseBody
+	public Map<String,String> insertWithDetails(@RequestBody PurchaseReturnsPojo returnsPojo){
+		System.out.println(returnsPojo);
+		Map<String, String> map = new HashMap<>();
+		try {
+			dao.insertWithDetails(returnsPojo);
+			map.put("code", "200");
+			map.put("message", "success");
+		} catch (Exception e) {
+			map.put("code", "500");
+			map.put("message", "error");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@PutMapping("/reviewPureOrder")
+	@ResponseBody
+	public Map<String,String> reviewPureOrder(@RequestBody PurchaseReturnsPojo returnsPojo){
+		return null;
+	}
+
+	@PutMapping("/unReviewPureOrder")
+	public Map<String,String> unReviewPureOrder(@RequestBody PurchaseReturnsPojo purchaseReturnsPojo){
+		return null;
 	}
 }

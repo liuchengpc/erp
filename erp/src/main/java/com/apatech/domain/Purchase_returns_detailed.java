@@ -19,9 +19,7 @@ public class Purchase_returns_detailed {
     private String puredRemark;//规格型号
     private String puredPriceIncludeTax;//单位名称
     private Integer puredSingleStatus;//数量
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date puredDocumentDate;//折扣前单价
+    private Float puredDocumentDate;//折扣前单价
     private String puredDocumentNumber;//折数
     private Float puredPrice;//单价
     private Float puredMoney;//金额
@@ -120,11 +118,11 @@ public class Purchase_returns_detailed {
         this.puredSingleStatus = puredSingleStatus;
     }
 
-    public Date getPuredDocumentDate() {
+    public Float getPuredDocumentDate() {
         return puredDocumentDate;
     }
 
-    public void setPuredDocumentDate(Date puredDocumentDate) {
+    public void setPuredDocumentDate(Float puredDocumentDate) {
         this.puredDocumentDate = puredDocumentDate;
     }
 

@@ -4,42 +4,14 @@ import {
     getFirst,
     getNext,
     getPrev,
-    getPureId
+    getPureId,
+    insertWithDetails
 }from "../rest/purchase_return_receipt_rest.js";
 layui.use(['form', 'layedit', 'laydate','layer'], function () {
     var form = layui.form
         ,layer = layui.layer
         ,layedit = layui.layedit
         ,laydate = layui.laydate;
-
-    //日期
-    laydate.render({
-        elem: '#date'
-    });
-
-    //自定义验证规则
-    form.verify({
-        title: function(value){
-            if(value.length < 5){
-                return '标题至少得5个字符啊';
-            }
-        }
-        ,pass: [
-            /^[\S]{6,12}$/
-            ,'密码必须6到12位，且不能出现空格'
-        ]
-        ,content: function(value){
-            layedit.sync(editIndex);
-        }
-    });
-
-    //监听提交
-    form.on('submit(demo1)', function(data){
-        layer.alert(JSON.stringify(data.field), {
-            title: '最终的提交信息'
-        });
-        return false;
-    });
 });
 
 const orderStatusMeta = {
@@ -220,4 +192,54 @@ let viewModel = new Vue({
             console.log(this.edit);
         }
     }
+});
+
+layui.use(['form', 'layedit', 'laydate','layer'], function () {
+    var form = layui.form
+        ,layer = layui.layer
+        ,layedit = layui.layedit
+        ,laydate = layui.laydate;
+
+    //日期
+    laydate.render({
+        elem: '#date'
+    });
+
+    //自定义验证规则
+    form.verify({
+        title: function(value){
+            if(value.length < 5){
+                return '标题至少得5个字符啊';
+            }
+        }
+        ,pass: [
+            /^[\S]{6,12}$/
+            ,'密码必须6到12位，且不能出现空格'
+        ]
+        ,content: function(value){
+            layedit.sync(editIndex);
+        }
+    });
+
+    //监听提交
+    form.on('submit(demo1)', function(data){
+        layer.alert(JSON.stringify(data.field), {
+            title: '最终的提交信息'
+        });
+        if(viewModel.$data.orderStatus === orderStatusMeta.browse
+            || viewModel.$data.orderStatus === orderStatusMeta.edit){
+            // 修改
+            console.log("update");
+        }else if(viewModel.$data.orderStatus === orderStatusMeta.insert){
+            // 新增
+            let data = form.val('pure-form');
+            insertWithDetails(JSON.stringify(data)).then(resp => {
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            });
+            console.log("insert");
+        }
+        return false;
+    });
 });

@@ -49,14 +49,19 @@ export function getPureId() {
     });
 }
 
-export function insertPure() {
+export function insertWithDetails(data) {
+    console.log(typeof data);
     return rest({
-        url: "",
-        method: "post"
+        url: "http://localhost:8080/Purchase_returnsController/insertWithDetails",
+        method: "post",
+        data: data,
+        headers:{
+            'Content-Type': 'application/json'
+        }
     })
 }
 
-export function updatePure() {
+export function updateWithDetails() {
     return rest({
         url: "",
         method: "put"

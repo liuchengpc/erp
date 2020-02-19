@@ -20,14 +20,6 @@
     account_yn, account_custom1, account_custom2, account_custom3, account_custom4, account_custom5, 
     account_custom6
   </sql>
-   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
-	    select 
-	    <include refid="Base_Column_List" />
-	    from account 
-	    where account_Yn=0
-	    ORDER BY account_id DESC
-  </select>
-  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

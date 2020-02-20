@@ -1515,7 +1515,9 @@ CREATE TABLE `purchase_returns` (
   `pure_custom5` varchar(50) DEFAULT NULL COMMENT '自定栏五',
   `pure_custom6` varchar(50) DEFAULT NULL COMMENT '自定栏六',
   `createDate` date DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (`pure_id`)
+  `lineId` int(11) NOT NULL AUTO_INCREMENT COMMENT '行编号',
+  PRIMARY KEY (`pure_id`),
+  UNIQUE KEY `lineId` (`lineId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购退货主表';
 
 /*Data for the table `purchase_returns` */
@@ -1532,7 +1534,7 @@ CREATE TABLE `purchase_returns_detailed` (
   `pured_remark` varchar(50) DEFAULT NULL,
   `pured_price_include_tax` varchar(50) DEFAULT NULL,
   `pured_single_status` int(11) DEFAULT NULL,
-  `pured_document_date` date DEFAULT NULL,
+  `pured_document_date` float DEFAULT NULL COMMENT '折扣前单价',
   `pured_document_number` varchar(50) DEFAULT NULL,
   `pured_price` float DEFAULT NULL,
   `pured_money` float DEFAULT NULL,

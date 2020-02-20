@@ -1,14 +1,14 @@
 package com.apatech.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import com.apatech.mapper.Purchase_returns_detailedMapper;
 import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
 import com.apatech.domain.Purchase_returns;
 import com.apatech.mapper.Purchase_returnsMapper;
 import com.github.pagehelper.PageHelper;
@@ -21,6 +21,7 @@ public class Purchase_returnsService {
 	private Purchase_returnsMapper dao;
 	@Autowired
 	private Purchase_returnsMapper purchase_returnsMapper;
+	private Purchase_returns_detailedMapper detailedMapper;
 
 	public PageInfo<Purchase_returns> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
@@ -79,5 +80,11 @@ public class Purchase_returnsService {
 
 	public String selectPureId() {
 		return purchase_returnsMapper.selectPureId();
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void insertWithDetails(PurchaseReturnsPojo returnsPojo) throws Exception {
+		dao.insertWithDetails(returnsPojo);
+		detailedMapper.insertList(returnsPojo.getDetails());
 	}
 }

@@ -40,8 +40,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                         <div class="layui-input-block">
-                            <select  :disabled="edit">
-                                <option value="0">含税</option>
+                            <select  :disabled="edit" name="pure_price_include_tax">
+                                <option value="1">含税</option>
                                 <option value="0">未税</option>
                             </select>
                         </div>
@@ -58,7 +58,7 @@
                         <label class="layui-form-label">重新入库</label>
                         <div class="layui-input-block">
                             <select :disabled="edit">
-                                <option value="0">是</option>
+                                <option value="1">是</option>
                                 <option value="0">否</option>
                             </select>
                         </div>
@@ -66,7 +66,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">凭证编号</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" class="layui-input" v-model="purechaseReturn.pureSingleStatus"
+                            <input type="text" name="pure_single_status" class="layui-input"
+                                   v-model="purechaseReturn.pureSingleStatus"
                                    :disabled="edit">
                         </div>
                     </div>
@@ -77,14 +78,16 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">单据日期</label>
                         <div class="layui-input-block">
-                            <input type="text" name="date" id="date"
-                                   lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                            <input type="text" name="pure_document_date" id="date"
+                                   lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"
+                                   v-model="purechaseReturn.pureDocumentDate">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">单据号码</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" class="layui-input" v-model="purechaseReturn.pureId"
+                            <input type="text" name="pure_document_number" class="layui-input"
+                                   v-model="purechaseReturn.pureId"
                                    :disabled="edit">
                         </div>
                     </div>
@@ -98,15 +101,17 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">汇率</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" class="layui-input" v-model="purechaseReturn.pureExchangeRate"
+                            <input type="text" name="pure_exchange_rate" class="layui-input"
+                                   v-model="purechaseReturn.pureExchangeRate"
                                    :disabled="edit">
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">国外贸易</label>
                         <div class="layui-input-block">
-                            <select name="interest" :disabled="edit">
-
+                            <select name="pure_foreign_trade" :disabled="edit">
+                                <option value="1">是</option>
+                                <option value="0">否</option>
                             </select>
                         </div>
                     </div>
@@ -125,6 +130,125 @@
                         <table id="materialsContent" class="layui-hide">
 
                         </table>
+                        <!--
+                        {field: 'id', title: '(栏号)', sort: true}
+                        , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        , {field: 'sex', title: '(物料名称)', sort: true}
+                        , {field: 'city', title: '(规格型号)'}
+                        , {field: 'sign', title: '(单位名称)'}
+                        , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
+                        , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                        , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '单价', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '金额', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
+                        -->
+                        <div style="overflow: scroll;">
+                            <table class="layui-table" lay-even="" lay-skin="row" style="width: 2000px;">
+                                <!--<colgroup>
+                                    <col width="150">
+                                    <col width="150">
+                                    <col width="200">
+                                    <col>
+                                </colgroup>-->
+                                <thead>
+                                <tr>
+                                    <th>栏号</th>
+                                    <th>物料编号</th>
+                                    <th>物料名称</th>
+                                    <th>规格型号</th>
+                                    <th>单位名称</th>
+                                    <th>数量</th>
+                                    <th>折扣前单价</th>
+                                    <th>折数(%)</th>
+                                    <th>单价</th>
+                                    <th>金额</th>
+                                    <th>税率(%)</th>
+                                    <th>(税额)</th>
+                                    <th>(含税金额)</th>
+                                    <th>(批号)</th>
+                                    <th>赠品</th>
+                                    <th>(发票明细)</th>
+                                    <th>(未开票数量)</th>
+                                    <th>分录备注</th>
+                                    <th>来源单别</th>
+                                    <th>来源单号</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in purechaseReturn.details" :key="item.puredId" v-cloak>
+                                        <td>
+                                            {{index + 1}}
+                                        </td>
+                                        <td>
+                                            {{item.matterId}}
+                                        </td>
+                                        <td>
+                                            {{item.puredEngname}}
+                                        </td>
+                                        <td>
+                                            {{item.puredRemark}}
+                                        </td>
+                                        <td>
+                                            {{item.puredPriceIncludeTax}}
+                                        </td>
+                                        <td>
+                                            {{item.puredSingleStatus}}
+                                        </td>
+                                        <td>
+                                            {{item.puredDocumentDate}}
+                                        </td>
+                                        <td>
+                                            {{item.puredDocumentNumber}}
+                                        </td>
+                                        <td>
+                                            {{item.puredPrice}}
+                                        </td>
+                                        <td>
+                                            {{item.puredMoney}}
+                                        </td>
+                                        <td>
+                                            {{item.puredTaxRate}}
+                                        </td>
+                                        <td>
+                                            {{item.puredTaxAmount}}
+                                        </td>
+                                        <td>
+                                            {{item.puredIncludingTaxAmount}}
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <input type="checkbox" name="" title="" lay-skin="primary"
+                                                             checked>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="" title="" lay-skin="primary" checked>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="" title="" lay-skin="primary" checked>
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            {{item.puredRemarks}}
+                                        </td>
+                                        <td>
+                                            {{item.puredSourceOrder}}
+                                        </td>
+                                        <td>
+                                            {{item.puredSourceNo}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="layui-tab-item">
                         <div class="layui-row">
@@ -198,7 +322,7 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">备注</label>
                                         <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea"
+                                        <textarea placeholder="请输入内容" name="pure_remark" class="layui-textarea"
                                                   v-model="purechaseReturn.pureRemark" :disabled="edit"></textarea>
                                         </div>
                                     </div>
@@ -215,7 +339,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">采购人员</label>
                         <div class="layui-input-block">
-                            <input type="text" name="buyer" class="layui-input" v-model="purechaseReturn.pureBuyer"
+                            <input type="text" name="pure_buyer" class="layui-input" v-model="purechaseReturn.pureBuyer"
                                    :disabled="edit" lay-verify="required"
                                    lay-reqtext="采购人员是必填项，岂能为空？">
                         </div>
@@ -223,7 +347,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="color:#009688;">所属部门</label>
                         <div class="layui-input-block">
-                            <input type="text" name="department" class="layui-input" v-model="purechaseReturn.pureBelongsSection"
+                            <input type="text" name="pure_belongs_section" class="layui-input"
+                                   v-model="purechaseReturn.pureBelongsSection"
                                    :disabled="edit" lay-verify="required"
                                    lay-reqtext="所属部门是必填项，岂能为空？">
                         </div>
@@ -231,7 +356,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">所属项目</label>
                         <div class="layui-input-block">
-                            <input type="text" name="project" class="layui-input" v-model="purechaseReturn.pureBelongsProject"
+                            <input type="text" name="pure_belongs_project" class="layui-input"
+                                   v-model="purechaseReturn.pureBelongsProject"
                                    :disabled="edit" lay-verify="required"
                                    lay-reqtext="所属项目是必填项，岂能为空？">
                         </div>
@@ -243,7 +369,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">制单人员</label>
                         <div class="layui-input-block">
-                            <input type="text" name="executor" class="layui-input"
+                            <input type="text" name="pure_executor" class="layui-input"
                                    v-model="purechaseReturn.pureExecutor" :disabled="edit" lay-verify="required"
                                    lay-reqtext="制单人员是必填项，岂能为空？">
                         </div>
@@ -251,7 +377,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">复核人员</label>
                         <div class="layui-input-block">
-                            <input type="text" name="reviewer" class="layui-input"
+                            <input type="text" name="pure_checkagin_staff" class="layui-input"
                                    v-model="purechaseReturn.pureCheckagainStaff" :disabled="edit"
                                    lay-verify="required" lay-reqtext="复核人员是必填项，岂能为空？">
                         </div>
@@ -304,7 +430,7 @@
                         <i class="fa fa-file fa-lg" aria-hidden="true"></i>
                     </button>
                     <button type="submit" class="layui-btn" title="保存"
-                            @lick="saveOrder()"
+                            @click="saveOrder()"
                             id="form-getvalue"
                             lay-submit=""
                             lay-filter="demo1">

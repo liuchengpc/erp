@@ -36,11 +36,16 @@ public interface Adjust_priceMapper {
     int updateByPrimaryKey(Adjust_price record);
     
     
-    @Select("SELECT  adj.ap_dateid,adj.ap_custom6,upd.up_name,upd.up_custom6,\n" + 
-    		"    		adj.`ap_doworkman`,adj.`ap_recheckman`,\n" + 
-    		"    		mu.mu_name,adj.ap_price,adj.ap_decoration\n" + 
-    		"    		FROM adjust_price AS adj,updown_program AS upd,matter AS mat,measurement_unit AS mu\n" + 
-    		"    		WHERE adj.materialid=mat.matter_id AND adj.updowmid=upd.up_id AND mat.mu_id=mu.mu_id AND adj.`ap_yn`=0  ORDER BY adj.ap_custom6,adj.ap_dateid DESC")
+    @Select("SELECT  adj.ap_dateid,adj.ap_custom6,upd.up_name,upd.up_custom6,adj.materialid,adj.updowmid,\n" + 
+    		" adj.`ap_doworkman`,adj.`ap_recheckman`,\n" + 
+    		"  mu.mu_name,adj.ap_price,adj.ap_decoration\n" + 
+    		"  FROM adjust_price AS adj,updown_program AS upd,matter AS mat,measurement_unit AS mu\n" + 
+    		"  WHERE adj.materialid=mat.matter_id \n" + 
+    		"  AND mat.mu_id=mu.mu_id \n" + 
+    		"  AND adj.`ap_yn`=0   \n" + 
+    		"  AND adj.updowmid=upd.up_id\n" + 
+    		"  AND adj.ap_dateid=upd.up_custom5  \n" + 
+    		"  ORDER BY adj.ap_custom6,adj.ap_dateid DESC")
     List<wd_Adjust_price> wdselectAll();
     
     @Select("SELECT \n" + 
@@ -58,11 +63,25 @@ public interface Adjust_priceMapper {
 	int selectcount();
 
     @Update("UPDATE adjust_price SET  ap_price = #{apPrice}, ap_decoration = #{apDecoration},  ap_doworkman = #{apDoworkman}, \n" + 
-    		"ap_recheckman = #{apRecheckman}, ap_auditing = #{apAuditing}, ap_yn = 0,ap_custom2 = #{apCustom2}, ap_custom3 = #{apCustom3}, ap_custom4 = #{apCustom4}, ap_custom5 = #{apCustom5},\n" + 
-    		"ap_custom6 = #{apCustom6} where ap_dateid = #{apDateid}")
+    		"ap_recheckman = #{apRecheckman}, ap_auditing = #{apAuditing}, ap_yn = 0, ap_custom5 = #{apCustom5},ap_custom6 = #{apCustom6} where ap_dateid = #{apDateid}")
 	int updateAdjustByApDateId(wd_Adjust_price record);
 
     
-    @Update("UPDATE  updown_program SET up_name = #{upName}, up_yn = 0, up_custom6 = #{upCustom6}  WHERE up_id = #{apDateid} ")
-	int updateCoin(wd_Adjust_price record);
+    @Update("UPDATE  updown_program SET up_name = #{upkm}, up_yn = 0, up_custom6 = #{downkm}  WHERE up_custom5 = #{apDateid} ")
+	int wdupdatekm(@Param("upkm") String  upkm,@Param("downkm") String downkm,@Param("apDateid") String apDateid);
+    
+    
+    @Update("UPDATE `adjust_price` SET ap_auditing=1 WHERE ap_dateid=#{apDateid}")
+	int updateAuding(String record);
+    
+    @Update("UPDATE `adjust_price` SET ap_auditing=0 WHERE ap_dateid=#{apDateid}")
+   	int deupdateAuding(String record);
+
+    @Select("select up_custom4 from updown_program where up_custom3=#{up_name}")
+	String selectzzkm(String up_name);
+    
+    @Select("select up_custom4 from updown_program where up_custom3=#{up_custom6}")
+	String selectjzkm(String up_custom6);
+    
+    
 }

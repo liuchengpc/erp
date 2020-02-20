@@ -52,15 +52,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                        	<template v-if="stu.sowPriceIncludeTax==0">
-                        		 <option value="0" selected="selected">不含税</option>
-                            	 <option value="1">含税</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.sowPriceIncludeTax">     	
                         		 <option value="0">不含税</option>
-                                 <option value="1" selected="selected">含税</option>
-                        	</template>                          
+                            	 <option value="1">含税</option>                       
                         </select>
                     </div>
                 </div>
@@ -115,15 +109,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">国外贸易</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                            <template v-if="stu.sowForeignTrade==0">
-                        		 <option value="0" selected="selected">否</option>
-                            	 <option value="1">是</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.sowForeignTrade">                          
                         		 <option value="0">否</option>
-                                 <option value="1" selected="selected">是</option>
-                        	</template>  
+                            	 <option value="1">是</option>                      	
                         </select>
                     </div>
                 </div>
@@ -160,34 +148,12 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">收款条件</label>
                                         <div class="layui-input-inline">
-                                            <select name="interest" disabled="disabled">
-                                            	 <template v-if="stu.sowSalessktj==0">
-					                        		 <option value="0" selected="selected">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.sowSalessktj==1">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1" selected="selected">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.sowSalessktj==2">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2" selected="selected">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else>
+                                            <select name="interest" disabled="disabled" v-model="stu.sowSalessktj">                                           	
 					                        		 <option value="0">货到</option>
 					                            	 <option value="1">次月</option>
 					                            	 <option value="2">月结</option>
-					                            	 <option value="3" selected="selected">其他</option>
-					                        	</template>
-					                        	
-
-                                            </select>
+					                            	 <option value="3">其他</option>
+					                        	</select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -360,7 +326,7 @@
 <script id="xuhao">
 	 {{d.LAY_TABLE_INDEX+1}}
 </script>
-<script>	  
+<script>
 	var host="http://127.0.0.1:8080/";
 	var sales_outboundvue=new Vue({
 		el:"#app",
@@ -535,10 +501,9 @@
 			            ]]
 			        });
 			    });
-			  
-			    
 					}
-				});		
+				});
+				
 			}
 			,chongzhi:function(){
 				layui.use('table', function(){
@@ -660,7 +625,6 @@
             location.hash = 'test='+ $(this).attr('lay-id');
         });
     });
-
    
 </script>
 </body>

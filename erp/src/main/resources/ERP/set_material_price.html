@@ -31,7 +31,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据日期</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apCustom6"  v-bind:disabled="diasabledInput">
+									<input type="text" class="layui-input" v-model="pages.apCustom6"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -43,7 +43,7 @@
 									<!-- 科目id -->
 									<input type="hidden" class="layui-input" v-model="pages.updowmid"  v-bind:disabled="diasabledInput" readonly="true">
 									
-									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid"  v-bind:disabled="diasabledInput">
+									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 						</div>
@@ -58,7 +58,6 @@
 									<input type="text"  id="pro" name="pro" class="layui-input" v-model="pages.upName"  v-bind:disabled="diasabledInput">
 									<div  id="sel">
 									<select style="display:none" class="layui-select" style="margin: 5px;" name="remark"  v-model="pages.upName">
-			        						<option value="0"  name="shopname">请选择</option>
 			        						<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="upname"></option>
 			        				</select>
 			        				</div>
@@ -70,7 +69,6 @@
 									<input type="text"   id="pro1" name="pro" class="layui-input" v-model="pages.upCustom6"  v-bind:disabled="diasabledInput">
 									<div  id="sel1">
 									<select style="display:none"  class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upCustom6">
-			        						<option value="0"  name="shopname">请选择</option>
 			        						<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="downname"></option>
 			        				</select>
 			        				</div>
@@ -116,7 +114,7 @@
 											<div class="layui-form-item">
 												<label class="layui-form-label">备注</label>
 												<div class="layui-input-block">
-													<textarea class="layui-textarea"></textarea>
+													<textarea class="layui-textarea" v-model="pages.apDoworkman"></textarea>
 												</div>
 											</div>
 										</div>
@@ -131,13 +129,13 @@
 					<div class="layui-col-lg6">
 						<div class="layui-form">
 							<div class="layui-form-item">
-								<label class="layui-form-label">制单人员</label>
+								<label class="layui-form-label" style="color:#009688;">制单人员</label>
 								<div class="layui-input-block">
 									<input type="text" class="layui-input" v-model="pages.apDoworkman"  v-bind:disabled="diasabledInput">
 								</div>
 							</div>
 							<div class="layui-form-item">
-								<label class="layui-form-label">复核人员</label>
+								<label class="layui-form-label" style="color:#009688;">复核人员</label>
 								<div class="layui-input-block">
 									<input type="text" class="layui-input" v-model="pages.apRecheckman"  v-bind:disabled="diasabledInput">
 								</div>
@@ -247,7 +245,9 @@
 														,cols: [[
 															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
 															{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
-															{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
+															{field: 'matterId',title: '(物料编号)',sort: true,align: 'center'}, 
+															
+															{field: 'matterSize',title: '(规格型号)',align: 'center'},
 															{field: 'muName',title: '(单位)',align: 'center'}, 
 															{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
 															{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
@@ -333,12 +333,14 @@
              	this.goNextPage1 =true;//下一笔
 		     	this.goLastPage1 =true;//后一笔
              	this.inset1 =true;   //新增      
-             	this.return1=true;//返回
+             	this.return1=false;//返回
              	this.saves1 =false;//保存 
              	this.update1 =true;//编辑
              	this.deletes1 =true;//删除		
 			    this.Auditing1 =false;//审核
 			    this.noAuditing1 =true;//取消审核
+			    
+			    $("table td:eq(8)").attr("data-edit","text");
 			    //增值文本框隐藏
 			    $("#pro").remove();
 			    //减值文本框隐藏
@@ -465,21 +467,6 @@
 					var this_ = this;
 					//获取表格中的数据
 					var obj=this.page.list[0];
-					$.ajax({
-						url : "http://127.0.0.1:8080/wd_adjustController/wdupdateMatter",
-						type:"post",
-					  	data : JSON.stringify(obj),
-					  	dataType:'json',	
-					  	contentType : "application/json;charset=utf-8",
-					  	success:function (res) {
-					  		console.info("修改成功!")
-					  		alert("系统提示：" +res.message);
-							this_.isinsert=false;//关闭新增模式
-							this_.isedit=false;//关闭编辑模式
-							this_.goPage(1, 1);
-				        }
-					});
-					
 				},
 				//修改主单据信息
 				updatelist:function(){
@@ -504,8 +491,7 @@
 				},
 				//执行修改
 				updates: function() {//编辑 
-					//修改单据
-					this.updatelist();
+				
 					//获取到下拉框的值后调用修改科目方法
 					this.updateupdown();
 					
@@ -528,12 +514,20 @@
 				
 				//点击新增
 				inset:function(){
+					
+					
 					this.clear();//清空文本框
+					
+					$("table td").attr("data-edit","text");
+					
+					
 					//按钮改变		    
 					this.diasabledInput=true;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
+					
 					this.getno();//获取单号
+					
 					this.goFirstPage1 =true;//第一笔
 		            this.goPrePage1 =true;//上一笔				            
 	             	this.goNextPage1 =true;//下一笔
@@ -604,6 +598,7 @@
 				});
 			});
 
+			
 			
 		</script>
 	</body>

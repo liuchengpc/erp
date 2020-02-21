@@ -19,7 +19,7 @@
 			display: none !important;
 		}
 	</style>  		
-	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>\
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/dialog.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -49,7 +49,7 @@
 	
     <div id="app" >
     	<div v-for="pages,index in page.list">
-    		<form class="layui-form" action="" >
+    		<form class="layui-form" action="" @submit.prevent=''>
 				
 				<div class="layui-row">
 			        <div class="layui-col-lg6">
@@ -58,14 +58,14 @@
 			                    <label class="layui-form-label" style="color:#009688;">客户</label>
 			                    <div class="layui-input-block">
 			                        <input type="text" name="title"  v-model="pages.customerName" class="layui-input"  hidden>
-			                        <input type="text" name="title"  class="layui-input" v-model="pages.customerId" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.customerId" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label">结算方式一</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName1" v-bind:disabled="diasabledInput">
-			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice1" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName1" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
+			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice1" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -105,7 +105,7 @@
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label" style="color:#009688;">单据日期</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.payablesPayablestime" v-bind:disabled="diasabledInput">
+			                        <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.payablesPayablestime" v-bind:disabled="diasabledInput" >
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -163,6 +163,10 @@
 								   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 								   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 								</script>
+								
+								
+								
+								<table class="layui-hide" id="demo"></table>
 			                </div>
 			              
 			                
@@ -331,6 +335,19 @@
 					
 				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
 	          },
+	          computed:{
+	          		dfs:function(){
+						alert(1)
+						 layer.open({
+				            type: 2,
+				            title: '单选--销售订单',
+				            content: $('#app'),
+				            fixed: false, //不固定
+				            area: ['680px', '470px'],
+				            content: 'receivablesbillTC1.html'
+				        });
+					},
+	          },
 			methods: {//定义函数
 
 				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
@@ -388,11 +405,22 @@
 							                            '      </select>';
 							                    }
 							       }
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true, edit: 'text'}
+							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,templet: function (d) {
+							                        // 模板的实现方式也是多种多样，这里简单返回固定的
+							                        return '<input type="text"  @keyup.f4="dfs()">';
+							                    }
+							      }
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
 							      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
 							      
 							    ]]
+							    ,data: [{
+							      "recedetailId": ""
+							      ,"recedetailPrice": ""
+							      ,"recedetailType": "18000"
+							      ,"recedetailNumber": ""
+							      ,"recedetailRemarks": ""
+							    }]
 							    ,done: function(res, curr, count){
 							      //数据渲染完的回调。
 							      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
@@ -499,6 +527,122 @@
 							  
 							});
 							/*加载表格数据*/
+							
+							/*加载表格数据2*/
+							layui.use('table', function(){
+							  var table = layui.table;
+							  
+							  //展示已知数据
+							  table.render({
+							    elem: '#demo'
+							    ,cols: [[ //标题栏
+							      {field: 'id', title: 'ID', width: 80, sort: true,edit: 'text',}
+							      ,{field: 'username', title: '用户名', width: 120,edit: 'text'}
+							      ,{field: 'email', title: '邮箱', minWidth: 150,edit: 'text'}
+							      ,{field: 'sign', title: '签名', minWidth: 160,edit: 'text'}
+							      ,{field: 'sex', title: '性别', width: 80,edit: 'text'}
+							      ,{field: 'city', title: '城市', width: 100,edit: 'text'}
+							      ,{field: 'experience', title: '积分', width: 80, sort: true,edit: 'text'}
+							    ]]
+							    ,data: [{
+							      "id": "10001"
+							      ,"username": "杜甫"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "116"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "108"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10002"
+							      ,"username": "李白"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "12"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							      ,"LAY_CHECKED": true
+							    }, {
+							      "id": "10003"
+							      ,"username": "王勃"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "65"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10004"
+							      ,"username": "贤心"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "666"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10005"
+							      ,"username": "贤心"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "86"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10006"
+							      ,"username": "贤心"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "12"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10007"
+							      ,"username": "贤心"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "16"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }, {
+							      "id": "10008"
+							      ,"username": "贤心"
+							      ,"email": "xianxin@layui.com"
+							      ,"sex": "男"
+							      ,"city": "浙江杭州"
+							      ,"sign": "人生恰似一场修行"
+							      ,"experience": "106"
+							      ,"ip": "192.168.0.8"
+							      ,"logins": "106"
+							      ,"joinTime": "2016-10-14"
+							    }]
+							    //,skin: 'line' //表格风格
+							    ,even: true
+							    //,page: true //是否显示分页
+							    //,limits: [5, 7, 10]
+							    //,limit: 5 //每页默认显示的数量
+							  });
+							});
+							/*加载表格数据2*/
+							
 				        }
 					}); 					
 				},
@@ -510,6 +654,7 @@
 					  form.render();
 					}); 
 				},
+			
 				goPrePage: function() {//上一条
 					if(this.page.hasPreviousPage) {
 //						alert(this.page.prePage+"："+this.page.pageSize)

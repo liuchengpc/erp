@@ -225,16 +225,6 @@
 								data: "pageNum="+page+"&pageSize=1",
 								success:function(res){
 									this_.page = res;
-									console.info(this_.page);
-   									var matterCustom6=this_.page.list[0].apDateid
-									$.ajax({
-										url:host+"wd_adjustController/queryMater",
-										type:"get",
-										data:{matterCustom6:matterCustom6},
-										dataType:"json",
-										success:function(result){
-											var tableData = result;
-											console.info(tableData);
 											layui.use('table', function() {
 												var table = layui.table;
 												console.log(tableData);
@@ -252,16 +242,14 @@
 															{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
 															{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
 															{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
-															{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
-															{field: 'apDecoration',title: '分录备注',align: 'center'}
+															{field: 'DadjustPrice',title: '(调价金额)',sort: true,align: 'center'}, 
+															{field: 'DDecoration',title: '分录备注',align: 'center'}
 															]]
 												});
 											});
 										}
 									});
-								}
-						});
-					},
+							},
 					goFirstPage: function() { //第一条
 						this.goPage(1);
 					},goLastPage: function() { //最后一条
@@ -598,7 +586,6 @@
 				});
 			});
 
-			
 			
 		</script>
 	</body>

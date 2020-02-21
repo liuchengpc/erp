@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>采购退货单</title>
+    <title>销售退货单</title>
     <link rel="stylesheet" href="css/layui.css">
     <link href="css/fontawesome.css" rel="stylesheet">
     <link href="css/brands.css" rel="stylesheet">
@@ -328,6 +328,28 @@
 			warelist:[]
 			
 		},
+		watch:{
+			 page:{			
+			 handler(newName, oldName) {
+			 	$.each(newName.list, function(a,b) {
+			 		$.each(b.list, function(c,d) {
+			 			sales_returnboundvue.page.list[0].list[c].srwdPrice=parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber);
+			 			sales_returnboundvue.page.list[0].list[c].srwdMoney=parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice);
+			 			sales_returnboundvue.page.list[0].list[c].srwdTaxAmount=parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate);
+			 			sales_returnboundvue.page.list[0].list[c].srwdIncludingTaxAmount=parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount);
+			 			$("table tr:eq("+c+1+") td:eq(8) div").text(parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber));
+			 			$("table tr:eq("+c+1+") td:eq(9) div").text(parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice));
+			 			$("table tr:eq("+c+1+") td:eq(11) div").text(parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate));
+			 			$("table tr:eq("+c+1+") td:eq(12) div").text(parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount));
+			 			
+			 		});
+			 	});
+		    
+		    },
+		    immediate: true,
+		    deep: true
+			}
+		},
 		methods:{
 			xz:function(){
 				//目前不知道怎么编辑table，所以注释清空这行
@@ -446,7 +468,13 @@
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
-			$("table td").attr("data-edit","text");
+			$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
 			},
 			shuax:function(){
 				location.reload();

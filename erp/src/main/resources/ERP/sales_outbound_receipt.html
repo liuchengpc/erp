@@ -338,6 +338,28 @@
 			warelist:[]
 			
 		},
+		watch:{
+			 page:{			
+			 handler(newName, oldName) {
+			 	$.each(newName.list, function(a,b) {
+			 		$.each(b.list, function(c,d) {
+			 			sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+			 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+			 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+			 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);
+			 			$("table tr:eq("+c+1+") td:eq(8) div").text(parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber));
+			 			$("table tr:eq("+c+1+") td:eq(9) div").text(parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice));
+			 			$("table tr:eq("+c+1+") td:eq(11) div").text(parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate));
+			 			$("table tr:eq("+c+1+") td:eq(12) div").text(parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount));
+			 			
+			 		});
+			 	});
+		    
+		    },
+		    immediate: true,
+		    deep: true
+			}
+		},
 		methods:{
 			xz:function(){
 				//目前不知道怎么编辑table，所以注释清空这行
@@ -461,7 +483,15 @@
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
-			$("table td").attr("data-edit","text");
+			$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
+			
+			
 			},
 			shuax:function(){
 				location.reload();

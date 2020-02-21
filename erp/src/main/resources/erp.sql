@@ -38,6 +38,32 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
+/*Table structure for table `adjust_detail` */
+
+DROP TABLE IF EXISTS `adjust_detail`;
+
+CREATE TABLE `adjust_detail` (
+  `d_matterid` varchar(50) DEFAULT NULL COMMENT '物料id，关联物料主文件表',
+  `d_adjustprice` float DEFAULT NULL COMMENT '调价金额',
+  `d_decoration` varchar(200) DEFAULT NULL COMMENT '分录备注',
+  `d_apid` varchar(50) DEFAULT NULL COMMENT '调价单id，关联调价单',
+  `adde_id` int(11) NOT NULL AUTO_INCREMENT,
+  `adde_custom1` varchar(50) DEFAULT NULL,
+  `adde_custom2` varchar(50) DEFAULT NULL,
+  `adde_custom3` varchar(50) DEFAULT NULL,
+  `adde_custom4` varchar(50) DEFAULT NULL,
+  `adde_custom5` varchar(50) DEFAULT NULL,
+  `adde_custom6` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`adde_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `adjust_detail` */
+
+insert  into `adjust_detail`(`d_matterid`,`d_adjustprice`,`d_decoration`,`d_apid`,`adde_id`,`adde_custom1`,`adde_custom2`,`adde_custom3`,`adde_custom4`,`adde_custom5`,`adde_custom6`) values 
+('1',200,'1asd','1',1,NULL,NULL,NULL,NULL,NULL,NULL),
+('2',300,'adsad','1',2,NULL,NULL,NULL,NULL,NULL,NULL),
+('1',123,'ecs','2',3,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `adjust_price` */
 
 DROP TABLE IF EXISTS `adjust_price`;
@@ -2301,7 +2327,7 @@ CREATE TABLE `sales_return_warehouse_detailed` (
   `srwd_remark` varchar(50) DEFAULT NULL,
   `srwd_price_include_tax` varchar(50) DEFAULT NULL,
   `srwd_single_status` int(11) DEFAULT NULL,
-  `srwd_document_date` date DEFAULT NULL,
+  `srwd_document_date` float DEFAULT NULL,
   `srwd_document_number` float DEFAULT NULL,
   `srwd_price` float DEFAULT NULL,
   `srwd_money` float DEFAULT NULL,
@@ -2706,6 +2732,9 @@ CREATE TABLE `updown_program` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `updown_program` */
+
+insert  into `updown_program`(`up_id`,`up_name`,`up_auditing`,`up_yn`,`up_custom1`,`up_custom2`,`up_custom3`,`up_custom4`,`up_custom5`,`up_custom6`) values 
+('1','现金','0','0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `warehouse` */
 

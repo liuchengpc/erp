@@ -76,7 +76,7 @@ public class Sales_return_warehouseController {
 	
 	
 	/**
-	 * 分页
+	 * 分页ya
 	 * @param pageNum
 	 * @param pageSize
 	 * @return

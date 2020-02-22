@@ -338,6 +338,12 @@
 			warelist:[]
 			
 		},
+		updated:function(){
+			layui.use('form', function(){
+			    var form = layui.form;
+			    form.render();
+			});
+		},
 		watch:{
 			 page:{			
 			 handler(newName, oldName) {
@@ -490,8 +496,24 @@
 				$(this).find("td:eq(10)").attr("data-edit","text");
 				$(this).find("td:eq(14)").attr("data-edit","text");
 			});
-			
-			
+			$("input:eq(0)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"kehu.html",
+						area:['762px','450px'],
+						success:function(iframe,index){
+							//获取子页面的窗体对象,通过窗体对象对js中的变量或者函数进行调用
+							/*var iframeWin = window[iframe.find('iframe')[0]['name']]; 
+							iframeWin.id = 100;
+							iframeWin.printId();*/
+						}
+					});				
+			});
+				
+			})	
 			},
 			shuax:function(){
 				location.reload();

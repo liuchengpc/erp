@@ -144,29 +144,7 @@
 			            </ul>
 			            <div class="layui-tab-content" style="padding: 10px 0;">
 			                <div class="layui-tab-item layui-show">
-			                   <!-- <table id="materialsContent" class="layui-hide">
-			
-			                    </table>-->
-			                    <table class="layui-hide" id="test" lay-filter="test">
-			                    	
-			                    </table>
- 
-								<script type="text/html" id="toolbarDemo">
-								  <div class="layui-btn-container">
-								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-								    <button type="button" class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-								  </div>
-								</script>
-								<script type="text/html" id="barDemo">
-								   <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-								   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-								   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-								</script>
-								
-								
-								
-								<table class="layui-hide" id="demo"></table>
+								<table class="layui-hide" id='test' lay-filter='test'></table>
 			                </div>
 			              
 			                
@@ -272,7 +250,13 @@
 			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
 			data: {//保存vue.js中要显示到html页面的数据
 				page: [],
-				page2: [],
+				page2: {
+			      "recedetailId": ""
+			      ,"recedetailPrice": ""
+			      ,"recedetailType": "销售订单"
+			      ,"recedetailNumber": ""
+			      ,"recedetailRemarks": ""
+			    },//详表数据
 				diasabledInput:true,//input框是否可以编辑
 				diasabledInput2:false,//input框是否可以编辑
 				isinsert:false,//是否是新增状态
@@ -359,20 +343,16 @@
 							/*加载表格数据2*/
 							layui.use('table', function(){
 							  var table = layui.table;
-							  
+								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 							  //展示已知数据
 							  table.render({
-							    elem: '#demo'
+							    elem: '#test'
 							    ,cols: [[ //标题栏
 							       {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
 							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
-							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
+							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text',}
 							      ,{field:'recedetailType', title:'来源别',}
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,templet: function (d) {
-							                        // 模板的实现方式也是多种多样，这里简单返回固定的
-							                        return '<input type="text"  onkeyup="dfs()">';
-							                    }
-							      }
+							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,edit: 'text',event: 'viewReport', templet: "#reportID", style: 'font-size: 12px; color: #666; cursor:pointer',}
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
 							    ]]
 							    ,data: [{
@@ -384,11 +364,30 @@
 							    },]
 							    //,skin: 'line' //表格风格
 							    ,even: true
+							    , id: 'test'
 							    //,page: true //是否显示分页
 							    //,limits: [5, 7, 10]
 							    //,limit: 5 //每页默认显示的数量
 							  });
+							  
+							  
+							  	table.on('tool(test)', function (obj) {
+								   let event = obj.event;
+								 
+								 if (event === "viewReport"){
+								 	layer.open({
+								            type: 2,
+								            title: '单选--销售订单',
+								            content: $('#app'),
+								            fixed: false, //不固定
+								            area: ['680px', '470px'],
+								            content: 'receivablesbillTC1.html'
+								        });
+								 }
+								})
 							});
+							
+							
 							/*加载表格数据2*/
 							
 				        }
@@ -803,18 +802,7 @@
     });*/
    
    
-   
-   function dfs(){
-			alert(1)
-			 layer.open({
-	            type: 2,
-	            title: '单选--销售订单',
-	            content: $('#app'),
-	            fixed: false, //不固定
-	            area: ['680px', '470px'],
-	            content: 'receivablesbillTC1.html'
-	        });
-		}
+
 </script>
 
 

@@ -15,10 +15,10 @@
     <result column="team_id" jdbcType="VARCHAR" property="teamId" />
     <result column="so_monograph" jdbcType="VARCHAR" property="soMonograph" />
     <result column="so_reviewer" jdbcType="VARCHAR" property="soReviewer" />
-    <result column="so_ subordinate" jdbcType="VARCHAR" property="soSubordinate" />
-    <result column="so_ watchword" jdbcType="VARCHAR" property="soWatchword" />
-    <result column="so_ tailclause" jdbcType="VARCHAR" property="soTailclause" />
-    <result column="so_ remark" jdbcType="VARCHAR" property="soRemark" />
+    <result column="so_subordinate" jdbcType="VARCHAR" property="soSubordinate" />
+    <result column="so_watchword" jdbcType="VARCHAR" property="soWatchword" />
+    <result column="so_tailclause" jdbcType="VARCHAR" property="soTailclause" />
+    <result column="so_remark" jdbcType="VARCHAR" property="soRemark" />
     <result column="so_ account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
     <result column="so_collection_time" jdbcType="VARCHAR" property="soCollectionTime" />
     <result column="so_collection_month" jdbcType="VARCHAR" property="soCollectionMonth" />

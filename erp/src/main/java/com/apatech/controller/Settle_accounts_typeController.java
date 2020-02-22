@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Settle_accounts_type;
+import com.apatech.domain.Team;
 import com.apatech.domain.Settle_accounts_type;
 import com.apatech.service.Settle_accounts_typeService;
 import com.github.pagehelper.PageInfo;
@@ -35,6 +36,21 @@ public class Settle_accounts_typeController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Settle_accounts_type> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Settle_accounts_type> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入SupplierController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Settle_accounts_type> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
     }
 	
 	/**

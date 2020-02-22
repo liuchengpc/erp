@@ -43,6 +43,21 @@ public class SupplierController {
     }
 	
 	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Supplier> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入SupplierController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Supplier> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
+    }
+	
+	/**
 	 * 获取单号
 	 * @param billdate
 	 * @return

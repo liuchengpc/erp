@@ -73,13 +73,13 @@
 								<label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
 								<div class="layui-input-block">
 									<template v-if="pages.sqTax==1">
-										<select name="interest" name="sqTax">
+										<select  name="sqTax">
 											<option value="1" selected="selected">含税</option>
 											<option value="0">未含税</option>
 										</select>
 									</template>
 									<template v-if="pages.sqTax==0">
-										<select name="interest"  name="sqTax">
+										<select  name="sqTax">
 											<option value="1">含税</option>
 											<option  value="0" selected="selected">未含税</option>
 										</select>
@@ -124,13 +124,13 @@
 											<div class="layui-form-item">
 												<label class="layui-form-label">表头条文</label>
 												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input" v-model="pages.sqWatchword" name="sqWatchword">
+													<input type="text"   class="layui-input" v-model="pages.sqWatchword" name="sqWatchword">
 												</div>
 											</div>
 											<div class="layui-form-item">
 												<label class="layui-form-label">表头尾文</label>
 												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input" v-model="pages.sqTailclause" name="sqTailclause">
+													<input type="text"   class="layui-input" v-model="pages.sqTailclause" name="sqTailclause">
 												</div>
 											</div>
 										</div>
@@ -140,13 +140,13 @@
 											<div class="layui-form-item">
 												<label class="layui-form-label">自定栏一</label>
 												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input" v-model="pages.sqCustom2" name="">
+													<input type="text"   class="layui-input" v-model="pages.sqCustom2" name="">
 												</div>
 											</div>
 											<div class="layui-form-item">
 												<label class="layui-form-label">自定栏二</label>
 												<div class="layui-input-block">
-													<input type="text" name="title" class="layui-input" v-model="pages.sqCustom3">
+													<input type="text"   class="layui-input" v-model="pages.sqCustom3">
 												</div>
 											</div>
 										</div>
@@ -239,7 +239,7 @@
 						<button class="layui-btn" id="lastinfo" title="后一笔" v-on:click="goLastPage"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="新增" v-on:click="addinfo"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn layui-btn-disabled" id="save" style="border: 1px solid #008000;" title="保存"  @click="add" ><i   class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
-						<button class="layui-btn" id="updateinfo" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+						<button class="layui-btn" id="updateinfo" title="编辑" v-on:click="updateinfo"><i class="fa fa-pencil-square-o fa-lg"></i></button>
 						<button class="layui-btn" id="deleinfo" title="删除" v-on:click="gomove"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" id="resetinfo" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" id="renovateinfo" title="刷新" v-on:click="renovate"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
@@ -323,7 +323,6 @@
 				},
 				methods: {
 					goPage: function(page) {
-						
 						var this_ = this;
 						$.ajax({
 							url: "http://127.0.0.1:8080/Sales_quotationController/selectAllpage",
@@ -461,6 +460,49 @@
 							}
 						});
 						this.page(1);
+					},
+					//修改订单信息
+					updateinfo:function(){
+						var record={
+							sqId:$("[name=sqId]").val(),
+							sqDocumentTime:$("[name=sqDocumentTime]").val(),
+							currencyId:$("[name=currencyId]").val(),
+							sqExchangeRate:$("[name=sqExchangeRate]").val(),
+							sqEffectiveTime:$("[name=sqEffectiveTime]").val(),
+							sqTax:$("[name=sqTax]").val(),
+							customerId:$("[name=customerId]").val(),
+							sqDeliveryAddress:$("[name=sqDeliveryAddress]").val(),
+							staffId:$("[name=staffId]").val(),
+							teamId:$("[name=teamId]").val(),
+							sqMonograph:$("[name=sqMonograph]").val(),
+							sqReviewer:$("[name=sqReviewer]").val(),
+							sqWatchword:$("[name=sqWatchword]").val(),
+							sqTailclause:$("[name=sqTailclause]").val(),
+							sqRemark:$("[name=sqRemark]").val(),
+							sqAuditing:$("[name=sqAuditing]").val(),
+							sqYn:"0",//是否删除
+							sqCustom2:$("[name=sqCustom2]").val(),
+							sqCustom3:$("[name=sqCustom3]").val(),
+							sqCustom4:$("[name=sqCustom4]").val()
+						}
+						if(record.sqDocumentTime>=record.sqEffectiveTime){
+							alert("有效日期必须大于单据日期");
+							return;
+						}else{
+							var con=confirm("是否确认修改该订单？");
+							if(con){
+								$.ajax({
+									url: "http://127.0.0.1:8080/Sales_quotationController/updateByPrimaryKeySelective3",
+									type: "post",
+									contentType: "application/json",
+									data: JSON.stringify(record),
+									success: function(res){
+										alert(res.message);
+									}
+								});
+								this.page(1);
+							}
+						}
 					},
 					//新增订单
 					addinfo: function() {

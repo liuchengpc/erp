@@ -21,6 +21,8 @@ public interface SalesorderlistMapper {
 	 		"Salesorderlist WHERE sol_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
+	List<Salesorderlist> selectquerybysolId(String solId);
+	
     int deleteByPrimaryKey(String solId);
 
     int insert(Salesorderlist record);

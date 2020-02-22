@@ -48,7 +48,12 @@
 	    where sol_Yn=0
 	    ORDER BY sol_id DESC
   </select>
-  
+  <select id="selectquerybysolId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	  	select 
+	    <include refid="Base_Column_List" />
+	    from salesorderlist 
+	    where sol_id = #{solId,jdbcType=VARCHAR}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

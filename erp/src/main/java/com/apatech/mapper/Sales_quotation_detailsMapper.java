@@ -21,7 +21,7 @@ public interface Sales_quotation_detailsMapper {
 	 		"Sales_quotation_details WHERE sqd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 
-	 List<Sales_quotation_details> querybysqlid(String sqlId);
+	List<Sales_quotation_details> querybysqlid(String sqlId);
 	 
     int deleteByPrimaryKey(String sqdId);
 

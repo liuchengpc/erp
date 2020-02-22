@@ -29,7 +29,16 @@ public class SalesorderService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
-	 
+	public PageInfo<Salesorder> selectAllbypage(Integer pageNum,Integer pageSize){
+    	System.out.println("分页的集合："+dao.selectAll().toString());
+		 
+    	PageHelper.startPage(pageNum, pageSize);
+    	List<Salesorder> list=dao.selectAll();
+
+    	PageInfo<Salesorder> page=new PageInfo<Salesorder>(list);
+//		    	System.out.println("分页的集合2："+page.getList().toString());
+    	return page;
+    }
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

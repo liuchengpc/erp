@@ -130,6 +130,27 @@ public class Sales_quotationController {
 	 * @param student
 	 * @return
 	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective3",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective3(@RequestBody Sales_quotation record) {
+		System.out.println("进入Sales_quotationController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改订单审批状态
+	 * @param student
+	 * @return
+	 */
 	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
 	@ResponseBody
     public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Sales_quotation record) {

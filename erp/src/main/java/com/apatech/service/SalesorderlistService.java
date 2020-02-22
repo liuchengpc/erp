@@ -28,8 +28,10 @@ public class SalesorderlistService {
     	PageInfo<Salesorderlist> page=new PageInfo<Salesorderlist>(list);
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
-    }
-	 
+	}
+	public List<Salesorderlist> selectquerybysolId(String solId){
+		return dao.selectquerybysolId(solId);
+	}
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

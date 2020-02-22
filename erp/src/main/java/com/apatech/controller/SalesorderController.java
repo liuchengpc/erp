@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.Salesorder;
+import com.apatech.domain.Salesorderlist;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.mapper.SalesorderMapper;
 import com.apatech.service.SalesorderService;
+import com.apatech.service.SalesorderlistService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -26,7 +30,7 @@ import com.github.pagehelper.PageInfo;
 public class SalesorderController {
 	@Autowired
 	private SalesorderService dao;
-	
+	private SalesorderlistService dao1;
 	/**
 	 * 分页
 	 * @param pageNum
@@ -43,6 +47,37 @@ public class SalesorderController {
     }
 	
 	/**
+	 * 分页2
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllbypage2",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Salesorder> selectAllbypage2( Integer pageNum,Integer pageSize){
+		System.out.println("进入SalesorderController2分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Salesorder> page=dao.selectAllpage(pageNum, pageSize);
+    	return page;
+    }
+	/*
+	 * 根据id查询详表数据
+	 * 
+	 */
+	@RequestMapping(value = "selectquerybysolId",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> selectquerybysolId(String solId){
+		System.out.println("进入详表查询方法！ 查询ID:"+solId);
+		List<Salesorderlist> data=dao1.selectquerybysolId(solId);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",1000);
+		map.put("data",data);
+		System.out.println(map);
+    	return map;
+    }
+	/**
 	 * 获取单号
 	 * @param billdate
 	 * @return
@@ -52,7 +87,7 @@ public class SalesorderController {
 	 public String getno(String billdate){
 		System.out.println(billdate);
 		System.out.println(dao.getno(billdate));
-		String s=dao.getno(billdate);
+		String s=dao.getno(billdate); 
     	return s;
     }
 	
@@ -69,7 +104,27 @@ public class SalesorderController {
 		System.out.println("soId="+soId);
     	return dao.selectByPrimaryKey(soId);
 	}
-	
+	/**
+	 * 新增 保存1
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "insertSelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> insertSelective1(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController1新增");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.insertSelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "新增失败！");
+		}
+		return map;
+    }
 	/**
 	 * 新增
 	 * @param student
@@ -91,7 +146,69 @@ public class SalesorderController {
 		}
 		return map;
     }
-
+	/**
+	 * 根据主键修改信息订单为删除状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective3",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective3(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController2根据主键修改订单为删除状态");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改订单审批状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective1(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改信息
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController2根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
 	/**
 	 * 根据主键修改
 	 * @param student
@@ -113,6 +230,7 @@ public class SalesorderController {
 		}
 		return map;
     }
+	
 	/**
 	 * 根据主键删除
 	 * @param soId

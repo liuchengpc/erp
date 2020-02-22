@@ -32,7 +32,6 @@ public class Sales_quotation_detailsService {
 	public List<Sales_quotation_details> querybysqlid(String sqlId){
 		return dao.querybysqlid(sqlId);
 	}
-	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

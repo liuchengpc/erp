@@ -6,7 +6,7 @@
     <result column="so_document_time" jdbcType="DATE" property="soDocumentTime" />
     <result column="so_documentnumber" jdbcType="VARCHAR" property="soDocumentnumber" />
     <result column="so_delivery_address" jdbcType="DOUBLE" property="soDeliveryAddress" />
-    <result column="sot_id" jdbcType="DATE" property="sotId" />
+    <result column="sot_id" jdbcType="VARCHAR" property="sotId" />
     <result column="so_customerorder" jdbcType="INTEGER" property="soCustomerorder" />
     <result column="so_tax" jdbcType="VARCHAR" property="soTax" />
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
@@ -15,11 +15,11 @@
     <result column="team_id" jdbcType="VARCHAR" property="teamId" />
     <result column="so_monograph" jdbcType="VARCHAR" property="soMonograph" />
     <result column="so_reviewer" jdbcType="VARCHAR" property="soReviewer" />
-    <result column="so_ subordinate" jdbcType="VARCHAR" property="soSubordinate" />
-    <result column="so_ watchword" jdbcType="VARCHAR" property="soWatchword" />
-    <result column="so_ tailclause" jdbcType="VARCHAR" property="soTailclause" />
-    <result column="so_ remark" jdbcType="VARCHAR" property="soRemark" />
-    <result column="so_ account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
+    <result column="so_subordinate" jdbcType="VARCHAR" property="soSubordinate" />
+    <result column="so_watchword" jdbcType="VARCHAR" property="soWatchword" />
+    <result column="so_tailclause" jdbcType="VARCHAR" property="soTailclause" />
+    <result column="so_remark" jdbcType="VARCHAR" property="soRemark" />
+    <result column="so_account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
     <result column="so_collection_time" jdbcType="VARCHAR" property="soCollectionTime" />
     <result column="so_collection_month" jdbcType="VARCHAR" property="soCollectionMonth" />
     <result column="so_collection_terms" jdbcType="VARCHAR" property="soCollectionTerms" />
@@ -36,7 +36,7 @@
   <sql id="Base_Column_List">
     so_id, so_document_time, so_documentnumber, so_delivery_address, sot_id, so_customerorder, 
     so_tax, currency_id, so_oder_static, staff_id, team_id, so_monograph, so_reviewer, 
-    "so_ subordinate", "so_ watchword", "so_ tailclause", "so_ remark", "so_ account_ownership", 
+    so_subordinate, so_watchword, so_tailclause, so_remark, so_account_ownership, 
     so_collection_time, so_collection_month, so_collection_terms, so_collection_terms_day, 
     so_auditing, so_yn, so_custom1, so_custom2, so_custom3, so_custom4, so_custom5, so_custom6
   </sql>
@@ -48,7 +48,13 @@
 	    where so_Yn=0
 	    ORDER BY so_id DESC
   </select>
-  
+  <select id="selectAllbypage" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from salesorder 
+	    where so_Yn=0
+	    ORDER BY so_id DESC
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -64,15 +70,15 @@
       so_delivery_address, sot_id, so_customerorder, 
       so_tax, currency_id, so_oder_static, 
       staff_id, team_id, so_monograph, 
-      so_reviewer, "so_ subordinate", "so_ watchword", 
-      "so_ tailclause", "so_ remark", "so_ account_ownership", 
+      so_reviewer, so_subordinate, so_watchword, 
+      so_tailclause, so_remark, so_ account_ownership, 
       so_collection_time, so_collection_month, so_collection_terms, 
       so_collection_terms_day, so_auditing, so_yn, 
       so_custom1, so_custom2, so_custom3, 
       so_custom4, so_custom5, so_custom6
       )
     values (#{soId,jdbcType=VARCHAR}, #{soDocumentTime,jdbcType=DATE}, #{soDocumentnumber,jdbcType=VARCHAR}, 
-      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=DATE}, #{soCustomerorder,jdbcType=INTEGER}, 
+      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=VARCHAR}, #{soCustomerorder,jdbcType=INTEGER}, 
       #{soTax,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{soOderStatic,jdbcType=VARCHAR}, 
       #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{soMonograph,jdbcType=VARCHAR}, 
       #{soReviewer,jdbcType=VARCHAR}, #{soSubordinate,jdbcType=VARCHAR}, #{soWatchword,jdbcType=VARCHAR}, 
@@ -126,19 +132,19 @@
         so_reviewer,
       </if>
       <if test="soSubordinate != null">
-        "so_ subordinate",
+        so_subordinate,
       </if>
       <if test="soWatchword != null">
-        "so_ watchword",
+        so_watchword,
       </if>
       <if test="soTailclause != null">
-        "so_ tailclause",
+        so_tailclause,
       </if>
       <if test="soRemark != null">
-        "so_ remark",
+        so_remark,
       </if>
       <if test="soAccountOwnership != null">
-        "so_ account_ownership",
+        so_account_ownership,
       </if>
       <if test="soCollectionTime != null">
         so_collection_time,
@@ -191,7 +197,7 @@
         #{soDeliveryAddress,jdbcType=DOUBLE},
       </if>
       <if test="sotId != null">
-        #{sotId,jdbcType=DATE},
+        #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
         #{soCustomerorder,jdbcType=INTEGER},
@@ -283,7 +289,7 @@
         so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
       </if>
       <if test="sotId != null">
-        sot_id = #{sotId,jdbcType=DATE},
+        sot_id = #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
         so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
@@ -310,19 +316,19 @@
         so_reviewer = #{soReviewer,jdbcType=VARCHAR},
       </if>
       <if test="soSubordinate != null">
-        "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
+        so_subordinate = #{soSubordinate,jdbcType=VARCHAR},
       </if>
       <if test="soWatchword != null">
-        "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
+        so_watchword = #{soWatchword,jdbcType=VARCHAR},
       </if>
       <if test="soTailclause != null">
-        "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
+        so_tailclause = #{soTailclause,jdbcType=VARCHAR},
       </if>
       <if test="soRemark != null">
-        "so_ remark" = #{soRemark,jdbcType=VARCHAR},
+        so_remark = #{soRemark,jdbcType=VARCHAR},
       </if>
       <if test="soAccountOwnership != null">
-        "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+        so_account_ownership = #{soAccountOwnership,jdbcType=VARCHAR},
       </if>
       <if test="soCollectionTime != null">
         so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
@@ -368,7 +374,7 @@
     set so_document_time = #{soDocumentTime,jdbcType=DATE},
       so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
       so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
-      sot_id = #{sotId,jdbcType=DATE},
+      sot_id = #{sotId,jdbcType=VARCHAR},
       so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
       so_tax = #{soTax,jdbcType=VARCHAR},
       currency_id = #{currencyId,jdbcType=VARCHAR},
@@ -377,11 +383,11 @@
       team_id = #{teamId,jdbcType=VARCHAR},
       so_monograph = #{soMonograph,jdbcType=VARCHAR},
       so_reviewer = #{soReviewer,jdbcType=VARCHAR},
-      "so_ subordinate" = #{soSubordinate,jdbcType=VARCHAR},
-      "so_ watchword" = #{soWatchword,jdbcType=VARCHAR},
-      "so_ tailclause" = #{soTailclause,jdbcType=VARCHAR},
-      "so_ remark" = #{soRemark,jdbcType=VARCHAR},
-      "so_ account_ownership" = #{soAccountOwnership,jdbcType=VARCHAR},
+      so_subordinate = #{soSubordinate,jdbcType=VARCHAR},
+      so_watchword = #{soWatchword,jdbcType=VARCHAR},
+      so_tailclause = #{soTailclause,jdbcType=VARCHAR},
+      so_remark = #{soRemark,jdbcType=VARCHAR},
+      so_account_ownership = #{soAccountOwnership,jdbcType=VARCHAR},
       so_collection_time = #{soCollectionTime,jdbcType=VARCHAR},
       so_collection_month = #{soCollectionMonth,jdbcType=VARCHAR},
       so_collection_terms = #{soCollectionTerms,jdbcType=VARCHAR},

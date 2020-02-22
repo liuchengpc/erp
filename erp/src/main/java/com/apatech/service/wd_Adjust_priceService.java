@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Adjust_price;
 import com.apatech.domain.Updown_program;
+import com.apatech.domain.wd_Adjust_detail;
 import com.apatech.domain.wd_Adjust_price;
 import com.apatech.mapper.Adjust_priceMapper;
 import com.apatech.mapper.Updown_programMapper;
@@ -22,13 +23,11 @@ public class wd_Adjust_priceService {
 	@Autowired
 	Updown_programMapper udao;
 	
-	 	public PageInfo<wd_Adjust_price> wdselectAllpage(Integer pageNum,Integer pageSize){
-    	//System.out.println("分页的集合："+dao.wdselectAll().toString());
-		 
-    	PageHelper.startPage(pageNum, pageSize);	
+ 	public PageInfo<wd_Adjust_price> wdselectAllpage(Integer pageNum,Integer pageSize){
+	 		System.out.println("分页的集合："+dao.selectAll().toString());
+	 	PageHelper.startPage(pageNum, pageSize);	
     	List<wd_Adjust_price> list=dao.wdselectAll();
-    	PageInfo<wd_Adjust_price> page=new PageInfo<wd_Adjust_price>(list	);
-//	    	System.out.println("分页的集合2："+page.getList().toString());
+    	PageInfo<wd_Adjust_price> page=new PageInfo<wd_Adjust_price>(list);
     	return page;
     }
 	 
@@ -85,6 +84,33 @@ public class wd_Adjust_priceService {
 	public int wdupdateByPrimaryKeySelective(wd_Adjust_price record) {
 		
 		return dao.updateAdjustByApDateId(record);
+	}
+
+	public List<wd_Adjust_detail> selectlist(String apDateid) {
+		System.out.println("apdateid----------:"+dao.selectlist(apDateid).toString());
+		return dao.selectlist(apDateid);
+	}
+
+	public int inserts(String dMatterid,String dAdjustprice,String dDecoration,String dApId) {
+		return dao.insertlist(dMatterid,dAdjustprice,dDecoration,dApId);
+		
+	}
+
+	
+	
+
+	public int updatelist(String ApDateid,String updowmid) {
+		return dao.updatelist(ApDateid,updowmid);
+	}
+
+	public int updatekm(String upId, String upname, String doId, String doname, String updowmid, String apDateid) {
+		// TODO Auto-generated method stub
+		return dao.updatekm(upId,upname,doId,doname,updowmid,apDateid);
+	}
+
+	public int updateprice(String dadjustprice,String dDecoration, String dMatterid,String apid) {
+		// TODO Auto-generated method stub
+		return dao.updateprice(dadjustprice,dDecoration,dMatterid,apid);
 	}
 	 
 	 

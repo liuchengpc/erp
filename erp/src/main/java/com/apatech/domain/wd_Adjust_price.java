@@ -1,5 +1,7 @@
 package com.apatech.domain;
 
+import java.util.List;
+
 public class wd_Adjust_price {
 	private String apId;// 调价id（主键 唯一）
 	private String apDateid;// 单据编号
@@ -19,6 +21,233 @@ public class wd_Adjust_price {
 	private String upCustom6;// 简直科目
 	private String matterName;// 物料名称
 	private String matterId;//物料编号
+	private List<wd_Adjust_detail>list;
+	
+	private String mapId;// 调价id（主键 唯一）
+	private String mapDateid;// 调价单据编号
+	private String mapCustom6;//调价单单据日期
+	private String mupName;//增值科目
+	private String mupCustom6;//减值科目
+	private String mmatterName;//物料名称
+	private String mmatterId;//物料编号
+	private String mmuName;//计量单位
+	private String mmatterSize;//尺寸
+	private String mmatterNowcount;//库存
+	private String mmatterNowavgcost;//单价
+	private String mmonePrice;//单价
+	private String dAdjustprice;//调价金额
+	private String dDecoration;//分录备注
+	private String mapDoworkman;//制表人
+	private String mapRecheckman;//复核人
+	private String dApid;//从表调价id
+	private String dMatterid;//从表物料id
+	private String mupdowmid;//增减值科目id
+	private String mapYn;//是否审核
+	public String getMapId() {
+		return mapId;
+	}
+
+	public void setMapId(String mapId) {
+		this.mapId = mapId;
+	}
+
+	public String getMapDateid() {
+		return mapDateid;
+	}
+
+	public void setMapDateid(String mapDateid) {
+		this.mapDateid = mapDateid;
+	}
+
+	public String getMapCustom6() {
+		return mapCustom6;
+	}
+
+	public void setMapCustom6(String mapCustom6) {
+		this.mapCustom6 = mapCustom6;
+	}
+
+	public String getMupName() {
+		return mupName;
+	}
+
+	public void setMupName(String mupName) {
+		this.mupName = mupName;
+	}
+
+	public String getMupCustom6() {
+		return mupCustom6;
+	}
+
+	public void setMupCustom6(String mupCustom6) {
+		this.mupCustom6 = mupCustom6;
+	}
+
+	public String getMmatterName() {
+		return mmatterName;
+	}
+
+	public void setMmatterName(String mmatterName) {
+		this.mmatterName = mmatterName;
+	}
+
+	public String getMmatterId() {
+		return mmatterId;
+	}
+
+	public void setMmatterId(String mmatterId) {
+		this.mmatterId = mmatterId;
+	}
+
+	public String getMmuName() {
+		return mmuName;
+	}
+
+	public void setMmuName(String mmuName) {
+		this.mmuName = mmuName;
+	}
+
+	public String getMmatterSize() {
+		return mmatterSize;
+	}
+
+	public void setMmatterSize(String mmatterSize) {
+		this.mmatterSize = mmatterSize;
+	}
+
+	public String getMmatterNowcount() {
+		return mmatterNowcount;
+	}
+
+	public void setMmatterNowcount(String mmatterNowcount) {
+		this.mmatterNowcount = mmatterNowcount;
+	}
+
+	public String getMmatterNowavgcost() {
+		return mmatterNowavgcost;
+	}
+
+	public void setMmatterNowavgcost(String mmatterNowavgcost) {
+		this.mmatterNowavgcost = mmatterNowavgcost;
+	}
+
+	public String getMmonePrice() {
+		return mmonePrice;
+	}
+
+	public void setMmonePrice(String mmonePrice) {
+		this.mmonePrice = mmonePrice;
+	}
+
+	public String getdAdjustprice() {
+		return dAdjustprice;
+	}
+
+	public void setdAdjustprice(String dAdjustprice) {
+		this.dAdjustprice = dAdjustprice;
+	}
+
+	public String getdDecoration() {
+		return dDecoration;
+	}
+
+	public void setdDecoration(String dDecoration) {
+		this.dDecoration = dDecoration;
+	}
+
+	public String getMapDoworkman() {
+		return mapDoworkman;
+	}
+
+	public void setMapDoworkman(String mapDoworkman) {
+		this.mapDoworkman = mapDoworkman;
+	}
+
+	public String getMapRecheckman() {
+		return mapRecheckman;
+	}
+
+	public void setMapRecheckman(String mapRecheckman) {
+		this.mapRecheckman = mapRecheckman;
+	}
+
+	public String getdApid() {
+		return dApid;
+	}
+
+	public void setdApid(String dApid) {
+		this.dApid = dApid;
+	}
+
+	public String getdMatterid() {
+		return dMatterid;
+	}
+
+	public void setdMatterid(String dMatterid) {
+		this.dMatterid = dMatterid;
+	}
+
+	public String getMupdowmid() {
+		return mupdowmid;
+	}
+
+	public void setMupdowmid(String mupdowmid) {
+		this.mupdowmid = mupdowmid;
+	}
+
+	public String getUpId() {
+		return upId;
+	}
+
+	public void setUpId(String upId) {
+		this.upId = upId;
+	}
+
+	public String getUpCustom5() {
+		return upCustom5;
+	}
+
+	public void setUpCustom5(String upCustom5) {
+		this.upCustom5 = upCustom5;
+	}
+
+	public String getMamuId() {
+		return mamuId;
+	}
+
+	public void setMamuId(String mamuId) {
+		this.mamuId = mamuId;
+	}
+
+	public String getMyamuId() {
+		return myamuId;
+	}
+
+	public void setMyamuId(String myamuId) {
+		this.myamuId = myamuId;
+	}
+
+	private String upId;//增减值科目id
+	private String upCustom5;//增减值科目单号
+	private String mamuId;//物料表计量单位id
+	private String myamuId;//计量单位表id
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<wd_Adjust_detail> getList() {
+		return list;
+	}
+
+	public void setList(List<wd_Adjust_detail> list) {
+		this.list = list;
+	}
+
 	public String getMatterId() {
 		return matterId;
 	}

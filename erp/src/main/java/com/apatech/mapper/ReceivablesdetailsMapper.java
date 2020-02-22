@@ -20,6 +20,9 @@ public interface ReceivablesdetailsMapper {
 	 		"FROM\r\n" + 
 	 		"Receivablesdetails WHERE recedetail_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
+	 
+	 
+	List<Receivablesdetails> selectAllpagebyidlc(@Param("receivablesbillId")String receivablesbillId);
 	
     int deleteByPrimaryKey(String recedetailId);
 

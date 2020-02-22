@@ -2,6 +2,7 @@ package com.apatech.service;
 
 import java.util.List;
 
+import com.apatech.pojo.PurchaseStoragePojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,9 @@ import com.github.pagehelper.PageInfo;
 public class Purchase_storageService {
 	@Autowired
 	private Purchase_storageMapper dao;
-	
+	@Autowired
+	private Purchase_storageMapper purchase_storageMapper;
+
 	public PageInfo<Purchase_storage> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -57,4 +60,20 @@ public class Purchase_storageService {
     public int updateByPrimaryKey(Purchase_storage record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public PurchaseStoragePojo selectLast() {
+	    return dao.selectLast();
+    }
+
+	public PurchaseStoragePojo selectPrev(Integer lineId) {
+		return purchase_storageMapper.selectPrev(lineId);
+	}
+
+	public PurchaseStoragePojo selectNext(Integer lineId) {
+		return purchase_storageMapper.selectNext(lineId);
+	}
+
+	public PurchaseStoragePojo selectFirst() {
+		return purchase_storageMapper.selectFirst();
+	}
 }

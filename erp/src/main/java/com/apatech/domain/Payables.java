@@ -8,11 +8,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 应付冲款单主表
- * @author 刘成
+ * @author 刘成                                                                                                                                                                                                                                                                                                                                                       
  *
  */
 public class Payables {
-    private String payablesId;//应付冲款单id（主键 唯一）
+    private String payablesId;//应付冲款单id（主键   唯一）
     private String supplierId;//供应商表id，外键
     private Integer scsId;//结算方式id，外键
     private String staffId;//部门员工表id，外键
@@ -45,7 +45,7 @@ public class Payables {
     private String payablesAuditing;//是否审核
     private String payablesYn;//是否删除（0 否 1 是 ，默认0）
     private String payablesCustom1;//自定栏1
-    private String payablesCustom2;//自定栏2
+    private String payablesCustom2;//自定栏2--单据号码
     private String payablesCustom3;//自定栏3
     private String payablesCustom4;//自定栏4
     private String payablesCustom5;//自定栏5

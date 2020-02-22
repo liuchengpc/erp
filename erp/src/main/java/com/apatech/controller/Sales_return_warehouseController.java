@@ -5,19 +5,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.apatech.domain.Sales_return_warehouse;
-import com.apatech.domain.Sales_return_warehouse;
-import com.apatech.domain.Sales_return_warehouse;
-import com.apatech.domain.Sales_return_warehouse;
-import com.apatech.mapper.Sales_return_warehouseMapper;
+import com.apatech.domain.Sales_return_warehouse_detailed;
+import com.apatech.service.Sales_return_warehouse_detailedService;
 import com.apatech.service.Sales_return_warehouseService;
 import com.github.pagehelper.PageInfo;
 
@@ -27,8 +23,60 @@ public class Sales_return_warehouseController {
 	@Autowired
 	private Sales_return_warehouseService dao;
 	
+	@Autowired
+	private Sales_return_warehouse_detailedService daoo;	
+	
+	@RequestMapping("/selectcount")
+	@ResponseBody
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public int update(@RequestBody Sales_return_warehouse stu) {
+		daoo.deletelist(stu.getSrwId());
+		for (Sales_return_warehouse_detailed item : stu.getList()) {
+			item.setSrwId(stu.getSrwId());
+			daoo.insert(item);
+		}
+		return dao.updateByPrimaryKey(stu);
+		
+	}
+	
+	@RequestMapping("/autddert")
+	@ResponseBody
+	public int autddert(String id,String sid) {
+		return dao.selectlist(id, sid);
+		
+	}
+	
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int delete(String srwId) {
+		return dao.deletelist(srwId);
+				
+	}
+	
+	
+	@RequestMapping("/insert")
+	@ResponseBody
+	public int insert(@RequestBody Sales_return_warehouse record) {
+		int i=dao.insert(record);
+		if(i>0) {
+			for (Sales_return_warehouse_detailed item : record.getList()) {
+				item.setSrwId(record.getSrwId());
+				daoo.insert(item);
+			}
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	
+	
 	/**
-	 * 分页
+	 * 分页ya
 	 * @param pageNum
 	 * @param pageSize
 	 * @return
@@ -39,6 +87,9 @@ public class Sales_return_warehouseController {
 		System.out.println("进入Sales_return_warehouseController分页");
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Sales_return_warehouse> page=dao.selectAllpage(pageNum, pageSize);
+    	for (Sales_return_warehouse item : page.getList()) {
+			item.setList(daoo.selectlist(item.getSrwId()));
+		}
     	return page;
     }
 	

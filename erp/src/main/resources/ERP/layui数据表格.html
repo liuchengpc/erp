@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/bootstrap.css" />    
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/brands.css" rel="stylesheet">
+    <link href="css/solid.css" rel="stylesheet">
+    
+	<script src="jquery-1.12.4.js"></script>
+    <style>
+		/* !important 设置样式优先级最高
+		 * 防止数据加载完毕之前出现vue表达式 */
+		
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>  		
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>\
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
+    
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+</head>
+<body>
+ 
+<table class="layui-hide" id="test" lay-filter="test"></table>
+ 
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+  </div>
+</script>
+ 
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+            
+ 
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+  
+
+  table.render({
+    elem: '#test'
+    ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
+    ,toolbar: '#toolbarDemo'
+    ,title: '用户数据表'
+    ,totalRow: true
+    ,cellMinWidth: 150 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,parseData:function(res){
+    	console.log("分页数据：");
+    	console.log(res);
+    	console.log(res.list);
+    	this_page2=res;
+    	return{
+    		"success":true,
+			"code": 0, //解析接口状态
+		    "msg": "", //解析提示文本
+		    "count": res.total, //解析数据长度
+		    "data": res.list //解析数据列表
+		    
+    	}
+    }
+    ,cols: [[
+      {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
+      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
+      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
+      ,{field:'recedetailType', title:'来源别',
+       templet: function (d) {
+                        // 模板的实现方式也是多种多样，这里简单返回固定的
+                        return '<select name="city" lay-filter="testSelect" lay-verify="required" data-value="' + d.city + '" >\n' +
+                            '        <option value=""></option>\n' +
+                            '        <option value="18000">销售订单</option>\n' +
+                            '        <option value="20000">S/C</option>\n' +
+                            '      </select>';
+                    }
+       }
+      ,{field:'recedetailNumber', title:'来源单号',  sort: true, edit: 'text'}
+      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
+      
+    ]]
+    ,done: function(res, curr, count){
+      //数据渲染完的回调。
+      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
+      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
+     }
+    ,page:{
+    	limit:3,//指定每页显示的条数
+    	limits:[3,5,10,15,20,25,30],//每页条数的选择项
+    }
+  });
+  
+  //------------------------工具栏事件-------------------
+    //监听表格复选框选择
+  table.on('checkbox(test)', function(obj){
+    console.log(obj)
+  });
+  //监听工具条
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    if(obj.event === 'detail'){
+      layer.msg('ID：'+ data.id + ' 的查看操作');
+    } else if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.alert('编辑行：<br>'+ JSON.stringify(data))
+    }
+  });
+  //监听全选
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选')
+      break;
+    };
+  });
+  
+  $('.demoTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+  
+   //监听行单击事件（双击事件为：rowDouble）
+  table.on('rowDouble(test)', function(obj){
+//  var data = obj.data;
+//  
+//  layer.alert(JSON.stringify(data), {
+//    title: '当前行数据：'
+//  });
+//  
+//  //标注选中样式
+//  obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+
+		/*//iframe层-父子操作
+		layer.open({
+		  type: 2,
+		  area: ['900px', '500px'],
+		  fixed: false, //不固定
+		  maxmin: true,
+		  content: 'receivablesbillTC1.html'
+		});*/
+		
+		
+		
+        layer.open({
+            type: 2,
+            title: '单选--销售订单',
+            content: $('#app'),
+            fixed: false, //不固定
+            area: ['680px', '470px'],
+            content: 'receivablesbillTC1.html'
+        });
+   
+  });
+  //------------------------工具栏事件-------------------
+
+
+  
+  
+
+});
+</script>
+
+</body>
+</html>

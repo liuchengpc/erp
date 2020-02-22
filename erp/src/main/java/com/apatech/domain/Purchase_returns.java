@@ -47,12 +47,21 @@ public class Purchase_returns {
     private String pureCustom4;//自定义4
     private String pureCustom5;//自定义5
     private String pureCustom6;//自定义6
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date createDate;//修改时间
+    private int lineId;//行编号
     
     
 
     public Purchase_returns() {
 		super();
 	}
+
+	
+
+
+
 
 	@Override
 	public String toString() {
@@ -68,8 +77,14 @@ public class Purchase_returns {
 				+ ", pureHeaderProvision=" + pureHeaderProvision + ", pureEndClause=" + pureEndClause + ", pureRemark="
 				+ pureRemark + ", pureAudition=" + pureAudition + ", pureYn=" + pureYn + ", pureCustom1=" + pureCustom1
 				+ ", pureCustom2=" + pureCustom2 + ", pureCustom3=" + pureCustom3 + ", pureCustom4=" + pureCustom4
-				+ ", pureCustom5=" + pureCustom5 + ", pureCustom6=" + pureCustom6 + "]";
+				+ ", pureCustom5=" + pureCustom5 + ", pureCustom6=" + pureCustom6 + ", createDate=" + createDate
+				+ ", lineId=" + lineId + "]";
 	}
+
+
+
+
+
 
 	public String getPureId() {
         return pureId;
@@ -334,4 +349,20 @@ public class Purchase_returns {
     public void setPureCustom6(String pureCustom6) {
         this.pureCustom6 = pureCustom6 == null ? null : pureCustom6.trim();
     }
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public int getLineId() {
+		return lineId;
+	}
+	public void setLineId(int lineId) {
+		this.lineId = lineId;
+	}
+    
+	
+	
+    
 }

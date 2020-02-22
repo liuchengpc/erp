@@ -1,6 +1,7 @@
 package com.apatech.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -56,10 +57,19 @@ public class Sales_return_warehouse {
     private String srwCustom4;//自定义
     private String srwCustom5;//自定义
     private String srwCustom6;//自定义
+    private List<Sales_return_warehouse_detailed> list;
     
     
     
-    public Sales_return_warehouse() {
+    public List<Sales_return_warehouse_detailed> getList() {
+		return list;
+	}
+
+	public void setList(List<Sales_return_warehouse_detailed> list) {
+		this.list = list;
+	}
+
+	public Sales_return_warehouse() {
 		super();
 	}
 
@@ -78,7 +88,7 @@ public class Sales_return_warehouse {
 				+ srwCheckagainStaff + ", srwHeaderProvision=" + srwHeaderProvision + ", srwEndClause=" + srwEndClause
 				+ ", srwRemark=" + srwRemark + ", srwAuditing=" + srwAuditing + ", srwYn=" + srwYn + ", srwCustom1="
 				+ srwCustom1 + ", srwCustom2=" + srwCustom2 + ", srwCustom3=" + srwCustom3 + ", srwCustom4="
-				+ srwCustom4 + ", srwCustom5=" + srwCustom5 + ", srwCustom6=" + srwCustom6 + "]";
+				+ srwCustom4 + ", srwCustom5=" + srwCustom5 + ", srwCustom6=" + srwCustom6 + ",list="+list+"]";
 	}
 
 	public String getSrwId() {

@@ -29,6 +29,18 @@ public class ReceivableService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	
+	
+	public PageInfo<Receivable> selectAllpagelc(Integer pageNum,Integer pageSize,String payablesCustom2){
+		System.out.println("分页的集合："+dao.selectAll().toString());
+		
+		PageHelper.startPage(pageNum, pageSize);
+		List<Receivable> list=dao.selectAlllc(payablesCustom2);
+		
+		PageInfo<Receivable> page=new PageInfo<Receivable>(list);
+//		    	System.out.println("分页的集合2："+page.getList().toString());
+		return page;
+	}
 	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);

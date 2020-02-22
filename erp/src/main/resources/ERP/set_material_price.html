@@ -31,31 +31,47 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据日期</label>
 								<div class="layui-input-block">
-									<input type="date" class="layui-input" v-model="pages.apCustom6" disabled>
+									<input type="text" class="layui-input" v-model="pages.apCustom6"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据号码</label>
 								<div class="layui-input-block">
-									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid" disabled>
+								
+									<!-- 物料id -->
+									<input type="hidden" v-model="pages.matterId"  v-bind:disabled="diasabledInput" readonly="true">
+									<!-- 科目id -->
+									<input type="hidden" class="layui-input" v-model="pages.updowmid"  v-bind:disabled="diasabledInput" readonly="true">
+									
+									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="layui-row">
+				<div class="layui-row" >
 					<div class="layui-col-lg6">
 						<div class="layui-form">
-							<div class="layui-form-item">
-								<label class="layui-form-label">增值科目</label>
+							<div class="layui-form-item" >
+								<label class="layui-form-label" >增值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.upName" disabled>
+									<input type="text"  id="pro" name="pro" class="layui-input" v-model="pages.upName"  v-bind:disabled="diasabledInput">
+									<div  id="sel">
+									<select style="display:none" class="layui-select" style="margin: 5px;" name="remark"  v-model="pages.upName">
+			        						<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="upname"></option>
+			        				</select>
+			        				</div>
 								</div>
 							</div>
 							<div class="layui-form-item">
 								<label class="layui-form-label">减值科目</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.upCustom6" disabled>
+									<input type="text"   id="pro1" name="pro" class="layui-input" v-model="pages.upCustom6"  v-bind:disabled="diasabledInput">
+									<div  id="sel1">
+									<select style="display:none"  class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upCustom6">
+			        						<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="downname"></option>
+			        				</select>
+			        				</div>
 								</div>
 							</div>
 						</div>
@@ -98,7 +114,7 @@
 											<div class="layui-form-item">
 												<label class="layui-form-label">备注</label>
 												<div class="layui-input-block">
-													<textarea class="layui-textarea"></textarea>
+													<textarea class="layui-textarea" v-model="pages.apDoworkman"></textarea>
 												</div>
 											</div>
 										</div>
@@ -113,15 +129,15 @@
 					<div class="layui-col-lg6">
 						<div class="layui-form">
 							<div class="layui-form-item">
-								<label class="layui-form-label">制单人员</label>
+								<label class="layui-form-label" style="color:#009688;">制单人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apDoworkman" disabled>
+									<input type="text" class="layui-input" v-model="pages.apDoworkman"  v-bind:disabled="diasabledInput">
 								</div>
 							</div>
 							<div class="layui-form-item">
-								<label class="layui-form-label">复核人员</label>
+								<label class="layui-form-label" style="color:#009688;">复核人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apRecheckman" disabled>
+									<input type="text" class="layui-input" v-model="pages.apRecheckman"  v-bind:disabled="diasabledInput">
 								</div>
 							</div>
 						</div>
@@ -135,13 +151,13 @@
 						<button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
 						<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button>
 						<button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>
-						<button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
-						<button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-						<button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+						<button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="save" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>
+						<button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="edit" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg"></i></button>
+						<button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes(pages.apDateid)" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
 						<button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" type="reset" @click="deset" v-bind:disabled="return1"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>
 						<button class="layui-btn" title="刷新"  @click="freash"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>
-						<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
-						<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+						<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing(pages.apDateid)" v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+						<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing(pages.apDateid)" v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
 					</div>
 				</div>
 			</div>
@@ -154,25 +170,15 @@
 			{{d.LAY_TABLE_INDEX+1}}
 		</script>
 		<script>
-			/*layui.use('layer', function(){
-        var layer = layui.layer;
-        layer.open({
-            type: 1,
-            title: '销售报价单',
-            content: $('#app'),
-            area: ['800px', '650px']
-        });
-    });*/
 			var host="http://127.0.0.1:8080/";
-//  		var tableData;
-			//创建vue实例
 			var receiptvue=new Vue({
 				el:"#app",
 				data(){
 					return{
 						page:[],
+						shoplist:[],
 						list:[],
-						diasabledInput:true,//input框是否可以编辑
+						diasabledInput:false,//input框是否可以编辑
 						isinsert:false,//是否是新增状态
 						isedit:false,//是否是编辑状态
 						
@@ -185,22 +191,33 @@
 		             	saves1:true,//保存 
 		             	update1:false,//编辑
 		             	deletes1:false,//删除
-					    Auditing1:true,//审核
-					    noAuditing1:true,//取消审核
+					    Auditing1:false,//审核
+					    noAuditing1:false,//取消审核
 					    
 					    lay1:'layui-btn-primary',
 					    lay2:'layui-btn'
 					}
 				},
 				methods: {
-					//刷新
+					init:function(){
+						 $("#sel1").hide();
+					    $("#sel").hide();
+					},
+					//查询增减值科目
+					querykm:function(){
+						var that=this;
+						$.ajax({
+							url:host+"wd_adjustController/selectkm",
+							type:"get",
+							success:function(result){
+								that.shoplist=result;
+							}
+						});
+				},//刷新
 					freash:function(){
 						location.reload();
-					}
-					,
-					//查询
+					},//查询
 					goPage: function(page){
-						//alert("进入gopage");
 						var this_ = this;
 						$.ajax({
 								url : host+"wd_adjustController/selectAllpage",
@@ -208,99 +225,292 @@
 								data: "pageNum="+page+"&pageSize=1",
 								success:function(res){
 									this_.page = res;
-									console.info(this_.page);
-									//单号
-   									var matterCustom6=this_.page.list[0].apDateid
-										//alert(matterCustom6);
-									$.ajax({
-										url:host+"wd_adjustController/queryMater",
-										type:"get",
-										data:{matterCustom6:matterCustom6},
-										dataType:"json",
-										success:function(result){
-											//alert(matterCustom6);
-//											this.list = result;
-											var tableData = result;
-											console.info(tableData);
 											layui.use('table', function() {
-												/* var matterCustom6=$("[name=apDateid").val();
-												alert(matterCustom6); */
 												var table = layui.table;
 												console.log(tableData);
 												table.render({
 													elem: '#materialsContent',
 													data:tableData.data,
-													/*  url: 'http://127.0.0.1:8080/wd_adjustController/queryMater?matterCustom6='+matterCustom6,
-													 */
 													 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 														,cols: [[
 															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
 															{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
-															{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
+															{field: 'matterId',title: '(物料编号)',sort: true,align: 'center'}, 
+															
+															{field: 'matterSize',title: '(规格型号)',align: 'center'},
 															{field: 'muName',title: '(单位)',align: 'center'}, 
 															{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
 															{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
 															{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
-															{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
-															{field: 'apDecoration',title: '分录备注',align: 'center'}
+															{field: 'DadjustPrice',title: '(调价金额)',sort: true,align: 'center'}, 
+															{field: 'DDecoration',title: '分录备注',align: 'center'}
 															]]
 												});
 											});
 										}
 									});
-								}
-						});
-					},
+							},
 					goFirstPage: function() { //第一条
-						//alert("显示第一条")
 						this.goPage(1);
-					},
-					goLastPage: function() { //最后一条
-						//alert("显示最后一条")
+					},goLastPage: function() { //最后一条
 						this.goPage(this.page.pages);
-					},
-					goPrePage: function() { //上一条
+					},goPrePage: function() { //上一条
 						if (this.page.hasPreviousPage) {
 							this.goPage(this.page.prePage);
 						}
-					},
-					goNextPage: function() { //下一条
+					},goNextPage: function() { //下一条
 						if (this.page.hasNextPage) {
 							this.goPage(this.page.nextPage);
 						}
 					}, 
-					//重置
+				//重置
 					deset:function(){
 						this.goPage(1,1);
 						},
+				//执行删除
+				deletes: function(apDateid) {
+					alert(apDateid);
+					var this_=this;
+					if (confirm("是否删除")) {
+						$.ajax({
+							type:"get",
+					  		data :{apDateId:apDateid},
+							url : "http://127.0.0.1:8080/wd_adjustController/updateByPrimaryKeySelective",
+						  	success:function (res) {
+						  		alert(apDateid);
+						  		if(res>0){
+		                    		alert("删除成功！");
+		                    	}else{
+		                    		alert("删除失败！");
+		                    	}	
+								this_.goPage(1, 1);		
+					        }
+						}); 
+					}
+				},
+			//保存
+			save:function(){
+				this.diasabledInput= true;//input不可编辑
+				if(this.isinsert==true){//新增
+					alert("进入新增")
+				//调用新增方法
+					//this.insets();
+				}else if(this.isedit==true){
+					alert("进入修改")
+					this.updates();
+				}else{}	
+				this.goFirstPage1 =false;//第一笔
+	            this.goPrePage1 =false;//上一笔				            
+             	this.goNextPage1 =false;//下一笔
+		     	this.goLastPage1 =false;//后一笔
+             	this.inset1 =false;   //新增      
+             	this.return1=true;//返回
+             	this.saves1 =true;//保存 
+             	this.update1 =false;//编辑
+             	this.deletes1 =false;//删除		
+			    this.Auditing1 =true;//审核
+			    this.noAuditing1 =true;//取消审核
+			},
+			//点击编辑
+			edit:function(){
+				this.diasabledInput=false;//input可以输入
+				this.isinsert=false;//关闭新增模式
+				this.isedit=true;//开启编辑模式
+				this.goFirstPage1 =true;//第一笔
+	            this.goPrePage1 =true;//上一笔				            
+             	this.goNextPage1 =true;//下一笔
+		     	this.goLastPage1 =true;//后一笔
+             	this.inset1 =true;   //新增      
+             	this.return1=false;//返回
+             	this.saves1 =false;//保存 
+             	this.update1 =true;//编辑
+             	this.deletes1 =true;//删除		
+			    this.Auditing1 =false;//审核
+			    this.noAuditing1 =true;//取消审核
+			    
+			    $("table td:eq(8)").attr("data-edit","text");
+			    //增值文本框隐藏
+			    $("#pro").remove();
+			    //减值文本框隐藏
+			    $("#pro1").remove();
+			    
+			  //增值文本框清空
+			    $("#pro").val("");
+			    //减值文本框清空
+			    $("#pro1").val("");
+			    
+			    
+			    //增减值下拉框显示
+			    $("#sel1").show();
+			    $("#sel").show();
+			},
+			//获取单号
+				getno:function(){
+				   	var this_=this;
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						var myDate = new Date();            
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+						var nowday=year+'-'+getNow(month)+"-"+getNow(date);
+						var ss=year+getNow(month)+getNow(date);
+					$.ajax({
+						url:"http://127.0.0.1:8080/wd_adjustController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (result) {
+					  		console.info("获取单号·")
+						  	console.info(result)
+						  	this_.page.list[0].apCustom6=nowday;
+						   	this_.page.list[0].apDateid=ss+result;						
+				        }
+					}); 				
+				},
+				//审核
+				Auditing: function(apDateid) {//审核
+					alert(apDateid);
+					var this_=this;
+					if (confirm("是否审核")) {
+						$.ajax({
+							type:"get",
+					  		data :{apDateId:apDateid},
+							url : "http://127.0.0.1:8080/wd_adjustController/updateAuding",
+						  	success:function (res) {
+						  		if(res>0){
+			                		alert("审核成功！");
+			                	}else{
+			                		alert("审核失败！");
+			                	}
+					        }
+						}); 
+					}
+					this.deletes1=true,//删除
+				    this.Auditing1=true,//审核
+				    this.noAuditing1=false//取消审核
+				}, 
+				//反审核
+				noAuditing: function(apDateid) {//反审核
+					alert(apDateid);
+					var this_=this;
+					if (confirm("是否取消审核")) {
+						$.ajax({
+							type:"get",
+					  		data :{apDateId:apDateid},
+							url : "http://127.0.0.1:8080/wd_adjustController/deupdateAuding",
+						  	success:function (res) {
+						  		if(res>0){
+			                		alert("反审核成功！");
+			                	}else{
+			                		alert("反审核失败！");
+			                	}
+					        }
+						}); 
+					}
+					this.deletes1=false,//删除
+				    this.Auditing1=false,//审核
+				    this.noAuditing1=true//取消审核
+				}, 
+
+				//根据单号修改增减值科目
+				updateupdown:function(upname,downname,apDateid){
 					
+					//获取增值科目所修改的值
+					var upname = $("#sel option:selected").val();
+					//减值科目
+					var downname = $("#sel1 option:selected").val();
+					//单据编号
+					var apDateid=$("#aplid").val();
+					$.ajax({
+						type:"get",
+						data :{
+							upname:upname,
+							downname:downname,
+							apDateid:apDateid
+							},
+						contentType:"application/json;charset=utf-8",	
+						url : "http://127.0.0.1:8080/wd_adjustController/wdupdatekm",
+					  	success:function (res) {
+					  		alert(res);
+					  		if(res>0){
+		                		alert("成功！");
+		                	}else{
+		                		alert("失败！");
+		                	}
+				        }
+					});
+				},
+				
+				//修改物料信息
+				//如何获取到table里的物料信息
+				updateMater:function(){
+					var this_ = this;
+					//获取表格中的数据
+					var obj=this.page.list[0];
+				},
+				//修改主单据信息
+				updatelist:function(){
+					 	//修改单据
+					var this_ = this;
+					var obj=this.page.list[0];
+						alert(obj);
+						$.ajax({
+							url : "http://127.0.0.1:8080/wd_adjustController/wdupdateByPrimaryKeySelective",
+							type:"post",
+						  	data : JSON.stringify(obj),
+						  	dataType:'json',	
+						  	contentType : "application/json;charset=utf-8",
+						  	success:function (res) {
+						  		console.info("修改成功!")
+						  		alert("系统提示：" +res.message);
+								this_.isinsert=false;//关闭新增模式
+								this_.isedit=false;//关闭编辑模式
+								this_.goPage(1, 1);
+					        }
+						});
+				},
+				//执行修改
+				updates: function() {//编辑 
+				
+					//获取到下拉框的值后调用修改科目方法
+					this.updateupdown();
+					
+					},
+					
+					
+					
+					//清空文本框
+					clear:function(){
+						$(".layui-input").val("");
+						 $(".layui-row input").val("");
+						//增值文本框隐藏
+						    $("#pro").remove();
+						    //减值文本框隐藏
+						    $("#pro1").remove();
+						    //增减值下拉框显示
+						    $("#sel1").show();
+						    $("#sel").show();
+					},
+				
 				//点击新增
 				inset:function(){
-					layui.use('table', function(){
-						  $("input").val("");
-						$("textarea").val("");
-		      			  var table = layui.table;
-		      			  table.render({
-		            elem: '#materialsContent'
-		            ,data:[]              
-		            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-		            ,cols: [[
-						{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
-						{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
-						{field: 'matterSize',title: '(规格型号)',align: 'center'}, 
-						{field: 'muName',title: '(单位)',align: 'center'}, 
-						{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
-						{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
-						{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
-						{field: 'apPrice',title: '(调价金额)',sort: true,align: 'center'}, 
-						{field: 'apDecoration',title: '分录备注',align: 'center'}
-						]]
-		        });
-		      			
-		       	 
-		      })
+					
+					
+					this.clear();//清空文本框
+					
+					$("table td").attr("data-edit","text");
+					
+					
 					//按钮改变		    
-					this.diasabledInput=false;//input可以编辑
+					this.diasabledInput=true;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
 					
@@ -311,94 +521,28 @@
 	             	this.goNextPage1 =true;//下一笔
 			     	this.goLastPage1 =true;//后一笔
 	             	this.inset1 =true;   //新增      
-             		this.return1=false;//返回
+             		this.return1=true;//返回
 	             	this.saves1 =false;//保存 
 	             	this.update1 =true;//编辑
 	             	this.deletes1 =true;//删除		
 				    this.Auditing1 =true;//审核
 				    this.noAuditing1 =true;//取消审核
 				},
-				//删除
-				deletes: function(apDateid) {
-					var this_ = this;
-					//修改信息
-					this.page.list[0].teamYn=1;//是否删除（0 否 1 是 ，默认0）
-					var apDateid=$("[name=apDateid]").val();
-					if (confirm("是否删除")==true) {
-						var obj = {"apDateId":apDateid};
-						var data = JSON.stringify(obj);
-						$.ajax({
-							url : "http://127.0.0.1:8080/wd_adjustController/updateByPrimaryKeySelective",
-							type:"post",
-					  		data :obj,
-						  	dataType:'json',	
-//						  	contentType : "application/json;charset=utf-8",
-						  	success:function (res) {
-						  		alert(apDateid);
-						  		alert("系统提示：" +res.message);
-								this_.diasabledInput=false;//input不可以输入	
-								this_.goPage(1, 1);		
-					        }
-						}); 
-					}
+				
+				/*//执行新增操作
+				insets：function(){
+					
+				
+				
+				},*/
 				},
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//获取单号
-				getno:function(){
-				   	var this_=this;
-				   	/*获取当前时间*/
-				   	//判断是否在前面加0
-						function getNow(s) {
-						return s < 10 ? '0' + s: s;
-						}
-						 
-						var myDate = new Date();            
-						 
-						var year=myDate.getFullYear();        //获取当前年
-						var month=myDate.getMonth()+1;   //获取当前月
-						var date=myDate.getDate();            //获取当前日
-						 
-						var h=myDate.getHours();              //获取当前小时数(0-23)
-						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
-						var s=myDate.getSeconds();
-						 
-						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
-				   	/*获取当前时间*/
-				   	
-			  		var ss=year+getNow(month)+getNow(date);
-					
-					$.ajax({
-						url:"http://127.0.0.1:8080/wd_adjustController/getno",
-						type:"get",
-					  	data:"billdate="+ss,
-					  	dataType:'text',	
-					  	success:function (result) {
-					  		console.info("哈哈哈·")
-						  	console.info(result)
-						   	this_.page.list[0].teamId=ss+result;						
-				        }
-					}); 				
-				}
-				
-				},created:function(){
+				created:function(){
 					this.goPage(1);
-					
+					this.querykm();
+					this.init();
 				}
-			});
+		
+				});
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -438,7 +582,6 @@
 				element.tabChange('test', layid);
 
 				element.on('tab(test)', function(elem) {
-					
 					location.hash = 'test=' + $(this).attr('lay-id');
 				});
 			});

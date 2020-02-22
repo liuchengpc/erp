@@ -19,9 +19,7 @@ public class Purchase_storage_detailed {
     private String psdRemark;//规格型号
     private String psdPriceIncludeTax;//单位名称
     private Integer psdSingleStatus;//数量
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date psdDocumentDate;//折扣前单价
+    private float psdDocumentDate;//折扣前单价
     private String psdDocumentNumber;//折数
     private Float psdPrice;//单价
     private Float psdMoney;//金额
@@ -49,6 +47,8 @@ public class Purchase_storage_detailed {
 		super();
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Purchase_storage_detailed [psdId=" + psdId + ", psId=" + psId + ", matterId=" + matterId
@@ -62,6 +62,8 @@ public class Purchase_storage_detailed {
 				+ ", psdCustom1=" + psdCustom1 + ", psdCustom2=" + psdCustom2 + ", psdCustom3=" + psdCustom3
 				+ ", psdCustom4=" + psdCustom4 + ", psdCustom5=" + psdCustom5 + ", psdCustom6=" + psdCustom6 + "]";
 	}
+
+
 
 	public String getPsdId() {
         return psdId;
@@ -119,15 +121,21 @@ public class Purchase_storage_detailed {
         this.psdSingleStatus = psdSingleStatus;
     }
 
-    public Date getPsdDocumentDate() {
-        return psdDocumentDate;
-    }
+  
 
-    public void setPsdDocumentDate(Date psdDocumentDate) {
-        this.psdDocumentDate = psdDocumentDate;
-    }
+    public float getPsdDocumentDate() {
+		return psdDocumentDate;
+	}
 
-    public String getPsdDocumentNumber() {
+
+
+	public void setPsdDocumentDate(float psdDocumentDate) {
+		this.psdDocumentDate = psdDocumentDate;
+	}
+
+
+
+	public String getPsdDocumentNumber() {
         return psdDocumentNumber;
     }
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		页面内容${id}
+		<div id="ctx">
+			<button @click="handlderData">传递值</button>
+			<span>这是我要获取文本</span>
+			<input v-model="name" value="这是我要获取的input文本">
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var id = null;
+			function printId(){
+				console.log("获取到编号为：");
+				console.log(id);
+			}
+			var vm = new Vue({
+				el:"#ctx",
+				data(){
+					return {name:1}
+				},
+				watch:{
+					name:function(){
+						console.log(this.name);
+					}
+				},methods:{
+					handlderData(){
+						parent.show("1234");
+						parent["vm"].name=1000;
+					}
+				}
+			});
+			var id = window.location.href.split("=")[1];
+			console.log(id);
+		</script>
+	</body>
+</html>
+

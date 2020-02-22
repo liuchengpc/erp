@@ -35,6 +35,9 @@
     <result column="ps_custom4" jdbcType="VARCHAR" property="psCustom4" />
     <result column="ps_custom5" jdbcType="VARCHAR" property="psCustom5" />
     <result column="ps_custom6" jdbcType="VARCHAR" property="psCustom6" />
+     <result column="createDate" jdbcType="DATE" property="createDate" />
+      <result column="editDate" jdbcType="DATE" property="editDate" />
+       <result column="lineId" jdbcType="INTEGER" property="lineId" />
   </resultMap>
   <sql id="Base_Column_List">
     ps_id, supplier_id, ps_engname, pst_id, ps_price_include_tax, warehouse_id, ps_single_status, 
@@ -42,7 +45,7 @@
     ps_sunnum, ps_sunmoney, ps_tax, ps_include_tax_amount, ps_delivery_address, ps_buyer, 
     ps_belongs_section, ps_belongs_project, ps_executor, ps_checkagain_staff, ps_header_provision, 
     ps_end_clause, ps_remark, ps_audition, ps_yn, ps_custom1, ps_custom2, ps_custom3, 
-    ps_custom4, ps_custom5, ps_custom6
+    ps_custom4, ps_custom5, ps_custom6,createDate,editDate,lineId
   </sql>
   
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -74,7 +77,7 @@
       ps_checkagain_staff, ps_header_provision, ps_end_clause, 
       ps_remark, ps_audition, ps_yn, 
       ps_custom1, ps_custom2, ps_custom3, 
-      ps_custom4, ps_custom5, ps_custom6
+      ps_custom4, ps_custom5, ps_custom6,createDate,editDate,lineId
       )
     values (#{psId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{psEngname,jdbcType=VARCHAR}, 
       #{pstId,jdbcType=VARCHAR}, #{psPriceIncludeTax,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, 
@@ -86,7 +89,8 @@
       #{psCheckagainStaff,jdbcType=VARCHAR}, #{psHeaderProvision,jdbcType=VARCHAR}, #{psEndClause,jdbcType=VARCHAR}, 
       #{psRemark,jdbcType=VARCHAR}, #{psAudition,jdbcType=VARCHAR}, #{psYn,jdbcType=VARCHAR}, 
       #{psCustom1,jdbcType=VARCHAR}, #{psCustom2,jdbcType=VARCHAR}, #{psCustom3,jdbcType=VARCHAR}, 
-      #{psCustom4,jdbcType=VARCHAR}, #{psCustom5,jdbcType=VARCHAR}, #{psCustom6,jdbcType=VARCHAR}
+      #{psCustom4,jdbcType=VARCHAR}, #{psCustom5,jdbcType=VARCHAR}, #{psCustom6,jdbcType=VARCHAR},
+        #{createDate,jdbcType=DATE}, #{editDate,jdbcType=DATE}, #{lineId,jdbcType=INTEGER},
       )
   </insert>
   <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_storage">
@@ -191,6 +195,16 @@
       <if test="psCustom6 != null">
         ps_custom6,
       </if>
+      <if test="createDate != null">
+        createDate,
+      </if>
+      <if test="editDate != null">
+        editDate,
+      </if>
+      <if test="lineId != null">
+        lineId,
+      </if>
+     
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="psId != null">
@@ -393,6 +407,15 @@
       <if test="psCustom6 != null">
         ps_custom6 = #{psCustom6,jdbcType=VARCHAR},
       </if>
+      <if test="createDate != null">
+        createDate = #{createDate,jdbcType=DATE},        
+      </if>
+      <if test="editDate != null">
+        editDate = #{editDate,jdbcType=DATE},        
+      </if>
+      <if test="lineId != null">
+        lineId = #{lineId,jdbcType=INTEGER},        
+      </if>
     </set>
     where ps_id = #{psId,jdbcType=VARCHAR}
   </update>
@@ -429,7 +452,10 @@
       ps_custom3 = #{psCustom3,jdbcType=VARCHAR},
       ps_custom4 = #{psCustom4,jdbcType=VARCHAR},
       ps_custom5 = #{psCustom5,jdbcType=VARCHAR},
-      ps_custom6 = #{psCustom6,jdbcType=VARCHAR}
+      ps_custom6 = #{psCustom6,jdbcType=VARCHAR},
+      createDate = #{createDate,jdbcType=DATE},
+      editDate = #{editDate,jdbcType=DATE},
+      lineId = #{lineId,jdbcType=INTEGER}
     where ps_id = #{psId,jdbcType=VARCHAR}
   </update>
 </mapper>

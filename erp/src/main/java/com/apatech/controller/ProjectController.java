@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Project;
+import com.apatech.domain.Team;
 import com.apatech.domain.Project;
 import com.apatech.domain.Project;
 import com.apatech.domain.Project;
@@ -40,6 +41,21 @@ public class ProjectController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Project> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Project> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入SupplierController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Project> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
     }
 	
 	/**

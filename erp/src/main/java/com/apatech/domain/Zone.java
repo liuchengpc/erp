@@ -19,7 +19,7 @@ public class Zone {
     private String zoneCustom5;//自定义5
     private String zoneCustom6;//自定义6
     
-    
+//    
 
     public Zone() {
 		super();

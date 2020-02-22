@@ -56,14 +56,35 @@ public class wd_Adjust_priceService {
 		return udao.selectkm();
 	}
 
-	public int updateCoin(wd_Adjust_price record) {
-		
-		return dao.updateCoin(record);
+	
+
+	public int wdupdatekm(String  up_name,String up_custom6, String apDateid) {
+		//查询增值科目
+		String upkm=dao.selectzzkm(up_name);
+		//查询兼职科目
+		String downkm=dao.selectjzkm(up_custom6);
+		return dao.wdupdatekm(upkm,downkm,apDateid);
 	}
 
-	public int wdupdatekm(wd_Adjust_price record) {
-		// TODO Auto-generated method stub
-		return dao.updateCoin(record);
+	public int updateAuding(String record) {
+		System.out.println("订单id"+record);
+		return dao.updateAuding(record);
+	}
+	
+	public int deupdateAuding(String record) {
+		System.out.println("订单id"+record);
+		return dao.deupdateAuding(record);
+	}
+
+	public int updateByPrimaryKeySelectives(String apDateId) {
+		System.out.println("订单id"+apDateId);
+		return  dao.updateByPrimaryKeySelectives(apDateId);
+		
+	}
+
+	public int wdupdateByPrimaryKeySelective(wd_Adjust_price record) {
+		
+		return dao.updateAdjustByApDateId(record);
 	}
 	 
 	 

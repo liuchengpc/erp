@@ -19,7 +19,7 @@
 			display: none !important;
 		}
 	</style>  		
-	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>\
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/dialog.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -49,7 +49,7 @@
 	
     <div id="app" >
     	<div v-for="pages,index in page.list">
-    		<form class="layui-form" action="" >
+    		<form class="layui-form" action="" @submit.prevent=''>
 				
 				<div class="layui-row">
 			        <div class="layui-col-lg6">
@@ -58,14 +58,14 @@
 			                    <label class="layui-form-label" style="color:#009688;">客户</label>
 			                    <div class="layui-input-block">
 			                        <input type="text" name="title"  v-model="pages.customerName" class="layui-input"  hidden>
-			                        <input type="text" name="title"  class="layui-input" v-model="pages.customerId" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.customerId" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label">结算方式一</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName1" v-bind:disabled="diasabledInput">
-			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice1" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName1" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
+			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice1" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -105,7 +105,7 @@
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label" style="color:#009688;">单据日期</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.payablesPayablestime" v-bind:disabled="diasabledInput">
+			                        <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.payablesPayablestime" v-bind:disabled="diasabledInput" >
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -153,9 +153,9 @@
  
 								<script type="text/html" id="toolbarDemo">
 								  <div class="layui-btn-container">
-								    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-								    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-								    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+								    <button type="button" class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
 								  </div>
 								</script>
 								<script type="text/html" id="barDemo">
@@ -163,6 +163,10 @@
 								   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 								   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 								</script>
+								
+								
+								
+								<table class="layui-hide" id="demo"></table>
 			                </div>
 			              
 			                
@@ -240,13 +244,13 @@
 			
 			<div class="layui-form-item">                       
                 <div class="layui-input-block">  
-		             <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+		            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
 		            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
 		            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
 					<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
 		            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
 		            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
-		             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+		            <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
 		            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
 		            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
 					<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
@@ -293,9 +297,6 @@
 	        updated: function () {
 	        	var this_=this;
 				
-					
-					
-					
 				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
 					layui.use('laydate',function(){
 						var laydate=layui.laydate;
@@ -334,6 +335,9 @@
 					
 				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
 	          },
+	          computed:{
+	          		
+	          },
 			methods: {//定义函数
 
 				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
@@ -350,141 +354,43 @@
 							console.info("详表表数据：")
 							console.info(this_.page)	
 							
-							/*加载表格数据*/
+							
+							
+							/*加载表格数据2*/
 							layui.use('table', function(){
 							  var table = layui.table;
-								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 							  
-							
+							  //展示已知数据
 							  table.render({
-							    elem: '#test'
-							    ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
-							    ,toolbar: '#toolbarDemo'
-							    ,title: '用户数据表'
-							    ,totalRow: true
-							    ,cellMinWidth: 150 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-							    ,parseData:function(res){
-							    	console.log("分页数据：");
-							    	console.log(res);
-							    	console.log(res.list);
-							    	this_page2=res;
-							    	return{
-							    		"success":true,
-										"code": 0, //解析接口状态
-									    "msg": "", //解析提示文本
-									    "count": res.total, //解析数据长度
-									    "data": res.list //解析数据列表
-									    
-							    	}
-							    }
-							    ,cols: [[
-							      {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
+							    elem: '#demo'
+							    ,cols: [[ //标题栏
+							       {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
 							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
 							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
-							      ,{field:'recedetailType', title:'来源别',
-							       templet: function (d) {
+							      ,{field:'recedetailType', title:'来源别',}
+							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,templet: function (d) {
 							                        // 模板的实现方式也是多种多样，这里简单返回固定的
-							                        return '<select name="city" lay-filter="testSelect" lay-verify="required" data-value="' + d.city + '" >\n' +
-							                            '        <option value=""></option>\n' +
-							                            '        <option value="18000">销售订单</option>\n' +
-							                            '        <option value="20000">S/C</option>\n' +
-							                            '      </select>';
+							                        return '<input type="text"  onkeyup="dfs()">';
 							                    }
-							       }
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true, edit: 'text'}
+							      }
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
-							      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
-							      
 							    ]]
-							    ,done: function(res, curr, count){
-							      //数据渲染完的回调。
-							      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
-							      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
-							     }
-							    ,page:{
-							    	limit:3,//指定每页显示的条数
-							    	limits:[3,5,10,15,20,25,30],//每页条数的选择项
-							    }
+							    ,data: [{
+							      "recedetailId": ""
+							      ,"recedetailPrice": ""
+							      ,"recedetailType": "销售订单"
+							      ,"recedetailNumber": ""
+							      ,"recedetailRemarks": ""
+							    },]
+							    //,skin: 'line' //表格风格
+							    ,even: true
+							    //,page: true //是否显示分页
+							    //,limits: [5, 7, 10]
+							    //,limit: 5 //每页默认显示的数量
 							  });
-							  
-							  //------------------------工具栏事件-------------------
-							    //监听表格复选框选择
-							  table.on('checkbox(test)', function(obj){
-							    console.log(obj)
-							  });
-							  //监听工具条
-							  table.on('tool(test)', function(obj){
-							    var data = obj.data;
-							    if(obj.event === 'detail'){
-							      layer.msg('ID：'+ data.id + ' 的查看操作');
-							    } else if(obj.event === 'del'){
-							      layer.confirm('真的删除行么', function(index){
-							        obj.del();
-							        layer.close(index);
-							      });
-							    } else if(obj.event === 'edit'){
-							      layer.alert('编辑行：<br>'+ JSON.stringify(data))
-							    }
-							  });
-							  //监听全选
-							  table.on('toolbar(test)', function(obj){
-							    var checkStatus = table.checkStatus(obj.config.id);
-							    switch(obj.event){
-							      case 'getCheckData':
-							        var data = checkStatus.data;
-							        layer.alert(JSON.stringify(data));
-							      break;
-							      case 'getCheckLength':
-							        var data = checkStatus.data;
-							        layer.msg('选中了：'+ data.length + ' 个');
-							      break;
-							      case 'isAll':
-							        layer.msg(checkStatus.isAll ? '全选': '未全选')
-							      break;
-							    };
-							  });
-							  
-							  $('.demoTable .layui-btn').on('click', function(){
-							    var type = $(this).data('type');
-							    active[type] ? active[type].call(this) : '';
-							  });
-							  
-							   //监听行单击事件（双击事件为：rowDouble）
-							  table.on('rowDouble(test)', function(obj){
-							//  var data = obj.data;
-							//  
-							//  layer.alert(JSON.stringify(data), {
-							//    title: '当前行数据：'
-							//  });
-							//  
-							//  //标注选中样式
-							//  obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-							
-									/*//iframe层-父子操作
-									layer.open({
-									  type: 2,
-									  area: ['900px', '500px'],
-									  fixed: false, //不固定
-									  maxmin: true,
-									  content: 'receivablesbillTC1.html'
-									});*/
-									
-									
-									
-							        layer.open({
-							            type: 2,
-							            title: '单选--销售订单',
-							            content: $('#app'),
-							            fixed: false, //不固定
-							            area: ['680px', '470px'],
-							            content: 'receivablesbillTC1.html'
-							        });
-							   
-							  });
-							  //------------------------工具栏事件-------------------
-							  
 							});
-							/*加载表格数据*/
+							/*加载表格数据2*/
+							
 				        }
 					}); 					
 				},
@@ -496,6 +402,7 @@
 					  form.render();
 					}); 
 				},
+			
 				goPrePage: function() {//上一条
 					if(this.page.hasPreviousPage) {
 //						alert(this.page.prePage+"："+this.page.pageSize)
@@ -580,13 +487,6 @@
 				    this.page.list[0].payablesCustom10="";//自定义10
     
     
-    
-    
-    
-    
-					
-					
-					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
@@ -786,7 +686,7 @@
 				
 				
 				// 表格单元格禁用编辑
-				$(layero).find('td').data('edit', false)
+//				$(layero).find('td').data('edit', false)
 				
 				
 				
@@ -901,6 +801,20 @@
             ]]
         });
     });*/
+   
+   
+   
+   function dfs(){
+			alert(1)
+			 layer.open({
+	            type: 2,
+	            title: '单选--销售订单',
+	            content: $('#app'),
+	            fixed: false, //不固定
+	            area: ['680px', '470px'],
+	            content: 'receivablesbillTC1.html'
+	        });
+		}
 </script>
 
 

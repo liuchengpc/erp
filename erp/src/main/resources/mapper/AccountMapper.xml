@@ -175,4 +175,5 @@
       account_custom6 = #{accountCustom6,jdbcType=VARCHAR}
     where account_id = #{accountId,jdbcType=VARCHAR}
   </update>
+
 </mapper>

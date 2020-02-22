@@ -9,7 +9,7 @@
     <result column="srwd_remark" jdbcType="VARCHAR" property="srwdRemark" />
     <result column="srwd_price_include_tax" jdbcType="VARCHAR" property="srwdPriceIncludeTax" />
     <result column="srwd_single_status" jdbcType="INTEGER" property="srwdSingleStatus" />
-    <result column="srwd_document_date" jdbcType="DATE" property="srwdDocumentDate" />
+    <result column="srwd_document_date" jdbcType="REAL" property="srwdDocumentDate" />
     <result column="srwd_document_number" jdbcType="REAL" property="srwdDocumentNumber" />
     <result column="srwd_price" jdbcType="REAL" property="srwdPrice" />
     <result column="srwd_money" jdbcType="REAL" property="srwdMoney" />
@@ -287,7 +287,7 @@
         srwd_single_status = #{srwdSingleStatus,jdbcType=INTEGER},
       </if>
       <if test="srwdDocumentDate != null">
-        srwd_document_date = #{srwdDocumentDate,jdbcType=DATE},
+        srwd_document_date = #{srwdDocumentDate,jdbcType=REAL},
       </if>
       <if test="srwdDocumentNumber != null">
         srwd_document_number = #{srwdDocumentNumber,jdbcType=REAL},
@@ -363,7 +363,7 @@
       srwd_remark = #{srwdRemark,jdbcType=VARCHAR},
       srwd_price_include_tax = #{srwdPriceIncludeTax,jdbcType=VARCHAR},
       srwd_single_status = #{srwdSingleStatus,jdbcType=INTEGER},
-      srwd_document_date = #{srwdDocumentDate,jdbcType=DATE},
+      srwd_document_date = #{srwdDocumentDate,jdbcType=REAL},
       srwd_document_number = #{srwdDocumentNumber,jdbcType=REAL},
       srwd_price = #{srwdPrice,jdbcType=REAL},
       srwd_money = #{srwdMoney,jdbcType=REAL},

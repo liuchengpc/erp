@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>采购退货单</title>
+    <title>销售退货单</title>
     <link rel="stylesheet" href="css/layui.css">
     <link href="css/fontawesome.css" rel="stylesheet">
     <link href="css/brands.css" rel="stylesheet">
@@ -41,15 +41,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                        	<template v-if="stu.srwPriceIncludeTax==0">
-                        		 <option value="0" selected="selected">不含税</option>
-                            	 <option value="1">含税</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.srwPriceIncludeTax">
                         		 <option value="0">不含税</option>
-                                 <option value="1" selected="selected">含税</option>
-                        	</template>                          
+                            	 <option value="1">含税</option>                       	                        
                         </select>
                     </div>
                 </div>
@@ -66,15 +60,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">重新出库</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                        	<template v-if="stu.salescxrk==0">
-                        		 <option value="0" selected="selected">不出库</option>
-                            	 <option value="1">出库</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.salescxrk">                       	
                         		 <option value="0">不出库</option>
-                                 <option value="1" selected="selected">出库</option>
-                        	</template>                          
+                            	 <option value="1">出库</option>                      	                    
                         </select>
                     </div>
                 </div>
@@ -119,15 +107,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">国外贸易</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                            <template v-if="stu.srwForeignTrade==0">
-                        		 <option value="0" selected="selected">否</option>
-                            	 <option value="1">是</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.srwForeignTrade">                          
                         		 <option value="0">否</option>
-                                 <option value="1" selected="selected">是</option>
-                        	</template>  
+                            	 <option value="1">是</option>                        
                         </select>
                     </div>
                 </div>
@@ -161,34 +143,12 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">收款条件</label>
                                         <div class="layui-input-inline">
-                                             <select name="interest" disabled="disabled">
-                                            	 <template v-if="stu.srwSalessktj==0">
-					                        		 <option value="0" selected="selected">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.srwSalessktj==1">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1" selected="selected">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.srwSalessktj==2">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2" selected="selected">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else>
+                                             <select name="interest" disabled="disabled" v-model="stu.srwSalessktj">                                           	
 					                        		 <option value="0">货到</option>
 					                            	 <option value="1">次月</option>
 					                            	 <option value="2">月结</option>
-					                            	 <option value="3" selected="selected">其他</option>
-					                        	</template>
-					                        	
-
-                                            </select>
+					                            	 <option value="3">其他</option>
+					                         </select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -368,6 +328,34 @@
 			warelist:[]
 			
 		},
+		updated:function(){
+			layui.use('form', function(){
+			    var form = layui.form;
+			    form.render();
+			});
+		},
+		watch:{
+			 page:{			
+			 handler(newName, oldName) {
+			 	$.each(newName.list, function(a,b) {
+			 		$.each(b.list, function(c,d) {
+			 			sales_returnboundvue.page.list[0].list[c].srwdPrice=parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber);
+			 			sales_returnboundvue.page.list[0].list[c].srwdMoney=parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice);
+			 			sales_returnboundvue.page.list[0].list[c].srwdTaxAmount=parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate);
+			 			sales_returnboundvue.page.list[0].list[c].srwdIncludingTaxAmount=parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount);
+			 			$("table tr:eq("+c+1+") td:eq(8) div").text(parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber));
+			 			$("table tr:eq("+c+1+") td:eq(9) div").text(parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice));
+			 			$("table tr:eq("+c+1+") td:eq(11) div").text(parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate));
+			 			$("table tr:eq("+c+1+") td:eq(12) div").text(parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount));
+			 			
+			 		});
+			 	});
+		    
+		    },
+		    immediate: true,
+		    deep: true
+			}
+		},
 		methods:{
 			xz:function(){
 				//目前不知道怎么编辑table，所以注释清空这行
@@ -486,7 +474,13 @@
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
-			$("table td").attr("data-edit","text");
+			$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
 			},
 			shuax:function(){
 				location.reload();

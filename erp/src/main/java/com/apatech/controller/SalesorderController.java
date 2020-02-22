@@ -64,9 +64,9 @@ public class SalesorderController {
 	 * 根据id查询详表数据
 	 * 
 	 */
-	@RequestMapping(value = "querybysolId",method = RequestMethod.GET)
+	@RequestMapping(value = "selectquerybysolId",method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String,Object> querybysqid(String solId){
+	public Map<String,Object> selectquerybysolId(String solId){
 		System.out.println("进入详表查询方法！ 查询ID:"+solId);
 		List<Salesorderlist> data=dao1.selectquerybysolId(solId);
 		HashMap<String,Object> map=new HashMap<String,Object>();
@@ -104,7 +104,27 @@ public class SalesorderController {
 		System.out.println("soId="+soId);
     	return dao.selectByPrimaryKey(soId);
 	}
-	
+	/**
+	 * 新增 保存1
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "insertSelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> insertSelective1(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController1新增");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.insertSelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "新增失败！");
+		}
+		return map;
+    }
 	/**
 	 * 新增
 	 * @param student
@@ -126,7 +146,69 @@ public class SalesorderController {
 		}
 		return map;
     }
-
+	/**
+	 * 根据主键修改信息订单为删除状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective3",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective3(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController2根据主键修改订单为删除状态");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改订单审批状态
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective1",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective1(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改信息
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Salesorder record) {
+		System.out.println("进入SalesorderController2根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
 	/**
 	 * 根据主键修改
 	 * @param student
@@ -148,6 +230,7 @@ public class SalesorderController {
 		}
 		return map;
     }
+	
 	/**
 	 * 根据主键删除
 	 * @param soId

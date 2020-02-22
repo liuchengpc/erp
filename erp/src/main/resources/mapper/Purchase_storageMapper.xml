@@ -458,4 +458,24 @@
       lineId = #{lineId,jdbcType=INTEGER}
     where ps_id = #{psId,jdbcType=VARCHAR}
   </update>
+  <select id="selectLast" resultType="com.apatech.pojo.PurchaseStoragePojo">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage order by ps_id desc limit 0,1;
+  </select>
+  <select id="selectPrev" resultType="com.apatech.pojo.PurchaseStoragePojo">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage where ps_id &lt; #{lineId,jdbcType=INTEGER} order by ps_id desc limit 0,1;
+  </select>
+  <select id="selectNext" resultType="com.apatech.pojo.PurchaseStoragePojo">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage where ps_id &gt; #{lineId,jdbcType=INTEGER} limit 0,1;
+  </select>
+  <select id="selectFirst" resultType="com.apatech.pojo.PurchaseStoragePojo">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage order by ps_id asc limit 0,1;
+  </select>
 </mapper>

@@ -1624,7 +1624,11 @@ CREATE TABLE `purchase_storage` (
   `ps_custom4` varchar(50) DEFAULT NULL COMMENT '自定栏四',
   `ps_custom5` varchar(50) DEFAULT NULL COMMENT '自定栏五',
   `ps_custom6` varchar(50) DEFAULT NULL COMMENT '自定栏六',
-  PRIMARY KEY (`ps_id`)
+  `createDate` date DEFAULT NULL COMMENT '创建时间',
+  `editDate` date DEFAULT NULL COMMENT '修改时间',
+  `lineId` int(11) NOT NULL AUTO_INCREMENT COMMENT '行编号',
+  PRIMARY KEY (`ps_id`),
+  UNIQUE KEY `lineId` (`lineId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购入库主表';
 
 /*Data for the table `purchase_storage` */

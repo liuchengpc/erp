@@ -298,16 +298,11 @@
 
 <script src="layui.js"></script>
 <script type="text/html" id="barDemo1">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+  <a class="layui-btn layui-btn-xs" lay-event="edit" name="edit" id="a">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" name="del">删除</a>
 </script>
 <script>
-	$(function(){
-		function GetValue(obj){
-			console.info(obj);
-		}
-	});
 	//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
 	//必须设置允许跨域访问session中数据(cookie)
@@ -705,7 +700,8 @@
 
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
         var table = layui.table;
-		var $ = layui.jquery, layer = layui.layer;
+		/*var $ = layui.jquery, layer = layui.layer;*/
+		var $ = layui.$, layer = layui.layer;
 		//供应商触发事件
   		$("#priabillSupplierName").click(function(){
   			layer.open({
@@ -822,9 +818,7 @@
                     var elem = $(item);
                     elem.val(elem.data('value')).parents('div.layui-table-cell').css('overflow', 'visible');
                     elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
-                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");
-
-                    
+                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");                  
                 });
            	}
             , cols: [[
@@ -837,11 +831,11 @@
                 	templet: function (res) {
                         // 模板的实现方式也是多种多样，这里简单返回固定的
                         if(res.priabillType=="采购订单"){
-                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单" selected="selected">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单" selected="selected">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
                         }else if(res.priabillType=="进口采购单"){
-                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单" selected="selected">进口采购单</option><option value="P/O">P/O</option></select>';
+                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单" selected="selected">进口采购单</option><option value="P/O">P/O</option></select>';
                         }else if(res.priabillType=="P/O"){
-                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
+                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
                         }else{
                         	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
                         }
@@ -857,6 +851,51 @@
             ,limit:2//初始每页显示条数
             ,height:350
         });
+                  
+        //监听行工具事件   
+		  table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
+		    var data = obj.data //获得当前行数据
+		    ,layEvent = obj.event; //获得 lay-event 对应的值	
+		    var $this = $(this);
+		    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+  			var trIndex = tr.data('index');	//索引
+		    if(layEvent === 'edit'){
+		      layer.msg('编辑操作');
+		      //修改编辑按钮名 
+    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
+		      //修改lay-event对应值
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
+		      //修改样式
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
+		      //取消单元格的禁用  添加data-edit="text"
+		      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").attr("data-edit","text");
+		      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3)").html());*/
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("");
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").attr("data-edit","text");
+		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").attr("data-edit","text");
+		    } else if(layEvent === 'del'){
+		      layer.confirm('真的删除行么', function(index){
+		        obj.del(); //删除对应行（tr）的DOM结构
+		        layer.close(index);
+		        //向服务端发送删除指令
+		      });
+		    }else if(layEvent === 'save'){
+		    	layer.msg('保存操作');
+		    	//修改保存按钮名 
+    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
+		        //修改lay-event对应值
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
+		        //修改样式
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
+		        //单元格的禁用  去掉data-edit="text"
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").removeAttr("data-edit","text");
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("<select disabled=\"disabled\" name=\"priabillType\" lay-filter=\"testSelect\" lay-verify=\"required\" data-value=\"采购订单\"><option value=\"\"></option><option value=\"采购订单\" selected=\"selected\">采购订单</option><option value=\"进口采购单\">进口采购单</option><option value=\"P/O\">P/O</option></select><div class=\"layui-unselect layui-form-select layui-select-disabled\"><div class=\"layui-select-title\"><input type=\"text\" placeholder=\"请选择\" value=\"采购订单\" readonly=\"\" class=\"layui-input layui-unselect layui-disabled\"><i class=\"layui-edge\"></i></div><dl class=\"layui-anim layui-anim-upbit\"><dd lay-value=\"\" class=\"layui-select-tips\">请选择</dd><dd lay-value=\"采购订单\" class=\"layui-this\">采购订单</dd><dd lay-value=\"进口采购单\" class=\"\">进口采购单</dd><dd lay-value=\"P/O\" class=\"\">P/O</dd></dl></div>");
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").removeAttr("data-edit","text");
+		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").removeAttr("data-edit","text");
+		    }
+		  });
+        
         
         //监听头工具栏事件
 		    table.on('toolbar(materialsContent2)', function(obj){

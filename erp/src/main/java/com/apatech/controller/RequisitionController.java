@@ -151,5 +151,6 @@ public class RequisitionController {
     	PageInfo<Requisition> page=dao.queryAllpage(pageNum, pageSize);
     	System.out.println("出RequisitionController主详表分页联查的数据为"+page.toString());
     	return page;
+    	
     }
 }

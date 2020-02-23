@@ -31,7 +31,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color:#009688;">单据日期</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.apCustom6"  v-bind:disabled="diasabledInput" readonly="true">
+									<input id="apdate" type="text" class="layui-input" v-model="pages.apCustom6"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -43,7 +43,7 @@
 									<!-- 科目id -->
 									<input type="hidden" class="layui-input" v-model="pages.updowmid"  v-bind:disabled="diasabledInput" readonly="true">
 									
-									<input type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid"  v-bind:disabled="diasabledInput" readonly="true">
+									<input id="apdateid" type="text" id="aplid" name="apDateid" class="layui-input" v-model="pages.apDateid"  v-bind:disabled="diasabledInput" readonly="true">
 								</div>
 							</div>
 						</div>
@@ -177,6 +177,7 @@
 					return{
 						page:[],
 						shoplist:[],
+						customerlist:[],
 						list:[],
 						diasabledInput:false,//input框是否可以编辑
 						isinsert:false,//是否是新增状态
@@ -218,6 +219,7 @@
 						location.reload();
 					},//查询
 					goPage: function(page){
+						this.diasabledInput=true;//input可以编辑
 						var this_ = this;
 						$.ajax({
 								url : host+"wd_adjustController/selectAllpage",
@@ -227,23 +229,22 @@
 									this_.page = res;
 											layui.use('table', function() {
 												var table = layui.table;
-												console.log(tableData);
+												console.log(this_.page.list[0].list);
 												table.render({
 													elem: '#materialsContent',
-													data:tableData.data,
+													data:this_.page.list[0].list,
 													 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 														,cols: [[
 															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
-															{field: 'matterName',title: '(物料名称)',sort: true,align: 'center'}, 
+															{field: 'mmatterName',title: '(物料名称)',sort: true,align: 'center'}, 
 															{field: 'matterId',title: '(物料编号)',sort: true,align: 'center'}, 
-															
-															{field: 'matterSize',title: '(规格型号)',align: 'center'},
+															{field: 'mmatterSize',title: '(规格型号)',align: 'center'},
 															{field: 'muName',title: '(单位)',align: 'center'}, 
-															{field: 'matterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
-															{field: 'matterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
-															{field: 'onePrice',title: '(单价)',sort: true,align: 'center'}, 
-															{field: 'DadjustPrice',title: '(调价金额)',sort: true,align: 'center'}, 
-															{field: 'DDecoration',title: '分录备注',align: 'center'}
+															{field: 'mmatterNowcount',title: '(库存量)',sort: true,align: 'center'}, 
+															{field: 'mmatterNowavgcost',title: '(平均成本)',sort: true,align: 'center'}, 
+															{field: 'mmonePrice',title: '(单价)',sort: true,align: 'center'}, 
+															{field: 'dAdjustprice',title: '(调价金额)',sort: true,align: 'center'}, 
+															{field: 'dDecoration',title: '分录备注',align: 'center'}
 															]]
 												});
 											});
@@ -293,8 +294,7 @@
 				this.diasabledInput= true;//input不可编辑
 				if(this.isinsert==true){//新增
 					alert("进入新增")
-				//调用新增方法
-					//this.insets();
+					this.insets();
 				}else if(this.isedit==true){
 					alert("进入修改")
 					this.updates();
@@ -420,77 +420,32 @@
 				    this.noAuditing1=true//取消审核
 				}, 
 
-				//根据单号修改增减值科目
-				updateupdown:function(upname,downname,apDateid){
+				//执行修改
+			/*	updates: function() {//编辑 
+					var this_=this;
 					
-					//获取增值科目所修改的值
+					//增值科目所修改的值
 					var upname = $("#sel option:selected").val();
 					//减值科目
 					var downname = $("#sel1 option:selected").val();
 					//单据编号
 					var apDateid=$("#aplid").val();
-					$.ajax({
-						type:"get",
-						data :{
-							upname:upname,
-							downname:downname,
-							apDateid:apDateid
-							},
-						contentType:"application/json;charset=utf-8",	
-						url : "http://127.0.0.1:8080/wd_adjustController/wdupdatekm",
-					  	success:function (res) {
-					  		alert(res);
-					  		if(res>0){
-		                		alert("成功！");
-		                	}else{
-		                		alert("失败！");
-		                	}
-				        }
-					});
-				},
-				
-				//修改物料信息
-				//如何获取到table里的物料信息
-				updateMater:function(){
-					var this_ = this;
-					//获取表格中的数据
-					var obj=this.page.list[0];
-				},
-				//修改主单据信息
-				updatelist:function(){
-					 	//修改单据
-					var this_ = this;
-					var obj=this.page.list[0];
-						alert(obj);
-						$.ajax({
-							url : "http://127.0.0.1:8080/wd_adjustController/wdupdateByPrimaryKeySelective",
-							type:"post",
-						  	data : JSON.stringify(obj),
-						  	dataType:'json',	
-						  	contentType : "application/json;charset=utf-8",
-						  	success:function (res) {
-						  		console.info("修改成功!")
-						  		alert("系统提示：" +res.message);
-								this_.isinsert=false;//关闭新增模式
-								this_.isedit=false;//关闭编辑模式
-								this_.goPage(1, 1);
-					        }
-						});
-				},
-				//执行修改
-				updates: function() {//编辑 
-				
-					//获取到下拉框的值后调用修改科目方法
-					this.updateupdown();
-					
+					var data=this_.page.list[0];
+					console.log(data);
 					},
-					
+					*/
 					
 					
 					//清空文本框
 					clear:function(){
+						
+						//清空文本框
 						$(".layui-input").val("");
 						 $(".layui-row input").val("");
+						 $(".layui-textarea").val("");
+						 
+						 
+						 
 						//增值文本框隐藏
 						    $("#pro").remove();
 						    //减值文本框隐藏
@@ -502,10 +457,7 @@
 				
 				//点击新增
 				inset:function(){
-					
-					
 					this.clear();//清空文本框
-					
 					$("table td").attr("data-edit","text");
 					
 					
@@ -521,7 +473,7 @@
 	             	this.goNextPage1 =true;//下一笔
 			     	this.goLastPage1 =true;//后一笔
 	             	this.inset1 =true;   //新增      
-             		this.return1=true;//返回
+             		this.return1=false;//返回
 	             	this.saves1 =false;//保存 
 	             	this.update1 =true;//编辑
 	             	this.deletes1 =true;//删除		
@@ -529,12 +481,76 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				
-				/*//执行新增操作
-				insets：function(){
+				//执行新增操作
+				insets:function(){
+					var this_=this;
+					//增值科目所修改的值
+					var upname = $("#sel option:selected").val();
+					//减值科目
+					var downname = $("#sel1 option:selected").val();
 					
+					//apdateid
+					var apdateid=$("#apdateid").val();
+					//apdate
+					var apdate=$("#apdate").val();
+					
+					var mid=this_.page.list[0].list;
+					console.log(mid);
+					$.ajax({
+					type:"get",
+					url:host+"wd_adjustController/selectcount",
+					success:function(res){
+						alert(res);
+						this_.page.list[0].list=layui.table.cache["materialsContent"];
+						$.each(this_.page.list[0].list,function(a,b) {
+							b.apCustom6=apdate;
+							b.apDateid=apdateid;
+							b.apYn=0;
+							b.apId=res+1;
+							b.dApId=b.apId;
+							b.dApid=b.apId;
+							b.updowmid=upname;
+							b.upId=upname;
+							b.upName=$("#sel1 option:selected").text();
+							b.upCustom5=downname;
+							b.upCustom6=$("#sel1 option:selected").text();
+							
+							
+							
+							this_.page.list[0].apCustom6=b.apCustom6;
+							this_.page.list[0].apDateid=b.apDateid;
+							this_.page.list[0].apYn=b.apYn;
+							this_.page.list[0].apId=b.apId;
+							this_.page.list[0].dApId=b.dApId;
+							this_.page.list[0].updowmid=b.updowmid;
+							this_.page.list[0].upId=b.upId;
+							this_.page.list[0].upName=b.upName;
+							this_.page.list[0].upCustom5=b.upCustom5;
+							this_.page.list[0].upCustom6=b.upCustom6;
+							this_.page.list[0].dApid=b.dApid;
+							
+						});
+						
+							$.ajax({
+					type:"post",
+					url:host+"wd_adjustController/insert",
+					data:JSON.stringify(this_.page.list[0]),
+                    contentType:"application/json;charset=utf-8",
+					success:function(res){
+						if(res>0){
+                    		alert("新增成功！");
+                    	}else{
+                    		alert("新增失败！");
+                    	}
+					}
+					});
+						
+					}
+					
+				});
+			
 				
-				
-				},*/
+				},
 				},
 				created:function(){
 					this.goPage(1);

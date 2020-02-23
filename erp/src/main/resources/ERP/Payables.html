@@ -29,7 +29,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName">
+                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName" data-method="offset">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -170,7 +170,7 @@
                     	<div class="layui-tab-item layui-show" id="yfXz">
 			                <table id="materialsContent2" class="layui-hide" lay-filter="materialsContent2">
 			
-			                </table>
+			                </table>			                
 			                <div class="layui-row" id="nrXz">
 					        <div class="layui-col-lg6">
 					            <div class="layui-form">
@@ -297,7 +297,17 @@
 </div>
 
 <script src="layui.js"></script>
+<script type="text/html" id="barDemo1">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script>
+	$(function(){
+		function GetValue(obj){
+			console.info(obj);
+		}
+	});
 	//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
 	//必须设置允许跨域访问session中数据(cookie)
@@ -693,9 +703,70 @@
         });
     });
 
-    layui.use('table', function(){
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
         var table = layui.table;
-
+		var $ = layui.jquery, layer = layui.layer;
+		//供应商触发事件
+  		$("#priabillSupplierName").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesSupplier.html"
+  			});
+  		});
+  		
+  		//部门触发事件
+  		$("#priabillTeamName").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesTeam.html"
+  			});
+  		});
+  		
+  		//项目触发事件
+  		$("#priabillProjectName").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesProject.html"
+  			});
+  		});
+		
+		//结算方式触发事件
+  		$("#priabillSatName1").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesSat1.html"
+  			});
+  		});
+		
+		$("#priabillSatName2").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesSat2.html"
+  			});
+  		});
+		
+		$("#priabillSatName3").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesSat3.html"
+  			});
+  		});
+  		
+  		//币别触发事件
+  		$("#priabillCurrencyName").click(function(){
+  			layer.open({
+  				type:2,
+  				area:["800px","400px"],
+  				content:"PayablesCurrency.html"
+  			});
+  		});
+  		
         /*table.render({
             elem: '#materialsContent'
             ,url:'https://www.layui.com/demo/table/user/'
@@ -721,12 +792,24 @@
                 , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
             ]]
         }),*/
-        table.render({
+        
+
+       
+        var tables=table.render({
             elem: '#materialsContent2'
             ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllpage'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增           
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+            ,toolbar: 'default'//开启工具栏
+            ,totalRow: true //开启合计行
 			,parseData: function(res){
-				console.log('返回的值',res)
+				//添加一组空数据
+               res.list.push({
+               		"priadetailsId":"haha"
+               		,"priabillPrice":""
+               		,"priabillType":""
+               		,"priabillNumber":""
+               		,"priabillRemarks":""                   		
+               });
 				return {
 					"code":0,
 					"msg":"",
@@ -734,19 +817,104 @@
 					data:res.list
 				};
 			}
+			,done: function (res, curr, count) {
+                layui.each($('select'), function (index, item) {
+                    var elem = $(item);
+                    elem.val(elem.data('value')).parents('div.layui-table-cell').css('overflow', 'visible');
+                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
+                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");
 
+                    
+                });
+           	}
             , cols: [[
-            	{field: 'priadetailsId', title: '(栏号)',sort:true}
+            	{type: 'checkbox'}
+            	,{field: 'priadetailsId', title: '(栏号)',sort:true}
                 ,{field: 'priabillPrice', title: '预付金额 ',sort:true} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'priabillType', title: '来源别'}
+                , {field: 'priabillType',
+                	title: '来源别',
+                	width: 200,
+                	templet: function (res) {
+                        // 模板的实现方式也是多种多样，这里简单返回固定的
+                        if(res.priabillType=="采购订单"){
+                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单" selected="selected">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+                        }else if(res.priabillType=="进口采购单"){
+                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单" selected="selected">进口采购单</option><option value="P/O">P/O</option></select>';
+                        }else if(res.priabillType=="P/O"){
+                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
+                        }else{
+                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+                        }
+                   }
+                  }
                 /*, {field: 'sex', title: '来源别', sort: true}*/
                 , {field: 'priabillNumber', title: '来源单号'}
                 , {field: 'priabillRemarks', title: '摘要'}
+                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
             ]]
             ,page:true//是否开启分页
             ,limits:[1,2,3]//选择每页显示多少条数据
             ,limit:2//初始每页显示条数
+            ,height:350
         });
+        
+        //监听头工具栏事件
+		    table.on('toolbar(materialsContent2)', function(obj){
+		  	layer.msg('1');
+		    /*var checkStatus = table.checkStatus(obj.config.id)
+		    ,data = checkStatus.data; //获取选中的数据*/
+		    switch(obj.event){
+		      case 'add':
+		        	layer.msg('添加一行表格');
+                   /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+                   var datas = table.cache.materialsContent2;
+                   
+                   //定义一个空数组
+                   var demo = [];
+                   
+                   //将之前的数组备份
+                   for(var i =0;i<datas.length;i++){
+                   		demo.push(datas[i]);
+                   }
+                    
+                   //添加一组空数据
+                   demo.push({
+                   		"priadetailsId":"haha"
+                   		,"priabillPrice":""
+                   		,"priabillType":""
+                   		,"priabillNumber":""
+                   		,"priabillRemarks":""                   		
+                   });*/
+                  
+                    tables.reload({	//将数据重新载入表格
+                        
+                    });
+		     		 break;
+		      case 'update':
+		        /*if(data.length === 0){
+		          layer.msg('请选择一行');
+		        } else if(data.length > 1){
+		          layer.msg('只能同时编辑一个');
+		        } else {
+		          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+		        }*/
+		       
+		       	//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+		       	var datas = table.cache.materialsContent2;
+		       	
+		       	//
+		       	for(var i =0;i<datas.length;i++){
+                   		
+                   }
+		      case 'delete':
+		        if(data.length === 0){
+		          layer.msg('请选择一行');
+		        } else {
+		          layer.msg('删除');
+		        }
+		      		break;
+		    };
+		  });
     });
 </script>
 </body>

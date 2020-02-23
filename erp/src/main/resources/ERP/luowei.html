@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户取回</title>
+    <title>物品取回</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,8 +37,8 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">客户编号</option>
-                                    <option value="4">客户名称</option>
+                                    <option value="4">物品编号</option>
+                                    <option value="4">物品名称</option>
                                     <option value="4">英文名称</option>
                                     <option value="4">备注</option>
                                 </select>
@@ -150,13 +150,13 @@
                 <thead>
                 <tr>
                     <th>编号</th>
-                    <th>客户名称</th>             
+                    <th>物品名称</th>             
                 </tr>
                 </thead>
                 <tbody>           
-                <tr v-for="stu,index in customerlist" @click="dianji(stu)">
+                <tr v-for="stu,index in list" @click="dianji(stu)">
                     <td>{{index+1}}</td>
-                    <td>{{stu.customerName}}</td>                  
+                    <td>{{stu.matterName}}</td>                  
                 </tr>
                 </tbody>
             </table>
@@ -170,32 +170,89 @@
         var form = layui.form;
     });
     var dizhi = window.location.href.split("=")[1];
-    var kehuvue = new Vue({
+    var luoweivue = new Vue({
     	el:"#app",
 		data:{	
-			customerlist:[],
-			stu:{}
+			list:[],
+			list2:[],
+			list3:[]
 		},methods:{
 			dianji(stu){
-				$.each($("table tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==stu.customerName){
-						$(b).css("background","pink");
-					}else{
+				if(luoweivue.list2.includes(stu)){
+					luoweivue.list2.splice(stu);
+					$.each($("table tbody tr"),function(a,b){
+					if($(b).find("td:eq(1)").text()==stu.matterName){					
 						$(b).css("background","");
 					}
 				})
-				kehuvue.stu=stu;
+				}else{	
+					luoweivue.list2.push(stu);
+					$.each($("table tbody tr"),function(a,b){
+					if($(b).find("td:eq(1)").text()==stu.matterName){
+						$(b).css("background","pink");
+					}
+				})
+				}
 			},
 			quhui(){
-				parent[dizhi].page.list[0].customerId=kehuvue.stu.customerId;
+				$.each(luoweivue.list2,function(a,b) {
+					if(dizhi=="sales_outboundvue"){
+						var cnm={
+					matterId:b.matterId,
+					sowdEngname:b.matterName,
+					sowdRemark:b.matterSize,
+					sowdPriceIncludeTax:b.matterMdecoration,
+					sowdSingleStatus:0,
+					sowdDocumentDate:b.matterMsaleA,
+					sowdDocumentNumber:1,
+					sowdPrice:b.matterMsaleA,
+					sowdMoney:0,
+					sowdTaxRate:b.matterTaxpoint,
+					sowdTaxAmount:0,
+					sowdIncludingTaxAmount:0,
+					sowdBatchNumber:b.matterBarno,
+					sowdIfgift:0,
+					sowdInvoiceDetails:1,
+					sowdNomakeInvoiceNum:0,
+					sowdRemarks:"就是棒"
+					};
+					luoweivue.list3.push(cnm);
+					}else{
+						var cnm={
+					matterId:b.matterId,
+					srwdEngname:b.matterName,
+					srwdRemark:b.matterSize,
+					srwdPriceIncludeTax:b.matterMdecoration,
+					srwdSingleStatus:0,
+					srwdDocumentDate:b.matterMsaleA,
+					srwdDocumentNumber:1,
+					srwdPrice:b.matterMsaleA,
+					srwdMoney:0,
+					srwdTaxRate:b.matterTaxpoint,
+					srwdTaxAmount:0,
+					srwdIncludingTaxAmount:0,
+					srwdBatchNumber:b.matterBarno,
+					srwdIfgift:0,
+					srwdInvoiceDetails:1,
+					srwdNomakeInvoiceNum:0,
+					srwdRemarks:"就是棒"
+					};
+					luoweivue.list3.push(cnm);
+					}
+					
+					
+				});
+				parent[dizhi].page.list[0].list=luoweivue.list3;
+				parent[dizhi].tableshuax();
+				parent[dizhi].bianji();
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){
 			$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8080/CustomerController/selectAll",
+			url:"http://127.0.0.1:8080/MatterController/selectAll",
 			success:function(res){
-				kehuvue.customerlist=res;
+				luoweivue.list=res;
 			}
 		});
 		}

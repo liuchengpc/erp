@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户取回</title>
+    <title>人员取回</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,8 +37,8 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">客户编号</option>
-                                    <option value="4">客户名称</option>
+                                    <option value="4">人员编号</option>
+                                    <option value="4">人员名称</option>
                                     <option value="4">英文名称</option>
                                     <option value="4">备注</option>
                                 </select>
@@ -150,13 +150,13 @@
                 <thead>
                 <tr>
                     <th>编号</th>
-                    <th>客户名称</th>             
+                    <th>人员名称</th>             
                 </tr>
                 </thead>
                 <tbody>           
-                <tr v-for="stu,index in customerlist" @click="dianji(stu)">
+                <tr v-for="stu,index in stafflist" @click="dianji(stu)">
                     <td>{{index+1}}</td>
-                    <td>{{stu.customerName}}</td>                  
+                    <td>{{stu.staffName}}</td>                  
                 </tr>
                 </tbody>
             </table>
@@ -170,32 +170,40 @@
         var form = layui.form;
     });
     var dizhi = window.location.href.split("=")[1];
-    var kehuvue = new Vue({
+    var staffvue = new Vue({
     	el:"#app",
 		data:{	
-			customerlist:[],
-			stu:{}
+			stafflist:[],
+			staff:{}
 		},methods:{
-			dianji(stu){
+			dianji(staff){
 				$.each($("table tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==stu.customerName){
+					if($(b).find("td:eq(1)").text()==staff.staffName){
 						$(b).css("background","pink");
 					}else{
 						$(b).css("background","");
 					}
 				})
-				kehuvue.stu=stu;
+				staffvue.staff=staff;
 			},
 			quhui(){
-				parent[dizhi].page.list[0].customerId=kehuvue.stu.customerId;
-				parent.layer.close(parent.layer.getFrameIndex(window.name));
+				parent[dizhi].page.list[0].sowBuyer=staffvue.staff.staffName;
+				$.ajax({
+				type:"get",
+				data:{TeamId:staffvue.staff.teamId},
+				url:"http://127.0.0.1:8080/TeamController/selectByPrimaryKey",
+				success:function(res){
+					parent[dizhi].page.list[0].sowBelongsSection=res.teamName;
+				}
+			});
+					parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){
 			$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8080/CustomerController/selectAll",
+			url:"http://127.0.0.1:8080/StaffController/selectAll",
 			success:function(res){
-				kehuvue.customerlist=res;
+				staffvue.stafflist=res;
 			}
 		});
 		}

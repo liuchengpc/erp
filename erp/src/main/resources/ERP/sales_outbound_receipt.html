@@ -353,14 +353,11 @@
 			 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
 			 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
 			 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);
-			 			$("table tr:eq("+c+1+") td:eq(8) div").text(parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber));
-			 			$("table tr:eq("+c+1+") td:eq(9) div").text(parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice));
-			 			$("table tr:eq("+c+1+") td:eq(11) div").text(parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate));
-			 			$("table tr:eq("+c+1+") td:eq(12) div").text(parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount));
-			 			
+			 			sales_outboundvue.tableshuax();
+			 			sales_outboundvue.bianji();
 			 		});
 			 	});
-		    
+		   
 		    },
 		    immediate: true,
 		    deep: true
@@ -368,8 +365,7 @@
 		},
 		methods:{
 			xz:function(){
-				//目前不知道怎么编辑table，所以注释清空这行
-				//sales_outboundvue.chongzhi();
+				sales_outboundvue.chongzhi();
 				sales_outboundvue.bianji();
 				$.ajax({
 					type:"get",
@@ -496,13 +492,79 @@
 				$(this).find("td:eq(10)").attr("data-edit","text");
 				$(this).find("td:eq(14)").attr("data-edit","text");
 			});
+			$("input:eq(0)").off("keyup.f4");
+			$("input:eq(3)").off("keyup.f4");
+			$("input:eq(5)").off("keyup.f4");
+			$("input:eq(9)").off("keyup.f4");
+			$("input:eq(19)").off("keyup.f4");
+			$("table").off("dblclick");
 			$("input:eq(0)").on("keyup.f4",function(){
 				layui.use(['layer'],function(){
 				var $ = layui.jquery;
 				var layer = layui.layer;
 					layer.open({
 						type:2,
-						content:"kehu.html",
+						content:"kehu.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(3)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"saletype.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(5)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"cangku.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(9)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"huobi.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})
+			$("input:eq(19)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"bumen.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("table").on("dblclick",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"luowei.html?dizhi=sales_outboundvue",
 						area:['762px','450px']
 					});				
 			});
@@ -511,19 +573,13 @@
 			},
 			shuax:function(){
 				location.reload();
-			}
-			,selectpage:function(pageNum){
-				$.ajax({
-					type:"get",
-					url:host+"Sales_out_warehouseController/selectAllpage",
-					data:{pageNum:pageNum,pageSize:1},
-					success:function(res){
-						sales_outboundvue.page=res;						
-						 layui.use('table', function(){
+			},
+			tableshuax(){
+				layui.use('table', function(){
 			        var table = layui.table;
 			        table.render({
 			            elem: '#materialsContent'
-			            ,data:res.list[0].list               
+			            ,data:sales_outboundvue.page.list[0].list               
 			            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			            , cols: [[
 			                {title: '(栏号)',templet: '#xuhao',sort: true}
@@ -547,6 +603,16 @@
 			            ]]
 			        });
 			    });
+			}
+			,selectpage:function(pageNum){
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectAllpage",
+					data:{pageNum:pageNum,pageSize:1},
+					success:function(res){
+						sales_outboundvue.page=res;						
+					 	sales_outboundvue.tableshuax();
+					 	sales_outboundvue.bianji();
 					}
 				});
 				

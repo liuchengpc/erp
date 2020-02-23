@@ -29,6 +29,10 @@ public class StaffService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	
+	public List<Staff> selectAll(){
+		return dao.selectAll();
+	}
 	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);

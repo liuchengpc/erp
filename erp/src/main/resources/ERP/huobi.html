@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>客户取回</title>
+    <title>货币取回</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,8 +37,8 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">客户编号</option>
-                                    <option value="4">客户名称</option>
+                                    <option value="4">货币编号</option>
+                                    <option value="4">货币名称</option>
                                     <option value="4">英文名称</option>
                                     <option value="4">备注</option>
                                 </select>
@@ -150,13 +150,13 @@
                 <thead>
                 <tr>
                     <th>编号</th>
-                    <th>客户名称</th>             
+                    <th>货币名称</th>             
                 </tr>
                 </thead>
                 <tbody>           
-                <tr v-for="stu,index in customerlist" @click="dianji(stu)">
+                <tr v-for="stu,index in currencylist" @click="dianji(stu)">
                     <td>{{index+1}}</td>
-                    <td>{{stu.customerName}}</td>                  
+                    <td>{{stu.currencyName}}</td>                  
                 </tr>
                 </tbody>
             </table>
@@ -170,32 +170,32 @@
         var form = layui.form;
     });
     var dizhi = window.location.href.split("=")[1];
-    var kehuvue = new Vue({
+    var huobivue = new Vue({
     	el:"#app",
 		data:{	
-			customerlist:[],
+			currencylist:[],
 			stu:{}
 		},methods:{
 			dianji(stu){
 				$.each($("table tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==stu.customerName){
+					if($(b).find("td:eq(1)").text()==stu.currencyName){
 						$(b).css("background","pink");
 					}else{
 						$(b).css("background","");
 					}
 				})
-				kehuvue.stu=stu;
+				huobivue.stu=stu;
 			},
 			quhui(){
-				parent[dizhi].page.list[0].customerId=kehuvue.stu.customerId;
+				parent[dizhi].page.list[0].currencyId=huobivue.stu.currencyId;
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){
 			$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8080/CustomerController/selectAll",
+			url:"http://127.0.0.1:8080/CurrencyController/selectAll",
 			success:function(res){
-				kehuvue.customerlist=res;
+				huobivue.currencylist=res;
 			}
 		});
 		}

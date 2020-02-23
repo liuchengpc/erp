@@ -28,6 +28,13 @@ public class MatterController {
 	@Autowired
 	private MatterService dao;
 	
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<Matter> selectAll(){
+		return dao.selectAll();
+	}
+	
+	
 	/**
 	 * 分页
 	 * @param pageNum

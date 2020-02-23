@@ -46,6 +46,14 @@
     from check_detailed
     where cd_id = #{cdId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectAllBycheckId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from check_detailed
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from check_detailed
     where cd_id = #{cdId,jdbcType=VARCHAR}

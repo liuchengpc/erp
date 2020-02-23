@@ -29,8 +29,8 @@ public class Requisition {
     private String requisitionCustom2;//自定义2
     private String requisitionCustom3;//自定义3
     private String requisitionCustom4;//自定义4
-    private String requisitionCustom5;//自定义5
-    private String requisitionCustom6;//自定义6
+    private String requisitionCustom5;//自定义5(占用)
+    private String requisitionCustom6;//自定义6(占用)
     
     private List<Requisition_detailed> rd_list;//调拨详表
     private String requisitionOutWarehouseName;//调出仓库的名称（仓库表的warehouse_name）

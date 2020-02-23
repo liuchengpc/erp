@@ -9,8 +9,10 @@ import com.apatech.domain.Check;
 import com.apatech.domain.Team;
 
 public interface CheckMapper {
-	
+
 	 List<Check> selectAll();
+	 
+	 List<Check> queryAllByTime();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

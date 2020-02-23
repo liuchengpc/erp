@@ -32,23 +32,31 @@
   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
 	    select 
 	    <include refid="Base_Column_List" />
-	    from check 
+	    from `check`
 	    where check_Yn=0
 	    ORDER BY check_id DESC
+  </select>
+  
+  <select id="queryAllByTime" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from `check` 
+	    where check_Yn=0
+	    ORDER BY check_documentation_date DESC
   </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from check
+    from `check`
     where check_id = #{checkId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from check
+    delete from `check`
     where check_id = #{checkId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.apatech.domain.Check">
-    insert into check (check_id, warehouse_id, sc_appreciation_subjects, 
+    insert into `check` (check_id, warehouse_id, sc_appreciation_subjects, 
       sc_impairment_subjects, check_documentation_date, 
       check_documentation_no, check_buyer, check_belongs_section, 
       check_form, check_checkagain_staff, check_remark, 
@@ -64,7 +72,7 @@
       #{checkCustom5,jdbcType=VARCHAR}, #{checkCustom6,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.apatech.domain.Check">
-    insert into check
+    insert into `check`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="checkId != null">
         check_id,
@@ -185,7 +193,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Check">
-    update check
+    update `check`
     <set>
       <if test="warehouseId != null">
         warehouse_id = #{warehouseId,jdbcType=VARCHAR},
@@ -245,7 +253,7 @@
     where check_id = #{checkId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Check">
-    update check
+    update `check`
     set warehouse_id = #{warehouseId,jdbcType=VARCHAR},
       sc_appreciation_subjects = #{scAppreciationSubjects,jdbcType=VARCHAR},
       sc_impairment_subjects = #{scImpairmentSubjects,jdbcType=VARCHAR},

@@ -31,7 +31,7 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">调出仓库</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.requisitionOutWarehouseName">
+								<input type="text" name="title" class="layui-input" v-model="pages.requisitionOutWarehouseName" @keyup.f4="add()">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -185,6 +185,9 @@
     </div>
 <script src="jquery-1.12.4.js"></script>
 <script src="layui.js"></script>
+<script type="text/html" id="barDemo">
+  <input lay-skin="primary" type="checkbox"/>
+</script>
 <script>
     /*layui.use('layer', function(){
         var layer = layui.layer;
@@ -302,7 +305,9 @@
 
 			goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
-				var this_ = this;					
+				var this_ = this;		
+				this.Auditing1 =false;//审核
+				this.noAuditing1 =false;//取消审核
 				$.ajax({
 					url : "http://127.0.0.1:8080/RequisitionController/queryAllpage",
 					type:"get",
@@ -321,13 +326,14 @@
 								,data:this_.page.list[0].rd_list//[{rdId:1,matterId:2,rdEngname:3,rdRemark:4,rdPriceIncludeTax:5,rdSingleNum:6,rdBatchNumber:7,rdRemarks:8}]
 						        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 						        , cols: [[
-									  {field: 'rdId', 				title: '(栏号)', 	sort: true, 	align:'right'	}
+									{type:'numbers', 				title: '(栏号)', 	sort: true,		align:'right',width:'7%'}
+									, {field: 'rdId', 				title: 'id',  		hide:true						}
 						            , {field: 'matterId', 			title: '物料编号',	sort: true						} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
 						            , {field: 'rdEngname', 			title: '(物料名称)', sort: true						}
 						            , {field: 'rdRemark', 			title: '(规格型号)', sort: true						}
 						            , {field: 'rdPriceIncludeTax', 	title: '(单位)',		sort: true						}
 						            , {field: 'rdSingleNum', 		title: '数量',		sort: true, 	align: 'right'	} //单元格内容水平居中,	edit: 'text'
-						            , {field: 'rdBatchNumber', 		title: '批号',		sort: true						} //单元格内容水平居中
+						            , {field: 'rdBatchNumber', 		title: '批号',		sort: true,		align: 'center' ,toolbar: '#barDemo'} //单元格内容水平居中
 						            , {field: 'rdRemarks', 			title: '分录备注', 	sort: true						}
 						        ]]
 						    });
@@ -375,8 +381,8 @@
 				this.saves1 =true;//保存 
 				this.update1 =false;//编辑
 				this.deletes1 =false;//删除		
-				this.Auditing1 =true;//审核
-				this.noAuditing1 =true;//取消审核
+				this.Auditing1 =false;//审核
+				this.noAuditing1 =false;//取消审核
 			},
 			inset: function() {//新增按钮
 				this.page.list[0].requisitionId="";//调拨单编号（主键 唯一）
@@ -413,7 +419,7 @@
 				            , {field: 'rdRemark', 			title: '(规格型号)', sort: true						}
 				            , {field: 'rdPriceIncludeTax', 	title: '(单位)',		sort: true						}
 				            , {field: 'rdSingleNum', 		title: '数量',		sort: true, 	align: 'right'	,	edit: 'text'} //单元格内容水平居中
-				            , {field: 'rdBatchNumber', 		title: '批号',		sort: true						,	edit: 'checkbox'} //单元格内容水平居中
+				            , {field: 'rdBatchNumber', 		title: '批号',		sort: true,		align: 'center'	,	toolbar: '#barDemo'} //单元格内容水平居中
 				            , {field: 'rdRemarks', 			title: '分录备注', 	sort: true						,	edit: 'text'}
 				        ]]
 				    });
@@ -549,10 +555,11 @@
 			},
 			deletes: function() {//删除
 				var this_ = this;
-				//修改信息
-				this.page.list[0].requisitionYn=1;//是否删除（0 否 1 是 ，默认0）
-				var obj=this.page.list[0];
+				
 				if (confirm("是否删除")==true) {
+					//修改信息
+					this_.page.list[0].requisitionYn=1;//是否删除（0 否 1 是 ，默认0）
+					var obj=this_.page.list[0];
 					$.ajax({
 						url : "http://127.0.0.1:8080/RequisitionController/updateByPrimaryKeySelective",
 						type:"post",
@@ -609,6 +616,15 @@
 						this_.page.list[0].teamId=ss+res;						
 					}
 				}); 				
+			},add:function(){
+				//console.log(6666);
+				layer.open({
+					type: 2,
+					title:"单选-- 仓库设定",
+					content: "window_set_ repository_settings_type.html",
+					area: ['762px', '450px']
+				});
+				//alert(JSON.stringify(this.page.list[0].rd_list));
 			}
 		},
 		mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。

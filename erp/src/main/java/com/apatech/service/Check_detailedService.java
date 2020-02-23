@@ -29,7 +29,11 @@ public class Check_detailedService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
-	 
+	
+	public List<Check_detailed> selectAllBycheckId(String checkId){
+		return dao.selectAllBycheckId(checkId);
+	}
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

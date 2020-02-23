@@ -136,4 +136,19 @@ public class CheckController {
 		}
 		return map;
     }
+	
+	/**
+	 * 分页联表查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "queryAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Check> queryAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入CheckController联表分页");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Check> page=dao.queryAllpage(pageNum, pageSize);
+    	return page;
+    }
 }

@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,12 @@ public class Sales_out_warehouse_detailedController {
 	@ResponseBody
 	public int selectcount() {
 		return dao.selectcount();
+	}
+	
+	@RequestMapping("/selectAll")
+	@ResponseBody
+	public List<Sales_out_warehouse_detailed> selectAll() {
+		return dao.selectAll();
 	}
 	
 	/**

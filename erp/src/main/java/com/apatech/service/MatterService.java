@@ -33,6 +33,10 @@ public class MatterService {
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
+	 
+	 public List<Matter> selectAll(){
+	    	return dao.selectAll();
+ }
 	
     public int deleteByPrimaryKey(String matterId){
     	return dao.deleteByPrimaryKey(matterId);

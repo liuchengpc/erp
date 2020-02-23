@@ -6,7 +6,7 @@ package com.apatech.domain;
  *
  */
 public class Priadetails {
-    private String priadetailsId;//预付款单明细表id, 主键， 行号
+    private String priadetailsId;//预付款单明细表id, 主键行号
     private String priabillId;//预付款单主表id,外键
     private Float priabillPrice;//预付金额
     private String priabillType;//来源单别

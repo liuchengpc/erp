@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Receivablesdetails;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorder;
@@ -41,6 +44,35 @@ public class SalesorderController {
     	PageInfo<Salesorder> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	
+	/**
+	 * 根据主表id查询 （刘成）
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpagelc")
+	@ResponseBody
+	public PageInfo<Salesorder> selectAllpagelc(@RequestParam("page")  Integer page,@RequestParam("limit") Integer limit){
+		System.out.println("进入selectAllpagebyidlc分页");
+		System.out.println(page+"/"+limit);
+		PageInfo<Salesorder> pages=dao.selectAllpage(page, limit);
+		return pages;
+	}
+	
+	/**
+	 * 查询全部
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAlllc",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Salesorder> selectAlllc(){
+		System.out.println("进入SalesorderController查询全部");
+		return dao.selectAll();
+	}
 	
 	/**
 	 * 获取单号

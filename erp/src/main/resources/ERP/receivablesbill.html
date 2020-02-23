@@ -250,13 +250,13 @@
 			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
 			data: {//保存vue.js中要显示到html页面的数据
 				page: [],
-				page2: {
+				page2: [{
 			      "recedetailId": ""
 			      ,"recedetailPrice": ""
 			      ,"recedetailType": "销售订单"
 			      ,"recedetailNumber": ""
 			      ,"recedetailRemarks": ""
-			    },//详表数据
+			    }],//详表数据
 				diasabledInput:true,//input框是否可以编辑
 				diasabledInput2:false,//input框是否可以编辑
 				isinsert:false,//是否是新增状态
@@ -340,7 +340,13 @@
 							
 							
 							
-							/*加载表格数据2*/
+							this_.jztable();
+							
+				        }
+					}); 					
+				},
+				jztable:function(){
+					/*加载表格数据2*/
 							layui.use('table', function(){
 							  var table = layui.table;
 								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
@@ -356,12 +362,12 @@
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
 							    ]]
 							    ,data: [{
-							      "recedetailId": ""
-							      ,"recedetailPrice": ""
-							      ,"recedetailType": "销售订单"
-							      ,"recedetailNumber": ""
-							      ,"recedetailRemarks": ""
-							    },]
+								      "recedetailId": ""
+								      ,"recedetailPrice": ""
+								      ,"recedetailType": "销售订单"
+								      ,"recedetailNumber": ""
+								      ,"recedetailRemarks": ""
+								    }]
 							    //,skin: 'line' //表格风格
 							    ,even: true
 							    , id: 'test'
@@ -385,13 +391,71 @@
 								        });
 								 }
 								})
+							  	
+							  	
+							  	
+							  	
+							  	//监听单元格编辑
+							    /*table.on('edit(test)', function (obj) {
+							        $('input').keyup(function () {
+							            value = value.replace(/[^d.]/g, '');
+							        });
+							        alert(obj.value)
+							        var value = obj.value, // 得到修改后的值
+							            id = obj.data.id, // 得到当前修改行的id
+							            field = obj.field; // 得到当前修改的字段名
+							        var data = {},
+							            key = field;
+							        data[key] = value;
+							        data['id'] = id;
+							        var my = '';
+							        var allData = '';
+							        //获取表格数据
+							        var tableData = table.cache['searchReload'];
+							 
+							        if (value < 0) {
+							            layer.msg('值不能为负数', {
+							                icon: 5
+							            });
+							            table.reload('searchReload');
+							            return false;
+							        }
+							 
+							        $.ajax({
+							            url: url_order + "api/rebateRuleController/editRebateRule",
+							            type: 'POST',
+							            traditional: true,
+							            data: data,
+							            success: function (data) {
+							                if (data.code == 0) {
+							                    table.reload('searchReload');
+							                    layer.msg(data.msg, {
+							                        icon: 6
+							                    });
+							                } else {
+							                    layer.msg(data.msg, {
+							                        icon: 5
+							                    });
+							                }
+							            }
+							        });
+							    });*/
+							    
+							    
+							    table.on('edit(test)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+								  console.log("修改事件"); //得到修改后的值
+								  console.log(obj.value); //得到修改后的值
+								  console.log(obj.field); //当前编辑的字段名
+								  console.log(obj.data); //所在行的所有相关数据  
+								});
 							});
 							
 							
-							/*加载表格数据2*/
 							
-				        }
-					}); 					
+							
+							
+							
+							/*加载表格数据2*/
 				},
 				formrender: function() {//layui更新渲染
 					layui.use('form', function(){

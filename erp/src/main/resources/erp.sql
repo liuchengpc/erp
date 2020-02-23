@@ -1412,6 +1412,45 @@ CREATE TABLE `purchase_inquiry_detailed` (
 
 /*Data for the table `purchase_inquiry_detailed` */
 
+/*Table structure for table `purchase_payables` */
+
+DROP TABLE IF EXISTS `purchase_payables`;
+
+CREATE TABLE `purchase_payables` (
+  `pp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pp_type` varchar(100) DEFAULT NULL COMMENT '单别',
+  `pp_number` varchar(100) DEFAULT NULL COMMENT '原单单号',
+  `pp_date` datetime DEFAULT NULL COMMENT '原单日期',
+  `pp_pc_id` varchar(100) DEFAULT NULL COMMENT '交易对象',
+  `pp_pc_name` varchar(100) DEFAULT NULL COMMENT '交易对象名称',
+  `pp_team_id` varchar(100) DEFAULT NULL COMMENT '部门编号',
+  `pp_team_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `pp_buyer` varchar(100) DEFAULT NULL COMMENT '业务人员',
+  `pp_project_name` varchar(100) DEFAULT NULL COMMENT '项目名称',
+  `pp_currency` varchar(100) DEFAULT NULL COMMENT '币别',
+  `pp_exchange_rate` float DEFAULT NULL COMMENT '汇率',
+  `pp_payablesmain_price` double DEFAULT NULL COMMENT '原单金额',
+  `pp_currentbalance` float DEFAULT NULL COMMENT '现行余额',
+  `pp_discountamount` float DEFAULT NULL COMMENT '折让金额',
+  `pp_amountcharged` float DEFAULT NULL COMMENT '冲款金额',
+  `pp_offsetamount` float DEFAULT NULL COMMENT '冲抵金额',
+  `pp_auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
+  `pp_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0否 1是，默认0）',
+  `pp_custom1` varchar(50) DEFAULT NULL COMMENT '自定义栏一',
+  `pp_custom2` varchar(50) DEFAULT NULL COMMENT '自定义栏二',
+  `pp_custom3` varchar(50) DEFAULT NULL COMMENT '自定义栏三',
+  `pp_custom4` varchar(50) DEFAULT NULL COMMENT '自定义栏四',
+  `pp_custom5` varchar(50) DEFAULT NULL COMMENT '自定义栏五',
+  `pp_custom6` varchar(50) DEFAULT NULL COMMENT '自定义栏六',
+  `pp_custom7` varchar(50) DEFAULT NULL COMMENT '自定义栏七',
+  `pp_custom8` varchar(50) DEFAULT NULL COMMENT '自定义栏八',
+  `pp_custom9` varchar(50) DEFAULT NULL COMMENT '自定义栏九',
+  `pp_custom10` varchar(50) DEFAULT NULL COMMENT '自定义栏十',
+  PRIMARY KEY (`pp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `purchase_payables` */
+
 /*Table structure for table `purchase_requisition` */
 
 DROP TABLE IF EXISTS `purchase_requisition`;
@@ -2270,6 +2309,45 @@ CREATE TABLE `sales_quotation_details` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sales_quotation_details` */
+
+/*Table structure for table `sales_receivables` */
+
+DROP TABLE IF EXISTS `sales_receivables`;
+
+CREATE TABLE `sales_receivables` (
+  `sr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sr_type` varchar(100) DEFAULT NULL COMMENT '单别',
+  `sr_number` varchar(100) DEFAULT NULL COMMENT '原单单号',
+  `sr_date` datetime DEFAULT NULL COMMENT '原单日期',
+  `sr_pc_id` varchar(100) DEFAULT NULL COMMENT '交易对象',
+  `sr_pc_name` varchar(100) DEFAULT NULL COMMENT '交易对象名称',
+  `sr_team_id` varchar(100) DEFAULT NULL COMMENT '部门编号',
+  `sr_team_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `sr_buyer` varchar(100) DEFAULT NULL COMMENT '业务人员',
+  `sr_project_name` varchar(100) DEFAULT NULL COMMENT '项目名称',
+  `sr_currency` varchar(100) DEFAULT NULL COMMENT '币别',
+  `sr_exchange_rate` float DEFAULT NULL COMMENT '汇率',
+  `sr_payablesmain_price` double DEFAULT NULL COMMENT '原单金额',
+  `sr_currentbalance` float DEFAULT NULL COMMENT '现行余额',
+  `sr_discountamount` float DEFAULT NULL COMMENT '折让金额',
+  `sr_amountcharged` float DEFAULT NULL COMMENT '冲款金额',
+  `sr_offsetamount` float DEFAULT NULL COMMENT '冲抵金额',
+  `sr_auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
+  `sr_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0否 1是，默认0）',
+  `sr_custom1` varchar(50) DEFAULT NULL COMMENT '自定义栏一',
+  `sr_custom2` varchar(50) DEFAULT NULL COMMENT '自定义栏二',
+  `sr_custom3` varchar(50) DEFAULT NULL COMMENT '自定义栏三',
+  `sr_custom4` varchar(50) DEFAULT NULL COMMENT '自定义栏四',
+  `sr_custom5` varchar(50) DEFAULT NULL COMMENT '自定义栏五',
+  `sr_custom6` varchar(50) DEFAULT NULL COMMENT '自定义栏六',
+  `sr_custom7` varchar(50) DEFAULT NULL COMMENT '自定义栏七',
+  `sr_custom8` varchar(50) DEFAULT NULL COMMENT '自定义栏八',
+  `sr_custom9` varchar(50) DEFAULT NULL COMMENT '自定义栏九',
+  `sr_custom10` varchar(50) DEFAULT NULL COMMENT '自定义栏十',
+  PRIMARY KEY (`sr_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `sales_receivables` */
 
 /*Table structure for table `sales_return_warehouse` */
 

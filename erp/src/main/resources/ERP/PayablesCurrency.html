@@ -181,6 +181,7 @@
 			       var index = parent.layer.getFrameIndex(window.name);
 				   var iframe = $(window.parent.document).contents();
 				   iframe.find("#priabillCurrencyName").val(data.currencyEasyname);
+				   iframe.find("#currencyId").val(data.currencyId);
 			       parent.layer.close(index);
 			    }
 		  });

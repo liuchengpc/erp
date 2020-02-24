@@ -29,7 +29,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName" data-method="offset">
+                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName" data-method="offset" i="">
+                        <input type="text" id="supplierId" name="title"  class="layui-input" v-model="pages.supplierId" data-method="offset" hidden="hidden">
+                         <input type="text" id="priabillId" name="title"  class="layui-input" v-model="pages.priabillId" data-method="offset" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -85,6 +87,7 @@
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
                         <input type="text" id="priabillCurrencyName" v-model="pages.priabillCurrencyName" name="title"  class="layui-input">
+                        <input type="text" id="currencyId" v-model="pages.currencyId" name="title"  class="layui-input" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -122,7 +125,7 @@
         <div class="layui-tab">
             <ul class="layui-tab-title">
                 <!--<li id="nr" class="layui-this">内容</li>-->
-                <li id="yf" class="layui-this">取用预付</li>
+                <li id="yf" class="layui-this">预付</li>
                 <li id="bz">备注</li>
             </ul>
             <div class="layui-tab-content" style="padding: 10px 0;">
@@ -178,12 +181,14 @@
 					                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
 					                    <div class="layui-input-block">
 					                        <input type="text" id="priabillTeamName" v-model="pages.priabillTeamName" name="title"  class="layui-input">
+					                        <input type="text" id="priabillCustom9" v-model="pages.priabillCustom9" name="title"  class="layui-input" hidden="hidden">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">所属项目</label>
 					                    <div class="layui-input-block">
 					                        <input type="text" id="priabillProjectName" v-model="pages.priabillProjectName" name="title"  class="layui-input">
+					                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input">
 					                    </div>
 					                </div>
 					            </div>
@@ -279,13 +284,13 @@
         </div>
         <div class="layui-form-item">                       
             <div class="layui-input-block">  
-	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
-	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
-	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
-				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
-	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1" id="dyb"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1" id="syb"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1" id="xyb"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1" id="hyb"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1" id="xinzeng"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
 	            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
-	             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+	             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1" id="baocun"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
 	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
 	            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
 				<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
@@ -348,7 +353,7 @@
 							this_.page = res;
 							console.info("详表表数据：");
 							console.info(this_.page);
-							
+							$("#priabillSupplierName").attr("i",res.list[0].priabillSupplierName);
 							//冲款类型下拉框自动选择默认.find('option')
 							//找到下拉框option的value值为res.list[0].payablesType的节点
 							/*var se = 'option[value='+res.list[0].payablesType+']';
@@ -466,15 +471,8 @@
 				    this.Auditing1 =true;//审核
 				    this.noAuditing1 =true;//取消审核
 				    
-				    //下拉框启用
-				    this.tp=false;
+					lay();
 				    
-				    //冲款类型下拉框自动选择默认.find('option')
-					//找到下拉框option的value值为res.list[0].payablesType的节点
-					var se = 'option[value='+this.page.list[0].payablesType+']';
-					$('#selectListXz').find('option').find(se).click();
-					
-					
 				},
 				insets: function() {//新增
 				 	/*获取当前时间*/
@@ -500,12 +498,12 @@
 					
 					var this_ = this;
 					//修改信息
-					this.page.list[0].priabillId="20200217";//预付冲款单ID（主键 唯一）
-				    this.page.list[0].supplierId="1";//供应商表id,外键
-				    this.page.list[0].scsId="1";//结算方式id,外键
-				    this.page.list[0].staffId="1";//部门员工表id,外键
-				    this.page.list[0].currencyId="1";//币别类型表id,外键
-				    this.page.list[0].projectId="1";//项目表id,外键
+					this.page.list[0].priabillId=$("#priabillId").val();//预付冲款单ID（主键 唯一）
+				    this.page.list[0].supplierId=$("#supplierId").val();//供应商表id,外键
+				    this.page.list[0].scsId="";//结算方式id,外键
+				    this.page.list[0].staffId=$("#priabillCustom9").val();//部门员工表id,外键
+				    this.page.list[0].currencyId=$("#currencyId").val();//币别类型表id,外键
+				    this.page.list[0].projectId=$("#projectId").val();//项目表id,外键
 				    this.page.list[0].priabillSupplierName=$("#priabillSupplierName").val();//供应商表，名称
 				    this.page.list[0].priabillSatName1=$("#priabillSatName1").val();//结算方式表，结算方式1，名称
 				    this.page.list[0].priabillPrice1=$("#priabillPrice1").val();//结算方式表，结算方式1，值
@@ -660,7 +658,7 @@
     layui.use('element', function () {
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-
+		
         //触发事件
         var active = {
             tabAdd: function(){
@@ -701,7 +699,10 @@
     layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
         var table = layui.table;
 		/*var $ = layui.jquery, layer = layui.layer;*/
+		var form = layui.form;
 		var $ = layui.$, layer = layui.layer;
+		//layui表格方法
+		lay();
 		//供应商触发事件
   		$("#priabillSupplierName").click(function(){
   			layer.open({
@@ -763,48 +764,87 @@
   			});
   		});
   		
-        /*table.render({
-            elem: '#materialsContent'
-            ,url:'https://www.layui.com/demo/table/user/'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            , cols: [[
-                {field: 'id', title: '(栏号)', sort: true}
-                , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'sex', title: '(物料名称)', sort: true}
-                , {field: 'city', title: '(规格型号)'}
-                , {field: 'sign', title: '(单位名称)'}
-                , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
-                , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
-                , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '单价', sort: true, align: 'right'}
-                , {field: 'wealth', title: '金额', sort: true, align: 'right'}
-                , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
-            ]]
-        }),*/
-        
-
+  		//第一笔
+  		$("#dyb").click(function(){
+  			lay();
+  		});
+  		
+  		//上一笔
+  		$("#syb").click(function(){
+  			lay();
+  		});
+  		
+  		//下一笔
+  		$("#xyb").click(function(){
+  			lay();
+  		});
+  		
+  		//后一笔
+  		$("#hyb").click(function(){
+  			lay();
+  		});
+  		
+  		//新增清空表格数据
+		$("#xinzeng").click(function(){
+			$("#priabillId").val("");//预付冲款单ID（主键 唯一）
+		    $("#priabillSupplierName").val("");//供应商表，名称		    
+			lay();
+		});
+  		       
+		var time = "";
        
-        var tables=table.render({
+        function lay(){
+        	var priabillSupplierName = $("#priabillSupplierName").val();
+        	var priabillId = $("#priabillId").val();
+        	var tables=table.render({
             elem: '#materialsContent2'
-            ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllpage'
+            ,url:'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName?priabillCustom10='+priabillSupplierName+"&priabillId="+priabillId
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
             ,toolbar: 'default'//开启工具栏
             ,totalRow: true //开启合计行
 			,parseData: function(res){
+				/*获取当前时间*/
+				   	//判断是否在前面加0
+				   
+				   	console.log($("#priabillId").val());
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+			  		
+					$.ajax({
+						url:"http://127.0.0.1:8080/PriadetailsController/getno",
+						type:"get",
+						async: false,//同步
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (res) {
+						   	time=ss+res;
+				        }
+					});
+				
 				//添加一组空数据
                res.list.push({
-               		"priadetailsId":"haha"
+               		"priadetailsId":time
                		,"priabillPrice":""
                		,"priabillType":""
                		,"priabillNumber":""
-               		,"priabillRemarks":""                   		
+               		,"priabillRemarks":""
+               		,"priabillCustom1":ss
                });
 				return {
 					"code":0,
@@ -820,6 +860,7 @@
                     elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
                     elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");                  
                 });
+                
            	}
             , cols: [[
             	{type: 'checkbox'}
@@ -837,7 +878,7 @@
                         }else if(res.priabillType=="P/O"){
                         	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
                         }else{
-                        	return '<select name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required"><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
                         }
                    }
                   }
@@ -858,53 +899,106 @@
 		    ,layEvent = obj.event; //获得 lay-event 对应的值	
 		    var $this = $(this);
 		    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
-  			var trIndex = tr.data('index');	//索引
+  			var trIndex = tr.data('index');	//索引\
+  			console.log(obj.data);
+  			alert($("#priabillSupplierName").attr("i"));
 		    if(layEvent === 'edit'){
-		      layer.msg('编辑操作');
+		      layer.msg('进入编辑操作');
 		      //修改编辑按钮名 
-    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
-		      //修改lay-event对应值
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
-		      //修改样式
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
-		      //取消单元格的禁用  添加data-edit="text"
-		      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").attr("data-edit","text");
-		      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3)").html());*/
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("");
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").attr("data-edit","text");
-		      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").attr("data-edit","text");
+	    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
+			      //修改lay-event对应值
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
+			      //修改样式
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
+			      //取消单元格的禁用 
+			      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",true);
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").removeAttr("disabled");
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",true);
+			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",true);
+			      form.render('select');	      
+			  
 		    } else if(layEvent === 'del'){
 		      layer.confirm('真的删除行么', function(index){
 		        obj.del(); //删除对应行（tr）的DOM结构
 		        layer.close(index);
 		        //向服务端发送删除指令
+		        $.ajax({
+		        	url:"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKey",
+		        	type:"get",
+		        	data : "priadetailsId="+obj.data.priadetailsId,
+			        dataType:'json', 
+			        contentType : "application/json;charset=utf-8",			        	
+		        	success:function(result){
+		        		console.log("删除："+result);
+		        		layer.msg(result.message);
+		        	}
+		        });
 		      });
-		    }else if(layEvent === 'save'){
-		    	layer.msg('保存操作');
-		    	//修改保存按钮名 
-    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
-		        //修改lay-event对应值
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
-		        //修改样式
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
-		        //单元格的禁用  去掉data-edit="text"
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").removeAttr("data-edit","text");
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("<select disabled=\"disabled\" name=\"priabillType\" lay-filter=\"testSelect\" lay-verify=\"required\" data-value=\"采购订单\"><option value=\"\"></option><option value=\"采购订单\" selected=\"selected\">采购订单</option><option value=\"进口采购单\">进口采购单</option><option value=\"P/O\">P/O</option></select><div class=\"layui-unselect layui-form-select layui-select-disabled\"><div class=\"layui-select-title\"><input type=\"text\" placeholder=\"请选择\" value=\"采购订单\" readonly=\"\" class=\"layui-input layui-unselect layui-disabled\"><i class=\"layui-edge\"></i></div><dl class=\"layui-anim layui-anim-upbit\"><dd lay-value=\"\" class=\"layui-select-tips\">请选择</dd><dd lay-value=\"采购订单\" class=\"layui-this\">采购订单</dd><dd lay-value=\"进口采购单\" class=\"\">进口采购单</dd><dd lay-value=\"P/O\" class=\"\">P/O</dd></dl></div>");
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").removeAttr("data-edit","text");
-		        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").removeAttr("data-edit","text");
+		    }else if(layEvent === 'save'){	
+		    	var sy = "";
+		    	if(obj.data.priabillPrice<=0){
+			      	sy += "[预付金额不能小于或等于0]  ";
+			      }
+			      if(obj.data.priabillType==""||obj.data.priabillType=="请选择"){
+			      	console.log(obj.data.priabillType)
+			      	sy += "[请选择来源别]  ";
+			      }
+			      if(obj.data.priabillNumber==""){
+			      	sy += "[来源单号不能为空]  ";
+			      }
+			      sy += "请仔细填写";
+			      if(sy!="请仔细填写"){
+			      	layer.msg(sy);
+			      }else{
+			      	//修改编辑按钮名 
+	    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
+			        //修改lay-event对应值
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
+			        //修改样式
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
+			        //单元格的禁用  
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",false);
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").attr("disabled","disabled");
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",false);
+			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",false);
+			        form.render('select');
+			        
+			        //向服务端发起请求
+			        $.ajax({
+			        	url:"http://127.0.0.1:8080/PriadetailsController/insertAndDelete",
+			        	type:"post",
+			        	data : JSON.stringify(obj.data),
+				        dataType:'json', 
+				        contentType : "application/json;charset=utf-8",			        	
+			        	success:function(result){
+			        		console.log("新增删除："+result);
+			        		layer.msg('编辑成功！');
+			        	}
+			        });
+				  }		    	
 		    }
-		  });
-        
-        
+		    	//下拉框监听事件
+		    	form.on('select', function(data){
+				  /*console.log(data.elem);*/ //得到select原始DOM对象
+				  /*console.log(data.value);*/ //得到被选中的值]
+				  //将被选中的值赋给当前行priabillType数据
+				  obj.update({
+				  	priabillType:data.value
+				  });
+				}); 
+				
+		  });  
+
         //监听头工具栏事件
 		    table.on('toolbar(materialsContent2)', function(obj){
 		  	layer.msg('1');
 		    /*var checkStatus = table.checkStatus(obj.config.id)
-		    ,data = checkStatus.data; //获取选中的数据*/
+		    ,data = checkStatus.data; *///获取选中的数据
 		    switch(obj.event){
 		      case 'add':
 		        	layer.msg('添加一行表格');
+		        	console.log(obj);
                    /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
                    var datas = table.cache.materialsContent2;
                    
@@ -954,6 +1048,7 @@
 		      		break;
 		    };
 		  });
+        }
     });
 </script>
 </body>

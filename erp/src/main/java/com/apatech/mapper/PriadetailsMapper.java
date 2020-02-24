@@ -11,6 +11,8 @@ import com.apatech.domain.Team;
 public interface PriadetailsMapper {
 	 List<Priadetails> selectAll();
 	 
+	 List<Priadetails> selectByPriabillSupplierName(String priabillCustom10,String priabillId);
+	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 

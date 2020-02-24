@@ -23,7 +23,7 @@ public class Priadetails {
     private String priabillCustom7;//自定义7
     private String priabillCustom8;//自定义8
     private String priabillCustom9;//自定义9
-    private String priabillCustom10;//自定义10
+    private String priabillCustom10;//自定义10 --供应商名称
     
     
     

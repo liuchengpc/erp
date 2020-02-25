@@ -9,19 +9,19 @@ public class Check_detailed {
     private String cdId;//id（主键 唯一）
     private String proofNumber;//凭证编号    
     private String checkId;//盘点单id（外键 唯一）
-    private String cdName;//物料编号
-    private String cdFormat;//物料名称
-    private String cdIncludeTax;//规格型号
-    private Integer cdVolume;//单位名称
-    private Integer cdInventoriesNumber;//账面数量
-    private Integer cdProfitsLossesNumber;//盘点数量
-    private Float cdUnitPrice;//盈亏数量
-    private Float cdLossAmountProfit;//单价
-    private String cdBatchNumber;//盈亏金额
-    private String cdCause;//批号
-    private String cdAuditing;//原因
-    private String cdYn;//是否审核
-    private String matterId;//是否删除（0 否 1 是 ，默认0）
+    private String matterId;//物料编号
+    private String cdName;//物料名称
+    private String cdFormat;//规格型号
+    private String cdIncludeTax;//单位名称
+    private Integer cdVolume;//账面数量
+    private Integer cdInventoriesNumber;//盘点数量
+    private Integer cdProfitsLossesNumber;//盈亏数量
+    private Float cdUnitPrice;//单价
+    private Float cdLossAmountProfit;//盈亏金额
+    private String cdBatchNumber;//批号
+    private String cdCause;//原因
+    private String cdAuditing;//是否审核
+    private String cdYn;//是否删除（0 否 1 是 ，默认0）
     private String cdCustom1;//自定栏1
     private String cdCustom2;//自定栏2
     private String cdCustom3;//自定栏3

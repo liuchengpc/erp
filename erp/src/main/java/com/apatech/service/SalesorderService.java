@@ -29,6 +29,7 @@ public class SalesorderService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+<<<<<<< HEAD
 	public PageInfo<Salesorder> selectAllbypage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -41,7 +42,15 @@ public class SalesorderService {
     }
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
+=======
+	 
+	 public List<Salesorder> selectAll(){
+	    	return dao.selectAll();
+>>>>>>> branch 'master' of https://github.com/liuchengpc/erp.git
     }
+	 public String getno(String billdate){
+		 return dao.getno(billdate);
+	 }
 	
     public int deleteByPrimaryKey(String soId){
     	return dao.deleteByPrimaryKey(soId);

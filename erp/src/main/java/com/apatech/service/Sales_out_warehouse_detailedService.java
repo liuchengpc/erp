@@ -31,6 +31,10 @@ public class Sales_out_warehouse_detailedService {
 		return dao.deletelist(id);
 	}
 	
+	public List<Sales_out_warehouse_detailed> selectAll(){
+		return dao.selectAll();
+	}
+	
 	
 	public PageInfo<Sales_out_warehouse_detailed> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());

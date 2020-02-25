@@ -2,6 +2,7 @@ package com.apatech.mapper;
 
 import java.util.List;
 
+import com.apatech.pojo.PurchaseStoragePojo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,4 +33,12 @@ public interface Purchase_storageMapper {
     int updateByPrimaryKeySelective(Purchase_storage record);
 
     int updateByPrimaryKey(Purchase_storage record);
+
+    PurchaseStoragePojo selectLast();
+
+    PurchaseStoragePojo selectPrev(@Param("lineId") Integer lineId);
+
+    PurchaseStoragePojo selectNext(@Param("lineId") Integer lineId);
+
+    PurchaseStoragePojo selectFirst();
 }

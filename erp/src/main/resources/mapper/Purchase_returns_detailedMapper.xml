@@ -9,7 +9,7 @@
     <result column="pured_remark" jdbcType="VARCHAR" property="puredRemark" />
     <result column="pured_price_include_tax" jdbcType="VARCHAR" property="puredPriceIncludeTax" />
     <result column="pured_single_status" jdbcType="INTEGER" property="puredSingleStatus" />
-    <result column="pured_document_date" jdbcType="DATE" property="puredDocumentDate" />
+    <result column="pured_document_date" jdbcType="REAL" property="puredDocumentDate" />
     <result column="pured_document_number" jdbcType="VARCHAR" property="puredDocumentNumber" />
     <result column="pured_price" jdbcType="REAL" property="puredPrice" />
     <result column="pured_money" jdbcType="REAL" property="puredMoney" />
@@ -277,7 +277,7 @@
         pured_single_status = #{puredSingleStatus,jdbcType=INTEGER},
       </if>
       <if test="puredDocumentDate != null">
-        pured_document_date = #{puredDocumentDate,jdbcType=DATE},
+        pured_document_date = #{puredDocumentDate,jdbcType=REAL},
       </if>
       <if test="puredDocumentNumber != null">
         pured_document_number = #{puredDocumentNumber,jdbcType=VARCHAR},

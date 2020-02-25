@@ -36,6 +36,19 @@
 	    ORDER BY Priadetails_id DESC
   </select>
   
+  <select id="selectByPriabillSupplierName" parameterType="com.apatech.domain.Priadetails" resultMap="BaseResultMap">
+	    SELECT priadetails.Priadetails_id,priadetails.Priabill_id,priadetails.Priabill_price, 
+	    priadetails.Priabill_type,priadetails.Priabill_number,priadetails.Priabill_remarks, 
+	    priadetails.Priabill_Auditing,priadetails.Priabill_yn,priadetails.Priabill_custom1, 
+	    priadetails.Priabill_custom2,priadetails.Priabill_custom3,priadetails.Priabill_custom4,
+	    priadetails.Priabill_custom5,priadetails.Priabill_custom6,priadetails.Priabill_custom7, 
+	    priadetails.Priabill_custom8,priadetails.Priabill_custom9,priadetails.Priabill_custom10 
+	    FROM priadetails,priabill  WHERE priadetails.Priabill_yn=0 AND priabill.priabill_yn=0 AND 
+	    priabill.priabill_id=priadetails.Priabill_id 
+	    AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR} AND priabill.priabill_id=#{priabillId,jdbcType=VARCHAR}    
+	    ORDER BY priadetails.Priadetails_id DESC
+  </select>
+  
   <select id="selectCount"  resultType="Integer">
   		SELECT COUNT(*) FROM priadetails  WHERE Priabill_yn=0 
   </select>

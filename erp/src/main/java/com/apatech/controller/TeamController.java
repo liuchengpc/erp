@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import com.apatech.domain.Supplier;
 import com.apatech.domain.Team;
 import com.apatech.service.TeamService;
 import com.github.pagehelper.PageInfo;
@@ -33,6 +34,21 @@ public class TeamController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Team> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Team> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入SupplierController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Team> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
     }
 	
 	/**

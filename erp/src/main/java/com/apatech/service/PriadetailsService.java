@@ -20,10 +20,10 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public PageInfo<Priadetails> selectAllpage(Integer page,Integer limit){
-    	System.out.println("分页的集合："+dao.selectAll());
+	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillCustom10,String priabillId){
+    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillCustom10,priabillId));
     	PageHelper.startPage(page, limit);
-    	List<Priadetails> list=dao.selectAll();
+    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillCustom10,priabillId);
 
     	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
     	return pageFy;
@@ -43,6 +43,20 @@ public class PriadetailsService {
     
     public int insertSelective(Priadetails record){
     	return dao.insertSelective(record);
+    }
+    
+    //Xz新增+删除
+    public int insertAndDelete(Priadetails record){
+    	//先删除
+    	int i = dao.deleteByPrimaryKey(record.getPriadetailsId());
+    	System.out.println("PriadetailsService预付款明细--删除成功");
+		int ins = dao.insertSelective(record);
+		if(ins>0) {
+			System.out.println("PriadetailsService预付款明细新--增成功");
+			return 1;
+		}else {
+			return 0;
+		}
     }
 
     public Priadetails selectByPrimaryKey(String priadetailsId){

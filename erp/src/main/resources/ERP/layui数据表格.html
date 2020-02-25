@@ -32,7 +32,7 @@
 </head>
 <body>
  
-<table class="layui-hide" id="test" lay-filter="test"></table>
+<!--<table class="layui-hide" id="test" lay-filter="test"></table>
  
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
@@ -187,7 +187,89 @@ layui.use('table', function(){
   
 
 });
+</script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+<table id='task-list' lay-filter='task-list'></table> <!--需要渲染的表格-->
+<script type="text/javascript">
+	layui.use('table', function(){
+	  var table = layui.table;
+		var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+	  table.render({
+	   elem: '#task-list'
+	   , height: 472
+	   , title: '决策场景信息'
+	   , limit: 5
+	   , page: {
+	    theme: '#1E9FFF',
+	    layout: ['prev', 'page', 'next', 'skip', 'count', 'limit'] //自定义分页布局
+	    , limit: 10
+	    , groups: 1 //只显示 1 个连续页码
+	    , first: false //不显示首页
+	    , last: false //不显示尾页
+	   }
+	   , cols: [[
+	    {field: 'id', title: '序号', width: 60, style: 'font-size: 12px; color: #666'},
+	    {field: 'modelNum', title: '场景模型编号', style: 'font-size: 12px; color: #666'},
+	    {field: 'modelName', title: '场景模型名称', style: 'font-size: 12px; color: #666'},
+	    {field: 'taskNum', title: '当前任务编号', style: 'font-size: 12px; color: #666'},
+	    {field: 'taskLevel', title: '当前任务阶段', width: 150, templet: "#level", style: 'font-size: 12px; color: #666'},
+	    {field: 'report', title: '报告', width: 60, event: 'viewReport', templet: "#reportID", style: 'font-size: 12px; color: #666; cursor:pointer', edit: 'text',},
+	    // 这里设置event，事件名称自定义。
+	    {field: 'history', title: '历史任务', width: 100, style: 'font-size: 12px; color: #666'},
+	    {
+	     fixed: 'right',
+	     title: '操作',
+	     width: 100,
+	     toolbar: "#table-linetoolbar",
+	     align: 'center',
+	     style: 'font-size: 12px; color: #666'
+	    }
+	   ]]
+	   , cellMaxWidth: 100
+	   , parseData: function (res) {
+	    return res;
+	   }
+	   ,data: [{
+							      "id": ""
+							      ,"modelNum": ""
+							      ,"modelName": "销售订单"
+							      ,"taskNum": ""
+							      ,"taskLevel": ""
+							      ,"report":""
+							      ,"history":""
+	    },]
+	   , id: 'task-list'
+	  });
+	 
+	table.on('tool(task-list)', function (obj) {
+	   let event = obj.event;
+	 
+	 if (event === "viewReport"){
+	 	layer.open({
+	            type: 2,
+	            title: '单选--销售订单',
+	            content: $('#app'),
+	            fixed: false, //不固定
+	            area: ['680px', '470px'],
+	            content: 'receivablesbillTC1.html'
+	        });
+	 }
+	})
+
+})
 </script>
+ 
 
 </body>
 </html>

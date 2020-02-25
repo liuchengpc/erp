@@ -10,7 +10,7 @@ import com.apatech.domain.Purchase_returns;
 import com.apatech.domain.Team;
 
 public interface Purchase_returnsMapper {
-	List<Purchase_returns> selectAll();
+	 List<Purchase_returns> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -43,4 +43,6 @@ public interface Purchase_returnsMapper {
     PurchaseReturnsPojo selectFirst();
 
     String selectPureId();
+
+    int insertWithDetails(PurchaseReturnsPojo returnsPojo);
 }

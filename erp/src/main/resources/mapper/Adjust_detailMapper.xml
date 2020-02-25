@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Adjust_detailMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Adjust_detail">
+    <id column="adde_id" jdbcType="INTEGER" property="addeId" />
+    <result column="d_matterid" jdbcType="VARCHAR" property="dMatterid" />
+    <result column="d_adjustprice" jdbcType="REAL" property="dAdjustprice" />
+    <result column="d_decoration" jdbcType="VARCHAR" property="dDecoration" />
+    <result column="d_apid" jdbcType="VARCHAR" property="dApid" />
+    <result column="adde_custom1" jdbcType="VARCHAR" property="addeCustom1" />
+    <result column="adde_custom2" jdbcType="VARCHAR" property="addeCustom2" />
+    <result column="adde_custom3" jdbcType="VARCHAR" property="addeCustom3" />
+    <result column="adde_custom4" jdbcType="VARCHAR" property="addeCustom4" />
+    <result column="adde_custom5" jdbcType="VARCHAR" property="addeCustom5" />
+    <result column="adde_custom6" jdbcType="VARCHAR" property="addeCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    adde_id, d_matterid, d_adjustprice, d_decoration, d_apid, adde_custom1, adde_custom2, 
+    adde_custom3, adde_custom4, adde_custom5, adde_custom6
+  </sql>
+  
+   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from adjust_detail 
+	    ORDER BY adde_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from adjust_detail
+    where adde_id = #{addeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from adjust_detail
+    where adde_id = #{addeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Adjust_detail">
+    insert into adjust_detail (adde_id, d_matterid, d_adjustprice, 
+      d_decoration, d_apid, adde_custom1, 
+      adde_custom2, adde_custom3, adde_custom4, 
+      adde_custom5, adde_custom6)
+    values (#{addeId,jdbcType=INTEGER}, #{dMatterid,jdbcType=VARCHAR}, #{dAdjustprice,jdbcType=REAL}, 
+      #{dDecoration,jdbcType=VARCHAR}, #{dApid,jdbcType=VARCHAR}, #{addeCustom1,jdbcType=VARCHAR}, 
+      #{addeCustom2,jdbcType=VARCHAR}, #{addeCustom3,jdbcType=VARCHAR}, #{addeCustom4,jdbcType=VARCHAR}, 
+      #{addeCustom5,jdbcType=VARCHAR}, #{addeCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Adjust_detail">
+    insert into adjust_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addeId != null">
+        adde_id,
+      </if>
+      <if test="dMatterid != null">
+        d_matterid,
+      </if>
+      <if test="dAdjustprice != null">
+        d_adjustprice,
+      </if>
+      <if test="dDecoration != null">
+        d_decoration,
+      </if>
+      <if test="dApid != null">
+        d_apid,
+      </if>
+      <if test="addeCustom1 != null">
+        adde_custom1,
+      </if>
+      <if test="addeCustom2 != null">
+        adde_custom2,
+      </if>
+      <if test="addeCustom3 != null">
+        adde_custom3,
+      </if>
+      <if test="addeCustom4 != null">
+        adde_custom4,
+      </if>
+      <if test="addeCustom5 != null">
+        adde_custom5,
+      </if>
+      <if test="addeCustom6 != null">
+        adde_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addeId != null">
+        #{addeId,jdbcType=INTEGER},
+      </if>
+      <if test="dMatterid != null">
+        #{dMatterid,jdbcType=VARCHAR},
+      </if>
+      <if test="dAdjustprice != null">
+        #{dAdjustprice,jdbcType=REAL},
+      </if>
+      <if test="dDecoration != null">
+        #{dDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="dApid != null">
+        #{dApid,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom1 != null">
+        #{addeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom2 != null">
+        #{addeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom3 != null">
+        #{addeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom4 != null">
+        #{addeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom5 != null">
+        #{addeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom6 != null">
+        #{addeCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Adjust_detail">
+    update adjust_detail
+    <set>
+      <if test="dMatterid != null">
+        d_matterid = #{dMatterid,jdbcType=VARCHAR},
+      </if>
+      <if test="dAdjustprice != null">
+        d_adjustprice = #{dAdjustprice,jdbcType=REAL},
+      </if>
+      <if test="dDecoration != null">
+        d_decoration = #{dDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="dApid != null">
+        d_apid = #{dApid,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom1 != null">
+        adde_custom1 = #{addeCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom2 != null">
+        adde_custom2 = #{addeCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom3 != null">
+        adde_custom3 = #{addeCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom4 != null">
+        adde_custom4 = #{addeCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom5 != null">
+        adde_custom5 = #{addeCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="addeCustom6 != null">
+        adde_custom6 = #{addeCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adde_id = #{addeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Adjust_detail">
+    update adjust_detail
+    set d_matterid = #{dMatterid,jdbcType=VARCHAR},
+      d_adjustprice = #{dAdjustprice,jdbcType=REAL},
+      d_decoration = #{dDecoration,jdbcType=VARCHAR},
+      d_apid = #{dApid,jdbcType=VARCHAR},
+      adde_custom1 = #{addeCustom1,jdbcType=VARCHAR},
+      adde_custom2 = #{addeCustom2,jdbcType=VARCHAR},
+      adde_custom3 = #{addeCustom3,jdbcType=VARCHAR},
+      adde_custom4 = #{addeCustom4,jdbcType=VARCHAR},
+      adde_custom5 = #{addeCustom5,jdbcType=VARCHAR},
+      adde_custom6 = #{addeCustom6,jdbcType=VARCHAR}
+    where adde_id = #{addeId,jdbcType=INTEGER}
+  </update>
+</mapper>

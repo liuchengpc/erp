@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/bootstrap.css" /> 
+    <link href="css/fontawesome.css" rel="stylesheet">
+	<link href="css/brands.css" rel="stylesheet">
+	<link href="css/solid.css" rel="stylesheet">
+
+    
+    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
+    <style>
+        #app{
+            padding: 15px;
+        }
+        .layui-input{
+            height: 24px !important;
+        }
+        .layui-form-item{
+            margin-bottom: 8px !important;
+        }
+        .layui-form-checkbox{
+            margin-top: 3px !important;
+        }
+        .layui-input-block{
+            height: 24px !important;
+            min-height: 24px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="layui-row">
+        <!-- 4 1 1 3-->
+        <div class="layui-col-xs6">
+            <div class="layui-row">
+                <div class="layui-col-xs4">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0;">
+                                <input type="text" class="layui-input" disabled="disabled" value="部门">
+                            </div>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>   
+    <div class="layui-row">
+        <!--<div class="layui-col-xs2" style="height: 296px;">
+
+        </div>-->
+        <div class="layui-col-xs10" style="height: 296px;">
+            <!--<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+                <colgroup>
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>供应商编号</th>
+                    <th>供应商简称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tb">
+                
+                </tbody>
+            </table>-->
+            <table id="materialsContent2" class="layui-hide" lay-filter="materialsContent2">
+			
+			</table>
+        </div>
+    </div>
+</div>
+<script src="layui.js"></script>
+<script type="text/html" id="barDemo1">
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">取回</a>
+</script>
+<script>
+	layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+        var table = layui.table;
+		var $ = layui.jquery, layer = layui.layer;
+      
+        var tables=table.render({
+            elem: '#materialsContent2'
+            ,url:'http://127.0.0.1:8080/ProjectController/selectAllpageXz'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+            ,toolbar: 'default'//开启工具栏
+            ,totalRow: true //开启合计行
+			,parseData: function(res){
+				return {
+					"code":0,
+					"msg":"",
+					"count":res.total,
+					data:res.list
+				};
+			}
+            , cols: [[
+            	{type: 'checkbox'}
+            	,{field: 'projectId', title: '项目编号'}
+                ,{field: 'projectName', title: '项目名称 '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
+            ]]
+            ,page:true//是否开启分页
+            ,limits:[1,2,3]//选择每页显示多少条数据
+            ,limit:2//初始每页显示条数
+        });
+        
+        //监听头工具栏事件
+		    table.on('toolbar(materialsContent2)', function(obj){
+		  	layer.msg('1');
+		    /*var checkStatus = table.checkStatus(obj.config.id)
+		    ,data = checkStatus.data; //获取选中的数据*/
+		    switch(obj.event){
+		      case 'add':
+		        	layer.msg('添加一行表格');
+                   /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+                   var datas = table.cache.materialsContent2;
+                   
+                   //定义一个空数组
+                   var demo = [];
+                   
+                   //将之前的数组备份
+                   for(var i =0;i<datas.length;i++){
+                   		demo.push(datas[i]);
+                   }
+                    
+                   //添加一组空数据
+                   demo.push({
+                   		"priadetailsId":"haha"
+                   		,"priabillPrice":""
+                   		,"priabillType":""
+                   		,"priabillNumber":""
+                   		,"priabillRemarks":""                   		
+                   });*/
+                  
+                    tables.reload({	//将数据重新载入表格
+                        
+                    });
+		     		 break;
+		      case 'update':
+		        /*if(data.length === 0){
+		          layer.msg('请选择一行');
+		        } else if(data.length > 1){
+		          layer.msg('只能同时编辑一个');
+		        } else {
+		          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+		        }*/
+		       
+		       	//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+		       	var datas = table.cache.materialsContent2;
+		       	
+		       	//
+		       	for(var i =0;i<datas.length;i++){
+                   		
+                   }
+		      case 'delete':
+		        if(data.length === 0){
+		          layer.msg('请选择一行');
+		        } else {
+		          layer.msg('删除');
+		        }
+		      		break;
+		    };
+		  });
+		  
+		  //监听行工具事件
+		  table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+			    var data = obj.data //获得当前行数据
+			    ,layEvent = obj.event; //获得 lay-event 对应的值
+			    if(layEvent === 'detail'){
+			       var index = parent.layer.getFrameIndex(window.name);
+				   var iframe = $(window.parent.document).contents();
+				   iframe.find("#priabillProjectName").val(data.projectName);
+				   iframe.find("#projectId").val(data.projectId);
+			       parent.layer.close(index);
+			    }
+		  });
+    });
+	
+    /*//必须设置允许跨域访问session中数据(cookie)
+		axios.default.withCredentials = true;
+	//必须设置允许跨域访问session中数据(cookie)
+		axios.default.withCredentials = true;
+		//创建vue实例
+		var listVm = new Vue({
+			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
+			data: {//保存vue.js中要显示到html页面的数据
+				page: [],
+				diasabledInput:true,//input框是否可以编辑
+				isinsert:false,//是否是新增状态
+				isedit:false,//是否是编辑状态
+				
+		      	goFirstPage1:false,//第一笔
+	            goPrePage1:false,//上一笔				            
+             	goNextPage1:false,//下一笔
+		     	goLastPage1:false,//后一笔
+             	inset1:false,   //新增  
+             	return1:true,//取消
+             	saves1:true,//保存 
+             	update1:false,//编辑
+             	deletes1:false,//删除		
+			    Auditing1:true,//审核
+			    noAuditing1:true,//取消审核
+			    
+			    lay1:'layui-btn-primary',
+			    lay2:'layui-btn',
+			    
+			    tp:true
+			},
+			methods: {//定义函数
+
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
+//					alert("进入goPage")
+					var this_ = this;
+					$.ajax({
+						url : "http://127.0.0.1:8080/SupplierController/selectAllpage",
+						type:"get",
+					  	data : "pageNum="+page+"&pageSize="+size,
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		//res.data获取服务器返回的数据
+							this_.page = res;
+							console.info(res);
+							$.each(res.list, function(i,obj) {
+								console.info("部门弹窗分页查询数据：");
+								console.info(this_.page);
+								var tr = $("<tr><td>"+obj.supplierId+"</td><td>"+obj.supplierEasyname+"</td><td><button type=\"button\" class=\"layui-btn layui-btn-primary layui-btn-xs\" i='"+obj.supplierId+"'>取回</button></td></tr>");
+								$("#tb").append(tr);
+							});
+				        }
+					}); 					
+				},
+				goPrePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+//						alert(this.page.prePage+"："+this.page.pageSize)
+						this.goPage(this.page.prePage, this.page.pageSize);
+					}
+				},
+				goNextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+//						alert(this.page.nextPage+"："+this.page.pageSize)
+						this.goPage(this.page.nextPage, this.page.pageSize);
+					}
+				},
+				goFirstPage: function() {//第一条
+//					alert(1+"："+this.page.pageSize)
+					this.goPage(1, this.page.pageSize);
+				},
+				goLastPage: function() {//最后一条
+//					alert(this.page.pages+"："+this.page.pageSize)
+					this.goPage(this.page.pages, this.page.pageSize);
+				},
+				returns: function() {//取消
+					this.goPage(1,1);
+					
+					this.diasabledInput= true;//input不可编辑
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				}
+			},
+			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+							
+				var this_ = this;				
+				this_.goPage(1, 1);				
+			}
+		
+		});*/
+</script>
+</body>
+</html>

@@ -11,14 +11,65 @@
         #app {
             padding: 15px;
         }
+        .seltj{
+        	border: 0px solid #FFF3F3;
+        	text-align: center;
+			margin:0 auto;
+         
+        }button{
+        	
+        	padding:3px 30px;
+        	margin: 10px;
+        	border:1px solid darkgray;
+        }
+       
     </style>
 </head>
 <body>
     <div id="app">
+    	
+    	<div  class="seltj">
+				<form>
+					<table  class="layui-table" >
+						<tr>
+							<td>物料区间：</td>
+							<td><input type="text" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="text" class="layui-input"></td>
+						</tr>
+						<tr>
+							<td>仓库区间：</td>
+							<td><input type="text" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="text" class="layui-input"></td>
+						</tr>
+						<tr>
+							<td>日期区间：</td>
+							<td><input type="date" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="date" class="layui-input"></td>
+						</tr>
+					</table>
+					
+					<div class="layui-input-block">
+						<span><input type="checkbox"/>区分仓库</span>
+						<button class="layuiadmin-btn" title="确认">确认</button>
+						<button class="layuiadmin-btn" title="取消">取消</button>
+						<button class="layuiadmin-btn" title="固定报表">固定报表</button>
+					</div>
+				</form>
+			</div>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
         <div class="layui-row">
-            <span style="color:#393D49">文本1</span>
-            <span style="color:#393D49">文本2</span>
-            <span style="color:#393D49">文本3</span>
+            <span style="color:#393D49">物料区间：</span>
+            <span style="color:#393D49">日期区间：</span>
+            <span style="color:#393D49">仓库区间：</span>
         </div>
         <div class="layui-row">
 
@@ -31,43 +82,34 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
-                    <th>格言</th>
+                    <th>物料编号</th>
+                    <th>物料名称</th>
+                    <th>规格型号</th>
+                    <th>物料类别</th>
+                    <th>单位</th>
+                    <th>仓库编号</th>
+                    <th>仓库名称</th>
+                    <th>上期结存数量</th>
+                    <th>本期收入数量</th>
+                    <th>本期发出数量</th>
+                    <th>期末结存数量</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>贤心</td>
-                    <td>汉族</td>
-                    <td>1989-10-14</td>
-                    <td>人生似修行</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                <tr>
-                    <td>张爱玲</td>
-                    <td>汉族</td>
-                    <td>1920-09-30</td>
-                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                </tr>
-                <tr>
-                    <td>Helen Keller</td>
-                    <td>拉丁美裔</td>
-                    <td>1880-06-27</td>
-                    <td> Life is either a daring adventure or nothing.</td>
-                </tr>
-                <tr>
-                    <td>岳飞</td>
-                    <td>汉族</td>
-                    <td>1103-北宋崇宁二年</td>
-                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                </tr>
-                <tr>
-                    <td>孟子</td>
-                    <td>华夏族（汉族）</td>
-                    <td>公元前-372年</td>
-                    <td>猿强，则国强。国强，则猿更强！ </td>
-                </tr>
+          
                 </tbody>
             </table>
         </div>

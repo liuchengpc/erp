@@ -161,13 +161,12 @@ public class wd_adjustController {
 		//1
 		String upId=record.getUpId();
 		System.out.println("upId"+upId);
-		//空：不知道为啥
-		String upname=record.getUpName();
-		System.out.println("upname"+upname);
 		String doId=record.getUpCustom5();
+		String upname=record.getUpName();
 		String doname=record.getUpCustom6();
-		System.out.println("upid:"+upId);
+		
 		//修改科目
+		System.out.println("修改增减值科目"+upId+upname+doId+doname+updowmid+apDateid);
 		int i=wddao.updatekm(upId,upname,doId,doname,updowmid,apDateid);
 		
 		//修改调价价格

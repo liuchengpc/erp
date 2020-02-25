@@ -57,8 +57,8 @@
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label" style="color:#009688;">客户</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="title"  v-model="pages.customerName" class="layui-input"  hidden>
-			                        <input type="text" name="title"  class="layui-input" v-model="pages.customerId" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
+			                        <input type="text" name="title"  v-model="pages.customerId	" class="layui-input"  hidden>
+			                        <input type="text" name="title" id="customerId" class="layui-input" v-model="pages.customerName" v-bind:disabled="diasabledInput" @keyup.f4="dfs()">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -343,8 +343,9 @@
 							this_.jztable();
 							
 				        }
-					}); 					
-				},
+					}); 			
+					
+				},	
 				jztable:function(){
 					/*加载表格数据2*/
 							layui.use('table', function(){
@@ -358,7 +359,7 @@
 							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
 							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text',}
 							      ,{field:'recedetailType', title:'来源别',}
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,edit: 'text',event: 'viewReport', templet: "#reportID", style: 'font-size: 12px; color: #666; cursor:pointer',}
+							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,edit: 'text',event: 'viewReport', style: 'font-size: 12px; color: #666; cursor:pointer',}
 							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
 							    ]]
 							    ,data: [{
@@ -464,6 +465,23 @@
 					  //因此你需要在相应的地方，执行下述方法来进行渲染
 					  form.render();
 					}); 
+				},
+				dfs: function() {//
+					layer.open({
+						type:2,
+						area:["800px","400px"],
+						content:"customerTC1.html",
+						/*success:function(iframe,index){ //iframe=>div
+							//获取子页面中body节点,通过jquery查找节点方式进行赋值
+							var body = layer.getChildFrame('body', index);  //获取的子页面HTML所有类容
+							var span = body.find("span");
+							var input = body.find("input");
+							//获取子页面的窗体对象,通过窗体对象对js中的变量或者函数进行调用
+							var iframeWin = window[iframe.find('iframe')[0]['name']]; 
+							iframeWin.id = 100;
+							iframeWin.printId();
+						}*/
+					});
 				},
 			
 				goPrePage: function() {//上一条

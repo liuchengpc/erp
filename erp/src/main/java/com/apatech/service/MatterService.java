@@ -22,7 +22,7 @@ public class MatterService {
 	private MatterMapper dao;
 	
 	//查询所有物料
-		public List<wdMatter> selectAll(){
+		public List<wdMatter> selectAll1(){
 			return dao.selectAllMatter();
 		}
 	public PageInfo<Matter> selectAllpage(Integer pageNum,Integer pageSize){
@@ -40,7 +40,7 @@ public class MatterService {
 	    	return dao.getno(billdate);
     }
 	 
-	 public List<Matter> selectAll(){
+	 public List<wdMatter> selectAll(){
 	    	return dao.selectAll();
  }
 	

@@ -10,7 +10,7 @@ import com.apatech.domain.Team;
 import com.apatech.domain.wdMatter;
 
 public interface MatterMapper {
-	 List<wdMatter> selectAll();
+	 List<Matter> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

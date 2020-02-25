@@ -41,7 +41,7 @@ public class MatterService {
     }
 	 
 	 public List<wdMatter> selectAll(){
-	    	return dao.selectAll();
+	    	return dao.selectAllMatter();
  }
 	
     public int deleteByPrimaryKey(String matterId){

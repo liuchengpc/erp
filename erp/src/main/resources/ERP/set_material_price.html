@@ -235,7 +235,8 @@
 													data:this_.page.list[0].list,
 													 cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 														,cols: [[
-															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'}, 
+															{templet:"#indexs",title: '(栏号)',sort: true,align: 'center'},
+															{field: 'mamuId',title: '(类型id)',sort: true,align: 'center'},
 															{field: 'mmatterName',title: '(物料名称)',sort: true,align: 'center'}, 
 															{field: 'matterId',title: '(物料编号)',sort: true,align: 'center'}, 
 															{field: 'mmatterSize',title: '(规格型号)',align: 'center'},
@@ -313,7 +314,7 @@
 			},
 			//点击编辑
 			edit:function(){
-				this.diasabledInput=false;//input可以输入
+				this.diasabledInput=true;//input不可以输入
 				this.isinsert=false;//关闭新增模式
 				this.isedit=true;//开启编辑模式
 				this.goFirstPage1 =true;//第一笔
@@ -328,7 +329,7 @@
 			    this.Auditing1 =false;//审核
 			    this.noAuditing1 =true;//取消审核
 			    
-			    $("table td:eq(8)").attr("data-edit","text");
+			    $("table td").attr("data-edit","text");
 			    //增值文本框隐藏
 			    $("#pro").remove();
 			    //减值文本框隐藏
@@ -421,7 +422,8 @@
 				}, 
 
 				//执行修改
-			/*	updates: function() {//编辑 
+			updates: function() {//编辑 
+				
 					var this_=this;
 					
 					//增值科目所修改的值
@@ -430,11 +432,37 @@
 					var downname = $("#sel1 option:selected").val();
 					//单据编号
 					var apDateid=$("#aplid").val();
-					var data=this_.page.list[0];
-					console.log(data);
-					},
-					*/
+					var mid=this_.page.list[0].list;
+					console.log(mid);
+					$.each(this_.page.list[0].list,function(a,b) {
+						b.upId=upname;
+						b.upName=$("#sel option:selected").text();
+						b.upCustom5=downname;
+						b.upCustom6=$("#sel1 option:selected").text();
+						
+						
+						
+					});
+					$.ajax({
+						type:"post",
+						url:host+"wd_adjustController/update",
+						data:JSON.stringify(this_.page.list[0]),
+                   		contentType:"application/json;charset=utf-8",
+						success:function(res){
+								if(res>=0){
+                    				alert("修改成功！");
+                    			}else{
+                    				alert("失败！");
+                    			}
+                    	}
+						
+					});
 					
+					
+					
+					
+					
+					},
 					
 					//清空文本框
 					clear:function(){
@@ -516,36 +544,23 @@
 							b.upCustom6=$("#sel1 option:selected").text();
 							
 							
-							
-							this_.page.list[0].apCustom6=b.apCustom6;
-							this_.page.list[0].apDateid=b.apDateid;
-							this_.page.list[0].apYn=b.apYn;
-							this_.page.list[0].apId=b.apId;
-							this_.page.list[0].dApId=b.dApId;
-							this_.page.list[0].updowmid=b.updowmid;
-							this_.page.list[0].upId=b.upId;
-							this_.page.list[0].upName=b.upName;
-							this_.page.list[0].upCustom5=b.upCustom5;
-							this_.page.list[0].upCustom6=b.upCustom6;
-							this_.page.list[0].dApid=b.dApid;
-							
 						});
 						
 							$.ajax({
-					type:"post",
-					url:host+"wd_adjustController/insert",
-					data:JSON.stringify(this_.page.list[0]),
-                    contentType:"application/json;charset=utf-8",
-					success:function(res){
-						if(res>0){
-                    		alert("新增成功！");
-                    	}else{
-                    		alert("新增失败！");
-                    	}
-					}
-					});
+									type:"post",
+									url:host+"wd_adjustController/insert",
+									data:JSON.stringify(this_.page.list[0]),
+                   					 contentType:"application/json;charset=utf-8",
+									success:function(res){
+										if(res>0){
+                    						alert("新增成功！");
+                    					}else{
+                    						alert("新增失败！");
+                    					}
+									}
+								});
 						
-					}
+							}
 					
 				});
 			

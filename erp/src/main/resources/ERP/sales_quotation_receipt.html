@@ -359,7 +359,7 @@
 						layer.open({
 							type:2,
 							title:"客户资料",
-							content:"set_customer_infomation.html",
+							content:"customerinfo.html",
 							area:['762px','450px']
 						})
 					},
@@ -368,7 +368,7 @@
 						layer.open({
 							type:2,
 							title:"币别资料",
-							content:"set_customer_infomation.html",
+							content:"currencyinfo.html",
 							area:['762px','450px']
 						})
 					},
@@ -506,8 +506,11 @@
 					},
 					//新增订单
 					addinfo: function() {
-						$(":input").val("");
-						  var myDate = new Date;
+							/* var page=this.page;
+							forEach(var page in index){
+								
+							} */
+							var myDate = new Date;
 						    var year = myDate.getFullYear(); //获取当前年
 						    var mon = myDate.getMonth() + 1; //获取当前月
 							if(mon<=9){

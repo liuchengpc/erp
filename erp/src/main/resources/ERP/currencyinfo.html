@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>币别资料</title>
+		<link rel="stylesheet" href="css/layui.css">
+		<link href="css/fontawesome.css" rel="stylesheet">
+		<link href="css/brands.css" rel="stylesheet">
+		<link href="css/solid.css" rel="stylesheet">
+		<link href="css/bootstrap.css" rel="stylesheet" />
+		<link href="css/font-awesome.css" />
+	</head>
+	<body>
+		<div id="app">
+			<table class="table table-hover" style="width:762px;border: 1px solid black">
+				<thead>
+					<tr>
+						<td>币别编号</td>
+						<td>币别简称</td>
+						<td>汇&nbsp;&nbsp;&nbsp;率</td>
+						<td>操&nbsp;&nbsp;&nbsp;作</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>RMB</td>
+						<td>人民币</td>
+						<td>1.0000</td>
+						<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" value="人民币"></td>
+					</tr>
+					<tr>
+						<td>EUR</td>
+						<td>欧元</td>
+						<td>7.6421</td>
+						<td>&nbsp;&nbsp;&nbsp;<input type="checkbox" value="欧元"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="button" @click="quhui" class="btn btn-default"style="margin-left:615px;">取回</button>
+		</div>
+	</body>
+	<script src="jquery-1.12.4.js"></script>
+	<script src="layui.js"></script>
+	<script src="js/vue.js"></script>
+	<script>
+		var info=new Vue({
+			el:"#app",
+			data(){
+				return{
+					listinfo:[]
+				}
+			},
+			methods:{
+				quhui:function(){
+				 var checked = [];
+						$('input:checkbox:checked').each(function() {
+							checked.push($(this).val());
+						});
+						if(checked==""){
+							alert("请选择要取回的列");
+						}else{
+							console.log(checked);
+						}
+				},
+			}
+		});
+	</script>
+</html>

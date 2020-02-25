@@ -26,7 +26,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color: #009688;">客户</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.soCustomerorder" name="soCustomerorder">
+									<input type="text" class="layui-input" v-model="pages.soCustomerorder" name="soCustomerorder"@keyup.f4="showClientWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -120,7 +120,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color: #009688;">币别</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId">
+									<input type="text" class="layui-input" v-model="pages.currencyId" name="currencyId" @keyup.f4="showCurrencyWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -452,6 +452,24 @@
 							this.goPage(this.page.nextPage);
 							this.logininfo();
 						}
+					},
+					//客户资料弹窗
+					showClientWindow(){
+						layer.open({
+							type:2,
+							title:"客户资料",
+							content:"customerinfo.html",
+							area:['762px','450px']
+						})
+					},
+					//币别资料弹窗
+					showCurrencyWindow(){
+						layer.open({
+							type:2,
+							title:"币别资料",
+							content:"currencyinfo.html",
+							area:['762px','450px']
+						})
 					},
 					//新增订单
 					addinfo: function() {

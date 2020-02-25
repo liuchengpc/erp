@@ -98,13 +98,13 @@
                 </div>
 
               
-                <div class="layui-col-xs1" style="margin-left: 3px;">
+                <!--<div class="layui-col-xs1" style="margin-left: 3px;">
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">取回</button>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
-    <div class="layui-row">
+ <!--   <div class="layui-row">
         <div class="layui-form">
             <div class="layui-form-item">
                 <div class="layui-input-block" style="margin-left: 0;">
@@ -116,13 +116,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="layui-row">
         <!--<div class="layui-col-xs2" style="height: 296px;">
 
         </div>-->
         <div class="layui-col-xs10" style="height: 296px;">
-            <table class="layui-hide" id="test" lay-filter="test"></table>
+            <table  id="test" lay-filter="test" class="layui-hide" ></table>
          	<script type="text/html" id="toolbarDemo">
 			  <div class="layui-btn-container">
 			    <button class="layui-btn layui-btn-xs" lay-event="getCheckData">获取选中行数据</button>
@@ -132,8 +132,9 @@
 			</script>
 			 
 			<script type="text/html" id="barDemo">
-			  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-			  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			  <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+			  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+			  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">取回</a>
 			</script>
             <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设置</button>
         </div>
@@ -199,10 +200,9 @@
 					    ,url:'http://127.0.0.1:8080/SalesorderController/selectAllpagelc'
 					    ,title: '用户数据表'
 //					    ,totalRow: true
-					    ,cellMinWidth: 150 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-					    
-					    
-					    
+					    ,cellMinWidth: 120 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+				      	,width: 650
+//  					,height: 330
 					    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
 					    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
 					      title: '提示'
@@ -226,27 +226,27 @@
 					    }
 					    ,cols: [[
 					      {type: 'checkbox', fixed: 'left',}
-					      ,{field:'soId', title:'id',   sort: true, }
-						    ,{field:'soDocumentTime', title:'单据时间',   }
-						    ,{field:'soDocumentnumber', title:'单据号码',   }
-						    ,{field:'soDeliveryAddress', title:'送货地址',   }
-						    ,{field:'sotId', title:'销售订单类型',   }
-						    ,{field:'soCustomerorder', title:'客户订单',   }
-						    ,{field:'soTax', title:'是否含税',   }
-						    ,{field:'currencyId', title:'币别id',   }
-						    ,{field:'soOderStatic', title:'单况',   }
-						    ,{field:'staffId', title:'业务人员编号',   }
-						    ,{field:'teamId', title:'所属部门编号',   }
-						    ,{field:'soMonograph', title:'制单人',   }
-						    ,{field:'soReviewer', title:'复核人员',   }
-						    ,{field:'soSubordinate', title:'所属项目',   }
-						    ,{field:'soWatchword', title:'表头条文',   }
-						    ,{field:'soTailclause', title:'表尾条文',   }
-						    ,{field:'soRemark', title:'备注',   }
-						    ,{field:'soAccountOwnership', title:'账款归属',   }
-						    ,{field:'soCollectionTime', title:'收款时间',   }
-						    ,{field:'soCollectionMonth', title:'收款月份',   }
-						    ,{field:'soCollectionTerms', title:'收款条件',   }
+					      ,{field:'soId', title:'id',   sort: true,}
+						    ,{field:'soDocumentTime', title:'单据时间',  }
+						    ,{field:'soDocumentnumber', title:'单据号码',  }
+						    ,{field:'soDeliveryAddress', title:'送货地址', }
+						    ,{field:'sotId', title:'销售订单类型',  }
+						    ,{field:'soCustomerorder', title:'客户订单',  }
+						    ,{field:'soTax', title:'是否含税',  }
+						    ,{field:'currencyId', title:'币别id',  }
+						    ,{field:'soOderStatic', title:'单况',  }
+						    ,{field:'staffId', title:'业务人员编号',  }
+						    ,{field:'teamId', title:'所属部门编号',  }
+						    ,{field:'soMonograph', title:'制单人',  }
+						    ,{field:'soReviewer', title:'复核人员',  }
+						    ,{field:'soSubordinate', title:'所属项目',  }
+						    ,{field:'soWatchword', title:'表头条文',  }
+						    ,{field:'soTailclause', title:'表尾条文',  }
+						    ,{field:'soRemark', title:'备注',  }
+						    ,{field:'soAccountOwnership', title:'账款归属',  }
+						    ,{field:'soCollectionTime', title:'收款时间',  }
+						    ,{field:'soCollectionMonth', title:'收款月份',  }
+						    ,{field:'soCollectionTerms', title:'收款条件',  }
 						    ,{field:'soCollectionTermsDay', title:'收款条件天数',}
 	//					    ,{field:'soAuditing', title:'是否审核',  fixed: 'left', unresize: false sort: true, }
 	//					    ,{field:'soYn', title:'是否删除（0 否 1 是 ，默认0）',  fixed: 'left', unresize: true, sort: true, }
@@ -256,18 +256,20 @@
 	//					    ,{field:'soCustom4', title:'自定义4',  fixed: 'left', unresize: true, sort: true, }
 	//					    ,{field:'soCustom5', title:'自定义5',  fixed: 'left', unresize: true, sort: true, }
 	//					    ,{field:'soCustom6', title:'自定义6',  fixed: 'left', unresize: true, sort: true, }
-					      
+					       , {fixed: 'right', title: '操作' ,toolbar: '#barDemo'}
 					    ]]
-					    ,done: function(res, curr, count){
+					    /*,done: function(res, curr, count){
 					      //数据渲染完的回调。
 					      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
 					      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
-					     }
+					     }*/
 					    ,page:{
 					    	limit:3,//指定每页显示的条数
 					    	limits:[3,5,10,15,20,25,30],//每页条数的选择项
 					    }
 					  });
+				  
+				  
 				  
 				  
 				  //------------------------工具栏事件-------------------
@@ -353,6 +355,21 @@
 							console.info(obj)
 							alert(obj.data.soId)
 							parent["listVm"].page2.recedetailNumber=obj.data.soId;
+				  });
+				  
+				  
+				   //监听行工具事件
+				  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+					    var data = obj.data //获得当前行数据
+					    ,layEvent = obj.event; //获得 lay-event 对应的值
+					    if(layEvent === 'detail'){
+					       var index = parent.layer.getFrameIndex(window.name);
+						   var iframe = $(window.parent.document).contents();
+		//				   iframe.find("#customerId").val(data.customerName);
+							parent["listVm"].page.list[0].customerId=data.customerId;
+							parent["listVm"].page.list[0].customerName=data.customerName;
+					       parent.layer.close(index);
+					    }
 				  });
 				  //------------------------工具栏事件-------------------
 				  

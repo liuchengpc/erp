@@ -9,11 +9,11 @@
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
     <result column="project_id" jdbcType="VARCHAR" property="projectId" />
     <result column="priabill_supplier_name" jdbcType="VARCHAR" property="priabillSupplierName" />
-    <result column="priabill_sat_name1" jdbcType="INTEGER" property="priabillSatName1" />
+    <result column="priabill_sat_name1" jdbcType="VARCHAR" property="priabillSatName1" />
     <result column="priabill_Price1" jdbcType="REAL" property="priabillPrice1" />
-    <result column="priabill_sat_name2" jdbcType="INTEGER" property="priabillSatName2" />
+    <result column="priabill_sat_name2" jdbcType="VARCHAR" property="priabillSatName2" />
     <result column="priabill_Price2" jdbcType="REAL" property="priabillPrice2" />
-    <result column="priabill_sat_name3" jdbcType="INTEGER" property="priabillSatName3" />
+    <result column="priabill_sat_name3" jdbcType="VARCHAR" property="priabillSatName3" />
     <result column="priabill_Price3" jdbcType="REAL" property="priabillPrice3" />
     <result column="priabill_zhekou" jdbcType="INTEGER" property="priabillZhekou" />
     <result column="priabill_endtime" jdbcType="DATE" property="priabillEndtime" />
@@ -87,9 +87,9 @@
       priabill_custom9, priabill_custom10)
     values (#{priabillId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{scsId,jdbcType=INTEGER}, 
       #{staffId,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
-      #{priabillSupplierName,jdbcType=VARCHAR}, #{priabillSatName1,jdbcType=INTEGER}, 
-      #{priabillPrice1,jdbcType=REAL}, #{priabillSatName2,jdbcType=INTEGER}, #{priabillPrice2,jdbcType=REAL}, 
-      #{priabillSatName3,jdbcType=INTEGER}, #{priabillPrice3,jdbcType=REAL}, #{priabillZhekou,jdbcType=INTEGER}, 
+      #{priabillSupplierName,jdbcType=VARCHAR}, #{priabillSatName1,jdbcType=VARCHAR}, 
+      #{priabillPrice1,jdbcType=REAL}, #{priabillSatName2,jdbcType=VARCHAR}, #{priabillPrice2,jdbcType=REAL}, 
+      #{priabillSatName3,jdbcType=VARCHAR}, #{priabillPrice3,jdbcType=REAL}, #{priabillZhekou,jdbcType=INTEGER}, 
       #{priabillEndtime,jdbcType=DATE}, #{priabillPayablestime,jdbcType=TIMESTAMP}, #{priabillCurrencyName,jdbcType=VARCHAR}, 
       #{priabillCurrencyInexchange,jdbcType=VARCHAR}, #{priabillType,jdbcType=VARCHAR}, 
       #{priabillVoucherno,jdbcType=VARCHAR}, #{priabillTeamName,jdbcType=VARCHAR}, #{priabillProjectName,jdbcType=VARCHAR}, 
@@ -241,19 +241,19 @@
         #{priabillSupplierName,jdbcType=VARCHAR},
       </if>
       <if test="priabillSatName1 != null">
-        #{priabillSatName1,jdbcType=INTEGER},
+        #{priabillSatName1,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice1 != null">
         #{priabillPrice1,jdbcType=REAL},
       </if>
       <if test="priabillSatName2 != null">
-        #{priabillSatName2,jdbcType=INTEGER},
+        #{priabillSatName2,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice2 != null">
         #{priabillPrice2,jdbcType=REAL},
       </if>
       <if test="priabillSatName3 != null">
-        #{priabillSatName3,jdbcType=INTEGER},
+        #{priabillSatName3,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice3 != null">
         #{priabillPrice3,jdbcType=REAL},
@@ -357,19 +357,19 @@
         priabill_supplier_name = #{priabillSupplierName,jdbcType=VARCHAR},
       </if>
       <if test="priabillSatName1 != null">
-        priabill_sat_name1 = #{priabillSatName1,jdbcType=INTEGER},
+        priabill_sat_name1 = #{priabillSatName1,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice1 != null">
         priabill_Price1 = #{priabillPrice1,jdbcType=REAL},
       </if>
       <if test="priabillSatName2 != null">
-        priabill_sat_name2 = #{priabillSatName2,jdbcType=INTEGER},
+        priabill_sat_name2 = #{priabillSatName2,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice2 != null">
         priabill_Price2 = #{priabillPrice2,jdbcType=REAL},
       </if>
       <if test="priabillSatName3 != null">
-        priabill_sat_name3 = #{priabillSatName3,jdbcType=INTEGER},
+        priabill_sat_name3 = #{priabillSatName3,jdbcType=VARCHAR},
       </if>
       <if test="priabillPrice3 != null">
         priabill_Price3 = #{priabillPrice3,jdbcType=REAL},
@@ -460,11 +460,11 @@
       currency_id = #{currencyId,jdbcType=VARCHAR},
       project_id = #{projectId,jdbcType=VARCHAR},
       priabill_supplier_name = #{priabillSupplierName,jdbcType=VARCHAR},
-      priabill_sat_name1 = #{priabillSatName1,jdbcType=INTEGER},
+      priabill_sat_name1 = #{priabillSatName1,jdbcType=VARCHAR},
       priabill_Price1 = #{priabillPrice1,jdbcType=REAL},
-      priabill_sat_name2 = #{priabillSatName2,jdbcType=INTEGER},
+      priabill_sat_name2 = #{priabillSatName2,jdbcType=VARCHAR},
       priabill_Price2 = #{priabillPrice2,jdbcType=REAL},
-      priabill_sat_name3 = #{priabillSatName3,jdbcType=INTEGER},
+      priabill_sat_name3 = #{priabillSatName3,jdbcType=VARCHAR},
       priabill_Price3 = #{priabillPrice3,jdbcType=REAL},
       priabill_zhekou = #{priabillZhekou,jdbcType=INTEGER},
       priabill_endtime = #{priabillEndtime,jdbcType=DATE},

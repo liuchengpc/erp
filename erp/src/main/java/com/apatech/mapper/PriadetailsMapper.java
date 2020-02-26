@@ -11,7 +11,7 @@ import com.apatech.domain.Team;
 public interface PriadetailsMapper {
 	 List<Priadetails> selectAll();
 	 
-	 List<Priadetails> selectByPriabillSupplierName(String priabillCustom10,String priabillId);
+	 List<Priadetails> selectByPriabillSupplierName(String priabillId);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -25,6 +25,8 @@ public interface PriadetailsMapper {
 	
     int deleteByPrimaryKey(String priadetailsId);
 
+    int deleteByPrimaryKeyXuzhe(String priabillId);
+    
     int insert(Priadetails record);
 
     int insertSelective(Priadetails record);

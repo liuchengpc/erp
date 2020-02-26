@@ -19,11 +19,11 @@ public class Priabill {
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String priabillSupplierName;//供应商表
-    private Integer priabillSatName1;//结算方式表，默认值：转账
+    private String priabillSatName1;//结算方式表，默认值：转账
     private Float priabillPrice1;//默认值：0.00
-    private Integer priabillSatName2;//结算方式表，默认值：汇票
+    private String priabillSatName2;//结算方式表，默认值：汇票
     private Float priabillPrice2;//默认值：0.00
-    private Integer priabillSatName3;//结算方式表
+    private String priabillSatName3;//结算方式表
     private Float priabillPrice3;//默认值：0.00
     private Integer priabillZhekou;//折扣率，默认值：0.00
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
@@ -45,14 +45,14 @@ public class Priabill {
     private String priabillAuditing;//是否审核
     private String priabillYn;//是否删除（0 否 1 是 ，默认0）
     private String tpriabillCustom1;//自定义1
-    private String priabillCustom2;//自定义2
+    private String priabillCustom2;//自定义2  --单据编号
     private String priabillCustom3;//自定义3
     private String priabillCustom4;//自定义4
     private String priabillCustom5;//自定义5
     private String priabillCustom6;//自定义6
     private String priabillCustom7;//自定义7
     private String priabillCustom8;//自定义8
-    private String priabillCustom9;//自定义9
+    private String priabillCustom9;//自定义9 --部门表ID
     private String priabillCustom10;//自定义10
     
     
@@ -138,11 +138,11 @@ public class Priabill {
         this.priabillSupplierName = priabillSupplierName == null ? null : priabillSupplierName.trim();
     }
 
-    public Integer getPriabillSatName1() {
+    public String getPriabillSatName1() {
         return priabillSatName1;
     }
 
-    public void setPriabillSatName1(Integer priabillSatName1) {
+    public void setPriabillSatName1(String priabillSatName1) {
         this.priabillSatName1 = priabillSatName1;
     }
 
@@ -154,11 +154,11 @@ public class Priabill {
         this.priabillPrice1 = priabillPrice1;
     }
 
-    public Integer getPriabillSatName2() {
+    public String getPriabillSatName2() {
         return priabillSatName2;
     }
 
-    public void setPriabillSatName2(Integer priabillSatName2) {
+    public void setPriabillSatName2(String priabillSatName2) {
         this.priabillSatName2 = priabillSatName2;
     }
 
@@ -170,11 +170,11 @@ public class Priabill {
         this.priabillPrice2 = priabillPrice2;
     }
 
-    public Integer getPriabillSatName3() {
+    public String getPriabillSatName3() {
         return priabillSatName3;
     }
 
-    public void setPriabillSatName3(Integer priabillSatName3) {
+    public void setPriabillSatName3(String priabillSatName3) {
         this.priabillSatName3 = priabillSatName3;
     }
 

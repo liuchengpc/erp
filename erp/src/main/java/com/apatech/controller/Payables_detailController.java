@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Payables_detail;
+import com.apatech.domain.Priadetails;
 import com.apatech.domain.Payables_detail;
 import com.apatech.domain.Payables_detail;
 import com.apatech.domain.Payables_detail;
@@ -40,6 +41,21 @@ public class Payables_detailController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Payables_detail> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectByPayablesbillSupplierName",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Payables_detail> selectByPayablesbillSupplierName(Integer page,Integer limit,String paydetailId){
+		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
+		System.out.println("预付款主表ID："+paydetailId);
+		PageInfo<Payables_detail> pageFy = dao.selectByPayablesbillSupplierName(page, limit,paydetailId);
+		return pageFy;
     }
 	
 	/**

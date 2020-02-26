@@ -44,8 +44,8 @@ public class Payables_detail {
     private String padeCustom4;//自定栏4
     private String padeCustom5;//自定栏5
     private String padeCustom6;//自定栏6
-    private String padeCustom7;//自定栏7
-    private String padeCustom8;//自定栏8
+    private String padeCustom7;//自定栏7	--原单金额
+    private String padeCustom8;//自定栏8	--部门编号
     private String padeCustom9;//自定栏9
     private String padeCustom10;//自定栏10
     

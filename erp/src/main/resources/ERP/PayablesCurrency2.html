@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>结算方式</title>
+    <title>币别</title>
     <link rel="stylesheet" href="css/layui.css">
     <link rel="stylesheet" href="css/bootstrap.css" /> 
     <link href="css/fontawesome.css" rel="stylesheet">
@@ -92,7 +92,7 @@
       
         var tables=table.render({
             elem: '#materialsContent2'
-            ,url:'http://127.0.0.1:8080/Settle_accounts_typeController/selectAllpageXz'
+            ,url:'http://127.0.0.1:8080/CurrencyController/selectAllpageXz'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
             ,toolbar: 'default'//开启工具栏
             ,totalRow: true //开启合计行
@@ -106,8 +106,8 @@
 			}
             , cols: [[
             	{type: 'checkbox'}
-            	,{field: 'satId', title: '编号'}
-                ,{field: 'satName', title: '名称 '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            	,{field: 'currencyId', title: '币别编号'}
+                ,{field: 'currencyEasyname', title: '币别简称 '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                 , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
             ]]
             ,page:true//是否开启分页
@@ -180,112 +180,14 @@
 			    if(layEvent === 'detail'){
 			       var index = parent.layer.getFrameIndex(window.name);
 				   var iframe = $(window.parent.document).contents();
-				   iframe.find("#priabillSatName2").val(data.satName);
-				   parent["listVm"].page.list[0].priabillSatName2=data.satName;
+				   iframe.find("#payablesCurrencyName").val(data.currencyEasyname);
+				   iframe.find("#currencyId").val(data.currencyId);
+				   parent["listVm"].page.list[0].payablesCurrencyName=data.currencyEasyname;
+				   parent["listVm"].page.list[0].currencyId=data.currencyId;
 			       parent.layer.close(index);
 			    }
 		  });
     });
-	
-    /*//必须设置允许跨域访问session中数据(cookie)
-		axios.default.withCredentials = true;
-	//必须设置允许跨域访问session中数据(cookie)
-		axios.default.withCredentials = true;
-		//创建vue实例
-		var listVm = new Vue({
-			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
-			data: {//保存vue.js中要显示到html页面的数据
-				page: [],
-				diasabledInput:true,//input框是否可以编辑
-				isinsert:false,//是否是新增状态
-				isedit:false,//是否是编辑状态
-				
-		      	goFirstPage1:false,//第一笔
-	            goPrePage1:false,//上一笔				            
-             	goNextPage1:false,//下一笔
-		     	goLastPage1:false,//后一笔
-             	inset1:false,   //新增  
-             	return1:true,//取消
-             	saves1:true,//保存 
-             	update1:false,//编辑
-             	deletes1:false,//删除		
-			    Auditing1:true,//审核
-			    noAuditing1:true,//取消审核
-			    
-			    lay1:'layui-btn-primary',
-			    lay2:'layui-btn',
-			    
-			    tp:true
-			},
-			methods: {//定义函数
-
-				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
-//					alert("进入goPage")
-					var this_ = this;
-					$.ajax({
-						url : "http://127.0.0.1:8080/SupplierController/selectAllpage",
-						type:"get",
-					  	data : "pageNum="+page+"&pageSize="+size,
-					  	dataType:'json',	
-					  	success:function (res) {
-					  		//res.data获取服务器返回的数据
-							this_.page = res;
-							console.info(res);
-							$.each(res.list, function(i,obj) {
-								console.info("部门弹窗分页查询数据：");
-								console.info(this_.page);
-								var tr = $("<tr><td>"+obj.supplierId+"</td><td>"+obj.supplierEasyname+"</td><td><button type=\"button\" class=\"layui-btn layui-btn-primary layui-btn-xs\" i='"+obj.supplierId+"'>取回</button></td></tr>");
-								$("#tb").append(tr);
-							});
-				        }
-					}); 					
-				},
-				goPrePage: function() {//上一条
-					if(this.page.hasPreviousPage) {
-//						alert(this.page.prePage+"："+this.page.pageSize)
-						this.goPage(this.page.prePage, this.page.pageSize);
-					}
-				},
-				goNextPage: function() {//下一条
-					if(this.page.hasNextPage) {
-//						alert(this.page.nextPage+"："+this.page.pageSize)
-						this.goPage(this.page.nextPage, this.page.pageSize);
-					}
-				},
-				goFirstPage: function() {//第一条
-//					alert(1+"："+this.page.pageSize)
-					this.goPage(1, this.page.pageSize);
-				},
-				goLastPage: function() {//最后一条
-//					alert(this.page.pages+"："+this.page.pageSize)
-					this.goPage(this.page.pages, this.page.pageSize);
-				},
-				returns: function() {//取消
-					this.goPage(1,1);
-					
-					this.diasabledInput= true;//input不可编辑
-					
-					this.goFirstPage1 =false;//第一笔
-		            this.goPrePage1 =false;//上一笔				            
-	             	this.goNextPage1 =false;//下一笔
-			     	this.goLastPage1 =false;//后一笔
-	             	this.inset1 =false;   //新增      
-	             	this.return1=true;//返回
-	             	this.saves1 =true;//保存 
-	             	this.update1 =false;//编辑
-	             	this.deletes1 =false;//删除		
-				    this.Auditing1 =true;//审核
-				    this.noAuditing1 =true;//取消审核
-				}
-			},
-			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
-							
-				var this_ = this;				
-				this_.goPage(1, 1);				
-			}
-		
-		});*/
 </script>
 </body>
 </html>
-

@@ -18,7 +18,7 @@ public interface PriabillMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"Priabill WHERE Priabill_custom1=#{billdate}")
+	 		"Priabill WHERE tpriabill_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String priabillId);

@@ -45,13 +45,13 @@ public class Payables {
     private String payablesAuditing;//是否审核
     private String payablesYn;//是否删除（0 否 1 是 ，默认0）
     private String payablesCustom1;//自定栏1
-    private String payablesCustom2;//自定栏2--单据号码
+    private String payablesCustom2;//自定栏2-- 单据号码
     private String payablesCustom3;//自定栏3
     private String payablesCustom4;//自定栏4
     private String payablesCustom5;//自定栏5
     private String payablesCustom6;//自定栏6
     private String payablesCustom7;//自定栏7
-    private String payablesCustom8;//自定栏8
+    private String payablesCustom8;//自定栏8	--部门ID
     private String payablesCustom10;//自定栏10
     
     

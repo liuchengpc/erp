@@ -20,10 +20,10 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillCustom10,String priabillId){
-    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillCustom10,priabillId));
+	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillId){
+    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillId));
     	PageHelper.startPage(page, limit);
-    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillCustom10,priabillId);
+    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillId);
 
     	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
     	return pageFy;
@@ -37,6 +37,10 @@ public class PriadetailsService {
     	return dao.deleteByPrimaryKey(priadetailsId);
     }
 
+    public int deleteByPrimaryKeyXuzhe(String priabillId) {
+    	return dao.deleteByPrimaryKeyXuzhe(priabillId);
+    }
+    
     public int insert(Priadetails record){
     	return dao.insert(record);
     }

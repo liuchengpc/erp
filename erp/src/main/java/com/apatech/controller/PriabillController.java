@@ -73,6 +73,28 @@ public class PriabillController {
 	}
 	
 	/**
+	 * 根据主键查询  Xz专属
+	 * @param priabillId
+	 * @return
+	 */
+	@RequestMapping(value = "selectByPrimaryKeyXuZhe",method = RequestMethod.GET)
+	@ResponseBody
+    public Map<String, String> selectByPrimaryKeyXuZhe(String priabillId) {
+		System.out.println("进入PriabillController根据主键查询");
+		System.out.println("priabillId="+priabillId);
+		System.out.println("查出的priabill对象:"+dao.selectByPrimaryKey(priabillId));
+		Map<String, String> map=new HashMap<String,String>();
+		if(dao.selectByPrimaryKey(priabillId)==null) {
+			map.put("code", "1");
+			map.put("message", "不存在");
+		}else {
+			map.put("code", "0");
+			map.put("message", "存在");
+		}
+    	return map;
+	}
+	
+	/**
 	 * 新增
 	 * @param student
 	 * @return

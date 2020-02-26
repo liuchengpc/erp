@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public class Payables {
-    private String payablesId;//应付冲款单id（主键   唯一）
+    private String payablesId;//应付冲款单id（主键    唯一）
     private String supplierId;//供应商表id，外键
     private Integer scsId;//结算方式id，外键
     private String staffId;//部门员工表id，外键

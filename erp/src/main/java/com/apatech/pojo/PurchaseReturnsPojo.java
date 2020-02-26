@@ -54,6 +54,13 @@ public class PurchaseReturnsPojo {
     private Warehouse warehouse; // 仓库信息
     private Currency currency; // 货币信息
     private Purchase_storage purchaseStorage; // 采购入库类型信息
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date createDate; // 创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date editDate; // 编辑时间
+    private Integer lineId; // 行号
 
     public String getPureId() {
         return pureId;
@@ -359,9 +366,33 @@ public class PurchaseReturnsPojo {
         this.purchaseStorage = purchaseStorage;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getEditDate() {
+        return editDate;
+    }
+
+    public void setEditDate(Date editDate) {
+        this.editDate = editDate;
+    }
+
+    public Integer getLineId() {
+        return lineId;
+    }
+
+    public void setLineId(Integer lineId) {
+        this.lineId = lineId;
+    }
+
     public PurchaseReturnsPojo(){}
 
-    public PurchaseReturnsPojo(String pureId, String supplierId, String pureEngname, String puretId, String purePriceIncludeTax, Integer warehouseId, String pureSingleStatus, Date pureDocumentDate, String pureDocumentNumber, String currencyId, Float pureExchangeRate, Integer pureForeignTrade, Integer pureSunnum, Float pureSunmoney, Float pureTax, Float pureIncludeTaxAmount, String pureDeliveryAddress, String pureBuyer, String pureBelongsSection, String pureBelongsProject, String pureExecutor, String pureCheckagainStaff, String pureHeaderProvision, String pureEndClause, String pureRemark, String pureAudition, String pureYn, String pureCustom1, String pureCustom2, String pureCustom3, String pureCustom4, String pureCustom5, String pureCustom6, List<Purchase_returns_detailed> details, Supplier supplier, Warehouse warehouse, Currency currency, Purchase_storage purchaseStorage) {
+    public PurchaseReturnsPojo(String pureId, String supplierId, String pureEngname, String puretId, String purePriceIncludeTax, Integer warehouseId, String pureSingleStatus, Date pureDocumentDate, String pureDocumentNumber, String currencyId, Float pureExchangeRate, Integer pureForeignTrade, Integer pureSunnum, Float pureSunmoney, Float pureTax, Float pureIncludeTaxAmount, String pureDeliveryAddress, String pureBuyer, String pureBelongsSection, String pureBelongsProject, String pureExecutor, String pureCheckagainStaff, String pureHeaderProvision, String pureEndClause, String pureRemark, String pureAudition, String pureYn, String pureCustom1, String pureCustom2, String pureCustom3, String pureCustom4, String pureCustom5, String pureCustom6, List<Purchase_returns_detailed> details, Supplier supplier, Warehouse warehouse, Currency currency, Purchase_storage purchaseStorage, Date createDate, Date editDate, Integer lineId) {
         this.pureId = pureId;
         this.supplierId = supplierId;
         this.pureEngname = pureEngname;
@@ -400,5 +431,8 @@ public class PurchaseReturnsPojo {
         this.warehouse = warehouse;
         this.currency = currency;
         this.purchaseStorage = purchaseStorage;
+        this.createDate = createDate;
+        this.editDate = editDate;
+        this.lineId = lineId;
     }
 }

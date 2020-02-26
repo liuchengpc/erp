@@ -372,4 +372,10 @@
       psd_custom6 = #{psdCustom6,jdbcType=VARCHAR}
     where psd_id = #{psdId,jdbcType=VARCHAR}
   </update>
+  <select id="selectByPsId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage_detailed
+    where ps_id = #{psId,jdbcType=VARCHAR}
+  </select>
 </mapper>

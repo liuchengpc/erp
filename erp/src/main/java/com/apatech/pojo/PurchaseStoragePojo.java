@@ -1,9 +1,15 @@
 package com.apatech.pojo;
 
+import com.apatech.domain.Currency;
+import com.apatech.domain.Purchase_storage_detailed;
+import com.apatech.domain.Supplier;
+import com.apatech.domain.Warehouse;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PurchaseStoragePojo {
     private String psId;//id（主键 唯一）
@@ -41,6 +47,11 @@ public class PurchaseStoragePojo {
     private String psCustom4;//自定义4
     private String psCustom5;//自定义5
     private String psCustom6;//自定义6
+
+    private List<Purchase_storage_detailed> details = new ArrayList<>(); // 详表信息
+    private Supplier supplier; // 供应商信息
+    private Warehouse warehouse; // 仓库信息
+    private Currency currency; // 货币信息
 
     public String getPsId() {
         return psId;
@@ -306,11 +317,41 @@ public class PurchaseStoragePojo {
         this.psCustom6 = psCustom6;
     }
 
-    public PurchaseStoragePojo(){
-
+    public List<Purchase_storage_detailed> getDetails() {
+        return details;
     }
 
-    public PurchaseStoragePojo(String psId, String supplierId, String psEngname, String pstId, String psPriceIncludeTax, Integer warehouseId, String psSingleStatus, Date psDocumentDate, String psDocumentNumber, String currencyId, Float psExchangeRate, Integer psForeignTrade, Integer psSunnum, Float psSunmoney, Float psTax, Float psIncludeTaxAmount, String psDeliveryAddress, String psBuyer, String psBelongsSection, String psBelongsProject, String psExecutor, String psCheckagainStaff, String psHeaderProvision, String psEndClause, String psRemark, String psAudition, String psYn, String psCustom1, String psCustom2, String psCustom3, String psCustom4, String psCustom5, String psCustom6) {
+    public void setDetails(List<Purchase_storage_detailed> details) {
+        this.details = details;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public PurchaseStoragePojo(){}
+
+    public PurchaseStoragePojo(String psId, String supplierId, String psEngname, String pstId, String psPriceIncludeTax, Integer warehouseId, String psSingleStatus, Date psDocumentDate, String psDocumentNumber, String currencyId, Float psExchangeRate, Integer psForeignTrade, Integer psSunnum, Float psSunmoney, Float psTax, Float psIncludeTaxAmount, String psDeliveryAddress, String psBuyer, String psBelongsSection, String psBelongsProject, String psExecutor, String psCheckagainStaff, String psHeaderProvision, String psEndClause, String psRemark, String psAudition, String psYn, String psCustom1, String psCustom2, String psCustom3, String psCustom4, String psCustom5, String psCustom6, List<Purchase_storage_detailed> details, Supplier supplier, Warehouse warehouse, Currency currency) {
         this.psId = psId;
         this.supplierId = supplierId;
         this.psEngname = psEngname;
@@ -344,5 +385,9 @@ public class PurchaseStoragePojo {
         this.psCustom4 = psCustom4;
         this.psCustom5 = psCustom5;
         this.psCustom6 = psCustom6;
+        this.details = details;
+        this.supplier = supplier;
+        this.warehouse = warehouse;
+        this.currency = currency;
     }
 }

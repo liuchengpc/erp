@@ -32,4 +32,6 @@ public interface Purchase_storage_detailedMapper {
     int updateByPrimaryKeySelective(Purchase_storage_detailed record);
 
     int updateByPrimaryKey(Purchase_storage_detailed record);
+
+    List<Purchase_storage_detailed> selectByPsId(@Param("psId") String psId);
 }

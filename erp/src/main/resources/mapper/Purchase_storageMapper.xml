@@ -432,6 +432,17 @@
       ps_custom6 = #{psCustom6,jdbcType=VARCHAR}
     where ps_id = #{psId,jdbcType=VARCHAR}
   </update>
+  <resultMap id="purchaseStorageMap" type="com.apatech.pojo.PurchaseStoragePojo" extends="BaseResultMap">
+    <association property="supplier" column="supplier_id"
+                 select="com.apatech.mapper.SupplierMapper.selectByPrimaryKey"/>
+    <association property="warehouse" column="warehouse_id"
+                 select="com.apatech.mapper.WarehouseMapper.selectByPrimaryKey"/>
+    <association property="currency" column="currency_id"
+                 select="com.apatech.mapper.CurrencyMapper.selectByPrimaryKey"/>
+    <collection property="details" column="ps_id"
+                select="com.apatech.mapper.Purchase_storage_detailedMapper.selectByPsId"
+                ofType="com.apatech.domain.Purchase_storage_detailed"/>
+  </resultMap>
   <select id="selectLast" resultType="com.apatech.pojo.PurchaseStoragePojo">
     select
     <include refid="Base_Column_List"/>

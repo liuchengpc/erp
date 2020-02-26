@@ -10,7 +10,7 @@ export function getPage(params) {
 
 export function getLast() {
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/selectLast",
+        url: "http://localhost:8080/Purchase_storageController/selectLast",
         method: "get"
     });
 }
@@ -18,7 +18,7 @@ export function getLast() {
 
 export function getPrev(lineId) {
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/selectPrev",
+        url: "http://localhost:8080/Purchase_storageController/selectPrev",
         method: "get",
         params: {
             lineId: lineId
@@ -28,7 +28,7 @@ export function getPrev(lineId) {
 
 export function getNext(lineId) {
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/selectNext",
+        url: "http://localhost:8080/Purchase_storageController/selectNext",
         method: "get",
         params: {
             lineId: lineId
@@ -38,14 +38,14 @@ export function getNext(lineId) {
 
 export function getFirst() {
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/selectFirst",
+        url: "http://localhost:8080/Purchase_storageController/selectFirst",
         method: "get"
     });
 }
 
 export function getPureId() {
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/selectPureId",
+        url: "http://localhost:8080/Purchase_storageController/selectPureId",
         method: "get"
     });
 }
@@ -53,7 +53,7 @@ export function getPureId() {
 export function insertWithDetails(data) {
     console.log(typeof data);
     return rest({
-        url: "http://localhost:8080/Purchase_returnsController/insertWithDetails",
+        url: "http://localhost:8080/Purchase_storageController/insertWithDetails",
         method: "post",
         data: data,
         headers:{

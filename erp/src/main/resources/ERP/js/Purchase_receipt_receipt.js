@@ -1,10 +1,15 @@
+import {
+    getLast,
+    getPrev,
+    getNext,
+    getFirst
+} from '../rest/Purchase_receipt_receipt_rest.js';
 layui.use(['form', 'layedit', 'laydate','layer'], function () {
     var form = layui.form
         ,layer = layui.layer
         ,layedit = layui.layedit
         ,laydate = layui.laydate;
 });
-
 const orderStatusMeta = {
     "insert": 0, // 新增
     "browse": 1, // 浏览
@@ -21,9 +26,48 @@ const orderStatusMeta = {
 let viewModel = new Vue({
     el: "#app",
     data() {
-        return {};
+        return {
+            lineId: 1,
+            purchaseStorage:{
+
+            }
+        };
     },
     methods:{
+        getLast(){
+            getLast().then(resp => {
+                console.log(resp.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        getPrev(){
+            getPrev(this.lineId).then(resp => {
+                console.log(resp.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        getNext(){
+            getNext(this.lineId).then(resp => {
+                console.log(resp.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        getFirst(){
+            getFirst(this.lineId).then(resp => {
+                console.log(resp.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        emptyPurchaseStorageProp() {
 
-    }
+        }
+    },
+    created: function () {
+        this.getLast();
+    },
+    watch: {}
 });

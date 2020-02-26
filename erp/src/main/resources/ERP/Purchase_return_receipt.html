@@ -190,32 +190,59 @@
                                         <td>
                                             {{item.matterId}}
                                         </td>
-                                        <td>
-                                            {{item.puredEngname}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredEngname}}</span>
+                                            <input type="text" name="" v-model="item.puredEngname"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredRemark}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredRemark}}</span>
+                                            <input type="text" name="" v-model="item.puredRemark"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredPriceIncludeTax}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredPriceIncludeTax}}</span>
+                                            <input type="text" name="" v-model="item.puredPriceIncludeTax"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredSingleStatus}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSingleStatus}}</span>
+                                            <input type="text" name="" v-model="item.puredSingleStatus"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredDocumentDate}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredDocumentDate}}</span>
+                                            <input type="text" name="" v-model="item.puredDocumentDate"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredDocumentNumber}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredDocumentNumber}}</span>
+                                            <input type="text" name="" v-model="item.puredDocumentNumber"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredPrice}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredPrice}}</span>
+                                            <input type="text" name="" v-model="item.puredPrice"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredMoney}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredMoney}}</span>
+                                            <input type="text" name="" v-model="item.puredMoney"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredTaxRate}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredTaxRate}}</span>
+                                            <input type="text" name="" v-model="item.puredTaxRate"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
                                         <td>
                                             {{item.puredTaxAmount}}
@@ -236,14 +263,23 @@
                                         <td>
 
                                         </td>
-                                        <td>
-                                            {{item.puredRemarks}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredRemarks}}</span>
+                                            <input type="text" name="" v-model="item.puredRemarks"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredSourceOrder}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSourceOrder}}</span>
+                                            <input type="text" name="" v-model="item.puredSourceOrder"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
-                                        <td>
-                                            {{item.puredSourceNo}}
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSourceNo}}</span>
+                                            <input type="text" name="" v-model="item.puredSourceNo"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
                                         </td>
                                     </tr>
                                 </tbody>

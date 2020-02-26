@@ -50,7 +50,8 @@
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 3px;">
-                                <input type="text" placeholder="0" class="layui-input" v-model="charLength">
+                                <input type="text" placeholder="0" readonly disabled class="layui-input"
+                                       v-model="charLength">
                             </div>
                         </div>
                     </div>
@@ -218,7 +219,7 @@
             initialTeam(){
                 let self = this;
                 $.ajax({
-                    url: "http://erp:8080/Purchase_requisition_typeController/teams",
+                    url: "http://erp:8080/TeamController/selectAll",
                     type: "",
                     data: {},
                     dataType: "json",

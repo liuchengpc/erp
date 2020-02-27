@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>单选--仓库设定</title>
+    <title>单选--会记科目</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,14 +37,11 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">仓库编号</option>
-                                    <option value="4">仓库名称</option>
-                                    <option value="4">仓库简称</option>
+                                    <option value="4">科目编号</option>
+                                    <option value="4">科目名称</option>
                                     <option value="4">英文名称</option>
-                                    <option value="4">联系人员</option>
-                                    <option value="4">联系电话</option>
-                                    <option value="4">仓库地址</option>
-                                    <option value="4">备注</option>
+									<option value="4">交易科目</option>
+                                    <option value="4">科目种类</option>
                                 </select>
                             </div>
                         </div>
@@ -154,14 +151,14 @@
                 <thead>
                <thead>
                <tr>
-                   <th>仓库编号</th>
-                   <th>仓库名称</th>             
+                   <th>科目编号</th>
+                   <th>科目名称</th>             
                </tr>
                </thead>
                <tbody>           
-				   <tr v-for="wh in list" @click="dianji(wh.warehouseId,wh.warehouseName)">
-					   <td>{{wh.warehouseId}}</td>
-					   <td>{{wh.warehouseName}}</td>                  
+				   <tr v-for="s in list" @click="dianji(s.upId,s.upName)">
+					   <td>{{s.upId}}</td>
+					   <td>{{s.upName}}</td>                  
 				   </tr>
                </tbody>
             </table>
@@ -173,31 +170,33 @@
  layui.use(['form'], function () {
         var form = layui.form;
     });
-    var ckvue = new Vue({
+    var hjvue = new Vue({
     	el:"#app",
 		data:{	
 			list:[],
-			warehouseId:"",
-			warehouse_Name:""
+			upId:"",
+			upName:"",
 		},methods:{
 			dianji(id,name){
-				ckvue.warehouseId=id;
-				ckvue.warehouse_Name=name;
+				hjvue.upId=id;
+				hjvue.upName=name;
 			},
 			quhui(){
 				/* parent["listVm"].page.list[0].warehouseId=ckvue.warehouseId;
 				parent["listVm"].page.list[0].warehouse_Name=ckvue.warehouse_Name; */
-				parent.ckqh(ckvue.warehouseId,ckvue.warehouse_Name);
+				parent.hjqh(hjvue.upId,hjvue.upName);
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){
+			var this_=this;
 			$.ajax({
-			type:"get",
-			url:"http://127.0.0.1:8080/WarehouseController/selectAll",
-			success:function(res){
-				ckvue.list=res;
-			}
-		});
+				type:"get",
+				url:"http://127.0.0.1:8080/Updown_programController/selectAll",
+				success:function(res){
+					console.log(JSON.stringify(res));
+					this_.list=res;
+				}
+			});
 		}
     })
 </script>

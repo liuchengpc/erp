@@ -25,6 +25,11 @@ public class MatterService {
 		public List<wdMatter> selectAll1(){
 			return dao.selectAllMatter();
 		}
+	/**
+	 * 用于查询单位
+	 */
+	@Autowired
+	private Measurement_unitService mu_dao;
 	public PageInfo<Matter> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -66,5 +71,18 @@ public class MatterService {
 
     public int updateByPrimaryKey(Matter record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    public List<Matter> queryAll(){
+    	List<Matter> list=dao.selectAll();
+    	for (Matter m : list) {
+    		m.setMu_name(mu_dao.selectByPrimaryKey(m.getMuId()).getMuName());
+		}
+    	return list;
+    }
+    public Matter queryAllByPrimaryKey(String matterId) {
+    	Matter m=dao.selectByPrimaryKey(matterId);
+    	m.setMu_name(mu_dao.selectByPrimaryKey(m.getMuId()).getMuName());
+    	return m;
     }
 }

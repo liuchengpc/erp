@@ -1,12 +1,11 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Staff;
-import com.apatech.domain.Staff;
-import com.apatech.domain.Staff;
-import com.apatech.domain.Staff;
-import com.apatech.mapper.StaffMapper;
 import com.apatech.service.StaffService;
 import com.github.pagehelper.PageInfo;
 
@@ -40,6 +35,16 @@ public class StaffController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Staff> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 查询所有
+	 */
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<Staff> selectAll(){
+		System.out.println("进入StaffController查询所有");
+		return dao.selectAll();
     }
 	
 	/**

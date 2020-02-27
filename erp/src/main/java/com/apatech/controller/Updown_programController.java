@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Staff;
 import com.apatech.domain.Updown_program;
 import com.apatech.domain.Updown_program;
 import com.apatech.domain.Updown_program;
@@ -41,6 +43,17 @@ public class Updown_programController {
     	PageInfo<Updown_program> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	/**
+	 * 查询所有
+	 */
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<Updown_program> selectAll(){
+		System.out.println("进入StaffController查询所有");
+		return dao.selectAll();
+    }
+	
 	
 	/**
 	 * 获取单号

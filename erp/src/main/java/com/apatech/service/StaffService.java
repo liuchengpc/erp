@@ -30,6 +30,11 @@ public class StaffService {
     	return page;
     }
 	 
+	public List<Staff> selectAll(){
+		System.out.println("查询所有结果为"+dao.selectAll().toString());
+		return dao.selectAll();
+	}
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

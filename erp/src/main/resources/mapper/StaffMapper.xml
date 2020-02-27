@@ -19,7 +19,7 @@
     <result column="staff_Mobilephone" jdbcType="VARCHAR" property="staffMobilephone" />
     <result column="staff_politicalstatus" jdbcType="VARCHAR" property="staffPoliticalstatus" />
     <result column="staff_entrydate" jdbcType="DATE" property="staffEntrydate" />
-    <result column="staff_becomea regularworker" jdbcType="DATE" property="staffBecomeaRegularworker" />
+    <result column="staff_becomea_regularworker" jdbcType="DATE" property="staffBecomeaRegularworker" />
     <result column="staff_probationperiod" jdbcType="VARCHAR" property="staffProbationperiod" />
     <result column="staff_dimissiondate" jdbcType="DATE" property="staffDimissiondate" />
     <result column="staff_technicaltitle" jdbcType="VARCHAR" property="staffTechnicaltitle" />
@@ -31,7 +31,7 @@
     <result column="staff_graduateschool" jdbcType="VARCHAR" property="staffGraduateschool" />
     <result column="staff_major" jdbcType="VARCHAR" property="staffMajor" />
     <result column="staff_foreignlanguagelevel" jdbcType="VARCHAR" property="staffForeignlanguagelevel" />
-    <result column="staff_physical examinationdate" jdbcType="DATE" property="staffPhysicalExaminationdate" />
+    <result column="staff_physical_examinationdate" jdbcType="DATE" property="staffPhysicalExaminationdate" />
     <result column="staff_atmaturitydate" jdbcType="DATE" property="staffAtmaturitydate" />
     <result column="staff_entercountry" jdbcType="DATE" property="staffEntercountry" />
     <result column="staff_passport_number" jdbcType="VARCHAR" property="staffPassportNumber" />

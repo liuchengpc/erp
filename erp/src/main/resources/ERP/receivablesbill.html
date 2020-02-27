@@ -117,7 +117,8 @@
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label" style="color:#009688;">币别</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesCurrencyName" v-bind:disabled="diasabledInput">
+			                        <input type="text" id="priabillCurrencyName" v-model="pages.payablesCurrencyName" name="title"  class="layui-input" v-bind:disabled="diasabledInput" @keyup.f4="bbtc()">
+                        			<input type="text" id="currencyId" v-model="pages.currencyId" name="title"  class="layui-input" hidden="hidden">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
@@ -163,12 +164,14 @@
 			                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
 			                    <div class="layui-input-block">
 			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesTeamName" v-bind:disabled="diasabledInput" @keyup.f4="bmtc()">
+			                        <input type="text" id="payablesCustom9" v-model="pages.payablesCustom9" name="title"  class="layui-input" hidden="hidden">
 			                    </div>
 			                </div>
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label">所属项目</label>
 			                    <div class="layui-input-block">
-			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesProjectName" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesProjectName" v-bind:disabled="diasabledInput" @keyup.f4="xmtc()">
+			                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input" hidden="hidden">
 			                    </div>
 			                </div>
 			            </div>
@@ -614,6 +617,20 @@
 		  				type:2,
 		  				area:["800px","400px"],
 		  				content:"departmentTC1.html"
+		  			});
+				},
+				xmtc: function() {//项目弹窗
+					layer.open({
+		  				type:2,
+		  				area:["800px","400px"],
+		  				content:"itemTC1.html"
+		  			});
+				},
+				bbtc: function() {//币别弹窗
+					layer.open({
+		  				type:2,
+		  				area:["800px","400px"],
+		  				content:"currencyTC1.html"
 		  			});
 				},
 				goPrePage: function() {//上一条

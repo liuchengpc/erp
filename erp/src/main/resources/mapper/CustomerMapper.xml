@@ -57,6 +57,7 @@
     <result column="customer_custom4" jdbcType="VARCHAR" property="customerCustom4" />
     <result column="customer_custom5" jdbcType="VARCHAR" property="customerCustom5" />
     <result column="customer_custom6" jdbcType="VARCHAR" property="customerCustom6" />
+    <result column="ca_address" jdbcType="VARCHAR" property="caAddress" />
   </resultMap>
   <sql id="Base_Column_List">
     customer_id, customer_name, customer_easyname, customer_english_name, customer_charge_person, 
@@ -80,7 +81,9 @@
 	    where customer_Yn=0
 	    ORDER BY customer_id DESC
   </select>
-  
+  <select id="selectbyadd" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT `customer`.`customer_id`,`customer`.`customer_name`,`customer_address`.`ca_address`FROM `customer` INNER JOIN `customer_address` WHERE `customer`.`customer_id`=`customer_address`.`customer_id`
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

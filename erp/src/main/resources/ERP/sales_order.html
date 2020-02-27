@@ -473,7 +473,10 @@
 					},
 					//新增订单
 					addinfo: function() {
-						$(":input").val("");
+						var data=this.page;
+						for(var o in data){
+							  data[o] = "";
+						 }
 						var myDate = new Date;
 						var year = myDate.getFullYear(); //获取当前年
 						var mon = myDate.getMonth() + 1; //获取当前月

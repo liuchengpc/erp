@@ -34,7 +34,12 @@ public class CustomerController {
 	public List<Customer> selectAll(){
 		return dao.selectAll();
 	}
-	
+	//连表查询客户地址
+	@RequestMapping("selectbyadd")
+	@ResponseBody
+	public List<Customer> selectbyadd(){
+		return dao.selectbyadd();
+	}
 	/**
 	 * 分页
 	 * @param pageNum

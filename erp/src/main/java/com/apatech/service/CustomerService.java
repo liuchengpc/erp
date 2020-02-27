@@ -23,6 +23,11 @@ public class CustomerService {
 	public List<Customer> selectAll(){
 		return dao.selectAll();
 	}
+	//连表查询客户ID姓名地址
+	
+	public List<Customer> selectbyadd(){
+		return dao.selectbyadd();
+	}
 	
 	public PageInfo<Customer> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());

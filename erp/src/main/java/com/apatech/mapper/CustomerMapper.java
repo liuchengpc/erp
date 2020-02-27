@@ -11,6 +11,8 @@ import com.apatech.domain.Team;
 public interface CustomerMapper {
 	 List<Customer> selectAll();
 	 
+	 List<Customer> selectbyadd();
+	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 

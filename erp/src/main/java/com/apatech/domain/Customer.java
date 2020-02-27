@@ -86,9 +86,27 @@ public class Customer {
     private String customerCustom5;//自定栏5
     private String customerCustom6;//自定栏6
     
-    
+    private String caAddress;//地址
 
-    public Customer() {
+    /**
+	 * @return the caAddress
+	 */
+	public String getCaAddress() {
+		return caAddress;
+	}
+
+
+
+	/**
+	 * @param caAddress the caAddress to set
+	 */
+	public void setCaAddress(String caAddress) {
+		this.caAddress = caAddress;
+	}
+
+
+
+	public Customer() {
 		super();
 	}
     

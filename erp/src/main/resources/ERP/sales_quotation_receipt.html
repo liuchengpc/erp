@@ -37,7 +37,7 @@
 								<label class="layui-form-label">供应商地址</label>
 								<div class="layui-input-block">
 									<input type="text" class="layui-input" style="width:30%;float: left;">
-									<input type="text" class="layui-input" style="width:68%;float: right;" v-model="pages.sqDeliveryAddress"
+									<input type="text" class="layui-input" style="width:68%;float: right;" name="sqDeliveryAddress" v-model="pages.sqDeliveryAddress"
 									 disabled>
 								</div>
 							</div>
@@ -356,11 +356,21 @@
 					},
 					//客户资料弹窗
 					showClientWindow(){
+						var t=this;
 						layer.open({
 							type:2,
 							title:"客户资料",
 							content:"customerinfo.html",
-							area:['762px','450px']
+							area:['762px','450px'],
+							closeBtn: 1,//右上角
+							       success: function(layero, index){  
+							            var body = layer.getChildFrame('body', index);  
+							            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到子页面的窗口对象，执行iframe页的方法：iframeWin.method();
+							            //console.log(iframeWin);
+							            iframeWin.setVueName("info");
+										iframeWin.id = 100;
+										iframeWin.printId();
+							          }  
 						})
 					},
 					//币别资料弹窗
@@ -506,10 +516,11 @@
 					},
 					//新增订单
 					addinfo: function() {
-							/* var page=this.page;
-							forEach(var page in index){
-								
-							} */
+						   var data=this.page;
+						   console.log(data);
+							for(var o in data){
+							      data[o] = "";
+							 }
 							var myDate = new Date;
 						    var year = myDate.getFullYear(); //获取当前年
 						    var mon = myDate.getMonth() + 1; //获取当前月

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_discount_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_discount_detailed">
+    <id column="pdd_id" jdbcType="VARCHAR" property="pddId" />
+    <result column="pd_id" jdbcType="VARCHAR" property="pdId" />
+    <result column="pdd_matter_id" jdbcType="VARCHAR" property="pddMatterId" />
+    <result column="pdd_matter_name" jdbcType="VARCHAR" property="pddMatterName" />
+    <result column="pdd_specifications" jdbcType="VARCHAR" property="pddSpecifications" />
+    <result column="pdd_company_name" jdbcType="VARCHAR" property="pddCompanyName" />
+    <result column="pdd_amount" jdbcType="INTEGER" property="pddAmount" />
+    <result column="pdd_price" jdbcType="REAL" property="pddPrice" />
+    <result column="pdd_money" jdbcType="REAL" property="pddMoney" />
+    <result column="pdd_tax_rate" jdbcType="REAL" property="pddTaxRate" />
+    <result column="pdd_tax_amount" jdbcType="REAL" property="pddTaxAmount" />
+    <result column="pdd_discount_amount" jdbcType="REAL" property="pddDiscountAmount" />
+    <result column="pdd_discount_tax" jdbcType="VARCHAR" property="pddDiscountTax" />
+    <result column="pdd_total_discount" jdbcType="INTEGER" property="pddTotalDiscount" />
+    <result column="pdd_deferred_balance" jdbcType="VARCHAR" property="pddDeferredBalance" />
+    <result column="psd_invoice_details" jdbcType="VARCHAR" property="psdInvoiceDetails" />
+    <result column="pdd_audition" jdbcType="VARCHAR" property="pddAudition" />
+    <result column="pdd_yn" jdbcType="VARCHAR" property="pddYn" />
+    <result column="pdd_custom1" jdbcType="VARCHAR" property="pddCustom1" />
+    <result column="pdd_custom2" jdbcType="VARCHAR" property="pddCustom2" />
+    <result column="pdd_custom3" jdbcType="VARCHAR" property="pddCustom3" />
+    <result column="pdd_custom4" jdbcType="VARCHAR" property="pddCustom4" />
+    <result column="pdd_custom5" jdbcType="VARCHAR" property="pddCustom5" />
+    <result column="pdd_custom6" jdbcType="VARCHAR" property="pddCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pdd_id, pd_id, pdd_matter_id, pdd_matter_name, pdd_specifications, pdd_company_name, 
+    pdd_amount, pdd_price, pdd_money, pdd_tax_rate, pdd_tax_amount, pdd_discount_amount, 
+    pdd_discount_tax, pdd_total_discount, pdd_deferred_balance, psd_invoice_details, 
+    pdd_audition, pdd_yn, pdd_custom1, pdd_custom2, pdd_custom3, pdd_custom4, pdd_custom5, 
+    pdd_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_discount_detailed 
+	    where pdd_Yn=0
+	    ORDER BY pdd_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_discount_detailed
+    where pdd_id = #{pddId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_discount_detailed
+    where pdd_id = #{pddId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_discount_detailed">
+    insert into purchase_discount_detailed (pdd_id, pd_id, pdd_matter_id, 
+      pdd_matter_name, pdd_specifications, pdd_company_name, 
+      pdd_amount, pdd_price, pdd_money, 
+      pdd_tax_rate, pdd_tax_amount, pdd_discount_amount, 
+      pdd_discount_tax, pdd_total_discount, pdd_deferred_balance, 
+      psd_invoice_details, pdd_audition, pdd_yn, 
+      pdd_custom1, pdd_custom2, pdd_custom3, 
+      pdd_custom4, pdd_custom5, pdd_custom6
+      )
+    values (#{pddId,jdbcType=VARCHAR}, #{pdId,jdbcType=VARCHAR}, #{pddMatterId,jdbcType=VARCHAR}, 
+      #{pddMatterName,jdbcType=VARCHAR}, #{pddSpecifications,jdbcType=VARCHAR}, #{pddCompanyName,jdbcType=VARCHAR}, 
+      #{pddAmount,jdbcType=INTEGER}, #{pddPrice,jdbcType=REAL}, #{pddMoney,jdbcType=REAL}, 
+      #{pddTaxRate,jdbcType=REAL}, #{pddTaxAmount,jdbcType=REAL}, #{pddDiscountAmount,jdbcType=REAL}, 
+      #{pddDiscountTax,jdbcType=VARCHAR}, #{pddTotalDiscount,jdbcType=INTEGER}, #{pddDeferredBalance,jdbcType=VARCHAR}, 
+      #{psdInvoiceDetails,jdbcType=VARCHAR}, #{pddAudition,jdbcType=VARCHAR}, #{pddYn,jdbcType=VARCHAR}, 
+      #{pddCustom1,jdbcType=VARCHAR}, #{pddCustom2,jdbcType=VARCHAR}, #{pddCustom3,jdbcType=VARCHAR}, 
+      #{pddCustom4,jdbcType=VARCHAR}, #{pddCustom5,jdbcType=VARCHAR}, #{pddCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_discount_detailed">
+    insert into purchase_discount_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pddId != null">
+        pdd_id,
+      </if>
+      <if test="pdId != null">
+        pd_id,
+      </if>
+      <if test="pddMatterId != null">
+        pdd_matter_id,
+      </if>
+      <if test="pddMatterName != null">
+        pdd_matter_name,
+      </if>
+      <if test="pddSpecifications != null">
+        pdd_specifications,
+      </if>
+      <if test="pddCompanyName != null">
+        pdd_company_name,
+      </if>
+      <if test="pddAmount != null">
+        pdd_amount,
+      </if>
+      <if test="pddPrice != null">
+        pdd_price,
+      </if>
+      <if test="pddMoney != null">
+        pdd_money,
+      </if>
+      <if test="pddTaxRate != null">
+        pdd_tax_rate,
+      </if>
+      <if test="pddTaxAmount != null">
+        pdd_tax_amount,
+      </if>
+      <if test="pddDiscountAmount != null">
+        pdd_discount_amount,
+      </if>
+      <if test="pddDiscountTax != null">
+        pdd_discount_tax,
+      </if>
+      <if test="pddTotalDiscount != null">
+        pdd_total_discount,
+      </if>
+      <if test="pddDeferredBalance != null">
+        pdd_deferred_balance,
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details,
+      </if>
+      <if test="pddAudition != null">
+        pdd_audition,
+      </if>
+      <if test="pddYn != null">
+        pdd_yn,
+      </if>
+      <if test="pddCustom1 != null">
+        pdd_custom1,
+      </if>
+      <if test="pddCustom2 != null">
+        pdd_custom2,
+      </if>
+      <if test="pddCustom3 != null">
+        pdd_custom3,
+      </if>
+      <if test="pddCustom4 != null">
+        pdd_custom4,
+      </if>
+      <if test="pddCustom5 != null">
+        pdd_custom5,
+      </if>
+      <if test="pddCustom6 != null">
+        pdd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pddId != null">
+        #{pddId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdId != null">
+        #{pdId,jdbcType=VARCHAR},
+      </if>
+      <if test="pddMatterId != null">
+        #{pddMatterId,jdbcType=VARCHAR},
+      </if>
+      <if test="pddMatterName != null">
+        #{pddMatterName,jdbcType=VARCHAR},
+      </if>
+      <if test="pddSpecifications != null">
+        #{pddSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCompanyName != null">
+        #{pddCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="pddAmount != null">
+        #{pddAmount,jdbcType=INTEGER},
+      </if>
+      <if test="pddPrice != null">
+        #{pddPrice,jdbcType=REAL},
+      </if>
+      <if test="pddMoney != null">
+        #{pddMoney,jdbcType=REAL},
+      </if>
+      <if test="pddTaxRate != null">
+        #{pddTaxRate,jdbcType=REAL},
+      </if>
+      <if test="pddTaxAmount != null">
+        #{pddTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="pddDiscountAmount != null">
+        #{pddDiscountAmount,jdbcType=REAL},
+      </if>
+      <if test="pddDiscountTax != null">
+        #{pddDiscountTax,jdbcType=VARCHAR},
+      </if>
+      <if test="pddTotalDiscount != null">
+        #{pddTotalDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="pddDeferredBalance != null">
+        #{pddDeferredBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pddAudition != null">
+        #{pddAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="pddYn != null">
+        #{pddYn,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom1 != null">
+        #{pddCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom2 != null">
+        #{pddCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom3 != null">
+        #{pddCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom4 != null">
+        #{pddCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom5 != null">
+        #{pddCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom6 != null">
+        #{pddCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_discount_detailed">
+    update purchase_discount_detailed
+    <set>
+      <if test="pdId != null">
+        pd_id = #{pdId,jdbcType=VARCHAR},
+      </if>
+      <if test="pddMatterId != null">
+        pdd_matter_id = #{pddMatterId,jdbcType=VARCHAR},
+      </if>
+      <if test="pddMatterName != null">
+        pdd_matter_name = #{pddMatterName,jdbcType=VARCHAR},
+      </if>
+      <if test="pddSpecifications != null">
+        pdd_specifications = #{pddSpecifications,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCompanyName != null">
+        pdd_company_name = #{pddCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="pddAmount != null">
+        pdd_amount = #{pddAmount,jdbcType=INTEGER},
+      </if>
+      <if test="pddPrice != null">
+        pdd_price = #{pddPrice,jdbcType=REAL},
+      </if>
+      <if test="pddMoney != null">
+        pdd_money = #{pddMoney,jdbcType=REAL},
+      </if>
+      <if test="pddTaxRate != null">
+        pdd_tax_rate = #{pddTaxRate,jdbcType=REAL},
+      </if>
+      <if test="pddTaxAmount != null">
+        pdd_tax_amount = #{pddTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="pddDiscountAmount != null">
+        pdd_discount_amount = #{pddDiscountAmount,jdbcType=REAL},
+      </if>
+      <if test="pddDiscountTax != null">
+        pdd_discount_tax = #{pddDiscountTax,jdbcType=VARCHAR},
+      </if>
+      <if test="pddTotalDiscount != null">
+        pdd_total_discount = #{pddTotalDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="pddDeferredBalance != null">
+        pdd_deferred_balance = #{pddDeferredBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="psdInvoiceDetails != null">
+        psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="pddAudition != null">
+        pdd_audition = #{pddAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="pddYn != null">
+        pdd_yn = #{pddYn,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom1 != null">
+        pdd_custom1 = #{pddCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom2 != null">
+        pdd_custom2 = #{pddCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom3 != null">
+        pdd_custom3 = #{pddCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom4 != null">
+        pdd_custom4 = #{pddCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom5 != null">
+        pdd_custom5 = #{pddCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="pddCustom6 != null">
+        pdd_custom6 = #{pddCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pdd_id = #{pddId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_discount_detailed">
+    update purchase_discount_detailed
+    set pd_id = #{pdId,jdbcType=VARCHAR},
+      pdd_matter_id = #{pddMatterId,jdbcType=VARCHAR},
+      pdd_matter_name = #{pddMatterName,jdbcType=VARCHAR},
+      pdd_specifications = #{pddSpecifications,jdbcType=VARCHAR},
+      pdd_company_name = #{pddCompanyName,jdbcType=VARCHAR},
+      pdd_amount = #{pddAmount,jdbcType=INTEGER},
+      pdd_price = #{pddPrice,jdbcType=REAL},
+      pdd_money = #{pddMoney,jdbcType=REAL},
+      pdd_tax_rate = #{pddTaxRate,jdbcType=REAL},
+      pdd_tax_amount = #{pddTaxAmount,jdbcType=REAL},
+      pdd_discount_amount = #{pddDiscountAmount,jdbcType=REAL},
+      pdd_discount_tax = #{pddDiscountTax,jdbcType=VARCHAR},
+      pdd_total_discount = #{pddTotalDiscount,jdbcType=INTEGER},
+      pdd_deferred_balance = #{pddDeferredBalance,jdbcType=VARCHAR},
+      psd_invoice_details = #{psdInvoiceDetails,jdbcType=VARCHAR},
+      pdd_audition = #{pddAudition,jdbcType=VARCHAR},
+      pdd_yn = #{pddYn,jdbcType=VARCHAR},
+      pdd_custom1 = #{pddCustom1,jdbcType=VARCHAR},
+      pdd_custom2 = #{pddCustom2,jdbcType=VARCHAR},
+      pdd_custom3 = #{pddCustom3,jdbcType=VARCHAR},
+      pdd_custom4 = #{pddCustom4,jdbcType=VARCHAR},
+      pdd_custom5 = #{pddCustom5,jdbcType=VARCHAR},
+      pdd_custom6 = #{pddCustom6,jdbcType=VARCHAR}
+    where pdd_id = #{pddId,jdbcType=VARCHAR}
+  </update>
+</mapper>

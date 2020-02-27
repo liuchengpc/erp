@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>库存台账</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script src="js/vue.js"></script>
+    <style>
+        #app {
+            padding: 15px;
+        }
+        .seltj{
+        	border: 0px solid #FFF3F3;
+        	text-align: center;
+			margin:0 auto;
+         
+        }button{
+        	
+        	padding:3px 30px;
+        	margin: 10px;
+        	border:1px solid darkgray;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+    	
+    	<div  class="seltj">
+				<form>
+					<table  class="layui-table" >
+						<tr>
+							<td>物料区间：</td>
+							<td><input type="text" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="text" class="layui-input"></td>
+						</tr>
+						<tr>
+							<td>仓库区间：</td>
+							<td><input type="text" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="text" class="layui-input"></td>
+						</tr>
+						<tr>
+							<td>日期区间：</td>
+							<td><input type="date" class="layui-input"></td>
+							<td>To</td>
+							<td><input type="date" class="layui-input"></td>
+						</tr>
+					</table>
+					
+					<div class="layui-input-block">
+						<span><input type="checkbox"/>区分仓库</span>
+						<button class="layuiadmin-btn" title="确认">确认</button>
+						<button class="layuiadmin-btn" title="取消">取消</button>
+						<button class="layuiadmin-btn" title="固定报表">固定报表</button>
+					</div>
+				</form>
+			</div>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+        <div class="layui-row">
+            <span style="color:#393D49">物料区间：</span>
+            <span style="color:#393D49">日期区间：</span>
+            <span style="color:#393D49">仓库区间：</span>
+        </div>
+        <div class="layui-row">
+
+            <table class="layui-table" lay-even="" lay-skin="row">
+                <colgroup>
+                    <col width="150">
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>物料编号</th>
+                    <th>物料名称</th>
+                    <th>规格型号</th>
+                    <th>物料类别</th>
+                    <th>单位</th>
+                    <th>仓库编号</th>
+                    <th>仓库名称</th>
+                    <th>上期结存数量</th>
+                    <th>本期收入数量</th>
+                    <th>本期发出数量</th>
+                    <th>期末结存数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+          
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

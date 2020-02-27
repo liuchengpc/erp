@@ -52,15 +52,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                        	<template v-if="stu.sowPriceIncludeTax==0">
-                        		 <option value="0" selected="selected">不含税</option>
-                            	 <option value="1">含税</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.sowPriceIncludeTax">     	
                         		 <option value="0">不含税</option>
-                                 <option value="1" selected="selected">含税</option>
-                        	</template>                          
+                            	 <option value="1">含税</option>                       
                         </select>
                     </div>
                 </div>
@@ -115,15 +109,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">国外贸易</label>
                     <div class="layui-input-block">
-                        <select name="interest" disabled="disabled">
-                            <template v-if="stu.sowForeignTrade==0">
-                        		 <option value="0" selected="selected">否</option>
-                            	 <option value="1">是</option>
-                        	</template>
-                        	<template v-else>
+                        <select name="interest" disabled="disabled" v-model="stu.sowForeignTrade">                          
                         		 <option value="0">否</option>
-                                 <option value="1" selected="selected">是</option>
-                        	</template>  
+                            	 <option value="1">是</option>                      	
                         </select>
                     </div>
                 </div>
@@ -160,34 +148,12 @@
                                     <div class="layui-inline">
                                         <label class="layui-form-label">收款条件</label>
                                         <div class="layui-input-inline">
-                                            <select name="interest" disabled="disabled">
-                                            	 <template v-if="stu.sowSalessktj==0">
-					                        		 <option value="0" selected="selected">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.sowSalessktj==1">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1" selected="selected">次月</option>
-					                            	 <option value="2">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else-if="stu.sowSalessktj==2">
-					                        		 <option value="0">货到</option>
-					                            	 <option value="1">次月</option>
-					                            	 <option value="2" selected="selected">月结</option>
-					                            	 <option value="3">其他</option>
-					                        	</template>
-					                        	<template v-else>
+                                            <select name="interest" disabled="disabled" v-model="stu.sowSalessktj">                                           	
 					                        		 <option value="0">货到</option>
 					                            	 <option value="1">次月</option>
 					                            	 <option value="2">月结</option>
-					                            	 <option value="3" selected="selected">其他</option>
-					                        	</template>
-					                        	
-
-                                            </select>
+					                            	 <option value="3">其他</option>
+					                        	</select>
                                         </div>
                                     </div>
                                     <div class="layui-inline">
@@ -341,7 +307,7 @@
 		        <button class="layui-btn" @click="selectpage(page.prePage)" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
 		        <button class="layui-btn" @click="selectpage(page.nextPage)" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
 				<button class="layui-btn" @click="selectpage(page.pages)" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
-		        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
+		        <button class="layui-btn" @click="xz" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
 		        <button class="layui-btn" @click="baocun" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
 		        <button class="layui-btn" @click="bianji" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
 		        <button class="layui-btn" @click="del(stu.sowId)" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
@@ -360,7 +326,7 @@
 <script id="xuhao">
 	 {{d.LAY_TABLE_INDEX+1}}
 </script>
-<script>	  
+<script>
 	var host="http://127.0.0.1:8080/";
 	var sales_outboundvue=new Vue({
 		el:"#app",
@@ -372,16 +338,60 @@
 			warelist:[]
 			
 		},
+		updated:function(){
+			layui.use('form', function(){
+			    var form = layui.form;
+			    form.render();
+			});
+		},
+		watch:{
+			 page:{			
+			 handler(newName, oldName) {
+			 	$.each(newName.list, function(a,b) {
+			 		$.each(b.list, function(c,d) {
+			 			sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+			 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+			 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+			 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);
+			 			sales_outboundvue.tableshuax();
+			 			sales_outboundvue.bianji();
+			 		});
+			 	});
+		   
+		    },
+		    immediate: true,
+		    deep: true
+			}
+		},
 		methods:{
+			xz:function(){
+				sales_outboundvue.chongzhi();
+				sales_outboundvue.bianji();
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectcount",
+					success:function(res){
+						sales_outboundvue.page.list[0].sowId=res+1;
+					}
+					
+				});
+							
+			},
 			del:function(id){
+				if(confirm("是否删除？")){
 				$.ajax({
 					type:"get",
 					data:{sowId:id},
 					url:host+"Sales_out_warehouseController/delete",
 					success:function(resulet){
-						
+						if(resulet>0){
+                    		alert("删除成功！");
+                    	}else{
+                    		alert("删除失败！");
+                    	}
 					}
 				});
+				}
 			},
 			shenhe:function(id,sid){
 				$.ajax({
@@ -421,6 +431,35 @@
 				sales_outboundvue.page.list[0].sowPriceIncludeTax=$("#app select:eq(0)").val();
 				sales_outboundvue.page.list[0].sowForeignTrade=$("#app select:eq(1)").val();
 				sales_outboundvue.page.list[0].sowSalessktj=$("#app select:eq(2)").val();
+				if(sales_outboundvue.page.list[0].sowId>sales_outboundvue.page.pages){
+					$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouse_detailedController/selectcount",
+					async:false,
+					success:function(res){
+						sales_outboundvue.page.list[0].list=layui.table.cache["materialsContent"];
+						$.each(sales_outboundvue.page.list[0].list,function(a,b) {
+							b.sowdId=res+(a+1);
+						});
+						
+					}
+					
+				});
+				$.ajax({
+					type:"post",
+					url:host+"Sales_out_warehouseController/insert",
+					data:JSON.stringify(sales_outboundvue.page.list[0]),
+                    contentType:"application/json;charset=utf-8",
+                    success:function(res){
+                    	if(res>0){
+                    		alert("新增成功！");
+                    	}else{
+                    		alert("新增失败！");
+                    	}
+                    }
+				});
+				
+				}else{
 				sales_outboundvue.page.list[0].list=layui.table.cache["materialsContent"];
 				$.ajax({
 					type:"post",
@@ -428,10 +467,14 @@
 					data:JSON.stringify(sales_outboundvue.page.list[0]),
                     contentType:"application/json;charset=utf-8",
                     success:function(res){
-                    	
+                    	if(res>0){
+                    		alert("修改成功！");
+                    	}else{
+                    		alert("修改失败！");
+                    	}
                     }
 				});
-				
+				}
 				
 			},
 			bianji:function(){
@@ -442,23 +485,101 @@
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
-			$("table td").attr("data-edit","text");
+			$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
+			$("input:eq(0)").off("keyup.f4");
+			$("input:eq(3)").off("keyup.f4");
+			$("input:eq(5)").off("keyup.f4");
+			$("input:eq(9)").off("keyup.f4");
+			$("input:eq(19)").off("keyup.f4");
+			$("table").off("dblclick");
+			$("input:eq(0)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"kehu.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(3)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"saletype.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(5)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"cangku.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("input:eq(9)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"huobi.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})
+			$("input:eq(19)").on("keyup.f4",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"bumen.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			$("table").on("dblclick",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"luowei.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
 			},
 			shuax:function(){
 				location.reload();
-			}
-			,selectpage:function(pageNum){
-				$.ajax({
-					type:"get",
-					url:host+"Sales_out_warehouseController/selectAllpage",
-					data:{pageNum:pageNum,pageSize:1},
-					success:function(res){
-						sales_outboundvue.page=res;						
-						 layui.use('table', function(){
+			},
+			tableshuax(){
+				layui.use('table', function(){
 			        var table = layui.table;
 			        table.render({
 			            elem: '#materialsContent'
-			            ,data:res.list[0].list               
+			            ,data:sales_outboundvue.page.list[0].list               
 			            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			            , cols: [[
 			                {title: '(栏号)',templet: '#xuhao',sort: true}
@@ -482,10 +603,19 @@
 			            ]]
 			        });
 			    });
-			  
-			    
+			}
+			,selectpage:function(pageNum){
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectAllpage",
+					data:{pageNum:pageNum,pageSize:1},
+					success:function(res){
+						sales_outboundvue.page=res;						
+					 	sales_outboundvue.tableshuax();
+					 	sales_outboundvue.bianji();
 					}
-				});		
+				});
+				
 			}
 			,chongzhi:function(){
 				layui.use('table', function(){
@@ -607,7 +737,6 @@
             location.hash = 'test='+ $(this).attr('lay-id');
         });
     });
-
    
 </script>
 </body>

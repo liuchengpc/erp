@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+	</head>
+	<body>
+		<div id="ctx1">
+			<button>打开</button>
+			<input v-model="name">
+		</div>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var listVm = new Vue({
+				el:"#ctx1",
+				data(){
+					return {
+						name:""
+					}
+				}
+			});
+			function show(data){
+				listVm.name = data;
+				console.log("传递至");
+			}
+			layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				$("button").click(function(){
+					layer.open({
+						type:2,
+						content:"page3.html?id=1",
+						success:function(iframe,index){ //iframe=>div
+							//获取子页面中body节点,通过jquery查找节点方式进行赋值
+							var body = layer.getChildFrame('body', index);  //获取的子页面HTML所有类容
+							var span = body.find("span");
+							var input = body.find("input");
+							//获取子页面的窗体对象,通过窗体对象对js中的变量或者函数进行调用
+							var iframeWin = window[iframe.find('iframe')[0]['name']]; 
+							iframeWin.id = 100;
+							iframeWin.printId();
+						}
+					});
+				});
+			});
+			
+			
+		</script>
+	</body>
+</html>

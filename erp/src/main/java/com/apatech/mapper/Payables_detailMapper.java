@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Payables_detail;
+import com.apatech.domain.Priadetails;
 import com.apatech.domain.Team;
 
 public interface Payables_detailMapper {
@@ -21,6 +22,8 @@ public interface Payables_detailMapper {
 	 		"Payables_detail WHERE pade_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
+	List<Payables_detail> selectByPayablesbillSupplierName(String paydetailId); 
+	 
     int deleteByPrimaryKey(String paydetailId);
 
     int insert(Payables_detail record);

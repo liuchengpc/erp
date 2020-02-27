@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_returns_detailedMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_returns_detailed">
+    <id column="pured_id" jdbcType="VARCHAR" property="puredId" />
+    <result column="pure_id" jdbcType="VARCHAR" property="pureId" />
+    <result column="matter_id" jdbcType="VARCHAR" property="matterId" />
+    <result column="pured_engname" jdbcType="VARCHAR" property="puredEngname" />
+    <result column="pured_remark" jdbcType="VARCHAR" property="puredRemark" />
+    <result column="pured_price_include_tax" jdbcType="VARCHAR" property="puredPriceIncludeTax" />
+    <result column="pured_single_status" jdbcType="INTEGER" property="puredSingleStatus" />
+    <result column="pured_document_date" jdbcType="DATE" property="puredDocumentDate" />
+    <result column="pured_document_number" jdbcType="VARCHAR" property="puredDocumentNumber" />
+    <result column="pured_price" jdbcType="REAL" property="puredPrice" />
+    <result column="pured_money" jdbcType="REAL" property="puredMoney" />
+    <result column="pured_tax_rate" jdbcType="REAL" property="puredTaxRate" />
+    <result column="pured_tax_amount" jdbcType="REAL" property="puredTaxAmount" />
+    <result column="pured_including_tax_amount" jdbcType="REAL" property="puredIncludingTaxAmount" />
+    <result column="pured_batch_number" jdbcType="VARCHAR" property="puredBatchNumber" />
+    <result column="pured_ifgift" jdbcType="VARCHAR" property="puredIfgift" />
+    <result column="pured_invoice_details" jdbcType="VARCHAR" property="puredInvoiceDetails" />
+    <result column="pured_remarks" jdbcType="VARCHAR" property="puredRemarks" />
+    <result column="pured_source_order" jdbcType="VARCHAR" property="puredSourceOrder" />
+    <result column="pured_source_no" jdbcType="VARCHAR" property="puredSourceNo" />
+    <result column="pured_auditing" jdbcType="VARCHAR" property="puredAuditing" />
+    <result column="pured_yn" jdbcType="VARCHAR" property="puredYn" />
+    <result column="pured_custom1" jdbcType="VARCHAR" property="puredCustom1" />
+    <result column="pured_custom2" jdbcType="VARCHAR" property="puredCustom2" />
+    <result column="pured_custom3" jdbcType="VARCHAR" property="puredCustom3" />
+    <result column="pured_custom4" jdbcType="VARCHAR" property="puredCustom4" />
+    <result column="pured_custom5" jdbcType="VARCHAR" property="puredCustom5" />
+    <result column="pured_custom6" jdbcType="VARCHAR" property="puredCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pured_id, pure_id, matter_id, pured_engname, pured_remark, pured_price_include_tax, 
+    pured_single_status, pured_document_date, pured_document_number, pured_price, pured_money, 
+    pured_tax_rate, pured_tax_amount, pured_including_tax_amount, pured_batch_number, 
+    pured_ifgift, pured_invoice_details, pured_remarks, pured_source_order, pured_source_no, 
+    pured_auditing, pured_yn, pured_custom1, pured_custom2, pured_custom3, pured_custom4, 
+    pured_custom5, pured_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_returns_detailed 
+	    where pured_Yn=0
+	    ORDER BY pured_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_returns_detailed
+    where pured_id = #{puredId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_returns_detailed
+    where pured_id = #{puredId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_returns_detailed">
+    insert into purchase_returns_detailed (pured_id, pure_id, matter_id, 
+      pured_engname, pured_remark, pured_price_include_tax, 
+      pured_single_status, pured_document_date, pured_document_number, 
+      pured_price, pured_money, pured_tax_rate, 
+      pured_tax_amount, pured_including_tax_amount, pured_batch_number, 
+      pured_ifgift, pured_invoice_details, pured_remarks, 
+      pured_source_order, pured_source_no, pured_auditing, 
+      pured_yn, pured_custom1, pured_custom2, 
+      pured_custom3, pured_custom4, pured_custom5, 
+      pured_custom6)
+    values (#{puredId,jdbcType=VARCHAR}, #{pureId,jdbcType=VARCHAR}, #{matterId,jdbcType=VARCHAR}, 
+      #{puredEngname,jdbcType=VARCHAR}, #{puredRemark,jdbcType=VARCHAR}, #{puredPriceIncludeTax,jdbcType=VARCHAR}, 
+      #{puredSingleStatus,jdbcType=INTEGER}, #{puredDocumentDate,jdbcType=DATE}, #{puredDocumentNumber,jdbcType=VARCHAR}, 
+      #{puredPrice,jdbcType=REAL}, #{puredMoney,jdbcType=REAL}, #{puredTaxRate,jdbcType=REAL}, 
+      #{puredTaxAmount,jdbcType=REAL}, #{puredIncludingTaxAmount,jdbcType=REAL}, #{puredBatchNumber,jdbcType=VARCHAR}, 
+      #{puredIfgift,jdbcType=VARCHAR}, #{puredInvoiceDetails,jdbcType=VARCHAR}, #{puredRemarks,jdbcType=VARCHAR}, 
+      #{puredSourceOrder,jdbcType=VARCHAR}, #{puredSourceNo,jdbcType=VARCHAR}, #{puredAuditing,jdbcType=VARCHAR}, 
+      #{puredYn,jdbcType=VARCHAR}, #{puredCustom1,jdbcType=VARCHAR}, #{puredCustom2,jdbcType=VARCHAR}, 
+      #{puredCustom3,jdbcType=VARCHAR}, #{puredCustom4,jdbcType=VARCHAR}, #{puredCustom5,jdbcType=VARCHAR}, 
+      #{puredCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_returns_detailed">
+    insert into purchase_returns_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="puredId != null">
+        pured_id,
+      </if>
+      <if test="pureId != null">
+        pure_id,
+      </if>
+      <if test="matterId != null">
+        matter_id,
+      </if>
+      <if test="puredEngname != null">
+        pured_engname,
+      </if>
+      <if test="puredRemark != null">
+        pured_remark,
+      </if>
+      <if test="puredPriceIncludeTax != null">
+        pured_price_include_tax,
+      </if>
+      <if test="puredSingleStatus != null">
+        pured_single_status,
+      </if>
+      <if test="puredDocumentDate != null">
+        pured_document_date,
+      </if>
+      <if test="puredDocumentNumber != null">
+        pured_document_number,
+      </if>
+      <if test="puredPrice != null">
+        pured_price,
+      </if>
+      <if test="puredMoney != null">
+        pured_money,
+      </if>
+      <if test="puredTaxRate != null">
+        pured_tax_rate,
+      </if>
+      <if test="puredTaxAmount != null">
+        pured_tax_amount,
+      </if>
+      <if test="puredIncludingTaxAmount != null">
+        pured_including_tax_amount,
+      </if>
+      <if test="puredBatchNumber != null">
+        pured_batch_number,
+      </if>
+      <if test="puredIfgift != null">
+        pured_ifgift,
+      </if>
+      <if test="puredInvoiceDetails != null">
+        pured_invoice_details,
+      </if>
+      <if test="puredRemarks != null">
+        pured_remarks,
+      </if>
+      <if test="puredSourceOrder != null">
+        pured_source_order,
+      </if>
+      <if test="puredSourceNo != null">
+        pured_source_no,
+      </if>
+      <if test="puredAuditing != null">
+        pured_auditing,
+      </if>
+      <if test="puredYn != null">
+        pured_yn,
+      </if>
+      <if test="puredCustom1 != null">
+        pured_custom1,
+      </if>
+      <if test="puredCustom2 != null">
+        pured_custom2,
+      </if>
+      <if test="puredCustom3 != null">
+        pured_custom3,
+      </if>
+      <if test="puredCustom4 != null">
+        pured_custom4,
+      </if>
+      <if test="puredCustom5 != null">
+        pured_custom5,
+      </if>
+      <if test="puredCustom6 != null">
+        pured_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="puredId != null">
+        #{puredId,jdbcType=VARCHAR},
+      </if>
+      <if test="pureId != null">
+        #{pureId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="puredEngname != null">
+        #{puredEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="puredRemark != null">
+        #{puredRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="puredPriceIncludeTax != null">
+        #{puredPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSingleStatus != null">
+        #{puredSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="puredDocumentDate != null">
+        #{puredDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="puredDocumentNumber != null">
+        #{puredDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="puredPrice != null">
+        #{puredPrice,jdbcType=REAL},
+      </if>
+      <if test="puredMoney != null">
+        #{puredMoney,jdbcType=REAL},
+      </if>
+      <if test="puredTaxRate != null">
+        #{puredTaxRate,jdbcType=REAL},
+      </if>
+      <if test="puredTaxAmount != null">
+        #{puredTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="puredIncludingTaxAmount != null">
+        #{puredIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="puredBatchNumber != null">
+        #{puredBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="puredIfgift != null">
+        #{puredIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="puredInvoiceDetails != null">
+        #{puredInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="puredRemarks != null">
+        #{puredRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSourceOrder != null">
+        #{puredSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSourceNo != null">
+        #{puredSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="puredAuditing != null">
+        #{puredAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="puredYn != null">
+        #{puredYn,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom1 != null">
+        #{puredCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom2 != null">
+        #{puredCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom3 != null">
+        #{puredCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom4 != null">
+        #{puredCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom5 != null">
+        #{puredCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom6 != null">
+        #{puredCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_returns_detailed">
+    update purchase_returns_detailed
+    <set>
+      <if test="pureId != null">
+        pure_id = #{pureId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="puredEngname != null">
+        pured_engname = #{puredEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="puredRemark != null">
+        pured_remark = #{puredRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="puredPriceIncludeTax != null">
+        pured_price_include_tax = #{puredPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSingleStatus != null">
+        pured_single_status = #{puredSingleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="puredDocumentDate != null">
+        pured_document_date = #{puredDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="puredDocumentNumber != null">
+        pured_document_number = #{puredDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="puredPrice != null">
+        pured_price = #{puredPrice,jdbcType=REAL},
+      </if>
+      <if test="puredMoney != null">
+        pured_money = #{puredMoney,jdbcType=REAL},
+      </if>
+      <if test="puredTaxRate != null">
+        pured_tax_rate = #{puredTaxRate,jdbcType=REAL},
+      </if>
+      <if test="puredTaxAmount != null">
+        pured_tax_amount = #{puredTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="puredIncludingTaxAmount != null">
+        pured_including_tax_amount = #{puredIncludingTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="puredBatchNumber != null">
+        pured_batch_number = #{puredBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="puredIfgift != null">
+        pured_ifgift = #{puredIfgift,jdbcType=VARCHAR},
+      </if>
+      <if test="puredInvoiceDetails != null">
+        pured_invoice_details = #{puredInvoiceDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="puredRemarks != null">
+        pured_remarks = #{puredRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSourceOrder != null">
+        pured_source_order = #{puredSourceOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="puredSourceNo != null">
+        pured_source_no = #{puredSourceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="puredAuditing != null">
+        pured_auditing = #{puredAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="puredYn != null">
+        pured_yn = #{puredYn,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom1 != null">
+        pured_custom1 = #{puredCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom2 != null">
+        pured_custom2 = #{puredCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom3 != null">
+        pured_custom3 = #{puredCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom4 != null">
+        pured_custom4 = #{puredCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom5 != null">
+        pured_custom5 = #{puredCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="puredCustom6 != null">
+        pured_custom6 = #{puredCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pured_id = #{puredId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_returns_detailed">
+    update purchase_returns_detailed
+    set pure_id = #{pureId,jdbcType=VARCHAR},
+      matter_id = #{matterId,jdbcType=VARCHAR},
+      pured_engname = #{puredEngname,jdbcType=VARCHAR},
+      pured_remark = #{puredRemark,jdbcType=VARCHAR},
+      pured_price_include_tax = #{puredPriceIncludeTax,jdbcType=VARCHAR},
+      pured_single_status = #{puredSingleStatus,jdbcType=INTEGER},
+      pured_document_date = #{puredDocumentDate,jdbcType=DATE},
+      pured_document_number = #{puredDocumentNumber,jdbcType=VARCHAR},
+      pured_price = #{puredPrice,jdbcType=REAL},
+      pured_money = #{puredMoney,jdbcType=REAL},
+      pured_tax_rate = #{puredTaxRate,jdbcType=REAL},
+      pured_tax_amount = #{puredTaxAmount,jdbcType=REAL},
+      pured_including_tax_amount = #{puredIncludingTaxAmount,jdbcType=REAL},
+      pured_batch_number = #{puredBatchNumber,jdbcType=VARCHAR},
+      pured_ifgift = #{puredIfgift,jdbcType=VARCHAR},
+      pured_invoice_details = #{puredInvoiceDetails,jdbcType=VARCHAR},
+      pured_remarks = #{puredRemarks,jdbcType=VARCHAR},
+      pured_source_order = #{puredSourceOrder,jdbcType=VARCHAR},
+      pured_source_no = #{puredSourceNo,jdbcType=VARCHAR},
+      pured_auditing = #{puredAuditing,jdbcType=VARCHAR},
+      pured_yn = #{puredYn,jdbcType=VARCHAR},
+      pured_custom1 = #{puredCustom1,jdbcType=VARCHAR},
+      pured_custom2 = #{puredCustom2,jdbcType=VARCHAR},
+      pured_custom3 = #{puredCustom3,jdbcType=VARCHAR},
+      pured_custom4 = #{puredCustom4,jdbcType=VARCHAR},
+      pured_custom5 = #{puredCustom5,jdbcType=VARCHAR},
+      pured_custom6 = #{puredCustom6,jdbcType=VARCHAR}
+    where pured_id = #{puredId,jdbcType=VARCHAR}
+  </update>
+
+  <!--auto generated by MybatisCodeHelper on 2020-02-19-->
+  <insert id="insertList">
+        INSERT INTO purchase_returns_detailed(
+        pured_id,
+        pure_id,
+        matter_id,
+        pured_engname,
+        pured_remark,
+        pured_price_include_tax,
+        pured_single_status,
+        pured_document_date,
+        pured_document_number,
+        pured_price,
+        pured_money,
+        pured_tax_rate,
+        pured_tax_amount,
+        pured_including_tax_amount,
+        pured_batch_number,
+        pured_ifgift,
+        pured_invoice_details,
+        pured_remarks,
+        pured_source_order,
+        pured_source_no,
+        pured_auditing,
+        pured_yn,
+        pured_custom1,
+        pured_custom2,
+        pured_custom3,
+        pured_custom4,
+        pured_custom5,
+        pured_custom6
+        )VALUES
+        <foreach collection="list" item="element" index="index" separator=",">
+            (
+            #{element.puredId,jdbcType=VARCHAR},
+            #{element.pureId,jdbcType=VARCHAR},
+            #{element.matterId,jdbcType=VARCHAR},
+            #{element.puredEngname,jdbcType=VARCHAR},
+            #{element.puredRemark,jdbcType=VARCHAR},
+            #{element.puredPriceIncludeTax,jdbcType=VARCHAR},
+            #{element.puredSingleStatus,jdbcType=INTEGER},
+            #{element.puredDocumentDate,jdbcType=DATE},
+            #{element.puredDocumentNumber,jdbcType=VARCHAR},
+            #{element.puredPrice,jdbcType=REAL},
+            #{element.puredMoney,jdbcType=REAL},
+            #{element.puredTaxRate,jdbcType=REAL},
+            #{element.puredTaxAmount,jdbcType=REAL},
+            #{element.puredIncludingTaxAmount,jdbcType=REAL},
+            #{element.puredBatchNumber,jdbcType=VARCHAR},
+            #{element.puredIfgift,jdbcType=VARCHAR},
+            #{element.puredInvoiceDetails,jdbcType=VARCHAR},
+            #{element.puredRemarks,jdbcType=VARCHAR},
+            #{element.puredSourceOrder,jdbcType=VARCHAR},
+            #{element.puredSourceNo,jdbcType=VARCHAR},
+            #{element.puredAuditing,jdbcType=VARCHAR},
+            #{element.puredYn,jdbcType=VARCHAR},
+            #{element.puredCustom1,jdbcType=VARCHAR},
+            #{element.puredCustom2,jdbcType=VARCHAR},
+            #{element.puredCustom3,jdbcType=VARCHAR},
+            #{element.puredCustom4,jdbcType=VARCHAR},
+            #{element.puredCustom5,jdbcType=VARCHAR},
+            #{element.puredCustom6,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

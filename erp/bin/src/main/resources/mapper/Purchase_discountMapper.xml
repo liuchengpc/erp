@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_discountMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_discount">
+    <id column="pd_id" jdbcType="VARCHAR" property="pdId" />
+    <result column="supplier_id" jdbcType="VARCHAR" property="supplierId" />
+    <result column="pd_attribution_of_account" jdbcType="VARCHAR" property="pdAttributionOfAccount" />
+    <result column="pd_accounts_month" jdbcType="DATE" property="pdAccountsMonth" />
+    <result column="pd_supplier_address" jdbcType="VARCHAR" property="pdSupplierAddress" />
+    <result column="ps_id" jdbcType="VARCHAR" property="psId" />
+    <result column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
+    <result column="pd_document_date" jdbcType="DATE" property="pdDocumentDate" />
+    <result column="pd_document_number" jdbcType="VARCHAR" property="pdDocumentNumber" />
+    <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
+    <result column="pd_exchange_rate" jdbcType="REAL" property="pdExchangeRate" />
+    <result column="pd_single_status" jdbcType="VARCHAR" property="pdSingleStatus" />
+    <result column="pd_sunnum" jdbcType="INTEGER" property="pdSunnum" />
+    <result column="pd_sunmoney" jdbcType="REAL" property="pdSunmoney" />
+    <result column="pd_tax" jdbcType="REAL" property="pdTax" />
+    <result column="pd_include_tax_amount" jdbcType="REAL" property="pdIncludeTaxAmount" />
+    <result column="pd_delivery_address" jdbcType="VARCHAR" property="pdDeliveryAddress" />
+    <result column="pd_buyer" jdbcType="VARCHAR" property="pdBuyer" />
+    <result column="pd_belongs_section" jdbcType="VARCHAR" property="pdBelongsSection" />
+    <result column="pd_belongs_project" jdbcType="VARCHAR" property="pdBelongsProject" />
+    <result column="pd_executor" jdbcType="VARCHAR" property="pdExecutor" />
+    <result column="pd_checkagain_staff" jdbcType="VARCHAR" property="pdCheckagainStaff" />
+    <result column="pd_header_provision" jdbcType="VARCHAR" property="pdHeaderProvision" />
+    <result column="pd_end_clause" jdbcType="VARCHAR" property="pdEndClause" />
+    <result column="pd_remark" jdbcType="VARCHAR" property="pdRemark" />
+    <result column="pd_audition" jdbcType="VARCHAR" property="pdAudition" />
+    <result column="pd_yn" jdbcType="VARCHAR" property="pdYn" />
+    <result column="pd_custom1" jdbcType="VARCHAR" property="pdCustom1" />
+    <result column="pd_custom2" jdbcType="VARCHAR" property="pdCustom2" />
+    <result column="pd_custom3" jdbcType="VARCHAR" property="pdCustom3" />
+    <result column="pd_custom4" jdbcType="VARCHAR" property="pdCustom4" />
+    <result column="pd_custom5" jdbcType="VARCHAR" property="pdCustom5" />
+    <result column="pd_custom6" jdbcType="VARCHAR" property="pdCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pd_id, supplier_id, pd_attribution_of_account, pd_accounts_month, pd_supplier_address, 
+    ps_id, warehouse_id, pd_document_date, pd_document_number, currency_id, pd_exchange_rate, 
+    pd_single_status, pd_sunnum, pd_sunmoney, pd_tax, pd_include_tax_amount, pd_delivery_address, 
+    pd_buyer, pd_belongs_section, pd_belongs_project, pd_executor, pd_checkagain_staff, 
+    pd_header_provision, pd_end_clause, pd_remark, pd_audition, pd_yn, pd_custom1, pd_custom2, 
+    pd_custom3, pd_custom4, pd_custom5, pd_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_discount 
+	    where pd_Yn=0
+	    ORDER BY pd_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_discount
+    where pd_id = #{pdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from purchase_discount
+    where pd_id = #{pdId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_discount">
+    insert into purchase_discount (pd_id, supplier_id, pd_attribution_of_account, 
+      pd_accounts_month, pd_supplier_address, ps_id, 
+      warehouse_id, pd_document_date, pd_document_number, 
+      currency_id, pd_exchange_rate, pd_single_status, 
+      pd_sunnum, pd_sunmoney, pd_tax, 
+      pd_include_tax_amount, pd_delivery_address, pd_buyer, 
+      pd_belongs_section, pd_belongs_project, pd_executor, 
+      pd_checkagain_staff, pd_header_provision, pd_end_clause, 
+      pd_remark, pd_audition, pd_yn, 
+      pd_custom1, pd_custom2, pd_custom3, 
+      pd_custom4, pd_custom5, pd_custom6
+      )
+    values (#{pdId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{pdAttributionOfAccount,jdbcType=VARCHAR}, 
+      #{pdAccountsMonth,jdbcType=DATE}, #{pdSupplierAddress,jdbcType=VARCHAR}, #{psId,jdbcType=VARCHAR}, 
+      #{warehouseId,jdbcType=VARCHAR}, #{pdDocumentDate,jdbcType=DATE}, #{pdDocumentNumber,jdbcType=VARCHAR}, 
+      #{currencyId,jdbcType=VARCHAR}, #{pdExchangeRate,jdbcType=REAL}, #{pdSingleStatus,jdbcType=VARCHAR}, 
+      #{pdSunnum,jdbcType=INTEGER}, #{pdSunmoney,jdbcType=REAL}, #{pdTax,jdbcType=REAL}, 
+      #{pdIncludeTaxAmount,jdbcType=REAL}, #{pdDeliveryAddress,jdbcType=VARCHAR}, #{pdBuyer,jdbcType=VARCHAR}, 
+      #{pdBelongsSection,jdbcType=VARCHAR}, #{pdBelongsProject,jdbcType=VARCHAR}, #{pdExecutor,jdbcType=VARCHAR}, 
+      #{pdCheckagainStaff,jdbcType=VARCHAR}, #{pdHeaderProvision,jdbcType=VARCHAR}, #{pdEndClause,jdbcType=VARCHAR}, 
+      #{pdRemark,jdbcType=VARCHAR}, #{pdAudition,jdbcType=VARCHAR}, #{pdYn,jdbcType=VARCHAR}, 
+      #{pdCustom1,jdbcType=VARCHAR}, #{pdCustom2,jdbcType=VARCHAR}, #{pdCustom3,jdbcType=VARCHAR}, 
+      #{pdCustom4,jdbcType=VARCHAR}, #{pdCustom5,jdbcType=VARCHAR}, #{pdCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_discount">
+    insert into purchase_discount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pdId != null">
+        pd_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="pdAttributionOfAccount != null">
+        pd_attribution_of_account,
+      </if>
+      <if test="pdAccountsMonth != null">
+        pd_accounts_month,
+      </if>
+      <if test="pdSupplierAddress != null">
+        pd_supplier_address,
+      </if>
+      <if test="psId != null">
+        ps_id,
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id,
+      </if>
+      <if test="pdDocumentDate != null">
+        pd_document_date,
+      </if>
+      <if test="pdDocumentNumber != null">
+        pd_document_number,
+      </if>
+      <if test="currencyId != null">
+        currency_id,
+      </if>
+      <if test="pdExchangeRate != null">
+        pd_exchange_rate,
+      </if>
+      <if test="pdSingleStatus != null">
+        pd_single_status,
+      </if>
+      <if test="pdSunnum != null">
+        pd_sunnum,
+      </if>
+      <if test="pdSunmoney != null">
+        pd_sunmoney,
+      </if>
+      <if test="pdTax != null">
+        pd_tax,
+      </if>
+      <if test="pdIncludeTaxAmount != null">
+        pd_include_tax_amount,
+      </if>
+      <if test="pdDeliveryAddress != null">
+        pd_delivery_address,
+      </if>
+      <if test="pdBuyer != null">
+        pd_buyer,
+      </if>
+      <if test="pdBelongsSection != null">
+        pd_belongs_section,
+      </if>
+      <if test="pdBelongsProject != null">
+        pd_belongs_project,
+      </if>
+      <if test="pdExecutor != null">
+        pd_executor,
+      </if>
+      <if test="pdCheckagainStaff != null">
+        pd_checkagain_staff,
+      </if>
+      <if test="pdHeaderProvision != null">
+        pd_header_provision,
+      </if>
+      <if test="pdEndClause != null">
+        pd_end_clause,
+      </if>
+      <if test="pdRemark != null">
+        pd_remark,
+      </if>
+      <if test="pdAudition != null">
+        pd_audition,
+      </if>
+      <if test="pdYn != null">
+        pd_yn,
+      </if>
+      <if test="pdCustom1 != null">
+        pd_custom1,
+      </if>
+      <if test="pdCustom2 != null">
+        pd_custom2,
+      </if>
+      <if test="pdCustom3 != null">
+        pd_custom3,
+      </if>
+      <if test="pdCustom4 != null">
+        pd_custom4,
+      </if>
+      <if test="pdCustom5 != null">
+        pd_custom5,
+      </if>
+      <if test="pdCustom6 != null">
+        pd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pdId != null">
+        #{pdId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAttributionOfAccount != null">
+        #{pdAttributionOfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAccountsMonth != null">
+        #{pdAccountsMonth,jdbcType=DATE},
+      </if>
+      <if test="pdSupplierAddress != null">
+        #{pdSupplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdDocumentDate != null">
+        #{pdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="pdDocumentNumber != null">
+        #{pdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdExchangeRate != null">
+        #{pdExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="pdSingleStatus != null">
+        #{pdSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pdSunnum != null">
+        #{pdSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="pdSunmoney != null">
+        #{pdSunmoney,jdbcType=REAL},
+      </if>
+      <if test="pdTax != null">
+        #{pdTax,jdbcType=REAL},
+      </if>
+      <if test="pdIncludeTaxAmount != null">
+        #{pdIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="pdDeliveryAddress != null">
+        #{pdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBuyer != null">
+        #{pdBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBelongsSection != null">
+        #{pdBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBelongsProject != null">
+        #{pdBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="pdExecutor != null">
+        #{pdExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCheckagainStaff != null">
+        #{pdCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="pdHeaderProvision != null">
+        #{pdHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="pdEndClause != null">
+        #{pdEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="pdRemark != null">
+        #{pdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAudition != null">
+        #{pdAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="pdYn != null">
+        #{pdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom1 != null">
+        #{pdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom2 != null">
+        #{pdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom3 != null">
+        #{pdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom4 != null">
+        #{pdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom5 != null">
+        #{pdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom6 != null">
+        #{pdCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_discount">
+    update purchase_discount
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAttributionOfAccount != null">
+        pd_attribution_of_account = #{pdAttributionOfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAccountsMonth != null">
+        pd_accounts_month = #{pdAccountsMonth,jdbcType=DATE},
+      </if>
+      <if test="pdSupplierAddress != null">
+        pd_supplier_address = #{pdSupplierAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="psId != null">
+        ps_id = #{psId,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseId != null">
+        warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdDocumentDate != null">
+        pd_document_date = #{pdDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="pdDocumentNumber != null">
+        pd_document_number = #{pdDocumentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="pdExchangeRate != null">
+        pd_exchange_rate = #{pdExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="pdSingleStatus != null">
+        pd_single_status = #{pdSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pdSunnum != null">
+        pd_sunnum = #{pdSunnum,jdbcType=INTEGER},
+      </if>
+      <if test="pdSunmoney != null">
+        pd_sunmoney = #{pdSunmoney,jdbcType=REAL},
+      </if>
+      <if test="pdTax != null">
+        pd_tax = #{pdTax,jdbcType=REAL},
+      </if>
+      <if test="pdIncludeTaxAmount != null">
+        pd_include_tax_amount = #{pdIncludeTaxAmount,jdbcType=REAL},
+      </if>
+      <if test="pdDeliveryAddress != null">
+        pd_delivery_address = #{pdDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBuyer != null">
+        pd_buyer = #{pdBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBelongsSection != null">
+        pd_belongs_section = #{pdBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="pdBelongsProject != null">
+        pd_belongs_project = #{pdBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="pdExecutor != null">
+        pd_executor = #{pdExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCheckagainStaff != null">
+        pd_checkagain_staff = #{pdCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="pdHeaderProvision != null">
+        pd_header_provision = #{pdHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="pdEndClause != null">
+        pd_end_clause = #{pdEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="pdRemark != null">
+        pd_remark = #{pdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="pdAudition != null">
+        pd_audition = #{pdAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="pdYn != null">
+        pd_yn = #{pdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom1 != null">
+        pd_custom1 = #{pdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom2 != null">
+        pd_custom2 = #{pdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom3 != null">
+        pd_custom3 = #{pdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom4 != null">
+        pd_custom4 = #{pdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom5 != null">
+        pd_custom5 = #{pdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="pdCustom6 != null">
+        pd_custom6 = #{pdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pd_id = #{pdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_discount">
+    update purchase_discount
+    set supplier_id = #{supplierId,jdbcType=VARCHAR},
+      pd_attribution_of_account = #{pdAttributionOfAccount,jdbcType=VARCHAR},
+      pd_accounts_month = #{pdAccountsMonth,jdbcType=DATE},
+      pd_supplier_address = #{pdSupplierAddress,jdbcType=VARCHAR},
+      ps_id = #{psId,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      pd_document_date = #{pdDocumentDate,jdbcType=DATE},
+      pd_document_number = #{pdDocumentNumber,jdbcType=VARCHAR},
+      currency_id = #{currencyId,jdbcType=VARCHAR},
+      pd_exchange_rate = #{pdExchangeRate,jdbcType=REAL},
+      pd_single_status = #{pdSingleStatus,jdbcType=VARCHAR},
+      pd_sunnum = #{pdSunnum,jdbcType=INTEGER},
+      pd_sunmoney = #{pdSunmoney,jdbcType=REAL},
+      pd_tax = #{pdTax,jdbcType=REAL},
+      pd_include_tax_amount = #{pdIncludeTaxAmount,jdbcType=REAL},
+      pd_delivery_address = #{pdDeliveryAddress,jdbcType=VARCHAR},
+      pd_buyer = #{pdBuyer,jdbcType=VARCHAR},
+      pd_belongs_section = #{pdBelongsSection,jdbcType=VARCHAR},
+      pd_belongs_project = #{pdBelongsProject,jdbcType=VARCHAR},
+      pd_executor = #{pdExecutor,jdbcType=VARCHAR},
+      pd_checkagain_staff = #{pdCheckagainStaff,jdbcType=VARCHAR},
+      pd_header_provision = #{pdHeaderProvision,jdbcType=VARCHAR},
+      pd_end_clause = #{pdEndClause,jdbcType=VARCHAR},
+      pd_remark = #{pdRemark,jdbcType=VARCHAR},
+      pd_audition = #{pdAudition,jdbcType=VARCHAR},
+      pd_yn = #{pdYn,jdbcType=VARCHAR},
+      pd_custom1 = #{pdCustom1,jdbcType=VARCHAR},
+      pd_custom2 = #{pdCustom2,jdbcType=VARCHAR},
+      pd_custom3 = #{pdCustom3,jdbcType=VARCHAR},
+      pd_custom4 = #{pdCustom4,jdbcType=VARCHAR},
+      pd_custom5 = #{pdCustom5,jdbcType=VARCHAR},
+      pd_custom6 = #{pdCustom6,jdbcType=VARCHAR}
+    where pd_id = #{pdId,jdbcType=VARCHAR}
+  </update>
+</mapper>

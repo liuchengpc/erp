@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Matter;
 import com.apatech.domain.Team;
+import com.apatech.domain.wdMatter;
 
 public interface MatterMapper {
 	 List<Matter> selectAll();
@@ -32,4 +33,17 @@ public interface MatterMapper {
     int updateByPrimaryKeySelective(Matter record);
 
     int updateByPrimaryKey(Matter record);
+
+    @Select("SELECT \n" + 
+    		"ma.matter_id AS matterId,ma.matter_name AS mmatterName,\n" + 
+    		"m.mu_id AS mamuId,ma.matter_size AS mmatterSize,\n" + 
+    		"m.mu_name AS muName,\n" + 
+    		"ma.matter_nowcount AS mmatterNowcount,\n" + 
+    		"ma.matter_nowavgcost AS mmatterNowavgcost,\n" + 
+    		"(ma.matter_nowallcost/ma.matter_nowcount)AS mmonePrice	\n" + 
+    		"FROM \n" + 
+    		"	measurement_unit AS m,\n" + 
+    		"	matter AS ma	\n" + 
+    		"WHERE ma.mu_id=m.mu_id")
+	List<wdMatter> selectAllMatter();
 }

@@ -8,22 +8,22 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 应付冲款单主表
- * @author 刘成
+ * @author 刘成                                                                                                                                                                                                                                                                                                                                                       
  *
  */
 public class Payables {
-    private String payablesId;//应付冲款单id（主键 唯一）
+    private String payablesId;//应付冲款单id（主键    唯一）
     private String supplierId;//供应商表id，外键
     private Integer scsId;//结算方式id，外键
     private String staffId;//部门员工表id，外键
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String payablesSupplierName;//供应商表
-    private Integer payablesSatName1;//结算方式表，默认值：转账
+    private String payablesSatName1;//结算方式表，默认值：转账
     private Float payablesPrice1;//默认值：0.00
-    private Integer payablesSatName2;//结算方式表，默认值：汇票
+    private String payablesSatName2;//结算方式表，默认值：汇票
     private Float payablesPrice2;//默认值：0.00
-    private Integer payablesSatName3;//结算方式表
+    private String payablesSatName3;//结算方式表
     private Float payablesPrice3;//默认值：0.00
     private Integer payablesZhekou;//折扣率，默认值：0.00
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
@@ -45,13 +45,13 @@ public class Payables {
     private String payablesAuditing;//是否审核
     private String payablesYn;//是否删除（0 否 1 是 ，默认0）
     private String payablesCustom1;//自定栏1
-    private String payablesCustom2;//自定栏2
+    private String payablesCustom2;//自定栏2-- 单据号码
     private String payablesCustom3;//自定栏3
     private String payablesCustom4;//自定栏4
     private String payablesCustom5;//自定栏5
     private String payablesCustom6;//自定栏6
     private String payablesCustom7;//自定栏7
-    private String payablesCustom8;//自定栏8
+    private String payablesCustom8;//自定栏8	--部门ID
     private String payablesCustom10;//自定栏10
     
     
@@ -138,14 +138,6 @@ public class Payables {
         this.payablesSupplierName = payablesSupplierName == null ? null : payablesSupplierName.trim();
     }
 
-    public Integer getPayablesSatName1() {
-        return payablesSatName1;
-    }
-
-    public void setPayablesSatName1(Integer payablesSatName1) {
-        this.payablesSatName1 = payablesSatName1;
-    }
-
     public Float getPayablesPrice1() {
         return payablesPrice1;
     }
@@ -154,13 +146,7 @@ public class Payables {
         this.payablesPrice1 = payablesPrice1;
     }
 
-    public Integer getPayablesSatName2() {
-        return payablesSatName2;
-    }
-
-    public void setPayablesSatName2(Integer payablesSatName2) {
-        this.payablesSatName2 = payablesSatName2;
-    }
+ 
 
     public Float getPayablesPrice2() {
         return payablesPrice2;
@@ -170,15 +156,33 @@ public class Payables {
         this.payablesPrice2 = payablesPrice2;
     }
 
-    public Integer getPayablesSatName3() {
-        return payablesSatName3;
-    }
+  
 
-    public void setPayablesSatName3(Integer payablesSatName3) {
-        this.payablesSatName3 = payablesSatName3;
-    }
+    public String getPayablesSatName1() {
+		return payablesSatName1;
+	}
 
-    public Float getPayablesPrice3() {
+	public void setPayablesSatName1(String payablesSatName1) {
+		this.payablesSatName1 = payablesSatName1;
+	}
+
+	public String getPayablesSatName2() {
+		return payablesSatName2;
+	}
+
+	public void setPayablesSatName2(String payablesSatName2) {
+		this.payablesSatName2 = payablesSatName2;
+	}
+
+	public String getPayablesSatName3() {
+		return payablesSatName3;
+	}
+
+	public void setPayablesSatName3(String payablesSatName3) {
+		this.payablesSatName3 = payablesSatName3;
+	}
+
+	public Float getPayablesPrice3() {
         return payablesPrice3;
     }
 

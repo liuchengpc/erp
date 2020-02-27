@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apatech.domain.Payables;
 import com.apatech.domain.Priadetails;
 import com.apatech.domain.Priadetails;
 import com.apatech.domain.Priadetails;
@@ -19,15 +20,13 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public PageInfo<Priadetails> selectAllpage(Integer pageNum,Integer pageSize){
-    	System.out.println("分页的集合："+dao.selectAll().toString());
-		 
-    	PageHelper.startPage(pageNum, pageSize);
-    	List<Priadetails> list=dao.selectAll();
+	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillId){
+    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillId));
+    	PageHelper.startPage(page, limit);
+    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillId);
 
-    	PageInfo<Priadetails> page=new PageInfo<Priadetails>(list);
-//		    	System.out.println("分页的集合2："+page.getList().toString());
-    	return page;
+    	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
+    	return pageFy;
     }
 	 
 	 public String getno(String billdate){
@@ -38,12 +37,30 @@ public class PriadetailsService {
     	return dao.deleteByPrimaryKey(priadetailsId);
     }
 
+    public int deleteByPrimaryKeyXuzhe(String priabillId) {
+    	return dao.deleteByPrimaryKeyXuzhe(priabillId);
+    }
+    
     public int insert(Priadetails record){
     	return dao.insert(record);
     }
     
     public int insertSelective(Priadetails record){
     	return dao.insertSelective(record);
+    }
+    
+    //Xz新增+删除
+    public int insertAndDelete(Priadetails record){
+    	//先删除
+    	int i = dao.deleteByPrimaryKey(record.getPriadetailsId());
+    	System.out.println("PriadetailsService预付款明细--删除成功");
+		int ins = dao.insertSelective(record);
+		if(ins>0) {
+			System.out.println("PriadetailsService预付款明细新--增成功");
+			return 1;
+		}else {
+			return 0;
+		}
     }
 
     public Priadetails selectByPrimaryKey(String priadetailsId){
@@ -56,5 +73,9 @@ public class PriadetailsService {
 
     public int updateByPrimaryKey(Priadetails record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    public int selectCount() {
+    	return dao.selectCount();
     }
 }

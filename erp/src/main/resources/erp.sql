@@ -38,6 +38,32 @@ CREATE TABLE `account` (
 
 /*Data for the table `account` */
 
+/*Table structure for table `adjust_detail` */
+
+DROP TABLE IF EXISTS `adjust_detail`;
+
+CREATE TABLE `adjust_detail` (
+  `d_matterid` varchar(50) DEFAULT NULL COMMENT '物料id，关联物料主文件表',
+  `d_adjustprice` float DEFAULT NULL COMMENT '调价金额',
+  `d_decoration` varchar(200) DEFAULT NULL COMMENT '分录备注',
+  `d_apid` varchar(50) DEFAULT NULL COMMENT '调价单id，关联调价单',
+  `adde_id` int(11) NOT NULL AUTO_INCREMENT,
+  `adde_custom1` varchar(50) DEFAULT NULL,
+  `adde_custom2` varchar(50) DEFAULT NULL,
+  `adde_custom3` varchar(50) DEFAULT NULL,
+  `adde_custom4` varchar(50) DEFAULT NULL,
+  `adde_custom5` varchar(50) DEFAULT NULL,
+  `adde_custom6` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`adde_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `adjust_detail` */
+
+insert  into `adjust_detail`(`d_matterid`,`d_adjustprice`,`d_decoration`,`d_apid`,`adde_id`,`adde_custom1`,`adde_custom2`,`adde_custom3`,`adde_custom4`,`adde_custom5`,`adde_custom6`) values 
+('1',200,'1asd','1',1,NULL,NULL,NULL,NULL,NULL,NULL),
+('2',300,'adsad','1',2,NULL,NULL,NULL,NULL,NULL,NULL),
+('1',123,'ecs','2',3,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `adjust_price` */
 
 DROP TABLE IF EXISTS `adjust_price`;
@@ -360,6 +386,13 @@ CREATE TABLE `currency` (
 
 /*Data for the table `currency` */
 
+insert  into `currency`(`currency_id`,`currency_name`,`currency_easyname`,`currency_engname`,`currency_transactionday`,`currency_standardexchange`,`currency_inexchange`,`currency_outexchange`,`currency_ifthousand`,`currency_mpointset`,`currency_Auditing`,`urrency_yn`,`currency_custom1`,`currency_custom2`,`currency_custom3`,`currency_custom4`,`currency_custom5`,`currency_custom6`) values 
+('20200202001','人民币','人民币','CNY','2020-02-14',1,1,1,1,1,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('20200202002','日元','日元','EUR','2020-02-14',0.0649,0.0649,0.0649,1,3,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('20200202003','欧元','欧元','EUR','2020-02-20',7.618,7.618,7.618,1,4,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('20200207001','韩元','hy','hy','2020-02-27',7.618,7.618,7.618,1,4,'','1','20200207','','','','',''),
+('20200207002','韩元','fds','sdf',NULL,7.618,7.618,7.618,1,6,'','1','20200207','','','','','');
+
 /*Table structure for table `customer` */
 
 DROP TABLE IF EXISTS `customer`;
@@ -424,6 +457,10 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `customer` */
+
+insert  into `customer`(`customer_id`,`customer_name`,`customer_easyname`,`customer_english_name`,`customer_charge_person`,`customer_account_ownership`,`customer_type`,`currency_id`,`customer_principalman`,`customer_linkman`,`customer_linktela`,`customer_linktelb`,`customer_linktelc`,`customer_mobilephone`,`ada_id`,`customer_taxcheckno`,`customer_capitalmoney`,`customer_job`,`customer_email`,`customer_webadd`,`customer_faxno`,`customer_cufirstsaleout`,`customer_cufirstsalereturn`,`customer_curecentsaleout`,`customer_curecentsalereturn`,`customer_curecentvisit`,`customer_cuordervisit`,`customer_discountpoint`,`customer_salelv`,`customer_cuiftax`,`customer_latentcusno`,`customer_tanddate`,`endbusinessday`,`customer_creditmoney`,`customer_residuemonet`,`customer_cuendorderday`,`customer_honestlv`,`customer_cufirstcollect`,`customer_houldcollect`,`customer_cuendcollect`,`cuendshouldcollect`,`customer_cudecoration`,`Receivable_id`,`it_id`,`It_Accounts_eceivable_subject`,`It_deposit_received_subject`,`bank_id`,`customer_Auditing`,`customer_yn`,`customer_custom1`,`customer_custom2`,`customer_custom3`,`customer_custom4`,`customer_custom5`,`customer_custom6`) values 
+('1','株洲伟大',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('2','株洲伟大2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `customer_address` */
 
@@ -937,11 +974,11 @@ CREATE TABLE `payables` (
   `currency_id` varchar(50) DEFAULT NULL COMMENT '币别类型表id，外键',
   `project_id` varchar(50) DEFAULT NULL COMMENT '项目表id，外键',
   `payables_supplier_name` varchar(20) DEFAULT NULL COMMENT '供应商表',
-  `payables_sat_name1` int(4) DEFAULT NULL COMMENT '结算方式表默认值：转账',
+  `payables_sat_name1` varchar(500) DEFAULT NULL COMMENT '结算方式表默认值：转账',
   `payables_Price1` float DEFAULT NULL COMMENT '默认值：0.00',
-  `payables_sat_name2` int(4) DEFAULT NULL COMMENT '结算方式表默认值：汇票',
+  `payables_sat_name2` varchar(500) DEFAULT NULL COMMENT '结算方式表默认值：汇票',
   `payables_Price2` float DEFAULT NULL COMMENT '默认值：0.00',
-  `payables_sat_name3` int(4) DEFAULT NULL COMMENT '结算方式表',
+  `payables_sat_name3` varchar(500) DEFAULT NULL COMMENT '结算方式表',
   `payables_Price3` float DEFAULT NULL COMMENT '默认值：0.00',
   `payables_zhekou` int(4) DEFAULT NULL COMMENT '折扣率默认值：0.00',
   `payables_endtime` date DEFAULT NULL COMMENT '终止账月默认值：当前年月',
@@ -971,6 +1008,10 @@ CREATE TABLE `payables` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `payables` */
+
+insert  into `payables`(`payables_id`,`supplier_id`,`scs_id`,`staff_id`,`currency_id`,`project_id`,`payables_supplier_name`,`payables_sat_name1`,`payables_Price1`,`payables_sat_name2`,`payables_Price2`,`payables_sat_name3`,`payables_Price3`,`payables_zhekou`,`payables_endtime`,`payables_payablestime`,`payables_currency_name`,`payables_currency_inexchange`,`payables_type`,`payables_voucherNo`,`payables_team_name`,`payables_project_name`,`payables_billpersonnel`,`payables_reviewers`,`payables_remarks`,`payables_auditstatus`,`payables_Auditing`,`payables_yn`,`payables_custom1`,`payables_custom2`,`payables_custom3`,`payables_custom4`,`payables_custom5`,`payables_custom6`,`payables_custom7`,`payables_custom8`,`payables_custom10`) values 
+('20200216001','1',1,'1','1','1','1','1',123,'2',321,'3',222,13,'2020-02-10','2020-02-21 11:30:56','123','qwe','付款冲款','qwe123123','qwe','qwe','qwe','qwe','qwe',0,'123123','0','20200216','p20200216001','132','124',NULL,NULL,NULL,NULL,NULL),
+('20200216002','2',2,'2','2','2','2','1',123,'2',321,'3',222,15,'2020-02-10','2020-02-16 13:25:36','123','qq','付款冲款','qq123123','qq','qq','qq','qq','qq',0,'123123','0','20200216','p20200216002','4353','123123',NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `payables_detail` */
 
@@ -1164,6 +1205,10 @@ CREATE TABLE `priabill` (
 
 /*Data for the table `priabill` */
 
+insert  into `priabill`(`priabill_id`,`supplier_id`,`scs_id`,`staff_id`,`currency_id`,`project_id`,`priabill_supplier_name`,`priabill_sat_name1`,`priabill_Price1`,`priabill_sat_name2`,`priabill_Price2`,`priabill_sat_name3`,`priabill_Price3`,`priabill_zhekou`,`priabill_endtime`,`priabill_payablestime`,`priabill_currency_name`,`priabill_currency_inexchange`,`priabill_type`,`priabill_voucherNo`,`priabill_team_name`,`priabill_project_name`,`priabill_billpersonnel`,`priabill_reviewers`,`priabill_remarks`,`priabill_auditstatus`,`priabill_Auditing`,`priabill_yn`,`tpriabill_custom1`,`priabill_custom2`,`priabill_custom3`,`priabill_custom4`,`priabill_custom5`,`priabill_custom6`,`priabill_custom7`,`priabill_custom8`,`priabill_custom9`,`priabill_custom10`) values 
+('20200216001','1',1,'1','1','1','数码123',1,111,2,222,3,333,12,'2020-02-20','2020-02-16 22:39:42','人民币','1','预付款','123456789','财务部','大项目','当前人员',NULL,'数码数码',0,NULL,'0','20200216','y20200216001','哈哈','呵呵',NULL,NULL,NULL,NULL,NULL,NULL),
+('20200216002','1',2,'2','2','2','数码123',1,111,2,222,3,333,13,'2020-02-20','2020-02-16 00:00:00','美元','2','预付款','123123','生产部','小项目','当前人员',NULL,'电器电器',0,'0','0','20200216','y20200216002','嘿嘿','哈哈',NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `priadetails` */
 
 DROP TABLE IF EXISTS `priadetails`;
@@ -1192,6 +1237,9 @@ CREATE TABLE `priadetails` (
 
 /*Data for the table `priadetails` */
 
+insert  into `priadetails`(`Priadetails_id`,`Priabill_id`,`Priabill_price`,`Priabill_type`,`Priabill_number`,`Priabill_remarks`,`Priabill_Auditing`,`Priabill_yn`,`Priabill_custom1`,`Priabill_custom2`,`Priabill_custom3`,`Priabill_custom4`,`Priabill_custom5`,`Priabill_custom6`,`Priabill_custom7`,`Priabill_custom8`,`Priabill_custom9`,`Priabill_custom10`) values 
+('1','1',1,'采购订单','1','1','1','0','1','123',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `project` */
 
 DROP TABLE IF EXISTS `project`;
@@ -1219,7 +1267,8 @@ insert  into `project`(`project_id`,`project_name`,`project_english_name`,`proje
 ('20200202001','日进斗金','rjdj','2020-04-25','fsf',NULL,'0','20200202',NULL,NULL,NULL,NULL,NULL),
 ('20200202002','日进斗金2','rjdj2','2020-04-18','fasf',NULL,'0','20200202',NULL,NULL,NULL,NULL,NULL),
 ('20200202003','日进斗金3','rjdj3','2020-04-15','fsdafsadf',NULL,'0','20200202',NULL,NULL,NULL,NULL,NULL),
-('20200203001','dfasdf','fdasfasf','2020-02-13','fdsafsa','','1','20200203','','','','',NULL);
+('20200203001','dfasdf','fdasfasf','2020-02-13','fdsafsa','','1','20200203','','','','',NULL),
+('20200204001','个人分','fas','2020-02-20','fsdafasf','','0','20200204','','','','',NULL);
 
 /*Table structure for table `purchase_discount` */
 
@@ -1375,6 +1424,45 @@ CREATE TABLE `purchase_inquiry_detailed` (
 
 /*Data for the table `purchase_inquiry_detailed` */
 
+/*Table structure for table `purchase_payables` */
+
+DROP TABLE IF EXISTS `purchase_payables`;
+
+CREATE TABLE `purchase_payables` (
+  `pp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pp_type` varchar(100) DEFAULT NULL COMMENT '单别',
+  `pp_number` varchar(100) DEFAULT NULL COMMENT '原单单号',
+  `pp_date` datetime DEFAULT NULL COMMENT '原单日期',
+  `pp_pc_id` varchar(100) DEFAULT NULL COMMENT '交易对象',
+  `pp_pc_name` varchar(100) DEFAULT NULL COMMENT '交易对象名称',
+  `pp_team_id` varchar(100) DEFAULT NULL COMMENT '部门编号',
+  `pp_team_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `pp_buyer` varchar(100) DEFAULT NULL COMMENT '业务人员',
+  `pp_project_name` varchar(100) DEFAULT NULL COMMENT '项目名称',
+  `pp_currency` varchar(100) DEFAULT NULL COMMENT '币别',
+  `pp_exchange_rate` float DEFAULT NULL COMMENT '汇率',
+  `pp_payablesmain_price` double DEFAULT NULL COMMENT '原单金额',
+  `pp_currentbalance` float DEFAULT NULL COMMENT '现行余额',
+  `pp_discountamount` float DEFAULT NULL COMMENT '折让金额',
+  `pp_amountcharged` float DEFAULT NULL COMMENT '冲款金额',
+  `pp_offsetamount` float DEFAULT NULL COMMENT '冲抵金额',
+  `pp_auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
+  `pp_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0否 1是，默认0）',
+  `pp_custom1` varchar(50) DEFAULT NULL COMMENT '自定义栏一',
+  `pp_custom2` varchar(50) DEFAULT NULL COMMENT '自定义栏二',
+  `pp_custom3` varchar(50) DEFAULT NULL COMMENT '自定义栏三',
+  `pp_custom4` varchar(50) DEFAULT NULL COMMENT '自定义栏四',
+  `pp_custom5` varchar(50) DEFAULT NULL COMMENT '自定义栏五',
+  `pp_custom6` varchar(50) DEFAULT NULL COMMENT '自定义栏六',
+  `pp_custom7` varchar(50) DEFAULT NULL COMMENT '自定义栏七',
+  `pp_custom8` varchar(50) DEFAULT NULL COMMENT '自定义栏八',
+  `pp_custom9` varchar(50) DEFAULT NULL COMMENT '自定义栏九',
+  `pp_custom10` varchar(50) DEFAULT NULL COMMENT '自定义栏十',
+  PRIMARY KEY (`pp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `purchase_payables` */
+
 /*Table structure for table `purchase_requisition` */
 
 DROP TABLE IF EXISTS `purchase_requisition`;
@@ -1503,7 +1591,10 @@ CREATE TABLE `purchase_returns` (
   `pure_custom4` varchar(50) DEFAULT NULL COMMENT '自定栏四',
   `pure_custom5` varchar(50) DEFAULT NULL COMMENT '自定栏五',
   `pure_custom6` varchar(50) DEFAULT NULL COMMENT '自定栏六',
-  PRIMARY KEY (`pure_id`)
+  `createDate` date DEFAULT NULL COMMENT '修改时间',
+  `lineId` int(11) NOT NULL AUTO_INCREMENT COMMENT '行编号',
+  PRIMARY KEY (`pure_id`),
+  UNIQUE KEY `lineId` (`lineId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购退货主表';
 
 /*Data for the table `purchase_returns` */
@@ -1520,7 +1611,7 @@ CREATE TABLE `purchase_returns_detailed` (
   `pured_remark` varchar(50) DEFAULT NULL,
   `pured_price_include_tax` varchar(50) DEFAULT NULL,
   `pured_single_status` int(11) DEFAULT NULL,
-  `pured_document_date` date DEFAULT NULL,
+  `pured_document_date` float DEFAULT NULL COMMENT '折扣前单价',
   `pured_document_number` varchar(50) DEFAULT NULL,
   `pured_price` float DEFAULT NULL,
   `pured_money` float DEFAULT NULL,
@@ -1584,7 +1675,11 @@ CREATE TABLE `purchase_storage` (
   `ps_custom4` varchar(50) DEFAULT NULL COMMENT '自定栏四',
   `ps_custom5` varchar(50) DEFAULT NULL COMMENT '自定栏五',
   `ps_custom6` varchar(50) DEFAULT NULL COMMENT '自定栏六',
-  PRIMARY KEY (`ps_id`)
+  `createDate` date DEFAULT NULL COMMENT '创建时间',
+  `editDate` date DEFAULT NULL COMMENT '修改时间',
+  `lineId` int(11) NOT NULL AUTO_INCREMENT COMMENT '行编号',
+  PRIMARY KEY (`ps_id`),
+  UNIQUE KEY `lineId` (`lineId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='采购入库主表';
 
 /*Data for the table `purchase_storage` */
@@ -1777,7 +1872,7 @@ CREATE TABLE `receivable` (
   `payables_auditstatus` int(4) DEFAULT NULL COMMENT '审核状态0:未审核1:已结案',
   `payables_auditstatus_Auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
   `payables_auditstatus_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0 否 1 是 ，默认0）',
-  `payables_custom1` varchar(50) DEFAULT NULL COMMENT '自定栏',
+  `payables_custom1` varchar(50) DEFAULT '0' COMMENT '自定栏',
   `payables_custom2` varchar(50) DEFAULT NULL COMMENT '自定栏',
   `payables_custom3` varchar(50) DEFAULT NULL COMMENT '自定栏',
   `payables_custom4` varchar(50) DEFAULT NULL COMMENT '自定栏',
@@ -1791,6 +1886,12 @@ CREATE TABLE `receivable` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `receivable` */
+
+insert  into `receivable`(`receivable_id`,`customer_id`,`scs_id`,`staff_id`,`currency_id`,`project_id`,`customer_name`,`payables_sat_name1`,`payables_Price1`,`payables_sat_name2`,`payables_Price2`,`payables_sat_name3`,`payables_Price3`,`payables_zhekou`,`payables_endtime`,`payables_payablestime`,`payables_currency_name`,`payables_currency_inexchange`,`payables_type`,`payables_voucherNo`,`payables_team_name`,`payables_project_name`,`payables_billpersonnel`,`payables_reviewers`,`payables_remarks`,`payables_auditstatus`,`payables_auditstatus_Auditing`,`payables_auditstatus_yn`,`payables_custom1`,`payables_custom2`,`payables_custom3`,`payables_custom4`,`payables_custom5`,`payables_custom6`,`payables_custom7`,`payables_custom8`,`payables_custom9`,`payables_custom10`) values 
+('20200202001','1',1,'1','1','20200202003','株洲伟大',1,100,1,0,2,0,NULL,'2020-02-11','2020-02-02 00:00:00','1','1','0','1','直销部','日进斗金3','admin','admin',NULL,NULL,NULL,'0','20200202','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('20200202002','2',1,'1','20200202003','20200204001','株洲伟大2',1,49,1,0,2,0,NULL,'2020-02-04','2020-02-20 00:00:00','欧元','1','0','1','渠道部','个人分','admin','admin',NULL,NULL,NULL,'0','0','0',NULL,NULL,NULL,NULL,NULL,NULL,'20200131003',NULL),
+('20200202003','1',1,'1','1','1','株洲伟大2',2,85,3,0,2,1,NULL,'2020-02-13','2020-02-27 00:00:00','1','1','0','1','1','1','1','1',NULL,NULL,NULL,'0','0','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('20200202004','1',1,'1','1','1','株洲伟大2',2,53,2,0,2,2,NULL,'2020-02-08','2020-02-29 00:00:00','1','1','0','1','1','1','1','1',NULL,NULL,NULL,'0','0','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `receivable_detail` */
 
@@ -1842,10 +1943,10 @@ DROP TABLE IF EXISTS `receivablesdetails`;
 CREATE TABLE `receivablesdetails` (
   `recedetail_id` varchar(50) NOT NULL COMMENT '预收款单明细表ID, 主键',
   `receivablesbill_id` varchar(20) DEFAULT NULL COMMENT '预收款单主表ID,   外键',
-  `recedetail _price` float DEFAULT NULL COMMENT '预收金额',
-  `recedetail _type` varchar(20) DEFAULT NULL COMMENT '来源单别',
-  `recedetail _number` varchar(20) DEFAULT NULL COMMENT '来源单号',
-  `recedetail _remarks` varchar(100) DEFAULT NULL COMMENT '摘要',
+  `recedetail_price` float DEFAULT NULL COMMENT '预收金额',
+  `recedetail_type` varchar(20) DEFAULT NULL COMMENT '来源单别',
+  `recedetail_number` varchar(20) DEFAULT NULL COMMENT '来源单号',
+  `recedetail_remarks` varchar(100) DEFAULT NULL COMMENT '摘要',
   `recedetail_Auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
   `recedetail_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0 否 1 是 ，默认0）',
   `recedetail_custom1` varchar(50) DEFAULT NULL COMMENT '自定栏一',
@@ -1862,6 +1963,10 @@ CREATE TABLE `receivablesdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `receivablesdetails` */
+
+insert  into `receivablesdetails`(`recedetail_id`,`receivablesbill_id`,`recedetail_price`,`recedetail_type`,`recedetail_number`,`recedetail_remarks`,`recedetail_Auditing`,`recedetail_yn`,`recedetail_custom1`,`recedetail_custom2`,`recedetail_custom3`,`recedetail_custom4`,`recedetail_custom5`,`recedetail_custom6`,`recedetail_custom7`,`recedetail_custom8`,`recedetail_custom9`,`recedetail_custom10`) values 
+('20200202001','20200202001',55,'销售订单','20200202001','FSAFAF',NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+('20200227001','20200202002',2527,'销售订单','20200202001','FASFSA','','','','','','','','','','','','');
 
 /*Table structure for table `referpria` */
 
@@ -2101,7 +2206,7 @@ CREATE TABLE `sales_out_warehouse_detailed` (
   `sowd_remark` varchar(50) DEFAULT NULL,
   `sowd_price_include_tax` varchar(50) DEFAULT NULL,
   `sowd_single_status` int(11) DEFAULT NULL,
-  `sowd_document_date` date DEFAULT NULL,
+  `sowd_document_date` float DEFAULT NULL,
   `sowd_document_number` float DEFAULT NULL,
   `sowd_price` float DEFAULT NULL,
   `sowd_money` float DEFAULT NULL,
@@ -2218,6 +2323,45 @@ CREATE TABLE `sales_quotation_details` (
 
 /*Data for the table `sales_quotation_details` */
 
+/*Table structure for table `sales_receivables` */
+
+DROP TABLE IF EXISTS `sales_receivables`;
+
+CREATE TABLE `sales_receivables` (
+  `sr_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sr_type` varchar(100) DEFAULT NULL COMMENT '单别',
+  `sr_number` varchar(100) DEFAULT NULL COMMENT '原单单号',
+  `sr_date` datetime DEFAULT NULL COMMENT '原单日期',
+  `sr_pc_id` varchar(100) DEFAULT NULL COMMENT '交易对象',
+  `sr_pc_name` varchar(100) DEFAULT NULL COMMENT '交易对象名称',
+  `sr_team_id` varchar(100) DEFAULT NULL COMMENT '部门编号',
+  `sr_team_name` varchar(100) DEFAULT NULL COMMENT '部门名称',
+  `sr_buyer` varchar(100) DEFAULT NULL COMMENT '业务人员',
+  `sr_project_name` varchar(100) DEFAULT NULL COMMENT '项目名称',
+  `sr_currency` varchar(100) DEFAULT NULL COMMENT '币别',
+  `sr_exchange_rate` float DEFAULT NULL COMMENT '汇率',
+  `sr_payablesmain_price` double DEFAULT NULL COMMENT '原单金额',
+  `sr_currentbalance` float DEFAULT NULL COMMENT '现行余额',
+  `sr_discountamount` float DEFAULT NULL COMMENT '折让金额',
+  `sr_amountcharged` float DEFAULT NULL COMMENT '冲款金额',
+  `sr_offsetamount` float DEFAULT NULL COMMENT '冲抵金额',
+  `sr_auditing` varchar(50) DEFAULT NULL COMMENT '是否审核',
+  `sr_yn` varchar(50) DEFAULT '0' COMMENT '是否删除（0否 1是，默认0）',
+  `sr_custom1` varchar(50) DEFAULT NULL COMMENT '自定义栏一',
+  `sr_custom2` varchar(50) DEFAULT NULL COMMENT '自定义栏二',
+  `sr_custom3` varchar(50) DEFAULT NULL COMMENT '自定义栏三',
+  `sr_custom4` varchar(50) DEFAULT NULL COMMENT '自定义栏四',
+  `sr_custom5` varchar(50) DEFAULT NULL COMMENT '自定义栏五',
+  `sr_custom6` varchar(50) DEFAULT NULL COMMENT '自定义栏六',
+  `sr_custom7` varchar(50) DEFAULT NULL COMMENT '自定义栏七',
+  `sr_custom8` varchar(50) DEFAULT NULL COMMENT '自定义栏八',
+  `sr_custom9` varchar(50) DEFAULT NULL COMMENT '自定义栏九',
+  `sr_custom10` varchar(50) DEFAULT NULL COMMENT '自定义栏十',
+  PRIMARY KEY (`sr_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sales_receivables` */
+
 /*Table structure for table `sales_return_warehouse` */
 
 DROP TABLE IF EXISTS `sales_return_warehouse`;
@@ -2278,7 +2422,7 @@ CREATE TABLE `sales_return_warehouse_detailed` (
   `srwd_remark` varchar(50) DEFAULT NULL,
   `srwd_price_include_tax` varchar(50) DEFAULT NULL,
   `srwd_single_status` int(11) DEFAULT NULL,
-  `srwd_document_date` date DEFAULT NULL,
+  `srwd_document_date` float DEFAULT NULL,
   `srwd_document_number` float DEFAULT NULL,
   `srwd_price` float DEFAULT NULL,
   `srwd_money` float DEFAULT NULL,
@@ -2323,11 +2467,11 @@ CREATE TABLE `salesorder` (
   `team_id` varchar(50) DEFAULT NULL,
   `so_monograph` varchar(50) DEFAULT NULL,
   `so_reviewer` varchar(50) DEFAULT NULL,
-  `so_ subordinate` varchar(50) DEFAULT NULL,
-  `so_ watchword` varchar(20) DEFAULT NULL,
-  `so_ tailclause` varchar(20) DEFAULT NULL,
-  `so_ remark` varchar(200) DEFAULT NULL,
-  `so_ account_ownership` varchar(50) DEFAULT NULL,
+  `so_subordinate` varchar(50) DEFAULT NULL,
+  `so_watchword` varchar(20) DEFAULT NULL,
+  `so_tailclause` varchar(20) DEFAULT NULL,
+  `so_remark` varchar(200) DEFAULT NULL,
+  `so_account_ownership` varchar(50) DEFAULT NULL,
   `so_collection_time` varchar(50) DEFAULT NULL,
   `so_collection_month` varchar(50) DEFAULT NULL,
   `so_collection_terms` varchar(50) DEFAULT NULL,
@@ -2344,6 +2488,9 @@ CREATE TABLE `salesorder` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `salesorder` */
+
+insert  into `salesorder`(`so_id`,`so_document_time`,`so_documentnumber`,`so_delivery_address`,`sot_id`,`so_customerorder`,`so_tax`,`currency_id`,`so_oder_static`,`staff_id`,`team_id`,`so_monograph`,`so_reviewer`,`so_subordinate`,`so_watchword`,`so_tailclause`,`so_remark`,`so_account_ownership`,`so_collection_time`,`so_collection_month`,`so_collection_terms`,`so_collection_terms_day`,`so_auditing`,`so_yn`,`so_custom1`,`so_custom2`,`so_custom3`,`so_custom4`,`so_custom5`,`so_custom6`) values 
+('20200202001','2020-02-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `salesorderlist` */
 
@@ -2430,7 +2577,7 @@ CREATE TABLE `staff` (
   `staff_Mobilephone` varchar(50) DEFAULT NULL COMMENT '联系电话',
   `staff_politicalstatus` varchar(50) DEFAULT NULL COMMENT '政治面貌',
   `staff_entrydate` date DEFAULT NULL COMMENT '入职日期',
-  `staff_becomea regularworker` date DEFAULT NULL COMMENT '转正日期',
+  `staff_becomea_regularworker` date DEFAULT NULL COMMENT '转正日期',
   `staff_probationperiod` varchar(50) DEFAULT NULL COMMENT '试用期长',
   `staff_dimissiondate` date DEFAULT NULL COMMENT '离职日期',
   `staff_technicaltitle` varchar(50) DEFAULT NULL COMMENT '技术职称',
@@ -2442,7 +2589,7 @@ CREATE TABLE `staff` (
   `staff_graduateschool` varchar(50) DEFAULT NULL COMMENT '毕业学校',
   `staff_major` varchar(50) DEFAULT NULL COMMENT '所学专业',
   `staff_foreignlanguagelevel` varchar(50) DEFAULT NULL COMMENT '外语水平',
-  `staff_physical examinationdate` date DEFAULT NULL COMMENT '体检日期',
+  `staff_physical_examinationdate` date DEFAULT NULL COMMENT '体检日期',
   `staff_atmaturitydate` date DEFAULT NULL COMMENT '到期日期',
   `staff_entercountry` date DEFAULT NULL COMMENT '入境日期',
   `staff_passport_number` varchar(50) DEFAULT NULL COMMENT '护照号码',
@@ -2476,6 +2623,11 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `staff` */
+
+insert  into `staff`(`staff_id`,`staff_name`,`staff_english_name`,`team_id`,`staff_gender`,`staff_idnumber`,`staff_birthday`,`staff_maritalstatus`,`staff_native_place`,`staff_nativeplace`,`staff_nationality`,`staff_nation`,`staff_chineseposition`,`staff_zipcode`,`staff_Mobilephone`,`staff_politicalstatus`,`staff_entrydate`,`staff_becomea_regularworker`,`staff_probationperiod`,`staff_dimissiondate`,`staff_technicaltitle`,`staff_englishposition`,`staff_address`,`staff_phone`,`staff_highesteducation`,`staff_degree`,`staff_graduateschool`,`staff_major`,`staff_foreignlanguagelevel`,`staff_physical_examinationdate`,`staff_atmaturitydate`,`staff_entercountry`,`staff_passport_number`,`staff_contractstartdate`,`staff_contractenddate`,`staff_contractduration`,`staff_email`,`staff_censusregisternumber`,`staff_censusregistezipcode`,`staff_censusregisteraddress`,`staff_hometelephone`,`staff_homezipcode`,`staff_homeaddress`,`staff_newphone`,`staff_newzipcode`,`staff_newaddress`,`staff_emergencycontact`,`staff_urgentcontactzipcode`,`staff_emergencycontactnumber`,`staff_emergencycontactaddress`,`staff_remark`,`staff_Auditing`,`staff_yn`,`staff_custom1`,`staff_custom2`,`staff_custom3`,`staff_custom4`,`staff_custom5`,`staff_custom6`) values 
+('1','肖四青',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('2','徐哲',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('3','曾浩哲',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `subject_blanket_category` */
 
@@ -2586,6 +2738,12 @@ CREATE TABLE `supplier` (
 
 /*Data for the table `supplier` */
 
+insert  into `supplier`(`supplier_id`,`supplier_name`,`supplier_easyname`,`supplier_engname`,`supplier_easyengname`,`supplier_account_attribution`,`supplier_type`,`supplier_zone`,`currency_id`,`supplier_principalman`,`supplier_linkman`,`supplier_linktela`,`supplier_linktelb`,`supplier_linktelc`,`supplier_mobilephone`,`ada_id`,`bank_id`,`supplier_procurement _staff`,`supplier_taxcheckno`,`supplier_capitalmoney`,`supplier_job`,`supplier_email`,`supplier_webadd`,`supplier_faxno`,`supplier_cufirstsaleinput`,`supplier_cufirstsalereturn`,`supplier_curecentsaleinput`,`supplier_curecentsalereturn`,`supplier_tax_included`,`supplier_terminationdate`,`supplier_creditmoney`,`supplier_residuemonet`,`supplier_condition`,`supplier_cuendorderday`,`supplier_honestlv`,`supplier_invoice_type`,`supplier_cufirstcollect`,`supplier_houldcollect`,`supplier_cuendcollect`,`supplier_cuendshouldcollect`,`supplier_cudecoration`,`supplier_collectiontermid`,`supplier_invoicetypeid`,`supplier_houldcollectmoney`,`supplier_curecollectmoney`,`supplier_address_no`,`supplier_remark`,`supplier_Auditing`,`supplier_yn`,`supplier_custom1`,`supplier_custom2`,`supplier_custom3`,`supplier_custom4`,`supplier_custom5`,`supplier_custom6`) values 
+('001','刘成小蛋糕','刘小蛋','Liu','L',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('002','华为','华为','HuaWei','HuaWei',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('003','阿里巴巴','阿里','Alibaba','Alibaba',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('004','阿迪达斯','阿迪达斯','Addias','Addias',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `supplier_type` */
 
 DROP TABLE IF EXISTS `supplier_type`;
@@ -2656,7 +2814,8 @@ CREATE TABLE `team` (
 insert  into `team`(`team_id`,`team_name`,`team_english_name`,`team_abate`,`team_remark`,`team_Auditing`,`team_yn`,`team_custom1`,`team_custom2`,`team_custom3`,`team_custom4`,`team_custom5`,`team_custom6`) values 
 ('20200131001','财务部','caiwubus',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
 ('20200131002','直销部','zhixiaobu',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
-('20200131003','渠道部','qudaobu',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL);
+('20200131003','渠道部','qudaobu',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
+('20200214001','daf','',NULL,'','','1','20200214','','','','','');
 
 /*Table structure for table `updown_program` */
 
@@ -2677,6 +2836,9 @@ CREATE TABLE `updown_program` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `updown_program` */
+
+insert  into `updown_program`(`up_id`,`up_name`,`up_auditing`,`up_yn`,`up_custom1`,`up_custom2`,`up_custom3`,`up_custom4`,`up_custom5`,`up_custom6`) values 
+('1','现金','0','0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `warehouse` */
 
@@ -2750,6 +2912,10 @@ CREATE TABLE `zone` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `zone` */
+
+insert  into `zone`(`zone_id`,`zone_name`,`zone_english_name`,`zone_remark`,`zone_Auditing`,`zone_yn`,`zone_custom1`,`zone_custom2`,`zone_custom3`,`zone_custom4`,`zone_custom5`,`zone_custom6`) values 
+('20200202001','东北区',NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('20200210001','西北区','','','','0','20200210','','','','','');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

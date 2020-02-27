@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="com.apatech.domain.Receivablesdetails">
     <id column="recedetail_id" jdbcType="VARCHAR" property="recedetailId" />
     <result column="receivablesbill_id" jdbcType="VARCHAR" property="receivablesbillId" />
-    <result column="recedetail _price" jdbcType="REAL" property="recedetailPrice" />
-    <result column="recedetail _type" jdbcType="VARCHAR" property="recedetailType" />
-    <result column="recedetail _number" jdbcType="VARCHAR" property="recedetailNumber" />
-    <result column="recedetail _remarks" jdbcType="VARCHAR" property="recedetailRemarks" />
+    <result column="recedetail_price" jdbcType="REAL" property="recedetailPrice" />
+    <result column="recedetail_type" jdbcType="VARCHAR" property="recedetailType" />
+    <result column="recedetail_number" jdbcType="VARCHAR" property="recedetailNumber" />
+    <result column="recedetail_remarks" jdbcType="VARCHAR" property="recedetailRemarks" />
     <result column="recedetail_Auditing" jdbcType="VARCHAR" property="recedetailAuditing" />
     <result column="recedetail_yn" jdbcType="VARCHAR" property="recedetailYn" />
     <result column="recedetail_custom1" jdbcType="VARCHAR" property="recedetailCustom1" />
@@ -22,8 +22,8 @@
     <result column="recedetail_custom10" jdbcType="VARCHAR" property="recedetailCustom10" />
   </resultMap>
   <sql id="Base_Column_List">
-    recedetail_id, receivablesbill_id, "recedetail _price", "recedetail _type", "recedetail _number", 
-    "recedetail _remarks", recedetail_Auditing, recedetail_yn, recedetail_custom1, recedetail_custom2, 
+    recedetail_id, receivablesbill_id, recedetail_price, recedetail_type, recedetail_number, 
+    recedetail_remarks, recedetail_Auditing, recedetail_yn, recedetail_custom1, recedetail_custom2, 
     recedetail_custom3, recedetail_custom4, recedetail_custom5, recedetail_custom6, recedetail_custom7, 
     recedetail_custom8, recedetail_custom9, recedetail_custom10
   </sql>
@@ -33,6 +33,13 @@
 	    <include refid="Base_Column_List" />
 	    from receivablesdetails 
 	    where recedetail_Yn=0
+	    ORDER BY recedetail_id DESC
+  </select>
+  <select id="selectAllpagebyidlc" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from receivablesdetails 
+	    where recedetail_Yn=0 and receivablesbill_id=#{receivablesbillId,jdbcType=VARCHAR}
 	    ORDER BY recedetail_id DESC
   </select>
   
@@ -46,14 +53,15 @@
     delete from receivablesdetails
     where recedetail_id = #{recedetailId,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByzbidlc" parameterType="java.lang.String">
+    delete from receivablesdetails
+    where receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.apatech.domain.Receivablesdetails">
-    insert into receivablesdetails (recedetail_id, receivablesbill_id, 
-      "recedetail _price", "recedetail _type", "recedetail _number", 
-      "recedetail _remarks", recedetail_Auditing, 
-      recedetail_yn, recedetail_custom1, recedetail_custom2, 
-      recedetail_custom3, recedetail_custom4, recedetail_custom5, 
-      recedetail_custom6, recedetail_custom7, recedetail_custom8, 
-      recedetail_custom9, recedetail_custom10)
+    insert into receivablesdetails ( recedetail_id, receivablesbill_id, recedetail_price, recedetail_type, recedetail_number, 
+    recedetail_remarks, recedetail_Auditing, recedetail_yn, recedetail_custom1, recedetail_custom2, 
+    recedetail_custom3, recedetail_custom4, recedetail_custom5, recedetail_custom6, recedetail_custom7, 
+    recedetail_custom8, recedetail_custom9, recedetail_custom10)
     values (#{recedetailId,jdbcType=VARCHAR}, #{receivablesbillId,jdbcType=VARCHAR}, 
       #{recedetailPrice,jdbcType=REAL}, #{recedetailType,jdbcType=VARCHAR}, #{recedetailNumber,jdbcType=VARCHAR}, 
       #{recedetailRemarks,jdbcType=VARCHAR}, #{recedetailAuditing,jdbcType=VARCHAR}, 
@@ -72,16 +80,16 @@
         receivablesbill_id,
       </if>
       <if test="recedetailPrice != null">
-        "recedetail _price",
+        recedetail_price,
       </if>
       <if test="recedetailType != null">
-        "recedetail _type",
+        recedetail_type,
       </if>
       <if test="recedetailNumber != null">
-        "recedetail _number",
+        recedetail_number,
       </if>
       <if test="recedetailRemarks != null">
-        "recedetail _remarks",
+        recedetail_remarks,
       </if>
       <if test="recedetailAuditing != null">
         recedetail_Auditing,
@@ -184,16 +192,16 @@
         receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
       </if>
       <if test="recedetailPrice != null">
-        "recedetail _price" = #{recedetailPrice,jdbcType=REAL},
+        recedetail_price = #{recedetailPrice,jdbcType=REAL},
       </if>
       <if test="recedetailType != null">
-        "recedetail _type" = #{recedetailType,jdbcType=VARCHAR},
+        recedetail_type = #{recedetailType,jdbcType=VARCHAR},
       </if>
       <if test="recedetailNumber != null">
-        "recedetail _number" = #{recedetailNumber,jdbcType=VARCHAR},
+        recedetail_number = #{recedetailNumber,jdbcType=VARCHAR},
       </if>
       <if test="recedetailRemarks != null">
-        "recedetail _remarks" = #{recedetailRemarks,jdbcType=VARCHAR},
+        recedetail_remarks = #{recedetailRemarks,jdbcType=VARCHAR},
       </if>
       <if test="recedetailAuditing != null">
         recedetail_Auditing = #{recedetailAuditing,jdbcType=VARCHAR},
@@ -237,10 +245,10 @@
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Receivablesdetails">
     update receivablesdetails
     set receivablesbill_id = #{receivablesbillId,jdbcType=VARCHAR},
-      "recedetail _price" = #{recedetailPrice,jdbcType=REAL},
-      "recedetail _type" = #{recedetailType,jdbcType=VARCHAR},
-      "recedetail _number" = #{recedetailNumber,jdbcType=VARCHAR},
-      "recedetail _remarks" = #{recedetailRemarks,jdbcType=VARCHAR},
+      recedetail_price = #{recedetailPrice,jdbcType=REAL},
+      recedetail_type = #{recedetailType,jdbcType=VARCHAR},
+      recedetail_number = #{recedetailNumber,jdbcType=VARCHAR},
+      recedetail_remarks = #{recedetailRemarks,jdbcType=VARCHAR},
       recedetail_Auditing = #{recedetailAuditing,jdbcType=VARCHAR},
       recedetail_yn = #{recedetailYn,jdbcType=VARCHAR},
       recedetail_custom1 = #{recedetailCustom1,jdbcType=VARCHAR},

@@ -3,15 +3,13 @@ package com.apatech.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.apatech.pojo.PurchaseStoragePojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.apatech.domain.Purchase_storage;
 import com.apatech.domain.Purchase_storage;
@@ -135,4 +133,30 @@ public class Purchase_storageController {
 		}
 		return map;
     }
+
+    @GetMapping("/selectLast")
+	@ResponseBody
+	public PurchaseStoragePojo selectLast(){
+		return dao.selectLast();
+	}
+
+	@GetMapping("/selectPrev")
+	@ResponseBody
+	public PurchaseStoragePojo selectPrev(Integer lineId){
+		return dao.selectPrev(lineId);
+	}
+
+	@GetMapping("/selectNext")
+	@ResponseBody
+	public PurchaseStoragePojo selectNext(Integer lineId){
+		return dao.selectNext(lineId);
+	}
+
+	@GetMapping("/selectFirst")
+	@ResponseBody
+	public PurchaseStoragePojo selectFirst(){
+		return dao.selectFirst();
+	}
+
+
 }

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Dull_sectionMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Dull_section">
+    <id column="ds_id" jdbcType="VARCHAR" property="dsId" />
+    <result column="ds_startday" jdbcType="INTEGER" property="dsStartday" />
+    <result column="ds_enddate" jdbcType="INTEGER" property="dsEnddate" />
+    <result column="ds_decoration" jdbcType="VARCHAR" property="dsDecoration" />
+    <result column="ds_auditing" jdbcType="VARCHAR" property="dsAuditing" />
+    <result column="ds_yn" jdbcType="VARCHAR" property="dsYn" />
+    <result column="ds_custom1" jdbcType="VARCHAR" property="dsCustom1" />
+    <result column="ds_custom2" jdbcType="VARCHAR" property="dsCustom2" />
+    <result column="ds_custom3" jdbcType="VARCHAR" property="dsCustom3" />
+    <result column="ds_custom4" jdbcType="VARCHAR" property="dsCustom4" />
+    <result column="ds_custom5" jdbcType="VARCHAR" property="dsCustom5" />
+    <result column="ds_custom6" jdbcType="VARCHAR" property="dsCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ds_id, ds_startday, ds_enddate, ds_decoration, ds_auditing, ds_yn, ds_custom1, ds_custom2, 
+    ds_custom3, ds_custom4, ds_custom5, ds_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from dull_section 
+	    where ds_Yn=0
+	    ORDER BY ds_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dull_section
+    where ds_id = #{dsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dull_section
+    where ds_id = #{dsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Dull_section">
+    insert into dull_section (ds_id, ds_startday, ds_enddate, 
+      ds_decoration, ds_auditing, ds_yn, 
+      ds_custom1, ds_custom2, ds_custom3, 
+      ds_custom4, ds_custom5, ds_custom6
+      )
+    values (#{dsId,jdbcType=VARCHAR}, #{dsStartday,jdbcType=INTEGER}, #{dsEnddate,jdbcType=INTEGER}, 
+      #{dsDecoration,jdbcType=VARCHAR}, #{dsAuditing,jdbcType=VARCHAR}, #{dsYn,jdbcType=VARCHAR}, 
+      #{dsCustom1,jdbcType=VARCHAR}, #{dsCustom2,jdbcType=VARCHAR}, #{dsCustom3,jdbcType=VARCHAR}, 
+      #{dsCustom4,jdbcType=VARCHAR}, #{dsCustom5,jdbcType=VARCHAR}, #{dsCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Dull_section">
+    insert into dull_section
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dsId != null">
+        ds_id,
+      </if>
+      <if test="dsStartday != null">
+        ds_startday,
+      </if>
+      <if test="dsEnddate != null">
+        ds_enddate,
+      </if>
+      <if test="dsDecoration != null">
+        ds_decoration,
+      </if>
+      <if test="dsAuditing != null">
+        ds_auditing,
+      </if>
+      <if test="dsYn != null">
+        ds_yn,
+      </if>
+      <if test="dsCustom1 != null">
+        ds_custom1,
+      </if>
+      <if test="dsCustom2 != null">
+        ds_custom2,
+      </if>
+      <if test="dsCustom3 != null">
+        ds_custom3,
+      </if>
+      <if test="dsCustom4 != null">
+        ds_custom4,
+      </if>
+      <if test="dsCustom5 != null">
+        ds_custom5,
+      </if>
+      <if test="dsCustom6 != null">
+        ds_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dsId != null">
+        #{dsId,jdbcType=VARCHAR},
+      </if>
+      <if test="dsStartday != null">
+        #{dsStartday,jdbcType=INTEGER},
+      </if>
+      <if test="dsEnddate != null">
+        #{dsEnddate,jdbcType=INTEGER},
+      </if>
+      <if test="dsDecoration != null">
+        #{dsDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="dsAuditing != null">
+        #{dsAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="dsYn != null">
+        #{dsYn,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom1 != null">
+        #{dsCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom2 != null">
+        #{dsCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom3 != null">
+        #{dsCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom4 != null">
+        #{dsCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom5 != null">
+        #{dsCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom6 != null">
+        #{dsCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Dull_section">
+    update dull_section
+    <set>
+      <if test="dsStartday != null">
+        ds_startday = #{dsStartday,jdbcType=INTEGER},
+      </if>
+      <if test="dsEnddate != null">
+        ds_enddate = #{dsEnddate,jdbcType=INTEGER},
+      </if>
+      <if test="dsDecoration != null">
+        ds_decoration = #{dsDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="dsAuditing != null">
+        ds_auditing = #{dsAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="dsYn != null">
+        ds_yn = #{dsYn,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom1 != null">
+        ds_custom1 = #{dsCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom2 != null">
+        ds_custom2 = #{dsCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom3 != null">
+        ds_custom3 = #{dsCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom4 != null">
+        ds_custom4 = #{dsCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom5 != null">
+        ds_custom5 = #{dsCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="dsCustom6 != null">
+        ds_custom6 = #{dsCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ds_id = #{dsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Dull_section">
+    update dull_section
+    set ds_startday = #{dsStartday,jdbcType=INTEGER},
+      ds_enddate = #{dsEnddate,jdbcType=INTEGER},
+      ds_decoration = #{dsDecoration,jdbcType=VARCHAR},
+      ds_auditing = #{dsAuditing,jdbcType=VARCHAR},
+      ds_yn = #{dsYn,jdbcType=VARCHAR},
+      ds_custom1 = #{dsCustom1,jdbcType=VARCHAR},
+      ds_custom2 = #{dsCustom2,jdbcType=VARCHAR},
+      ds_custom3 = #{dsCustom3,jdbcType=VARCHAR},
+      ds_custom4 = #{dsCustom4,jdbcType=VARCHAR},
+      ds_custom5 = #{dsCustom5,jdbcType=VARCHAR},
+      ds_custom6 = #{dsCustom6,jdbcType=VARCHAR}
+    where ds_id = #{dsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

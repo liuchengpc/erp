@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.wd_Adjust_price;
 import com.apatech.domain.Adjust_price;
 import com.apatech.mapper.Adjust_priceMapper;
 import com.github.pagehelper.PageHelper;
@@ -35,8 +36,8 @@ public class Adjust_priceService {
     public int deleteByPrimaryKey(String apId){
     	return dao.deleteByPrimaryKey(apId);    }
 
-    public int insert(Adjust_price record){
-    	return dao.insert(record);
+    public int insert(int apId,String apDateid,String updownmid,String apdoworkman,String apRecheckman,String apAuditing,String apYn,String apCustom6){
+    	return dao.inserts(apId,apDateid,updownmid,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
     }
     
     public int insertSelective(Adjust_price record){
@@ -50,8 +51,19 @@ public class Adjust_priceService {
     public int updateByPrimaryKeySelective(Adjust_price record){
     	return dao.updateByPrimaryKeySelective(record);
     }
-
+    public int wdupdateByPrimaryKeySelective(String apDateid){
+    	System.out.println(apDateid);
+    	return dao.updateByPrimaryKeySelectives(apDateid);
+    }
     public int updateByPrimaryKey(Adjust_price record){
     	return dao.updateByPrimaryKey(record);
     }
+
+	public int insertupd(String updownmid, String upname, String apId, String doname) {
+		return dao.insertupd(updownmid,upname,apId,doname);
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

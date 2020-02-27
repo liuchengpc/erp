@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Account">
+    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="account_invoicetypename" jdbcType="VARCHAR" property="accountInvoicetypename" />
+    <result column="account_engname" jdbcType="VARCHAR" property="accountEngname" />
+    <result column="account_remark" jdbcType="VARCHAR" property="accountRemark" />
+    <result column="account_Auditing" jdbcType="VARCHAR" property="accountAuditing" />
+    <result column="account_yn" jdbcType="VARCHAR" property="accountYn" />
+    <result column="account_custom1" jdbcType="VARCHAR" property="accountCustom1" />
+    <result column="account_custom2" jdbcType="VARCHAR" property="accountCustom2" />
+    <result column="account_custom3" jdbcType="VARCHAR" property="accountCustom3" />
+    <result column="account_custom4" jdbcType="VARCHAR" property="accountCustom4" />
+    <result column="account_custom5" jdbcType="VARCHAR" property="accountCustom5" />
+    <result column="account_custom6" jdbcType="VARCHAR" property="accountCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    account_id, account_invoicetypename, account_engname, account_remark, account_Auditing, 
+    account_yn, account_custom1, account_custom2, account_custom3, account_custom4, account_custom5, 
+    account_custom6
+  </sql>
+   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from account 
+	    where account_Yn=0
+	    ORDER BY account_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Account">
+    insert into account (account_id, account_invoicetypename, 
+      account_engname, account_remark, account_Auditing, 
+      account_yn, account_custom1, account_custom2, 
+      account_custom3, account_custom4, account_custom5, 
+      account_custom6)
+    values (#{accountId,jdbcType=VARCHAR}, #{accountInvoicetypename,jdbcType=VARCHAR}, 
+      #{accountEngname,jdbcType=VARCHAR}, #{accountRemark,jdbcType=VARCHAR}, #{accountAuditing,jdbcType=VARCHAR}, 
+      #{accountYn,jdbcType=VARCHAR}, #{accountCustom1,jdbcType=VARCHAR}, #{accountCustom2,jdbcType=VARCHAR}, 
+      #{accountCustom3,jdbcType=VARCHAR}, #{accountCustom4,jdbcType=VARCHAR}, #{accountCustom5,jdbcType=VARCHAR}, 
+      #{accountCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Account">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountInvoicetypename != null">
+        account_invoicetypename,
+      </if>
+      <if test="accountEngname != null">
+        account_engname,
+      </if>
+      <if test="accountRemark != null">
+        account_remark,
+      </if>
+      <if test="accountAuditing != null">
+        account_Auditing,
+      </if>
+      <if test="accountYn != null">
+        account_yn,
+      </if>
+      <if test="accountCustom1 != null">
+        account_custom1,
+      </if>
+      <if test="accountCustom2 != null">
+        account_custom2,
+      </if>
+      <if test="accountCustom3 != null">
+        account_custom3,
+      </if>
+      <if test="accountCustom4 != null">
+        account_custom4,
+      </if>
+      <if test="accountCustom5 != null">
+        account_custom5,
+      </if>
+      <if test="accountCustom6 != null">
+        account_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountInvoicetypename != null">
+        #{accountInvoicetypename,jdbcType=VARCHAR},
+      </if>
+      <if test="accountEngname != null">
+        #{accountEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRemark != null">
+        #{accountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAuditing != null">
+        #{accountAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="accountYn != null">
+        #{accountYn,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom1 != null">
+        #{accountCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom2 != null">
+        #{accountCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom3 != null">
+        #{accountCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom4 != null">
+        #{accountCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom5 != null">
+        #{accountCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom6 != null">
+        #{accountCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Account">
+    update account
+    <set>
+      <if test="accountInvoicetypename != null">
+        account_invoicetypename = #{accountInvoicetypename,jdbcType=VARCHAR},
+      </if>
+      <if test="accountEngname != null">
+        account_engname = #{accountEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRemark != null">
+        account_remark = #{accountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAuditing != null">
+        account_Auditing = #{accountAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="accountYn != null">
+        account_yn = #{accountYn,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom1 != null">
+        account_custom1 = #{accountCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom2 != null">
+        account_custom2 = #{accountCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom3 != null">
+        account_custom3 = #{accountCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom4 != null">
+        account_custom4 = #{accountCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom5 != null">
+        account_custom5 = #{accountCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCustom6 != null">
+        account_custom6 = #{accountCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Account">
+    update account
+    set account_invoicetypename = #{accountInvoicetypename,jdbcType=VARCHAR},
+      account_engname = #{accountEngname,jdbcType=VARCHAR},
+      account_remark = #{accountRemark,jdbcType=VARCHAR},
+      account_Auditing = #{accountAuditing,jdbcType=VARCHAR},
+      account_yn = #{accountYn,jdbcType=VARCHAR},
+      account_custom1 = #{accountCustom1,jdbcType=VARCHAR},
+      account_custom2 = #{accountCustom2,jdbcType=VARCHAR},
+      account_custom3 = #{accountCustom3,jdbcType=VARCHAR},
+      account_custom4 = #{accountCustom4,jdbcType=VARCHAR},
+      account_custom5 = #{accountCustom5,jdbcType=VARCHAR},
+      account_custom6 = #{accountCustom6,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+</mapper>

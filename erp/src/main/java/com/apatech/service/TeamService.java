@@ -55,4 +55,8 @@ public class TeamService {
     public int updateByPrimaryKey(Team record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public List<Team> selectAll(){
+		return dao.selectAll();
+	}
 }

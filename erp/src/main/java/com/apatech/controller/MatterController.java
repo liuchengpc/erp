@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Matter;
+import com.apatech.domain.wdMatter;
 import com.apatech.domain.Matter;
 import com.apatech.domain.Matter;
 import com.apatech.domain.Matter;
@@ -27,6 +28,13 @@ import com.github.pagehelper.PageInfo;
 public class MatterController {
 	@Autowired
 	private MatterService dao;
+	
+	@RequestMapping("selectAll")
+	@ResponseBody
+	public List<wdMatter> selectAll(){
+		return dao.selectAll();
+	}
+	
 	
 	/**
 	 * 分页

@@ -41,8 +41,10 @@ public class SalesorderService {
     }
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
+	 }
+	 public List<Salesorder> selectAll(){
+	    	return dao.selectAll();
     }
-	
     public int deleteByPrimaryKey(String soId){
     	return dao.deleteByPrimaryKey(soId);
     }

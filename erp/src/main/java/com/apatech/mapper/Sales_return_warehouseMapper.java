@@ -4,11 +4,29 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.domain.Team;
 
 public interface Sales_return_warehouseMapper {
+	
+	@Select("select count(*) from sales_return_warehouse")
+	int selectcount();
+ 
+ 	@Update("update sales_return_warehouse set srw_yn=1 where srw_id=#{id}")
+ 	public int deletelist(String id);
+ 	
+ 	@Update("update sales_return_warehouse_detailed set srwd_yn=1 where srw_id=#{id}")
+ 	public int deletelist2(String id);
+ 	
+ 	@Update("update sales_return_warehouse set srw_auditing=#{sid} where srw_id=#{id}")
+ 	public int selectlist(@Param("id")String id,@Param("sid")String sid);
+ 	
+ 	@Update("update sales_return_warehouse_detailed set srwd_auditing=#{sid} where srw_id=#{id}")
+ 	public int selectlist2(@Param("id")String id,@Param("sid")String sid);
+	
+	
 	List<Sales_return_warehouse> selectAll();
 	 
 	 @Select("SELECT \r\n" + 

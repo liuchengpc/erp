@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Customer;
+import com.apatech.domain.Supplier;
 import com.apatech.domain.Customer;
 import com.apatech.domain.Customer;
 import com.apatech.domain.Customer;
@@ -54,6 +55,22 @@ public class CustomerController {
     	PageInfo<Customer> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	/**
+	 * 分页 刘成专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpagelc",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Customer> selectAllpagelc( Integer page,Integer limit){
+		System.out.println("进入CustomerController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Customer> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
+    }
+	
 	
 	/**
 	 * 获取单号

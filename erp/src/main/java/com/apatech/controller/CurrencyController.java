@@ -51,6 +51,21 @@ public class CurrencyController {
     }
 	
 	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Currency> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入CurrencyController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Currency> pageFy=dao.selectAllpage(page, limit);
+    	return pageFy;
+    }
+	
+	/**
 	 * 获取单号
 	 * @param billdate
 	 * @return

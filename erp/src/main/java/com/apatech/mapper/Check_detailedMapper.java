@@ -20,6 +20,8 @@ public interface Check_detailedMapper {
 	 		"Check_detailed WHERE cd_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	
+	List<Check_detailed> selectAllBycheckId(String checkId);
+	 
     int deleteByPrimaryKey(String cdId);
 
     int insert(Check_detailed record);

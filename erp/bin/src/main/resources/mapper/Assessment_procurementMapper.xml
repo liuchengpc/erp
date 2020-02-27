@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Assessment_procurementMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Assessment_procurement">
+    <id column="ap_id" jdbcType="VARCHAR" property="apId" />
+    <result column="ap_date_document" jdbcType="DATE" property="apDateDocument" />
+    <result column="ap_method_assessment" jdbcType="VARCHAR" property="apMethodAssessment" />
+    <result column="ap_principal_currency_amortized" jdbcType="REAL" property="apPrincipalCurrencyAmortized" />
+    <result column="ap_single_status" jdbcType="VARCHAR" property="apSingleStatus" />
+    <result column="ap_belongs_project" jdbcType="VARCHAR" property="apBelongsProject" />
+    <result column="ap_executor" jdbcType="VARCHAR" property="apExecutor" />
+    <result column="ap_checkagain_staff" jdbcType="VARCHAR" property="apCheckagainStaff" />
+    <result column="ap_header_provision" jdbcType="VARCHAR" property="apHeaderProvision" />
+    <result column="ap_end_clause" jdbcType="VARCHAR" property="apEndClause" />
+    <result column="ap_remark" jdbcType="VARCHAR" property="apRemark" />
+    <result column="ap_audition" jdbcType="VARCHAR" property="apAudition" />
+    <result column="ap_yn" jdbcType="VARCHAR" property="apYn" />
+    <result column="ap_custom1" jdbcType="VARCHAR" property="apCustom1" />
+    <result column="ap_custom2" jdbcType="VARCHAR" property="apCustom2" />
+    <result column="ap_custom3" jdbcType="VARCHAR" property="apCustom3" />
+    <result column="ap_custom4" jdbcType="VARCHAR" property="apCustom4" />
+    <result column="ap_custom5" jdbcType="VARCHAR" property="apCustom5" />
+    <result column="ap_custom6" jdbcType="VARCHAR" property="apCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ap_id, ap_date_document, ap_method_assessment, ap_principal_currency_amortized, ap_single_status, 
+    ap_belongs_project, ap_executor, ap_checkagain_staff, ap_header_provision, ap_end_clause, 
+    ap_remark, ap_audition, ap_yn, ap_custom1, ap_custom2, ap_custom3, ap_custom4, ap_custom5, 
+    ap_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from assessment_procurement 
+	    where ap_Yn=0
+	    ORDER BY ap_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from assessment_procurement
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from assessment_procurement
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Assessment_procurement">
+    insert into assessment_procurement (ap_id, ap_date_document, ap_method_assessment, 
+      ap_principal_currency_amortized, ap_single_status, 
+      ap_belongs_project, ap_executor, ap_checkagain_staff, 
+      ap_header_provision, ap_end_clause, ap_remark, 
+      ap_audition, ap_yn, ap_custom1, 
+      ap_custom2, ap_custom3, ap_custom4, 
+      ap_custom5, ap_custom6)
+    values (#{apId,jdbcType=VARCHAR}, #{apDateDocument,jdbcType=DATE}, #{apMethodAssessment,jdbcType=VARCHAR}, 
+      #{apPrincipalCurrencyAmortized,jdbcType=REAL}, #{apSingleStatus,jdbcType=VARCHAR}, 
+      #{apBelongsProject,jdbcType=VARCHAR}, #{apExecutor,jdbcType=VARCHAR}, #{apCheckagainStaff,jdbcType=VARCHAR}, 
+      #{apHeaderProvision,jdbcType=VARCHAR}, #{apEndClause,jdbcType=VARCHAR}, #{apRemark,jdbcType=VARCHAR}, 
+      #{apAudition,jdbcType=VARCHAR}, #{apYn,jdbcType=VARCHAR}, #{apCustom1,jdbcType=VARCHAR}, 
+      #{apCustom2,jdbcType=VARCHAR}, #{apCustom3,jdbcType=VARCHAR}, #{apCustom4,jdbcType=VARCHAR}, 
+      #{apCustom5,jdbcType=VARCHAR}, #{apCustom6,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Assessment_procurement">
+    insert into assessment_procurement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="apDateDocument != null">
+        ap_date_document,
+      </if>
+      <if test="apMethodAssessment != null">
+        ap_method_assessment,
+      </if>
+      <if test="apPrincipalCurrencyAmortized != null">
+        ap_principal_currency_amortized,
+      </if>
+      <if test="apSingleStatus != null">
+        ap_single_status,
+      </if>
+      <if test="apBelongsProject != null">
+        ap_belongs_project,
+      </if>
+      <if test="apExecutor != null">
+        ap_executor,
+      </if>
+      <if test="apCheckagainStaff != null">
+        ap_checkagain_staff,
+      </if>
+      <if test="apHeaderProvision != null">
+        ap_header_provision,
+      </if>
+      <if test="apEndClause != null">
+        ap_end_clause,
+      </if>
+      <if test="apRemark != null">
+        ap_remark,
+      </if>
+      <if test="apAudition != null">
+        ap_audition,
+      </if>
+      <if test="apYn != null">
+        ap_yn,
+      </if>
+      <if test="apCustom1 != null">
+        ap_custom1,
+      </if>
+      <if test="apCustom2 != null">
+        ap_custom2,
+      </if>
+      <if test="apCustom3 != null">
+        ap_custom3,
+      </if>
+      <if test="apCustom4 != null">
+        ap_custom4,
+      </if>
+      <if test="apCustom5 != null">
+        ap_custom5,
+      </if>
+      <if test="apCustom6 != null">
+        ap_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        #{apId,jdbcType=VARCHAR},
+      </if>
+      <if test="apDateDocument != null">
+        #{apDateDocument,jdbcType=DATE},
+      </if>
+      <if test="apMethodAssessment != null">
+        #{apMethodAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="apPrincipalCurrencyAmortized != null">
+        #{apPrincipalCurrencyAmortized,jdbcType=REAL},
+      </if>
+      <if test="apSingleStatus != null">
+        #{apSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="apBelongsProject != null">
+        #{apBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="apExecutor != null">
+        #{apExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="apCheckagainStaff != null">
+        #{apCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="apHeaderProvision != null">
+        #{apHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="apEndClause != null">
+        #{apEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="apRemark != null">
+        #{apRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="apAudition != null">
+        #{apAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="apYn != null">
+        #{apYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom1 != null">
+        #{apCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom2 != null">
+        #{apCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom3 != null">
+        #{apCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom4 != null">
+        #{apCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom5 != null">
+        #{apCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom6 != null">
+        #{apCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Assessment_procurement">
+    update assessment_procurement
+    <set>
+      <if test="apDateDocument != null">
+        ap_date_document = #{apDateDocument,jdbcType=DATE},
+      </if>
+      <if test="apMethodAssessment != null">
+        ap_method_assessment = #{apMethodAssessment,jdbcType=VARCHAR},
+      </if>
+      <if test="apPrincipalCurrencyAmortized != null">
+        ap_principal_currency_amortized = #{apPrincipalCurrencyAmortized,jdbcType=REAL},
+      </if>
+      <if test="apSingleStatus != null">
+        ap_single_status = #{apSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="apBelongsProject != null">
+        ap_belongs_project = #{apBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="apExecutor != null">
+        ap_executor = #{apExecutor,jdbcType=VARCHAR},
+      </if>
+      <if test="apCheckagainStaff != null">
+        ap_checkagain_staff = #{apCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="apHeaderProvision != null">
+        ap_header_provision = #{apHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="apEndClause != null">
+        ap_end_clause = #{apEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="apRemark != null">
+        ap_remark = #{apRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="apAudition != null">
+        ap_audition = #{apAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="apYn != null">
+        ap_yn = #{apYn,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom1 != null">
+        ap_custom1 = #{apCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom2 != null">
+        ap_custom2 = #{apCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom3 != null">
+        ap_custom3 = #{apCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom4 != null">
+        ap_custom4 = #{apCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom5 != null">
+        ap_custom5 = #{apCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="apCustom6 != null">
+        ap_custom6 = #{apCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Assessment_procurement">
+    update assessment_procurement
+    set ap_date_document = #{apDateDocument,jdbcType=DATE},
+      ap_method_assessment = #{apMethodAssessment,jdbcType=VARCHAR},
+      ap_principal_currency_amortized = #{apPrincipalCurrencyAmortized,jdbcType=REAL},
+      ap_single_status = #{apSingleStatus,jdbcType=VARCHAR},
+      ap_belongs_project = #{apBelongsProject,jdbcType=VARCHAR},
+      ap_executor = #{apExecutor,jdbcType=VARCHAR},
+      ap_checkagain_staff = #{apCheckagainStaff,jdbcType=VARCHAR},
+      ap_header_provision = #{apHeaderProvision,jdbcType=VARCHAR},
+      ap_end_clause = #{apEndClause,jdbcType=VARCHAR},
+      ap_remark = #{apRemark,jdbcType=VARCHAR},
+      ap_audition = #{apAudition,jdbcType=VARCHAR},
+      ap_yn = #{apYn,jdbcType=VARCHAR},
+      ap_custom1 = #{apCustom1,jdbcType=VARCHAR},
+      ap_custom2 = #{apCustom2,jdbcType=VARCHAR},
+      ap_custom3 = #{apCustom3,jdbcType=VARCHAR},
+      ap_custom4 = #{apCustom4,jdbcType=VARCHAR},
+      ap_custom5 = #{apCustom5,jdbcType=VARCHAR},
+      ap_custom6 = #{apCustom6,jdbcType=VARCHAR}
+    where ap_id = #{apId,jdbcType=VARCHAR}
+  </update>
+</mapper>

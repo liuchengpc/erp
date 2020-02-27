@@ -1,0 +1,32 @@
+/*.area{
+    height: 791px;
+    border: 1px solid #e8e8e8;
+}
+.navlist{
+    background: #f8f8f8 url("../images/accountindex/dian.jpeg") repeat-y 197px 0px;
+    width: 198px;
+    height: 791px;
+    float: left;
+}
+ul{
+    list-style: none outside none;
+}
+.navlist li{
+    display: block;
+    border-bottom: 1px solid #e7e7eb;
+    border-right: 1px solid #e7e7eb;
+    text-align: center;
+    width: 100%;
+}
+.navlist li a {
+    display: block;
+    line-height: 52px;
+    font-size: 16px;
+}
+.current{
+    background: #FFF;
+    border-right: 1px solid #FFF !important;
+}
+.accountcontent{
+    float: right;
+}*/

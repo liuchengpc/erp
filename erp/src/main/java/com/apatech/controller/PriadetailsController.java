@@ -1,6 +1,9 @@
 package com.apatech.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +36,38 @@ public class PriadetailsController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
+	@RequestMapping(value = "selectByPriabillSupplierName",method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo<Priadetails> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入PriadetailsController分页");
-		System.out.println(pageNum+"/"+pageSize);
-    	PageInfo<Priadetails> page=dao.selectAllpage(pageNum, pageSize);
-    	return page;
+	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillId){
+		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
+		System.out.println("预付款主表ID："+priabillId);
+		PageInfo<Priadetails> pageFy = dao.selectByPriabillSupplierName(page, limit,priabillId);
+		return pageFy;
+    }
+	
+	/**
+	 * 新增+删除 Xz专属
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "insertAndDelete",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> insertAndDelete(@RequestBody Priadetails record) {
+		System.out.println("进入PriadetailsController新增");
+		System.out.println("实体："+record.toString());
+		String string = new SimpleDateFormat("yyyyMMdd").format(new Date()).toString();
+		System.out.println("自定义一："+string);
+		record.setPriabillCustom1(string);
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.insertAndDelete(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "新增失败！");
+		}
+		return map;
     }
 	
 	/**
@@ -126,6 +154,29 @@ public class PriadetailsController {
 		System.out.println("priadetailsId："+priadetailsId);
 		Map<String, String> map=new HashMap<String,String>();
     	int i =dao.deleteByPrimaryKey(priadetailsId);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
+	
+	/**
+	 * 根据主键删除  Xz专属
+	 * @param priadetailsId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByPrimaryKeyXuzhe",method = RequestMethod.GET)
+	@ResponseBody
+    public Map<String, String> deleteByPrimaryKeyXuzhe(String priabillId,Model model) {
+		System.out.println("进入PriadetailsController根据主键删除");
+		System.out.println("priabillId："+priabillId);
+		Map<String, String> map=new HashMap<String,String>();
+    	int i =dao.deleteByPrimaryKeyXuzhe(priabillId);
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");

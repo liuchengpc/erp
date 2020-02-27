@@ -1,0 +1,306 @@
+/*.rightarea{
+    float: right;
+    width: 1040px;
+}*/
+.mainarea{
+    width: 98%;
+    margin: 0 auto;
+}
+.mainhead{
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 8px;
+    border-bottom: 1px solid
+    #e7e7eb;
+    margin-bottom: 10px;
+}
+.title{
+    line-height: 36px;
+    font-size: 16px;
+}
+.mainbody{
+    padding-bottom: 20px;
+}
+.uploadproduct{
+    position: relative;
+    width: 928px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-top: 30px;
+}
+.rightdiv{
+    float: right;
+    width: 510px;
+}
+.ptype{
+    float: left;
+    width: 100%;
+}
+.listdiv{
+    float: left;
+    width: 100%;
+    padding-bottom: 14px;
+}
+.listdiv span{
+    float: left;
+    width: 80px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 36px;
+    padding-right: 10px;
+    color: #9e9e9e;
+    position: relative;
+}
+.listdiv span i{
+    color: #f24d4d;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    left: 0px;
+    position: absolute;
+    top: 4px;
+}
+.listdiv .inputtext{
+    border: 1px solid #e7e7eb;
+    padding-right: 2px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    font-size: 14px;
+    background: #FFF;
+    width: 164px;
+    padding-left: 6px;
+    /*height: 22px;*/
+    vertical-align: top;
+    float: left;
+}
+.colorchoice{
+    float: left;
+    width: 428px;
+    font-size: 14px;
+}
+.colorstable{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.colorstable th{
+    background: #F9F9F9;
+    border: 1px solid #e7e7eb;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-weight: normal;
+    color: #9e9e9e;
+}
+.colorstable td{
+    border: 1px solid #e7e7eb;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    word-break: break-all;
+}
+.listcolor{
+    float: left;
+    clear: both;
+}
+.listcolor li{
+    float: left;
+    width: 100%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.checkbox{
+    float: left;
+    margin: 4px 0 0 8px;
+}
+.color{
+    float: left;
+    padding-top: 2px;
+    cursor: pointer;
+    line-height: 14px;
+}
+.colorImg{
+    float: left;
+    width: 14px !important;
+    height: 14px;
+    margin: 1px 2px 0px 2px;
+    background: none repeat scroll 0 0 #000000;
+    border: none;
+}
+.addColorBtn{
+    width: 120px;
+    text-align: right;
+    float: right;
+    padding-top: 2px;
+    padding-right: 0px;
+    color: rgb(68, 181, 73) !important;
+}
+.fdcolor{
+    float: right;
+    width: 436px;
+    /*
+    margin-top: 36px;
+    */
+}
+.fdcolor li{
+    float: left;
+    position: relative;
+    background-color: #FFF;
+    line-height: 20px;
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-bottom: 6px;
+}
+.fdcolor li a {
+    display: block;
+    color: #5E5E5E;
+    background-color: #fff;
+    width: 96px;
+    padding: 2px 2px;
+    text-align: center;
+    border: 1px solid #e2e1e3;
+    line-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+}
+.editSizeBtn{
+    clear: both;
+    float: right;
+    line-height: 26px;
+    padding-right: 8px;
+    color: #44b549 !important;
+}
+.productshow{
+    float: left;
+    width: 380px;
+    height: 490px;
+}
+.magni{
+    border: 1px solid #ddd;
+    display: block;
+    width: 380px;
+    height: 380px;
+    font-size: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+.tb-booth{
+    position: relative;
+    z-index: 1;
+}
+.s310{
+    max-height: 380px;
+    max-width: 380px;
+}
+.s310 a{
+    height: 380px;
+    width: 380px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.s310 a img{
+    max-height: 380px;
+    max-width: 380px;
+}
+.staticPic{
+    float: left;
+    height: 58px;
+    position: absolute;
+    width: 380px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+.prev{
+    float: left;
+    background: #FFF url("../images/storeindex/index.png") 0 18px no-repeat;
+    cursor: pointer;
+    height: 68px;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    width: 14px;
+    z-index: 3;
+}
+.next{
+    float: left;
+    background: url("../images/storeindex/index2.png") 0 18px no-repeat;
+    cursor: pointer;
+    height: 68px;
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    width: 12px;
+    z-index: 3;
+}
+.smallPic{
+    float: left;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 378px;
+    height: 72px;
+}
+.pic-list{
+    position: absolute;
+    top: 0px;
+    left: 4px;
+}
+.thumb{
+    overflow: hidden;
+}
+.thumb li {
+    background: none repeat scroll 0 0
+    transparent;
+    float: left;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #E3E3E3;
+    margin: 5px;
+}
+.imgd{
+    height: 50px;
+    width: 50px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.imgd img{
+    max-height: 50px;
+    max-width: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+.uploadimg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: none repeat scroll 0 0 #FFFFFF;
+    filter: alpha(opacity=0);
+    opacity: 0.0;
+}
+.editPanel{
+    float: left;
+    width: 100%;
+}
+.title{
+    line-height: 30px;
+    font-size: 16px;
+    color: #9e9e9e;
+}
+.btn-close-insert{
+    clear: both;
+    float: right;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    display: block;
+}

@@ -47,12 +47,17 @@ public class Purchase_storage {
     private String psCustom4;//自定义4
     private String psCustom5;//自定义5
     private String psCustom6;//自定义6
+    private Date createDate;//创建时间
+    private Date editDate;//修改时间
+    private Integer lineId;//行编号
     
     
 
     public Purchase_storage() {
 		super();
 	}
+
+	
 
 	@Override
 	public String toString() {
@@ -67,8 +72,11 @@ public class Purchase_storage {
 				+ psCheckagainStaff + ", psHeaderProvision=" + psHeaderProvision + ", psEndClause=" + psEndClause
 				+ ", psRemark=" + psRemark + ", psAudition=" + psAudition + ", psYn=" + psYn + ", psCustom1="
 				+ psCustom1 + ", psCustom2=" + psCustom2 + ", psCustom3=" + psCustom3 + ", psCustom4=" + psCustom4
-				+ ", psCustom5=" + psCustom5 + ", psCustom6=" + psCustom6 + "]";
+				+ ", psCustom5=" + psCustom5 + ", psCustom6=" + psCustom6 + ", createDate=" + createDate + ", editDate="
+				+ editDate + ", lineId=" + lineId + "]";
 	}
+
+
 
 	public String getPsId() {
         return psId;
@@ -333,4 +341,42 @@ public class Purchase_storage {
     public void setPsCustom6(String psCustom6) {
         this.psCustom6 = psCustom6 == null ? null : psCustom6.trim();
     }
+
+
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+
+	public Date getEditDate() {
+		return editDate;
+	}
+
+
+
+	public void setEditDate(Date editDate) {
+		this.editDate = editDate;
+	}
+
+
+
+	public Integer getLineId() {
+		return lineId;
+	}
+
+
+
+	public void setLineId(Integer lineId) {
+		this.lineId = lineId;
+	}
+    
+    
 }

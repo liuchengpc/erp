@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<base target="main3">		
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.js}" ></script>
+		<style type="text/css">
+			/* BootStrap表格鼠标悬停颜色修改 */
+			.table-hover>tbody>tr:hover {
+			    background-color: wheat!important;
+			}
+			/* bootstrap表格通过css样式实现隔行换色 */
+			table tr:nth-child(even){ 
+				background: #f6f7f9; 
+			}
+			.demo10 {
+			  color: #fff;/* 第一层文字阴影	第二层文字阴影*/
+			  text-shadow: 1px 1px black,2px 2px black;
+			}
+			.panel>.panel-heading{
+				height: 50px;
+			}
+			a:link{text-decoration:none; }  /* 指正常的未被访问过的链接*/
+
+			a:visited{text-decoration:none; }/*指已经访问过的链接*/
+			
+			a:hover{text-decoration:none;}/*指鼠标在链接*/}
+			
+			a:active{text-decoration:none;}/* 指正在点的链接*/ 
+		</style>
+	</head>
+	<body style="background: #F8F8F8;">
+		<div class="row"style="margin: 0;">
+			<div  class="setheight" style="">																<!-- box-shadow: 水平偏移 垂直偏移 模糊度; -->																									
+				<div class="panel-group"  id="accordion" role="tablist" aria-multiselectable="true">
+				  <div class="panel panel-default" style="border: none; background-color:transparent ;">
+					<div class="panel-heading" role="tab" id="headingOne" style="    background-color: transparent;">
+					  <h4 class="panel-title" style="margin-top: 7px;">
+						  <a target="main3" href="javascript:;" class="syjz">
+							  <img th:href="@{/images/zd.png}" >
+							  收银结账
+						  </a>
+						 <!--  <script type="text/javascript">
+						  	$(".syjz").click(function(){
+						  		window.top.location.href="../claim/cashRegister_Home.html";
+						  	})
+						  	
+						  </script> -->
+					  </h4>
+					</div>
+				  </div>
+				  
+				</div>
+			</div>
+		</div>
+		<style type="text/css">
+			.current-item {
+			    background: #FFF !important;
+			    border-right: 1px solid #FFF !important;
+			}
+			.current-item2 {
+			    background: #FFF !important;
+			    border-right: 1px solid #FFF !important;
+			}
+		</style>
+		<script type="text/javascript">
+			$(".panel-default").eq(0).addClass("current-item")
+	   		$(".panel-title>a").click(function(){
+	   			$(".panel-default").removeClass("current-item")
+	   			$(this).parents(".panel-default").addClass("current-item")
+	   		})
+	   		$(".panel-default").hover(function(){
+	   			$(".panel-default").removeClass("current-item2")
+	   			$(this).addClass("current-item2")
+	   		})
+   	</script>
+	</body>
+</html>

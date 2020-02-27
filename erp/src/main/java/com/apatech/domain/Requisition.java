@@ -1,6 +1,7 @@
 package com.apatech.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,14 +29,13 @@ public class Requisition {
     private String requisitionCustom2;//自定义2
     private String requisitionCustom3;//自定义3
     private String requisitionCustom4;//自定义4
-    private String requisitionCustom5;//自定义5
-    private String requisitionCustom6;//自定义6
+    private String requisitionCustom5;//自定义5(占用)
+    private String requisitionCustom6;//自定义6(占用)
     
+    private List<Requisition_detailed> rd_list;//调拨详表
+    private String requisitionOutWarehouseName;//调出仓库的名称（仓库表的warehouse_name）
+    private String requisitionInputWarehouseName;//调入仓库的名称（仓库表的warehouse_name）
     
-
-    public Requisition() {
-		super();
-	}
 
 	@Override
 	public String toString() {
@@ -47,7 +47,44 @@ public class Requisition {
 				+ requisitionYn + ", requisitionCustom1=" + requisitionCustom1 + ", requisitionCustom2="
 				+ requisitionCustom2 + ", requisitionCustom3=" + requisitionCustom3 + ", requisitionCustom4="
 				+ requisitionCustom4 + ", requisitionCustom5=" + requisitionCustom5 + ", requisitionCustom6="
-				+ requisitionCustom6 + "]";
+				+ requisitionCustom6 + ", rd_list=" + rd_list + ", requisitionOutWarehouseName="
+				+ requisitionOutWarehouseName + ", requisitionInputWarehouseName=" + requisitionInputWarehouseName
+				+ "]";
+	}
+
+
+	public String getRequisitionOutWarehouseName() {
+		return requisitionOutWarehouseName;
+	}
+
+
+	public void setRequisitionOutWarehouseName(String requisitionOutWarehouseName) {
+		this.requisitionOutWarehouseName = requisitionOutWarehouseName;
+	}
+
+
+	public String getRequisitionInputWarehouseName() {
+		return requisitionInputWarehouseName;
+	}
+
+
+	public void setRequisitionInputWarehouseName(String requisitionInputWarehouseName) {
+		this.requisitionInputWarehouseName = requisitionInputWarehouseName;
+	}
+
+
+	public List<Requisition_detailed> getRd_list() {
+		return rd_list;
+	}
+
+
+	public void setRd_list(List<Requisition_detailed> rd_list) {
+		this.rd_list = rd_list;
+	}
+
+
+	public Requisition() {
+		super();
 	}
 
 	public String getRequisitionId() {

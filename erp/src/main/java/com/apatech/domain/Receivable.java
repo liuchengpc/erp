@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public class Receivable {
-    private String receivableId;//应付冲款单id（主键 唯一）
-    private String customerId;//供应商表id，外键
+    private String receivableId;//应收冲款单id（主键 唯一）
+    private String customerId;//客户表id，外键
     private Integer scsId;//结算方式id，外键
     private String staffId;//部门员工表id，外键
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
-    private String customerName;//供应商表
+    private String customerName;//客户名
     private Integer payablesSatName1;//结算方式表,默认值：转账
     private Float payablesPrice1;//默认值：0.00
     private Integer payablesSatName2;//结算方式表,默认值：汇票
@@ -34,7 +34,7 @@ public class Receivable {
     private Date payablesPayablestime;//单据日期,默认值：当前日期
     private String payablesCurrencyName;//币别类型表快照
     private String payablesCurrencyInexchange;//汇率
-    private String payablesType;//应付冲款类型,默认值：付款冲款
+    private String payablesType;//应收冲款类型,默认值：付款冲款
     private String payablesVoucherno;//凭证编号
     private String payablesTeamName;//部门表
     private String payablesProjectName;//项目表
@@ -44,15 +44,15 @@ public class Receivable {
     private Integer payablesAuditstatus;//审核状态,0:未审核,1:已结案
     private String payablesAuditstatusAuditing;//是否审核
     private String payablesAuditstatusYn;//是否删除（0 否 1 是 ，默认0）
-    private String payablesCustom1;//自定义1
-    private String payablesCustom2;//自定义2
+    private String payablesCustom1;//创建时间
+    private String payablesCustom2;//表状态（0：预收款，1：应收款）
     private String payablesCustom3;//自定义3
     private String payablesCustom4;//自定义4
     private String payablesCustom5;//自定义5
     private String payablesCustom6;//自定义6
     private String payablesCustom7;//自定义7
     private String payablesCustom8;//自定义8
-    private String payablesCustom9;//自定义9
+    private String payablesCustom9;//部门id 外键
     private String payablesCustom10;//自定义10
     
     

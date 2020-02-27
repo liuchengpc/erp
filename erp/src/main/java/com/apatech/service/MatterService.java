@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apatech.domain.Customer;
 import com.apatech.domain.Matter;
+import com.apatech.domain.wdMatter;
 import com.apatech.domain.Matter;
 import com.apatech.domain.Matter;
 import com.apatech.mapper.MatterMapper;
@@ -19,6 +21,10 @@ public class MatterService {
 	@Autowired
 	private MatterMapper dao;
 	
+	//查询所有物料
+		public List<wdMatter> selectAll1(){
+			return dao.selectAllMatter();
+		}
 	public PageInfo<Matter> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -33,6 +39,10 @@ public class MatterService {
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
+	 
+	 public List<wdMatter> selectAll(){
+	    	return dao.selectAllMatter();
+ }
 	
     public int deleteByPrimaryKey(String matterId){
     	return dao.deleteByPrimaryKey(matterId);

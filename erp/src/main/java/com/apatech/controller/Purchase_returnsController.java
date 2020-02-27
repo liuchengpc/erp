@@ -3,19 +3,14 @@ package com.apatech.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
-import com.apatech.domain.Purchase_returns;
 import com.apatech.domain.Purchase_returns;
 import com.apatech.mapper.Purchase_returnsMapper;
 import com.apatech.service.Purchase_returnsService;
@@ -72,7 +67,7 @@ public class Purchase_returnsController {
 	
 	/**
 	 * 新增
-	 * @param student
+	 * @param record
 	 * @return
 	 */
 	@RequestMapping(value = "insertSelective",method = RequestMethod.POST)
@@ -94,7 +89,7 @@ public class Purchase_returnsController {
 
 	/**
 	 * 根据主键修改
-	 * @param student
+	 * @param record
 	 * @return
 	 */
 	@RequestMapping(value = "updateByPrimaryKeySelective",method = RequestMethod.POST)
@@ -135,4 +130,68 @@ public class Purchase_returnsController {
 		}
 		return map;
     }
+
+    @GetMapping("/selectLast")
+	@ResponseBody
+    public PurchaseReturnsPojo selectLast(){
+		return dao.selectLast();
+	}
+
+	@GetMapping("/selectPrev")
+	@ResponseBody
+	public PurchaseReturnsPojo selectPrev(Integer lineId){
+		return dao.selectPrev(lineId);
+	}
+
+	@GetMapping("/selectNext")
+	@ResponseBody
+	public PurchaseReturnsPojo selectNext(Integer lineId){
+		return dao.selectNext(lineId);
+	}
+
+	@GetMapping("/selectFirst")
+	@ResponseBody
+	public PurchaseReturnsPojo selectFirst(){
+		return dao.selectFirst();
+	}
+
+	@GetMapping("/selectPureId")
+	@ResponseBody
+	public String selectPureId(){
+		return dao.selectPureId();
+	}
+
+	@PutMapping("/updateWithDetails")
+	@ResponseBody
+	public Map<String,String> updateWithDetails(@RequestBody PurchaseReturnsPojo purchaseReturnsPojo){
+		return null;
+	}
+
+	@PostMapping("/insertWithDetails")
+	@ResponseBody
+	public Map<String,String> insertWithDetails(@RequestBody PurchaseReturnsPojo returnsPojo){
+		System.out.println(returnsPojo);
+		Map<String, String> map = new HashMap<>();
+		try {
+			dao.insertWithDetails(returnsPojo);
+			map.put("code", "200");
+			map.put("message", "success");
+		} catch (Exception e) {
+			map.put("code", "500");
+			map.put("message", "error");
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@PutMapping("/reviewPureOrder")
+	@ResponseBody
+	public Map<String,String> reviewPureOrder(@RequestBody PurchaseReturnsPojo returnsPojo){
+		return null;
+	}
+
+	@PutMapping("/unReviewPureOrder")
+	public Map<String,String> unReviewPureOrder(@RequestBody PurchaseReturnsPojo purchaseReturnsPojo){
+		return null;
+	}
 }

@@ -1,10 +1,6 @@
 package com.apatech.domain;
 
-import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 销售退货详表
@@ -19,9 +15,7 @@ public class Sales_return_warehouse_detailed {
     private String srwdRemark;//规格型号
     private String srwdPriceIncludeTax;//单位名称
     private Integer srwdSingleStatus;//数量
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date srwdDocumentDate;//折扣前单价
+    private Float srwdDocumentDate;//折扣前单价
     private Float srwdDocumentNumber;//折数
     private Float srwdPrice;//单价
     private Float srwdMoney;//金额
@@ -122,15 +116,17 @@ public class Sales_return_warehouse_detailed {
         this.srwdSingleStatus = srwdSingleStatus;
     }
 
-    public Date getSrwdDocumentDate() {
-        return srwdDocumentDate;
-    }
+    public void setSrwdDocumentDate(float srwdDocumentDate) {
+		this.srwdDocumentDate = srwdDocumentDate;
+	}
 
-    public void setSrwdDocumentDate(Date srwdDocumentDate) {
-        this.srwdDocumentDate = srwdDocumentDate;
-    }
+	
 
-    public Float getSrwdDocumentNumber() {
+    public float getSrwdDocumentDate() {
+		return srwdDocumentDate;
+	}
+
+	public Float getSrwdDocumentNumber() {
         return srwdDocumentNumber;
     }
 

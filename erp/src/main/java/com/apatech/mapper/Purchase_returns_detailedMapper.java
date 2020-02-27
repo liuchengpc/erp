@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import com.apatech.domain.Purchase_returns_detailed;
 import com.apatech.domain.Team;
 
-public interface Purchase_returns_detailedMapper {
+public interface Purchase_returns_detailedMapper<insertList> {
 	List<Purchase_returns_detailed> selectAll();
 	 
 	 @Select("SELECT \r\n" + 
@@ -32,4 +32,8 @@ public interface Purchase_returns_detailedMapper {
     int updateByPrimaryKeySelective(Purchase_returns_detailed record);
 
     int updateByPrimaryKey(Purchase_returns_detailed record);
+
+    Purchase_returns_detailed selectByPureId(@Param("pureId") String pureId);
+
+    int insertList(@Param("list")List<Purchase_returns_detailed> list);
 }

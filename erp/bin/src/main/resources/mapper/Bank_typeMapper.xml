@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Bank_typeMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Bank_type">
+    <id column="bt_id" jdbcType="VARCHAR" property="btId" />
+    <result column="bt_name" jdbcType="VARCHAR" property="btName" />
+    <result column="bt_english_name" jdbcType="VARCHAR" property="btEnglishName" />
+    <result column="bt_remark" jdbcType="VARCHAR" property="btRemark" />
+    <result column="bt_Auditing" jdbcType="VARCHAR" property="btAuditing" />
+    <result column="bt_yn" jdbcType="VARCHAR" property="btYn" />
+    <result column="bt_custom1" jdbcType="VARCHAR" property="btCustom1" />
+    <result column="bt_custom2" jdbcType="VARCHAR" property="btCustom2" />
+    <result column="bt_custom3" jdbcType="VARCHAR" property="btCustom3" />
+    <result column="bt_custom4" jdbcType="VARCHAR" property="btCustom4" />
+    <result column="bt_custom5" jdbcType="VARCHAR" property="btCustom5" />
+    <result column="bt_custom6" jdbcType="VARCHAR" property="btCustom6" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bt_id, bt_name, bt_english_name, bt_remark, bt_Auditing, bt_yn, bt_custom1, bt_custom2, 
+    bt_custom3, bt_custom4, bt_custom5, bt_custom6
+  </sql>
+  
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from bank_type 
+	    where bt_Yn=0
+	    ORDER BY bt_id DESC
+  </select>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bank_type
+    where bt_id = #{btId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bank_type
+    where bt_id = #{btId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Bank_type">
+    insert into bank_type (bt_id, bt_name, bt_english_name, 
+      bt_remark, bt_Auditing, bt_yn, 
+      bt_custom1, bt_custom2, bt_custom3, 
+      bt_custom4, bt_custom5, bt_custom6
+      )
+    values (#{btId,jdbcType=VARCHAR}, #{btName,jdbcType=VARCHAR}, #{btEnglishName,jdbcType=VARCHAR}, 
+      #{btRemark,jdbcType=VARCHAR}, #{btAuditing,jdbcType=VARCHAR}, #{btYn,jdbcType=VARCHAR}, 
+      #{btCustom1,jdbcType=VARCHAR}, #{btCustom2,jdbcType=VARCHAR}, #{btCustom3,jdbcType=VARCHAR}, 
+      #{btCustom4,jdbcType=VARCHAR}, #{btCustom5,jdbcType=VARCHAR}, #{btCustom6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Bank_type">
+    insert into bank_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="btId != null">
+        bt_id,
+      </if>
+      <if test="btName != null">
+        bt_name,
+      </if>
+      <if test="btEnglishName != null">
+        bt_english_name,
+      </if>
+      <if test="btRemark != null">
+        bt_remark,
+      </if>
+      <if test="btAuditing != null">
+        bt_Auditing,
+      </if>
+      <if test="btYn != null">
+        bt_yn,
+      </if>
+      <if test="btCustom1 != null">
+        bt_custom1,
+      </if>
+      <if test="btCustom2 != null">
+        bt_custom2,
+      </if>
+      <if test="btCustom3 != null">
+        bt_custom3,
+      </if>
+      <if test="btCustom4 != null">
+        bt_custom4,
+      </if>
+      <if test="btCustom5 != null">
+        bt_custom5,
+      </if>
+      <if test="btCustom6 != null">
+        bt_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="btId != null">
+        #{btId,jdbcType=VARCHAR},
+      </if>
+      <if test="btName != null">
+        #{btName,jdbcType=VARCHAR},
+      </if>
+      <if test="btEnglishName != null">
+        #{btEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="btRemark != null">
+        #{btRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="btAuditing != null">
+        #{btAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="btYn != null">
+        #{btYn,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom1 != null">
+        #{btCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom2 != null">
+        #{btCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom3 != null">
+        #{btCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom4 != null">
+        #{btCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom5 != null">
+        #{btCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom6 != null">
+        #{btCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Bank_type">
+    update bank_type
+    <set>
+      <if test="btName != null">
+        bt_name = #{btName,jdbcType=VARCHAR},
+      </if>
+      <if test="btEnglishName != null">
+        bt_english_name = #{btEnglishName,jdbcType=VARCHAR},
+      </if>
+      <if test="btRemark != null">
+        bt_remark = #{btRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="btAuditing != null">
+        bt_Auditing = #{btAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="btYn != null">
+        bt_yn = #{btYn,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom1 != null">
+        bt_custom1 = #{btCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom2 != null">
+        bt_custom2 = #{btCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom3 != null">
+        bt_custom3 = #{btCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom4 != null">
+        bt_custom4 = #{btCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom5 != null">
+        bt_custom5 = #{btCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="btCustom6 != null">
+        bt_custom6 = #{btCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bt_id = #{btId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Bank_type">
+    update bank_type
+    set bt_name = #{btName,jdbcType=VARCHAR},
+      bt_english_name = #{btEnglishName,jdbcType=VARCHAR},
+      bt_remark = #{btRemark,jdbcType=VARCHAR},
+      bt_Auditing = #{btAuditing,jdbcType=VARCHAR},
+      bt_yn = #{btYn,jdbcType=VARCHAR},
+      bt_custom1 = #{btCustom1,jdbcType=VARCHAR},
+      bt_custom2 = #{btCustom2,jdbcType=VARCHAR},
+      bt_custom3 = #{btCustom3,jdbcType=VARCHAR},
+      bt_custom4 = #{btCustom4,jdbcType=VARCHAR},
+      bt_custom5 = #{btCustom5,jdbcType=VARCHAR},
+      bt_custom6 = #{btCustom6,jdbcType=VARCHAR}
+    where bt_id = #{btId,jdbcType=VARCHAR}
+  </update>
+</mapper>

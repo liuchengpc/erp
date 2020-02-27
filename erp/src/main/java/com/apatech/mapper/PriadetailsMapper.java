@@ -11,6 +11,8 @@ import com.apatech.domain.Team;
 public interface PriadetailsMapper {
 	 List<Priadetails> selectAll();
 	 
+	 List<Priadetails> selectByPriabillSupplierName(String priabillId);
+	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 
@@ -23,6 +25,8 @@ public interface PriadetailsMapper {
 	
     int deleteByPrimaryKey(String priadetailsId);
 
+    int deleteByPrimaryKeyXuzhe(String priabillId);
+    
     int insert(Priadetails record);
 
     int insertSelective(Priadetails record);
@@ -32,4 +36,6 @@ public interface PriadetailsMapper {
     int updateByPrimaryKeySelective(Priadetails record);
 
     int updateByPrimaryKey(Priadetails record);
+    
+    int selectCount();
 }

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Sales_receivablesMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Sales_receivables">
+    <id column="sr_id" jdbcType="INTEGER" property="srId" />
+    <result column="sr_type" jdbcType="VARCHAR" property="srType" />
+    <result column="sr_number" jdbcType="VARCHAR" property="srNumber" />
+    <result column="sr_date" jdbcType="TIMESTAMP" property="srDate" />
+    <result column="sr_pc_id" jdbcType="VARCHAR" property="srPcId" />
+    <result column="sr_pc_name" jdbcType="VARCHAR" property="srPcName" />
+    <result column="sr_team_id" jdbcType="VARCHAR" property="srTeamId" />
+    <result column="sr_team_name" jdbcType="VARCHAR" property="srTeamName" />
+    <result column="sr_buyer" jdbcType="VARCHAR" property="srBuyer" />
+    <result column="sr_project_name" jdbcType="VARCHAR" property="srProjectName" />
+    <result column="sr_currency" jdbcType="VARCHAR" property="srCurrency" />
+    <result column="sr_exchange_rate" jdbcType="REAL" property="srExchangeRate" />
+    <result column="sr_payablesmain_price" jdbcType="DOUBLE" property="srPayablesmainPrice" />
+    <result column="sr_currentbalance" jdbcType="REAL" property="srCurrentbalance" />
+    <result column="sr_discountamount" jdbcType="REAL" property="srDiscountamount" />
+    <result column="sr_amountcharged" jdbcType="REAL" property="srAmountcharged" />
+    <result column="sr_offsetamount" jdbcType="REAL" property="srOffsetamount" />
+    <result column="sr_auditing" jdbcType="VARCHAR" property="srAuditing" />
+    <result column="sr_yn" jdbcType="VARCHAR" property="srYn" />
+    <result column="sr_custom1" jdbcType="VARCHAR" property="srCustom1" />
+    <result column="sr_custom2" jdbcType="VARCHAR" property="srCustom2" />
+    <result column="sr_custom3" jdbcType="VARCHAR" property="srCustom3" />
+    <result column="sr_custom4" jdbcType="VARCHAR" property="srCustom4" />
+    <result column="sr_custom5" jdbcType="VARCHAR" property="srCustom5" />
+    <result column="sr_custom6" jdbcType="VARCHAR" property="srCustom6" />
+    <result column="sr_custom7" jdbcType="VARCHAR" property="srCustom7" />
+    <result column="sr_custom8" jdbcType="VARCHAR" property="srCustom8" />
+    <result column="sr_custom9" jdbcType="VARCHAR" property="srCustom9" />
+    <result column="sr_custom10" jdbcType="VARCHAR" property="srCustom10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sr_id, sr_type, sr_number, sr_date, sr_pc_id, sr_pc_name, sr_team_id, sr_team_name, 
+    sr_buyer, sr_project_name, sr_currency, sr_exchange_rate, sr_payablesmain_price, 
+    sr_currentbalance, sr_discountamount, sr_amountcharged, sr_offsetamount, sr_auditing, 
+    sr_yn, sr_custom1, sr_custom2, sr_custom3, sr_custom4, sr_custom5, sr_custom6, sr_custom7, 
+    sr_custom8, sr_custom9, sr_custom10
+  </sql>
+  
+     <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_receivables 
+	    where sr_Yn=0
+	    ORDER BY sr_id DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sales_receivables
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sales_receivables
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Sales_receivables">
+    insert into sales_receivables (sr_id, sr_type, sr_number, 
+      sr_date, sr_pc_id, sr_pc_name, 
+      sr_team_id, sr_team_name, sr_buyer, 
+      sr_project_name, sr_currency, sr_exchange_rate, 
+      sr_payablesmain_price, sr_currentbalance, sr_discountamount, 
+      sr_amountcharged, sr_offsetamount, sr_auditing, 
+      sr_yn, sr_custom1, sr_custom2, 
+      sr_custom3, sr_custom4, sr_custom5, 
+      sr_custom6, sr_custom7, sr_custom8, 
+      sr_custom9, sr_custom10)
+    values (#{srId,jdbcType=INTEGER}, #{srType,jdbcType=VARCHAR}, #{srNumber,jdbcType=VARCHAR}, 
+      #{srDate,jdbcType=TIMESTAMP}, #{srPcId,jdbcType=VARCHAR}, #{srPcName,jdbcType=VARCHAR}, 
+      #{srTeamId,jdbcType=VARCHAR}, #{srTeamName,jdbcType=VARCHAR}, #{srBuyer,jdbcType=VARCHAR}, 
+      #{srProjectName,jdbcType=VARCHAR}, #{srCurrency,jdbcType=VARCHAR}, #{srExchangeRate,jdbcType=REAL}, 
+      #{srPayablesmainPrice,jdbcType=DOUBLE}, #{srCurrentbalance,jdbcType=REAL}, #{srDiscountamount,jdbcType=REAL}, 
+      #{srAmountcharged,jdbcType=REAL}, #{srOffsetamount,jdbcType=REAL}, #{srAuditing,jdbcType=VARCHAR}, 
+      #{srYn,jdbcType=VARCHAR}, #{srCustom1,jdbcType=VARCHAR}, #{srCustom2,jdbcType=VARCHAR}, 
+      #{srCustom3,jdbcType=VARCHAR}, #{srCustom4,jdbcType=VARCHAR}, #{srCustom5,jdbcType=VARCHAR}, 
+      #{srCustom6,jdbcType=VARCHAR}, #{srCustom7,jdbcType=VARCHAR}, #{srCustom8,jdbcType=VARCHAR}, 
+      #{srCustom9,jdbcType=VARCHAR}, #{srCustom10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Sales_receivables">
+    insert into sales_receivables
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="srId != null">
+        sr_id,
+      </if>
+      <if test="srType != null">
+        sr_type,
+      </if>
+      <if test="srNumber != null">
+        sr_number,
+      </if>
+      <if test="srDate != null">
+        sr_date,
+      </if>
+      <if test="srPcId != null">
+        sr_pc_id,
+      </if>
+      <if test="srPcName != null">
+        sr_pc_name,
+      </if>
+      <if test="srTeamId != null">
+        sr_team_id,
+      </if>
+      <if test="srTeamName != null">
+        sr_team_name,
+      </if>
+      <if test="srBuyer != null">
+        sr_buyer,
+      </if>
+      <if test="srProjectName != null">
+        sr_project_name,
+      </if>
+      <if test="srCurrency != null">
+        sr_currency,
+      </if>
+      <if test="srExchangeRate != null">
+        sr_exchange_rate,
+      </if>
+      <if test="srPayablesmainPrice != null">
+        sr_payablesmain_price,
+      </if>
+      <if test="srCurrentbalance != null">
+        sr_currentbalance,
+      </if>
+      <if test="srDiscountamount != null">
+        sr_discountamount,
+      </if>
+      <if test="srAmountcharged != null">
+        sr_amountcharged,
+      </if>
+      <if test="srOffsetamount != null">
+        sr_offsetamount,
+      </if>
+      <if test="srAuditing != null">
+        sr_auditing,
+      </if>
+      <if test="srYn != null">
+        sr_yn,
+      </if>
+      <if test="srCustom1 != null">
+        sr_custom1,
+      </if>
+      <if test="srCustom2 != null">
+        sr_custom2,
+      </if>
+      <if test="srCustom3 != null">
+        sr_custom3,
+      </if>
+      <if test="srCustom4 != null">
+        sr_custom4,
+      </if>
+      <if test="srCustom5 != null">
+        sr_custom5,
+      </if>
+      <if test="srCustom6 != null">
+        sr_custom6,
+      </if>
+      <if test="srCustom7 != null">
+        sr_custom7,
+      </if>
+      <if test="srCustom8 != null">
+        sr_custom8,
+      </if>
+      <if test="srCustom9 != null">
+        sr_custom9,
+      </if>
+      <if test="srCustom10 != null">
+        sr_custom10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="srId != null">
+        #{srId,jdbcType=INTEGER},
+      </if>
+      <if test="srType != null">
+        #{srType,jdbcType=VARCHAR},
+      </if>
+      <if test="srNumber != null">
+        #{srNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="srDate != null">
+        #{srDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srPcId != null">
+        #{srPcId,jdbcType=VARCHAR},
+      </if>
+      <if test="srPcName != null">
+        #{srPcName,jdbcType=VARCHAR},
+      </if>
+      <if test="srTeamId != null">
+        #{srTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="srTeamName != null">
+        #{srTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="srBuyer != null">
+        #{srBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="srProjectName != null">
+        #{srProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="srCurrency != null">
+        #{srCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="srExchangeRate != null">
+        #{srExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="srPayablesmainPrice != null">
+        #{srPayablesmainPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="srCurrentbalance != null">
+        #{srCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="srDiscountamount != null">
+        #{srDiscountamount,jdbcType=REAL},
+      </if>
+      <if test="srAmountcharged != null">
+        #{srAmountcharged,jdbcType=REAL},
+      </if>
+      <if test="srOffsetamount != null">
+        #{srOffsetamount,jdbcType=REAL},
+      </if>
+      <if test="srAuditing != null">
+        #{srAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="srYn != null">
+        #{srYn,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom1 != null">
+        #{srCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom2 != null">
+        #{srCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom3 != null">
+        #{srCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom4 != null">
+        #{srCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom5 != null">
+        #{srCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom6 != null">
+        #{srCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom7 != null">
+        #{srCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom8 != null">
+        #{srCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom9 != null">
+        #{srCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom10 != null">
+        #{srCustom10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Sales_receivables">
+    update sales_receivables
+    <set>
+      <if test="srType != null">
+        sr_type = #{srType,jdbcType=VARCHAR},
+      </if>
+      <if test="srNumber != null">
+        sr_number = #{srNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="srDate != null">
+        sr_date = #{srDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="srPcId != null">
+        sr_pc_id = #{srPcId,jdbcType=VARCHAR},
+      </if>
+      <if test="srPcName != null">
+        sr_pc_name = #{srPcName,jdbcType=VARCHAR},
+      </if>
+      <if test="srTeamId != null">
+        sr_team_id = #{srTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="srTeamName != null">
+        sr_team_name = #{srTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="srBuyer != null">
+        sr_buyer = #{srBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="srProjectName != null">
+        sr_project_name = #{srProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="srCurrency != null">
+        sr_currency = #{srCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="srExchangeRate != null">
+        sr_exchange_rate = #{srExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="srPayablesmainPrice != null">
+        sr_payablesmain_price = #{srPayablesmainPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="srCurrentbalance != null">
+        sr_currentbalance = #{srCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="srDiscountamount != null">
+        sr_discountamount = #{srDiscountamount,jdbcType=REAL},
+      </if>
+      <if test="srAmountcharged != null">
+        sr_amountcharged = #{srAmountcharged,jdbcType=REAL},
+      </if>
+      <if test="srOffsetamount != null">
+        sr_offsetamount = #{srOffsetamount,jdbcType=REAL},
+      </if>
+      <if test="srAuditing != null">
+        sr_auditing = #{srAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="srYn != null">
+        sr_yn = #{srYn,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom1 != null">
+        sr_custom1 = #{srCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom2 != null">
+        sr_custom2 = #{srCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom3 != null">
+        sr_custom3 = #{srCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom4 != null">
+        sr_custom4 = #{srCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom5 != null">
+        sr_custom5 = #{srCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom6 != null">
+        sr_custom6 = #{srCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom7 != null">
+        sr_custom7 = #{srCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom8 != null">
+        sr_custom8 = #{srCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom9 != null">
+        sr_custom9 = #{srCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="srCustom10 != null">
+        sr_custom10 = #{srCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_receivables">
+    update sales_receivables
+    set sr_type = #{srType,jdbcType=VARCHAR},
+      sr_number = #{srNumber,jdbcType=VARCHAR},
+      sr_date = #{srDate,jdbcType=TIMESTAMP},
+      sr_pc_id = #{srPcId,jdbcType=VARCHAR},
+      sr_pc_name = #{srPcName,jdbcType=VARCHAR},
+      sr_team_id = #{srTeamId,jdbcType=VARCHAR},
+      sr_team_name = #{srTeamName,jdbcType=VARCHAR},
+      sr_buyer = #{srBuyer,jdbcType=VARCHAR},
+      sr_project_name = #{srProjectName,jdbcType=VARCHAR},
+      sr_currency = #{srCurrency,jdbcType=VARCHAR},
+      sr_exchange_rate = #{srExchangeRate,jdbcType=REAL},
+      sr_payablesmain_price = #{srPayablesmainPrice,jdbcType=DOUBLE},
+      sr_currentbalance = #{srCurrentbalance,jdbcType=REAL},
+      sr_discountamount = #{srDiscountamount,jdbcType=REAL},
+      sr_amountcharged = #{srAmountcharged,jdbcType=REAL},
+      sr_offsetamount = #{srOffsetamount,jdbcType=REAL},
+      sr_auditing = #{srAuditing,jdbcType=VARCHAR},
+      sr_yn = #{srYn,jdbcType=VARCHAR},
+      sr_custom1 = #{srCustom1,jdbcType=VARCHAR},
+      sr_custom2 = #{srCustom2,jdbcType=VARCHAR},
+      sr_custom3 = #{srCustom3,jdbcType=VARCHAR},
+      sr_custom4 = #{srCustom4,jdbcType=VARCHAR},
+      sr_custom5 = #{srCustom5,jdbcType=VARCHAR},
+      sr_custom6 = #{srCustom6,jdbcType=VARCHAR},
+      sr_custom7 = #{srCustom7,jdbcType=VARCHAR},
+      sr_custom8 = #{srCustom8,jdbcType=VARCHAR},
+      sr_custom9 = #{srCustom9,jdbcType=VARCHAR},
+      sr_custom10 = #{srCustom10,jdbcType=VARCHAR}
+    where sr_id = #{srId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Payables_detail;
+import com.apatech.domain.Priadetails;
 import com.apatech.domain.Payables_detail;
 import com.apatech.domain.Payables_detail;
 import com.apatech.mapper.Payables_detailMapper;
@@ -28,6 +29,15 @@ public class Payables_detailService {
     	PageInfo<Payables_detail> page=new PageInfo<Payables_detail>(list);
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
+    }
+	
+	public PageInfo<Payables_detail> selectByPayablesbillSupplierName(Integer page,Integer limit,String paydetailId){
+    	System.out.println("分页的集合："+dao.selectByPayablesbillSupplierName(paydetailId));
+    	PageHelper.startPage(page, limit);
+    	List<Payables_detail> list=dao.selectByPayablesbillSupplierName(paydetailId);
+
+    	PageInfo<Payables_detail> pageFy=new PageInfo<Payables_detail>(list);
+    	return pageFy;
     }
 	 
 	 public String getno(String billdate){

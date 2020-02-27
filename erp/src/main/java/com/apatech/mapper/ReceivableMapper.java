@@ -10,6 +10,8 @@ import com.apatech.domain.Team;
 
 public interface ReceivableMapper {
 	List<Receivable> selectAll();
+	
+	List<Receivable> selectAlllc(String payablesCustom2);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

@@ -6,14 +6,14 @@ package com.apatech.domain;
  *
  */
 public class Priadetails {
-    private String priadetailsId;//预付款单明细表id, 主键，  行号
+    private String priadetailsId;//预付款单明细表id, 主键 行号
     private String priabillId;//预付款单主表id,外键
     private Float priabillPrice;//预付金额
     private String priabillType;//来源单别
     private String priabillNumber;//来源单号
     private String priabillRemarks;//摘要
     private String priabillAuditing;//是否审核
-    private String priabillYn;//是否删除（0 否 1 是 ，默认0）
+    private String priabillYn;//是否删除（0 否 1 是 ,默认0）
     private String priabillCustom1;//自定义1
     private String priabillCustom2;//自定义2
     private String priabillCustom3;//自定义3
@@ -23,7 +23,7 @@ public class Priadetails {
     private String priabillCustom7;//自定义7
     private String priabillCustom8;//自定义8
     private String priabillCustom9;//自定义9
-    private String priabillCustom10;//自定义10
+    private String priabillCustom10;//自定义10 --供应商名称
     
     
     

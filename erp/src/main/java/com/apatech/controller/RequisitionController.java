@@ -135,4 +135,22 @@ public class RequisitionController {
 		}
 		return map;
     }
+	
+	
+	/**
+	 * 主详表分页联查
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "queryAllpage",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Requisition> queryAllpage( Integer pageNum,Integer pageSize){
+		System.out.println("进入RequisitionController主详表分页联查");
+		System.out.println(pageNum+"/"+pageSize);
+    	PageInfo<Requisition> page=dao.queryAllpage(pageNum, pageSize);
+    	System.out.println("出RequisitionController主详表分页联查的数据为"+page.toString());
+    	return page;
+    	
+    }
 }

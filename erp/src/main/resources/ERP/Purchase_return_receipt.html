@@ -3,189 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <title>采购退货单</title>
-   <link rel="stylesheet" href="css/layui.css">
-   <link href="css/fontawesome.css" rel="stylesheet">
-   <link href="css/brands.css" rel="stylesheet">
-   <link href="css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/layui.css">
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/brands.css" rel="stylesheet">
+    <link href="css/solid.css" rel="stylesheet">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
+    <script src="js/vue.js"></script>
     <style>
-        #app{
+        #app {
             padding: 15px;
         }
     </style>
 </head>
 <body>
 <div id="app">
-    <div class="layui-row">
-        <div class="layui-col-lg6">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">供应商</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+    <form action="" class="layui-form" lay-filter="pure-form">
+        <div class="layui-row">
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">供应商</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input" @keyup.f4="showSupplierWindow()"
+                                   v-model="purechaseReturn.supplierId" :disabled="edit" lay-verify="required"
+                                   lay-reqtext="供应商是必填项，岂能为空？">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">供应商地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input" style="width: 30%; float: left;" :disabled="edit">
+                            <input type="text" name="title" class="layui-input" style="width: 68%; float: right;" :disabled="edit">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
+                        <div class="layui-input-block">
+                            <select  :disabled="edit" name="pure_price_include_tax">
+                                <option value="1">含税</option>
+                                <option value="0">未税</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">仓库</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input" v-model="purechaseReturn.warehouseId"
+                                   :readonly="edit" lay-verify="required"
+                                   lay-reqtext="仓库是必填项，岂能为空？">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">重新入库</label>
+                        <div class="layui-input-block">
+                            <select :disabled="edit">
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">凭证编号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_single_status" class="layui-input"
+                                   v-model="purechaseReturn.pureSingleStatus"
+                                   :disabled="edit">
+                        </div>
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">供应商地址</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input" style="width: 30%; float: left;">
-                        <input type="text" name="title"  class="layui-input" style="width: 68%; float: right;">
+            </div>
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">单据日期</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_document_date" id="date"
+                                   lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"
+                                   v-model="purechaseReturn.pureDocumentDate">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="padding: 9px 0 9px 0;width: 95px;">单价是否含税</label>
-                    <div class="layui-input-block">
-                        <select name="interest">
-                            
-                        </select>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">单据号码</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_document_number" class="layui-input"
+                                   v-model="purechaseReturn.pureId"
+                                   :disabled="edit">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">仓库</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">币别</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" class="layui-input" v-model="purechaseReturn.currencyId"
+                                   :disabled="edit">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">重新入库</label>
-                    <div class="layui-input-block">
-                        <select name="interest">
-                            
-                        </select>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">汇率</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_exchange_rate" class="layui-input"
+                                   v-model="purechaseReturn.pureExchangeRate"
+                                   :disabled="edit">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">凭证编号</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">国外贸易</label>
+                        <div class="layui-input-block">
+                            <select name="pure_foreign_trade" :disabled="edit">
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="layui-col-lg6">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">单据日期</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">单据号码</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">币别</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">汇率</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">国外贸易</label>
-                    <div class="layui-input-block">
-                        <select name="interest">
-                            
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-row">
-        <div class="layui-tab">
-            <ul class="layui-tab-title">
-                <li class="layui-this">内容</li>
-                <li>账款</li>
-                <li>备注</li>
-            </ul>
-            <div class="layui-tab-content" style="padding: 10px 0;">
-                <div class="layui-tab-item layui-show">
-                    <table id="materialsContent" class="layui-hide">
+        <div class="layui-row">
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">内容</li>
+                    <li>账款</li>
+                    <li>备注</li>
+                </ul>
+                <div class="layui-tab-content" style="padding: 10px 0;">
+                    <div class="layui-tab-item layui-show">
+                        <table id="materialsContent" class="layui-hide">
 
-                    </table>
-                </div>
-                <div class="layui-tab-item">
-                    <div class="layui-row">
-                        <div class="layui-col-lg6">
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label" style="color:#009688;">账款归属</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <div class="layui-inline">
-                                        <label class="layui-form-label">付款条件</label>
-                                        <div class="layui-input-inline">
-                                            <select name="interest">
+                        </table>
+                        <!--
+                        {field: 'id', title: '(栏号)', sort: true}
+                        , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        , {field: 'sex', title: '(物料名称)', sort: true}
+                        , {field: 'city', title: '(规格型号)'}
+                        , {field: 'sign', title: '(单位名称)'}
+                        , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
+                        , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                        , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '单价', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '金额', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
+                        , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
+                        -->
+                        <div style="overflow: scroll;">
+                            <table class="layui-table" lay-even="" lay-skin="row" style="width: 2000px;">
+                                <!--<colgroup>
+                                    <col width="150">
+                                    <col width="150">
+                                    <col width="200">
+                                    <col>
+                                </colgroup>-->
+                                <thead>
+                                <tr>
+                                    <th>栏号</th>
+                                    <th>物料编号</th>
+                                    <th>物料名称</th>
+                                    <th>规格型号</th>
+                                    <th>单位名称</th>
+                                    <th>数量</th>
+                                    <th>折扣前单价</th>
+                                    <th>折数(%)</th>
+                                    <th>单价</th>
+                                    <th>金额</th>
+                                    <th>税率(%)</th>
+                                    <th>(税额)</th>
+                                    <th>(含税金额)</th>
+                                    <th>(批号)</th>
+                                    <th>赠品</th>
+                                    <th>(发票明细)</th>
+                                    <th>(未开票数量)</th>
+                                    <th>分录备注</th>
+                                    <th>来源单别</th>
+                                    <th>来源单号</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item,index) in purechaseReturn.details" :key="item.puredId" v-cloak>
+                                        <td>
+                                            {{index + 1}}
+                                        </td>
+                                        <td>
+                                            {{item.matterId}}
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredEngname}}</span>
+                                            <input type="text" name="" v-model="item.puredEngname"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredRemark}}</span>
+                                            <input type="text" name="" v-model="item.puredRemark"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span v-show="!item.enableEdit">{{item.puredPriceIncludeTax}}</span>
+                                            <input type="text" name="" v-model="item.puredPriceIncludeTax"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSingleStatus}}</span>
+                                            <input type="text" name="" v-model="item.puredSingleStatus"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredDocumentDate}}</span>
+                                            <input type="text" name="" v-model="item.puredDocumentDate"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredDocumentNumber}}</span>
+                                            <input type="text" name="" v-model="item.puredDocumentNumber"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredPrice}}</span>
+                                            <input type="text" name="" v-model="item.puredPrice"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredMoney}}</span>
+                                            <input type="text" name="" v-model="item.puredMoney"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredTaxRate}}</span>
+                                            <input type="text" name="" v-model="item.puredTaxRate"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td>
+                                            {{item.puredTaxAmount}}
+                                        </td>
+                                        <td>
+                                            {{item.puredIncludingTaxAmount}}
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <input type="checkbox" name="" title="" lay-skin="primary"
+                                                             checked>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="" title="" lay-skin="primary" checked>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name="" title="" lay-skin="primary" checked>
+                                        </td>
+                                        <td>
 
-                                            </select>
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredRemarks}}</span>
+                                            <input type="text" name="" v-model="item.puredRemarks"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSourceOrder}}</span>
+                                            <input type="text" name="" v-model="item.puredSourceOrder"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                        <td @dblclick.self="editColumn(item.enableEdit,index)">
+                                            <span>{{item.puredSourceNo}}</span>
+                                            <input type="text" name="" v-model="item.puredSourceNo"
+                                                   v-show="item.enableEdit" class="layui-input layui-table-edit"
+                                                   @keyup.enter="editColumn(item.enableEdit,index)">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label" style="color:#009688;">账款归属</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input"  :disabled="edit">
                                         </div>
                                     </div>
-                                    <div class="layui-inline">
-                                        <input type="text" name="title" class="layui-input">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">付款条件</label>
+                                            <div class="layui-input-inline">
+                                                <select name="interest" :disabled="edit">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <input type="text" name="title" class="layui-input" :disabled="edit">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="layui-col-lg6">
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">付款日期</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">付款日期</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input" :disabled="edit">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">账款月份</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="title"       class="layui-input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-tab-item">
-                    <div class="layui-row">
-                        <div class="layui-col-lg6">
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">自定栏一</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="layui-col-lg6">
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">自定栏二</label>
-                                    <div class="layui-input-block">
-                                        <input type="text" name="title" class="layui-input">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">账款月份</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input" :disabled="edit">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="layui-row">
-                        <div class="layui-col-lg12">
-                            <div class="layui-form">
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">备注</label>
-                                    <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                    <div class="layui-tab-item">
+                        <div class="layui-row">
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">自定栏一</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input" :disabled="edit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-lg6">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">自定栏二</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="title" class="layui-input" :disabled="edit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-lg12">
+                                <div class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">备注</label>
+                                        <div class="layui-input-block">
+                                        <textarea placeholder="请输入内容" name="pure_remark" class="layui-textarea"
+                                                  v-model="purechaseReturn.pureRemark" :disabled="edit"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -194,148 +369,166 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="layui-row">
-        <div class="layui-col-lg6">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">采购人员</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+        <div class="layui-row">
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">采购人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_buyer" class="layui-input" v-model="purechaseReturn.pureBuyer"
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="采购人员是必填项，岂能为空？">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:#009688;">所属部门</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_belongs_section" class="layui-input"
+                                   v-model="purechaseReturn.pureBelongsSection"
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="所属部门是必填项，岂能为空？">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">所属项目</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_belongs_project" class="layui-input"
+                                   v-model="purechaseReturn.pureBelongsProject"
+                                   :disabled="edit" lay-verify="required"
+                                   lay-reqtext="所属项目是必填项，岂能为空？">
+                        </div>
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+            </div>
+            <div class="layui-col-lg6">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">制单人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_executor" class="layui-input"
+                                   v-model="purechaseReturn.pureExecutor" :disabled="edit" lay-verify="required"
+                                   lay-reqtext="制单人员是必填项，岂能为空？">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">所属项目</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">复核人员</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pure_checkagin_staff" class="layui-input"
+                                   v-model="purechaseReturn.pureCheckagainStaff" :disabled="edit"
+                                   lay-verify="required" lay-reqtext="复核人员是必填项，岂能为空？">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="layui-col-lg6">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <label class="layui-form-label">制单人员</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">复核人员</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="layui-row">
-        <div class="layui-col-lg2">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="interest" lay-filter="aihao">
-                            <option value="">查询</option>
-                            <option value="0">历史交易查询</option>
-                            <option value="0">分摊费用明细</option>
-                        </select>
+        <div class="layui-row">
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="transferOrder" id="transferOrder">
+                                <option value="">转单</option>
+                                <option value="0" disabled>采购入库转入</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-lg2">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="interest" lay-filter="aihao">
-                            <option value="">转单</option>
-                            <option value="0" disabled>采购询价转入</option>
-                            <option value="0" disabled>采购订单转入</option>
-                            <option value="0" disabled>进口商业发票转入</option>
-                        </select>
+            <div class="layui-col-lg2">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 30px;">
+                            <select name="interest" lay-filter="aihao">
+                                <option value="">功能</option>
+                                <option value="0">批号设定</option>
+                                <option value="0">条码打印</option>
+                                <option value="0" disabled>批次变更价格</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="layui-col-lg2">
-            <div class="layui-form">
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 30px;">
-                        <select name="interest" lay-filter="aihao">
-                            <option value="">功能</option>
-                            <option value="0">批号设定</option>
-                            <option value="0">条码打印</option>
-                            <option value="0" disabled>批次变更价格</option>
-                        </select>
-                    </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" title="第一笔" @click="getFirst()">
+                        <i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="上一笔" @click="getPrev()">
+                        <i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="下一笔" @click="getNext()">
+                        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="后一笔" @click="getLast()">
+                        <i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="新增" @click="insertOrder()">
+                        <i class="fa fa-file fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="submit" class="layui-btn" title="保存"
+                            @click="saveOrder()"
+                            id="form-getvalue"
+                            lay-submit=""
+                            lay-filter="demo1">
+                        <i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="编辑" @click="editOrder()">
+                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="删除" @click="deleteOrder()">
+                        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="重置" type="reset" @click="resetOrder()">
+                        <i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="刷新" @click="refreshOrder()">
+                        <i class="fa fa-refresh fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="审核" @click="reviewOrder()">
+                        <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="layui-btn" title="取消审核" @click="unReviewOrder()">
+                        <i class="fa fa-close fa-lg" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
-		<div class="layui-form-item">
-		    <div class="layui-input-block">  
-		        <button class="layui-btn" title="第一笔"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true"></i></button>
-		        <button class="layui-btn" title="上一笔"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></button>				            
-		        <button class="layui-btn" title="下一笔"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
-				<button class="layui-btn" title="后一笔"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true"></i></button> 
-		        <button class="layui-btn" title="新增"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
-		        <button class="layui-btn" title="保存"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
-		        <button class="layui-btn" title="编辑"><i class="fa fa-pencil-square-o fa-lg"></i></button>
-		        <button class="layui-btn" title="删除"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>							            
-				<button class="layui-btn" title="重置" type="reset"><i class="fa fa-rotate-left fa-lg" aria-hidden="true"></i></button>             
-				<button class="layui-btn" title="刷新"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i></button>    
-				<button class="layui-btn" title="审核"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>             
-				<button class="layui-btn" title="取消审核"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
-		    </div>
-		</div>
-    </div>
+        <i class="layui-icon layui-icon-auz" v-show="purechaseReturn.pureAudition == '1'"
+           style="position: fixed;color:#FF5722;font-size: 100px;z-index: 1000;top: 50px;right: 50px;">
+        </i>
+    </form>
 </div>
 <script src="jquery-1.12.4.js"></script>
 <script src="layui.js"></script>
 <script>
-   /* layui.use('layer', function(){
-        var layer = layui.layer;
-        layer.open({
-            type: 1,
-            title: '采购询价单',
-            content: $('#app'),
-            area: ['800px', '650px']
-        });
-    });*/
-
     layui.use('element', function () {
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
         //触发事件
         var active = {
-            tabAdd: function(){
+            tabAdd: function () {
                 //新增一个Tab项
                 element.tabAdd('demo', {
-                    title: '新选项'+ (Math.random()*1000|0) //用于演示
-                    ,content: '内容'+ (Math.random()*1000|0)
-                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                    title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+                    , content: '内容' + (Math.random() * 1000 | 0)
+                    , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
                 })
             }
-            ,tabDelete: function(othis){
+            , tabDelete: function (othis) {
                 //删除指定Tab项
                 element.tabDelete('demo', '44'); //删除：“商品管理”
 
 
                 othis.addClass('layui-btn-disabled');
             }
-            ,tabChange: function(){
+            , tabChange: function () {
                 //切换到指定Tab项
                 element.tabChange('demo', '22'); //切换到：用户管理
             }
         };
 
-        $('.site-demo-active').on('click', function(){
+        $('.site-demo-active').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
@@ -344,18 +537,18 @@
         var layid = location.hash.replace(/^#test=/, '');
         element.tabChange('test', layid);
 
-        element.on('tab(test)', function(elem){
-            location.hash = 'test='+ $(this).attr('lay-id');
+        element.on('tab(test)', function (elem) {
+            location.hash = 'test=' + $(this).attr('lay-id');
         });
     });
 
-    layui.use('table', function(){
+    layui.use('table', function () {
         var table = layui.table;
 
         table.render({
             elem: '#materialsContent'
-            ,url:'https://www.layui.com/demo/table/user/'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , url: 'http://localhost:8080/TeamController/selectAllpage?pageNum=1&pageSize=3'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             , cols: [[
                 {field: 'id', title: '(栏号)', sort: true}
                 , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
@@ -379,5 +572,7 @@
         });
     });
 </script>
+<script src="js/axios.min.js"></script>
+<script src="js/Purchase_return_receipt.js" type="module"></script>
 </body>
 </html>

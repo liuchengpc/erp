@@ -34,12 +34,21 @@
 	    ORDER BY requisition_id DESC
   </select>
   
+  <select id="queryAllByTime" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from requisition 
+	    where requisition_Yn=0
+	    ORDER BY requisition_documentation_date DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from requisition
     where requisition_id = #{requisitionId,jdbcType=VARCHAR}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from requisition
     where requisition_id = #{requisitionId,jdbcType=VARCHAR}

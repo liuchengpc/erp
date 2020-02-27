@@ -353,7 +353,7 @@
 							});*/
 							console.info("双击事件")
 							console.info(obj)
-							alert(obj.data.soId)
+//							alert(obj.data.soId)
 							parent["listVm"].page2.recedetailNumber=obj.data.soId;
 				  });
 				  
@@ -366,8 +366,10 @@
 					       var index = parent.layer.getFrameIndex(window.name);
 						   var iframe = $(window.parent.document).contents();
 		//				   iframe.find("#customerId").val(data.customerName);
-							parent["listVm"].page.list[0].customerId=data.customerId;
-							parent["listVm"].page.list[0].customerName=data.customerName;
+//							alert(data.soId)
+							parent["listVm"].page2[0].recedetailNumber=data.soId;
+							parent["listVm"].reloadlc();
+//							alert(parent["listVm"].page2[0].recedetailNumber)
 					       parent.layer.close(index);
 					    }
 				  });

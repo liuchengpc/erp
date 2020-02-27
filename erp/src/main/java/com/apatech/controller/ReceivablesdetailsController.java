@@ -150,4 +150,26 @@ public class ReceivablesdetailsController {
 		}
 		return map;
     }
+	/**
+	 * 根据主表id删除
+	 * @param recedetailId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByzbidlc",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> deleteByzbidlc(String receivablesbillId,Model model) {
+		System.out.println("进入ReceivablesdetailsController根据主表id删除");
+		System.out.println("receivablesbillId："+receivablesbillId);
+		Map<String, String> map=new HashMap<String,String>();
+		int i =dao.deleteByzbidlc(receivablesbillId);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+	}
 }

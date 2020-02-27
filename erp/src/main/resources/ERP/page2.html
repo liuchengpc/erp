@@ -13,7 +13,7 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="layui.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var vm = new Vue({
+			var listVm = new Vue({
 				el:"#ctx1",
 				data(){
 					return {
@@ -22,7 +22,7 @@
 				}
 			});
 			function show(data){
-				vm.name = data;
+				listVm.name = data;
 				console.log("传递至");
 			}
 			layui.use(['layer'],function(){

@@ -495,6 +495,7 @@
 			$("input:eq(0)").off("keyup.f4");
 			$("input:eq(3)").off("keyup.f4");
 			$("input:eq(5)").off("keyup.f4");
+			$("input:eq(7)").off("blur");
 			$("input:eq(9)").off("keyup.f4");
 			$("input:eq(19)").off("keyup.f4");
 			$("table").off("dblclick");
@@ -544,6 +545,27 @@
 						area:['762px','450px']
 					});				
 			});
+				
+			})
+			$("input:eq(7)").on("blur",function(){
+				var id=$("input:eq(7)").val();
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectcountby",
+					data:{id:id},
+					success:function(res){
+						id=id.replace(/-/g,'');
+						if(res>99){
+							$("input:eq(8)").val(id+(res+1));
+						}else if(res>9){
+							$("input:eq(8)").val(id+"0"+(res+1));
+						}else{
+							$("input:eq(8)").val(id+"00"+(res+1));
+						}
+					}
+					
+				});
+				
 				
 			})
 			$("input:eq(19)").on("keyup.f4",function(){

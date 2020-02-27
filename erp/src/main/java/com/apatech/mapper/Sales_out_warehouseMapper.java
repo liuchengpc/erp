@@ -16,6 +16,9 @@ public interface Sales_out_warehouseMapper {
  
 	@Select("select count(*) from Sales_out_warehouse")
 	int selectcount();
+	
+	@Select("select count(*) from Sales_out_warehouse where sow_document_date=#{id}")
+	int selectcountby(String id);
  
  	@Update("update Sales_out_warehouse set sow_yn=1 where sow_id=#{id}")
  	public int deletelist(String id);

@@ -23,7 +23,10 @@ public class Sales_return_warehouseService {
 		return dao.selectcount(); 
 	}
 	
-	
+	public int selectcountby(String id) {
+		return dao.selectcountby(id);
+	}
+		
 	public int deletelist(String id) {
 		dao.deletelist2(id);
 		return dao.deletelist(id);

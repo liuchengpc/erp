@@ -36,11 +36,11 @@
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
-                                <select name="teams">
-                                    <option value="4">类型编号</option>
-                                    <option value="4">类型名称</option>
-                                    <option value="4">英文名称</option>
-                                    <option value="4">备注</option>
+                                <select name="teams" v-model="filterType">
+                                    <option value="teamId">类型编号</option>
+                                    <option value="teamName">类型名称</option>
+                                    <option value="teamEnglishName">英文名称</option>
+                                    <option value="teamRemark">备注</option>
                                 </select>
                             </div>
                         </div>
@@ -141,54 +141,41 @@
 
         </div>-->
         <div class="layui-col-xs10" style="height: 296px;">
-            <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                <colgroup>
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col>
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
-                    <th>格言</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>贤心</td>
-                    <td>汉族</td>
-                    <td>1989-10-14</td>
-                    <td>人生似修行</td>
-                </tr>
-                <tr>
-                    <td>张爱玲</td>
-                    <td>汉族</td>
-                    <td>1920-09-30</td>
-                    <td>于千万人之中</td>
-                </tr>
-                <tr>
-                    <td>Helen Keller</td>
-                    <td>拉丁美裔</td>
-                    <td>1880-06-27</td>
-                    <td> Life</td>
-                </tr>
-                <tr>
-                    <td>岳飞</td>
-                    <td>汉族</td>
-                    <td>1103-北宋崇宁二年</td>
-                    <td>教科书再滥改</td>
-                </tr>
-                <tr>
-                    <td>孟子</td>
-                    <td>华夏族（汉族）</td>
-                    <td>公元前-372年</td>
-                    <td>猿强，则国强</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+                        <colgroup>
+                            <col width="80"><col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>---</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in filteredArray">
+                                <td @click="showWithStartArray(item)">{{item}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-col-xs7">
+                    <table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+                        <thead>
+                        <tr>
+                            <th>供应商编号</th>
+                            <th>供应商简称</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item,index) in startWithArray">
+                                <td>{{item.teamId}}</td>
+                                <td>{{item.teamName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设置</button>
         </div>
     </div>
@@ -206,42 +193,8 @@
     layui.use(['form'], function () {
         var form = layui.form;
     });
-    let viewModel = new Vue({
-        el:"#app",
-        data: function () {
-            return {
-                teams: [],
-                testData:["电","网","整"],
-                charLength: 0
-            }
-        },
-        methods:{
-            initialTeam(){
-                let self = this;
-                $.ajax({
-                    url: "http://erp:8080/TeamController/selectAll",
-                    type: "",
-                    data: {},
-                    dataType: "json",
-                    success: function (resp) {
-                        self.teams = resp;
-                    }
-                });
-            },
-            charLengthAdd(){
-                this.charLength = this.charLength + 1;
-            },
-            charLengthMinute(){
-                if(this.charLength === 0){
-                    return;
-                }
-                this.charLength = this.charLength - 1;
-            }
-        },
-        created: function () {
-
-        }
-    })
 </script>
+<script src="js/axios.min.js"></script>
+<script src="js/window_set_request_purchase_order_type.js" type="module"></script>
 </body>
 </html>

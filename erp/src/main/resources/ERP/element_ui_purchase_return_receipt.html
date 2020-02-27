@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title></title>
+    <style>
+        #app{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="24">
+            <el-form :model="purechaseReturn" :rules="rules" ref="purechaseReturn" label-width="120px" class="demo-ruleForm">
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="供应商" prop="supplier">
+                            <el-input v-model="purechaseReturn.supplierId"></el-input>
+                        </el-form-item>
+                        <el-form-item label="供应商地址" prop="supplierAddress">
+                            <el-input v-model="purechaseReturn.pureEngname"></el-input>
+                        </el-form-item>
+                        <el-form-item label="单价是否含税" prop="require">
+                            <el-select v-model="purechaseReturn.purePriceIncludeTax">
+                                <el-option label="是" value="1"></el-option>
+                                <el-option label="否" value="0"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="仓库" prop="require">
+                            <el-input v-model="purechaseReturn.warehouseId"></el-input>
+                        </el-form-item>
+                        <el-form-item label="重新入库">
+                            <el-select>
+                                <el-option label="是" value="1"></el-option>
+                                <el-option label="否" value="0"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="凭证编号" prop="require">
+                            <el-input v-model="purechaseReturn.pureSingleStatus"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="单据日期">
+                            <el-form-item prop="date">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"></el-date-picker>
+                            </el-form-item>
+                        </el-form-item>
+                        <el-form-item label="单据号码" prop="require">
+                            <el-input v-model="purechaseReturn.pureDocumentNumber"></el-input>
+                        </el-form-item>
+                        <el-form-item label="币别" prop="require">
+                            <el-input v-model="purechaseReturn.currencyId"></el-input>
+                        </el-form-item>
+                        <el-form-item label="汇率" prop="require">
+                            <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                        </el-form-item>
+                        <el-form-item label="国外贸易" prop="region">
+                            <el-select v-model="purechaseReturn.pureForeignTrade">
+                                <el-option label="是" value="1"></el-option>
+                                <el-option label="否" value="0"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <template>
+                            <el-tabs v-model="activeName" @tab-click="handleClick">
+                                <el-tab-pane label="内容" name="first">
+                                    <template>
+                                        <el-table
+                                                :data="tableData"
+                                                height="250"
+                                                border
+                                                style="width: 100%">
+                                            <el-table-column
+                                                    prop="date"
+                                                    label="日期"
+                                                    width="180">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="name"
+                                                    label="姓名"
+                                                    width="180">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="address"
+                                                    label="地址">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    fixed="right"
+                                                    label="操作"
+                                                    width="100">
+                                                <template slot-scope="scope">
+                                                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+                                                    <el-button type="text" size="small">编辑</el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-tab-pane>
+                                <el-tab-pane label="账款" name="second">
+                                    <el-row>
+                                        <el-col :span="12">
+                                            <el-form-item label="账款归属" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                            <el-form-item label="付款条件" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :span="12">
+                                            <el-form-item label="付款日期" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                            <el-form-item label="付款月份" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                </el-tab-pane>
+                                <el-tab-pane label="备注" name="third">
+                                    <el-row>
+                                        <el-col :span="12">
+                                            <el-form-item label="自定栏一" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :span="12">
+                                            <el-form-item label="自定栏二" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-form-item label="备注" prop="desc">
+                                            <el-input type="textarea" v-model="purechaseReturn.pureRemark"></el-input>
+                                        </el-form-item>
+                                    </el-row>
+                                </el-tab-pane>
+                            </el-tabs>
+                        </template>
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px">
+                    <el-col :span="12">
+                        <el-form-item label="采购人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureBuyer"></el-input>
+                        </el-form-item>
+                        <el-form-item label="所属部门" prop="require">
+                            <el-input v-model="purechaseReturn.pureBelongsSection"></el-input>
+                        </el-form-item>
+                        <el-form-item label="所属项目" prop="require">
+                            <el-input v-model="purechaseReturn.pureBelongsProject"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="制单人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureExecutor"></el-input>
+                        </el-form-item>
+                        <el-form-item label="复核人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureCheckagainStaff"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <el-dropdown split-button type="primary" trigger="click">
+                            转单
+                            <el-dropdown-menu slot="dropdown" @command="handleCommand">
+                                <el-dropdown-item command="a">采购入库转入</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                        <el-dropdown split-button type="primary" trigger="click">
+                            功能
+                            <el-dropdown-menu slot="dropdown" @command="handleCommand">
+                                <el-dropdown-item command="a">批号设定</el-dropdown-item>
+                                <el-dropdown-item command="a">条码打印</el-dropdown-item>
+                                <el-dropdown-item command="a">批次变更价格</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px;">
+                    <el-col :span="24">
+                        <el-button type="primary" @click="submitForm('purechaseReturn')">立即创建</el-button>
+                        <el-button @click="resetForm('purechaseReturn')">重置</el-button>
+
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px;">
+                    <el-col :span="24">
+                        <el-button type="primary">第一页</el-button>
+                        <el-button type="primary">上一页</el-button>
+                        <el-button type="primary">下一页</el-button>
+                        <el-button type="primary">最后一页</el-button>
+                        <el-button type="primary">新增</el-button>
+                        <el-button type="primary">保存</el-button>
+                        <el-button type="primary">编辑</el-button>
+                        <el-button type="primary">删除</el-button>
+                        <el-button type="primary">重置</el-button>
+                        <el-button type="primary">刷新</el-button>
+                        <el-button type="primary">审核</el-button>
+                        <el-button type="primary">取消审核</el-button>
+                    </el-col>
+                </el-row>
+            </el-form>
+        </el-col>
+    </el-row>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="js/element_ui_purchase_return_receipt.js"></script>
+</html>

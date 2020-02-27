@@ -52,7 +52,7 @@ public class Receivable {
     private String payablesCustom6;//自定义6
     private String payablesCustom7;//自定义7
     private String payablesCustom8;//自定义8
-    private String payablesCustom9;//自定义9
+    private String payablesCustom9;//部门id 外键
     private String payablesCustom10;//自定义10
     
     

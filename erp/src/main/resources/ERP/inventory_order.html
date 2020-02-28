@@ -268,40 +268,78 @@
 		}
 		
 	}
+	
+	//属性初始化
+	function cleanobj(obj){
+		for(var o in obj){
+			obj[o]="";
+		}
+	}
 	//子页面物料主文件设定调方法取回值
 	function wlqh(id){
 		console.log("物料取回");
-		this.listVm.page.list[0].cd_List="";
-		for(i=0;i<id.length;i++){
-			console.log(id[i]);
-			$.ajax({
-				type:"get",
-				url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
-				data:{
-					matterId:id[i]
-				},
-				success:function(res){
-					this.listVm.page.list[0].cd_List[i].matterId=id[i];
-					this.listVm.page.list[0].cd_List[i].cdName=res.matterName;
-					this.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
-					this.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
-				}
-			});
-			$.ajax({
-				type:"get",
-				url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
-				data:{
-					matterId:id[i]
-				},
-				success:function(res){
-					this.listVm.page.list[0].cd_List[i].matterId=id[i];
-					this.listVm.page.list[0].cd_List[i].cdName=res.matterName;
-					this.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
-					this.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
-				}
-			});
-			
+		for(var i=0;i<this.listVm.page.list[0].cd_List.length;i++){
+			cleanobj(this.listVm.page.list[0].cd_List[i]);
 		}
+		//alert(JSON.stringify(this.listVm.page.list[0].cd_List));
+		//this.listVm.page.list[0].cd_List=JSON.parse("["+JSON.stringify(this.listVm.page.list[0].cd_List+"]"));
+		wlqh2(id);
+	}
+	function wlqh2(id){
+		var this_=this;
+		console.log("数据清空后结果为"+JSON.stringify(this_.listVm.page.list[0].cd_List[0]));
+		for(var i=0;i<id.length;i++){
+			console.log("循环第"+i+"次的ajax的id为"+JSON.stringify(id[i].id));
+			wlqh3(id[i].id,i);
+		}
+		wlqh4();
+	}
+	function wlqh3(id,i){
+		var this_=this;
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
+			data:{
+				matterId:id
+			},
+			success:function(res){
+				console.log("ajax第"+i+"次查询出来的结果为"+JSON.stringify(res));
+				console.log("数据赋值第"+i+"次前为"+JSON.stringify(this_.listVm.page.list[0].cd_List[i]));
+				this_.listVm.page.list[0].cd_List[i].matterId=res.matterId;
+				this_.listVm.page.list[0].cd_List[i].cdName=res.matterName;
+				this_.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
+				this_.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
+				console.log("数据赋值第"+i+"次后为"+JSON.stringify(this_.listVm.page.list[0].cd_List[i]));
+			}
+		});
+	}
+	function wlqh4(){
+		var this_=this;
+		console.log("绑定上表格前的数据为"+JSON.stringify(this_.listVm.page.list[0].cd_List));
+		layui.use('table', function(){
+		    var table = layui.table;
+		    table.render({
+		        elem: '#materialsContent'
+		        ,url:''//'https://www.layui.com/demo/table/user/'
+				,data:this_.listVm.page.list[0].cd_List//[{rdId:1,matterId:2,rdEngname:3,rdRemark:4,rdPriceIncludeTax:5,rdSingleNum:6,rdBatchNumber:7,rdRemarks:8}]
+		        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+		        , cols: [[
+					 {type:'numbers', 					title: '(栏号)', 		sort: true 	,width:'7%'		}
+					,{field: 'cdId', 					title: 'id', 		sort: true, 	hide:true		}
+					, {field: 'matterId', 				title: '物料编号'									} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+					, {field: 'cdName', 				title: '(物料名称)', 	sort: true					}
+					, {field: 'cdFormat', 				title: '(规格型号)'									}
+					, {field: 'cdIncludeTax', 			title: '(单位)'										}
+					, {field: 'cdVolume', 				title: '(账面数量)', 				align: 'center'	}//单元格内容水平居中
+					, {field: 'cdInventoriesNumber', 	title: '盘点数量', 					align: 'center'	}//单元格内容水平居中
+					, {field: 'cdProfitsLossesNumber', 	title: '(盈亏数量)', 				align: 'center'	} //单元格内容水平居中
+					, {field: 'cdUnitPrice', 			title: '单价', 			sort: true, align: 'right'	} //单元格内容水平居中
+					, {field: 'cdLossAmountProfit', 	title: '(盈亏金额)', 	sort: true, align: 'right'	}
+					, {field: 'cdBatchNumber', 			title: '(批号)', 		sort: true, align: 'center'	,toolbar: '#barDemo'}
+					, {field: 'cdCause', 				title: '原因', 			sort: true, align: 'right'	}
+		        ]]
+		    });
+		});
 	}
 	//创建vue实例
 	var listVm = new Vue({

@@ -157,6 +157,7 @@ public class MatterController {
     public Matter queryAllByPrimaryKey(String matterId) {
 		System.out.println("进入MatterController 联表根据主键查询");
 		System.out.println("matterId=" +matterId);
+		System.out.println(dao.queryAllByPrimaryKey(matterId).toString());
 		return dao.queryAllByPrimaryKey(matterId);
 	}
 }

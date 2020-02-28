@@ -47,6 +47,36 @@
 	    ORDER BY pp_id DESC
   </select>
   
+  <select id="selectByPayablesbillSupplierName" parameterType="com.apatech.domain.Purchase_payables" resultMap="BaseResultMap">	    
+    	SELECT pp_id,pp_type,pp_number, pp_date, 
+	    pp_pc_id,pp_pc_name,pp_team_id, 
+	    pp_team_name,pp_buyer,pp_project_name, 
+	    pp_currency,pp_exchange_rate,pp_payablesmain_price,
+	    pp_currentbalance,pp_discountamount,pp_amountcharged, 
+	    pp_offsetamount,pp_auditing,pp_yn, 
+	    pp_custom1,pp_custom2,pp_custom3,
+	    pp_custom4,pp_custom5,pp_custom6,pp_custom7,pp_custom8,
+	    pp_custom9,pp_custom10  
+	    FROM purchase_payables WHERE pp_custom8=#{ppCustom8,jdbcType=VARCHAR} 
+	    AND pp_yn=0    
+	    ORDER BY pp_custom2 DESC
+  </select>
+  
+  <select id="selectByPayablesbillSupplierName2" parameterType="com.apatech.domain.Purchase_payables" resultMap="BaseResultMap">	    
+    	SELECT pp_id,pp_type,pp_number, pp_date, 
+	    pp_pc_id,pp_pc_name,pp_team_id, 
+	    pp_team_name,pp_buyer,pp_project_name, 
+	    pp_currency,pp_exchange_rate,pp_payablesmain_price,
+	    pp_currentbalance,pp_discountamount,pp_amountcharged, 
+	    pp_offsetamount,pp_auditing,pp_yn, 
+	    pp_custom1,pp_custom2,pp_custom3,
+	    pp_custom4,pp_custom5,pp_custom6,pp_custom7,pp_custom8,
+	    pp_custom9,pp_custom10  
+	    FROM purchase_payables WHERE pp_pc_name=#{ppPcName,jdbcType=VARCHAR} 
+	    AND pp_yn=0 AND pp_custom9 is null     
+	    ORDER BY pp_custom2 DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

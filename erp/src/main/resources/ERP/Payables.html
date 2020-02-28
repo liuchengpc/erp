@@ -722,7 +722,17 @@
 								    } else if(layEvent === 'del'){
 								      layer.confirm('真的删除行么', function(index){
 								        obj.del(); //删除对应行（tr）的DOM结构
-								        layer.close(index);
+								        
+								        $.ajax({
+								        	url:"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKey?priadetailsId="+obj.data.priadetailsId,
+											async:false,
+											type:"get",
+										  	dataType:'json',
+										  	success:function(result88){
+										  		layer.msg("已删除.");
+										  	}
+								        });
+								        
 								        //向服务端发送删除指令
 								      });
 								    }else if(layEvent === 'save'){
@@ -1164,7 +1174,7 @@
 				},
 				updates: function() {//编辑 
 					var this_=this;
-					var priabillId = this_.page.list[0].priabillId;
+					var priabillId = $("#priabillId").val();
 					var updateObj = this_.page.list[0];
 				    $.ajax({
 						url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
@@ -1176,7 +1186,8 @@
 					  	success:function (res) {
 					  		//alert("系统提示：" +res.message);
 							layer.msg('编辑成功！');
-							this_.goPage(this_.page.pageNum, 1);		
+							this_.goPage(this_.page.pageNum, 1);
+							
 				        }
 					});
 					
@@ -1226,7 +1237,7 @@
 					    var updateObj = this.page.list[0];
 					    updateObj.priabillAuditing="1";
 					    $.ajax({
-							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective2",
 							type:"post",
 							data:JSON.stringify(updateObj),
 							async:false,
@@ -1237,7 +1248,7 @@
 								this_.isinsert=false;//关闭新增模式
 								this_.isedit=false;//关闭编辑模式
 								layer.msg('审核通过！');
-								this_.goPage(1, 1);		
+								this_.goPage(this.page.pageNum, 1);								
 					        }
 						});
 				    }
@@ -1264,7 +1275,7 @@
 					    var updateObj = this.page.list[0];
 					    updateObj.priabillAuditing="0";
 					    $.ajax({
-							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective3",
 							type:"post",
 							data:JSON.stringify(updateObj),
 							async:false,
@@ -1275,7 +1286,7 @@
 								this_.isinsert=false;//关闭新增模式
 								this_.isedit=false;//关闭编辑模式
 								layer.msg('反审核成功！');
-								this_.goPage(1, 1);		
+								this_.goPage(this.page.pageNum, 1);		
 					        }
 						});
 				    }

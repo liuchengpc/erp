@@ -19,10 +19,10 @@ public class Purchasing_orderService {
    	private Purchasing_orderMapper dao;
    	
    	public PageInfo<Purchasing_order> selectAllpage(Integer pageNum,Integer pageSize){
-       	System.out.println("分页的集合："+dao.selectAll().toString());
+       	System.out.println("分页的集合："+dao.selectAll2().toString());
    		 
        	PageHelper.startPage(pageNum, pageSize);
-       	List<Purchasing_order> list=dao.selectAll();
+       	List<Purchasing_order> list=dao.selectAll2();
 
        	PageInfo<Purchasing_order> page=new PageInfo<Purchasing_order>(list);
 //   		    	System.out.println("分页的集合2："+page.getList().toString());

@@ -29,6 +29,10 @@ public class PriadetailsService {
     	return pageFy;
     }
 	 
+	public List<Priadetails>  selectByPrimaryKey2(String priabillId){
+    	return dao.selectByPrimaryKey2(priabillId);
+    }
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

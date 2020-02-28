@@ -9,11 +9,11 @@
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
     <result column="project_id" jdbcType="VARCHAR" property="projectId" />
     <result column="payables_supplier_name" jdbcType="VARCHAR" property="payablesSupplierName" />
-    <result column="payables_sat_name1" jdbcType="INTEGER" property="payablesSatName1" />
+    <result column="payables_sat_name1" jdbcType="VARCHAR" property="payablesSatName1" />
     <result column="payables_Price1" jdbcType="REAL" property="payablesPrice1" />
-    <result column="payables_sat_name2" jdbcType="INTEGER" property="payablesSatName2" />
+    <result column="payables_sat_name2" jdbcType="VARCHAR" property="payablesSatName2" />
     <result column="payables_Price2" jdbcType="REAL" property="payablesPrice2" />
-    <result column="payables_sat_name3" jdbcType="INTEGER" property="payablesSatName3" />
+    <result column="payables_sat_name3" jdbcType="VARCHAR" property="payablesSatName3" />
     <result column="payables_Price3" jdbcType="REAL" property="payablesPrice3" />
     <result column="payables_zhekou" jdbcType="INTEGER" property="payablesZhekou" />
     <result column="payables_endtime" jdbcType="DATE" property="payablesEndtime" />
@@ -55,7 +55,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from payables 
-	    where payables_Yn=0
+	    where payables_Yn=0  
 	    ORDER BY payables_id DESC
   </select>  
   
@@ -86,9 +86,9 @@
       payables_custom10)
     values (#{payablesId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{scsId,jdbcType=INTEGER}, 
       #{staffId,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
-      #{payablesSupplierName,jdbcType=VARCHAR}, #{payablesSatName1,jdbcType=INTEGER}, 
-      #{payablesPrice1,jdbcType=REAL}, #{payablesSatName2,jdbcType=INTEGER}, #{payablesPrice2,jdbcType=REAL}, 
-      #{payablesSatName3,jdbcType=INTEGER}, #{payablesPrice3,jdbcType=REAL}, #{payablesZhekou,jdbcType=INTEGER}, 
+      #{payablesSupplierName,jdbcType=VARCHAR}, #{payablesSatName1,jdbcType=VARCHAR}, 
+      #{payablesPrice1,jdbcType=REAL}, #{payablesSatName2,jdbcType=VARCHAR}, #{payablesPrice2,jdbcType=REAL}, 
+      #{payablesSatName3,jdbcType=VARCHAR}, #{payablesPrice3,jdbcType=REAL}, #{payablesZhekou,jdbcType=INTEGER}, 
       #{payablesEndtime,jdbcType=DATE}, #{payablesPayablestime,jdbcType=TIMESTAMP}, #{payablesCurrencyName,jdbcType=VARCHAR}, 
       #{payablesCurrencyInexchange,jdbcType=VARCHAR}, #{payablesType,jdbcType=VARCHAR}, 
       #{payablesVoucherno,jdbcType=VARCHAR}, #{payablesTeamName,jdbcType=VARCHAR}, #{payablesProjectName,jdbcType=VARCHAR}, 
@@ -237,19 +237,19 @@
         #{payablesSupplierName,jdbcType=VARCHAR},
       </if>
       <if test="payablesSatName1 != null">
-        #{payablesSatName1,jdbcType=INTEGER},
+        #{payablesSatName1,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice1 != null">
         #{payablesPrice1,jdbcType=REAL},
       </if>
       <if test="payablesSatName2 != null">
-        #{payablesSatName2,jdbcType=INTEGER},
+        #{payablesSatName2,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice2 != null">
         #{payablesPrice2,jdbcType=REAL},
       </if>
       <if test="payablesSatName3 != null">
-        #{payablesSatName3,jdbcType=INTEGER},
+        #{payablesSatName3,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice3 != null">
         #{payablesPrice3,jdbcType=REAL},
@@ -350,19 +350,19 @@
         payables_supplier_name = #{payablesSupplierName,jdbcType=VARCHAR},
       </if>
       <if test="payablesSatName1 != null">
-        payables_sat_name1 = #{payablesSatName1,jdbcType=INTEGER},
+        payables_sat_name1 = #{payablesSatName1,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice1 != null">
         payables_Price1 = #{payablesPrice1,jdbcType=REAL},
       </if>
       <if test="payablesSatName2 != null">
-        payables_sat_name2 = #{payablesSatName2,jdbcType=INTEGER},
+        payables_sat_name2 = #{payablesSatName2,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice2 != null">
         payables_Price2 = #{payablesPrice2,jdbcType=REAL},
       </if>
       <if test="payablesSatName3 != null">
-        payables_sat_name3 = #{payablesSatName3,jdbcType=INTEGER},
+        payables_sat_name3 = #{payablesSatName3,jdbcType=VARCHAR},
       </if>
       <if test="payablesPrice3 != null">
         payables_Price3 = #{payablesPrice3,jdbcType=REAL},
@@ -450,11 +450,11 @@
       currency_id = #{currencyId,jdbcType=VARCHAR},
       project_id = #{projectId,jdbcType=VARCHAR},
       payables_supplier_name = #{payablesSupplierName,jdbcType=VARCHAR},
-      payables_sat_name1 = #{payablesSatName1,jdbcType=INTEGER},
+      payables_sat_name1 = #{payablesSatName1,jdbcType=VARCHAR},
       payables_Price1 = #{payablesPrice1,jdbcType=REAL},
-      payables_sat_name2 = #{payablesSatName2,jdbcType=INTEGER},
+      payables_sat_name2 = #{payablesSatName2,jdbcType=VARCHAR},
       payables_Price2 = #{payablesPrice2,jdbcType=REAL},
-      payables_sat_name3 = #{payablesSatName3,jdbcType=INTEGER},
+      payables_sat_name3 = #{payablesSatName3,jdbcType=VARCHAR},
       payables_Price3 = #{payablesPrice3,jdbcType=REAL},
       payables_zhekou = #{payablesZhekou,jdbcType=INTEGER},
       payables_endtime = #{payablesEndtime,jdbcType=DATE},

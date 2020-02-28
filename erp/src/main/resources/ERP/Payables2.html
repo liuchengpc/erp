@@ -29,7 +29,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" id="padeCustom6" name="title"  class="layui-input" title="F4查询" v-model="pages.padeCustom6" v-bind:disabled="diasabledInput">
+                        <input type="text" id="payablesSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.payablesSupplierName" v-bind:disabled="diasabledInput">
                         <input type="text" id="payablesId" name="title"  class="layui-input" title="F4查询" v-model="pages.payablesId" hidden="hidden">
                         <input type="text" id="supplierId" name="title"  class="layui-input" title="F4查询" v-model="pages.supplierId" hidden="hidden">
                     </div>
@@ -258,9 +258,9 @@
             <div class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin-left: 30px;">
-                        <select id="selectGN" name="interest" lay-filter="aihao">
+                        <select id="aihao" name="interest" lay-filter="aihao" lay-verify="required">
                             <option value="">功能</option>
-                            <option value="0" disabled>载入单币别账款</option>
+                            <option value="0">载入单币别账款</option>
                             <option value="0" disabled>载入多币别账款</option>
                             <option value="0" disabled>载入预收</option>
                         </select>
@@ -302,11 +302,6 @@
 </div>
 
 <script src="layui.js"></script>
-<script type="text/html" id="barDemo1">
-  <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
-  <a class="layui-btn layui-btn-xs" lay-event="edit" name="edit" id="a">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" name="del">删除</a>
-</script>
 <script>
 	var priabillNumber = ""
 	function GetValue(obj){
@@ -345,7 +340,7 @@
 			    tp:true
 			},
 			methods: {//定义函数
-				goPage: function(page, size ,priabillSupplierName,supplierId,priabillCurrencyName,currencyId,priabillTeamName,priabillCustom9,priabillProjectName,projectId,priabillSatName1,priabillSatName2,priabillSatName3) {//获取分页数据（当前页，每页大小）		
+				goPage: function(page, size ,payablesSupplierName,supplierId,payablesCurrencyName,currencyId,payablesTeamName,payablesCustom8,payablesProjectName,projectId,payablesSatName1,payablesSatName2,payablesSatName3) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
 					var time1 = "";
 					var this_ = this;
@@ -500,7 +495,7 @@
 								/*var $ = layui.jquery, layer = layui.layer;*/
 								var $ = layui.$, layer = layui.layer;
 								//供应商触发事件
-								$("#padeCustom6").click(function(){
+								$("#payablesSupplierName").click(function(){
 						  			layer.open({
 						  				type:2,
 						  				area:["800px","400px"],
@@ -571,67 +566,49 @@
 						                , where: {//这里传参  向后台
 						                    page: 1,
 						                    limit:1,
-						                    priabillCustom10:0,
-						                    priabillId:0
+						                    ppCustom8:0
 						                    //可传多个参数到后台...  ，分隔
 						                }
-						                , url: 'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName'//后台做模糊搜索接口路径
+						                , url: 'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName'//后台做模糊搜索接口路径
 						                , method: 'get'
 						            });
 						  		});
-						  		
-						  		
-						  		
-						       var priabillSupplierName = this_.page.list[0].priabillSupplierName;
-						       var priabillId = this_.page.list[0].priabillId;
+						  								  								  		
+						       var ppTeamName = this_.page.list[0].ppTeamName;
+						       var ppCustom2 = this_.page.list[0].ppCustom2;
+						       
+						       var ppPcName = "";	
+						       
+						       //点击载入单币别 重载TABLE
+						       var froms = form.on('select(aihao)',function(data){						         									if($("#payablesSupplierName").val()==""||this_.page.list[0].payablesSupplierName==""){
+						         		layer.msg("供应商不能为空！");
+							         	form.render('select');
+						         	}else{
+						         		//表格重载刷新 也相当于清空
+							  			table.reload('materialsContent2', {
+							                page: {
+							                    curr: 1 //重新从第 1 页开始
+							                }
+							                , where: {//这里传参  向后台
+							                    page: 1,
+							                    limit:1,
+							                    ppPcName:this_.page.list[0].payablesSupplierName
+							                    //可传多个参数到后台...  ，分隔
+							                }
+							                , url: 'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName2'
+							                , method: 'get'
+							            });
+						         	}
+						         	
+						        });
 						        var tables=table.render({
 						            elem: '#materialsContent2'
-						            ,url:'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName?priabillId='+priabillId
+						            ,url:'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName?ppCustom8='+this_.page.list[0].payablesId
 						            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
 						            ,toolbar: 'default'//开启工具栏
 						            ,totalRow: true //开启合计行
 									,parseData: function(res){
-										//生成预付款明细表ID
-										/*获取当前时间*/
-									   	//判断是否在前面加0
-											function getNow(s) {
-											return s < 10 ? '0' + s: s;
-											}
-											 
-											var myDate = new Date();            
-											 
-											var year=myDate.getFullYear();        //获取当前年
-											var month=myDate.getMonth()+1;   //获取当前月
-											var date=myDate.getDate();            //获取当前日
-											 
-											var h=myDate.getHours();              //获取当前小时数(0-23)
-											var m=myDate.getMinutes();          //获取当前分钟数(0-59)
-											var s=myDate.getSeconds();
-											 
-											var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
-									   	/*获取当前时间*/
-									   	
-								  		var ss=year+getNow(month)+getNow(date);
-										$.ajax({
-											url:"http://127.0.0.1:8080/PriadetailsController/getno",
-											type:"get",
-											async:false,
-										  	data:"billdate="+ss,
-										  	dataType:'text',	
-										  	success:function (ressult66) {
-											   	time2=ss+ressult66;	
-											   	//添加一组空数据
-									        }
-										});
 										
-										//添加一组空数据
-						               res.list.push({
-						               		"priadetailsId":time2
-						               		,"priabillPrice":""
-						               		,"priabillType":""
-						               		,"priabillNumber":""
-						               		,"priabillRemarks":""                   		
-						               });
 										return {
 											"code":0,
 											"msg":"",
@@ -640,35 +617,29 @@
 										};
 									}
 									,done: function (res, curr, count) {
-						                layui.each($('select'), function (index, item) {
-						                    var elem = $(item);
-						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css('overflow', 'visible');
-						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
-						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");                  
-						                });
+						                
 						           	}
 						            , cols: [[
 						            	{type: 'checkbox'}
-						            	,{field: 'paydetailId', title: '(栏号)',sort:true}
-						                ,{field: 'padeSourcelist', title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+						            	,{field: 'ppId', width:100,title: '(栏号)',sort:true}
+						                ,{field: 'ppType',width:120, title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
 						                /*, {field: 'sex', title: '来源别', sort: true}*/
-						                , {field: 'padeSourcetime', title: '(原单日期)',sort:true}
-						                , {field: 'padeSourcenumber', title: '(原单单号)'}
-						                , {field: 'padeInvoiceno', title: '(发票号码)'}
-						                , {field: 'padeTransaction', title: '(交易对象)'}
-						                , {field: 'padeTransactionname', title: '(交易对象名称)'}
-						                , {field: 'padeCustom8', title: '(部门编号)'}
-						                , {field: 'padeTeamName', title: '(部门名称)'}
-						                , {field: 'padeStaffName', title: '(采购人员)'}
-						                , {field: 'padeProjectName', title: '(项目名称)'}
-						                , {field: 'padeCurrencyName', title: '(币别)'}
-						                , {field: 'padePrice', title: '(汇率)'}
-						                , {field: 'padeCustom7', title: '(原单金额)',sort:true}
-						                , {field: 'padeCurrentbalance', title: '(现行余额)',sort:true}
-						                , {field: 'padeDiscountamount', title: '(折让金额)',sort:true}
-						                , {field: 'padeAmountcharged', title: '(冲款金额)',sort:true}
-						                , {field: 'padeOffsetamount', title: '(冲抵金额)',sort:true}
-						                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
+						                , {field: 'ppDate', width:120,title: '(原单日期)',sort:true}
+						                , {field: 'ppNumber', width:120,title: '(原单单号)'}
+						                , {field: '', width:120,title: '(发票号码)'}
+						                , {field: 'ppPcId', width:120,title: '(交易对象)'}
+						                , {field: 'ppPcName', width:120,title: '(交易对象名称)'}
+						                , {field: 'ppTeamId', width:120,title: '(部门编号)'}
+						                , {field: 'ppTeamName', width:120,title: '(部门名称)'}
+						                , {field: 'ppBuyer',width:120, title: '(采购人员)'}
+						                , {field: 'ppProjectName', width:120,title: '(项目名称)'}
+						                , {field: 'ppCurrency', width:100,title: '(币别)'}
+						                , {field: 'ppExchangeRate', width:120,title: '(汇率)'}
+						                , {field: 'ppPayablesmainPrice',width:120, title: '(原单金额)',sort:true}
+						                , {field: 'ppCurrentbalance', width:120,title: '(现行余额)',sort:true}
+						                , {field: 'ppDiscountamount',width:120, title: '(折让金额)',sort:true}
+						                , {field: 'ppAmountcharged', width:120,title: '(冲款金额)',sort:true}
+						                , {field: 'ppOffsetamount', width:120,title: '(冲抵金额)',sort:true}
 						            ]]
 						            ,page:true//是否开启分页
 						            ,limits:[1,2,3]//选择每页显示多少条数据
@@ -683,124 +654,25 @@
 								    var $this = $(this);
 								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
 						  			var trIndex = tr.data('index');	//索引
-								    if(layEvent === 'edit'){											      										if(this_.page.list[0].priabillAuditing=="0"||this_.page.list[0].priabillAuditing==0){
-											layer.msg('编辑操作');
-											//修改编辑按钮名 
-								    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
-										      //修改lay-event对应值
-										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
-										      //修改样式
-										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
-										      //取消单元格的禁用  添加data-edit="text"
-										      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
-										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",true);
-									$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").removeAttr("disabled");	      
-										      
-										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",true);
-										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",true);
-										      form.render('select');
-										      
-										      if($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").val()!=""){
-										      	$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").click(function(){
-										      		layer.open({
-										  				type:2,
-										  				area:["800px","400px"],
-										  				content:"PayablesPurchasing.html",
-										  				success:function (layero,index) {
-												                var iframe = window['layui-layer-iframe' + index];
-												                iframe.child(trIndex);
-												        }
-										  			});
-										      	});
-										      }
+						  			
+						  			$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(16)").data("edit",true);										      
+							      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(17)").data("edit",true);
+							      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(18)").data("edit",true);
+								    if(layEvent === 'edit'){											      										if(this_.page.list[0].payablesAuditing=="0"||this_.page.list[0].payablesAuditing==0){																					      
 										      
 										}else{
 											layer.msg('已审核，无法编辑');
 										}								      
 								    } else if(layEvent === 'del'){
 								      layer.confirm('真的删除行么', function(index){
-								        obj.del(); //删除对应行（tr）的DOM结构
-								        layer.close(index);
+								        obj.del(); //删除对应行（tr）的DOM结构								        
+								        
 								        //向服务端发送删除指令
 								      });
 								    }else if(layEvent === 'save'){
-								    	/*layer.msg('保存操作');*/
-								    	var sy = "";
-								    	if(obj.data.priabillPrice==""||obj.data.priabillPrice<=0){
-								    		sy+="预付金额不能小于等于0或者为空  ,";
-								    	}
-								    	if(obj.data.priabillType==""||obj.data.priabillType=="请选择"){
-								    		sy+="请选择来源单别  ,";
-								    	}
-								    	if(obj.data.priabillNumber==""){
-								    		sy+="请填写来源单号  ,";
-								    	}
-										sy+="请认真填写！";
-										if(sy=="请认真填写！"){
-											var priabillSupplierName2 = this_.page.list[0].priabillSupplierName;
-						       				var priabillId2 = this_.page.list[0].priabillId;
-						       				if(priabillSupplierName2==""||priabillId2==""){
-						       					priabillSupplierName2=$("#priabillSupplierName").val();
-						       					priabillId2=$("#priabillId").val();
-						       				}
-											var obj2 = {
-												"priadetailsId":obj.data.priadetailsId,
-												"priabillId":priabillId2,
-												"priabillPrice":obj.data.priabillPrice,
-												"priabillType":obj.data.priabillType,
-												"priabillNumber":priabillNumber,
-												"priabillRemarks":obj.data.priabillRemarks
-											}
-
-											$.ajax({
-												url:"http://127.0.0.1:8080/PriadetailsController/insertAndDelete",
-												data:JSON.stringify(obj2),
-												async:false,
-												type:"post",
-											  	dataType:'json',
-											  	contentType:"application/json;charset=utf-8",
-												success:function(result2){
-													layer.msg("编辑完成");
-													
-													//修改保存按钮名 
-									    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
-											        //修改lay-event对应值
-											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
-											        //修改样式
-											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
-											        //单元格的禁用  去掉data-edit="text"
-											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",false);
-													$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").attr("disabled","disabled");	        
-											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",false);
-											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",false);
-											        form.render('select');
-											        priabillSupplierName = this_.page.list[0].priabillSupplierName;
-						       						priabillId = this_.page.list[0].priabillId;
-											        table.reload('materialsContent2', {
-										                page: {
-										                    curr: 1 //重新从第 1 页开始
-										                }
-										                , where: {//这里传参  向后台
-										                    page: 1,
-										                    limit:2,
-										                    priabillId:priabillId
-										                    //可传多个参数到后台...  ，分隔
-										                }
-										                , url: 'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName'//后台做模糊搜索接口路径
-										                , method: 'get'
-										            });
-												}
-											});																			
-										}else{
-											layer.msg(sy);
-										}
-								    }
-								    //下拉框监听
-							         form.on('select',function(data){
-							         	obj.update({
-							         		priabillType:data.value
-							         	});
-							         });
+								    	/*layer.msg('保存操作');*/								    	
+								      
+								   }
 							         
 								  });
 						        //监听头工具栏事件
@@ -810,47 +682,13 @@
 								    ,data = checkStatus.data; //获取选中的数据*/
 								    switch(obj.event){
 								      case 'add':
-								        	layer.msg('添加一行表格');
-						                   /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
-						                   var datas = table.cache.materialsContent2;
-						                   
-						                   //定义一个空数组
-						                   var demo = [];
-						                   
-						                   //将之前的数组备份
-						                   for(var i =0;i<datas.length;i++){
-						                   		demo.push(datas[i]);
-						                   }
-						                    
-						                   //添加一组空数据
-						                   demo.push({
-						                   		"priadetailsId":"haha"
-						                   		,"priabillPrice":""
-						                   		,"priabillType":""
-						                   		,"priabillNumber":""
-						                   		,"priabillRemarks":""                   		
-						                   });*/
+								        	layer.msg('此功能暂无开发');
 						                  
-						                    tables.reload({	//将数据重新载入表格
-						                        
-						                    });
 								     		 break;
 								      case 'update':
-								        /*if(data.length === 0){
-								          layer.msg('请选择一行');
-								        } else if(data.length > 1){
-								          layer.msg('只能同时编辑一个');
-								        } else {
-								          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-								        }*/
-								       
-								       	//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
-								       	var datas = table.cache.materialsContent2;
-								       	
-								       	//
-								       	for(var i =0;i<datas.length;i++){
-						                   		
-						                   }
+	
+											
+											
 								      case 'delete':
 								        if(data.length === 0){
 								          layer.msg('请选择一行');
@@ -867,7 +705,7 @@
 					
 				},
 				goPrePage: function() {//上一条
-					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
 						this.Auditing1=false;
 						this.diasabledInput=true;
 						this.noAuditing1=true;
@@ -883,7 +721,7 @@
 					}
 				},
 				goNextPage: function() {//下一条
-					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
 						this.Auditing1=false;
 						this.diasabledInput=true;
 						this.noAuditing1=true;
@@ -899,7 +737,7 @@
 					}
 				},
 				goFirstPage: function() {//第一条
-					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
 						this.Auditing1=false;
 						this.diasabledInput=true;
 						this.noAuditing1=true;
@@ -913,7 +751,7 @@
 					this.goPage(1, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 				},
 				goLastPage: function() {//最后一条
-					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
 						this.Auditing1=false;
 						this.diasabledInput=true;
 						this.noAuditing1=true;
@@ -931,28 +769,6 @@
 				},
 				returns: function() {//取消
 					if(this.return1=true){
-						var priabillId = this.page.list[0].priabillId;
-						$.ajax({
-							url :"http://127.0.0.1:8080/PriabillController/selectByPrimaryKeyXuZhe?priabillId="+priabillId,
-							type:"get",
-							async:false,
-						  	dataType:'json',
-						  	success:function (res) {
-						  		if(res.code=="1"){
-						  			$.ajax({
-										url :"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKeyXuzhe?priabillId="+priabillId,
-										type:"get",
-										async:false,
-									  	dataType:'json',
-									  	success:function (res2) {
-									  		if(res2.code=="1"){
-									  			/*alert("删除成功！");*/
-									  		}
-								        }
-									});
-						  		}
-					        }
-						});
 						
 		             	this.return1=false;//返回
 						this.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
@@ -969,45 +785,45 @@
 				},
 				inset: function() {//新增按钮
 					
-					this.page.list[0].priabillId="";//预付冲款单ID（主键 唯一）
+					this.page.list[0].payablesId="";//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId="";//供应商表id,外键
 				    this.page.list[0].scsId="";//结算方式id,外键
 				    this.page.list[0].staffId="";//部门员工表id,外键
 				    this.page.list[0].currencyId="";//币别类型表id,外键
 				    this.page.list[0].projectId="";//项目表id,外键
-				    this.page.list[0].priabillSupplierName="";//供应商表，名称
-				    this.page.list[0].priabillSatName1="";//结算方式表，结算方式1，名称
-				    this.page.list[0].priabillPrice1="";//结算方式表，结算方式1，值
-				    this.page.list[0].priabillSatName2="";//结算方式表，结算方式2，名称
-				    this.page.list[0].priabillPrice2="";//结算方式表，结算方式2，值
-				    this.page.list[0].priabillSatName3="";//结算方式表，结算方式3，名称
-				    this.page.list[0].priabillPrice3="";//结算方式表，结算方式3，值
-				    this.page.list[0].priabillZhekou="";//折扣率，【默认值】：0.00
-				    this.page.list[0].priabillEndtime="";//终止账月，【默认值】：当前年月
-				    this.page.list[0].priabillPayablestime="";//单据日期,【默认值】：当前日期
-				    this.page.list[0].priabillCurrencyName="";//币别类型表，名称
-				    this.page.list[0].priabillCurrencyInexchange="";//币别类型表，汇率
-				    this.page.list[0].priabillType="付款冲款";//应付冲款类型，【默认值】：付款冲款
-				    this.page.list[0].priabillVoucherno="";//凭证编号
-				    this.page.list[0].priabillTeamName="";//部门表，名称
-				    this.page.list[0].priabillProjectName="";//项目表，名称
-				    this.page.list[0].priabillBillpersonnel="";//制单人员，【默认值】：当前人员
-				    this.page.list[0].priabillReviewers="";//复合人员，【默认值】：
-				    this.page.list[0].priabillRemarks="";//备注
-				    this.page.list[0].priabillAuditstatus="";//审核状态，【默认值】：0
-				    this.page.list[0].priabillAuditing="";//是否审核，【默认值】：当前人员
-				    this.page.list[0].priabillYn="";//是否删除，【默认值】：0
+				    this.page.list[0].payablesSupplierName="";//供应商表，名称
+				    this.page.list[0].payablesSatName1="";//结算方式表，结算方式1，名称
+				    this.page.list[0].payablesPrice1="";//结算方式表，结算方式1，值
+				    this.page.list[0].payablesSatName2="";//结算方式表，结算方式2，名称
+				    this.page.list[0].payablesPrice2="";//结算方式表，结算方式2，值
+				    this.page.list[0].payablesSatName3="";//结算方式表，结算方式3，名称
+				    this.page.list[0].payablesPrice3="";//结算方式表，结算方式3，值
+				    this.page.list[0].payablesZhekou="";//折扣率，【默认值】：0.00
+				    this.page.list[0].payablesEndtime="";//终止账月，【默认值】：当前年月
+				    this.page.list[0].payablesPayablestime="";//单据日期,【默认值】：当前日期
+				    this.page.list[0].payablesCurrencyName="";//币别类型表，名称
+				    this.page.list[0].payablesCurrencyInexchange="";//币别类型表，汇率
+				    this.page.list[0].payablesType="付款冲款";//应付冲款类型，【默认值】：付款冲款
+				    this.page.list[0].payablesVoucherno="";//凭证编号
+				    this.page.list[0].payablesTeamName="";//部门表，名称
+				    this.page.list[0].payablesProjectName="";//项目表，名称
+				    this.page.list[0].payablesBillpersonnel="";//制单人员，【默认值】：当前人员
+				    this.page.list[0].payablesReviewers="";//复合人员，【默认值】：
+				    this.page.list[0].payablesRemarks="";//备注
+				    this.page.list[0].payablesAuditstatus="";//审核状态，【默认值】：0
+				    this.page.list[0].payablesAuditing="";//是否审核，【默认值】：当前人员
+				    this.page.list[0].payablesYn="";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].tpriabillCustom1="";//创建时间
-				    this.page.list[0].priabillCustom2="";//自定义2，单据号码
-				    this.page.list[0].priabillCustom3="";//自定义3
-				    this.page.list[0].priabillCustom4="";//自定义4
-				    this.page.list[0].priabillCustom5="";//自定义5
-				    this.page.list[0].priabillCustom6="";//自定义6
-					this.page.list[0].priabillCustom7="";//自定义7
-					this.page.list[0].priabillCustom8="";//自定义8
-					this.page.list[0].priabillCustom9="";//自定义9
-					this.page.list[0].priabillCustom10="";//自定义10
+				    this.page.list[0].payablesCustom1="";//创建时间
+				    this.page.list[0].payablesCustom2="";//自定义2，单据号码
+				    this.page.list[0].payablesCustom3="";//自定义3
+				    this.page.list[0].payablesCustom4="";//自定义4
+				    this.page.list[0].payablesCustom5="";//自定义5
+				    this.page.list[0].payablesCustom6="";//自定义6
+					this.page.list[0].payablesCustom7="";//自定义7
+					this.page.list[0].payablesCustom8="";//自定义8
+					this.page.list[0].payablesCustom9="";//自定义9
+					this.page.list[0].payablesCustom10="";//自定义10
 					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
@@ -1055,49 +871,48 @@
 					
 					var this_ = this;
 					//修改信息
-					this.page.list[0].priabillId=$("#priabillId").val();//预付冲款单ID（主键 唯一）
+					this.page.list[0].payablesId=$("#payablesId").val();//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId=$("#supplierId").val();//供应商表id,外键
 				    this.page.list[0].scsId="1";//结算方式id,外键
 				    this.page.list[0].staffId="100";//部门员工表id,外键
 				    this.page.list[0].currencyId=$("#currencyId").val();//币别类型表id,外键
 				    this.page.list[0].projectId=$("#projectId").val();//项目表id,外键
-				    this.page.list[0].priabillSupplierName=$("#priabillSupplierName").val();//供应商表，名称
-				    this.page.list[0].priabillSatName1=$("#priabillSatName1").val();//结算方式表，结算方式1，名称
-				    this.page.list[0].priabillPrice1=$("#priabillPrice1").val();//结算方式表，结算方式1，值
-				    this.page.list[0].priabillSatName2=$("#priabillSatName2").val();//结算方式表，结算方式2，名称
-				    this.page.list[0].priabillPrice2=$("#priabillPrice2").val();//结算方式表，结算方式2，值
-				    this.page.list[0].priabillSatName3=$("#priabillSatName3").val();//结算方式表，结算方式3，名称
-				    this.page.list[0].priabillPrice3=$("#priabillPrice3").val();//结算方式表，结算方式3，值
-				    this.page.list[0].priabillZhekou=$("#priabillZhekou").val();//折扣率，【默认值】：0.00
-				    this.page.list[0].priabillEndtime=$("#priabillEndtime").val();//终止账月，【默认值】：当前年月
-				    this.page.list[0].priabillPayablestime=$("#priabillPayablestime").val();//单据日期,【默认值】：当前日期
-				    this.page.list[0].priabillCurrencyName=$("#priabillCurrencyName").val();//币别类型表，名称
-				    this.page.list[0].priabillCurrencyInexchange=$("#priabillCurrencyInexchange").val();//币别类型表，汇率
-				    this.page.list[0].priabillType="预付款";//应付冲款类型，【默认值】：付款冲款
-				    this.page.list[0].priabillVoucherno=$("#priabillVoucherno").val();//凭证编号
-				    this.page.list[0].priabillTeamName=$("#priabillTeamName").val();//部门表，名称
-				    this.page.list[0].priabillProjectName=$("#priabillProjectName").val();//项目表，名称
-				    this.page.list[0].priabillBillpersonnel="admin";//制单人员，【默认值】：当前人员
-				    this.page.list[0].priabillReviewers=$("#priabillReviewers").val();//复合人员，【默认值】：
-				    this.page.list[0].priabillRemarks=$("#priabillRemarks").val();//备注
-				    this.page.list[0].priabillAuditstatus="0";//审核状态，【默认值】：0
-				    this.page.list[0].priabillAuditing="0";//是否审核，【默认值】：当前人员
-				    this.page.list[0].priabillYn="0";//是否删除，【默认值】：0
+				    this.page.list[0].payablesSupplierName=$("#payablesSupplierName").val();//供应商表，名称
+				    this.page.list[0].payablesSatName1=$("#payablesSatName1").val();//结算方式表，结算方式1，名称
+				    this.page.list[0].payablesPrice1=$("#payablesPrice1").val();//结算方式表，结算方式1，值
+				    this.page.list[0].payablesSatName2=$("#payablesSatName2").val();//结算方式表，结算方式2，名称
+				    this.page.list[0].payablesPrice2=$("#payablesPrice2").val();//结算方式表，结算方式2，值
+				    this.page.list[0].payablesSatName3=$("#payablesSatName3").val();//结算方式表，结算方式3，名称
+				    this.page.list[0].payablesPrice3=$("#payablesPrice3").val();//结算方式表，结算方式3，值
+				    this.page.list[0].payablesZhekou=$("#payablesZhekou").val();//折扣率，【默认值】：0.00
+				    this.page.list[0].payablesEndtime=$("#payablesEndtime").val();//终止账月，【默认值】：当前年月
+				    this.page.list[0].payablesPayablestime=$("#payablesPayablestime").val();//单据日期,【默认值】：当前日期
+				    this.page.list[0].payablesCurrencyName=$("#payablesCurrencyName").val();//币别类型表，名称
+				    this.page.list[0].payablesCurrencyInexchange=$("#payablesCurrencyInexchange").val();//币别类型表，汇率
+				    this.page.list[0].payablesType="应付冲款";//应付冲款类型，【默认值】：付款冲款
+				    this.page.list[0].payablesVoucherno=$("#payablesVoucherno").val();//凭证编号
+				    this.page.list[0].payablesTeamName=$("#payablesTeamName").val();//部门表，名称
+				    this.page.list[0].payablesProjectName=$("#payablesProjectName").val();//项目表，名称
+				    this.page.list[0].payablesBillpersonnel="admin";//制单人员，【默认值】：当前人员
+				    this.page.list[0].payablesReviewers=$("#payablesReviewers").val();//复合人员，【默认值】：
+				    this.page.list[0].payablesRemarks=$("#payablesRemarks").val();//备注
+				    this.page.list[0].payablesAuditstatus="0";//审核状态，【默认值】：0
+				    this.page.list[0].payablesAuditing="0";//是否审核，【默认值】：当前人员
+				    this.page.list[0].payablesYn="0";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].tpriabillCustom1=year+getNow(month)+getNow(date);//创建时间
-				    this.page.list[0].priabillCustom2=$("#priabillCustom2").val();//自定义2，单据号码
-				    this.page.list[0].priabillCustom3=$("#priabillCustom3").val();//自定义3
-				    this.page.list[0].priabillCustom4=$("#priabillCustom4").val();//自定义4
-				    this.page.list[0].priabillCustom5="";//自定义5
-				    this.page.list[0].priabillCustom6="";//自定义6
-				    this.page.list[0].priabillCustom7="";//自定义7
-				    this.page.list[0].priabillCustom8="";//自定义8
-				    this.page.list[0].priabillCustom9=$("#priabillCustom9").val();//自定义9
-				    this.page.list[0].priabillCustom10="";//自定义10
+				    this.page.list[0].payablesCustom1=year+getNow(month)+getNow(date);//创建时间
+				    this.page.list[0].payablesCustom2=$("#payablesCustom2").val();//自定义2，单据号码
+				    this.page.list[0].payablesCustom3=$("#payablesCustom3").val();//自定义3
+				    this.page.list[0].payablesCustom4=$("#payablesCustom4").val();//自定义4
+				    this.page.list[0].payablesCustom5="";//自定义5
+				    this.page.list[0].payablesCustom6="";//自定义6
+				    this.page.list[0].payablesCustom7="";//自定义7
+				    this.page.list[0].payablesCustom8=$("#payablesCustom8").val();//自定义8	--部门ID
+				    this.page.list[0].payablesCustom10="";//自定义10
 					var obj=this.page.list[0];
 					
 					$.ajax({
-						url :"http://127.0.0.1:8080/PriabillController/insertSelective",
+						url :"http://127.0.0.1:8080/PayablesController/insertSelective",
 						type:"post",
 						data:JSON.stringify(obj),
 						async:false,
@@ -1108,6 +923,7 @@
 							this_.isinsert=false;//关闭新增模式
 							this_.isedit=false;//关闭编辑模式
 							this_.goPage(1, 1);		
+							layer.msg("保存成功!");
 				        }
 					});
 				},
@@ -1158,10 +974,10 @@
 				},
 				updates: function() {//编辑 
 					var this_=this;
-					var priabillId = this_.page.list[0].priabillId;
+					var priabillId = this_.page.list[0].payablesId;
 					var updateObj = this_.page.list[0];
 				    $.ajax({
-						url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+						url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
 						type:"post",
 						data:JSON.stringify(updateObj),
 						async:false,
@@ -1179,11 +995,11 @@
 				deletes: function() {//删除
 					var this_ = this;
 					layer.confirm('确认删除吗？', function(index){
-						var priabillId = this_.page.list[0].priabillId;
+						var priabillId = this_.page.list[0].payablesId;
 						var updateObj = this_.page.list[0];
-					    updateObj.priabillYn="1";
+					    updateObj.payablesYn="1";
 					    $.ajax({
-							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
 							type:"post",
 							data:JSON.stringify(updateObj),
 							async:false,
@@ -1303,15 +1119,15 @@
 			  		var ss=year+getNow(month)+getNow(date);
 			  		
 					$.ajax({
-						url:"http://127.0.0.1:8080/PriabillController/getno",
+						url:"http://127.0.0.1:8080/PayablesController/getno",
 						type:"get",
 					  	data:"billdate="+ss,
 					  	dataType:'text',	
 					  	success:function (res) {
 						    this_.page.list[0].priabillCustom2="y"+ss+res;
 						   	this_.page.list[0].priabillId=ss+res;
-						   	$("#priabillCustom2").val("y"+ss+res);
-						   	$("#priabillId").val(ss+res);
+						   	$("#payablesCustom2").val("yf"+ss+res);
+						   	$("#payablesId").val(ss+res);
 				        }
 					});
 					

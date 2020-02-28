@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Payables_detail;
 import com.apatech.domain.Purchase_payables;
 import com.apatech.domain.Purchase_payables;
 import com.apatech.service.Purchase_payablesService;
@@ -35,6 +36,36 @@ public class Purchase_payablesController {
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Purchase_payables> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
+    }
+	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectByPayablesbillSupplierName",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Purchase_payables> selectByPayablesbillSupplierName(Integer page,Integer limit,String ppCustom8){
+		System.out.println(" 进入Purchase_payablesController查询--"+page+"/"+limit);
+		System.out.println("账款明细的应付款ID："+ppCustom8);
+		PageInfo<Purchase_payables> pageFy = dao.selectByPayablesbillSupplierName(page, limit,ppCustom8);
+		return pageFy;
+    }
+	
+	/**
+	 * 分页 Xz专属2
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectByPayablesbillSupplierName2",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Purchase_payables> selectByPayablesbillSupplierName2(Integer page,Integer limit,String ppPcName){
+		System.out.println(" 进入Purchase_payablesController22查询--"+page+"/"+limit);
+		System.out.println("供应商名称22："+ppPcName);
+		PageInfo<Purchase_payables> pageFy = dao.selectByPayablesbillSupplierName2(page, limit,ppPcName);
+		return pageFy;
     }
 	
 	/**

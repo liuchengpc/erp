@@ -180,8 +180,9 @@
 			       var index = parent.layer.getFrameIndex(window.name);
 				   var iframe = $(window.parent.document).contents();
 //				   iframe.find("#customerId").val(data.customerName);
-					 parent["listVm"].page.list[0].payablesCurrencyName=data.currencyEasyname;
+				   parent["listVm"].page.list[0].payablesCurrencyName=data.currencyEasyname;
 				   parent["listVm"].page.list[0].currencyId=data.currencyId;
+				   parent["listVm"].page.list[0].currencyId=data.currencyEasyname;
 			       parent.layer.close(index);
 			    }
 		  });

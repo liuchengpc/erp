@@ -75,12 +75,13 @@
 							var customerName=$(this).parent().siblings("#customerName").text();
 							var caAddress=$(this).parent().siblings("#caAddress").text();
 							alert(customerName);
-							
 							if(checked==""){
 								alert("请选择要取回的列");
 							}else{
-								parent["receiptvue"].page.list[0].customerId=customerName; 
-								parent["receiptvue"].page.list[0].sqDeliveryAddress=caAddress; 
+								parent["listVm"].page.list[0].customerId=customerName; 
+								parent["listVm"].page.list[0].sqDeliveryAddress=caAddress; 
+								parent["listVm"].page.list[0].soCustomerorder=customerName;
+								parent["listVm"].page.list[0].soDeliveryAddress=caAddress; 
 								// parent[receiptvue].receiptvue.customerName=page.customerName; 
 								// parent[receiptvue].queryStaffName();
 								parent.layer.close(index);//关闭窗口 

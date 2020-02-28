@@ -7,8 +7,8 @@ package com.apatech.domain;
  */
 public class Warehouse_detail {
     private String wdId;//仓库明细id（主键 唯一）
-    private Integer warehouseId;//仓库id
-    private Integer mtId;//物料id
+    private String warehouseId;//仓库id
+    private String mtId;//物料id
     private Float wdUnitRice;//单价（成本）
     private Integer wdNumber;//数量
     private Integer wdInorout;//进出库状态（0,1表示）
@@ -45,23 +45,23 @@ public class Warehouse_detail {
         this.wdId = wdId == null ? null : wdId.trim();
     }
 
-    public Integer getWarehouseId() {
-        return warehouseId;
-    }
+    public String getWarehouseId() {
+		return warehouseId;
+	}
 
-    public void setWarehouseId(Integer warehouseId) {
-        this.warehouseId = warehouseId;
-    }
+	public void setWarehouseId(String warehouseId) {
+		this.warehouseId = warehouseId;
+	}
 
-    public Integer getMtId() {
-        return mtId;
-    }
+	public String getMtId() {
+		return mtId;
+	}
 
-    public void setMtId(Integer mtId) {
-        this.mtId = mtId;
-    }
+	public void setMtId(String mtId) {
+		this.mtId = mtId;
+	}
 
-    public Float getWdUnitRice() {
+	public Float getWdUnitRice() {
         return wdUnitRice;
     }
 

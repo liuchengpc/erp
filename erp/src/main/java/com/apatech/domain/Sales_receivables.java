@@ -2,64 +2,41 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+/**
+ * 应收账款明细表
+ * @author 刘成
+ *
+ */
 public class Sales_receivables {
-    private Integer srId;
-
-    private String srType;
-
-    private String srNumber;
-
-    private Date srDate;
-
-    private String srPcId;
-
-    private String srPcName;
-
-    private String srTeamId;
-
-    private String srTeamName;
-
-    private String srBuyer;
-
-    private String srProjectName;
-
-    private String srCurrency;
-
-    private Float srExchangeRate;
-
-    private Double srPayablesmainPrice;
-
-    private Float srCurrentbalance;
-
-    private Float srDiscountamount;
-
-    private Float srAmountcharged;
-
-    private Float srOffsetamount;
-
-    private String srAuditing;
-
-    private String srYn;
-
-    private String srCustom1;
-
-    private String srCustom2;
-
-    private String srCustom3;
-
-    private String srCustom4;
-
-    private String srCustom5;
-
-    private String srCustom6;
-
-    private String srCustom7;
-
-    private String srCustom8;
-
-    private String srCustom9;
-
-    private String srCustom10;
+    private Integer srId;//预收账款明细表id，主键
+    private String srType;//单别
+    private String srNumber;//原单单号
+    private Date srDate;//原单日期
+    private String srPcId;//交易对象客户表id,外键
+    private String srPcName;//交易对象名称
+    private String srTeamId;//部门表id，外键
+    private String srTeamName;//部门名称
+    private String srBuyer;//业务人员
+    private String srProjectName;//项目名称
+    private String srCurrency;//币别表id,外键
+    private Float srExchangeRate;//币别表汇率（买进）
+    private Double srPayablesmainPrice;//原单金额
+    private Float srCurrentbalance;//现行余额
+    private Float srDiscountamount;//折让金额
+    private Float srAmountcharged;//冲款金额
+    private Float srOffsetamount;//冲抵金额
+    private String srAuditing;//是否审核
+    private String srYn;//是否删除 0是 1否 默认0
+    private String srCustom1;//自定义栏一
+    private String srCustom2;//自定义栏二
+    private String srCustom3;//自定义栏三
+    private String srCustom4;//自定义栏四
+    private String srCustom5;//自定义栏五
+    private String srCustom6;//自定义栏六
+    private String srCustom7;//表状态（0 商品记录表，1 应收账款明细表）
+    private String srCustom8;//币别名
+    private String srCustom9;//自定义栏九
+    private String srCustom10;//主表id
 
     public Integer getSrId() {
         return srId;

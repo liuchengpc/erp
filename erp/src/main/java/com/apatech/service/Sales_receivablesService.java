@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apatech.domain.Receivablesdetails;
 import com.apatech.domain.Sales_receivables;
 import com.apatech.mapper.Sales_receivablesMapper;
 import com.github.pagehelper.PageHelper;
@@ -27,13 +28,39 @@ public class Sales_receivablesService {
     	return page;
     }
 	 
+	 public PageInfo<Sales_receivables> selectAllpagebyidlc(Integer pageNum,Integer pageSize,String srPcId){
+			System.out.println("分页的集合："+dao.selectAllpagebyidlc(srPcId).toString());
+			
+			PageHelper.startPage(pageNum, pageSize);
+			List<Sales_receivables> list=dao.selectAllpagebyidlc(srPcId);
+			
+			PageInfo<Sales_receivables> page=new PageInfo<Sales_receivables>(list);
+//			    	System.out.println("分页的集合2："+page.getList().toString());
+			return page;
+		}
+	 public PageInfo<Sales_receivables> selectAllpagebyidlc2(Integer pageNum,Integer pageSize,String srCustom10){
+		 System.out.println("分页的集合："+dao.selectAllpagebyidlc(srCustom10).toString());
+		 
+		 PageHelper.startPage(pageNum, pageSize);
+		 List<Sales_receivables> list=dao.selectAllpagebyidlc2(srCustom10);
+		 
+		 PageInfo<Sales_receivables> page=new PageInfo<Sales_receivables>(list);
+//			    	System.out.println("分页的集合2："+page.getList().toString());
+		 return page;
+	 }
+	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
 	
 	
     public int deleteByPrimaryKey(Integer apId){
-    	return dao.deleteByPrimaryKey(apId);    }
+    	return dao.deleteByPrimaryKey(apId);   
+	}
+    
+    public int deleteByzbidlc(String receivablesbillId){
+    	return dao.deleteByzbidlc(receivablesbillId);
+    }
 
     public int insert(Sales_receivables record){
     	return dao.insert(record);

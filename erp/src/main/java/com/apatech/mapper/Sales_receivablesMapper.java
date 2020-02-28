@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.apatech.domain.Receivablesdetails;
 import com.apatech.domain.Sales_receivables;
 
 public interface Sales_receivablesMapper {
@@ -19,8 +20,14 @@ public interface Sales_receivablesMapper {
 	 		"FROM\r\n" + 
 	 		"Sales_receivables WHERE sr_custom1=#{billdate}")
    String getno(@Param("billdate")String billdate);
+	 
+	 List<Sales_receivables> selectAllpagebyidlc(@Param("srPcId")String srPcId);//查商品记录
+	 
+	 List<Sales_receivables> selectAllpagebyidlc2(@Param("srCustom10")String srCustom10);//查详表
 	
     int deleteByPrimaryKey(Integer srId);
+    
+    int deleteByzbidlc(String receivablesbillId);
 
     int insert(Sales_receivables record);
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>单选--仓库设定</title>
+    <title>单选--人员主文件设定</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,14 +37,11 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">仓库编号</option>
-                                    <option value="4">仓库名称</option>
-                                    <option value="4">仓库简称</option>
-                                    <option value="4">英文名称</option>
-                                    <option value="4">联系人员</option>
-                                    <option value="4">联系电话</option>
-                                    <option value="4">仓库地址</option>
-                                    <option value="4">备注</option>
+                                    <option value="4">人员编号</option>
+                                    <option value="4">所属部门</option>
+                                    <option value="4">部门名称</option>
+									<option value="4">人员名称</option>
+                                    <option value="4">英文姓名</option>
                                 </select>
                             </div>
                         </div>
@@ -154,14 +151,14 @@
                 <thead>
                <thead>
                <tr>
-                   <th>仓库编号</th>
-                   <th>仓库名称</th>             
+                   <th>员工编号</th>
+                   <th>员工名称</th>             
                </tr>
                </thead>
                <tbody>           
-				   <tr v-for="wh in list" @click="dianji(wh.warehouseId,wh.warehouseName)">
-					   <td>{{wh.warehouseId}}</td>
-					   <td>{{wh.warehouseName}}</td>                  
+				   <tr v-for="s in list" @click="dianji(s.staffId,s.staffName,s.teamId)">
+					   <td>{{s.staffId}}</td>
+					   <td>{{s.staffName}}</td>                  
 				   </tr>
                </tbody>
             </table>
@@ -173,31 +170,52 @@
  layui.use(['form'], function () {
         var form = layui.form;
     });
-    var ckvue = new Vue({
+    var ygvue = new Vue({
     	el:"#app",
 		data:{	
 			list:[],
-			warehouseId:"",
-			warehouse_Name:""
+			staffId:"",
+			staffName:"",
+			teamId:"",
+			teamName:""
 		},methods:{
-			dianji(id,name){
-				ckvue.warehouseId=id;
-				ckvue.warehouse_Name=name;
+			dianji(id,name,bid){
+				ygvue.staffId=id;
+				ygvue.staffName=name;
+				ygvue.teamId=bid;
 			},
 			quhui(){
 				/* parent["listVm"].page.list[0].warehouseId=ckvue.warehouseId;
 				parent["listVm"].page.list[0].warehouse_Name=ckvue.warehouse_Name; */
-				parent.ckqh(ckvue.warehouseId,ckvue.warehouse_Name);
+				parent.ygqh(ygvue.staffId,ygvue.staffName,ygvue.teamName);
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
+			},
+			 getname:function(id){
+				console.log(id);
+				$.ajax({
+					type:"get",
+					url:"http://127.0.0.1:8080/TeamController/selectByPrimaryKey",
+					data:{
+						TeamId:id
+					},
+					success:function(res){
+						ygvue.teamName=res.teamName;
+						console.log(res.teamName);
+					}
+				});
 			}
 		},created:function(){
+			var this_=this;
 			$.ajax({
-			type:"get",
-			url:"http://127.0.0.1:8080/WarehouseController/selectAll",
-			success:function(res){
-				ckvue.list=res;
-			}
-		});
+				type:"get",
+				url:"http://127.0.0.1:8080/StaffController/selectAll",
+				success:function(res){
+					console.log(JSON.stringify(res));
+					this_.list=res;
+					this_.getname(res[0].teamId);
+					
+				}
+			});
 		}
     })
 </script>

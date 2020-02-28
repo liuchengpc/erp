@@ -32,6 +32,14 @@ public class Sales_return_warehouseController {
 		return dao.selectcount();
 	}
 	
+	@RequestMapping("/selectcountby")
+	@ResponseBody
+	public int selectcountby(String id) {
+		return dao.selectcountby(id);
+	}
+	
+	
+	
 	@RequestMapping("/update")
 	@ResponseBody
 	public int update(@RequestBody Sales_return_warehouse stu) {

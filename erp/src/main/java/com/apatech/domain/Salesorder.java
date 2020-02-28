@@ -17,11 +17,11 @@ public class Salesorder {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date soDocumentTime;//单据时间
     private String soDocumentnumber;//单据号码（根据单据时间自动生成的单据号如（2019122001））
-    private Double soDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
+    private String soDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private String sotId;//销售订单类型
-    private Integer soCustomerorder;//客户订单
+    private String soCustomerorder;//客户订单
     private String soTax;//是否含税（1=是，0=否）
     private String currencyId;//币别id
     private String soOderStatic;//单况（1=未结案，2=已结案，0=无效）
@@ -92,11 +92,11 @@ public class Salesorder {
         this.soDocumentnumber = soDocumentnumber == null ? null : soDocumentnumber.trim();
     }
 
-    public Double getSoDeliveryAddress() {
+    public String getSoDeliveryAddress() {
         return soDeliveryAddress;
     }
 
-    public void setSoDeliveryAddress(Double soDeliveryAddress) {
+    public void setSoDeliveryAddress(String soDeliveryAddress) {
         this.soDeliveryAddress = soDeliveryAddress;
     }
 
@@ -108,11 +108,11 @@ public class Salesorder {
         this.sotId = sotId;
     }
 
-    public Integer getSoCustomerorder() {
+    public String getSoCustomerorder() {
         return soCustomerorder;
     }
 
-    public void setSoCustomerorder(Integer soCustomerorder) {
+    public void setSoCustomerorder(String soCustomerorder) {
         this.soCustomerorder = soCustomerorder;
     }
 

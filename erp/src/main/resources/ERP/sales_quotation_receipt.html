@@ -263,10 +263,11 @@
 				}
 				
 			});
+			
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-
+					
 				//触发事件
 				var active = {
 					tabAdd: function() {
@@ -314,11 +315,13 @@
         });
     });*/
 			//创建vue实例
-			var receiptvue = new Vue({
+			var listVm = new Vue({
 				el: "#app",
 				data() {
 					return {
-						page: []
+						page: [
+							
+						]
 					}
 				},
 				methods: {
@@ -378,7 +381,7 @@
 						layer.open({
 							type:2,
 							title:"币别资料",
-							content:"currencyinfo.html",
+							content:"currencyTC1.html",
 							area:['762px','450px']
 						})
 					},
@@ -516,11 +519,12 @@
 					},
 					//新增订单
 					addinfo: function() {
-						   var data=this.page;
+						  var data=this.page;
 						   console.log(data);
-							for(var o in data){
-							      data[o] = "";
+							for(var o in data.list){
+							      data.list[o] = "";
 							 }
+							 $("input").val("");
 							var myDate = new Date;
 						    var year = myDate.getFullYear(); //获取当前年
 						    var mon = myDate.getMonth() + 1; //获取当前月

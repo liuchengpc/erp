@@ -114,7 +114,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">客户订单</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.soCustomerorder" name="soCustomerorder">
+									<input type="text" class="layui-input" >
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -413,7 +413,7 @@
 					$("#auditinfo").attr("class", "layui-btn");
 				}
 			});
-			var salesorder = new Vue({
+			var listVm = new Vue({
 				el: "#app",
 				data() {
 					return {
@@ -455,11 +455,21 @@
 					},
 					//客户资料弹窗
 					showClientWindow(){
+						var t=this;
 						layer.open({
 							type:2,
 							title:"客户资料",
 							content:"customerinfo.html",
-							area:['762px','450px']
+							area:['762px','450px'],
+							closeBtn: 1,//右上角
+							       success: function(layero, index){  
+							            var body = layer.getChildFrame('body', index);  
+							            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到子页面的窗口对象，执行iframe页的方法：iframeWin.method();
+							            //console.log(iframeWin);
+							            iframeWin.setVueName("info");
+										iframeWin.id = 100;
+										iframeWin.printId();
+							          }  
 						})
 					},
 					//币别资料弹窗
@@ -467,15 +477,16 @@
 						layer.open({
 							type:2,
 							title:"币别资料",
-							content:"currencyinfo.html",
+							content:"currencyTC1.html",
 							area:['762px','450px']
 						})
 					},
 					//新增订单
 					addinfo: function() {
+						$(":input").val("");
 						var data=this.page;
-						for(var o in data){
-							  data[o] = "";
+						for(var o in data.list){
+							  data.list[o] = "";
 						 }
 						var myDate = new Date;
 						var year = myDate.getFullYear(); //获取当前年

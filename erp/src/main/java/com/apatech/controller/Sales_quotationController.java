@@ -43,7 +43,7 @@ public class Sales_quotationController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<Sales_quotation> selectAllpage( Integer pageNum,Integer pageSize){
-		if(pageNum==null) {
+		if(pageNum==null){
 			pageNum=1;
 		}
 		if(pageSize==null){

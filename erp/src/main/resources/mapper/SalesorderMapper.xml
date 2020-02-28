@@ -5,9 +5,9 @@
     <id column="so_id" jdbcType="VARCHAR" property="soId" />
     <result column="so_document_time" jdbcType="DATE" property="soDocumentTime" />
     <result column="so_documentnumber" jdbcType="VARCHAR" property="soDocumentnumber" />
-    <result column="so_delivery_address" jdbcType="DOUBLE" property="soDeliveryAddress" />
+    <result column="so_delivery_address" jdbcType="VARCHAR" property="soDeliveryAddress" />
     <result column="sot_id" jdbcType="VARCHAR" property="sotId" />
-    <result column="so_customerorder" jdbcType="INTEGER" property="soCustomerorder" />
+    <result column="so_customerorder" jdbcType="VARCHAR" property="soCustomerorder" />
     <result column="so_tax" jdbcType="VARCHAR" property="soTax" />
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
     <result column="so_oder_static" jdbcType="VARCHAR" property="soOderStatic" />
@@ -78,7 +78,7 @@
       so_custom4, so_custom5, so_custom6
       )
     values (#{soId,jdbcType=VARCHAR}, #{soDocumentTime,jdbcType=DATE}, #{soDocumentnumber,jdbcType=VARCHAR}, 
-      #{soDeliveryAddress,jdbcType=DOUBLE}, #{sotId,jdbcType=VARCHAR}, #{soCustomerorder,jdbcType=INTEGER}, 
+      #{soDeliveryAddress,jdbcType=VARCHAR}, #{sotId,jdbcType=VARCHAR}, #{soCustomerorder,jdbcType=VARCHAR}, 
       #{soTax,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{soOderStatic,jdbcType=VARCHAR}, 
       #{staffId,jdbcType=VARCHAR}, #{teamId,jdbcType=VARCHAR}, #{soMonograph,jdbcType=VARCHAR}, 
       #{soReviewer,jdbcType=VARCHAR}, #{soSubordinate,jdbcType=VARCHAR}, #{soWatchword,jdbcType=VARCHAR}, 
@@ -194,13 +194,13 @@
         #{soDocumentnumber,jdbcType=VARCHAR},
       </if>
       <if test="soDeliveryAddress != null">
-        #{soDeliveryAddress,jdbcType=DOUBLE},
+        #{soDeliveryAddress,jdbcType=VARCHAR},
       </if>
       <if test="sotId != null">
         #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
-        #{soCustomerorder,jdbcType=INTEGER},
+        #{soCustomerorder,jdbcType=VARCHAR},
       </if>
       <if test="soTax != null">
         #{soTax,jdbcType=VARCHAR},
@@ -286,13 +286,13 @@
         so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
       </if>
       <if test="soDeliveryAddress != null">
-        so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+        so_delivery_address = #{soDeliveryAddress,jdbcType=VARCHAR},
       </if>
       <if test="sotId != null">
         sot_id = #{sotId,jdbcType=VARCHAR},
       </if>
       <if test="soCustomerorder != null">
-        so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+        so_customerorder = #{soCustomerorder,jdbcType=VARCHAR},
       </if>
       <if test="soTax != null">
         so_tax = #{soTax,jdbcType=VARCHAR},
@@ -373,9 +373,9 @@
     update salesorder
     set so_document_time = #{soDocumentTime,jdbcType=DATE},
       so_documentnumber = #{soDocumentnumber,jdbcType=VARCHAR},
-      so_delivery_address = #{soDeliveryAddress,jdbcType=DOUBLE},
+      so_delivery_address = #{soDeliveryAddress,jdbcType=VARCHAR},
       sot_id = #{sotId,jdbcType=VARCHAR},
-      so_customerorder = #{soCustomerorder,jdbcType=INTEGER},
+      so_customerorder = #{soCustomerorder,jdbcType=VARCHAR},
       so_tax = #{soTax,jdbcType=VARCHAR},
       currency_id = #{currencyId,jdbcType=VARCHAR},
       so_oder_static = #{soOderStatic,jdbcType=VARCHAR},

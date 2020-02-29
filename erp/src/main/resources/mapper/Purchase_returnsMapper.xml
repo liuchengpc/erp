@@ -37,7 +37,8 @@
     <result column="pure_custom5" jdbcType="VARCHAR" property="pureCustom5" />
     <result column="pure_custom6" jdbcType="VARCHAR" property="pureCustom6" />
     <result column="createDate" jdbcType="DATE" property="createDate" />
-     <result column="lineId" jdbcType="INTEGER" property="lineId" />
+    <result column="editDate" jdbcType="DATE" property="editDate" />
+    <result column="lineId" jdbcType="INTEGER" property="lineId" />
   </resultMap>
   <sql id="Base_Column_List">
     pure_id, supplier_id, pure_engname, puret_id, pure_price_include_tax, warehouse_id, 
@@ -45,7 +46,8 @@
     pure_foreign_trade, pure_sunnum, pure_sunmoney, pure_tax, pure_include_tax_amount, 
     pure_delivery_address, pure_buyer, pure_belongs_section, pure_belongs_project, pure_executor, 
     pure_checkagain_staff, pure_header_provision, pure_end_clause, pure_remark, pure_audition, 
-    pure_yn, pure_custom1, pure_custom2, pure_custom3, pure_custom4, pure_custom5, pure_custom6,createDate,lineId
+    pure_yn, pure_custom1, pure_custom2, pure_custom3, pure_custom4, pure_custom5,
+    pure_custom6,createDate,editDate,lineId
   </sql>
 
     <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -79,8 +81,8 @@
       pure_end_clause, pure_remark, pure_audition, 
       pure_yn, pure_custom1, pure_custom2, 
       pure_custom3, pure_custom4, pure_custom5, 
-      pure_custom6),createDate,lineId
-    values (#{pureId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{pureEngname,jdbcType=VARCHAR}, 
+      pure_custom6,createDate,editDate)
+    values (#{pureId,jdbcType=VARCHAR}, #{supplierId,jdbcType=VARCHAR}, #{pureEngname,jdbcType=VARCHAR},
       #{puretId,jdbcType=VARCHAR}, #{purePriceIncludeTax,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, 
       #{pureSingleStatus,jdbcType=VARCHAR}, #{pureDocumentDate,jdbcType=DATE}, #{pureDocumentNumber,jdbcType=VARCHAR}, 
       #{currencyId,jdbcType=VARCHAR}, #{pureExchangeRate,jdbcType=REAL}, #{pureForeignTrade,jdbcType=INTEGER}, 
@@ -91,7 +93,7 @@
       #{pureEndClause,jdbcType=VARCHAR}, #{pureRemark,jdbcType=VARCHAR}, #{pureAudition,jdbcType=VARCHAR}, 
       #{pureYn,jdbcType=VARCHAR}, #{pureCustom1,jdbcType=VARCHAR}, #{pureCustom2,jdbcType=VARCHAR}, 
       #{pureCustom3,jdbcType=VARCHAR}, #{pureCustom4,jdbcType=VARCHAR}, #{pureCustom5,jdbcType=VARCHAR}, 
-      #{pureCustom6,jdbcType=VARCHAR},{createDate,jdbcType=DATE},#{lineId,jdbcType=INTEGER}, )
+      #{pureCustom6,jdbcType=VARCHAR},now(),now())
   </insert>
 
   <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_returns">
@@ -196,12 +198,12 @@
       <if test="pureCustom6 != null">
         pure_custom6,
       </if>
-       <if test="createDate != null">
-        createDate,
-       </if>
-       <if test="lineId != null">
-        lineId,
-       </if>
+      <if test="createDate == null">
+       createDate,
+      </if>
+      <if test="editDate == null">
+        editDate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="pureId != null">
@@ -303,20 +305,17 @@
       <if test="pureCustom6 != null">
         #{pureCustom6,jdbcType=VARCHAR},
       </if>
-      <if test="pureDocumentDate != null">
-      	#{createDate,jdbcType=DATE},
+      <if test="createDate == null">
+        now(),
        </if>
-      <if test="lineId != null">
-      	#{lineId,jdbcType=INTEGER},
-       </if>
+      <if test="editDate == null">
+        now(),
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_returns">
     update purchase_returns
     <set>
-      <if test="supplierId != null">
-        supplier_id = #{supplierId,jdbcType=VARCHAR},
-      </if>
       <if test="pureEngname != null">
         pure_engname = #{pureEngname,jdbcType=VARCHAR},
       </if>
@@ -410,12 +409,9 @@
       <if test="pureCustom6 != null">
         pure_custom6 = #{pureCustom6,jdbcType=VARCHAR},
       </if>
-      <if test="pureDocumentDate != null">
-        createDate,
-       </if>
-      <if test="lineId != null">
-        lineId,
-       </if>
+      <if test="editDate == null">
+        editDate = now()
+      </if>
     </set>
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
@@ -455,8 +451,7 @@
       pure_custom4 = #{pureCustom4,jdbcType=VARCHAR},
       pure_custom5 = #{pureCustom5,jdbcType=VARCHAR},
       pure_custom6 = #{pureCustom6,jdbcType=VARCHAR},
-      createDate = #{createDate,jdbcType=DATE},
-      lineId = #{lineId,jdbcType=INTEGER},
+      editDate = now()
     where pure_id = #{pureId,jdbcType=VARCHAR}
   </update>
     <resultMap id="purchaseReturnMap" type="com.apatech.pojo.PurchaseReturnsPojo" extends="BaseResultMap">
@@ -506,7 +501,4 @@
                        )
                );
   </select>
-
-
 </mapper>
-

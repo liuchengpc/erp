@@ -6,10 +6,21 @@ import {
     getPrev,
     getPureId,
     insertWithDetails
-}from "../rest/purchase_return_receipt_rest.js";
-let orderStatusMeta = {
+} from "../rest/purchase_return_receipt_rest.js";
 
+let orderStatusMeta = {
+    "insert": 0, // 新增
+    "browse": 1, // 浏览
+    "delete": 2, // 删除
+    "review": 3, // 审核
+    "change": 4, // 修改
+    "unReview": 5, // 取消审核
+    "save": 6, // 保存
+    "edit": 7, // 编辑
+    "reset": 8, // 重置
+    "refresh": 9 // 刷新
 };
+const defaultOrderStatus = orderStatusMeta.browse;
 let viewModel = new Vue({
     el: '#app',
     data() {
@@ -45,17 +56,26 @@ let viewModel = new Vue({
                 details: [], // 详表内容
             },
             rules: {
-                require: [
+                supplierId: [
                     {required: true, message: '请选择供应商', trigger: 'blur'}
                 ],
-                supplier: [
-                    {required: true, message: '请选择供应商', trigger: 'blur'}
+                pureEngname: [
+                    {required: true, message: '请输入供应商地址', trigger: 'blur'}
                 ],
-                supplierAddress: [
-                    {required: true, message: '请输入供应商地址', trigger: 'change'}
+                warehouseId:[
+                    {required: true, message: '请选择仓库', trigger: 'blur'}
                 ],
-                date: [
-                    {type: 'date', required: false, message: '请选择日期', trigger: 'change'}
+                pureSingleStatus:[
+                    {required: true, message: '请输入凭证编号', trigger: 'blur'}
+                ],
+                pureDocumentDate:[
+                    { type: 'date', required: true, message: '请选择日期', trigger: 'blur' }
+                ],
+                currencyId:[
+                    {required: true, message: '请选择凭证编号', trigger: 'blur'}
+                ],
+                pureExchangeRate:[
+                    {required: true, message: '请输入汇率', trigger: 'blur'}
                 ]
             },
             activeName: "first",
@@ -63,34 +83,30 @@ let viewModel = new Vue({
                 date: '2016-05-03',
                 name: '王小虎',
                 address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-08',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-06',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-07',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }]
-        }
+            }],
+            orderStatus: defaultOrderStatus,
+            edit: true,
+            test: '',
+            dialogFormVisible: false,
+            charLength: 1,
+            check: false,
+            options:[
+                {
+                  value:'1',
+                  label:'是'
+                },
+                {
+                    value:'0',
+                    label:'否'
+                }
+            ],
+            lineId: 2
+        };
     },
     methods: {
+        handleCurrentChange(){
+
+        },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
@@ -109,10 +125,165 @@ let viewModel = new Vue({
         },
         handleClick(row) {
             console.log(row);
+        },
+        getLast() {
+            this.lineId = 3;
+            getLast().then(resp => {
+                this.purechaseReturn = resp.data;
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        getPrev() {
+            getPrev(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        getNext() {
+            getNext(this.lineId).then(resp => {
+                this.purechaseReturn = resp.data;
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        getFirst() {
+            this.lineId = 1;
+            getFirst().then(resp => {
+                this.purechaseReturn = resp.data;
+                console.log(resp);
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        insertOrder() {
+            console.log(orderStatusMeta.insert);
+            this.orderStatus = orderStatusMeta.insert;
+            this.emptyPurchaseReturnProp();
+            this.getPureId();
+        },
+        saveOrder() {
+            if(this.orderStatus === orderStatusMeta.insert){
+                // 新增
+                // insertWithDetails(JSON.stringify(this.purechaseReturn));
+                this.purechaseReturn.pureAudition = 0;
+                console.log(JSON.stringify(this.purechaseReturn));
+                console.log(this.purechaseReturn);
+            }else if(this.orderStatus === orderStatusMeta.edit){
+                // 修改
+                // updateWithDetails(JSON.stringify(this.purechaseReturn));
+                this.purechaseReturn.pureAudition = 0;
+                console.log(JSON.stringify(this.purechaseReturn));
+                console.log(this.purechaseReturn);
+            }
+            this.orderStatus = orderStatusMeta.save;
+        },
+        editOrder() {
+            this.orderStatus = orderStatusMeta.edit;
+        },
+        deleteOrder() {
+            this.orderStatus = orderStatusMeta.delete;
+            console.log("删除编号为pureId的记录" + this.purechaseReturn.pureId);
+            // deleteWithDetails(JSON.stringify(this.purechaseReturn));
+        },
+        resetOrder() {
+            this.orderStatus = orderStatusMeta.reset;
+        },
+        refreshOrder() {
+            this.orderStatus = orderStatusMeta.refresh;
+        },
+        reviewOrder() {
+            this.orderStatus = orderStatusMeta.review;
+            this.purechaseReturn.pureAudition = "1";
+
+        },
+        unReviewOrder() {
+            this.purechaseReturn.pureAudition = "0";
+            this.orderStatus = orderStatusMeta.unReview;
+        },
+        getPureId(){
+            getPureId().then(resp => {
+                this.purechaseReturn.pureId = resp.data;
+                this.purechaseReturn.pureDocumentNumber = resp.data;
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        emptyPurchaseReturnProp(){
+            this.purechaseReturn = {
+                pureId: "",
+                supplierId: "",
+                pureEngname: "",
+                puretId: "",
+                purePriceIncludeTax: '',
+                warehouseId: "",
+                pureSingleStatus: "",
+                pureDocumentDate: "",
+                pureDocumentNumber: "",
+                currencyId: "",
+                pureExchangeRate: "",
+                pureForeignTrade: '',
+                pureSunnum: "",
+                pureSunmoney: "",
+                pureTax: "",
+                pureIncludeTaxAmount: "",
+                pureDeliveryAddress: "",
+                pureBuyer: "",
+                pureBelongsSection: "",
+                pureBelongsProject: "",
+                pureExecutor: "",
+                pureCheckagainStaff: "",
+                pureHeaderProvision: "",
+                pureEndClause: "",
+                pureRemark: "",
+                pureAudition: "",
+                pureYn: "",
+                details: []
+            };
+        },
+        addDetailsRow(){
+            this.purechaseReturn.details.push({
+                matterId:"1",
+                pureId:"",
+                puredAuditing:"",
+                puredBatchNumber:"",
+                puredDocumentDate:"",
+                puredDocumentNumber:"",
+                puredEngname:"",
+                puredId:"",
+                puredIfgift:"",
+                puredIncludingTaxAmount:"",
+                puredInvoiceDetails:"",
+                puredMoney:"",
+                puredPrice:'',
+                puredPriceIncludeTax:"",
+                puredRemark:"",
+                puredRemarks:"",
+                puredSingleStatus:"",
+                puredSourceNo:"",
+                puredSourceOrder:"",
+                puredTaxAmount:"",
+                puredTaxRate:"",
+                puredYn:"",
+            });
         }
     },
     created: function () {
-
+        this.getLast();
     },
-    watch: {}
+    watch: {
+        orderStatus: function (newOrderStatus, originalOrderStatus) {
+            console.log("newOrderStatus:" + newOrderStatus);
+            console.log("originalOrderStatus:" + originalOrderStatus);
+            this.edit = newOrderStatus !== 0 && newOrderStatus !== 7;
+            if (!this.edit) {
+                console.log("render");
+            }
+            console.log(this.edit);
+        }
+    }
 });

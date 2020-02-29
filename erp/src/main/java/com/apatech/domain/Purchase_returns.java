@@ -49,7 +49,10 @@ public class Purchase_returns {
     private String pureCustom6;//自定义6
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date createDate;//修改时间
+    private Date createDate;//创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date editDate; // 修改时间
     private int lineId;//行编号
     
     

@@ -339,13 +339,31 @@
 			 handler(newName, oldName) {
 			 	$.each(newName.list, function(a,b) {
 			 		$.each(b.list, function(c,d) {
-			 			sales_returnboundvue.page.list[0].list[c].srwdPrice=parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber);
-			 			sales_returnboundvue.page.list[0].list[c].srwdMoney=parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice);
-			 			sales_returnboundvue.page.list[0].list[c].srwdTaxAmount=parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate);
-			 			sales_returnboundvue.page.list[0].list[c].srwdIncludingTaxAmount=parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount);
-			 			sales_returnboundvue.tableshuax();
-			 			sales_returnboundvue.bianji();
+			 			$.ajax({
+			 				type:"get",
+			 				url:host+"Warehouse_detailController/selectbyid",
+			 				data:{id:sales_returnboundvue.page.list[0].warehouseId,sid:d.matterId},
+			 				async:false,
+			 				success:function(res){	
+			 						if(res>=d.srwdSingleStatus){
+				 						sales_returnboundvue.page.list[0].list[c].srwdPrice=parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber);
+							 			sales_returnboundvue.page.list[0].list[c].srwdMoney=parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice);
+							 			sales_returnboundvue.page.list[0].list[c].srwdTaxAmount=parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate);
+							 			sales_returnboundvue.page.list[0].list[c].srwdIncludingTaxAmount=parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount);	
+			 						}else{
+			 							d.srwdSingleStatus=0;
+			 							sales_returnboundvue.page.list[0].list[c].srwdPrice=parseFloat(d.srwdDocumentDate)*parseFloat(d.srwdDocumentNumber);
+							 			sales_returnboundvue.page.list[0].list[c].srwdMoney=parseFloat(d.srwdSingleStatus)*parseFloat(d.srwdPrice);
+							 			sales_returnboundvue.page.list[0].list[c].srwdTaxAmount=parseFloat(d.srwdMoney)*parseFloat(d.srwdTaxRate);
+							 			sales_returnboundvue.page.list[0].list[c].srwdIncludingTaxAmount=parseFloat(d.srwdMoney)-parseFloat(d.srwdTaxAmount);	
+										//alert("库存不足")
+			 						}
+	 							}
+			 				
+			 			});
 			 		});
+			 		sales_returnboundvue.tableshuax();
+			 		sales_returnboundvue.bianji();
 			 	});
 		    
 		    },
@@ -384,14 +402,26 @@
 				}
 			},
 			shenhe:function(id,sid){
+				var name="";
+				if(sid==1){
+					name="审核";
+				}else{
+					name="反审核";
+				}
+				if(confirm("是否"+name+"？")){
 				$.ajax({
 					type:"get",
 					data:{id:id,sid:sid},
 					url:host+"Sales_return_warehouseController/autddert",
 					success:function(resulet){
-						
+						if(resulet==1){
+							alert(name+"成功！");
+						}else{
+							alert(name+"失败！");
+						}
 					}
 				});
+				}
 			},
 			baocun:function(){
 				let user=$("#app input:eq(0)").val();

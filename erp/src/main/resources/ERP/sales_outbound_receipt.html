@@ -348,14 +348,32 @@
 			 page:{			
 			 handler(newName, oldName) {
 			 	$.each(newName.list, function(a,b) {
-			 		$.each(b.list, function(c,d) {
-			 			sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
-			 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
-			 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
-			 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);
-			 			sales_outboundvue.tableshuax();
-			 			sales_outboundvue.bianji();
+			 		$.each(b.list, function(c,d) {				 						 			
+			 			$.ajax({
+			 				type:"get",
+			 				url:host+"Warehouse_detailController/selectbyid",
+			 				data:{id:sales_outboundvue.page.list[0].warehouseId,sid:d.matterId},
+			 				async:false,
+			 				success:function(res){	
+			 						if(res>=d.sowdSingleStatus){
+				 						sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+							 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+							 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+							 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);	
+			 						}else{
+			 							d.sowdSingleStatus=0;
+			 							sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+							 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+							 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+							 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);	
+										//alert("库存不足")
+			 						}
+	 							}
+			 				
+			 			});
 			 		});
+			 		sales_outboundvue.tableshuax();
+			 		sales_outboundvue.bianji();
 			 	});
 		   
 		    },
@@ -394,14 +412,26 @@
 				}
 			},
 			shenhe:function(id,sid){
+				var name="";
+				if(sid==1){
+					name="审核";
+				}else{
+					name="反审核";
+				}
+				if(confirm("是否"+name+"？")){
 				$.ajax({
 					type:"get",
 					data:{id:id,sid:sid},
 					url:host+"Sales_out_warehouseController/autddert",
 					success:function(resulet){
-						
+						if(resulet==1){
+							alert(name+"成功！");
+						}else{
+							alert(name+"失败！");
+						}
 					}
 				});
+				}
 			},
 			baocun:function(){
 				let user=$("#app input:eq(0)").val();

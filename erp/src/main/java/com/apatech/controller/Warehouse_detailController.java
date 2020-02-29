@@ -27,6 +27,12 @@ public class Warehouse_detailController {
 	@Autowired
 	private Warehouse_detailService dao;
 	
+	@RequestMapping("selectbyid")
+	@ResponseBody
+	public int selectbyid(String id,String sid){
+		return dao.selectbyid(id, sid);
+    }
+	
 	/**
 	 * 分页
 	 * @param pageNum

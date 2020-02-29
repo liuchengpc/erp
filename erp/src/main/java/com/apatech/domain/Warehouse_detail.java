@@ -37,7 +37,7 @@ public class Warehouse_detail {
 				+ wdCustom5 + ", wdCustom6=" + wdCustom6 + "]";
 	}
 
-	public Warehouse_detail(String wdId, Integer warehouseId, Integer mtId, Float wdUnitRice, Integer wdNumber,
+	public Warehouse_detail(String wdId, String warehouseId, String mtId, Float wdUnitRice, Integer wdNumber,
 			Integer wdInorout, Integer wdLastbalancenumber, String wdAuditing, String wdYn, String wdCustom1,
 			String wdCustom2, String wdCustom3, String wdCustom4, String wdCustom5, String wdCustom6) {
 		super();

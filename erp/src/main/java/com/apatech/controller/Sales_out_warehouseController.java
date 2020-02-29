@@ -77,7 +77,7 @@ public class Sales_out_warehouseController {
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
 			count+=1;
 			int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
-			Warehouse_detail sky=new Warehouse_detail(count+"",Integer.parseInt(stu.getWarehouseId()), Integer.parseInt(item.getMatterId()), item.getSowdPrice(), item.getSowdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
+			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(),item.getMatterId(), item.getSowdPrice(), item.getSowdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
 			wares.insert(sky);
 		}
 		}else {

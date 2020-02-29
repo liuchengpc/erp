@@ -84,6 +84,8 @@ public class Purchase_returnsService {
 
 	@Transactional(rollbackFor = Exception.class)
 	public void insertWithDetails(PurchaseReturnsPojo returnsPojo) throws Exception {
+		returnsPojo.setPureId(dao.selectPureId());
+		returnsPojo.setPureDocumentNumber(dao.selectPureId());
 		dao.insertWithDetails(returnsPojo);
 		detailedMapper.insertList(returnsPojo.getDetails());
 	}

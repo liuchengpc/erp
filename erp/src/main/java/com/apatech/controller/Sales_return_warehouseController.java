@@ -1,5 +1,7 @@
 package com.apatech.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.apatech.domain.Sales_out_warehouse;
+import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.domain.Sales_return_warehouse_detailed;
+import com.apatech.domain.Warehouse_detail;
 import com.apatech.service.Sales_return_warehouse_detailedService;
+import com.apatech.service.Warehouse_detailService;
 import com.apatech.service.Sales_return_warehouseService;
 import com.github.pagehelper.PageInfo;
 
@@ -25,6 +32,9 @@ public class Sales_return_warehouseController {
 	
 	@Autowired
 	private Sales_return_warehouse_detailedService daoo;	
+	
+	@Autowired
+	private Warehouse_detailService wares;	
 	
 	@RequestMapping("/selectcount")
 	@ResponseBody
@@ -55,6 +65,20 @@ public class Sales_return_warehouseController {
 	@RequestMapping("/autddert")
 	@ResponseBody
 	public int autddert(String id,String sid) {
+		Sales_return_warehouse stu = dao.selectByPrimaryKey(id);
+		stu.setList(daoo.selectlist(stu.getSrwId()));
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		if(sid.equals("1")) {	
+		int count=wares.selectcount();
+		for (Sales_return_warehouse_detailed item : stu.getList()) {
+			count+=1;
+			int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
+			Warehouse_detail sky=new Warehouse_detail(count+"",Integer.parseInt(stu.getWarehouseId()), Integer.parseInt(item.getMatterId()), item.getSrwdPrice(), item.getSrwdSingleStatus(), 1, count2, "0","0", df.format(new Date()), null, null, null, null, null);
+			wares.insert(sky);
+		}
+		}else {
+			wares.deletebysj(df.format(stu.getSrwDocumentDate())+"");
+		}
 		return dao.selectlist(id, sid);
 		
 	}

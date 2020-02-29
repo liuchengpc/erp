@@ -459,7 +459,7 @@ CREATE TABLE `customer` (
 /*Data for the table `customer` */
 
 insert  into `customer`(`customer_id`,`customer_name`,`customer_easyname`,`customer_english_name`,`customer_charge_person`,`customer_account_ownership`,`customer_type`,`currency_id`,`customer_principalman`,`customer_linkman`,`customer_linktela`,`customer_linktelb`,`customer_linktelc`,`customer_mobilephone`,`ada_id`,`customer_taxcheckno`,`customer_capitalmoney`,`customer_job`,`customer_email`,`customer_webadd`,`customer_faxno`,`customer_cufirstsaleout`,`customer_cufirstsalereturn`,`customer_curecentsaleout`,`customer_curecentsalereturn`,`customer_curecentvisit`,`customer_cuordervisit`,`customer_discountpoint`,`customer_salelv`,`customer_cuiftax`,`customer_latentcusno`,`customer_tanddate`,`endbusinessday`,`customer_creditmoney`,`customer_residuemonet`,`customer_cuendorderday`,`customer_honestlv`,`customer_cufirstcollect`,`customer_houldcollect`,`customer_cuendcollect`,`cuendshouldcollect`,`customer_cudecoration`,`Receivable_id`,`it_id`,`It_Accounts_eceivable_subject`,`It_deposit_received_subject`,`bank_id`,`customer_Auditing`,`customer_yn`,`customer_custom1`,`customer_custom2`,`customer_custom3`,`customer_custom4`,`customer_custom5`,`customer_custom6`) values 
-('1','株洲伟大',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
+('1','株洲伟大','株洲伟大',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL),
 ('2','株洲伟大2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `customer_address` */
@@ -1888,10 +1888,12 @@ CREATE TABLE `receivable` (
 /*Data for the table `receivable` */
 
 insert  into `receivable`(`receivable_id`,`customer_id`,`scs_id`,`staff_id`,`currency_id`,`project_id`,`customer_name`,`payables_sat_name1`,`payables_Price1`,`payables_sat_name2`,`payables_Price2`,`payables_sat_name3`,`payables_Price3`,`payables_zhekou`,`payables_endtime`,`payables_payablestime`,`payables_currency_name`,`payables_currency_inexchange`,`payables_type`,`payables_voucherNo`,`payables_team_name`,`payables_project_name`,`payables_billpersonnel`,`payables_reviewers`,`payables_remarks`,`payables_auditstatus`,`payables_auditstatus_Auditing`,`payables_auditstatus_yn`,`payables_custom1`,`payables_custom2`,`payables_custom3`,`payables_custom4`,`payables_custom5`,`payables_custom6`,`payables_custom7`,`payables_custom8`,`payables_custom9`,`payables_custom10`) values 
-('20200202001','1',1,'1','1','20200202003','株洲伟大',1,100,1,0,2,0,NULL,'2020-02-11','2020-02-02 00:00:00','1','1','0','1','直销部','日进斗金3','admin','admin',NULL,NULL,NULL,'0','20200202','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-('20200202002','2',1,'1','20200202003','20200204001','株洲伟大2',1,49,1,0,2,0,NULL,'2020-02-04','2020-02-20 00:00:00','欧元','1','0','1','渠道部','个人分','admin','admin',NULL,NULL,NULL,'0','0','0',NULL,NULL,NULL,NULL,NULL,NULL,'20200131003',NULL),
-('20200202003','1',1,'1','1','1','株洲伟大2',2,85,3,0,2,1,NULL,'2020-02-13','2020-02-27 00:00:00','1','1','0','1','1','1','1','1',NULL,NULL,NULL,'0','0','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-('20200202004','1',1,'1','1','1','株洲伟大2',2,53,2,0,2,2,NULL,'2020-02-08','2020-02-29 00:00:00','1','1','0','1','1','1','1','1',NULL,NULL,NULL,'0','0','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+('20200202001','1',1,'1','1','20200202003','株洲伟大',1,100,1,0,2,0,NULL,'2020-02-11','2020-02-02 00:00:00','1','1','0','1','销售部','日进斗金3','admin','admin',NULL,0,NULL,'0','20200202','0',NULL,NULL,NULL,NULL,NULL,NULL,'20200228001',NULL),
+('20200202002','2',1,'1','20200202003','20200204001','株洲伟大2',1,49,1,0,2,0,NULL,'2020-02-04','2020-02-20 00:00:00','欧元','1','0','1','渠道部','个人分','admin','admin',NULL,1,NULL,'0','0','0',NULL,NULL,NULL,NULL,NULL,NULL,'20200131003',NULL),
+('20200202003','1',1,'1','1','1','株洲伟大',2,0,3,0,2,0,NULL,'2020-02-13','2020-02-27 00:00:00','1','1','0','1','渠道部','1','1','1',NULL,0,NULL,'1','0','1',NULL,NULL,NULL,NULL,NULL,NULL,'20200131003',NULL),
+('20200202004','1',1,'1','1','1','株洲伟大2',2,53,2,0,2,2,NULL,'2020-02-08','2020-02-29 00:00:00','1','1','0','1','直销部','1','1','1',NULL,1,NULL,'0','0','1',NULL,NULL,NULL,NULL,NULL,NULL,'20200131002',NULL),
+('20200228002','2',NULL,'','','','株洲伟大2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','admin','admin','',0,'','0','20200228','1','','','','','','','',''),
+('20200228004','2',NULL,'','20200202003','20200202003','株洲伟大2',NULL,0,NULL,0,NULL,0,NULL,NULL,NULL,'欧元','','','','销售部','日进斗金3','admin','admin','',0,'','0','20200228','1','','','','','','','20200228001','');
 
 /*Table structure for table `receivable_detail` */
 
@@ -2358,9 +2360,16 @@ CREATE TABLE `sales_receivables` (
   `sr_custom9` varchar(50) DEFAULT NULL COMMENT '自定义栏九',
   `sr_custom10` varchar(50) DEFAULT NULL COMMENT '自定义栏十',
   PRIMARY KEY (`sr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 /*Data for the table `sales_receivables` */
+
+insert  into `sales_receivables`(`sr_id`,`sr_type`,`sr_number`,`sr_date`,`sr_pc_id`,`sr_pc_name`,`sr_team_id`,`sr_team_name`,`sr_buyer`,`sr_project_name`,`sr_currency`,`sr_exchange_rate`,`sr_payablesmain_price`,`sr_currentbalance`,`sr_discountamount`,`sr_amountcharged`,`sr_offsetamount`,`sr_auditing`,`sr_yn`,`sr_custom1`,`sr_custom2`,`sr_custom3`,`sr_custom4`,`sr_custom5`,`sr_custom6`,`sr_custom7`,`sr_custom8`,`sr_custom9`,`sr_custom10`) values 
+(1,'fdssa','254',NULL,'2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,55555,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,''),
+(3,'fss','fsafd',NULL,'fsf',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,27527300,NULL,NULL,1,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'20200202004'),
+(4,'sdfasf','fewfwf11111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'20200202003'),
+(6,'fdssa','254',NULL,'2',NULL,NULL,NULL,'牛采购',NULL,NULL,NULL,NULL,55555,NULL,NULL,NULL,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'20200228002'),
+(17,'fdssa','2019121301','2019-12-13 08:00:00','200903K00001','株洲伟大','2','直销部','刘直销',NULL,'欧元',1,9999999,55555,0,0,0,NULL,'0',NULL,NULL,NULL,NULL,NULL,NULL,'1',NULL,NULL,'20200228004');
 
 /*Table structure for table `sales_return_warehouse` */
 
@@ -2815,7 +2824,8 @@ insert  into `team`(`team_id`,`team_name`,`team_english_name`,`team_abate`,`team
 ('20200131001','财务部','caiwubus',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
 ('20200131002','直销部','zhixiaobu',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
 ('20200131003','渠道部','qudaobu',NULL,NULL,NULL,'0','20200131',NULL,NULL,NULL,NULL,NULL),
-('20200214001','daf','',NULL,'','','1','20200214','','','','','');
+('20200214001','daf','',NULL,'','','1','20200214','','','','',''),
+('20200228001','销售部','',NULL,'','','0','20200228','','','','','');
 
 /*Table structure for table `updown_program` */
 
@@ -2872,8 +2882,8 @@ DROP TABLE IF EXISTS `warehouse_detail`;
 
 CREATE TABLE `warehouse_detail` (
   `wd_id` varchar(50) NOT NULL COMMENT '仓库明细id（主键 唯一）',
-  `warehouse_id` int(50) DEFAULT NULL COMMENT '仓库id',
-  `mt_id` int(11) DEFAULT NULL COMMENT '物料id',
+  `warehouse_id` varchar(50) DEFAULT NULL COMMENT '仓库id',
+  `mt_id` varchar(50) DEFAULT NULL COMMENT '物料id',
   `wd_unit_rice` float DEFAULT NULL COMMENT '单价（成本）',
   `wd_number` int(11) DEFAULT NULL COMMENT '数量',
   `wd_inorout` int(11) DEFAULT NULL COMMENT '进出库状态（0,1表示）',

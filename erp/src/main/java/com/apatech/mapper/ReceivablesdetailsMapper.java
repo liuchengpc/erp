@@ -26,7 +26,7 @@ public interface ReceivablesdetailsMapper {
 	
     int deleteByPrimaryKey(String recedetailId);
     
-    int deleteByzbidlc(String receivablesbillId);
+    int deleteByzbidlc(@Param("receivablesbillId")String receivablesbillId);
 
     int insert(Receivablesdetails record);
 

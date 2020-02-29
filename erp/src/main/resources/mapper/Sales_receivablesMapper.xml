@@ -47,6 +47,22 @@
 	    where sr_Yn=0
 	    ORDER BY sr_id DESC
   </select>
+  
+   <select id="selectAllpagebyidlc" parameterType="java.lang.String" resultMap="BaseResultMap"><!-- 查商品记录 -->
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_receivables 
+	    where sr_Yn=0 and sr_pc_id=#{srPcId,jdbcType=VARCHAR} and sr_currentbalance>0 and sr_custom7=0
+	    ORDER BY sr_id DESC
+  </select>
+   <select id="selectAllpagebyidlc2" parameterType="java.lang.String" resultMap="BaseResultMap"><!-- 查详表 -->
+	    select 
+	    <include refid="Base_Column_List" />
+	    from sales_receivables 
+	    where sr_Yn=0 and sr_custom10=#{srCustom10,jdbcType=VARCHAR} and sr_custom7=1 
+	    ORDER BY sr_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -56,6 +72,10 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sales_receivables
     where sr_id = #{srId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByzbidlc" parameterType="java.lang.String">
+    delete from sales_receivables
+    where sr_custom10 = #{receivablesbillId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.apatech.domain.Sales_receivables">
     insert into sales_receivables (sr_id, sr_type, sr_number, 

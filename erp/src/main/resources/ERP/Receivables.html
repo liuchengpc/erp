@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,7 +91,7 @@
 			                <div class="layui-form-item">
 			                    <label class="layui-form-label">终止帐月</label>
 			                    <div class="layui-input-block">
-			                        <!--<input type="text" name="title"  class="layui-input" v-model="pages.payablesEndtime" v-bind:disabled="diasabledInput">-->
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesEndtime" v-bind:disabled="diasabledInput">
 			                         <input type="text" class="layui-input" id="file-time2" placeholder="yyyy-MM-dd" v-model="pages.payablesEndtime" v-bind:disabled="diasabledInput">
 			                    </div>
 			                </div>
@@ -144,9 +144,7 @@
 			            </ul>
 			            <div class="layui-tab-content" style="padding: 10px 0;">
 			                <div class="layui-tab-item layui-show">
-			                   <!-- <table id="materialsContent" class="layui-hide">
-			
-			                    </table>-->
+			                   
 			                    <table class="layui-hide" id="test" lay-filter="test">
 			                    	
 			                    </table>
@@ -368,7 +366,7 @@
 							
 							  table.render({
 							    elem: '#test'
-							    ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
+							    ,url:'http://127.0.0.1:8080/Sales_receivablesController/selectAllpagebyidlc?receivablesbillId=20200202001'
 							    ,toolbar: '#toolbarDemo'
 							    ,title: '用户数据表'
 							    ,totalRow: true
@@ -937,6 +935,1565 @@
             ]]
         });
     });*/
+</script>
+
+
+</body>
+</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>应收冲款单</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="css/bootstrap.css" />    
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/brands.css" rel="stylesheet">
+    <link href="css/solid.css" rel="stylesheet">
+    
+    <style>
+		/* !important 设置样式优先级最高
+		 * 防止数据加载完毕之前出现vue表达式 */
+		
+		[v-cloak] {
+			display: none !important;
+		}
+	</style>  		
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.min.js"></script>
+    
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script src="js/vue-resource.js"></script>
+    
+    
+    
+    	
+    <style>
+        #app{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-bottom: 15px;
+	    	}
+	    	#app2{
+	    		padding-right: 8%;
+	    		padding-top: 15px;
+	    		padding-left: 8%;
+	    	}
+    	.shbqys1{
+            display: none;
+        }
+    	.shbqys2{
+            position: absolute;/*这里一定要设置*/
+			z-index: 999999;/*这里是该元素与显示屏的距离，据说越大越好，但是我也没有看到效果，因为没有它也是可以的*/
+			right: 0px;
+            height: 20px; 
+            width: 200px; 
+            background: #f00;
+            text-align: center;
+            margin-top: 40px;
+            margin-right: -45px;
+            text-decoration: none;
+            color:#fff;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+	
+    <div id="app" >
+    	<a  :class="[shbq ? shbqys1 : shbqys2]" href="javasript:;">已审核</a>
+    	<div v-for="pages,index in page.list">
+    		<form class="layui-form" action="" @submit.prevent=''>
+				
+				<div class="layui-row">
+			        <div class="layui-col-lg6">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label" style="color:#009688;">客户</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  v-model="pages.customerId" class="layui-input"  hidden>
+			                        <input type="text" name="title" id="customerId" class="layui-input" v-model="pages.customerName" v-bind:disabled="diasabledInput" @keyup.f4="khtc()">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">结算方式一</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName1" v-bind:disabled="diasabledInput" @keyup.f4="khtc()">
+			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice1" v-bind:disabled="diasabledInput" @keyup.f4="khtc()">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">结算方式二</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesSatName2" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice2" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">结算方式三</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" style="width: 60%; float: left;" v-model="pages.payablesPrice3" v-bind:disabled="diasabledInput">
+			                        <input type="text" name="title"  class="layui-input" style="width: 40%; float: right;" v-model="pages.payablesPrice3" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">折扣率(%)</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesZhekou" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">终止帐月</label>
+			                    <div class="layui-input-block">
+			                        <!--<input type="text" name="title"  class="layui-input" v-model="pages.payablesEndtime" v-bind:disabled="diasabledInput">-->
+			                         <input type="text" class="layui-input" id="file-time2" placeholder="yyyy-MM-dd" v-model="pages.payablesEndtime" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        
+
+			        
+			        <div class="layui-col-lg6">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label" style="color:#009688;">单据日期</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" class="layui-input" id="file-time" placeholder="yyyy-MM-dd" v-model="pages.payablesPayablestime" v-bind:disabled="diasabledInput" >
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label" style="color:#009688;">单据号码</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.receivableId" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label" style="color:#009688;">币别</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" id="priabillCurrencyName" v-model="pages.payablesCurrencyName" name="title"  class="layui-input" v-bind:disabled="diasabledInput" @keyup.f4="bbtc()">
+                        			<input type="text" id="currencyId" v-model="pages.currencyId" name="title"  class="layui-input" hidden="hidden">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">汇率</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesCurrencyInexchange" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">凭证编号</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesVoucherno" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="layui-row">
+			        <div class="layui-tab">
+			            <ul class="layui-tab-title">
+			                <li class="layui-this">内容</li>
+			              
+			            </ul>
+			            <div class="layui-tab-content" style="padding: 10px 0;">
+			                <div class="layui-tab-item layui-show">
+								<table class="layui-hide" id='test' lay-filter='test'></table>
+								<script type="text/html" id="barDemo">
+								   <!--<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>-->
+								   <a class="layui-btn layui-btn-xs" lay-event="edit" id="a">编辑</a>
+								   <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+								</script>
+			                </div>
+			              
+			                
+			            </div>
+			        </div>
+			    </div>
+			    <div class="layui-row">
+			        <div class="layui-col-lg6">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesTeamName" v-bind:disabled="diasabledInput" @keyup.f4="bmtc()">
+			                        <input type="text" id="payablesCustom9" v-model="pages.payablesCustom9" name="title"  class="layui-input" hidden="hidden">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">所属项目</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesProjectName" v-bind:disabled="diasabledInput" @keyup.f4="xmtc()">
+			                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input" hidden="hidden">
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="layui-col-lg6">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">制单人员</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesBillpersonnel" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			                <div class="layui-form-item">
+			                    <label class="layui-form-label">复核人员</label>
+			                    <div class="layui-input-block">
+			                        <input type="text" name="title"  class="layui-input" v-model="pages.payablesReviewers" v-bind:disabled="diasabledInput">
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			   <div class="layui-row">
+			        <div class="layui-col-lg2">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <div class="layui-input-block" style="margin-left: 30px;" lay-filter="selectCate1">
+			                        <select @change="alert(1)">
+			                            <option value="">功能</option>
+			                            <option value="0"  v-bind:disabled="zrdbb">载入单币别账款</option>
+			                            <option value="0" disabled>载入多币别账款</option>
+			                            <option value="0" disabled>载入预收</option>
+			                        </select>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="layui-col-lg2">
+			            <div class="layui-form">
+			                <div class="layui-form-item">
+			                    <div class="layui-input-block" style="margin-left: 30px;" lay-filter="selectCate2">
+			                        <select>
+			                            <option value="">自动计算</option>
+			                            <option value="0">以下冲款</option>
+			                            <option value="0">以下折让</option>
+			                            <option value="0">以下空白</option>
+			                        </select>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+	
+			</form>	
+			
+		    
+			
+			<div class="layui-form-item">                       
+                <div class="layui-input-block">  
+		            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+		            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+		            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+					<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+		            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+		            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
+		            <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+		            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+		            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
+					<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+					<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
+					<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
+                	<button :class="[zrdbb ? lay1 : '', lay2]" v-bind:disabled="zrdbb"  @click="zrdbbs" class="layui-btn" >载入单币别账款</button>
+                	<button   @click="yxck" class="layui-btn" >以下冲款</button>
+                </div>
+            </div>
+				
+				
+			
+      	</div>
+	</div>    
+
+  <script>
+		//必须设置允许跨域访问session中数据(cookie)
+		axios.default.withCredentials = true;
+		//创建vue实例
+		var listVm = new Vue({
+			el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
+			data: {//保存vue.js中要显示到html页面的数据
+				page: [],
+				page2: [{
+			       "srId": ""//预收账款明细表id，主键
+				    ,"srType": ""//单别
+				    ,"srNumber": ""//原单单号
+				    ,"srDate": ""//原单日期
+				    ,"srPcId": ""//交易对象客户表id,外键
+				    ,"srPcName": ""//交易对象名称
+				    ,"srTeamId": ""//部门表id，外键
+				    ,"srTeamName": ""//部门名称
+				    ,"srBuyer": ""//业务人员
+				    ,"srProjectName": ""//项目名称
+				    ,"srCurrency": ""//币别表id,外键
+				    ,"srExchangeRate": ""//币别表汇率（买进）
+				    ,"srPayablesmainPrice": ""//原单金额
+				    ,"srCurrentbalance": ""//现行余额
+				    ,"srDiscountamount": ""//折让金额
+				    ,"srAmountcharged": ""//冲款金额
+				    ,"srOffsetamount": ""//冲抵金额
+				    ,"srAuditing": ""//是否审核
+				    ,"srYn": ""//是否删除 0是 1否 默认0
+				    ,"srCustom1": ""//自定义栏一
+				    ,"srCustom2": ""//自定义栏二
+				    ,"srCustom3": ""//自定义栏三
+				    ,"srCustom4": ""//自定义栏四
+				    ,"srCustom5": ""//自定义栏五
+				    ,"srCustom6": ""//自定义栏六
+				    ,"srCustom7": ""//自定义栏七
+				    ,"srCustom8": ""//币别名
+				    ,"srCustom9": ""//自定义栏九
+				    ,"srCustom10": ""//主表id
+			    },],//详表数据
+			    page3: [{
+			        "srId": ""//预收账款明细表id，主键
+				    ,"srType": ""//单别
+				    ,"srNumber": ""//原单单号
+				    ,"srDate": ""//原单日期
+				    ,"srPcId": ""//交易对象客户表id,外键
+				    ,"srPcName": ""//交易对象名称
+				    ,"srTeamId": ""//部门表id，外键
+				    ,"srTeamName": ""//部门名称
+				    ,"srBuyer": ""//业务人员
+				    ,"srProjectName": ""//项目名称
+				    ,"srCurrency": ""//币别表id,外键
+				    ,"srExchangeRate": ""//币别表汇率（买进）
+				    ,"srPayablesmainPrice": ""//原单金额
+				    ,"srCurrentbalance": ""//现行余额
+				    ,"srDiscountamount": ""//折让金额
+				    ,"srAmountcharged": ""//冲款金额
+				    ,"srOffsetamount": ""//冲抵金额
+				    ,"srAuditing": ""//是否审核
+				    ,"srYn": ""//是否删除 0是 1否 默认0
+				    ,"srCustom1": ""//自定义栏一
+				    ,"srCustom2": ""//自定义栏二
+				    ,"srCustom3": ""//自定义栏三
+				    ,"srCustom4": ""//自定义栏四
+				    ,"srCustom5": ""//自定义栏五
+				    ,"srCustom6": ""//自定义栏六
+				    ,"srCustom7": ""//自定义栏七
+				    ,"srCustom8": ""//币别名
+				    ,"srCustom9": ""//自定义栏九
+				    ,"srCustom10": ""//主表id
+			    },],//详表数据
+			    
+			    srOffsetamount:"",
+			    srAmountcharged:"",
+			    srCurrentbalance:"",
+			    
+			    
+			    page4: [],//详表备份数据
+			    payablesTeamName2:"",
+				diasabledInput:true,//input框是否可以编辑
+				diasabledInput2:false,//input框是否可以编辑
+				isinsert:false,//是否是新增状态
+				isedit:false,//是否是编辑状态
+				
+		      	goFirstPage1:false,//第一笔
+	            goPrePage1:false,//上一笔				            
+             	goNextPage1:false,//下一笔
+		     	goLastPage1:false,//后一笔
+             	inset1:false,   //新增  
+             	return1:true,//取消
+             	saves1:true,//保存 
+             	update1:false,//编辑
+             	deletes1:false,//删除		
+			    Auditing1:true,//审核
+			    noAuditing1:true,//取消审核
+			    shbq:false,//审核标签
+			    zrdbb:true,
+			    
+			    lay1:'layui-btn-primary',
+			    lay2:'layui-btn',
+			    
+			    shbqys1:"shbqys1",
+			    shbqys2:"shbqys2",
+			    
+			},
+	        updated: function () {
+	        	var this_=this;
+				
+				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
+					layui.use('laydate',function(){
+						var laydate=layui.laydate;
+						
+						//执行一个laydate实例
+						laydate.render({
+							elem:'#file-time',//指定元素
+							done:function(value){
+								this_.page.list[0].payablesPayablestime=value;
+								console.log(this_.page.list[0].payablesPayablestime);
+								console.log(value)
+							}
+						})
+						
+						//执行一个laydate实例
+						laydate.render({
+							elem:'#file-time2',//指定元素
+							done:function(value){
+								this_.page.list[0].payablesEndtime=value;
+								console.log(this_.page.list[0].payablesEndtime);
+								console.log(value)
+							}
+						})
+						
+					})
+					
+					
+					/*var mountedSelf = this; // 当前的vue对象
+			        laydate.render({
+			            elem: '#laydate', //指定元素 绑定laydate的元素，即id= laydate的那个input
+			            done: function (value) { // value 是laydate选择的日期
+			                 mountedSelf.data = value; // vue对象的属性设置为当前的日期
+			            },
+			        });*/
+
+					
+				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
+				layui.use('form', function(){
+					  	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+					  	//但是，如果你的HTML是动态生成的，自动渲染就会失效
+					  	//因此你需要在相应的地方，执行下述方法来进行渲染
+					  	form.render(); //更新全部
+//					  	form.render('select'); //刷新select选择框渲染
+//					  	form.on('select', 'selectCate1'); //更新 lay-filter="test2" 所在容器内的全部 select 状态
+					  	form.on('select(selectCate1)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+//					        this_.page.list[0].currencyMpointset=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
+
+					    })
+					  	form.on('select(selectCate2)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+//					        this_.page.list[0].currencyMpointset=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
+
+					    })
+					}); 
+	          },
+	          computed:{
+	          		
+	          },
+			methods: {//定义函数
+
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		查主表
+//					alert("进入goPage")
+					var this_ = this;					
+					$.ajax({
+						url : "http://127.0.0.1:8080/ReceivableController/selectAllpagelc",
+						type:"get",
+					  	data : "pageNum="+page+"&pageSize="+size+"&payablesCustom2=1",
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		//res.data获取服务器返回的数据
+							this_.page = res;
+							console.info("主表数据：")
+							console.info(this_.page)	
+							
+							this_.page.list[0].payablesPrice1=0;
+							this_.page.list[0].payablesPrice2=0;
+							this_.page.list[0].payablesPrice3=0;
+							
+							//判断是否审核
+							if(this_.page.list[0].payablesAuditstatus=="0"||this_.page.list[0].payablesAuditstatus==0){//未审核
+
+								this_.goFirstPage1=false;//第一笔
+					            this_.goPrePage1=false;//上一笔				            
+				             	this_.goNextPage1=false;//下一笔
+						     	this_.goLastPage1=false;//后一笔
+				             	this_.inset1=false;   //新增  
+				             	this_.return1=true;//取消
+				             	this_.saves1=true;//保存 
+				             	this_.update1=false;//编辑
+				             	this_.deletes1=false;//删除		
+							    this_.Auditing1=false;//审核
+							    this_.noAuditing1=true;//取消审核
+								this_.shbq=true;//审核标签
+							}else{//已审核
+//								alert(2)
+								this_.goFirstPage1=false;//第一笔
+					            this_.goPrePage1=false;//上一笔				            
+				             	this_.goNextPage1=false;//下一笔
+						     	this_.goLastPage1=false;//后一笔
+				             	this_.inset1=false;   //新增  
+				             	this_.return1=true;//取消
+				             	this_.saves1=true;//保存 
+				             	this_.update1=true;//编辑
+				             	this_.deletes1=true;//删除		
+							    this_.Auditing1=true;//审核
+							    this_.noAuditing1=false;//取消审核
+							    this_.shbq=false;//审核标签
+							}
+							
+							
+							
+							
+							this_.goPage2();
+							
+				        }
+					}); 			
+					
+				},	
+				goPage2: function(page, size) {//获取分页数据（当前页，每页大小）	查详表	
+//					alert("进入goPage")
+					var this_ = this;	
+//					alert(this_.page.list[0].receivableId)
+					$.ajax({
+						url : "http://127.0.0.1:8080/Sales_receivablesController/selectAllpagebyidlc2",
+						type:"get",
+					  	data : "page=1&limit=99999&srCustom10="+this_.page.list[0].receivableId,
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		console.info("详表数据：")
+					  		console.info(res)
+					  		//res.data获取服务器返回的数据
+				  			this_.page2 = res.list;
+//				  			alert(this_.srOffsetamount+"/"+this_.srAmountcharged)
+				  			if(this_.srOffsetamount==""||this_.srAmountcharged==""||this_.srCurrentbalance==""){
+				  				this_.srOffsetamount = res.list[0].srOffsetamount;
+				  				this_.srAmountcharged = res.list[0].srAmountcharged;
+				  				this_.srCurrentbalance = res.list[0].srCurrentbalance;
+				  			}
+//					  		alert(this_.srOffsetamount+"/"+this_.srAmountcharged)
+					  
+							console.info("主表数据：")
+							console.info(this_.page)	
+							
+							
+							
+							this_.jztable();
+							
+				        }
+					}); 			
+					
+				},	
+				zrdbbs: function(e) {//查商品记录	
+//					alert(e)
+//					alert(this.page.list[0].customerId)
+					if(this.page.list[0].customerId!=""){
+						//					alert("进入goPage")
+						var this_ = this;	
+	//					alert(this_.page.list[0].receivableId)
+						$.ajax({
+							url : "http://127.0.0.1:8080/Sales_receivablesController/selectAllpagebyidlc",
+							type:"get",
+						  	data : "page=1&limit=99999&srPcId="+this_.page.list[0].customerId,
+						  	dataType:'json',	
+						  	success:function (res) {
+						  		console.info("详表数据：")
+						  		console.info(res)
+						  		//res.data获取服务器返回的数据
+					  			this_.page2 = res.list;
+					  			if(this_.page4==""){
+					  				this_.page4 = res.list;
+					  			}
+								console.info("商品记录表数据：")
+								console.info(this_.page)	
+								
+								
+								
+								this_.jztable();
+					        }
+						}); 		
+					}else{
+						layer.msg("请载入客户")
+					}
+	
+					
+				},	
+				yxck: function(e) {//以下冲款	
+//					alert(e)
+//					alert(this.page.list[0].customerId)
+					if(this.page.list[0].customerId!=""){
+						//					alert("进入goPage")
+						var this_ = this;	
+//						alert(JSON.stringify(this.page4))
+				
+						this.page2[0].srCurrentbalance=parseFloat(this.srCurrentbalance)-parseFloat(this.page.list[0].payablesPrice1)-parseFloat(this.page.list[0].payablesPrice2)-parseFloat(this.page.list[0].payablesPrice3)-parseFloat(this.page2[0].srOffsetamount)+parseFloat(this.srOffsetamount)+parseFloat(this.srAmountcharged);
+						this.page2[0].srAmountcharged=+parseFloat(this.page.list[0].payablesPrice1) +parseFloat(this.page.list[0].payablesPrice2)+parseFloat(this.page.list[0].payablesPrice3);
+						
+						this.jztable();
+					}else{
+						layer.msg("请载入客户")
+					}
+	
+					
+				},	
+				reloadlc:function(){
+					layui.use('table', function(){
+					  	var table = layui.table;
+						 //执行重载
+					  	table.reload('test', {
+						   page: {
+						   curr: 1 //重新从第 1 页开始
+						  }
+					  	})
+				  	})
+				},
+				jztable:function(){//加载表格
+					/*加载表格数据2*/
+					var this_ = this;		
+					var page2=this_.page2;
+					console.info("page2")
+					console.info(page2)
+							layui.use('table', function(){
+							  var table = layui.table;
+								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+							  //展示已知数据
+							  table.render({
+							    elem: '#test'
+							     ,cellMinWidth: 120 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+							    ,cols: [[ //标题栏
+							       {type: 'checkbox'}
+//					            	,{field: 'srId', title: '(栏号)',sort:true}
+					                ,{field: 'srType', title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+					                
+					                , {field: 'srDate', title: '(原单日期)',sort:true}
+					                , {field: 'srNumber', title: '(原单单号)'}
+					                , {field: 'srPcId', title: '(交易对象)'}
+					                , {field: 'srPcName', title: '(交易对象名称)'}
+					                , {field: 'srTeamId', title: '(部门编号)'}
+					                , {field: 'srTeamName', title: '(部门名称)'}
+					                , {field: 'srBuyer', title: '(业务人员)'}
+					                , {field: 'srProjectName', title: '(项目名称)'}
+					                , {field: 'srCurrency', title: '(币别)'}
+					                , {field: 'srExchangeRate', title: '(汇率)'}
+					                , {field: 'srPayablesmainPrice', title: '(原单金额)',sort:true}
+					                , {field: 'srCurrentbalance', title: '(现行余额)',sort:true}
+					                , {field: 'srDiscountamount', title: '(折让金额)',sort:true}
+					                , {field: 'srAmountcharged', title: '(冲款金额)',sort:true}
+					                , {field: 'srOffsetamount', title: '(冲抵金额)',sort:true}
+					                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo'}
+							    ]]
+							   /* ,parseData:function(res){
+							    	console.log("分页数据：");
+							    	console.log(res);
+							    	console.log(res.list);
+							    	this_page2=res;
+							    	return{
+							    		"success":true,
+										"code": 0, //解析接口状态
+									    "msg": "", //解析提示文本
+									    "count": page2.length, //解析数据长度
+									    "data": page2 //解析数据列表
+									    
+							    	}
+							    }*/
+							    ,data:page2
+							    //,skin: 'line' //表格风格
+							    ,even: true
+							    , id: 'test'
+							    //,page: true //是否显示分页
+							    //,limits: [5, 7, 10]
+							    //,limit: 5 //每页默认显示的数量
+							  });
+							  
+							   //监听行工具事件   
+							  	 table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+								   let event = obj.event;
+								 var data = obj.data //获得当前行数据
+								  var $this = $(this);
+								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+						  			var trIndex = tr.data('index');	//索引
+								 
+								 if (event === "viewReport"){
+								 	layer.open({
+								            type: 2,
+								            title: '单选--销售订单',
+								            content: $('#app'),
+								            fixed: false, //不固定
+								            area: ['680px', '470px'],
+								            content: 'receivablesbillTC1.html'
+								        });
+								 }else if(event === 'edit'){
+								      layer.msg('编辑操作');
+								      //修改编辑按钮名 
+						    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
+								      //修改lay-event对应值
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
+								      //修改样式
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
+								      //取消单元格的禁用  添加data-edit="text"
+								      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").attr("data-edit","text");
+								      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3)").html());*/
+//								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(6)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(7)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(8)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(9)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(10)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(11)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(12)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(13)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(14)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(15)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(16)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(17)").attr("data-edit","text");
+								    } else if(event === 'del'){
+								      layer.confirm('真的删除行么', function(index){
+								        obj.del(); //删除对应行（tr）的DOM结构
+								        layer.close(index);
+								        //向服务端发送删除指令
+								      });
+								    }else if(event === 'save'){
+								    	var sy = "";	
+								    	
+								    	if(obj.data.recedetailPrice==""||obj.data.recedetailPrice<=0){
+								    		sy+="预付金额不能小于等于0或者为空  ,";
+								    	}
+								    	if(obj.data.recedetailNumber==""){
+								    		sy+="请填写来源单号  ,";
+								    	}
+										sy+="请认真填写！";
+										if(sy=="请认真填写！"){
+											layer.msg('保存操作');
+									    	//修改保存按钮名 
+							    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
+									        //修改lay-event对应值
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
+									        //修改样式
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
+									        //单元格的禁用  去掉data-edit="text"
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").removeAttr("data-edit","text");
+	//								        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("<select disabled=\"disabled\" name=\"priabillType\" lay-filter=\"testSelect\" lay-verify=\"required\" data-value=\"采购订单\"><option value=\"\"></option><option value=\"采购订单\" selected=\"selected\">采购订单</option><option value=\"进口采购单\">进口采购单</option><option value=\"P/O\">P/O</option></select><div class=\"layui-unselect layui-form-select layui-select-disabled\"><div class=\"layui-select-title\"><input type=\"text\" placeholder=\"请选择\" value=\"采购订单\" readonly=\"\" class=\"layui-input layui-unselect layui-disabled\"><i class=\"layui-edge\"></i></div><dl class=\"layui-anim layui-anim-upbit\"><dd lay-value=\"\" class=\"layui-select-tips\">请选择</dd><dd lay-value=\"采购订单\" class=\"layui-this\">采购订单</dd><dd lay-value=\"进口采购单\" class=\"\">进口采购单</dd><dd lay-value=\"P/O\" class=\"\">P/O</dd></dl></div>");
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").removeAttr("data-edit","text");
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").removeAttr("data-edit","text");																
+										}else{
+											layer.msg(sy);
+										}
+								    }
+								  });
+							  	//监听单元格编辑
+							    /*table.on('edit(test)', function (obj) {
+							        $('input').keyup(function () {
+							            value = value.replace(/[^d.]/g, '');
+							        });
+							        alert(obj.value)
+							        var value = obj.value, // 得到修改后的值
+							            id = obj.data.id, // 得到当前修改行的id
+							            field = obj.field; // 得到当前修改的字段名
+							        var data = {},
+							            key = field;
+							        data[key] = value;
+							        data['id'] = id;
+							        var my = '';
+							        var allData = '';
+							        //获取表格数据
+							        var tableData = table.cache['searchReload'];
+							 
+							        if (value < 0) {
+							            layer.msg('值不能为负数', {
+							                icon: 5
+							            });
+							            table.reload('searchReload');
+							            return false;
+							        }
+							 
+							        $.ajax({
+							            url: url_order + "api/rebateRuleController/editRebateRule",
+							            type: 'POST',
+							            traditional: true,
+							            data: data,
+							            success: function (data) {
+							                if (data.code == 0) {
+							                    table.reload('searchReload');
+							                    layer.msg(data.msg, {
+							                        icon: 6
+							                    });
+							                } else {
+							                    layer.msg(data.msg, {
+							                        icon: 5
+							                    });
+							                }
+							            }
+							        });
+							    });*/
+							    
+							    
+							    table.on('edit(test)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+								  console.log("修改事件"); //得到修改后的值
+								  console.log(obj.value); //得到修改后的值
+								  console.log(obj.field); //当前编辑的字段名
+								  console.log(obj.data); //所在行的所有相关数据  
+								});
+							});
+							
+							
+							
+							
+							
+							
+							/*加载表格数据2*/
+				},
+				formrender: function() {//layui更新渲染
+					layui.use('form', function(){
+					  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+					  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+					  //因此你需要在相应的地方，执行下述方法来进行渲染
+					  form.render();
+					}); 
+				},
+				khtc: function() {//客户弹窗
+					layer.open({
+						type:2,
+						area:["800px","400px"],
+						content:"customerTC1.html",
+						/*success:function(iframe,index){ //iframe=>div
+							//获取子页面中body节点,通过jquery查找节点方式进行赋值
+							var body = layer.getChildFrame('body', index);  //获取的子页面HTML所有类容
+							var span = body.find("span");
+							var input = body.find("input");
+							//获取子页面的窗体对象,通过窗体对象对js中的变量或者函数进行调用
+							var iframeWin = window[iframe.find('iframe')[0]['name']]; 
+							iframeWin.id = 100;
+							iframeWin.printId();
+						}*/
+					});
+				},
+				bmtc: function() {//部门弹窗department
+					layer.open({
+		  				type:2,
+		  				area:["800px","400px"],
+		  				content:"departmentTC1.html"
+		  			});
+				},
+				xmtc: function() {//项目弹窗
+					layer.open({
+		  				type:2,
+		  				area:["800px","400px"],
+		  				content:"itemTC1.html"
+		  			});
+				},
+				bbtc: function() {//币别弹窗
+					layer.open({
+		  				type:2,
+		  				area:["800px","400px"],
+		  				content:"currencyTC1.html"
+		  			});
+				},
+				goPrePage: function() {//上一条
+					if(this.page.hasPreviousPage) {
+//						alert(this.page.prePage+"："+this.page.pageSize)
+						this.goPage(this.page.prePage, this.page.pageSize);
+					}
+					
+					
+				},
+				goNextPage: function() {//下一条
+					if(this.page.hasNextPage) {
+//						alert(this.page.nextPage+"："+this.page.pageSize)
+						this.goPage(this.page.nextPage, this.page.pageSize);
+					}
+					
+					
+				},
+				goFirstPage: function() {//第一条
+//					alert(1+"："+this.page.pageSize)
+					this.goPage(1, this.page.pageSize);
+					this.Page2=this.page3;
+					
+				},
+				goLastPage: function() {//最后一条
+//					alert(this.page.pages+"："+this.page.pageSize)
+					this.goPage(this.page.pages, this.page.pageSize);
+					this.Page2=this.page3;
+					
+				},
+				returns: function() {//取消
+					this.goPage(1,1);
+					
+					this.diasabledInput= true;//input不可编辑
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				},
+				inset: function() {//新增按钮
+				  	this.page.list[0].receivableId="";//应收冲款单id（主键 唯一）
+			    	this.page.list[0].customerId="";//供应商表id，外键
+				    this.page.list[0].scsId="";//结算方式id，外键
+				    this.page.list[0].staffId="";//部门员工表id，外键
+				    this.page.list[0].currencyId="";//币别类型表id，外键
+				    this.page.list[0].projectId="";//项目表id，外键
+				    this.page.list[0].customerName="";//供应商表
+				    this.page.list[0].payablesSatName1="";//结算方式表,默认值：转账
+				    this.page.list[0].payablesPrice1="";//默认值：0.00
+				    this.page.list[0].payablesSatName2="";//结算方式表,默认值：汇票
+				    this.page.list[0].payablesPrice2="";//默认值：0.00
+				    this.page.list[0].payablesSatName3="";//结算方式表
+				    this.page.list[0].payablesPrice3="";//默认值：0.00
+				    this.page.list[0].payablesZhekou="";//折扣率,默认值：0.00
+				    this.page.list[0].payablesEndtime="";//终止账月,默认值：当前年月
+				    this.page.list[0].payablesPayablestime="";//单据日期,默认值：当前日期
+				    this.page.list[0].payablesCurrencyName="";//币别类型表快照
+				    this.page.list[0].payablesCurrencyInexchange="";//汇率
+				    this.page.list[0].payablesType="";//应付冲款类型,默认值：付款冲款
+				    this.page.list[0].payablesVoucherno="";//凭证编号
+				    this.page.list[0].payablesTeamName="";//部门表
+				    this.page.list[0].payablesProjectName="";//项目表
+				    this.page.list[0].payablesBillpersonnel="admin";//制单人员,默认值：当前人员
+				    this.page.list[0].payablesReviewers="admin";//复核人员
+				    this.page.list[0].payablesRemarks="";//备注
+				    this.page.list[0].payablesAuditstatus="";//审核状态,0:未审核,1:已结案
+				    this.page.list[0].payablesAuditstatusAuditing="";//是否审核
+				    this.page.list[0].payablesAuditstatusYn=0;//是否删除（0 否 1 是 ，默认0）
+				    this.page.list[0].payablesCustom1="";//创建时间
+				    this.page.list[0].payablesCustom2="";//表状态（0：预收款，1：应收款）
+				    this.page.list[0].payablesCustom3="";//自定义3
+				    this.page.list[0].payablesCustom4="";//自定义4
+				    this.page.list[0].payablesCustom5="";//自定义5
+				    this.page.list[0].payablesCustom6="";//自定义6
+				    this.page.list[0].payablesCustom7="";//自定义7
+				    this.page.list[0].payablesCustom8="";//自定义8
+				    this.page.list[0].payablesCustom9="";//自定义9
+				    this.page.list[0].payablesCustom10="";//自定义10
+    
+    
+					this.diasabledInput=false;//input可以编辑
+					this.isinsert=true;//开启新增模式
+					this.isedit=false;//关闭修改模式
+					this.getno();
+//					this.getno2();
+					
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+             		this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+				    this.zrdbb=false;//载入单币别
+				    this.page2=this.page3;
+				    this.jztable();
+				    this.shbq=true;//审核标签
+				},
+				insets: function() {//新增
+				 	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+					
+					
+					
+					var this_ = this;
+					//新增信息
+					this.page.list[0].payablesCustom1=year+getNow(month)+getNow(date);//创建时间
+					this.page.list[0].payablesCustom2=1;//
+					this.page.list[0].payablesAuditstatus=0;//
+					var obj=this.page.list[0];//主表数据
+					
+					
+					
+					$.ajax({//新增主表
+						url : "http://127.0.0.1:8080/ReceivableController/insertSelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+//					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					}); 
+					this.updatexb();
+					
+				},
+				updatexb: function() {//新增详表
+					var this_ = this;
+//					alert(this.page2[0].receivablesbillId+"/"+this.page.list[0].receivableId)
+					this.page2[0].srCustom10=this.page.list[0].receivableId;
+					this.page2[0].srId="";
+					this.page2[0].srCustom7=1;
+					var obj2=this.page2[0];//详表数据
+//					alert(JSON.stringify(obj2))
+//					alert(this_.page.list[0].receivableId)
+					
+					$.ajax({//根据主表id删除详表
+						url : "http://127.0.0.1:8080/Sales_receivablesController/deleteByzbidlc",
+						type:"get",
+					  	data : "receivablesbillId="+this_.page.list[0].receivableId,
+					  	success:function (res) {
+							$.ajax({//新增详表
+								url : "http://127.0.0.1:8080/Sales_receivablesController/insertSelective",
+								type:"post",
+							  	data : JSON.stringify(obj2),
+							  	dataType:'json',	
+							  	contentType : "application/json;charset=utf-8",
+							  	success:function (res) {
+		//					  		alert("系统提示：" +res.message);
+									this_.isinsert=false;//关闭新增模式
+									this_.isedit=false;//关闭编辑模式
+									this_.goPage(1, 1);		
+						        }
+							}); 
+				        }
+					}); 
+					
+					
+					
+					
+					
+					
+					
+					
+				},	
+				saves: function() {//保存
+					this.diasabledInput= true;//input不可编辑
+					
+					if(this.isinsert==true){//新增
+//						alert("进入新增")
+						this.insets();
+					}else if(this.isedit==true){
+//						alert("进入修改")
+						this.updates();
+					}else{
+						
+					}	
+					
+					this.goFirstPage1 =false;//第一笔
+		            this.goPrePage1 =false;//上一笔				            
+	             	this.goNextPage1 =false;//下一笔
+			     	this.goLastPage1 =false;//后一笔
+	             	this.inset1 =false;   //新增      
+	             	this.return1=true;//返回
+	             	this.saves1 =true;//保存 
+	             	this.update1 =false;//编辑
+	             	this.deletes1 =false;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
+				},
+				update: function() {//编辑按钮
+					this.diasabledInput=false;//input可以输入
+					this.isinsert=false;//关闭新增模式
+					this.isedit=true;//开启编辑模式
+					
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+	             	this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
+					
+				},
+				updates: function() {//编辑 
+					
+					var this_ = this;
+					//修改信息
+					var obj=this.page.list[0];
+//					alert(this.page.list[0].currencyMpointset)
+					
+					$.ajax({//修改主表
+						url : "http://127.0.0.1:8080/ReceivableController/updateByPrimaryKeySelective",
+						type:"post",
+					  	data : JSON.stringify(obj),
+					  	dataType:'json',	
+					  	contentType : "application/json;charset=utf-8",
+					  	success:function (res) {
+//					  		alert("系统提示：" +res.message);
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);		
+				        }
+					}); 
+					this.updatexb();
+				},
+				deletes: function() {//删除
+					var this_ = this;
+					//修改信息
+					this.page.list[0].payablesAuditstatusYn=1;//是否删除（0 否 1 是 ，默认0）
+					var obj=this.page.list[0];
+					if (confirm("是否删除")==true) {
+						$.ajax({
+							url : "http://127.0.0.1:8080/ReceivableController/updateByPrimaryKeySelective",
+							type:"post",
+					  		data : JSON.stringify(obj),
+						  	dataType:'json',	
+						  	contentType : "application/json;charset=utf-8",
+						  	success:function (res) {
+//						  		alert("系统提示：" +res.message);
+								this_.diasabledInput=false;//input不可以输入	
+								this_.goPage(1, 1);		
+					        }
+						}); 
+					}
+				},   
+				Auditing: function() {//审核
+					var this_ = this;
+				    if(this.Auditing1=true){
+				    	this.diasabledInput=true;//input不可以编辑
+		             	this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+		             	this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    this.Auditing1 =true;//审核
+					    this.noAuditing1 =false;//取消审核
+		             	
+					    
+					    var updateObj = this.page.list[0];
+					    updateObj.payablesAuditstatus="1";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/ReceivableController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								layer.msg('审核通过！');
+								this_.goPage(1, 1);	
+								this_.khxxxg();
+					        }
+						});
+				    }
+				},   
+				khxxxg: function() {//客户信息修改
+					var this_=this;
+					$.ajax({
+						url : "http://127.0.0.1:8080/TeamController/selectByPrimaryKey",
+						type:"get",
+					  	data : "customerId="+this.page.list[0].customerId,
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		//res.data获取服务器返回的数据
+							console.info("客户表数据：")
+							console.info(this_.page)
+							var obj=res;
+							obj.cuendshouldcollect=obj.cuendshouldcollect+this_.srAmountcharged-this_.page2[0].srAmountcharged;//改变期末应收款
+							obj.customerCuendcollect=obj.customerCuendcollect+this_.srOffsetamount-this_.page2[0].srOffsetamount;//改变期末应收款
+							obj.customerResiduemonet=obj.customerResiduemonet+this_.srAmountcharged-this_.page2[0].srAmountcharged;//改变剩余额度
+							$.ajax({
+								url : "http://127.0.0.1:8080/CustomerController/updateByPrimaryKeySelective",
+								type:"post",
+							  	data : JSON.stringify(obj),
+							  	dataType:'json',	
+							  	contentType : "application/json;charset=utf-8",
+							  	success:function (res) {
+							  		//alert("系统提示：" +res.message);
+//									this_.isinsert=false;//关闭新增模式
+//									this_.isedit=false;//关闭编辑模式
+//									this_.goPage(1, 1);		
+//									layui.msg("")
+						        }
+							}); 
+				        }
+					}); 
+					
+					/*"srId": ""//预收账款明细表id，主键
+				    ,"srType": ""//单别
+				    ,"srNumber": ""//原单单号
+				    ,"srDate": ""//原单日期
+				    ,"srPcId": ""//交易对象客户表id,外键
+				    ,"srPcName": ""//交易对象名称
+				    ,"srTeamId": ""//部门表id，外键
+				    ,"srTeamName": ""//部门名称
+				    ,"srBuyer": ""//业务人员
+				    ,"srProjectName": ""//项目名称
+				    ,"srCurrency": ""//币别表id,外键
+				    ,"srExchangeRate": ""//币别表汇率（买进）
+				    ,"srPayablesmainPrice": ""//原单金额
+				    ,"srCurrentbalance": ""//现行余额
+				    ,"srDiscountamount": ""//折让金额
+				    ,"srAmountcharged": ""//冲款金额
+				    ,"srOffsetamount": ""//冲抵金额
+				    ,"srAuditing": ""//是否审核
+				    ,"srYn": ""//是否删除 0是 1否 默认0
+				    ,"srCustom1": ""//自定义栏一
+				    ,"srCustom2": ""//自定义栏二
+				    ,"srCustom3": ""//自定义栏三
+				    ,"srCustom4": ""//自定义栏四
+				    ,"srCustom5": ""//自定义栏五
+				    ,"srCustom6": ""//自定义栏六
+				    ,"srCustom7": ""//自定义栏七
+				    ,"srCustom8": ""//币别名
+				    ,"srCustom9": ""//自定义栏九
+				    ,"srCustom10": ""//主表id
+					
+					var obj={
+						    ,"customerId": ""//客户id（主键 唯一）
+						    ,"customerName": ""//客户全称
+						    ,"customerEasyname": ""//客户简称
+						    ,"customerEnglishName": ""//英文全称
+						    ,"customerChargePerson": ""//英文简称
+						    ,"customerAccountOwnership": ""//账款归属
+						    ,"customerType": ""//类别
+						    ,"currencyId": ""//币别id
+						    ,"customerPrincipalman": ""//负责人
+						    ,"customerLinkman": ""//联系人
+						    ,"customerLinktela": ""//联系电话一
+						    ,"customerLinktelb": ""//联系电话二
+						    ,"customerLinktelc": ""//联系电话三
+						    ,"customerMobilephone": ""//移动电话
+						    ,"adaId": ""//银行账号
+						    ,"customerTaxcheckno": ""//税务登记号
+						    ,"customerCapitalmoney": ""//资本额
+						    ,"customerJob": ""//行业别
+						    ,"customerEmail": ""//电子邮件
+						    ,"customerWebadd": ""//网址
+						    ,"customerFaxno": ""//传真号码
+						    ,"customerCufirstsaleout": ""//最初销售出库日
+						    ,"customerCufirstsalereturn": ""//最初销售退货日
+						    ,"customerCurecentsaleout": ""//最近销售出库日
+						    ,"customerCurecentsalereturn": ""//最近销售退货日
+						    ,"customerCurecentvisit": ""//最近拜访日
+						    ,"customerCuordervisit": ""//预约拜访日
+						    ,"customerDiscountpoint": ""//折数
+						    ,"customerSalelv": ""//售价等级
+						    ,"customerCuiftax": ""//是否含税（0，1）
+						    ,"customerLatentcusno": ""//潜在客户编号
+						    ,"customerTanddate": ""//客户建立日期
+						    ,"endbusinessday": ""//终止交易日
+						    ,"customerCreditmoney": ""//账款额度-----------
+						    ,"customerResiduemonet": ""//剩余额度-----------
+						    ,"customerCuendorderday": ""//每月结账日
+						    ,"customerHonestlv": ""//信用等级
+						    ,"customerCufirstcollect": ""//期初预收款
+						    ,"customerHouldcollect": ""//期初应收款
+						    ,"customerCuendcollect": ""//期末预收款-------------
+						    ,"cuendshouldcollect": ""//期末应收款-------------
+						    ,"customerCudecoration": ""//其他备注
+						    ,"receivableId": ""//收款条件id(关联应收冲款单表)
+						    ,"itId": ""//发票类型id(关联发票类型表)
+						    ,"itAccountsEceivableSubject": ""//应收账款科目(关联会计科目表account_id)
+						    ,"itDepositReceivedSubject": ""//预收账款科目id(关联会计科目表account_id)
+						    ,"bankId": ""//开户银行id(关联cus_bank开户银行表)
+						    ,"customerAuditing": ""//是否审核
+						    ,"customerYn": ""//是否删除（0 否 1 是 ，默认0）
+						    ,"customerCustom1": ""//自定栏1
+						    ,"customerCustom2": ""//自定栏2
+						    ,"customerCustom3": ""//自定栏3
+						    ,"customerCustom4": ""//自定栏4
+						    ,"customerCustom5": ""//自定栏5
+						    ,"customerCustom6": ""//自定栏6
+					}*/
+					
+				},
+				noAuditing: function() {//取消审核
+					var this_ = this;
+					if(this.noAuditing1=true){
+				    	this.diasabledInput=true;//input不可以编辑
+		             	this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+		             	this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    this.Auditing1 =false;//审核
+					    this.noAuditing1 =true;//取消审核
+		             	
+					    
+					    var updateObj = this.page.list[0];
+					    updateObj.payablesAuditstatus="0";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/ReceivableController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								layer.msg('反审核成功！');
+								this_.goPage(1, 1);	
+								this_.khxxxg();
+					        }
+						});
+				    }
+				},   
+			  	getno:function(){//获取id
+				   	var this_=this;
+				   	
+				   	
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					$.ajax({
+						url:"http://127.0.0.1:8080/ReceivableController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (res) {
+					  		console.info("idfdsfhoewifhw")
+						  	console.info(res)
+						   	this_.page.list[0].receivableId=ss+res;
+						   
+						   	
+				        }
+					}); 				
+				},
+			  	getno2:function(){//获取id
+				   	var this_=this;
+				   	
+				   	
+				   	/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					$.ajax({
+						url:"http://127.0.0.1:8080/Sales_receivablesController/getno",
+						type:"get",
+					  	data:"billdate="+ss,
+					  	dataType:'text',	
+					  	success:function (res) {
+					  		console.info("预收款明细订单")
+						  	console.info(res)
+						   	this_.page2[0].recedetailId=ss+res;
+						   	this_.reloadlc();
+//					   		alert("dsadfas:"+this_.page.list[0].receivableId)
+				        }
+					}); 				
+				},
+			},
+			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+							
+				var this_ = this;				
+				this_.goPage(1, 1);		
+				
+				
+				
+				// 表格单元格禁用编辑
+//				$(layero).find('td').data('edit', false)
+				
+				
+				
+			}
+		
+		});
+		
+		
+		
+		 
+	</script>
+  
+  	<script>
+  		layui.use('form', function(){
+		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+		  
+		  //……
+		  
+		  //但是，如果你的HTML是动态生成的，自动渲染就会失效
+		  //因此你需要在相应的地方，执行下述方法来进行渲染
+		  form.render();
+		}); 
+		
+		layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		  //常规用法
+		  laydate.render({
+		    elem: '#test1'
+		  });
+		  
+		});
+  	</script>
+  	<script>
+    /*layui.use('layer', function(){
+        var layer = layui.layer;
+        layer.open({
+            type: 1,
+            title: '应收冲款单',
+            content: $('#app'),
+            area: ['800px', '650px']
+        });
+    });*/
+
+    layui.use('element', function () {
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+            tabAdd: function(){
+                //新增一个Tab项
+                element.tabAdd('demo', {
+                    title: '新选项'+ (Math.random()*1000|0) //用于演示
+                    ,content: '内容'+ (Math.random()*1000|0)
+                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            ,tabDelete: function(othis){
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            ,tabChange: function(){
+                //切换到指定Tab项
+                element.tabChange('demo', '22'); //切换到：用户管理
+            }
+        };
+
+        $('.site-demo-active').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function(elem){
+            location.hash = 'test='+ $(this).attr('lay-id');
+        });
+    });
+
+   /* layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#materialsContent'
+            ,url:'https://www.layui.com/demo/table/user/'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [[
+                {field: 'id', title: '(栏号)', sort: true}
+                , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                , {field: 'sex', title: '(物料名称)', sort: true}
+                , {field: 'city', title: '(规格型号)'}
+                , {field: 'sign', title: '(单位名称)'}
+                , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
+                , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
+                , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '单价', sort: true, align: 'right'}
+                , {field: 'wealth', title: '金额', sort: true, align: 'right'}
+                , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
+                , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
+                , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
+            ]]
+        });
+    });*/
+   
+   
+
 </script>
 
 

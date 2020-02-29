@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.apatech.domain.Receivablesdetails;
 import com.apatech.domain.Sales_receivables;
 import com.apatech.domain.Sales_receivables;
 import com.apatech.service.Sales_receivablesService;
@@ -64,6 +66,37 @@ public class Sales_receivablesController {
 		System.out.println("进入Sales_receivablesController根据主键查询");
 		System.out.println("Sales_receivablesId="+Sales_receivablesId);
     	return dao.selectByPrimaryKey(Sales_receivablesId);
+	}
+	
+	/**
+	 * 查商品记录 （刘成）
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpagebyidlc")
+	@ResponseBody
+	public PageInfo<Sales_receivables> selectAllpagebyidlc(@RequestParam("page")  Integer page,@RequestParam("limit") Integer limit,String srPcId){
+		System.out.println("进入selectAllpagebyidlc分页");
+		System.out.println(page+"/"+limit+"/"+srPcId);
+		PageInfo<Sales_receivables> pages=dao.selectAllpagebyidlc(page, limit,srPcId);
+		return pages;
+	}
+	
+	
+	/**
+	 * 查详表 （刘成）
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpagebyidlc2")
+	@ResponseBody
+	public PageInfo<Sales_receivables> selectAllpagebyidlc2(@RequestParam("page")  Integer page,@RequestParam("limit") Integer limit,String srCustom10){
+		System.out.println("进入selectAllpagebyidlc分页");
+		System.out.println(page+"/"+limit+"/"+srCustom10);
+		PageInfo<Sales_receivables> pages=dao.selectAllpagebyidlc2(page, limit,srCustom10);
+		return pages;
 	}
 	
 	/**
@@ -131,4 +164,29 @@ public class Sales_receivablesController {
 		}
 		return map;
     }
+	
+	
+	/**
+	 * 根据主表id删除
+	 * @param recedetailId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByzbidlc",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> deleteByzbidlc(String receivablesbillId,Model model) {
+		System.out.println("进入ReceivablesdetailsController根据主表id删除");
+		System.out.println("receivablesbillId："+receivablesbillId);
+		Map<String, String> map=new HashMap<String,String>();
+		int i =dao.deleteByzbidlc(receivablesbillId);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+	}
+	
 }

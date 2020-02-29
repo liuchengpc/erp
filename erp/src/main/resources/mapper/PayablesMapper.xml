@@ -55,7 +55,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from payables 
-	    where payables_Yn=0
+	    where payables_Yn=0  
 	    ORDER BY payables_id DESC
   </select>  
   

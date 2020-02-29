@@ -48,6 +48,13 @@
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   
+  <select id="selectByPrimaryKey2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from priadetails
+    where Priabill_id = #{Priabill_id,jdbcType=VARCHAR}
+  </select>
+  
   <select id="selectCount"  resultType="Integer">
   		SELECT COUNT(*) FROM priadetails  WHERE Priabill_yn=0 
   </select>

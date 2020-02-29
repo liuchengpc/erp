@@ -31,6 +31,8 @@ public interface PriadetailsMapper {
 
     int insertSelective(Priadetails record);
 
+    List<Priadetails> selectByPrimaryKey2(String priabillId);
+    
     Priadetails selectByPrimaryKey(String priadetailsId);
 
     int updateByPrimaryKeySelective(Priadetails record);

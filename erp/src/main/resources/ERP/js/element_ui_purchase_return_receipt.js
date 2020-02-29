@@ -127,9 +127,9 @@ let viewModel = new Vue({
             console.log(row);
         },
         getLast() {
-            this.lineId = 3;
             getLast().then(resp => {
                 this.purechaseReturn = resp.data;
+                this.lineId = resp.data.lineId;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -138,6 +138,7 @@ let viewModel = new Vue({
         getPrev() {
             getPrev(this.lineId).then(resp => {
                 this.purechaseReturn = resp.data;
+                this.lineId = resp.data.lineId;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -146,15 +147,16 @@ let viewModel = new Vue({
         getNext() {
             getNext(this.lineId).then(resp => {
                 this.purechaseReturn = resp.data;
+                this.lineId = resp.data.lineId;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
             })
         },
         getFirst() {
-            this.lineId = 1;
             getFirst().then(resp => {
                 this.purechaseReturn = resp.data;
+                this.lineId = resp.data.lineId;
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -169,8 +171,12 @@ let viewModel = new Vue({
         saveOrder() {
             if(this.orderStatus === orderStatusMeta.insert){
                 // 新增
-                // insertWithDetails(JSON.stringify(this.purechaseReturn));
                 this.purechaseReturn.pureAudition = 0;
+                insertWithDetails(JSON.stringify(this.purechaseReturn)).then(resp =>{
+                    this.orderStatus = orderStatusMeta.save;
+                }).catch(error => {
+
+                });
                 console.log(JSON.stringify(this.purechaseReturn));
                 console.log(this.purechaseReturn);
             }else if(this.orderStatus === orderStatusMeta.edit){
@@ -180,7 +186,6 @@ let viewModel = new Vue({
                 console.log(JSON.stringify(this.purechaseReturn));
                 console.log(this.purechaseReturn);
             }
-            this.orderStatus = orderStatusMeta.save;
         },
         editOrder() {
             this.orderStatus = orderStatusMeta.edit;

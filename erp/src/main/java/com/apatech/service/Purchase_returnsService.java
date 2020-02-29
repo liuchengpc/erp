@@ -87,6 +87,8 @@ public class Purchase_returnsService {
 		returnsPojo.setPureId(dao.selectPureId());
 		returnsPojo.setPureDocumentNumber(dao.selectPureId());
 		dao.insertWithDetails(returnsPojo);
-		detailedMapper.insertList(returnsPojo.getDetails());
+		if (returnsPojo.getDetails() != null && returnsPojo.getDetails().size() > 0) {
+			detailedMapper.insertList(returnsPojo.getDetails());
+		}
 	}
 }

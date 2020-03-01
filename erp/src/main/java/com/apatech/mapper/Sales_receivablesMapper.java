@@ -24,6 +24,9 @@ public interface Sales_receivablesMapper {
 	 List<Sales_receivables> selectAllpagebyidlc(@Param("srPcId")String srPcId);//查商品记录
 	 
 	 List<Sales_receivables> selectAllpagebyidlc2(@Param("srCustom10")String srCustom10);//查详表
+	 
+	 @Select("select sr_auditing from Sales_receivables where sr_number=#{bitten}")
+	 String selectbysh(String bitten);
 	
     int deleteByPrimaryKey(Integer srId);
     

@@ -43,6 +43,9 @@ public interface Sales_out_warehouseMapper {
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String sowId);
+    
+    @Select("select sow_auditing from Sales_out_warehouse where sow_document_number=#{bitten}")
+    String selectbysh(String bitten);
 
     int insert(Sales_out_warehouse record);
 

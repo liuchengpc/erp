@@ -21,6 +21,8 @@ import com.apatech.domain.Sales_return_warehouse_detailed;
 import com.apatech.domain.Warehouse_detail;
 import com.apatech.service.Sales_return_warehouse_detailedService;
 import com.apatech.service.Warehouse_detailService;
+import com.apatech.service.PayablesmainService;
+import com.apatech.service.Sales_out_warehouseService;
 import com.apatech.service.Sales_return_warehouseService;
 import com.github.pagehelper.PageInfo;
 
@@ -35,6 +37,12 @@ public class Sales_return_warehouseController {
 	
 	@Autowired
 	private Warehouse_detailService wares;	
+	
+	@Autowired
+	private PayablesmainService pay;	
+	
+	@Autowired
+	private Sales_out_warehouseService sale;	
 	
 	@RequestMapping("/selectcount")
 	@ResponseBody
@@ -65,21 +73,34 @@ public class Sales_return_warehouseController {
 	@RequestMapping("/autddert")
 	@ResponseBody
 	public int autddert(String id,String sid) {
+		int autd=0;
 		Sales_return_warehouse stu = dao.selectByPrimaryKey(id);
 		stu.setList(daoo.selectlist(stu.getSrwId()));
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		if(sid.equals("1")) {	
+			if(sale.selectbysh(stu.getSrwDocumentNumber()).equals("1")) {
 		int count=wares.selectcount();
 		for (Sales_return_warehouse_detailed item : stu.getList()) {
 			count+=1;
 			int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
-			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(), item.getMatterId(), item.getSrwdPrice(), item.getSrwdSingleStatus(), 1, count2, "0","0", df.format(new Date()), null, null, null, null, null);
+			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(), item.getMatterId(), item.getSrwdPrice(), item.getSrwdSingleStatus(), 0, count2, "1","0", df.format(new Date()), null, null, null, null, null);
 			wares.insert(sky);
 		}
+		autd=dao.selectlist(id, sid);
+			}
 		}else {
-			wares.deletebysj(df.format(stu.getSrwDocumentDate())+"");
+			if(pay.selectbysh(stu.getSrwDocumentNumber()).equals("0")) {
+			int count=wares.selectcount();
+			for (Sales_return_warehouse_detailed item : stu.getList()) {
+				count+=1;
+				int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
+				Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(), item.getMatterId(), item.getSrwdPrice(), item.getSrwdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
+				wares.insert(sky);
+			}
+			autd=dao.selectlist(id, sid);
+			}
 		}
-		return dao.selectlist(id, sid);
+		return autd; 
 		
 	}
 	

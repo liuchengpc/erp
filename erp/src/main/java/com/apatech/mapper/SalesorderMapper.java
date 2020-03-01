@@ -33,4 +33,7 @@ public interface SalesorderMapper {
     int updateByPrimaryKeySelective(Salesorder record);
 
     int updateByPrimaryKey(Salesorder record);
+    
+    @Select("select so_auditing from Salesorder where so_documentnumber=#{bitten}")
+    String selectbysh(String bitten);
 }

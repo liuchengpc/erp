@@ -66,6 +66,10 @@ public class Sales_receivablesService {
     	return dao.insert(record);
     }
     
+    public String selectbysh(String bitten){
+    	return dao.selectbysh(bitten);
+    }
+    
     public int insertSelective(Sales_receivables record){
     	return dao.insertSelective(record);
     }

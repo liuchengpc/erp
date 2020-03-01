@@ -113,7 +113,7 @@
 						</ul>
 						<div class="layui-tab-content" style="padding: 10px 0;">
 							<div class="layui-tab-item layui-show">
-								<table id="materialsContent" class="layui-hide" >
+								<table id="materialsContent" class="layui-hide" @keyup.F4="showMaterialWindow()">
 									
 								</table>
 							</div>
@@ -254,7 +254,7 @@
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
 		<script>
-			$(function() {
+			$(function(){
 				var name = $("#fhname").val();
 				if (name != "") {
 					$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
@@ -263,7 +263,10 @@
 				}
 				
 			});
-			
+			function ygqh(id,name,teamName){
+				$("[name=staffId]").val(name);
+				 $("[name=sqCustom4]").val(teamName); 
+			};
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -357,6 +360,15 @@
 							this.logininfo();
 						}
 					},
+					//物料资料弹窗
+					showMaterialWindow(){
+						layer.open({
+							type:2,
+							title:"物料资料",
+							content:"window_set_material_master_file_setting.html",
+							area:['762px','450px'],
+						})
+					},
 					//客户资料弹窗
 					showClientWindow(){
 						var t=this;
@@ -390,10 +402,11 @@
 						layer.open({
 							type:2,
 							title:"业务人员资料",
-							content:"set_customer_infomation.html",
+							content:"window_set_ personnel_master_file_settings.html",
 							area:['762px','450px']
 						})
 					},
+					
 					//取消省和
 					cancelaudit: function() {
 						var name = $("#fhname").val();
@@ -476,6 +489,7 @@
 					},
 					//修改订单信息
 					updateinfo:function(){
+						
 						var record={
 							sqId:$("[name=sqId]").val(),
 							sqDocumentTime:$("[name=sqDocumentTime]").val(),
@@ -556,6 +570,20 @@
 							$("#deleinfo").attr("class","layui-btn layui-btn-disabled");
 							$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
 							$("#cancelauditinfo").attr("class","layui-btn layui-btn-disabled");
+							
+							//物料资料绑定事件
+							$("table").on("dblclick",function(){
+								layui.use(['layer'],function(){
+								var $ = layui.jquery;
+								var layer = layui.layer;
+									layer.open({
+										type:2,
+										content:"window_set_material_master_file_setting.html",
+										area:['762px','450px']
+									});				
+							});
+								
+							})
 					},
 					//删除订单
 					gomove: function() {
@@ -604,7 +632,9 @@
 							this.goPage(1);
 						}
 					},
+					
 					logininfo: function() {
+						
 						layui.use('table', function() {
 							var sqlid = $("[name=sqId]").val();
 							var table = layui.table;
@@ -698,6 +728,7 @@
 								]
 							});
 						});
+						
 					}
 				},
 				mounted: function() {
@@ -705,6 +736,7 @@
 					this.logininfo();
 				}
 			});
+			
 		</script>
 	</body>
 </html>

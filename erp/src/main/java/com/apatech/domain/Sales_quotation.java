@@ -25,7 +25,7 @@ public class Sales_quotation {
     private Integer sqTax;//是否含税（1=是，0=否）默认为0
     private String customerId;//客户编号
     private String sqDeliveryAddress;//送货地址（根据客户编号自动带入送货地址如果没有也可手动添加）
-    private Integer staffId;//业务人员编号
+    private String staffId;//业务人员编号
     private String teamId;//所属部门编号（根据业务员自动获取所属部门，也可以根据部门自动获取业务人员）
     private String sqMonograph;//制单人（根据登录的账号获取制单人员）(人员表 外键)
     private String sqReviewer;//复核人员（根据复核人员获取的复核人员名称、）(人员表 外键)
@@ -137,11 +137,11 @@ public class Sales_quotation {
         this.sqDeliveryAddress = sqDeliveryAddress == null ? null : sqDeliveryAddress.trim();
     }
 
-    public Integer getStaffId() {
+    public String getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Integer staffId) {
+    public void setStaffId(String staffId) {
         this.staffId = staffId;
     }
 

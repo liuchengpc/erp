@@ -10,7 +10,7 @@
     <result column="sq_tax" jdbcType="INTEGER" property="sqTax" />
     <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
     <result column="sq_delivery_address" jdbcType="VARCHAR" property="sqDeliveryAddress" />
-    <result column="staff_id" jdbcType="INTEGER" property="staffId" />
+    <result column="staff_id" jdbcType="VARCHAR" property="staffId" />
     <result column="team_id" jdbcType="VARCHAR" property="teamId" />
     <result column="sq_monograph" jdbcType="VARCHAR" property="sqMonograph" />
     <result column="sq_reviewer" jdbcType="VARCHAR" property="sqReviewer" />
@@ -60,7 +60,7 @@
       sq_custom5, sq_custom6)
     values (#{sqId,jdbcType=VARCHAR}, #{sqDocumentTime,jdbcType=DATE}, #{currencyId,jdbcType=VARCHAR}, 
       #{sqExchangeRate,jdbcType=REAL}, #{sqEffectiveTime,jdbcType=DATE}, #{sqTax,jdbcType=INTEGER}, 
-      #{customerId,jdbcType=VARCHAR}, #{sqDeliveryAddress,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, 
+      #{customerId,jdbcType=VARCHAR}, #{sqDeliveryAddress,jdbcType=VARCHAR}, #{staffId,jdbcType=VARCHAR}, 
       #{teamId,jdbcType=VARCHAR}, #{sqMonograph,jdbcType=VARCHAR}, #{sqReviewer,jdbcType=VARCHAR}, 
       #{sqWatchword,jdbcType=VARCHAR}, #{sqTailclause,jdbcType=VARCHAR}, #{sqRemark,jdbcType=VARCHAR}, 
       #{sqAuditing,jdbcType=VARCHAR}, #{sqYn,jdbcType=VARCHAR}, #{sqCustom1,jdbcType=VARCHAR}, 
@@ -166,7 +166,7 @@
         #{sqDeliveryAddress,jdbcType=VARCHAR},
       </if>
       <if test="staffId != null">
-        #{staffId,jdbcType=INTEGER},
+        #{staffId,jdbcType=VARCHAR},
       </if>
       <if test="teamId != null">
         #{teamId,jdbcType=VARCHAR},
@@ -237,7 +237,7 @@
         sq_delivery_address = #{sqDeliveryAddress,jdbcType=VARCHAR},
       </if>
       <if test="staffId != null">
-        staff_id = #{staffId,jdbcType=INTEGER},
+        staff_id = #{staffId,jdbcType=VARCHAR},
       </if>
       <if test="teamId != null">
         team_id = #{teamId,jdbcType=VARCHAR},
@@ -293,7 +293,7 @@
       sq_tax = #{sqTax,jdbcType=INTEGER},
       customer_id = #{customerId,jdbcType=VARCHAR},
       sq_delivery_address = #{sqDeliveryAddress,jdbcType=VARCHAR},
-      staff_id = #{staffId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=VARCHAR},
       team_id = #{teamId,jdbcType=VARCHAR},
       sq_monograph = #{sqMonograph,jdbcType=VARCHAR},
       sq_reviewer = #{sqReviewer,jdbcType=VARCHAR},

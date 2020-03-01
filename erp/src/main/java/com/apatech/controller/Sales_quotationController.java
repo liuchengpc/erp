@@ -70,6 +70,8 @@ public class Sales_quotationController {
 		System.out.println(map);
     	return map;
     }
+	//根据人员id获取部门
+	
 	/**
 	 * 获取单号
 	 * @param billdate

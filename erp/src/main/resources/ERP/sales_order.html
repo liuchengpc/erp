@@ -245,7 +245,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color: #009688;">业务人员</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId">
+									<input type="text" class="layui-input" v-model="pages.staffId" name="staffId" @keyup.f4="showSalesmanWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -360,7 +360,10 @@
                 area: ['800px', '700px']
             });
         });*/
-
+			function ygqh(id,name,bname){
+				$("[name=staffId]").val(name);
+				/* $("[name=sqCustom4]").val(bname); */
+			};	
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -453,6 +456,15 @@
 							this.logininfo();
 						}
 					},
+					//业务人员资料弹窗
+					showSalesmanWindow(){
+						layer.open({
+							type:2,
+							title:"业务人员资料",
+							content:"window_set_ personnel_master_file_settings.html",
+							area:['762px','450px']
+						})
+					},
 					//客户资料弹窗
 					showClientWindow(){
 						var t=this;
@@ -519,6 +531,20 @@
 						$("#deleinfo").attr("class", "layui-btn layui-btn-disabled");
 						$("#auditinfo").attr("class", "layui-btn layui-btn-disabled");
 						$("#cancelauditinfo").attr("class", "layui-btn layui-btn-disabled");
+						
+						//物料资料绑定事件
+						$("table").on("dblclick",function(){
+							layui.use(['layer'],function(){
+							var $ = layui.jquery;
+							var layer = layui.layer;
+								layer.open({
+									type:2,
+									content:"window_set_material_master_file_setting.html",
+									area:['762px','450px']
+								});				
+						});
+							
+						})
 					},
 					//修改订单信息
 					updateinfo: function() {

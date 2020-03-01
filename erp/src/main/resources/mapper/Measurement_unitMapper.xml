@@ -32,7 +32,7 @@
     select 
     <include refid="Base_Column_List" />
     from measurement_unit
-    where mu_id = #{muId,jdbcType=VARCHAR}
+    where mu_id = #{muId,jdbcType=VARCHAR} and mu_yn=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from measurement_unit

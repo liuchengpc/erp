@@ -9,7 +9,9 @@ Vue.component('editColumn', {
     data(){
         return {
             show: true,
-            childData: ''
+            childData: '',
+            watch: false,
+            watchKey: ['puredSingleStatus', 'puredDocumentDate', 'puredDocumentNumber', 'puredPrice', 'puredTaxRate']
         };
     },
     methods: {
@@ -18,10 +20,19 @@ Vue.component('editColumn', {
         },
         handlerEnter(){
             this.show = !this.show;
-            this.$emit("handler-change",this.prop,this.childData,this.index);
+            this.$emit("handler-change", this.prop, this.childData, this.index, this.watch);
         }
     },
     created: function () {
         this.childData = this.data;
+    },
+    watch: {
+        childData: function (newValue, originalValue) {
+            this.watchKey.forEach((value, index, array) => {
+                if(value === this.prop) {
+                    this.watch = true;
+                }
+            });
+        }
     }
 });

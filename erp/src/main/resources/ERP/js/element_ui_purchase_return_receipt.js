@@ -112,7 +112,9 @@ let viewModel = new Vue({
                     label: '否'
                 }
             ],
-            lineId: 2
+            lineId: 2,
+            watchKey: ['puredSingleStatus', 'puredDocumentDate', 'puredDocumentNumber', 'puredPrice', 'puredTaxRate'],
+            watch: false
         };
     },
     methods: {
@@ -296,9 +298,58 @@ let viewModel = new Vue({
                 puredYn: "",
             });
         },
-        handlerChangeColumnValue(prop,value,index){
-            let obj = this.purechaseReturn.details[index];
-            obj[prop] = value;
+        handlerChangeColumnValue(prop,value,index,watch){
+            let currentItem = this.purechaseReturn.details[index];
+            currentItem[prop] = value;
+            if(!watch){
+                return;
+            }
+            console.log("handlerChange");
+            // Math.floor(parseFloat(price*100 * quantity))/100;
+            // 重新计算
+
+            // 计算单价:折扣前单价*折数
+
+            //----------------------------------
+            // 折扣前单价
+            //----------------------------------
+            let beforeDiscountPrice = currentItem['puredDocumentDate'];
+
+            //----------------------------------
+            // 折数
+            //----------------------------------
+            let discount = currentItem['puredDocumentNumber'];
+
+            //----------------------------------
+            // 单价
+            //----------------------------------
+            let price = null;
+
+            // 计算金额:单价 * 数量
+
+            //----------------------------------
+            // 数量
+            //----------------------------------
+            let quantity = currentItem['puredSingleStatus'];
+
+            //----------------------------------
+            // 金额
+            //----------------------------------
+            let amount = null;
+
+            // 计算税额:金额 * 税率
+
+            //----------------------------------
+            // 税率
+            //----------------------------------
+            let taxRate = null;
+
+            // 计算含税金额:金额 + 税额
+
+            //----------------------------------
+            // 含税金额
+            //----------------------------------
+            let includeTaxAmount;
         }
     },
     created: function () {
@@ -313,6 +364,18 @@ let viewModel = new Vue({
                 console.log("render");
             }
             console.log(this.edit);
-        }
+        }/*,
+        'purechaseReturn.details': {
+            handler(newValue, originalValue) {
+                if (!originalValue) {
+                    return;
+                }
+                console.log("handlerChange");
+                this.watchKey.forEach((value, index, array) => {
+                    console.log(value);
+                });
+            },
+            deep: true
+        }*/
     }
 });

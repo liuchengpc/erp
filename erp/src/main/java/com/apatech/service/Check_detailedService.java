@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Check_detailed;
-import com.apatech.domain.Check_detailed;
-import com.apatech.domain.Check_detailed;
+import com.apatech.domain.KucunDanjia;
 import com.apatech.mapper.Check_detailedMapper;
+import com.apatech.mapper.KucunDanjiaMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -19,6 +19,8 @@ public class Check_detailedService {
 	@Autowired
 	private Check_detailedMapper dao;
 	
+	@Autowired
+	private KucunDanjiaMapper kc_dao;
 	public PageInfo<Check_detailed> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -60,5 +62,9 @@ public class Check_detailedService {
 
     public int updateByPrimaryKey(Check_detailed record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    public KucunDanjia queryBykc(String ckid,String wlid) {
+    	return kc_dao.queryBywlidAndckid(ckid, wlid);
     }
 }

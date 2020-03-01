@@ -277,25 +277,56 @@
 	}
 	//子页面物料主文件设定调方法取回值
 	function wlqh(id){
+		//使ajax同步
+		$.ajaxSettings.async=false;
 		console.log("物料取回");
-		for(var i=0;i<this.listVm.page.list[0].cd_List.length;i++){
-			cleanobj(this.listVm.page.list[0].cd_List[i]);
-		}
+		//cleanobj(this.listVm.cdadd_list);
 		//alert(JSON.stringify(this.listVm.page.list[0].cd_List));
 		//this.listVm.page.list[0].cd_List=JSON.parse("["+JSON.stringify(this.listVm.page.list[0].cd_List+"]"));
+		for(var i=0;i<this.listVm.page.list[0].cd_List.length;i++){
+			cleanobj(this.listVm.page.list[0].cd_List[i]);
+			if(i>0){
+				this.listVm.page.list[0].cd_List.splice(i,1)
+			}
+		}
 		wlqh2(id);
 	}
 	function wlqh2(id){
 		var this_=this;
-		console.log("数据清空后结果为"+JSON.stringify(this_.listVm.page.list[0].cd_List[0]));
+		console.log("数据清空后结果为"+JSON.stringify(this_.listVm.cdAdd_list));
 		for(var i=0;i<id.length;i++){
 			console.log("循环第"+i+"次的ajax的id为"+JSON.stringify(id[i].id));
 			wlqh3(id[i].id,i);
+			if(i==id.length-1){
+				wlqh4();
+			}
 		}
-		wlqh4();
+		
 	}
 	function wlqh3(id,i){
 		var this_=this;
+		var list={cdId:"",
+				proofNumber:"",
+				checkId:"",
+				matterId:"",
+				cdName:"",
+				cdFormat:"",
+				cdIncludeTax:"",
+				cdVolume:"",
+				cdInventoriesNumber:"",
+				cdProfitsLossesNumber:"",
+				cdUnitPrice:"",
+				cdLossAmountProfit:"",
+				cdBatchNumber:"",
+				cdCause:"",
+				cdAuditing:"",
+				cdYn:"",
+				cdCustom1:"",
+				cdCustom2:"",
+				cdCustom3:"",
+				cdCustom4:"",
+				cdCustom5:"",
+				cdCustom6:""};
 		$.ajax({
 			type:"get",
 			url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
@@ -304,14 +335,37 @@
 			},
 			success:function(res){
 				console.log("ajax第"+i+"次查询出来的结果为"+JSON.stringify(res));
-				console.log("数据赋值第"+i+"次前为"+JSON.stringify(this_.listVm.page.list[0].cd_List[i]));
-				this_.listVm.page.list[0].cd_List[i].matterId=res.matterId;
-				this_.listVm.page.list[0].cd_List[i].cdName=res.matterName;
-				this_.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
-				this_.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
-				console.log("数据赋值第"+i+"次后为"+JSON.stringify(this_.listVm.page.list[0].cd_List[i]));
+				console.log("数据赋值第"+i+"次前为"+JSON.stringify(list));
+				list.matterId=res.matterId;
+				list.cdName=res.matterName;
+				list.cdFormat=res.matterSize;
+				list.cdIncludeTax=res.mu_name;
+				console.log("数据赋值第"+i+"次后为"+JSON.stringify(list));
 			}
 		});
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8080/Check_detailedController/queryBykc",
+			data:{
+				ckid:this_.listVm.page.list[0].warehouseId,
+				wlid:id
+			},
+			success:function(res){
+				console.log("库存单价"+JSON.stringify(res));
+				list.cdVolume=res.ku_cun;
+				list.cdInventoriesNumber=res.ku_cun;
+				list.cdProfitsLossesNumber=0;
+				list.cdUnitPrice=res.dan_jia;
+				list.cdLossAmountProfit=0;
+			}
+		});
+		if(i==0){
+			this.listVm.page.list[0].cd_List[0]=list;
+		}
+		if(i>0){
+			this.listVm.page.list[0].cd_List.push(list);
+		}
+		//alert(JSON.stringify(this.listVm.page.list[0].cd_List));
 	}
 	function wlqh4(){
 		var this_=this;
@@ -365,7 +419,31 @@
 			
 			lay1:'layui-btn-primary',
 			lay2:'layui-btn',
-			zt:""
+			zt:"",
+			cdadd_list:{
+				cdId:"",
+				proofNumber:"",
+				checkId:"",
+				matterId:"",
+				cdName:"",
+				cdFormat:"",
+				cdIncludeTax:"",
+				cdVolume:"",
+				cdInventoriesNumber:"",
+				cdProfitsLossesNumber:"",
+				cdUnitPrice:"",
+				cdLossAmountProfit:"",
+				cdBatchNumber:"",
+				cdCause:"",
+				cdAuditing:"",
+				cdYn:"",
+				cdCustom1:"",
+				cdCustom2:"",
+				cdCustom3:"",
+				cdCustom4:"",
+				cdCustom5:"",
+				cdCustom6:""
+			}
 		},
 		methods: {//定义函数
 
@@ -456,25 +534,29 @@
 				this.noAuditing1 =false;//取消审核
 			},
 			inset: function() {//新增按钮
-				this.page.list[0].requisitionId="";//调拨单编号（主键 唯一）
-				this.page.list[0].requisitionOutWarehouse="";//调出仓库id
-				this.page.list[0].requisitionInputWarehouse="";//调入仓库id
-				this.page.list[0].requisitionDocumentationDate="";//单据日期
-				this.page.list[0].requisitionDocumentationNo="";//单据号码
-				this.page.list[0].requisitionForm="";//制单人员
-				this.page.list[0].isReviewStaff="";//复核人员
-				this.page.list[0].requisitionRemark="";//备注
-				this.page.list[0].requisitionAuditing="";//是否审核(0否1是,默认0)
-				this.page.list[0].rd_list="";//调拨详表
-				this.page.list[0].requisitionOutWarehouseName="";//调出仓库名称
-				this.page.list[0].requisitionInputWarehouseName="";//调入仓库名称
-				this.page.list[0].requisitionYn="";//是否删除（0 否 1 是 ，默认0）
-				this.page.list[0].requisitionCustom1="";//创建时间
-				this.page.list[0].requisitionCustom2="";//自定义2
-				this.page.list[0].requisitionCustom3="";//自定义3
-				this.page.list[0].requisitionCustom4="";//自定义4
-				this.page.list[0].requisitionCustom5="";//自定义5
-				this.page.list[0].requisitionCustom6="";//自定义6
+				this.page.list[0].checkId="";//id（主键 唯一）               
+				this.page.list[0].warehouseId="";//盘点仓库id
+				this.page.list[0].scAppreciationSubjects="";//增值科目id
+				this.page.list[0].scImpairmentSubjects="";//减值科目id
+				this.page.list[0].checkDocumentationDate="";//单据日期
+				this.page.list[0].checkDocumentationNo="";//单据号码
+				this.page.list[0].checkBuyer="";//盘点人员
+				this.page.list[0].checkBelongsSection="";//所属部门
+				this.page.list[0].checkForm="";//制单人员
+				this.page.list[0].checkCheckagainStaff="";//复核人员
+				this.page.list[0].checkRemark="";//备注
+				this.page.list[0].checkAuditing="";//是否审核
+				this.page.list[0].checkYn="";//是否删除（0 否 1 是 ，默认0）
+				this.page.list[0].checkCustom1="";//自定栏1
+				this.page.list[0].checkCustom2="";//自定栏2
+				this.page.list[0].checkCustom3="";//自定栏3
+				this.page.list[0].checkCustom4="";//自定栏4(占用)凭证编号
+				this.page.list[0].checkCustom5="";//自定栏5(占用)
+				this.page.list[0].checkCustom6="";//自定栏6(占用)
+				this.page.list[0].cd_List="";//盘点单详表
+				this.page.list[0].scAppreciationSubjects_Name="";//增值科目名称
+				this.page.list[0].scImpairmentSubjects_Name="";//减值科目名称
+				this.page.list[0].warehouse_Name="";//盘点仓库名称
 				var this_=this;
 				
 				layui.use('table', function(){

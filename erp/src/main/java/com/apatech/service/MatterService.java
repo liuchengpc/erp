@@ -73,7 +73,7 @@ public class MatterService {
     public Matter queryAllByPrimaryKey(String matterId) {
     	System.out.println(dao.selectByPrimaryKey(matterId).toString());
     	Matter m=dao.selectByPrimaryKey(matterId);
-    	//m.setMu_name(mu_dao.selectByPrimaryKey(m.getMuId()).getMuName());
+    	m.setMu_name(mu_dao.selectByPrimaryKey(m.getMuId()).getMuName());
     	return m;
     }
 }

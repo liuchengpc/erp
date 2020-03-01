@@ -323,7 +323,7 @@ let viewModel = new Vue({
             //----------------------------------
             // 单价
             //----------------------------------
-            let price = null;
+            let price = (beforeDiscountPrice * (discount / 100)).toFixed(2);
 
             // 计算金额:单价 * 数量
 
@@ -335,21 +335,42 @@ let viewModel = new Vue({
             //----------------------------------
             // 金额
             //----------------------------------
-            let amount = null;
+            let amount = ((price * 100 * quantity) / 100).toFixed(2);
 
             // 计算税额:金额 * 税率
 
             //----------------------------------
             // 税率
             //----------------------------------
-            let taxRate = null;
+            let taxRate = currentItem['puredTaxRate'];
+
+            //----------------------------------
+            // 税额
+            //----------------------------------
+            let taxAmount = (amount * (taxRate / 100)).toFixed(2);
 
             // 计算含税金额:金额 + 税额
 
             //----------------------------------
             // 含税金额
             //----------------------------------
-            let includeTaxAmount;
+            let includeTaxAmount = (parseFloat(amount) + parseFloat(taxAmount)).toFixed(2);
+
+            console.log("折扣前单价" + beforeDiscountPrice);
+            console.log("折数" + discount);
+            console.log("单价" + price);
+            console.log("数量" + quantity);
+            console.log("金额"+amount);
+            console.log("税率" + taxRate);
+            console.log("税额" + taxAmount);
+            console.log("含税金额" + includeTaxAmount);
+
+            console.log(this.purechaseReturn.details[index]);
+            console.log(this.purechaseReturn.details[index].puredPrice);
+            this.purechaseReturn.details[index].puredPrice = price;
+            this.purechaseReturn.details[index].puredMoney = amount;
+            this.purechaseReturn.details[index].puredTaxAmount = taxAmount;
+            this.purechaseReturn.details[index].puredIncludingTaxAmount = includeTaxAmount;
         }
     },
     created: function () {

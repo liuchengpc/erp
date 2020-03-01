@@ -33,6 +33,9 @@ Vue.component('editColumn', {
                     this.watch = true;
                 }
             });
+        },
+        data: function (newValue,originalValue) {
+            this.childData = newValue;
         }
     }
 });

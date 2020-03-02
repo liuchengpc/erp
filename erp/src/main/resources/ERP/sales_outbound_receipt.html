@@ -335,7 +335,8 @@
 			customerlist:[],
 			saletype:[],
 			currencylist:[],
-			warelist:[]
+			warelist:[],
+			luowei:false
 			
 		},
 		updated:function(){
@@ -402,7 +403,7 @@
 			}
 		},
 		methods:{
-			xz:function(){
+			xz:function(){			
 				sales_outboundvue.chongzhi();
 				sales_outboundvue.bianji();
 				$.ajax({
@@ -410,6 +411,7 @@
 					url:host+"Sales_out_warehouseController/selectcount",
 					success:function(res){
 						sales_outboundvue.page.list[0].sowId=res+1;
+						sales_outboundvue.luowei=true;
 					}
 					
 				});
@@ -481,7 +483,7 @@
 				sales_outboundvue.page.list[0].sowPriceIncludeTax=$("#app select:eq(0)").val();
 				sales_outboundvue.page.list[0].sowForeignTrade=$("#app select:eq(1)").val();
 				sales_outboundvue.page.list[0].sowSalessktj=$("#app select:eq(2)").val();
-				if(sales_outboundvue.page.list[0].sowId>sales_outboundvue.page.pages){
+				if(sales_outboundvue.luowei){
 					$.ajax({
 					type:"get",
 					url:host+"Sales_out_warehouse_detailedController/selectcount",
@@ -701,6 +703,21 @@
 				
 			}
 			,chongzhi:function(){
+				for(let stu in sales_outboundvue.page.list[0]){
+					if(stu=="list"){
+						sales_outboundvue.page.list[0][stu]=[];	
+					}else if(stu=="customerId"){
+						continue;	
+					}else if(stu=="sowtId"){
+						continue;		
+					}else if(stu=="warehouseId"){
+						continue;		
+					}else if(stu=="currencyId"){
+						continue;		
+					}else{
+					sales_outboundvue.page.list[0][stu]="";	
+					}
+				}
 				layui.use('table', function(){
       			  var table = layui.table;
       			  table.render({

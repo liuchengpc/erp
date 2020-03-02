@@ -62,7 +62,10 @@ public class Sales_return_warehouseController {
 	@ResponseBody
 	public int update(@RequestBody Sales_return_warehouse stu) {
 		daoo.deletelist(stu.getSrwId());
+		int count=daoo.selectcount();
 		for (Sales_return_warehouse_detailed item : stu.getList()) {
+			count+=1;
+			item.setSrwdId(count+"");
 			item.setSrwId(stu.getSrwId());
 			daoo.insert(item);
 		}
@@ -112,7 +115,7 @@ public class Sales_return_warehouseController {
 	}
 	
 	
-	@RequestMapping("/insert")
+	@RequestMapping(value="/insert",method = RequestMethod.POST)
 	@ResponseBody
 	public int insert(@RequestBody Sales_return_warehouse record) {
 		int i=dao.insert(record);

@@ -325,7 +325,8 @@
 			page:{},
 			customerlist:[],
 			currencylist:[],
-			warelist:[]
+			warelist:[],
+			luowei:false
 			
 		},
 		updated:function(){
@@ -400,6 +401,8 @@
 					url:host+"Sales_return_warehouseController/selectcount",
 					success:function(res){
 						sales_returnboundvue.page.list[0].srwId=res+1;
+						//alert(1)
+						sales_returnboundvue.luowei=true;
 					}
 					
 				});
@@ -466,33 +469,33 @@
 				sales_returnboundvue.page.list[0].salescxrk=$("#app select:eq(1)").val();
 				sales_returnboundvue.page.list[0].srwForeignTrade=$("#app select:eq(2)").val();
 				sales_returnboundvue.page.list[0].srwSalessktj=$("#app select:eq(3)").val();
-				if(sales_returnboundvue.page.list[0].srwId>sales_returnboundvue.page.pages){
+				if(sales_returnboundvue.luowei){
 					$.ajax({
-					type:"get",
-					url:host+"Sales_return_warehouse_detailedController/selectcount",
-					async:false,
-					success:function(res){
-						sales_returnboundvue.page.list[0].list=layui.table.cache["materialsContent"];
-						$.each(sales_returnboundvue.page.list[0].list,function(a,b) {
-							b.srwdId=res+(a+1);
-						});
+						type:"get",
+						url:host+"Sales_return_warehouse_detailedController/selectcount",
+						async:false,
+						success:function(res){
+							sales_returnboundvue.page.list[0].list=layui.table.cache["materialsContent"];
+							$.each(sales_returnboundvue.page.list[0].list,function(a,b) {
+								b.srwdId=res+(a+1);
+							});
+							
+						}
 						
-					}
-					
-				});
-				$.ajax({
-					type:"post",
-					url:host+"Sales_return_warehouseController/insert",
-					data:JSON.stringify(sales_returnboundvue.page.list[0]),
-                    contentType:"application/json;charset=utf-8",
-                    success:function(res){
-                    	if(res>0){
-                    		alert("新增成功！");
-                    	}else{
-                    		alert("新增失败！");
-                    	}
-                    }
-				});
+					});
+					$.ajax({
+						type:"post",
+						url:host+"Sales_return_warehouseController/insert",
+						data:JSON.stringify(sales_returnboundvue.page.list[0]),
+	                    contentType:"application/json;charset=utf-8",
+	                    success:function(res){
+	                    	if(res>0){
+	                    		alert("新增成功！");
+	                    	}else{
+	                    		alert("新增失败！");
+	                    	}
+	                    }
+					});
 				
 				}else{
 				sales_returnboundvue.page.list[0].list=layui.table.cache["materialsContent"];
@@ -523,7 +526,7 @@
 				var layer = layui.layer;
 					layer.open({
 						type:2,
-						content:"Turnthes2.html?dizhi=sales_outboundvue",
+						content:"Turnthes2.html?dizhi=sales_returnboundvue",
 						area:['762px','450px']
 					});				
 			});
@@ -671,6 +674,19 @@
 				});		
 			}
 			,chongzhi:function(){
+				for(let stu in sales_returnboundvue.page.list[0]){
+					if(stu=="list"){
+						sales_returnboundvue.page.list[0][stu]=[];	
+					}else if(stu=="customerId"){
+						continue;	
+					}else if(stu=="warehouseId"){
+						continue;		
+					}else if(stu=="currencyId"){
+						continue;		
+					}else{
+					sales_returnboundvue.page.list[0][stu]="";	
+					}
+				}
 				layui.use('table', function(){
       			  var table = layui.table;
       			  table.render({

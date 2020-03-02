@@ -25,6 +25,10 @@ public class MatterService {
 		public List<wdMatter> selectAll1(){
 			return dao.selectAllMatter();
 		}
+		
+		public List<Matter> selectAll2(){
+			return dao.selectAll();
+		}
 	/**
 	 * 用于查询单位
 	 */

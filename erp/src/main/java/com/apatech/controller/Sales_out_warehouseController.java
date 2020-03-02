@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse_detailed;
+import com.apatech.domain.Salesorder;
 import com.apatech.domain.Warehouse_detail;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse;
@@ -27,6 +29,8 @@ import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.mapper.Sales_out_warehouseMapper;
 import com.apatech.service.Sales_out_warehouseService;
 import com.apatech.service.Sales_out_warehouse_detailedService;
+import com.apatech.service.Sales_receivablesService;
+import com.apatech.service.SalesorderService;
 import com.apatech.service.Warehouse_detailService;
 import com.github.pagehelper.PageInfo;
 
@@ -41,6 +45,12 @@ public class Sales_out_warehouseController {
 	
 	@Autowired
 	private Warehouse_detailService wares;	
+	
+	@Autowired
+	private SalesorderService order;
+	
+	@Autowired
+	private Sales_receivablesService rece;
 	
 	@RequestMapping("/selectcount")
 	@ResponseBody
@@ -69,10 +79,12 @@ public class Sales_out_warehouseController {
 	@RequestMapping("/autddert")
 	@ResponseBody
 	public int autddert(String id,String sid) {
+		int autd=0;
 		Sales_out_warehouse stu = dao.selectByPrimaryKey(id);
 		stu.setList(daoo.selectlist(stu.getSowId()));
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		if(sid.equals("1")) {	
+			if(order.selectbysh(stu.getSowDocumentNumber()).equals("1")) {		
 		int count=wares.selectcount();
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
 			count+=1;
@@ -80,10 +92,21 @@ public class Sales_out_warehouseController {
 			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(),item.getMatterId(), item.getSowdPrice(), item.getSowdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
 			wares.insert(sky);
 		}
+			autd=dao.selectlist(id, sid);
+			}
 		}else {
-			wares.deletebysj(df.format(stu.getSowDocumentDate())+"");
+			if(rece.selectbysh(stu.getSowDocumentNumber()).equals("0")) {
+			int count=wares.selectcount();
+			for (Sales_out_warehouse_detailed item : stu.getList()) {
+				count+=1;
+				int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
+				Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(),item.getMatterId(), item.getSowdPrice(), item.getSowdSingleStatus(), 0, count2, "1","0", df.format(new Date()), null, null, null, null, null);
+				wares.insert(sky);
 		}
-		return dao.selectlist(id, sid);
+			autd=dao.selectlist(id, sid);
+		}
+		}
+		return autd;
 		
 	}
 	
@@ -92,6 +115,16 @@ public class Sales_out_warehouseController {
 	public int delete(String sowId) {
 		return dao.deletelist(sowId);
 				
+	}
+	
+	@RequestMapping("/selectzdsh")
+	@ResponseBody
+	public List<Sales_out_warehouse> selectzdsh(){
+		List<Sales_out_warehouse> list = dao.selectzdsh();
+		for (Sales_out_warehouse item : list) {
+			item.setList(daoo.selectlist(item.getSowId()));
+		}
+		return list;
 	}
 	
 	

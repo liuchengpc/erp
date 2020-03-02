@@ -88,7 +88,7 @@
     where pp_id = #{ppId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.apatech.domain.Purchase_payables">
-    insert into purchase_payables (pp_id, pp_type, pp_number, 
+    insert into purchase_payables (pp_type, pp_number, 
       pp_date, pp_pc_id, pp_pc_name, 
       pp_team_id, pp_team_name, pp_buyer, 
       pp_project_name, pp_currency, pp_exchange_rate, 
@@ -98,7 +98,7 @@
       pp_custom3, pp_custom4, pp_custom5, 
       pp_custom6, pp_custom7, pp_custom8, 
       pp_custom9, pp_custom10)
-    values (#{ppId,jdbcType=INTEGER}, #{ppType,jdbcType=VARCHAR}, #{ppNumber,jdbcType=VARCHAR}, 
+    values (#{ppType,jdbcType=VARCHAR}, #{ppNumber,jdbcType=VARCHAR}, 
       #{ppDate,jdbcType=TIMESTAMP}, #{ppPcId,jdbcType=VARCHAR}, #{ppPcName,jdbcType=VARCHAR}, 
       #{ppTeamId,jdbcType=VARCHAR}, #{ppTeamName,jdbcType=VARCHAR}, #{ppBuyer,jdbcType=VARCHAR}, 
       #{ppProjectName,jdbcType=VARCHAR}, #{ppCurrency,jdbcType=VARCHAR}, #{ppExchangeRate,jdbcType=REAL}, 
@@ -112,9 +112,6 @@
   <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_payables">
     insert into purchase_payables
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ppId != null">
-        pp_id,
-      </if>
       <if test="ppType != null">
         pp_type,
       </if>
@@ -201,9 +198,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ppId != null">
-        #{ppId,jdbcType=INTEGER},
-      </if>
       <if test="ppType != null">
         #{ppType,jdbcType=VARCHAR},
       </if>
@@ -378,7 +372,7 @@
         pp_custom10 = #{ppCustom10,jdbcType=VARCHAR},
       </if>
     </set>
-    where pp_id = #{ppId,jdbcType=INTEGER}
+    where pp_custom2 = #{ppCustom2,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_payables">
     update purchase_payables
@@ -410,6 +404,6 @@
       pp_custom8 = #{ppCustom8,jdbcType=VARCHAR},
       pp_custom9 = #{ppCustom9,jdbcType=VARCHAR},
       pp_custom10 = #{ppCustom10,jdbcType=VARCHAR}
-    where pp_id = #{ppId,jdbcType=INTEGER}
+    where pp_custom2 = #{pp_custom2,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -50,7 +50,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from payables_detail 
-	    where pade_Yn=0
+	    where pade_Yn=0 and pade_custom7 is null
 	    ORDER BY pade_id DESC
   </select>
   
@@ -66,7 +66,7 @@
 	    pade_custom4,pade_custom5,pade_custom6,pade_custom7,
 	    pade_custom8,pade_custom9,pade_custom10 
 	    FROM payables_detail WHERE paydetail_id=#{paydetail_id,jdbcType=VARCHAR} 
-	    AND pade_yn=0   
+	    AND pade_yn=0 AND pade_custom7 is null 
 	    ORDER BY paydetail_id DESC
   </select>
   

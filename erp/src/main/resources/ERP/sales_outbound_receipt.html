@@ -280,7 +280,7 @@
                         <select name="interest" lay-filter="aihao" disabled="disabled">
                             <option value="">转单</option>
                             <option value="0" disabled>采购询价转入</option>
-                            <option value="0" disabled>采购订单转入</option>
+                            <option value="0">销售订单转入</option>
                             <option value="0" disabled>进口商业发票转入</option>
                         </select>
                     </div>
@@ -373,7 +373,27 @@
 			 			});
 			 		});
 			 		sales_outboundvue.tableshuax();
-			 		sales_outboundvue.bianji();
+			 	//	sales_outboundvue.bianji();
+			 	$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
+			$("table").off("dblclick");
+			 		$("table").on("dblclick",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"luowei.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
 			 	});
 		   
 		    },
@@ -512,6 +532,17 @@
 				$("textarea").removeAttr("readonly");
 				layui.use('form', function(){
 			    var form = layui.form;
+			    form.on("select(aihao)",function(){
+			    	layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"Turnthesingle.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+			    })
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
@@ -663,8 +694,8 @@
 					data:{pageNum:pageNum,pageSize:1},
 					success:function(res){
 						sales_outboundvue.page=res;						
-					 	sales_outboundvue.tableshuax();
-					 	sales_outboundvue.bianji();
+					 	//sales_outboundvue.tableshuax();
+					 	//sales_outboundvue.bianji();
 					}
 				});
 				

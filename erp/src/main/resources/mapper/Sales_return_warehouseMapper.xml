@@ -14,15 +14,15 @@
     <result column="srw_document_number" jdbcType="VARCHAR" property="srwDocumentNumber" />
     <result column="currency_id" jdbcType="VARCHAR" property="currencyId" />
     <result column="srw_exchange_rate" jdbcType="REAL" property="srwExchangeRate" />
-    <result column="srw_foreign_trade" jdbcType="INTEGER" property="srwForeignTrade" />
-    <result column="srw_sunnum" jdbcType="REAL" property="srwSunnum" />
+    <result column="srw_foreign_trade" jdbcType="VARCHAR" property="srwForeignTrade" />
+    <result column="srw_sunnum" jdbcType="INTEGER" property="srwSunnum" />
     <result column="srw_sunmoney" jdbcType="REAL" property="srwSunmoney" />
     <result column="srw_tax" jdbcType="REAL" property="srwTax" />
-    <result column="srw_including_tax_amount" jdbcType="VARCHAR" property="srwIncludingTaxAmount" />
-    <result column="srw_saleszkgs" jdbcType="DATE" property="srwSaleszkgs" />
+    <result column="srw_including_tax_amount" jdbcType="REAL" property="srwIncludingTaxAmount" />
+    <result column="srw_saleszkgs" jdbcType="VARCHAR" property="srwSaleszkgs" />
     <result column="srw_salesdate" jdbcType="VARCHAR" property="srwSalesdate" />
-    <result column="srw_salessktj" jdbcType="INTEGER" property="srwSalessktj" />
-    <result column="srw_salesday" jdbcType="DATE" property="srwSalesday" />
+    <result column="srw_salessktj" jdbcType="VARCHAR" property="srwSalessktj" />
+    <result column="srw_salesday" jdbcType="INTEGER" property="srwSalesday" />
     <result column="srw_salesyue" jdbcType="VARCHAR" property="srwSalesyue" />
     <result column="srw_buyer" jdbcType="VARCHAR" property="srwBuyer" />
     <result column="srw_belongs_section" jdbcType="VARCHAR" property="srwBelongsSection" />
@@ -87,9 +87,9 @@
       #{srwtId,jdbcType=VARCHAR}, #{srwPriceIncludeTax,jdbcType=VARCHAR}, #{salescxrk,jdbcType=INTEGER}, 
       #{warehouseId,jdbcType=VARCHAR}, #{srwCertificateNumber,jdbcType=VARCHAR}, #{srwDocumentDate,jdbcType=DATE}, 
       #{srwDocumentNumber,jdbcType=VARCHAR}, #{currencyId,jdbcType=VARCHAR}, #{srwExchangeRate,jdbcType=REAL}, 
-      #{srwForeignTrade,jdbcType=INTEGER}, #{srwSunnum,jdbcType=REAL}, #{srwSunmoney,jdbcType=REAL}, 
-      #{srwTax,jdbcType=REAL}, #{srwIncludingTaxAmount,jdbcType=VARCHAR}, #{srwSaleszkgs,jdbcType=DATE}, 
-      #{srwSalesdate,jdbcType=VARCHAR}, #{srwSalessktj,jdbcType=INTEGER}, #{srwSalesday,jdbcType=DATE}, 
+      #{srwForeignTrade,jdbcType=VARCHAR}, #{srwSunnum,jdbcType=INTEGER}, #{srwSunmoney,jdbcType=REAL}, 
+      #{srwTax,jdbcType=REAL}, #{srwIncludingTaxAmount,jdbcType=REAL}, #{srwSaleszkgs,jdbcType=VARCHAR}, 
+      #{srwSalesdate,jdbcType=VARCHAR}, #{srwSalessktj,jdbcType=VARCHAR}, #{srwSalesday,jdbcType=INTEGER}, 
       #{srwSalesyue,jdbcType=VARCHAR}, #{srwBuyer,jdbcType=VARCHAR}, #{srwBelongsSection,jdbcType=VARCHAR}, 
       #{srwBelongsProject,jdbcType=VARCHAR}, #{srwForm,jdbcType=VARCHAR}, #{srwCheckagainStaff,jdbcType=VARCHAR}, 
       #{srwHeaderProvision,jdbcType=VARCHAR}, #{srwEndClause,jdbcType=VARCHAR}, #{srwRemark,jdbcType=VARCHAR}, 
@@ -253,10 +253,10 @@
         #{srwExchangeRate,jdbcType=REAL},
       </if>
       <if test="srwForeignTrade != null">
-        #{srwForeignTrade,jdbcType=INTEGER},
+        #{srwForeignTrade,jdbcType=VARCHAR},
       </if>
       <if test="srwSunnum != null">
-        #{srwSunnum,jdbcType=REAL},
+        #{srwSunnum,jdbcType=INTEGER},
       </if>
       <if test="srwSunmoney != null">
         #{srwSunmoney,jdbcType=REAL},
@@ -265,19 +265,19 @@
         #{srwTax,jdbcType=REAL},
       </if>
       <if test="srwIncludingTaxAmount != null">
-        #{srwIncludingTaxAmount,jdbcType=VARCHAR},
+        #{srwIncludingTaxAmount,jdbcType=REAL},
       </if>
       <if test="srwSaleszkgs != null">
-        #{srwSaleszkgs,jdbcType=DATE},
+        #{srwSaleszkgs,jdbcType=VARCHAR},
       </if>
       <if test="srwSalesdate != null">
         #{srwSalesdate,jdbcType=VARCHAR},
       </if>
       <if test="srwSalessktj != null">
-        #{srwSalessktj,jdbcType=INTEGER},
+        #{srwSalessktj,jdbcType=VARCHAR},
       </if>
       <if test="srwSalesday != null">
-        #{srwSalesday,jdbcType=DATE},
+        #{srwSalesday,jdbcType=INTEGER},
       </if>
       <if test="srwSalesyue != null">
         #{srwSalesyue,jdbcType=VARCHAR},
@@ -369,10 +369,10 @@
         srw_exchange_rate = #{srwExchangeRate,jdbcType=REAL},
       </if>
       <if test="srwForeignTrade != null">
-        srw_foreign_trade = #{srwForeignTrade,jdbcType=INTEGER},
+        srw_foreign_trade = #{srwForeignTrade,jdbcType=VARCHAR},
       </if>
       <if test="srwSunnum != null">
-        srw_sunnum = #{srwSunnum,jdbcType=REAL},
+        srw_sunnum = #{srwSunnum,jdbcType=INTEGER},
       </if>
       <if test="srwSunmoney != null">
         srw_sunmoney = #{srwSunmoney,jdbcType=REAL},
@@ -381,19 +381,19 @@
         srw_tax = #{srwTax,jdbcType=REAL},
       </if>
       <if test="srwIncludingTaxAmount != null">
-        srw_including_tax_amount = #{srwIncludingTaxAmount,jdbcType=VARCHAR},
+        srw_including_tax_amount = #{srwIncludingTaxAmount,jdbcType=REAL},
       </if>
       <if test="srwSaleszkgs != null">
-        srw_saleszkgs = #{srwSaleszkgs,jdbcType=DATE},
+        srw_saleszkgs = #{srwSaleszkgs,jdbcType=VARCHAR},
       </if>
       <if test="srwSalesdate != null">
         srw_salesdate = #{srwSalesdate,jdbcType=VARCHAR},
       </if>
       <if test="srwSalessktj != null">
-        srw_salessktj = #{srwSalessktj,jdbcType=INTEGER},
+        srw_salessktj = #{srwSalessktj,jdbcType=VARCHAR},
       </if>
       <if test="srwSalesday != null">
-        srw_salesday = #{srwSalesday,jdbcType=DATE},
+        srw_salesday = #{srwSalesday,jdbcType=INTEGER},
       </if>
       <if test="srwSalesyue != null">
         srw_salesyue = #{srwSalesyue,jdbcType=VARCHAR},
@@ -462,15 +462,15 @@
       srw_document_number = #{srwDocumentNumber,jdbcType=VARCHAR},
       currency_id = #{currencyId,jdbcType=VARCHAR},
       srw_exchange_rate = #{srwExchangeRate,jdbcType=REAL},
-      srw_foreign_trade = #{srwForeignTrade,jdbcType=INTEGER},
-      srw_sunnum = #{srwSunnum,jdbcType=REAL},
+      srw_foreign_trade = #{srwForeignTrade,jdbcType=VARCHAR},
+      srw_sunnum = #{srwSunnum,jdbcType=INTEGER},
       srw_sunmoney = #{srwSunmoney,jdbcType=REAL},
       srw_tax = #{srwTax,jdbcType=REAL},
-      srw_including_tax_amount = #{srwIncludingTaxAmount,jdbcType=VARCHAR},
-      srw_saleszkgs = #{srwSaleszkgs,jdbcType=DATE},
+      srw_including_tax_amount = #{srwIncludingTaxAmount,jdbcType=REAL},
+      srw_saleszkgs = #{srwSaleszkgs,jdbcType=VARCHAR},
       srw_salesdate = #{srwSalesdate,jdbcType=VARCHAR},
-      srw_salessktj = #{srwSalessktj,jdbcType=INTEGER},
-      srw_salesday = #{srwSalesday,jdbcType=DATE},
+      srw_salessktj = #{srwSalessktj,jdbcType=VARCHAR},
+      srw_salesday = #{srwSalesday,jdbcType=INTEGER},
       srw_salesyue = #{srwSalesyue,jdbcType=VARCHAR},
       srw_buyer = #{srwBuyer,jdbcType=VARCHAR},
       srw_belongs_section = #{srwBelongsSection,jdbcType=VARCHAR},

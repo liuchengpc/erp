@@ -24,7 +24,7 @@ public interface Sales_receivablesMapper {
 	 List<Sales_receivables> selectAllpagebyidlc(@Param("srPcId")String srPcId);//查商品记录
 	 
 	 List<Sales_receivables> selectAllpagebyidlc2(@Param("srCustom10")String srCustom10);//查详表
-	 
+
 	 
 	 @Select("SELECT\r\n" + 
 	 		"a.customer_id customerId ,a.customer_name customerName,a.customer_easyname customerEasyname,a.customer_english_name customerEnglishName,\r\n" + 
@@ -75,7 +75,9 @@ public interface Sales_receivablesMapper {
     		"INNER JOIN sales_receivables b ON a.customer_id=b.sr_pc_id \r\n" + 
     		"WHERE b.sr_custom7=0 AND b.sr_currentbalance>0 and a.customer_id=#{customerId}")
     List<Sales_receivables_customerLC> selectAlllc2(String customerId);
-	 
+
+	 @Select("select sr_auditing from Sales_receivables where sr_number=#{bitten}")
+	 String selectbysh(String bitten);
 	
     int deleteByPrimaryKey(Integer srId);
     

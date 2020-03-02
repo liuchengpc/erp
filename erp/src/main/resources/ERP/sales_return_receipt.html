@@ -261,7 +261,7 @@
                     <div class="layui-input-block" style="margin-left: 30px;">
                         <select name="interest" lay-filter="aihao">
                             <option value="">转单</option>
-                            <option value="0" disabled>采购出库转入</option>
+                            <option value="0">采购出库转入</option>
                         </select>
                     </div>
                 </div>
@@ -363,7 +363,27 @@
 			 			});
 			 		});
 			 		sales_returnboundvue.tableshuax();
-			 		sales_returnboundvue.bianji();
+			 		$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
+			$("table").off("dblclick");
+			$("table").on("dblclick",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"luowei.html?dizhi=sales_returnboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
+			 		//sales_returnboundvue.bianji();
 			 	});
 		    
 		    },
@@ -497,6 +517,17 @@
 				$("textarea").removeAttr("readonly");
 				layui.use('form', function(){
 			    var form = layui.form;
+			     form.on("select(aihao)",function(){
+			    	layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"Turnthes2.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+			    })
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
@@ -635,7 +666,7 @@
 					data:{pageNum:pageNum,pageSize:1},
 					success:function(res){
 						sales_returnboundvue.page=res;	
-						sales_returnboundvue.tableshuax();		    
+						//sales_returnboundvue.tableshuax();		    
 					}
 				});		
 			}

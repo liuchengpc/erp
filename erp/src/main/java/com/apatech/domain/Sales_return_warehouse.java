@@ -27,19 +27,19 @@ public class Sales_return_warehouse {
     private String srwDocumentNumber;//单据号码
     private String currencyId;//币别id
     private Float srwExchangeRate;//汇率
-    private Integer srwForeignTrade;//国外贸易（默认否）
-    private Float srwSunnum;//总数量
+    private String srwForeignTrade;//国外贸易（默认否）
+    private Integer srwSunnum;//总数量
     private Float srwSunmoney;//总金额
     private Float srwTax;//总税额
-    private String srwIncludingTaxAmount;//总含税金额
+    private Float srwIncludingTaxAmount;//总含税金额
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date srwSaleszkgs;//账款归属
+    private String srwSaleszkgs;//账款归属
     private String srwSalesdate;//收款日期
-    private Integer srwSalessktj;//收款条件
+    private String srwSalessktj;//收款条件
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date srwSalesday;//收款天数
+    private Integer srwSalesday;//收款天数
     private String srwSalesyue;//账款月份
     private String srwBuyer;//业务人员
     private String srwBelongsSection;//所属部门
@@ -187,21 +187,7 @@ public class Sales_return_warehouse {
         this.srwExchangeRate = srwExchangeRate;
     }
 
-    public Integer getSrwForeignTrade() {
-        return srwForeignTrade;
-    }
-
-    public void setSrwForeignTrade(Integer srwForeignTrade) {
-        this.srwForeignTrade = srwForeignTrade;
-    }
-
-    public Float getSrwSunnum() {
-        return srwSunnum;
-    }
-
-    public void setSrwSunnum(Float srwSunnum) {
-        this.srwSunnum = srwSunnum;
-    }
+ 
 
     public Float getSrwSunmoney() {
         return srwSunmoney;
@@ -219,21 +205,7 @@ public class Sales_return_warehouse {
         this.srwTax = srwTax;
     }
 
-    public String getSrwIncludingTaxAmount() {
-        return srwIncludingTaxAmount;
-    }
-
-    public void setSrwIncludingTaxAmount(String srwIncludingTaxAmount) {
-        this.srwIncludingTaxAmount = srwIncludingTaxAmount == null ? null : srwIncludingTaxAmount.trim();
-    }
-
-    public Date getSrwSaleszkgs() {
-        return srwSaleszkgs;
-    }
-
-    public void setSrwSaleszkgs(Date srwSaleszkgs) {
-        this.srwSaleszkgs = srwSaleszkgs;
-    }
+    
 
     public String getSrwSalesdate() {
         return srwSalesdate;
@@ -243,23 +215,55 @@ public class Sales_return_warehouse {
         this.srwSalesdate = srwSalesdate == null ? null : srwSalesdate.trim();
     }
 
-    public Integer getSrwSalessktj() {
-        return srwSalessktj;
-    }
+   public String getSrwForeignTrade() {
+		return srwForeignTrade;
+	}
 
-    public void setSrwSalessktj(Integer srwSalessktj) {
-        this.srwSalessktj = srwSalessktj;
-    }
+	public void setSrwForeignTrade(String srwForeignTrade) {
+		this.srwForeignTrade = srwForeignTrade;
+	}
 
-    public Date getSrwSalesday() {
-        return srwSalesday;
-    }
+	public Integer getSrwSunnum() {
+		return srwSunnum;
+	}
 
-    public void setSrwSalesday(Date srwSalesday) {
-        this.srwSalesday = srwSalesday;
-    }
+	public void setSrwSunnum(Integer srwSunnum) {
+		this.srwSunnum = srwSunnum;
+	}
 
-    public String getSrwSalesyue() {
+	public Float getSrwIncludingTaxAmount() {
+		return srwIncludingTaxAmount;
+	}
+
+	public void setSrwIncludingTaxAmount(Float srwIncludingTaxAmount) {
+		this.srwIncludingTaxAmount = srwIncludingTaxAmount;
+	}
+
+	public String getSrwSaleszkgs() {
+		return srwSaleszkgs;
+	}
+
+	public void setSrwSaleszkgs(String srwSaleszkgs) {
+		this.srwSaleszkgs = srwSaleszkgs;
+	}
+
+	public String getSrwSalessktj() {
+		return srwSalessktj;
+	}
+
+	public void setSrwSalessktj(String srwSalessktj) {
+		this.srwSalessktj = srwSalessktj;
+	}
+
+	public Integer getSrwSalesday() {
+		return srwSalesday;
+	}
+
+	public void setSrwSalesday(Integer srwSalesday) {
+		this.srwSalesday = srwSalesday;
+	}
+
+	public String getSrwSalesyue() {
         return srwSalesyue;
     }
 

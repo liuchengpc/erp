@@ -21,7 +21,7 @@ public interface CheckMapper {
 	 		"ELSE CONCAT('00',COUNT(*)+1)\r\n" + 
 	 		"END \r\n" + 
 	 		"FROM\r\n" + 
-	 		"Check WHERE Check_custom1=#{billdate}")
+	 		"`Check` WHERE Check_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
 	 
     int deleteByPrimaryKey(String checkId);
@@ -29,7 +29,7 @@ public interface CheckMapper {
     int insert(Check record);
 
     int insertSelective(Check record);
-
+    int insertSelective2(Check record);
     Check selectByPrimaryKey(String checkId);
 
     int updateByPrimaryKeySelective(Check record);

@@ -27,6 +27,7 @@ public interface Check_detailedMapper {
     int insert(Check_detailed record);
 
     int insertSelective(Check_detailed record);
+    int insertSelective2(Check_detailed record);
 
     Check_detailed selectByPrimaryKey(String cdId);
 

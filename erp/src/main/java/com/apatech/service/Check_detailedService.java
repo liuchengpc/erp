@@ -32,6 +32,10 @@ public class Check_detailedService {
     	return page;
     }
 	
+	public List<Check_detailed> selectAll(){
+		return dao.selectAll();
+	}
+	
 	public List<Check_detailed> selectAllBycheckId(String checkId){
 		return dao.selectAllBycheckId(checkId);
 	}
@@ -51,7 +55,10 @@ public class Check_detailedService {
     public int insertSelective(Check_detailed record){
     	return dao.insertSelective(record);
     }
-
+    public int insertSelective2(Check_detailed record){
+    	return dao.insertSelective2(record);
+    }
+    
     public Check_detailed selectByPrimaryKey(String cdId){
     	return dao.selectByPrimaryKey(cdId);
     }

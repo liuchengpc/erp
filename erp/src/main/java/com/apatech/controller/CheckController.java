@@ -151,4 +151,26 @@ public class CheckController {
     	PageInfo<Check> page=dao.queryAllpage(pageNum, pageSize);
     	return page;
     }
+	
+	/**
+	 * 联表新增
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "insertzx",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> insertzx(@RequestBody Check record) {
+		System.out.println("进入CheckController新增");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.insertzx(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "新增成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "新增失败！");
+		}
+		return map;
+    }
 }

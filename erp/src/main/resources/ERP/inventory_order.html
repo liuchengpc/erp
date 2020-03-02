@@ -53,13 +53,13 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">单据日期</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationDate">
+								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationDate" disabled="false">
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">单据号码</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationNo">
+								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationNo" disabled="false">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -542,7 +542,7 @@
 				this.page.list[0].checkDocumentationNo="";//单据号码
 				this.page.list[0].checkBuyer="";//盘点人员
 				this.page.list[0].checkBelongsSection="";//所属部门
-				this.page.list[0].checkForm="";//制单人员
+				this.page.list[0].checkForm="Admin";//制单人员
 				this.page.list[0].checkCheckagainStaff="";//复核人员
 				this.page.list[0].checkRemark="";//备注
 				this.page.list[0].checkAuditing="";//是否审核
@@ -553,7 +553,12 @@
 				this.page.list[0].checkCustom4="";//自定栏4(占用)凭证编号
 				this.page.list[0].checkCustom5="";//自定栏5(占用)
 				this.page.list[0].checkCustom6="";//自定栏6(占用)
-				this.page.list[0].cd_List="";//盘点单详表
+				for(var i=0;i<this.page.list[0].cd_List.length;i++){
+					this.qkobj(this.page.list[0].cd_List[i]);
+					if(i>0){
+						this.page.list[0].cd_List.splice(i,1);
+					}
+				}
 				this.page.list[0].scAppreciationSubjects_Name="";//增值科目名称
 				this.page.list[0].scImpairmentSubjects_Name="";//减值科目名称
 				this.page.list[0].warehouse_Name="";//盘点仓库名称
@@ -605,6 +610,7 @@
 				this.noAuditing1 =true;//取消审核
 			},
 			insets: function() {//新增
+				console.log("当前新增数据为:"+JSON.stringify(this.page.list[0]));
 				/*获取当前时间*/
 				//判断是否在前面加0
 					function getNow(s) {
@@ -632,13 +638,13 @@
 				var obj=this.page.list[0];
 				
 				$.ajax({
-					url : "http://127.0.0.1:8080/CheckController/insertSelective",
+					url : "http://127.0.0.1:8080/CheckController/insertzx",
 					type:"post",
 					data : JSON.stringify(obj),
 					dataType:'json',	
 					contentType : "application/json;charset=utf-8",
 					success:function (res) {
-						//alert("系统提示：" +res.message);
+						alert("系统提示：" +res.message);
 						this_.isinsert=false;//关闭新增模式
 						this_.isedit=false;//关闭编辑模式
 						this_.goPage(1, 1);		
@@ -761,9 +767,9 @@
 					 
 					var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
 				/*获取当前时间*/
-				
+				this_.page.list[0].checkDocumentationDate=now;
 				var ss=year+getNow(month)+getNow(date);
-				
+				this_.page.list[0].checkCustom1=ss;
 				$.ajax({
 					url:"http://127.0.0.1:8080/CheckController/getno",
 					type:"get",
@@ -772,7 +778,8 @@
 					success:function (res) {
 						console.info("idfdsfhoewifhw")
 						console.info(res)
-						this_.page.list[0].teamId=ss+res;						
+						this_.page.list[0].checkDocumentationNo=ss+res;
+						this_.page.list[0].checkId=ss+res;
 					}
 				}); 				
 			},add:function(){
@@ -804,6 +811,10 @@
 			},jzadd:function(){
 				this.zt="jz";
 				this.hjadd();
+			},qkobj:function(obj){
+				for(var o in obj){
+						obj[o]="";
+				}
 			}
 		},
 		mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
@@ -813,11 +824,15 @@
 		}
 	
 	});
-	
+	var wthis=this;
 	layui.use('table', function(){
 	  var table = layui.table; 
 	  //监听单元格事件
 	  table.on('rowDouble(materialsContent)',function(obj){
+		if(wthis.listVm.page.list[0].warehouseId==""||wthis.listVm.page.list[0].warehouse_Name==""){
+			alert("请先选择仓库");
+			return ;
+		}
 	    layer.open({
 	    	type: 2,
 	    	title:"多选--物料主文件设定",

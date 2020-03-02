@@ -120,7 +120,7 @@ public class Purchase_payablesController {
     }
 
 	/**
-	 * 根据主键修 改
+	 * 根据主键修改
 	 * @param student
 	 * @return
 	 */

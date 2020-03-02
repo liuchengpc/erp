@@ -46,6 +46,21 @@ public class PriadetailsController {
     }
 	
 	/**
+	 * 分页
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllBySupplier",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Priadetails> selectAllBySupplier(Integer page,Integer limit,String priabillCustom10){
+		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
+		System.out.println("预付款主表部门："+priabillCustom10);
+		PageInfo<Priadetails> pageFy = dao.selectAllBySupplier(page, limit,priabillCustom10);
+		return pageFy;
+    }
+	
+	/**
 	 * 新增+删除 Xz专属
 	 * @param student
 	 * @return

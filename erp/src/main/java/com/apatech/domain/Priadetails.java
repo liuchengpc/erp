@@ -20,9 +20,9 @@ public class Priadetails {
     private String priabillCustom4;//自定义4
     private String priabillCustom5;//自定义5
     private String priabillCustom6;//自定义6
-    private String priabillCustom7;//自定义7
-    private String priabillCustom8;//自定义8
-    private String priabillCustom9;//自定义9
+    private String priabillCustom7;//自定义7	--应付款主表ID
+    private String priabillCustom8;//自定义8	--取用预付金额
+    private String priabillCustom9;//自定义9	--预付余额
     private String priabillCustom10;//自定义10 --供应商名称
     
     

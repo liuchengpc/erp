@@ -68,7 +68,10 @@ public class Sales_out_warehouseController {
 	@ResponseBody
 	public int update(@RequestBody Sales_out_warehouse stu) {
 		daoo.deletelist(stu.getSowId());
+		int count=daoo.selectcount();
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
+			count+=1;
+			item.setSowdId(count+"");
 			item.setSowId(stu.getSowId());
 			daoo.insert(item);
 		}

@@ -36,6 +36,12 @@ public class MatterController {
 		return dao.selectAll();
 	}
 	
+	@RequestMapping("selectAll2")
+	@ResponseBody
+	public List<Matter> selectAll2(){
+		return dao.selectAll2();
+	}
+	
 	
 	/**
 	 * 分页

@@ -180,9 +180,12 @@
 			       var index = parent.layer.getFrameIndex(window.name);
 				   var iframe = $(window.parent.document).contents();
 //				   iframe.find("#customerId").val(data.customerName);
-					 parent["listVm"].page.list[0].payablesCurrencyName=data.currencyEasyname;
-				   parent["listVm"].page.list[0].currencyId=data.currencyId;
-				   parent["listVm"].page2[0].srCurrency=data.currencyEasyname;
+					parent["listVm"].page.list[0].payablesCurrencyName=data.currencyEasyname;
+				   	parent["listVm"].page.list[0].currencyId=data.currencyId;
+				    $.each(parent["listVm"].page2,function(i, value){
+				    	parent["listVm"].page2[i].srCurrency=data.currencyEasyname;
+				    })
+				   
 				   parent["listVm"].jztable();
 			       parent.layer.close(index);
 			    }

@@ -59,7 +59,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from sales_receivables 
-	    where sr_Yn=0 and sr_custom10=#{srCustom10,jdbcType=VARCHAR} and sr_custom7=1 
+	    where sr_custom10=#{srCustom10,jdbcType=VARCHAR} and sr_custom7=1 
 	    ORDER BY sr_id DESC
   </select>
   
@@ -71,7 +71,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sales_receivables
-    where sr_id = #{srId,jdbcType=INTEGER}
+    where sr_id = #{srId,jdbcType=INTEGER} and deleteByzbidlc=1
   </delete>
   <delete id="deleteByzbidlc" parameterType="java.lang.String">
     delete from sales_receivables

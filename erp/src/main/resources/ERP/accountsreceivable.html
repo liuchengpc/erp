@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title>客户应收账款账龄分析表</title>
     <link rel="stylesheet" href="css/layui.css">
     <link rel="stylesheet" href="css/bootstrap.css" />    
     <link href="css/fontawesome.css" rel="stylesheet">
@@ -48,14 +48,15 @@
 <body>
 	
     <div id="app" >
-    		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-			  <legend>客户区间: 200903K0002~200903K00002帐龄时间: 单据日期终 止日期: 2020-02-26</legend>
-			</fieldset>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+		  <!--<legend>客户区间: 200903K0002~200903K00002帐龄时间: 单据日期终 止日期: 2020-02-26</legend>-->
+		  <legend>客户应收账款账龄分析表</legend>
+		</fieldset>
 	  	<div class="layui-row">
-	        <div class="layui-col-lg6">
+	        <div class="layui-col-lg10">
 				   <table  id="test" lay-filter="test"></table>
 		 
-					<script type="text/html" id="toolbar">
+					<!--<script type="text/html" id="toolbar">
 					  <div class="layui-btn-container">
 					    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
 					    <button type="button" class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
@@ -63,30 +64,30 @@
 					    <button class="layui-btn layui-btn-sm" lay-event="clearFilter">清除所有筛选条件</button>
 					    <div><a class="layui-btn layui-btn-sm" lay-event="refresh">重载</a></div>
 					  </div>
-					</script>
+					</script>-->
 					<script type="text/html" id="barDemo">
 					   <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-					   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-					   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+					   <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+					   <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 					</script>
 			</div>
         </div>	
-			<div class="layui-form-item">                       
-                <div class="layui-input-block">  
-		            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
-		            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
-		            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
-					<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
-		            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
-		            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
-		            <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
-		            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
-		            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
-					<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
-					<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
-					<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
-                </div>
+		<div class="layui-form-item">                       
+            <div class="layui-input-block">  
+	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+	            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
+	            <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+	            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
+				<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+				<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
+				<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
             </div>
+        </div>
 				
 				
 			
@@ -106,15 +107,15 @@
 				isinsert:false,//是否是新增状态
 				isedit:false,//是否是编辑状态
 				
-		      	goFirstPage1:false,//第一笔
-	            goPrePage1:false,//上一笔				            
-             	goNextPage1:false,//下一笔
-		     	goLastPage1:false,//后一笔
-             	inset1:false,   //新增  
+		      	goFirstPage1:true,//第一笔
+	            goPrePage1:true,//上一笔				            
+             	goNextPage1:true,//下一笔
+		     	goLastPage1:true,//后一笔
+             	inset1:true,   //新增  
              	return1:true,//取消
              	saves1:true,//保存 
-             	update1:false,//编辑
-             	deletes1:false,//删除		
+             	update1:true,//编辑
+             	deletes1:true,//删除		
 			    Auditing1:true,//审核
 			    noAuditing1:true,//取消审核
 			    
@@ -184,33 +185,121 @@
 					$.ajax({
 						url : "http://127.0.0.1:8080/ReceivableController/selectAllpage",
 						type:"get",
-					  	data : "pageNum="+page+"&pageSize="+size+"&payablesCustom2=0",
+					  	data : "pageNum="+page+"&pageSize="+size+"&payablesCustom2=1",
 					  	dataType:'json',	
 					  	success:function (res) {
 					  		//res.data获取服务器返回的数据
 							this_.page = res;
-							console.info("详表表数据：")
+							console.info("主表数据：")
 							console.info(this_.page)	
 							
-							/*加载表格数据*/
 							
-							// 自定义模块
-							  layui.config({
-							    base: 'ext/',   // 模块目录
-							    version: 'v1.4.4'
-							  }).extend({             // 模块别名
-							    soulTable: 'soulTable'
-							  });
-							 layui.use(['form', 'table','soulTable'], function () {
-							    var table = layui.table,
-							      soulTable = layui.soulTable;
+							this_.goPage2();
 							
-							    // 后台分页
-							    table.render({
-							      elem: '#test'
-							      ,id: 'test'
-							       ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
-							      ,height: 500
+				        }
+					}); 					
+				},
+				goPage2: function(page, size) {//获取分页数据（当前页，每页大小）	查详表	
+//					alert("进入goPage")
+					var this_ = this;	
+//					alert(this_.page.list[0].receivableId)
+					$.ajax({
+						url : "http://127.0.0.1:8080/Sales_receivablesController/selectAlllc",
+						type:"get",
+					  	data : "page=1&limit=99999",
+					  	dataType:'json',	
+					  	success:function (res) {
+					  		console.info("详表数据：")
+					  		console.info(res)
+					  		//res.data获取服务器返回的数据
+					  			var obj=res.list;
+					  			this_.page2 = res.list;
+					  			
+					  			
+					  			 
+				  			    $.each(obj,function(i, value){
+				  			    
+						            this_.page2[i].ys30="";
+						            this_.page2[i].ys3160="";
+						            this_.page2[i].ys6190="";
+						            this_.page2[i].ys91180="";
+						            this_.page2[i].ys180="";
+						            
+						            var ys30=0;
+						            var ys3160=0;
+						            var ys6190=0;
+						            var ys91180=0;	
+						            var ys180=0;
+						             $.each(obj[i].list,function(i2, value2){
+						             	alert(i2);
+						             	/*获取当前时间*/
+									   	//判断是否在前面加0
+											function getNow(s) {
+											return s < 10 ? '0' + s: s;
+											}
+											 
+											var myDate = new Date();            
+											 
+											var year=myDate.getFullYear();        //获取当前年
+											var month=myDate.getMonth()+1;   //获取当前月
+											var date=myDate.getDate();            //获取当前日
+											 
+											var now=year+'-'+getNow(month)+"-"+getNow(date);
+										   	/*获取当前时间*/
+								            alert(obj[i].list[i2].srDate);
+								            var sDate=now;//当前日期
+											var eDate=obj[i].list[i2].srDate;//原单日期
+											var sArr = sDate.split("-");
+											var eArr = eDate.split("-");
+											var sRDate = new Date(sArr[0], sArr[1], sArr[2]);
+											var eRDate = new Date(eArr[0], eArr[1], eArr[2]);
+											var result = (sRDate-eRDate)/(24*60*60*1000);
+								            alert(result);
+								            if(result<=30){
+								            	  ys30+=obj[i].list[i2].srCurrentbalance;
+								            }else if(result>=31&&result<=60){
+								            	ys3160+=obj[i].list[i2].srCurrentbalance;
+								            }else if(result>=61&&result<=90){
+								            	ys6190+=obj[i].list[i2].srCurrentbalance;
+								            }else if(result>=90&&result<=180){
+								            	ys91180+=obj[i].list[i2].srCurrentbalance;
+								            }else if(result>180){
+								            	ys180+=obj[i].list[i2].srCurrentbalance;
+								            }
+						  			})
+						             this_.page2[i].ys30=ys30;
+						            this_.page2[i].ys3160=ys3160;
+						            this_.page2[i].ys6190=ys6190;
+						            this_.page2[i].ys91180=ys6190;
+						            this_.page2[i].ys180=ys180;
+						        });
+					  		
+					  		
+					  
+							console.info("主表数据：")
+							console.info(this_.page)	
+							
+							
+							
+							this_.jztable();
+							
+				        }
+					}); 			
+					
+				},	
+				jztable:function(){
+					/*加载表格数据2*/
+					var this_ = this;		
+					var page2=this_.page2;
+					console.info("page2")
+					console.info(page2)
+							layui.use('table', function(){
+							  var table = layui.table;
+								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+							  //展示已知数据
+							  table.render({
+							    elem: '#test'
+//							    ,height: 500
 							      ,toolbar: '#toolbar'
 //							      ,page: true
 							      ,parseData:function(res){
@@ -229,23 +318,25 @@
 							    }
 							      ,cols: [[
 							      {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
-							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, filter: true}
-							      ,{field:'recedetailPrice', title:'预收金额',   totalRow: true,edit: 'text', filter: true,  sort:true, excel:{cellType: 'n'}}
-							      ,{field:'recedetailType', title:'来源别',filter: true}
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,filter: true}
-							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text',filter: true}
+							      ,{field:'srPcId', title:'客户编号',  fixed: 'left', unresize: true, sort: true, filter: true}
+							      ,{field:'customerEasyname', title:'客户简称',   totalRow: true,edit: 'text', filter: true,  sort:true, excel:{cellType: 'n'}}
+							      ,{field:'customerHouldcollect', title:'期初本币应收款',filter: true}
+							      ,{field:'ys30', title:'30天以下',  sort: true,filter: true}
+							      ,{field:'ys3160', title:'31天至60天',edit: 'text',filter: true}
+							      ,{field:'ys6190', title:'61天至90天',edit: 'text',filter: true}
+							      ,{field:'ys91180', title:'91天至180天',edit: 'text',filter: true}
+							      ,{field:'ys180', title:'180天以上',edit: 'text',filter: true}
+							      ,{field:'cuendshouldcollect', title:'期末本币应收款',edit: 'text',filter: true}
 							      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
 							      
 							    ]]
-							  /*  ,done: function(res, curr, count){
-							      //数据渲染完的回调。
-							      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
-							      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
-							     }*/
-							    ,page: true
-							      ,done: function (res, curr, count) {	
-							        soulTable.render(this)
-							      }
+							  	,data:page2
+							    //,skin: 'line' //表格风格
+							    ,even: true
+							    , id: 'test'
+							    //,page: true //是否显示分页
+							    //,limits: [5, 7, 10]
+							    //,limit: 5 //每页默认显示的数量
 							    });
 							
 							    table.on('toolbar(test)', function(obj){
@@ -255,75 +346,120 @@
 							        soulTable.clearFilter('test')
 							      }
 							    });
-							
-							
-							
-							
 							  
-							
-							  /*table.render({
-							    elem: '#test'
-							    ,url:'http://127.0.0.1:8080/ReceivablesdetailsController/selectAllpagebyidlc?receivablesbillId=20200202001'
-							    ,toolbar: '#toolbar'
-							    ,title: '用户数据表'
-							    ,totalRow: true
-							    ,cellMinWidth: 150 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-							    ,parseData:function(res){
-							    	console.log("分页数据：");
-							    	console.log(res);
-							    	console.log(res.list);
-							    	this_page2=res;
-							    	return{
-							    		"success":true,
-										"code": 0, //解析接口状态
-									    "msg": "", //解析提示文本
-									    "count": res.total, //解析数据长度
-									    "data": res.list //解析数据列表
-									    
-							    	}
-							    }
-							    ,cols: [[
-							      {type: 'checkbox', fixed: 'left',totalRowText: '合计',}
-							      ,{field:'recedetailId', title:'(栏号)',  fixed: 'left', unresize: true, sort: true, }
-							      ,{field:'recedetailPrice', title:'预收金额',  sort: true, totalRow: true,edit: 'text'}
-							      ,{field:'recedetailType', title:'来源别',
-							       templet: function (d) {
-							                        // 模板的实现方式也是多种多样，这里简单返回固定的
-							                        return '<select name="city" lay-filter="testSelect" lay-verify="required" data-value="' + d.city + '" >\n' +
-							                            '        <option value=""></option>\n' +
-							                            '        <option value="18000">销售订单</option>\n' +
-							                            '        <option value="20000">S/C</option>\n' +
-							                            '      </select>';
-							                    }
-							       }
-							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,templet: function (d) {
-							                        // 模板的实现方式也是多种多样，这里简单返回固定的
-							                        return '<input type="text"  @keyup.f4="dfs()">';
-							                    }
-							      }
-							      ,{field:'recedetailRemarks', title:'摘要',edit: 'text'}
-							      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
-							      
-							    ]]
-							    ,data: [{
-							      "recedetailId": ""
-							      ,"recedetailPrice": ""
-							      ,"recedetailType": "18000"
-							      ,"recedetailNumber": ""
-							      ,"recedetailRemarks": ""
-							    }]
-							    ,done: function(res, curr, count){
-							      //数据渲染完的回调。
-							      //由于layui 设置了超出隐藏，所以这里改变下，以兼容操作按钮的下拉菜单
-							      $(".layui-table-body, .layui-table-box, .layui-table-cell").css('overflow', 'visible');
-							     }
-							    ,page:{
-							    	limit:3,//指定每页显示的条数
-							    	limits:[3,5,10,15,20,25,30],//每页条数的选择项
-							    }
-							  });*/
-							  
-							  //------------------------工具栏事件-------------------
+							   //监听行工具事件   
+							  	 table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+								   let event = obj.event;
+								 var data = obj.data //获得当前行数据
+								  var $this = $(this);
+								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+						  			var trIndex = tr.data('index');	//索引
+								 
+								 if (event === "viewReport"){
+								 	layer.open({
+								            type: 2,
+								            title: '单选--销售订单',
+								            content: $('#app'),
+								            fixed: false, //不固定
+								            area: ['680px', '470px'],
+								            content: 'receivablesbillTC1.html'
+								        });
+								 }else if(event === 'edit'){
+								      layer.msg('编辑操作');
+								      //修改编辑按钮名 
+						    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
+								      //修改lay-event对应值
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
+								      //修改样式
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
+								      //取消单元格的禁用  添加data-edit="text"
+								      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").attr("data-edit","text");
+								      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3)").html());*/
+//								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").attr("data-edit","text");
+								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").attr("data-edit","text");
+								    } else if(event === 'del'){
+								      layer.confirm('真的删除行么', function(index){
+								        obj.del(); //删除对应行（tr）的DOM结构
+								        layer.close(index);
+								        //向服务端发送删除指令
+								      });
+								    }else if(event === 'save'){
+								    	var sy = "";	
+								    	
+								    	if(obj.datb.recedetailPrice==""||obj.data.recedetailPrice<=0){
+								    		sy+="预付金额不能小于等于0或者为空  ,";
+								    	}
+								    	if(obj.data.recedetailNumber==""){
+								    		sy+="请填写来源单号  ,";
+								    	}
+										sy+="请认真填写！";
+										if(sy=="请认真填写！"){
+											layer.msg('保存操作');
+									    	//修改保存按钮名 
+							    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
+									        //修改lay-event对应值
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
+									        //修改样式
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
+									        //单元格的禁用  去掉data-edit="text"
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").removeAttr("data-edit","text");
+	//								        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("<select disabled=\"disabled\" name=\"priabillType\" lay-filter=\"testSelect\" lay-verify=\"required\" data-value=\"采购订单\"><option value=\"\"></option><option value=\"采购订单\" selected=\"selected\">采购订单</option><option value=\"进口采购单\">进口采购单</option><option value=\"P/O\">P/O</option></select><div class=\"layui-unselect layui-form-select layui-select-disabled\"><div class=\"layui-select-title\"><input type=\"text\" placeholder=\"请选择\" value=\"采购订单\" readonly=\"\" class=\"layui-input layui-unselect layui-disabled\"><i class=\"layui-edge\"></i></div><dl class=\"layui-anim layui-anim-upbit\"><dd lay-value=\"\" class=\"layui-select-tips\">请选择</dd><dd lay-value=\"采购订单\" class=\"layui-this\">采购订单</dd><dd lay-value=\"进口采购单\" class=\"\">进口采购单</dd><dd lay-value=\"P/O\" class=\"\">P/O</dd></dl></div>");
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").removeAttr("data-edit","text");
+									        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").removeAttr("data-edit","text");																
+										}else{
+											layer.msg(sy);
+										}
+								    }
+								  });
+							  	//监听单元格编辑
+							    /*table.on('edit(test)', function (obj) {
+							        $('input').keyup(function () {
+							            value = value.replace(/[^d.]/g, '');
+							        });
+							        alert(obj.value)
+							        var value = obj.value, // 得到修改后的值
+							            id = obj.data.id, // 得到当前修改行的id
+							            field = obj.field; // 得到当前修改的字段名
+							        var data = {},
+							            key = field;
+							        data[key] = value;
+							        data['id'] = id;
+							        var my = '';
+							        var allData = '';
+							        //获取表格数据
+							        var tableData = table.cache['searchReload'];
+							 
+							        if (value < 0) {
+							            layer.msg('值不能为负数', {
+							                icon: 5
+							            });
+							            table.reload('searchReload');
+							            return false;
+							        }
+							 
+							        $.ajax({
+							            url: url_order + "api/rebateRuleController/editRebateRule",
+							            type: 'POST',
+							            traditional: true,
+							            data: data,
+							            success: function (data) {
+							                if (data.code == 0) {
+							                    table.reload('searchReload');
+							                    layer.msg(data.msg, {
+							                        icon: 6
+							                    });
+							                } else {
+							                    layer.msg(data.msg, {
+							                        icon: 5
+							                    });
+							                }
+							            }
+							        });
+							    });*/
+							    
+							    //------------------------工具栏事件-------------------
 							    //监听表格复选框选择
 							  table.on('checkbox(test)', function(obj){
 							    console.log(obj)
@@ -415,11 +551,20 @@
 							   
 							  });
 							  //------------------------工具栏事件-------------------
-							  
+							    table.on('edit(test)', function(obj){ //注：edit是固定事件名，test是table原始容器的属性 lay-filter="对应的值"
+								  console.log("修改事件"); //得到修改后的值
+								  console.log(obj.value); //得到修改后的值
+								  console.log(obj.field); //当前编辑的字段名
+								  console.log(obj.data); //所在行的所有相关数据  
+								});
 							});
-							/*加载表格数据*/
-				        }
-					}); 					
+							
+							
+							
+							
+							
+							
+							/*加载表格数据2*/
 				},
 				formrender: function() {//layui更新渲染
 					layui.use('form', function(){
@@ -842,3 +987,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+

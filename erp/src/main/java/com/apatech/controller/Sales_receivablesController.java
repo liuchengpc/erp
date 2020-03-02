@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.apatech.domain.Receivablesdetails;
 import com.apatech.domain.Sales_receivables;
-import com.apatech.domain.Sales_receivables;
+import com.apatech.domain.Sales_receivables_customerLC;
 import com.apatech.service.Sales_receivablesService;
 import com.github.pagehelper.PageInfo;
 @Controller
@@ -38,6 +37,35 @@ public class Sales_receivablesController {
     	PageInfo<Sales_receivables> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
+	/**
+	 * 查询应收账款账龄分析主
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAlllc",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_receivables_customerLC> selectAlllc( Integer page,Integer limit){
+		System.out.println("进入Sales_receivablesController分页");
+		System.out.println(page+"/"+limit);
+		PageInfo<Sales_receivables_customerLC> pages=dao.selectAlllc(page, limit);
+		return pages;
+	}
+
+	/**
+	 * 查询应收账款账龄分析详表
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAlllc2",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Sales_receivables_customerLC> selectAlllc2( Integer page,Integer limit,String customerId){
+		System.out.println("进入Sales_receivablesController分页");
+		System.out.println(page+"/"+limit);
+		PageInfo<Sales_receivables_customerLC> pages=dao.selectAlllc2(page, limit, customerId);
+		return pages;
+	}
 	
 	/**
 	 * 获取单号
@@ -62,10 +90,10 @@ public class Sales_receivablesController {
 	 */
 	@RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
 	@ResponseBody
-    public Sales_receivables selectByPrimaryKey(Integer Sales_receivablesId) {
+    public Sales_receivables selectByPrimaryKey(Integer srId) {
 		System.out.println("进入Sales_receivablesController根据主键查询");
-		System.out.println("Sales_receivablesId="+Sales_receivablesId);
-    	return dao.selectByPrimaryKey(Sales_receivablesId);
+		System.out.println("srId="+srId);
+    	return dao.selectByPrimaryKey(srId);
 	}
 	
 	/**
@@ -150,11 +178,11 @@ public class Sales_receivablesController {
 	 */
 	@RequestMapping(value = "deleteByPrimaryKey",method = RequestMethod.GET)
 	@ResponseBody
-    public Map<String, String> deleteByPrimaryKey(Integer Sales_receivablesId,Model model) {
+    public Map<String, String> deleteByPrimaryKey(Integer srid,Model model) {
 		System.out.println("进入Sales_receivablesController根据主键删除");
-		System.out.println("Sales_receivablesid："+Sales_receivablesId);
+		System.out.println("srid："+srid);
 		Map<String, String> map=new HashMap<String,String>();
-    	int i =dao.deleteByPrimaryKey(Sales_receivablesId);
+    	int i =dao.deleteByPrimaryKey(srid);
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");

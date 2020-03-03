@@ -10,19 +10,41 @@ import {
     deleteWithDetails
 } from "../rest/purchase_return_receipt_rest.js";
 
-let orderStatusMeta = {
-    "insert": 0, // 新增
-    "browse": 1, // 浏览
-    "delete": 2, // 删除
-    "review": 3, // 审核
-    "change": 4, // 修改
-    "unReview": 5, // 取消审核
-    "save": 6, // 保存
-    "edit": 7, // 编辑
-    "reset": 8, // 重置
-    "refresh": 9 // 刷新
-};
+import {
+    currencyDialogConfig
+}from "../config/current-dialog-config.js"
+
+import {
+    departmentDialogConfig
+}from "../config/department-dialog-config.js"
+
+import {
+    employeeDialogConfig
+}from "../config/employee-dialog-config.js"
+
+import {
+    materialDialogConfig
+}from "../config/material-dialog-config.js"
+
+import {
+    projectDialogConfig
+}from "../config/project-dialog-config.js"
+
+import {
+    supplierDialogConfig
+}from "../config/supplier-dialog-config.js"
+
+import {
+    warehouseDialogConfig
+}from "../config/warehouse-dialog-config.js"
+
+import {
+    orderStatusConfig
+}from "../config/orderStatusConfig.js"
+
+let orderStatusMeta = orderStatusConfig();
 const defaultOrderStatus = orderStatusMeta.browse;
+
 Vue.directive("focus", {
     inserted: function (el) {
         let inputDom = el.getElementsByTagName("input")[0];
@@ -33,6 +55,7 @@ Vue.directive("focus", {
         inputDom.focus();
     }
 });
+
 let viewModel = new Vue({
     el: '#app',
     data() {
@@ -115,537 +138,13 @@ let viewModel = new Vue({
             lineId: 2,
             watchKey: ['puredSingleStatus', 'puredDocumentDate', 'puredDocumentNumber', 'puredPrice', 'puredTaxRate'],
             watch: false,
-            supplierConfig: {
-                filterType: 'supplierName',
-                suppliers: [],
-                filterConfig: ['supplierId', 'supplierName', 'supplierEasyname', 'supplierEngname', 'supplierEasyengname', 'supplierAccountAttribution'],
-                option: [
-                    {
-                        label: '供应商编号',
-                        value: 'supplierId'
-                    },
-                    {
-                        label: '供应商名称',
-                        value: 'supplierName'
-                    },
-                    {
-                        label: '供应商简称',
-                        value: 'supplierEasyname'
-                    },
-                    {
-                        label: '英文名称',
-                        value: 'supplierEngname'
-                    },
-                    {
-                        label: '英文简称',
-                        value: 'supplierEasyengname'
-                    },
-                    {
-                        label: '账款归属',
-                        value: 'supplierAccountAttribution'
-                    },
-                    {
-                        label: '类别',
-                        value: 'supplierType'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '供应商编号',
-                        prop: 'supplierId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '供应商名称',
-                        prop: 'supplierName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '供应商简称',
-                        prop: 'supplierEasyname',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文名称',
-                        prop: 'supplierEngname',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文简称',
-                        prop: 'supplierEasyengname',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '账款归属',
-                        prop: 'supplierAccountAttribution',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '类别',
-                        prop: 'supplierType',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '地区',
-                        prop: 'supplierZone',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '负责人',
-                        prop: 'supplierPrincipalman',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--供应商主文件设定',
-                singleValue: true
-            },
-            warehouseConfig: {
-                filterType: 'warehouseId',
-                wareHouses: [],
-                filterConfig: ['warehouseId', 'warehouseName', 'warehouseEasyName', 'warehouseEngname', 'warehouseLinkman', 'warehouseLinktel', 'warehouseAddress', 'warehouseDecoration'],
-                option: [
-                    {
-                        label: '仓库编号',
-                        value: 'warehouseId'
-                    },
-                    {
-                        label: '仓库名称',
-                        value: 'warehouseName'
-                    },
-                    {
-                        label: '仓库简称',
-                        value: 'warehouseEasyName'
-                    },
-                    {
-                        label: '英文名称',
-                        value: 'warehouseEngname'
-                    },
-                    {
-                        label: '联系人员',
-                        value: 'warehouseLinkman'
-                    },
-                    {
-                        label: '联系电话',
-                        value: 'warehouseLinktel'
-                    },
-                    {
-                        label: '仓库地址',
-                        value: 'warehouseAddress'
-                    },
-                    {
-                        label: '备注',
-                        value: 'warehouseDecoration'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '仓库编号',
-                        prop: 'warehouseId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '仓库名称',
-                        prop: 'warehouseName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '仓库简称',
-                        prop: 'warehouseEasyName',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文名称',
-                        prop: 'warehouseEngname',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '联系人员',
-                        prop: 'warehouseLinkman',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '联系电话',
-                        prop: 'warehouseLinktel',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '仓库地址',
-                        prop: 'warehouseAddress',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '备注',
-                        prop: 'warehouseDecoration',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--仓库设定',
-                singleValue: true
-            },
-            currencyConfig: {
-                filterType: 'currencyId',
-                currencies: [],
-                filterConfig: ['currencyId', 'currencyName', 'currencyEasyname', 'currencyEngname', 'currencyTransactionday', 'currencyStandardexchange', 'currencyInexchange', 'currencyOutexchange'],
-                option: [
-                    {
-                        label: '币别编号',
-                        value: 'currencyId'
-                    },
-                    {
-                        label: '币别名称',
-                        value: 'currencyName'
-                    },
-                    {
-                        label: '币别简称',
-                        value: 'currencyEasyname'
-                    },
-                    {
-                        label: '英文名称',
-                        value: 'currencyEngname'
-                    },
-                    {
-                        label: '异动日期',
-                        value: 'currencyTransactionday'
-                    },
-                    {
-                        label: '固定汇率',
-                        value: 'currencyTransactionday'
-                    },
-                    {
-                        label: '买进汇率',
-                        value: 'currencyInexchange'
-                    },
-                    {
-                        label: '卖出汇率',
-                        value: 'currencyOutexchange'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '币别编号',
-                        prop: 'currencyId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '币别简称',
-                        prop: 'currencyEasyname',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '币别名称',
-                        prop: 'currencyName',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文名称',
-                        prop: 'currencyEngname',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '异动日期',
-                        prop: 'currencyTransactionday',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '固定汇率',
-                        prop: 'currencyStandardexchange',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '买进汇率',
-                        prop: 'currencyInexchange',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '卖出汇率',
-                        prop: 'currencyOutexchange',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--币别设定',
-                singleValue: true
-            },
-            projectConfig: {
-                filterType: 'projectId',
-                projects: [],
-                filterConfig: ['projectId', 'projectName', 'projectEnglishName', 'projectRemark', 'projectAbate'],
-                option: [
-                    {
-                        label: '项目编号',
-                        value: 'projectId'
-                    },
-                    {
-                        label: '项目名称',
-                        value: 'projectName'
-                    },
-                    {
-                        label: '英文名称',
-                        value: 'projectEnglishName'
-                    },
-                    {
-                        label: '备注',
-                        value: 'projectRemark'
-                    },
-                    {
-                        label: '失效日期',
-                        value: 'projectAbate'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '项目编号',
-                        prop: 'projectId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '项目名称',
-                        prop: 'projectName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '备注',
-                        prop: 'projectRemark',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '失效日期',
-                        prop: 'projectAbate',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--项目设定',
-                singleValue: true
-            },
-            departmentConfig: {
-                teams: [],
-                filterType: "teamId",
-                filterConfig: ["teamId", "teamName", "teamEnglishName", "teamRemark"],
-                option: [
-                    {
-                        label: '类型编号',
-                        value: 'teamId'
-                    },
-                    {
-                        label: "类型名称",
-                        value: "teamName"
-                    },
-                    {
-                        label: "英文名称",
-                        value: "teamEnglishName"
-                    },
-                    {
-                        label: "备注",
-                        value: "teamRemark"
-                    }
-                ],
-                columns: [
-                    {
-                        label: '供应商编号',
-                        prop: 'teamId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '供应商名称',
-                        prop: 'teamName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '备注',
-                        prop: 'teamRemark',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文名称',
-                        prop: 'teamEnglishName',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--部门选定',
-                singleValue: false
-            },
-            employeeConfig: {
-                employees: [],
-                filterType: 'staffId',
-                filterConfig: ['staffId', 'teamId', 'teamName', 'staffName', 'staffEnglishName', 'staffIdnumber', 'staffGender', 'staffChineseposition', 'staffMobilephone'],
-                option: [
-                    {
-                        label: '人员编号',
-                        value: 'staffId'
-                    },
-                    {
-                        label: '所属部门',
-                        value: 'teamId'
-                    },
-                    {
-                        label: '部门名称',
-                        value: 'teamName'
-                    },
-                    {
-                        label: '人员姓名',
-                        value: 'staffName'
-                    },
-                    {
-                        label: '英文名称',
-                        value: 'staffEnglishName'
-                    },
-                    {
-                        label: '身份证号',
-                        value: 'staffIdnumber'
-                    },
-                    {
-                        label: '性别',
-                        value: 'staffGender'
-                    },
-                    {
-                        label: '中文职务',
-                        value: 'staffChineseposition'
-                    },
-                    {
-                        label: '联系电话',
-                        value: 'staffMobilephone'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '人员编号',
-                        prop: 'staffId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '人员姓名',
-                        prop: 'staffName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '所属部门',
-                        prop: 'teamId',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '部门名称',
-                        prop: 'teamName',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '英文名称',
-                        prop: 'staffEnglishName',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '身份证号',
-                        prop: 'staffIdnumber',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '性别',
-                        prop: 'staffGender',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '单选--人员主文件设定',
-                singleValue: true
-            },
-            materialConfig: {
-                materials: [],
-                filterType: 'matterId',
-                filterConfig: ['matterId', 'matterBarno', 'matterName', 'matterSize', 'matterEnglishName'],
-                option: [
-                    {
-                        label: '物料编号',
-                        value: 'matterId'
-                    },
-                    {
-                        label: '条形码编号',
-                        value: 'matterBarno'
-                    },
-                    {
-                        label: '物料名称',
-                        value: 'matterName'
-                    },
-                    {
-                        label: '规格型号',
-                        value: 'matterSize'
-                    },
-                    {
-                        label: '英文品名',
-                        value: 'matterEnglishName'
-                    }
-                ],
-                columns: [
-                    {
-                        label: '物料编号',
-                        prop: 'matterId',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '物料名称',
-                        prop: 'matterName',
-                        visible: true,
-                        disabled: true
-                    },
-                    {
-                        label: '条形码编号',
-                        prop: 'matterBarno',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '规格型号',
-                        prop: 'matterSize',
-                        visible: false,
-                        disabled: false
-                    },
-                    {
-                        label: '标准进价',
-                        prop: 'matterStandardPrice',
-                        visible: false,
-                        disabled: false
-                    }
-                ],
-                title: '多选--物料主文件设定',
-                singleValue: false
-            }
+            supplierDialogConfig: supplierDialogConfig(),
+            warehouseDialogConfig: warehouseDialogConfig(),
+            currencyDialogConfig: currencyDialogConfig(),
+            projectDialogConfig: projectDialogConfig(),
+            departmentDialogConfig: departmentDialogConfig(),
+            employeeDialogConfig: employeeDialogConfig(),
+            materialDialogConfig: materialDialogConfig()
         };
     },
     methods: {

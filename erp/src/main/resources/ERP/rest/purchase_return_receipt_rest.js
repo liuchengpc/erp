@@ -61,11 +61,25 @@ export function insertWithDetails(data) {
     })
 }
 
-export function updateWithDetails() {
+export function updateWithDetails(data) {
     return rest({
-        url: "",
-        method: "put"
+        url: "http://localhost:8080/Purchase_returnsController/updateWithDetails",
+        method: "put",
+        data:data,
+        headers:{
+            'Content-Type': 'application/json'
+        }
     })
+}
+
+export function deleteWithDetails(pureId) {
+    return rest({
+        url: "http://localhost:8080/Purchase_returnsController/deleteWithDetails",
+        method: "delete",
+        params:{
+            pureId: pureId
+        }
+    });
 }
 
 export function deletePure() {

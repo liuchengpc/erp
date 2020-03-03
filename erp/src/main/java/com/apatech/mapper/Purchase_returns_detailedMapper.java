@@ -36,4 +36,8 @@ public interface Purchase_returns_detailedMapper<insertList> {
     Purchase_returns_detailed selectByPureId(@Param("pureId") String pureId);
 
     int insertList(@Param("list")List<Purchase_returns_detailed> list);
+
+    int updateList(@Param("list") List<Purchase_returns_detailed> list);
+
+    int deleteByPureId(@Param("pureId")String pureId);
 }

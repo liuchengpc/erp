@@ -164,6 +164,7 @@ public class Purchase_returnsController {
 	@PutMapping("/updateWithDetails")
 	@ResponseBody
 	public Map<String,String> updateWithDetails(@RequestBody PurchaseReturnsPojo purchaseReturnsPojo){
+		dao.updateWithDetails(purchaseReturnsPojo);
 		return null;
 	}
 
@@ -182,6 +183,13 @@ public class Purchase_returnsController {
 			e.printStackTrace();
 		}
 		return map;
+	}
+
+	@DeleteMapping("/deleteWithDetails")
+	@ResponseBody
+	public Map<String,String> deleteWithDetails(String pureId) {
+		dao.deleteWithDetails(pureId);
+		return null;
 	}
 
 	@PutMapping("/reviewPureOrder")

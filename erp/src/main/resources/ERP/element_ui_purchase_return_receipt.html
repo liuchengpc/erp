@@ -99,45 +99,105 @@
                                                     prop="matterId"
                                                     label="物料编号"
                                                     >
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.matterId"
+                                                                 :prop="'matterId'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredEngname"
                                                     label="物料名称"
                                                     width="120px">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredEngname"
+                                                                 :prop="'puredEngname'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredRemark"
                                                     label="规格型号">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredRemark"
+                                                                 :prop="'puredRemark'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredPriceIncludeTax"
                                                     label="单位名称">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredPriceIncludeTax"
+                                                                 :prop="'puredPriceIncludeTax'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredSingleStatus"
                                                     label="数量"
                                                     width="60">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredSingleStatus"
+                                                                 :prop="'puredSingleStatus'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredDocumentDate"
                                                     label="折扣前单价"
                                                     width="100">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredDocumentDate"
+                                                                 :prop="'puredDocumentDate'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredDocumentNumber"
                                                     label="折数">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredDocumentNumber"
+                                                                 :prop="'puredDocumentNumber'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredPrice"
                                                     label="单价">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredPrice"
+                                                                 :prop="'puredPrice'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredMoney"
                                                     label="金额">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredMoney"
+                                                                 :prop="'puredMoney'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredTaxRate"
                                                     label="税率">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredTaxRate"
+                                                                 :prop="'puredTaxRate'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredTaxAmount"
@@ -169,11 +229,23 @@
                                             <el-table-column
                                                     prop="puredRemarks"
                                                     label="分录备注">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredRemarks"
+                                                                 :prop="'puredRemarks'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredSourceOrder"
                                                     label="来源单别"
                                                     width="120">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredSourceOrder"
+                                                                 :prop="'puredSourceOrder'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue">
+                                                    </edit-column>
+                                                </template>
                                             </el-table-column>
                                             <el-table-column
                                                     prop="puredSourceNo"
@@ -402,4 +474,5 @@
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="js/axios.min.js"></script>
 <script src="js/element_ui_purchase_return_receipt.js" type="module"></script>
+<script src="components/editColumn.js"></script>
 </html>

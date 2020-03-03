@@ -47,7 +47,22 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
  FROM priadetails,priabill 
 	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
 	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
-	    AND priadetails.Priabill_custom9>0         
+	    AND priadetails.Priabill_custom9>0 AND priadetails.Priabill_custom6 is null            
+	    ORDER BY priadetails.Priadetails_id DESC
+  </select>
+  
+  <select id="selectAllBySupplier2" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    SELECT priadetails.Priadetails_id,priadetails.Priabill_id,priadetails.Priabill_price,priadetails.Priabill_type,
+priadetails.Priabill_number,priadetails.Priabill_remarks,
+priadetails.Priabill_Auditing,priadetails.Priabill_yn,priadetails.Priabill_custom1,priadetails.Priabill_custom2,
+priadetails.Priabill_custom3,
+priadetails.Priabill_custom4,priadetails.Priabill_custom5,
+ priadetails.Priabill_custom6,priadetails.Priabill_custom7,priadetails.Priabill_custom8,priadetails.Priabill_custom9,
+ priadetails.Priabill_custom10 
+ FROM priadetails,priabill 
+	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
+	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
+	    AND priadetails.Priabill_custom9>0 AND priadetails.Priabill_custom6 = '1'            
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   

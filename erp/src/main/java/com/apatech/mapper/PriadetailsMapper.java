@@ -14,6 +14,8 @@ public interface PriadetailsMapper {
 	 List<Priadetails> selectByPriabillSupplierName(String priabillId);
 	 
 	 List<Priadetails> selectAllBySupplier(String priabillCustom10);
+	
+	 List<Priadetails> selectAllBySupplier2(String priabillCustom10);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

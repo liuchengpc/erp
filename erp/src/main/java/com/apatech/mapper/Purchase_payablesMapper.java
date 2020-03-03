@@ -34,6 +34,8 @@ public interface Purchase_payablesMapper {
     Purchase_payables selectByPrimaryKey(Integer ppId);
 
     int updateByPrimaryKeySelective(Purchase_payables record);
-
+    
+    int updateByPrimaryKeySelective22(Purchase_payables record);
+    
     int updateByPrimaryKey(Purchase_payables record);
 }

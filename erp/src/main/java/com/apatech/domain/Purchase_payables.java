@@ -59,7 +59,7 @@ public class Purchase_payables {
 
     private String ppCustom6;
 
-    private String ppCustom7;
+    private String ppCustom7;		//审核明细账款
 
     private String ppCustom8;		//关联应付款主表ID
 

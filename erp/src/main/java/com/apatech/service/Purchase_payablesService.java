@@ -69,6 +69,9 @@ public class Purchase_payablesService {
     public int updateByPrimaryKeySelective(Purchase_payables record){
     	return dao.updateByPrimaryKeySelective(record);
     }
+    public int updateByPrimaryKeySelective22(Purchase_payables record){
+    	return dao.updateByPrimaryKeySelective22(record);
+    }
 
     public int updateByPrimaryKey(Purchase_payables record){
     	return dao.updateByPrimaryKey(record);

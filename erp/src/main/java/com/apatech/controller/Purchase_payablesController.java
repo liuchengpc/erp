@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Payables_detail;
 import com.apatech.domain.Purchase_payables;
+import com.apatech.domain.Supplier;
 import com.apatech.domain.Purchase_payables;
 import com.apatech.service.Purchase_payablesService;
+import com.apatech.service.SupplierService;
 import com.github.pagehelper.PageInfo;
 @Controller
 @RequestMapping("Purchase_payablesController")
@@ -22,6 +24,8 @@ public class Purchase_payablesController {
 	@Autowired
 	private Purchase_payablesService dao;
 
+	@Autowired
+	private SupplierService ss;
 
 	/**
 	 * 分页
@@ -140,6 +144,67 @@ public class Purchase_payablesController {
 		}
 		return map;
     }
+	
+	/**
+	 * 根据主键修改--审核后的各种表的新增修改+判断
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Purchase_payables record) {
+		System.out.println("进入Purchase_payablesController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+    		System.out.println("审核明细账款ID："+record.getPpCustom7());
+    		System.out.println("审核明细账款现行余额："+record.getPpCurrentbalance());
+    		Purchase_payables pp = new Purchase_payables();
+    		pp.setPpId(Integer.parseInt(record.getPpCustom7()));
+    		System.out.println("ID："+pp.getPpId());
+    		pp.setPpCurrentbalance(record.getPpCurrentbalance());
+    		System.out.println("现行余额："+pp.getPpCurrentbalance());
+    		pp.setPpAmountcharged(record.getPpAmountcharged());
+    		System.out.println("冲款金额："+pp.getPpAmountcharged());
+    		pp.setPpOffsetamount(record.getPpOffsetamount());
+    		System.out.println("冲抵金额："+pp.getPpOffsetamount());
+    		if(record.getPpCurrentbalance()==0) {
+    			System.out.println("");
+    			pp.setPpAuditing("1");
+    		}else {
+    			pp.setPpAuditing("0");
+    		}
+    		//修改账款明细表（出库入库审核后的表）
+    		int a = dao.updateByPrimaryKeySelective22(pp);
+    		if(a>0) {
+    			System.out.println("结算明细账款成功！审核状态："+pp.getPpAuditing()+",现行余额:"+pp.getPpCurrentbalance()+",冲款金额:"+pp.getPpAmountcharged()+",冲抵金额:"+pp.getPpOffsetamount());
+    			System.out.println("进入"+record.getPpPcName()+"供应商查询修改付款信息");
+    			Supplier sp = ss.selectByPrimaryKey(record.getPpPcId());
+    			System.out.println("查询结果:"+sp);
+    			System.out.println("期末应付款："+(sp.getSupplierCuendshouldcollect()-record.getPpAmountcharged()));
+    			System.out.println("a:"+sp.getSupplierCuendcollect()+",b:"+record.getPpAmountcharged());
+    			sp.setSupplierCuendshouldcollect((sp.getSupplierCuendshouldcollect()-record.getPpAmountcharged()));
+    			System.out.println("剩余额度："+(sp.getSupplierResiduemonet()+record.getPpAmountcharged()));
+    			sp.setSupplierResiduemonet((sp.getSupplierResiduemonet()+record.getPpAmountcharged()));
+    			System.out.println("修改供应商:"+sp.getSupplierName());
+    			int h = ss.updateByPrimaryKeySelective(sp);
+    			if(h>0) {
+    				map.put("code", "1");
+        			map.put("message", "审核成功！");
+    			}
+    		}else {
+    			map.put("code", "2");
+    			map.put("message", "修改失败！");
+    		}
+    		
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	
 	/**
 	 * 根据主键删除
 	 * @param Purchase_payablesid

@@ -38,6 +38,15 @@ public class PriadetailsService {
     	return pageFy;
 	}
 	
+	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10){
+		System.out.println("预付款余额大于0分页的集合："+dao.selectAllBySupplier2(priabillCustom10));
+    	PageHelper.startPage(page, limit);
+    	List<Priadetails> list=dao.selectAllBySupplier2(priabillCustom10);
+
+    	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
+    	return pageFy;
+	}
+	
 	public List<Priadetails>  selectByPrimaryKey2(String priabillId){
     	return dao.selectByPrimaryKey2(priabillId);
     }

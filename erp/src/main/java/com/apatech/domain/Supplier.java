@@ -63,7 +63,7 @@ public class Supplier {
     private Float supplierCufirstcollect;//期初预收款
     private Float supplierHouldcollect;//期初应收款
     private Float supplierCuendcollect;//期末预收款
-    private Float supplierCuendshouldcollect;//期 末应收款
+    private Float supplierCuendshouldcollect;//期 末应收 款
     private String supplierCudecoration;//未开票金额
     private Integer supplierCollectiontermid;//预付账款科目
     private Integer supplierInvoicetypeid;//应付账款科目

@@ -18,7 +18,7 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="供应商" prop="supplierId">
-                            <el-input v-model="purechaseReturn.supplierId" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.supplierId" :disabled="edit" title="F4"></el-input>
                         </el-form-item>
                         <el-form-item label="供应商地址" prop="pureEngname">
                             <el-input v-model="purechaseReturn.pureEngname" :disabled="edit"></el-input>
@@ -350,88 +350,6 @@
                     <el-col :span="24">
                         <el-button type="primary" @click="submitForm('purechaseReturn')">立即创建</el-button>
                         <el-button @click="resetForm('purechaseReturn')">重置</el-button>
-                        <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
-                        <el-dialog title="单选--供应商选定" :visible.sync="dialogFormVisible">
-                            <el-row>
-                                <el-col :span="24">
-                                    <el-row>
-                                        <el-col :span="8">
-                                            <el-select>
-                                                <el-option label="类型编号" value="1"></el-option>
-                                                <el-option label="类型名称" value="0"></el-option>
-                                                <el-option label="英文名称" value="0"></el-option>
-                                                <el-option label="备注" value="0"></el-option>
-                                            </el-select>
-                                        </el-col>
-                                        <el-col :span="8">
-                                            <template>
-                                                <el-input-number v-model="charLength" :min="1" :max="10"
-                                                                 label="描述文字"></el-input-number>
-                                            </template>
-                                        </el-col>
-                                        <el-col :span="2">
-                                            <template>
-                                                <!-- `checked` 为 true 或 false -->
-                                                <el-checkbox v-model="check">备选项</el-checkbox>
-                                            </template>
-                                        </el-col>
-                                    </el-row>
-                                    <el-row>
-                                        <el-input placeholder="请输入内容">
-                                            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-                                        </el-input>
-                                    </el-row>
-                                    <el-row>
-                                        <el-button-group>
-                                            <el-button type="primary">全选</el-button>
-                                            <el-button type="primary">全清</el-button>
-                                            <el-button type="primary">以下全选</el-button>
-                                            <el-button type="primary">以下全清</el-button>
-                                            <el-button type="primary">新增记录</el-button>
-                                        </el-button-group>
-                                    </el-row>
-                                    <el-row>
-                                        <el-col :span="14">
-                                            <template>
-                                                <el-table
-                                                        ref="singleTable"
-                                                        :data="tableData"
-                                                        highlight-current-row
-                                                        @current-change="handleCurrentChange"
-                                                        style="width: 100%">
-                                                    <el-table-column
-                                                            type="index"
-                                                            width="50">
-                                                    </el-table-column>
-                                                </el-table>
-                                            </template>
-                                        </el-col>
-                                        <el-col :span="10">
-                                            <template>
-                                                <el-table
-                                                        ref="singleTable"
-                                                        :data="tableData"
-                                                        highlight-current-row
-                                                        @current-change="handleCurrentChange"
-                                                        style="width: 100%">
-                                                    <el-table-column
-                                                            type="index"
-                                                            width="50">
-                                                    </el-table-column>
-                                                </el-table>
-                                            </template>
-                                        </el-col>
-                                    </el-row>
-                                    <el-row>
-                                        <el-button type="primary">取回</el-button>
-                                    </el-row>
-                                </el-col>
-                            </el-row>
-                            <div slot="footer" class="dialog-footer">
-                                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-                            </div>
-                        </el-dialog>
                     </el-col>
                 </el-row>
                 <el-row style="margin-top: 20px;">
@@ -466,6 +384,7 @@
     </el-row>
     <i class="el-icon-circle-check" v-show="purechaseReturn.pureAudition == '1'"
        style="font-size: 100px;color:#67C23A;position: absolute;top: 30px;right: 30px;"></i>
+    <retrieve-dialog></retrieve-dialog>
 </div>
 </body>
 <!-- import Vue before Element -->
@@ -473,6 +392,7 @@
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="js/axios.min.js"></script>
-<script src="js/element_ui_purchase_return_receipt.js" type="module"></script>
 <script src="components/editColumn.js"></script>
+<script src="components/retrieveDialog.js"></script>
+<script src="js/element_ui_purchase_return_receipt.js" type="module"></script>
 </html>

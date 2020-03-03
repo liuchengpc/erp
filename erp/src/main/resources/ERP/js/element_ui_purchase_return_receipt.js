@@ -114,7 +114,397 @@ let viewModel = new Vue({
             ],
             lineId: 2,
             watchKey: ['puredSingleStatus', 'puredDocumentDate', 'puredDocumentNumber', 'puredPrice', 'puredTaxRate'],
-            watch: false
+            watch: false,
+            supplierConfig: {
+                filterType: 'supplierName',
+                suppliers: [],
+                filterConfig: ['supplierId', 'supplierName', 'supplierEasyname', 'supplierEngname', 'supplierEasyengname', 'supplierAccountAttribution'],
+                option: [
+                    {
+                        label: '供应商编号',
+                        value: 'supplierId'
+                    },
+                    {
+                        label: '供应商名称',
+                        value: 'supplierName'
+                    },
+                    {
+                        label: '供应商简称',
+                        value: 'supplierEasyname'
+                    },
+                    {
+                        label: '英文名称',
+                        value: 'supplierEngname'
+                    },
+                    {
+                        label: '英文简称',
+                        value: 'supplierEasyengname'
+                    },
+                    {
+                        label: '账款归属',
+                        value: 'supplierAccountAttribution'
+                    },
+                    {
+                        label: '类别',
+                        value: 'supplierType'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '供应商编号',
+                        prop: 'supplierId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '供应商名称',
+                        prop: 'supplierName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '供应商简称',
+                        prop: 'supplierEasyname',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'supplierEngname',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文简称',
+                        prop: 'supplierEasyengname',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '账款归属',
+                        prop: 'supplierAccountAttribution',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '类别',
+                        prop: 'supplierType',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '地区',
+                        prop: 'supplierZone',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '负责人',
+                        prop: 'supplierPrincipalman',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--供应商主文件设定',
+                singleValue: true
+            },
+            warehouseConfig: {
+                filterType: 'warehouseId',
+                wareHouses: [],
+                filterConfig: ['warehouseId', 'warehouseName', 'warehouseEasyName', 'warehouseEngname', 'warehouseLinkman', 'warehouseLinktel', 'warehouseAddress', 'warehouseDecoration'],
+                option: [
+                    {
+                        label: '仓库编号',
+                        value: 'warehouseId'
+                    },
+                    {
+                        label: '仓库名称',
+                        value: 'warehouseName'
+                    },
+                    {
+                        label: '仓库简称',
+                        value: 'warehouseEasyName'
+                    },
+                    {
+                        label: '英文名称',
+                        value: 'warehouseEngname'
+                    },
+                    {
+                        label: '联系人员',
+                        value: 'warehouseLinkman'
+                    },
+                    {
+                        label: '联系电话',
+                        value: 'warehouseLinktel'
+                    },
+                    {
+                        label: '仓库地址',
+                        value: 'warehouseAddress'
+                    },
+                    {
+                        label: '备注',
+                        value: 'warehouseDecoration'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '仓库编号',
+                        prop: 'warehouseId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '仓库名称',
+                        prop: 'warehouseName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '仓库简称',
+                        prop: 'warehouseEasyName',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'warehouseEngname',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '联系人员',
+                        prop: 'warehouseLinkman',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '联系电话',
+                        prop: 'warehouseLinktel',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '仓库地址',
+                        prop: 'warehouseAddress',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '备注',
+                        prop: 'warehouseDecoration',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--仓库设定',
+                singleValue: true
+            },
+            currencyConfig: {
+                filterType: 'currencyId',
+                currencies: [],
+                filterConfig: ['currencyId', 'currencyName', 'currencyEasyname', 'currencyEngname', 'currencyTransactionday', 'currencyStandardexchange', 'currencyInexchange', 'currencyOutexchange'],
+                option: [
+                    {
+                        label: '币别编号',
+                        value: 'currencyId'
+                    },
+                    {
+                        label: '币别名称',
+                        value: 'currencyName'
+                    },
+                    {
+                        label: '币别简称',
+                        value: 'currencyEasyname'
+                    },
+                    {
+                        label: '英文名称',
+                        value: 'currencyEngname'
+                    },
+                    {
+                        label: '异动日期',
+                        value: 'currencyTransactionday'
+                    },
+                    {
+                        label: '固定汇率',
+                        value: 'currencyTransactionday'
+                    },
+                    {
+                        label: '买进汇率',
+                        value: 'currencyInexchange'
+                    },
+                    {
+                        label: '卖出汇率',
+                        value: 'currencyOutexchange'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '币别编号',
+                        prop: 'currencyId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '币别简称',
+                        prop: 'currencyEasyname',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '币别名称',
+                        prop: 'currencyName',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'currencyEngname',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '异动日期',
+                        prop: 'currencyTransactionday',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '固定汇率',
+                        prop: 'currencyStandardexchange',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '买进汇率',
+                        prop: 'currencyInexchange',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '卖出汇率',
+                        prop: 'currencyOutexchange',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--币别设定',
+                singleValue: true
+            },
+            projectConfig: {
+                filterType: 'projectId',
+                projects: [],
+                filterConfig: ['projectId', 'projectName', 'projectEnglishName', 'projectRemark', 'projectAbate'],
+                option: [
+                    {
+                        label: '项目编号',
+                        value: 'projectId'
+                    },
+                    {
+                        label: '项目名称',
+                        value: 'projectName'
+                    },
+                    {
+                        label: '英文名称',
+                        value: 'projectEnglishName'
+                    },
+                    {
+                        label: '备注',
+                        value: 'projectRemark'
+                    },
+                    {
+                        label: '失效日期',
+                        value: 'projectAbate'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '项目编号',
+                        prop: 'projectId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '项目名称',
+                        prop: 'projectName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '备注',
+                        prop: 'projectRemark',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '失效日期',
+                        prop: 'projectAbate',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--项目设定',
+                singleValue: true
+            },
+            departmentConfig:{
+                teams: [],
+                filterType: "teamId",
+                filterConfig: ["teamId", "teamName", "teamEnglishName", "teamRemark"],
+                option: [
+                    {
+                        label: '类型编号',
+                        value: 'teamId'
+                    },
+                    {
+                        label: "类型名称",
+                        value: "teamName"
+                    },
+                    {
+                        label: "英文名称",
+                        value: "teamEnglishName"
+                    },
+                    {
+                        label: "备注",
+                        value: "teamRemark"
+                    }
+                ],
+                columns: [
+                    {
+                        label: '供应商编号',
+                        prop: 'teamId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '供应商名称',
+                        prop: 'teamName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '备注',
+                        prop: 'teamRemark',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'teamEnglishName',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--部门选定',
+                singleValue: false
+            },
+            employeeConfig: {
+                employees:[],
+                filterType:'',
+                filterConfig:[],
+                option:[],
+                columns:[],
+                title:'',
+                singleValue: false
+            }
         };
     },
     methods: {
@@ -126,7 +516,6 @@ let viewModel = new Vue({
                 if (valid) {
                     alert('submit!');
                 } else {
-                    console.log('error submit!!');
                     return false;
                 }
             });
@@ -138,46 +527,36 @@ let viewModel = new Vue({
             this.$message('click on item ' + command);
         },
         handleClick(row) {
-            console.log(row);
         },
         getLast() {
             getLast().then(resp => {
                 this.purechaseReturn = resp.data;
                 this.lineId = resp.data.lineId;
-                console.log(resp);
             }).catch(error => {
-                console.log(error);
             });
         },
         getPrev() {
             getPrev(this.lineId).then(resp => {
                 this.purechaseReturn = resp.data;
                 this.lineId = resp.data.lineId;
-                console.log(resp);
             }).catch(error => {
-                console.log(error);
             });
         },
         getNext() {
             getNext(this.lineId).then(resp => {
                 this.purechaseReturn = resp.data;
                 this.lineId = resp.data.lineId;
-                console.log(resp);
             }).catch(error => {
-                console.log(error);
             })
         },
         getFirst() {
             getFirst().then(resp => {
                 this.purechaseReturn = resp.data;
                 this.lineId = resp.data.lineId;
-                console.log(resp);
             }).catch(error => {
-                console.log(error);
             })
         },
         insertOrder() {
-            console.log(orderStatusMeta.insert);
             this.orderStatus = orderStatusMeta.insert;
             this.emptyPurchaseReturnProp();
             this.getPureId();
@@ -191,8 +570,6 @@ let viewModel = new Vue({
                 }).catch(error => {
 
                 });
-                console.log(JSON.stringify(this.purechaseReturn));
-                console.log(this.purechaseReturn);
             } else if (this.orderStatus === orderStatusMeta.edit) {
                 // 修改
                 updateWithDetails(JSON.stringify(this.purechaseReturn)).then(resp => {
@@ -200,15 +577,12 @@ let viewModel = new Vue({
                 }).catch(error => {
 
                 });
-                console.log(JSON.stringify(this.purechaseReturn));
-                console.log(this.purechaseReturn);
             }
         },
         editOrder() {
             this.orderStatus = orderStatusMeta.edit;
         },
         deleteOrder() {
-            console.log("删除编号为pureId的记录" + this.purechaseReturn.pureId);
             deleteWithDetails(this.purechaseReturn.pureId).then(resp => {
                 this.orderStatus = orderStatusMeta.browse;
                 this.getLast();
@@ -237,7 +611,6 @@ let viewModel = new Vue({
                 this.purechaseReturn.pureId = resp.data;
                 this.purechaseReturn.pureDocumentNumber = resp.data;
             }).catch(error => {
-                console.log(error);
             });
         },
         emptyPurchaseReturnProp() {
@@ -298,13 +671,12 @@ let viewModel = new Vue({
                 puredYn: "",
             });
         },
-        handlerChangeColumnValue(prop,value,index,watch){
+        handlerChangeColumnValue(prop, value, index, watch) {
             let currentItem = this.purechaseReturn.details[index];
             currentItem[prop] = value;
-            if(!watch){
+            if (!watch) {
                 return;
             }
-            console.log("handlerChange");
             // Math.floor(parseFloat(price*100 * quantity))/100;
             // 重新计算
 
@@ -355,18 +727,18 @@ let viewModel = new Vue({
             // 含税金额
             //----------------------------------
             let includeTaxAmount = (parseFloat(amount) + parseFloat(taxAmount)).toFixed(2);
-
-            console.log("折扣前单价" + beforeDiscountPrice);
-            console.log("折数" + discount);
-            console.log("单价" + price);
-            console.log("数量" + quantity);
-            console.log("金额"+amount);
-            console.log("税率" + taxRate);
-            console.log("税额" + taxAmount);
-            console.log("含税金额" + includeTaxAmount);
-
-            console.log(this.purechaseReturn.details[index]);
-            console.log(this.purechaseReturn.details[index].puredPrice);
+            //
+            // console.log("折扣前单价" + beforeDiscountPrice);
+            // console.log("折数" + discount);
+            // console.log("单价" + price);
+            // console.log("数量" + quantity);
+            // console.log("金额"+amount);
+            // console.log("税率" + taxRate);
+            // console.log("税额" + taxAmount);
+            // console.log("含税金额" + includeTaxAmount);
+            //
+            // console.log(this.purechaseReturn.details[index]);
+            // console.log(this.purechaseReturn.details[index].puredPrice);
             this.purechaseReturn.details[index].puredPrice = price;
             this.purechaseReturn.details[index].puredMoney = amount;
             this.purechaseReturn.details[index].puredTaxAmount = taxAmount;
@@ -378,13 +750,10 @@ let viewModel = new Vue({
     },
     watch: {
         orderStatus: function (newOrderStatus, originalOrderStatus) {
-            console.log("newOrderStatus:" + newOrderStatus);
-            console.log("originalOrderStatus:" + originalOrderStatus);
             this.edit = newOrderStatus !== 0 && newOrderStatus !== 7;
             if (!this.edit) {
-                console.log("render");
+
             }
-            console.log(this.edit);
         }/*,
         'purechaseReturn.details': {
             handler(newValue, originalValue) {

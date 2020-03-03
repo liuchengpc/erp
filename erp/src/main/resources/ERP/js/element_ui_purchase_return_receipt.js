@@ -445,7 +445,7 @@ let viewModel = new Vue({
                 title: '单选--项目设定',
                 singleValue: true
             },
-            departmentConfig:{
+            departmentConfig: {
                 teams: [],
                 filterType: "teamId",
                 filterConfig: ["teamId", "teamName", "teamEnglishName", "teamRemark"],
@@ -497,12 +497,153 @@ let viewModel = new Vue({
                 singleValue: false
             },
             employeeConfig: {
-                employees:[],
-                filterType:'',
-                filterConfig:[],
-                option:[],
-                columns:[],
-                title:'',
+                employees: [],
+                filterType: 'staffId',
+                filterConfig: ['staffId', 'teamId', 'teamName', 'staffName', 'staffEnglishName', 'staffIdnumber', 'staffGender', 'staffChineseposition', 'staffMobilephone'],
+                option: [
+                    {
+                        label: '人员编号',
+                        value: 'staffId'
+                    },
+                    {
+                        label: '所属部门',
+                        value: 'teamId'
+                    },
+                    {
+                        label: '部门名称',
+                        value: 'teamName'
+                    },
+                    {
+                        label: '人员姓名',
+                        value: 'staffName'
+                    },
+                    {
+                        label: '英文名称',
+                        value: 'staffEnglishName'
+                    },
+                    {
+                        label: '身份证号',
+                        value: 'staffIdnumber'
+                    },
+                    {
+                        label: '性别',
+                        value: 'staffGender'
+                    },
+                    {
+                        label: '中文职务',
+                        value: 'staffChineseposition'
+                    },
+                    {
+                        label: '联系电话',
+                        value: 'staffMobilephone'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '人员编号',
+                        prop: 'staffId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '人员姓名',
+                        prop: 'staffName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '所属部门',
+                        prop: 'teamId',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '部门名称',
+                        prop: 'teamName',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'staffEnglishName',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '身份证号',
+                        prop: 'staffIdnumber',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '性别',
+                        prop: 'staffGender',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--人员主文件设定',
+                singleValue: true
+            },
+            materialConfig: {
+                materials: [],
+                filterType: 'matterId',
+                filterConfig: ['matterId', 'matterBarno', 'matterName', 'matterSize', 'matterEnglishName'],
+                option: [
+                    {
+                        label: '物料编号',
+                        value: 'matterId'
+                    },
+                    {
+                        label: '条形码编号',
+                        value: 'matterBarno'
+                    },
+                    {
+                        label: '物料名称',
+                        value: 'matterName'
+                    },
+                    {
+                        label: '规格型号',
+                        value: 'matterSize'
+                    },
+                    {
+                        label: '英文品名',
+                        value: 'matterEnglishName'
+                    }
+                ],
+                columns: [
+                    {
+                        label: '物料编号',
+                        prop: 'matterId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '物料名称',
+                        prop: 'matterName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '条形码编号',
+                        prop: 'matterBarno',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '规格型号',
+                        prop: 'matterSize',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '标准进价',
+                        prop: 'matterStandardPrice',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '多选--物料主文件设定',
                 singleValue: false
             }
         };

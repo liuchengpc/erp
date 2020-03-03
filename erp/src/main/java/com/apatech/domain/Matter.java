@@ -65,13 +65,15 @@ public class Matter {
     private String matterCustom5;//自定栏5
     private String matterCustom6;//自定栏6
     
+    private String mu_name;//单位名称
     
-
    
 
 	public Matter() {
 		super();
 	}
+
+	
 
 	@Override
 	public String toString() {
@@ -91,8 +93,23 @@ public class Matter {
 				+ matterMdecoration + ", mtId=" + mtId + ", muId=" + muId + ", currencyId=" + currencyId
 				+ ", matterAuditing=" + matterAuditing + ", matterYn=" + matterYn + ", matterCustom1=" + matterCustom1
 				+ ", matterCustom2=" + matterCustom2 + ", matterCustom3=" + matterCustom3 + ", matterCustom4="
-				+ matterCustom4 + ", matterCustom5=" + matterCustom5 + ", matterCustom6=" + matterCustom6 + "]";
+				+ matterCustom4 + ", matterCustom5=" + matterCustom5 + ", matterCustom6=" + matterCustom6 + ", mu_name="
+				+ mu_name + "]";
 	}
+
+
+
+	public String getMu_name() {
+		return mu_name;
+	}
+
+
+
+	public void setMu_name(String mu_name) {
+		this.mu_name = mu_name;
+	}
+
+
 
 	public String getMatterId() {
         return matterId;

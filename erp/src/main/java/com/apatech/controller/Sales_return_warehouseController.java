@@ -1,5 +1,7 @@
 package com.apatech.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.apatech.domain.Sales_out_warehouse;
+import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Sales_return_warehouse;
 import com.apatech.domain.Sales_return_warehouse_detailed;
+import com.apatech.domain.Warehouse_detail;
 import com.apatech.service.Sales_return_warehouse_detailedService;
+import com.apatech.service.Warehouse_detailService;
+import com.apatech.service.PayablesmainService;
+import com.apatech.service.Sales_out_warehouseService;
 import com.apatech.service.Sales_return_warehouseService;
 import com.github.pagehelper.PageInfo;
 
@@ -26,17 +35,37 @@ public class Sales_return_warehouseController {
 	@Autowired
 	private Sales_return_warehouse_detailedService daoo;	
 	
+	@Autowired
+	private Warehouse_detailService wares;	
+	
+	@Autowired
+	private PayablesmainService pay;	
+	
+	@Autowired
+	private Sales_out_warehouseService sale;	
+	
 	@RequestMapping("/selectcount")
 	@ResponseBody
 	public int selectcount() {
 		return dao.selectcount();
 	}
 	
+	@RequestMapping("/selectcountby")
+	@ResponseBody
+	public int selectcountby(String id) {
+		return dao.selectcountby(id);
+	}
+	
+	
+	
 	@RequestMapping("/update")
 	@ResponseBody
 	public int update(@RequestBody Sales_return_warehouse stu) {
 		daoo.deletelist(stu.getSrwId());
+		int count=daoo.selectcount();
 		for (Sales_return_warehouse_detailed item : stu.getList()) {
+			count+=1;
+			item.setSrwdId(count+"");
 			item.setSrwId(stu.getSrwId());
 			daoo.insert(item);
 		}
@@ -47,7 +76,34 @@ public class Sales_return_warehouseController {
 	@RequestMapping("/autddert")
 	@ResponseBody
 	public int autddert(String id,String sid) {
-		return dao.selectlist(id, sid);
+		int autd=0;
+		Sales_return_warehouse stu = dao.selectByPrimaryKey(id);
+		stu.setList(daoo.selectlist(stu.getSrwId()));
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		if(sid.equals("1")) {	
+			if(sale.selectbysh(stu.getSrwDocumentNumber()).equals("1")) {
+		int count=wares.selectcount();
+		for (Sales_return_warehouse_detailed item : stu.getList()) {
+			count+=1;
+			int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
+			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(), item.getMatterId(), item.getSrwdPrice(), item.getSrwdSingleStatus(), 0, count2, "1","0", df.format(new Date()), null, null, null, null, null);
+			wares.insert(sky);
+		}
+		autd=dao.selectlist(id, sid);
+			}
+		}else {
+			if(pay.selectbysh(stu.getSrwDocumentNumber()).equals("0")) {
+			int count=wares.selectcount();
+			for (Sales_return_warehouse_detailed item : stu.getList()) {
+				count+=1;
+				int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
+				Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(), item.getMatterId(), item.getSrwdPrice(), item.getSrwdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
+				wares.insert(sky);
+			}
+			autd=dao.selectlist(id, sid);
+			}
+		}
+		return autd; 
 		
 	}
 	
@@ -59,7 +115,7 @@ public class Sales_return_warehouseController {
 	}
 	
 	
-	@RequestMapping("/insert")
+	@RequestMapping(value="/insert",method = RequestMethod.POST)
 	@ResponseBody
 	public int insert(@RequestBody Sales_return_warehouse record) {
 		int i=dao.insert(record);

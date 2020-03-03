@@ -182,6 +182,8 @@
 				   var iframe = $(window.parent.document).contents();
 				   iframe.find("#priabillTeamName").val(data.teamName);
 				   iframe.find("#priabillCustom9").val(data.teamId);
+				   parent["listVm"].page.list[0].priabillTeamName=data.teamName;
+				   parent["listVm"].page.list[0].priabillCustom9=data.teamId;
 			       parent.layer.close(index);
 			    }
 		  });

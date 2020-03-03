@@ -29,6 +29,11 @@ public class Updown_programService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	
+	public List<Updown_program> selectAll(){
+		System.out.println("进入查询所有,数据为:"+dao.selectAll());
+		return dao.selectAll();
+	}
 	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);

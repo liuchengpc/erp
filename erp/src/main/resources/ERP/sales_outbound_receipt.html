@@ -280,7 +280,7 @@
                         <select name="interest" lay-filter="aihao" disabled="disabled">
                             <option value="">转单</option>
                             <option value="0" disabled>采购询价转入</option>
-                            <option value="0" disabled>采购订单转入</option>
+                            <option value="0">销售订单转入</option>
                             <option value="0" disabled>进口商业发票转入</option>
                         </select>
                     </div>
@@ -335,7 +335,8 @@
 			customerlist:[],
 			saletype:[],
 			currencylist:[],
-			warelist:[]
+			warelist:[],
+			luowei:false
 			
 		},
 		updated:function(){
@@ -348,14 +349,52 @@
 			 page:{			
 			 handler(newName, oldName) {
 			 	$.each(newName.list, function(a,b) {
-			 		$.each(b.list, function(c,d) {
-			 			sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
-			 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
-			 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
-			 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);
-			 			sales_outboundvue.tableshuax();
-			 			sales_outboundvue.bianji();
+			 		$.each(b.list, function(c,d) {				 						 			
+			 			$.ajax({
+			 				type:"get",
+			 				url:host+"Warehouse_detailController/selectbyid",
+			 				data:{id:sales_outboundvue.page.list[0].warehouseId,sid:d.matterId},
+			 				async:false,
+			 				success:function(res){	
+			 						if(res>=d.sowdSingleStatus){
+				 						sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+							 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+							 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+							 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);	
+			 						}else{
+			 							d.sowdSingleStatus=0;
+			 							sales_outboundvue.page.list[0].list[c].sowdPrice=parseFloat(d.sowdDocumentDate)*parseFloat(d.sowdDocumentNumber);
+							 			sales_outboundvue.page.list[0].list[c].sowdMoney=parseFloat(d.sowdSingleStatus)*parseFloat(d.sowdPrice);
+							 			sales_outboundvue.page.list[0].list[c].sowdTaxAmount=parseFloat(d.sowdMoney)*parseFloat(d.sowdTaxRate);
+							 			sales_outboundvue.page.list[0].list[c].sowdIncludingTaxAmount=parseFloat(d.sowdMoney)-parseFloat(d.sowdTaxAmount);	
+										//alert("库存不足")
+			 						}
+	 							}
+			 				
+			 			});
 			 		});
+			 		sales_outboundvue.tableshuax();
+			 	//	sales_outboundvue.bianji();
+			 	$.each($("table tr"), function() {
+				$(this).find("td:eq(5)").attr("data-edit","text");
+				$(this).find("td:eq(7)").attr("data-edit","text");
+				$(this).find("td:eq(6)").attr("data-edit","text");
+				$(this).find("td:eq(10)").attr("data-edit","text");
+				$(this).find("td:eq(14)").attr("data-edit","text");
+			});
+			$("table").off("dblclick");
+			 		$("table").on("dblclick",function(){
+				layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"luowei.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+				
+			})	
 			 	});
 		   
 		    },
@@ -364,7 +403,7 @@
 			}
 		},
 		methods:{
-			xz:function(){
+			xz:function(){			
 				sales_outboundvue.chongzhi();
 				sales_outboundvue.bianji();
 				$.ajax({
@@ -372,6 +411,7 @@
 					url:host+"Sales_out_warehouseController/selectcount",
 					success:function(res){
 						sales_outboundvue.page.list[0].sowId=res+1;
+						sales_outboundvue.luowei=true;
 					}
 					
 				});
@@ -394,14 +434,26 @@
 				}
 			},
 			shenhe:function(id,sid){
+				var name="";
+				if(sid==1){
+					name="审核";
+				}else{
+					name="反审核";
+				}
+				if(confirm("是否"+name+"？")){
 				$.ajax({
 					type:"get",
 					data:{id:id,sid:sid},
 					url:host+"Sales_out_warehouseController/autddert",
 					success:function(resulet){
-						
+						if(resulet==1){
+							alert(name+"成功！");
+						}else{
+							alert(name+"失败！");
+						}
 					}
 				});
+				}
 			},
 			baocun:function(){
 				let user=$("#app input:eq(0)").val();
@@ -431,7 +483,7 @@
 				sales_outboundvue.page.list[0].sowPriceIncludeTax=$("#app select:eq(0)").val();
 				sales_outboundvue.page.list[0].sowForeignTrade=$("#app select:eq(1)").val();
 				sales_outboundvue.page.list[0].sowSalessktj=$("#app select:eq(2)").val();
-				if(sales_outboundvue.page.list[0].sowId>sales_outboundvue.page.pages){
+				if(sales_outboundvue.luowei){
 					$.ajax({
 					type:"get",
 					url:host+"Sales_out_warehouse_detailedController/selectcount",
@@ -482,6 +534,17 @@
 				$("textarea").removeAttr("readonly");
 				layui.use('form', function(){
 			    var form = layui.form;
+			    form.on("select(aihao)",function(){
+			    	layui.use(['layer'],function(){
+				var $ = layui.jquery;
+				var layer = layui.layer;
+					layer.open({
+						type:2,
+						content:"Turnthesingle.html?dizhi=sales_outboundvue",
+						area:['762px','450px']
+					});				
+			});
+			    })
 			    $("select").removeAttr("disabled");
 			    form.render('select');
 			});
@@ -495,6 +558,7 @@
 			$("input:eq(0)").off("keyup.f4");
 			$("input:eq(3)").off("keyup.f4");
 			$("input:eq(5)").off("keyup.f4");
+			$("input:eq(7)").off("blur");
 			$("input:eq(9)").off("keyup.f4");
 			$("input:eq(19)").off("keyup.f4");
 			$("table").off("dblclick");
@@ -544,6 +608,27 @@
 						area:['762px','450px']
 					});				
 			});
+				
+			})
+			$("input:eq(7)").on("blur",function(){
+				var id=$("input:eq(7)").val();
+				$.ajax({
+					type:"get",
+					url:host+"Sales_out_warehouseController/selectcountby",
+					data:{id:id},
+					success:function(res){
+						id=id.replace(/-/g,'');
+						if(res>99){
+							$("input:eq(8)").val(id+(res+1));
+						}else if(res>9){
+							$("input:eq(8)").val(id+"0"+(res+1));
+						}else{
+							$("input:eq(8)").val(id+"00"+(res+1));
+						}
+					}
+					
+				});
+				
 				
 			})
 			$("input:eq(19)").on("keyup.f4",function(){
@@ -611,13 +696,28 @@
 					data:{pageNum:pageNum,pageSize:1},
 					success:function(res){
 						sales_outboundvue.page=res;						
-					 	sales_outboundvue.tableshuax();
-					 	sales_outboundvue.bianji();
+					 	//sales_outboundvue.tableshuax();
+					 	//sales_outboundvue.bianji();
 					}
 				});
 				
 			}
 			,chongzhi:function(){
+				for(let stu in sales_outboundvue.page.list[0]){
+					if(stu=="list"){
+						sales_outboundvue.page.list[0][stu]=[];	
+					}else if(stu=="customerId"){
+						continue;	
+					}else if(stu=="sowtId"){
+						continue;		
+					}else if(stu=="warehouseId"){
+						continue;		
+					}else if(stu=="currencyId"){
+						continue;		
+					}else{
+					sales_outboundvue.page.list[0][stu]="";	
+					}
+				}
 				layui.use('table', function(){
       			  var table = layui.table;
       			  table.render({

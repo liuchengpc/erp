@@ -19,7 +19,7 @@
     <result column="supplier_mobilephone" jdbcType="VARCHAR" property="supplierMobilephone" />
     <result column="ada_id" jdbcType="VARCHAR" property="adaId" />
     <result column="bank_id" jdbcType="VARCHAR" property="bankId" />
-    <result column="supplier_procurement _staff" jdbcType="VARCHAR" property="supplierProcurementStaff" />
+    <result column="supplier_procurement_staff" jdbcType="VARCHAR" property="supplierProcurementStaff" />
     <result column="supplier_taxcheckno" jdbcType="VARCHAR" property="supplierTaxcheckno" />
     <result column="supplier_capitalmoney" jdbcType="REAL" property="supplierCapitalmoney" />
     <result column="supplier_job" jdbcType="VARCHAR" property="supplierJob" />
@@ -62,7 +62,7 @@
     supplier_id, supplier_name, supplier_easyname, supplier_engname, supplier_easyengname, 
     supplier_account_attribution, supplier_type, supplier_zone, currency_id, supplier_principalman, 
     supplier_linkman, supplier_linktela, supplier_linktelb, supplier_linktelc, supplier_mobilephone, 
-    ada_id, bank_id, "supplier_procurement _staff", supplier_taxcheckno, supplier_capitalmoney, 
+    ada_id, bank_id, supplier_procurement_staff, supplier_taxcheckno, supplier_capitalmoney, 
     supplier_job, supplier_email, supplier_webadd, supplier_faxno, supplier_cufirstsaleinput, 
     supplier_cufirstsalereturn, supplier_curecentsaleinput, supplier_curecentsalereturn, 
     supplier_tax_included, supplier_terminationdate, supplier_creditmoney, supplier_residuemonet, 
@@ -99,7 +99,7 @@
       supplier_principalman, supplier_linkman, 
       supplier_linktela, supplier_linktelb, supplier_linktelc, 
       supplier_mobilephone, ada_id, bank_id, 
-      "supplier_procurement _staff", supplier_taxcheckno, 
+      supplier_procurement_staff, supplier_taxcheckno, 
       supplier_capitalmoney, supplier_job, supplier_email, 
       supplier_webadd, supplier_faxno, supplier_cufirstsaleinput, 
       supplier_cufirstsalereturn, supplier_curecentsaleinput, 
@@ -195,7 +195,7 @@
         bank_id,
       </if>
       <if test="supplierProcurementStaff != null">
-        "supplier_procurement _staff",
+        supplier_procurement_staff,
       </if>
       <if test="supplierTaxcheckno != null">
         supplier_taxcheckno,
@@ -529,7 +529,7 @@
         bank_id = #{bankId,jdbcType=VARCHAR},
       </if>
       <if test="supplierProcurementStaff != null">
-        "supplier_procurement _staff" = #{supplierProcurementStaff,jdbcType=VARCHAR},
+        supplier_procurement_staff = #{supplierProcurementStaff,jdbcType=VARCHAR},
       </if>
       <if test="supplierTaxcheckno != null">
         supplier_taxcheckno = #{supplierTaxcheckno,jdbcType=VARCHAR},
@@ -663,7 +663,7 @@
       supplier_mobilephone = #{supplierMobilephone,jdbcType=VARCHAR},
       ada_id = #{adaId,jdbcType=VARCHAR},
       bank_id = #{bankId,jdbcType=VARCHAR},
-      "supplier_procurement _staff" = #{supplierProcurementStaff,jdbcType=VARCHAR},
+      supplier_procurement_staff = #{supplierProcurementStaff,jdbcType=VARCHAR},
       supplier_taxcheckno = #{supplierTaxcheckno,jdbcType=VARCHAR},
       supplier_capitalmoney = #{supplierCapitalmoney,jdbcType=REAL},
       supplier_job = #{supplierJob,jdbcType=VARCHAR},

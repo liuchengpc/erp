@@ -42,6 +42,10 @@ public class PayablesmainService {
     	return dao.insert(record);
     }
     
+    public String selectbysh(String record){
+    	return dao.selectbysh(record);
+    }
+    
     public int insertSelective(Payablesmain record){
     	return dao.insertSelective(record);
     }

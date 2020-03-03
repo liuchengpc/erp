@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Team;
@@ -18,7 +19,7 @@ public interface Sales_out_warehouse_detailedMapper {
 	
 	List<Sales_out_warehouse_detailed> selectlist(String id);
 	
-	@Delete("delete from Sales_out_warehouse_detailed WHERE sow_id=#{id}")
+	@Update("update Sales_out_warehouse_detailed set sowd_yn=1 WHERE sow_id=#{id}")
 	int deletelist(String id);
 	 
 	 @Select("SELECT \r\n" + 

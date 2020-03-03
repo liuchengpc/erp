@@ -20,15 +20,37 @@ public class PriadetailsService {
 	@Autowired
 	private PriadetailsMapper dao;
 	
-	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillCustom10,String priabillId){
-    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillCustom10,priabillId));
+	public PageInfo<Priadetails> selectByPriabillSupplierName(Integer page,Integer limit,String priabillId){
+    	System.out.println("分页的集合："+dao.selectByPriabillSupplierName(priabillId));
     	PageHelper.startPage(page, limit);
-    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillCustom10,priabillId);
+    	List<Priadetails> list=dao.selectByPriabillSupplierName(priabillId);
 
     	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
     	return pageFy;
     }
 	 
+	public PageInfo<Priadetails> selectAllBySupplier(Integer page,Integer limit,String priabillCustom10){
+		System.out.println("预付款余额大于0分页的集合："+dao.selectAllBySupplier(priabillCustom10));
+    	PageHelper.startPage(page, limit);
+    	List<Priadetails> list=dao.selectAllBySupplier(priabillCustom10);
+
+    	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
+    	return pageFy;
+	}
+	
+	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10){
+		System.out.println("预付款余额大于0分页的集合："+dao.selectAllBySupplier2(priabillCustom10));
+    	PageHelper.startPage(page, limit);
+    	List<Priadetails> list=dao.selectAllBySupplier2(priabillCustom10);
+
+    	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
+    	return pageFy;
+	}
+	
+	public List<Priadetails>  selectByPrimaryKey2(String priabillId){
+    	return dao.selectByPrimaryKey2(priabillId);
+    }
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
@@ -37,6 +59,10 @@ public class PriadetailsService {
     	return dao.deleteByPrimaryKey(priadetailsId);
     }
 
+    public int deleteByPrimaryKeyXuzhe(String priabillId) {
+    	return dao.deleteByPrimaryKeyXuzhe(priabillId);
+    }
+    
     public int insert(Priadetails record){
     	return dao.insert(record);
     }

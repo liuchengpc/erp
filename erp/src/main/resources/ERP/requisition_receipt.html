@@ -31,13 +31,13 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">调出仓库</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.requisitionOutWarehouseName" @keyup.f4="add()">
+								<input type="text" name="title" class="layui-input" v-model="pages.requisitionOutWarehouseName" @keyup.f4="dcadd()">
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">调入仓库</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.requisitionInputWarehouseName">
+								<input type="text" name="title" class="layui-input" v-model="pages.requisitionInputWarehouseName"@keyup.f4="dradd()">
 							</div>
 						</div>
 					</div>
@@ -238,8 +238,11 @@
         element.on('tab(test)', function(elem){
             location.hash = 'test='+ $(this).attr('lay-id');
         });
+		
+		
+		
     });
-
+		
     /*layui.use('table', function(){
         var table = layui.table;
 
@@ -277,6 +280,26 @@
 <script type="text/javascript">
 	//必须设置允许跨域访问session中数据(cookie)
 	axios.default.withCredentials = true;
+	/* function a(){
+		console.log(111);
+	}
+	window.onkeyup=function(a){
+		console.log(a);
+	} */
+	$("#materialsContent").on('dblclick',function(){
+		console.log(111);
+	});
+	//子页面仓库设定调方法取回值
+	function ckqh(id,name){
+		if(this.listVm.zt=="dc"){
+			this.listVm.page.list[0].requisitionOutWarehouseName=name;
+			this.listVm.page.list[0].requisitionOutWarehouse=id;
+		}
+		if(this.listVm.zt=="dr"){
+			this.listVm.page.list[0].requisitionInputWarehouseName=name;
+			this.listVm.page.list[0].requisitionInputWarehouse=id;
+		}
+	}
 	//创建vue实例
 	var listVm = new Vue({
 		el: "#app",//设置vue可以操作的html内容范围，值就是css的id选择器。
@@ -299,7 +322,8 @@
 			noAuditing1:true,//取消审核
 			
 			lay1:'layui-btn-primary',
-			lay2:'layui-btn'
+			lay2:'layui-btn',
+			zt:""
 		},
 		methods: {//定义函数
 
@@ -320,7 +344,7 @@
 						console.info(this_.page)
 						layui.use('table', function(){
 						    var table = layui.table;
-						    table.render({
+						    tb=table.render({
 						        elem: '#materialsContent'
 						        ,url:''//'https://www.layui.com/demo/table/user/'
 								,data:this_.page.list[0].rd_list//[{rdId:1,matterId:2,rdEngname:3,rdRemark:4,rdPriceIncludeTax:5,rdSingleNum:6,rdBatchNumber:7,rdRemarks:8}]
@@ -625,6 +649,14 @@
 					area: ['762px', '450px']
 				});
 				//alert(JSON.stringify(this.page.list[0].rd_list));
+			},dcadd:function(){
+				this.zt="dc";
+				this.add();
+			},dradd:function(){
+				this.zt="dr";
+				this.add();
+			},a:function(){
+				console.log(111222);
 			}
 		},
 		mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
@@ -635,6 +667,8 @@
 	
 	});
 	
+		
+			
 	
 	
 	 /*layui.use('layer', function(){

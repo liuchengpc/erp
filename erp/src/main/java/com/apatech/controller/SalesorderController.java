@@ -48,6 +48,12 @@ public class SalesorderController {
     	return page;
     }
 	
+	@RequestMapping("/selectzdsh")
+	@ResponseBody
+	public List<Salesorder> selectzdsh(){
+		return dao.selectzdsh();
+	}
+	
 	
 	/**
 	 * 根据主表id查询 （刘成）

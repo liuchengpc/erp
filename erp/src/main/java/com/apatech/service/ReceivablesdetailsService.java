@@ -1,10 +1,13 @@
 package com.apatech.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,7 +56,10 @@ public class ReceivablesdetailsService {
     public int deleteByPrimaryKey(String recedetailId){
     	return dao.deleteByPrimaryKey(recedetailId);
     }
-
+    public int deleteByzbidlc(String receivablesbillId){
+    	return dao.deleteByzbidlc(receivablesbillId);
+    }
+    
     public int insert(Receivablesdetails record){
     	return dao.insert(record);
     }

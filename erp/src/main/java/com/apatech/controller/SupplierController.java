@@ -128,6 +128,7 @@ public class SupplierController {
 		}
 		return map;
     }
+	
 	/**
 	 * 根据主键删除
 	 * @param supplierId

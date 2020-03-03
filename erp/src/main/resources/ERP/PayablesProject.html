@@ -182,6 +182,8 @@
 				   var iframe = $(window.parent.document).contents();
 				   iframe.find("#priabillProjectName").val(data.projectName);
 				   iframe.find("#projectId").val(data.projectId);
+				   parent["listVm"].page.list[0].priabillProjectName=data.projectName;
+				   parent["listVm"].page.list[0].projectId=data.projectId;
 			       parent.layer.close(index);
 			    }
 		  });

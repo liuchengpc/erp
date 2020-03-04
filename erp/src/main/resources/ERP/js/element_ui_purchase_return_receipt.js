@@ -446,6 +446,48 @@ let viewModel = new Vue({
             }).catch(error => {
 
             })
+        },
+        handleSupplierDialogVisibleChange(visible) {
+            this.supplierDialogConfig.dialogVisible = visible;
+        },
+        handleSupplierDialogRetrieve(selectedContent){
+            console.log(selectedContent);
+        },
+        handleWarehouseDialogVisibleChange(visible){
+            this.warehouseDialogConfig.dialogVisible = visible;
+        },
+        handleWarehouseDialogRetrieve(selectedContent){
+            console.log(this.selectedContent);
+        },
+        handleCurrencyDialogVisibleChange(visible){
+            this.currencyDialogConfig.dialogVisible = visible;
+        },
+        handleCurrencyDialogRetrieve(selectedContent){
+            console.log(selectedContent);
+        },
+        handleProjectDialogVisibleChange(visible){
+            this.projectDialogConfig.dialogVisible = visible;
+        },
+        handleProjectDialogRetrieve(selectedContent){
+            console.log(selectedContent);
+        },
+        handleDepartmentDialogVisibleChange(visible){
+            this.departmentDialogConfig.dialogVisible = visible;
+        },
+        handleDepartmentDialogRetrieve(selectedContent){
+            console.log(selectedContent);
+        },
+        handleEmployeeDialogVisibleChange(visible){
+            this.employeeDialogConfig.dialogVisible = visible;
+        },
+        handleEmployeeDialogRetrieve(selectedContent){
+            console.log(selectedContent);
+        },
+        handleMaterialDialogVisibleChange(visible){
+            this.materialDialogConfig.dialogVisible = visible;
+        },
+        handleMaterialDialogRetrieve(selectedContent){
+            console.log(selectedContent);
         }
     },
     created: function () {

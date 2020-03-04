@@ -448,4 +448,81 @@
       </if>
     </trim>
   </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective2" parameterType="com.apatech.domain.Check_detailed">
+    update check_detailed
+    <set>
+      <if test="proofNumber != null and proofNumber !=''">
+        proof_number = #{proofNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkId != null and checkId !=''">
+        check_id = #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdName != null and cdName !=''">
+        cd_name = #{cdName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdFormat != null and cdFormat !=''">
+        cd_format = #{cdFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="cdIncludeTax != null and cdIncludeTax !=''">
+        cd_include_tax = #{cdIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="cdVolume != null and cdVolume !=''">
+        cd_volume = #{cdVolume,jdbcType=INTEGER},
+      </if>
+      <if test="cdInventoriesNumber != null and cdInventoriesNumber !=''">
+        cd_inventories_number = #{cdInventoriesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdProfitsLossesNumber != null">
+        cd_profits_losses_number = #{cdProfitsLossesNumber,jdbcType=INTEGER},
+      </if>
+      <if test="cdUnitPrice != null and cdUnitPrice !=''">
+        cd_unit_price = #{cdUnitPrice,jdbcType=REAL},
+      </if>
+      <if test="cdLossAmountProfit != null">
+        cd_loss_amount_profit = #{cdLossAmountProfit,jdbcType=REAL},
+      </if>
+      <if test="cdBatchNumber != null and cdBatchNumber !=''">
+        cd_batch_number = #{cdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCause != null and cdCause !=''">
+        cd_cause = #{cdCause,jdbcType=VARCHAR},
+      </if>
+      <if test="cdAuditing != null and cdAuditing !=''">
+        cd_auditing = #{cdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="cdYn != null and cdYn !=''">
+        cd_yn = #{cdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom1 != null and cdCustom1 !=''">
+        cd_custom1 = #{cdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom2 != null and cdCustom2 !=''">
+        cd_custom2 = #{cdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom3 != null and cdCustom3 !=''">
+        cd_custom3 = #{cdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom4 != null and cdCustom4 !=''">
+        cd_custom4 = #{cdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom5 != null and cdCustom5 !=''">
+        cd_custom5 = #{cdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="cdCustom6 != null and cdCustom6 !=''">
+        cd_custom6 = #{cdCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null and matterId !=''">
+        matter_id = #{matterId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cd_id = #{cdId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <delete id="deleteBycheckId" parameterType="java.lang.String">
+    delete from check_detailed
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

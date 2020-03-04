@@ -118,7 +118,26 @@ public class CheckService {
     public int updateByPrimaryKeySelective(Check record){
     	return dao.updateByPrimaryKeySelective(record);
     }
-
+    public int updateByPrimaryKeySelective2(Check record){
+    	int a=0;
+    	a=dao.updateByPrimaryKeySelective2(record);
+    	if(cd_dao.deleteBycheckId(record.getCheckId())<=0) {
+    		return 0;
+    	}
+    	for(Check_detailed c:record.getCd_List()) {
+    		c.setCheckId(record.getCheckId());
+    		List<Check_detailed> list=cd_dao.selectAll();
+    		int id=Integer.parseInt(list.get(0).getCdId())+1;
+    		c.setCdId(Integer.toString(id));
+    		c.setCdAuditing("0");
+    		c.setCdYn("0");
+    		if(cd_dao.insertSelective2(c)<=0) {
+    			return 0;
+    		}
+    	}
+    	return a;
+    }
+    
     public int updateByPrimaryKey(Check record){
     	return dao.updateByPrimaryKey(record);
     }

@@ -21,9 +21,11 @@ public interface Check_detailedMapper {
     String getno(@Param("billdate")String billdate);
 	
 	List<Check_detailed> selectAllBycheckId(String checkId);
-	 
-    int deleteByPrimaryKey(String cdId);
 
+    int deleteByPrimaryKey(String cdId);
+    
+    int deleteBycheckId(String checkId);
+    
     int insert(Check_detailed record);
 
     int insertSelective(Check_detailed record);
@@ -32,6 +34,8 @@ public interface Check_detailedMapper {
     Check_detailed selectByPrimaryKey(String cdId);
 
     int updateByPrimaryKeySelective(Check_detailed record);
+    
+    int updateByPrimaryKeySelective2(Check_detailed record);
 
     int updateByPrimaryKey(Check_detailed record);
 }

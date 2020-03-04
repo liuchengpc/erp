@@ -48,6 +48,10 @@ public class Check_detailedService {
     	return dao.deleteByPrimaryKey(cdId);
     }
 
+    public int deleteBycheckId(String checkId){
+    	return dao.deleteBycheckId(checkId);
+    }
+    
     public int insert(Check_detailed record){
     	return dao.insert(record);
     }
@@ -65,6 +69,9 @@ public class Check_detailedService {
 
     public int updateByPrimaryKeySelective(Check_detailed record){
     	return dao.updateByPrimaryKeySelective(record);
+    }
+    public int updateByPrimaryKeySelective2(Check_detailed record){
+    	return dao.updateByPrimaryKeySelective2(record);
     }
 
     public int updateByPrimaryKey(Check_detailed record){

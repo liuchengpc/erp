@@ -33,6 +33,8 @@ public interface CheckMapper {
     Check selectByPrimaryKey(String checkId);
 
     int updateByPrimaryKeySelective(Check record);
+    
+    int updateByPrimaryKeySelective2(Check record);
 
     int updateByPrimaryKey(Check record);
 }

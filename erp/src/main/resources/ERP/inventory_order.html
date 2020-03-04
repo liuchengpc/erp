@@ -704,13 +704,13 @@
 				var obj=this.page.list[0];
 				
 				$.ajax({
-					url : "http://127.0.0.1:8080/CheckController/updateByPrimaryKeySelective",
+					url : "http://127.0.0.1:8080/CheckController/updateByPrimaryKeySelective2",
 					type:"post",
 					data : JSON.stringify(obj),
 					dataType:'json',	
 					contentType : "application/json;charset=utf-8",
 					success:function (res) {
-						//alert("系统提示：" +res.message);
+						alert("系统提示：" +res.message);
 						this_.isinsert=false;//关闭新增模式
 						this_.isedit=false;//关闭编辑模式
 						this_.goPage(1, 1);		

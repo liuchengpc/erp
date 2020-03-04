@@ -47,7 +47,7 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
  FROM priadetails,priabill 
 	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
 	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
-	    AND priadetails.Priabill_custom9>0 AND priadetails.Priabill_custom6 is null            
+	     AND priadetails.Priabill_custom6 is null            
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   
@@ -62,7 +62,7 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
  FROM priadetails,priabill 
 	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
 	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
-	    AND priadetails.Priabill_custom9>0 AND priadetails.Priabill_custom6 = '1'            
+	     AND priadetails.Priabill_custom6 = '1'            
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   

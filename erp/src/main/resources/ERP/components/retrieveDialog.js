@@ -43,7 +43,11 @@ Vue.component('retrieve-dialog', {
                                 </el-autocomplete>
                             </el-form-item>
                             <el-form-item>
-                                <el-button type="primary" @click="retrieve">取回</el-button>
+                                <el-button 
+                                    type="primary" 
+                                    @click="retrieve">
+                                        取回
+                                </el-button>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" 
@@ -121,8 +125,7 @@ Vue.component('retrieve-dialog', {
                     </el-col>
                 </el-row>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                    <el-button type="primary" @click="dialogHide()">关 闭</el-button>
                     <el-button type="primary" @click="toggleSelectionFirst()">选中第一行</el-button>
                 </div>
                 <dialog-column :dialog-column-visible.sync="dialogColumnVisible"
@@ -191,6 +194,7 @@ Vue.component('retrieve-dialog', {
             }else {
                 console.log(this.selectedContent);
             }
+            this.$emit('handle-retrieve', this.selectedContent);
         },
         querySearch(searchString, callback) {
             let data = this.data;
@@ -255,8 +259,12 @@ Vue.component('retrieve-dialog', {
         },
         clearBelowAll() {
 
+        },
+        dialogHide(){
+            this.$emit('visible-change', false);
         }
-    },
+    }
+    ,
     created: function () {
         this.filterConfig = this.option.map(element => element.value);
         this.filterType = this.filterConfig[0];

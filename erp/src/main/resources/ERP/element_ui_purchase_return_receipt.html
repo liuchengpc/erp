@@ -416,7 +416,9 @@
             :columns="supplierDialogConfig.columns"
             :title="supplierDialogConfig.title"
             :single-value="supplierDialogConfig.singleValue"
-            :dialog-visible.sync="supplierDialogConfig.dialogVisible">
+            :dialog-visible="supplierDialogConfig.dialogVisible"
+            @visible-change="handleSupplierDialogVisibleChange"
+            @handle-retrieve="handleSupplierDialogRetrieve">
         <template #default="data">
             {{data.item.supplierId}}
             {{data.item.supplierName}}
@@ -429,7 +431,9 @@
             :columns="warehouseDialogConfig.columns"
             :title="warehouseDialogConfig.title"
             :single-value="warehouseDialogConfig.singleValue"
-            :dialog-visible.sync="warehouseDialogConfig.dialogVisible">
+            :dialog-visible.sync="warehouseDialogConfig.dialogVisible"
+            @visible-change="handleWarehouseDialogVisibleChange"
+            @handle-retrieve="handleWarehouseDialogRetrieve">
         <template #default="data">
             {{data.item.warehouseId}}
             {{data.item.warehouseName}}
@@ -442,7 +446,9 @@
             :columns="currencyDialogConfig.columns"
             :title="currencyDialogConfig.title"
             :single-value="currencyDialogConfig.singleValue"
-            :dialog-visible.sync="currencyDialogConfig.dialogVisible">
+            :dialog-visible.sync="currencyDialogConfig.dialogVisible"
+            @visible-change="handleCurrencyDialogVisibleChange"
+            @handle-retrieve="handleCurrencyDialogRetrieve">
         <template #default="data">
             {{data.item.currencyId}}
             {{data.item.currencyName}}
@@ -455,7 +461,9 @@
             :columns="projectDialogConfig.columns"
             :title="projectDialogConfig.title"
             :single-value="projectDialogConfig.singleValue"
-            :dialog-visible.sync="projectDialogConfig.dialogVisible">
+            :dialog-visible.sync="projectDialogConfig.dialogVisible"
+            @visible-change="handleProjectDialogVisibleChange"
+            @handle-retrieve="handleProjectDialogRetrieve">
         <template #default="data">
             {{data.item.projectId}}
             {{data.item.projectName}}
@@ -468,7 +476,9 @@
             :columns="departmentDialogConfig.columns"
             :title="departmentDialogConfig.title"
             :single-value="departmentDialogConfig.singleValue"
-            :dialog-visible.sync="departmentDialogConfig.dialogVisible">
+            :dialog-visible.sync="departmentDialogConfig.dialogVisible"
+            @visible-change="handleDepartmentDialogVisibleChange"
+            @handle-retrieve="handleDepartmentDialogRetrieve">
         <template #default="data">
             {{data.item.teamId}}
             {{data.item.teamName}}
@@ -481,7 +491,9 @@
             :columns="employeeDialogConfig.columns"
             :title="employeeDialogConfig.title"
             :single-value="employeeDialogConfig.singleValue"
-            :dialog-visible.sync="employeeDialogConfig.dialogVisible">
+            :dialog-visible.sync="employeeDialogConfig.dialogVisible"
+            @visible-change="handleEmployeeDialogVisibleChange"
+            @handle-retrieve="handleEmployeeDialogRetrieve">
         <template #default="data">
             {{data.item.staffId}}
             {{data.item.staffName}}
@@ -494,7 +506,9 @@
             :columns="materialDialogConfig.columns"
             :title="materialDialogConfig.title"
             :single-value="materialDialogConfig.singleValue"
-            :dialog-visible.sync="materialDialogConfig.dialogVisible">
+            :dialog-visible.sync="materialDialogConfig.dialogVisible"
+            @visible-change="handleMaterialDialogVisibleChange"
+            @handle-retrieve="handleMaterialDialogRetrieve">
         <template #default="data">
             {{data.item.matterId}}
             {{data.item.matterName}}

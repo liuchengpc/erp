@@ -416,7 +416,11 @@
             :columns="supplierDialogConfig.columns"
             :title="supplierDialogConfig.title"
             :single-value="supplierDialogConfig.singleValue"
-            :dialog-visible="supplierDialogConfig.dialogVisible">
+            :dialog-visible.sync="supplierDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.supplierId}}
+            {{data.item.supplierName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="warehouseDialogConfig.filterType"
@@ -425,16 +429,11 @@
             :columns="warehouseDialogConfig.columns"
             :title="warehouseDialogConfig.title"
             :single-value="warehouseDialogConfig.singleValue"
-            :dialog-visible="warehouseDialogConfig.dialogVisible">
-    </retrieve-dialog>
-    <retrieve-dialog
-            :filter-type="warehouseDialogConfig.filterType"
-            :data="warehouseDialogConfig.wareHouses"
-            :option="warehouseDialogConfig.option"
-            :columns="warehouseDialogConfig.columns"
-            :title="warehouseDialogConfig.title"
-            :single-value="warehouseDialogConfig.singleValue"
-            :dialog-visible="warehouseDialogConfig.dialogVisible">
+            :dialog-visible.sync="warehouseDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.warehouseId}}
+            {{data.item.warehouseName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="currencyDialogConfig.filterType"
@@ -443,7 +442,11 @@
             :columns="currencyDialogConfig.columns"
             :title="currencyDialogConfig.title"
             :single-value="currencyDialogConfig.singleValue"
-            :dialog-visible="currencyDialogConfig.dialogVisible">
+            :dialog-visible.sync="currencyDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.currencyId}}
+            {{data.item.currencyName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="projectDialogConfig.filterType"
@@ -452,7 +455,11 @@
             :columns="projectDialogConfig.columns"
             :title="projectDialogConfig.title"
             :single-value="projectDialogConfig.singleValue"
-            :dialog-visible="projectDialogConfig.dialogVisible">
+            :dialog-visible.sync="projectDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.projectId}}
+            {{data.item.projectName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="departmentDialogConfig.filterType"
@@ -461,7 +468,11 @@
             :columns="departmentDialogConfig.columns"
             :title="departmentDialogConfig.title"
             :single-value="departmentDialogConfig.singleValue"
-            :dialog-visible="departmentDialogConfig.dialogVisible">
+            :dialog-visible.sync="departmentDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.teamId}}
+            {{data.item.teamName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="employeeDialogConfig.filterType"
@@ -470,7 +481,11 @@
             :columns="employeeDialogConfig.columns"
             :title="employeeDialogConfig.title"
             :single-value="employeeDialogConfig.singleValue"
-            :dialog-visible="employeeDialogConfig.dialogVisible">
+            :dialog-visible.sync="employeeDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.staffId}}
+            {{data.item.staffName}}
+        </template>
     </retrieve-dialog>
     <retrieve-dialog
             :filter-type="materialDialogConfig.filterType"
@@ -479,7 +494,11 @@
             :columns="materialDialogConfig.columns"
             :title="materialDialogConfig.title"
             :single-value="materialDialogConfig.singleValue"
-            :dialog-visible="materialDialogConfig.dialogVisible">
+            :dialog-visible.sync="materialDialogConfig.dialogVisible">
+        <template #default="data">
+            {{data.item.matterId}}
+            {{data.item.matterName}}
+        </template>
     </retrieve-dialog>
 </div>
 </body>

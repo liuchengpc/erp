@@ -41,7 +41,7 @@ public class Payables {
     private String payablesBillpersonnel;//制单人员，默认值：当前人员
     private String payablesReviewers;//复核人员
     private String payablesRemarks;//备注
-    private Integer payablesAuditstatus;//审核状态，0:未审核，1:已结案
+    private Integer payablesAuditstatus;//审核状态，0:未审核， 1:已结案
     private String payablesAuditing;//是否审核
     private String payablesYn;//是否删除（0 否 1 是 ，默认0）
     private String payablesCustom1;//自定栏1

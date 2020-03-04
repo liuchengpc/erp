@@ -182,11 +182,13 @@ public class Purchase_payablesController {
     			System.out.println("进入"+record.getPpPcName()+"供应商查询修改付款信息");
     			Supplier sp = ss.selectByPrimaryKey(record.getPpPcId());
     			System.out.println("查询结果:"+sp);
-    			System.out.println("期末应付款："+(sp.getSupplierCuendshouldcollect()-record.getPpAmountcharged()));
+    			System.out.println("期末预付款:"+(sp.getSupplierCuendcollect()-record.getPpOffsetamount()));
+    			sp.setSupplierCuendcollect(sp.getSupplierCuendcollect()-record.getPpOffsetamount());
+    			System.out.println("期末应付款："+(sp.getSupplierCuendshouldcollect()-record.getPpAmountcharged()+record.getPpOffsetamount()));
     			System.out.println("a:"+sp.getSupplierCuendcollect()+",b:"+record.getPpAmountcharged());
     			sp.setSupplierCuendshouldcollect((sp.getSupplierCuendshouldcollect()-record.getPpAmountcharged()));
-    			System.out.println("剩余额度："+(sp.getSupplierResiduemonet()+record.getPpAmountcharged()));
-    			sp.setSupplierResiduemonet((sp.getSupplierResiduemonet()+record.getPpAmountcharged()));
+    			System.out.println("剩余额度："+(sp.getSupplierResiduemonet()+record.getPpAmountcharged()-record.getPpOffsetamount()+record.getPpOffsetamount()));
+    			sp.setSupplierResiduemonet((sp.getSupplierResiduemonet()+record.getPpAmountcharged()-record.getPpOffsetamount()));
     			System.out.println("修改供应商:"+sp.getSupplierName());
     			int h = ss.updateByPrimaryKeySelective(sp);
     			if(h>0) {

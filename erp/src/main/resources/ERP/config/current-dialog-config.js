@@ -88,6 +88,7 @@ export function currencyDialogConfig() {
             }
         ],
         title: '单选--币别设定',
-        singleValue: true
+        singleValue: true,
+        dialogVisible:false
     }
 }

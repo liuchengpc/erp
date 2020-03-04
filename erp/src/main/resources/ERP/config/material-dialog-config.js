@@ -58,6 +58,7 @@ export function materialDialogConfig() {
             }
         ],
         title: '多选--物料主文件设定',
-        singleValue: false
+        singleValue: false,
+        dialogVisible:false
     }
 }

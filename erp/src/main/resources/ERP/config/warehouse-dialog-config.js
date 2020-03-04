@@ -88,6 +88,7 @@ export function warehouseDialogConfig() {
             }
         ],
         title: '单选--仓库设定',
-        singleValue: true
+        singleValue: true,
+        dialogVisible:false
     }
 }

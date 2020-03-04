@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>采购入库转入</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="20">
+            <el-row>
+                <el-col :span="10">
+                    <el-form-item label="日期区间">
+                        <el-form-item prop="pureDocumentDate">
+                            <el-date-picker type="date" placeholder="选择日期"
+                                            v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
+                                            :disabled="edit"></el-date-picker>
+                        </el-form-item>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="2">To</el-col>
+                <el-col :span="8">
+                    <el-form-item prop="pureDocumentDate">
+                        <el-date-picker type="date" placeholder="选择日期"
+                                        v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
+                                        :disabled="edit"></el-date-picker>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="4">
+                    <el-form-item>
+                        <el-button type="primary">
+                            载入资料
+                        </el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="10">
+                    <el-form-item label="单据区间" prop="supplierId">
+                        <el-input
+                                v-model="purechaseReturn.supplierId">
+                        </el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="2">To</el-col>
+                <el-col :span="8">
+                    <el-form-item prop="supplierId">
+                        <el-input
+                                v-model="purechaseReturn.supplierId">
+                        </el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="4">
+                    <el-form-item>
+                        <el-button type="primary">
+                            全选
+                        </el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="10">
+                    <el-form-item label="物料区间" prop="supplierId">
+                        <el-input
+                                v-model="purechaseReturn.supplierId">
+                        </el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="2">To</el-col>
+                <el-col :span="8">
+                    <el-form-item prop="supplierId">
+                        <el-input
+                                v-model="purechaseReturn.supplierId">
+                        </el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="4">
+                    <el-form-item>
+                        <el-button type="primary">
+                            全选
+                        </el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :span="4">
+
+        </el-col>
+    </el-row>
+</div>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="js/axios.min.js"></script>
+</body>
+</html>

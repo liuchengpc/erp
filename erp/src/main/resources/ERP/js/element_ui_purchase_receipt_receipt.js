@@ -185,7 +185,7 @@ let viewModel = new Vue({
             this.$refs[formName].resetFields();
         },
         handleCommand(command) {
-
+            this.$message('click on item ' + command);
         },
         handleClick(row) {
         },

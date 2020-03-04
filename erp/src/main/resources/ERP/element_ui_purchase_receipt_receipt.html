@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <title>采购退货单</title>
+    <title>采购入库单</title>
     <style>
         #app{
             padding: 15px;
@@ -30,10 +30,10 @@
                         <el-form-item label="单价是否含税">
                             <el-select v-model="purechaseReturn.purePriceIncludeTax" :disabled="edit">
                                 <el-option
-                                    v-for="item in options"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
                                 </el-option>
                             </el-select>
                         </el-form-item>
@@ -96,7 +96,7 @@
                                 <el-tab-pane label="内容" name="first">
                                     <el-button type="primary" style="margin-bottom: 15px;"
                                                :disabled="orderStatus != 0 && orderStatus != 7"
-                                                @click="addDetailsRow">
+                                               @click="addDetailsRow">
                                         添加一行
                                     </el-button>
                                     <template>
@@ -108,7 +108,7 @@
                                             <el-table-column
                                                     prop="matterId"
                                                     label="物料编号"
-                                                    >
+                                            >
                                                 <template slot-scope="scope">
                                                     <edit-column :data="scope.row.matterId"
                                                                  :prop="'matterId'" :index="scope.$index"
@@ -367,9 +367,9 @@
                 </el-row>
                 <el-row>
                     <el-col :span="24">
-                        <el-dropdown split-button type="primary" @command="handleCommand" trigger="click">
+                        <el-dropdown split-button type="primary" trigger="click">
                             转单
-                            <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-menu slot="dropdown" @command="handleCommand">
                                 <el-dropdown-item command="a">采购入库转入</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -397,11 +397,11 @@
                         <el-button type="primary" icon="el-icon-d-arrow-right" @click="getLast()">最后一页</el-button>
                         <el-button type="primary" icon="el-icon-plus" @click="insertOrder()">新增</el-button>
                         <el-button type="primary" icon="el-icon-s-order" @click="saveOrder()"
-                                    :disabled="(orderStatus !== 0 &&
+                                   :disabled="(orderStatus !== 0 &&
                                     orderStatus !== 7)">保存</el-button>
                         <el-button type="primary" icon="el-icon-edit" @click="editOrder()">编辑</el-button>
                         <el-button type="primary" icon="el-icon-delete" @click="deleteOrder()"
-                                    :disabled="!orderStatus == 5">删除</el-button>
+                                   :disabled="!orderStatus == 5">删除</el-button>
                         <el-button type="primary" icon="el-icon-document-checked" @click="reviewOrder()"
                                    :disabled="!((orderStatus == 1 ||
                                    orderStatus == 5 ||

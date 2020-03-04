@@ -13,11 +13,13 @@ import {
 import {
     currencyDialogConfig
 } from "../config/current-dialog-config.js"
+import {
+    getAllCurrency
+} from "../rest/currency_rest.js"
 
 import {
     departmentDialogConfig
 } from "../config/department-dialog-config.js"
-
 import {
     getAllDepartment
 } from "../rest/team_rest.js"
@@ -25,22 +27,37 @@ import {
 import {
     employeeDialogConfig
 } from "../config/employee-dialog-config.js"
+import {
+    getAllEmployee
+} from "../rest/employee_rest.js"
 
 import {
     materialDialogConfig
 } from "../config/material-dialog-config.js"
+import {
+    getAllMaterial
+} from "../rest/material_rest.js"
 
 import {
     projectDialogConfig
 } from "../config/project-dialog-config.js"
+import {
+    getAllProject
+} from "../rest/project_rest.js"
 
 import {
     supplierDialogConfig
 } from "../config/supplier-dialog-config.js"
+import {
+    getAllSupplier
+} from "../rest/supplier_rest.js"
 
 import {
     warehouseDialogConfig
 } from "../config/warehouse-dialog-config.js"
+import {
+    getAllWarehouse
+} from "../rest/warehouse_rest.js"
 
 import {
     orderStatusConfig
@@ -394,11 +411,51 @@ let viewModel = new Vue({
             }).catch(error => {
 
             })
+        },
+        getAllEmployee() {
+            getAllEmployee().then(resp => {
+                this.employeeDialogConfig.employees = resp.data;
+            }).catch(error => {
+
+            });
+        },
+        getAllMaterial() {
+            getAllMaterial().then(resp => {
+                this.materialDialogConfig.materials = resp.data;
+            }).catch(error => {
+
+            })
+        },
+        getAllProject() {
+            getAllProject().then(resp => {
+                this.projectDialogConfig.projects = resp.data
+            }).catch(error => {
+
+            });
+        },
+        getAllSupplier() {
+            getAllSupplier().then(resp => {
+                this.supplierDialogConfig.suppliers = resp.data;
+            }).catch(error => {
+
+            })
+        },
+        getAllWarehouse() {
+            getAllWarehouse().then(resp => {
+                this.warehouseDialogConfig.wareHouses = resp.data;
+            }).catch(error => {
+
+            })
         }
     },
     created: function () {
         this.getLast();
         this.getAllDepartment();
+        this.getAllEmployee();
+        this.getAllMaterial();
+        this.getAllProject();
+        this.getAllSupplier();
+        this.getAllWarehouse();
     },
     watch: {
         orderStatus: function (newOrderStatus, originalOrderStatus) {

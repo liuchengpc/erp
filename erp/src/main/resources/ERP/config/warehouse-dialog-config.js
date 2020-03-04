@@ -2,7 +2,6 @@ export function warehouseDialogConfig() {
     return {
         filterType: 'warehouseId',
         wareHouses: [],
-        filterConfig: ['warehouseId', 'warehouseName', 'warehouseEasyName', 'warehouseEngname', 'warehouseLinkman', 'warehouseLinktel', 'warehouseAddress', 'warehouseDecoration'],
         option: [
             {
                 label: '仓库编号',

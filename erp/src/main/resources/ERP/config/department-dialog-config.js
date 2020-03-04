@@ -2,7 +2,6 @@ export function departmentDialogConfig() {
     return {
         teams: [],
         filterType: "teamId",
-        filterConfig: ["teamId", "teamName", "teamEnglishName", "teamRemark"],
         option: [
             {
                 label: '类型编号',

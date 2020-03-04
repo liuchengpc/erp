@@ -133,7 +133,7 @@ Vue.component('retrieve-dialog', {
             </el-dialog>
         </div>
     `,
-    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
+    props: ['data', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
     data() {
         return {
             charLength: 1,
@@ -145,7 +145,8 @@ Vue.component('retrieve-dialog', {
             filterType: '',
             visibleColumn: [],
             dialogColumnVisible: false,
-            currentRow: {}
+            currentRow: {},
+            filterConfig: []
         };
     },
     methods: {
@@ -255,14 +256,11 @@ Vue.component('retrieve-dialog', {
         }
     },
     created: function () {
+        this.filterConfig = this.option.map(element => element.value);
         this.filterType = this.filterConfig[0];
         this.visibleColumn = this.columns.filter(element => {
             return element['visible'];
         });
-
-        let temp = this.option.map(element => element.value);
-        console.log(temp);
-        console.log(this.dialogVisible);
     },
     mounted: function () {
         // this.handleChange();

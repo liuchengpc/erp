@@ -2,7 +2,6 @@ export function employeeDialogConfig() {
     return {
         employees: [],
         filterType: 'staffId',
-        filterConfig: ['staffId', 'teamId', 'teamName', 'staffName', 'staffEnglishName', 'staffIdnumber', 'staffGender', 'staffChineseposition', 'staffMobilephone'],
         option: [
             {
                 label: '人员编号',

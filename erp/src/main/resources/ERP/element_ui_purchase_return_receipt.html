@@ -18,7 +18,11 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="供应商" prop="supplierId">
-                            <el-input v-model="purechaseReturn.supplierId" :disabled="edit" title="F4"></el-input>
+                            <el-input
+                                    v-model="purechaseReturn.supplierId"
+                                    :disabled="edit" title="F4"
+                                    @keyup.f4.native="supplierDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="供应商地址" prop="pureEngname">
                             <el-input v-model="purechaseReturn.pureEngname" :disabled="edit"></el-input>
@@ -34,7 +38,10 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item label="仓库" prop="warehouseId">
-                            <el-input v-model="purechaseReturn.warehouseId" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.warehouseId"
+                                      :disabled="edit"
+                                      @keyup.f4.native="warehouseDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="重新入库">
                             <el-select :disabled="edit" v-model="test">
@@ -62,7 +69,10 @@
                             <el-input v-model="purechaseReturn.pureDocumentNumber" disabled></el-input>
                         </el-form-item>
                         <el-form-item label="币别" prop="currencyId">
-                            <el-input v-model="purechaseReturn.currencyId" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.currencyId"
+                                      :disabled="edit"
+                                      @keyup.f4.native="currencyDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="汇率" prop="pureExchangeRate">
                             <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
@@ -310,7 +320,10 @@
                 <el-row style="margin-top: 20px">
                     <el-col :span="12">
                         <el-form-item label="采购人员" prop="require">
-                            <el-input v-model="purechaseReturn.pureBuyer" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.pureBuyer"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="所属部门" prop="require">
                             <el-input v-model="purechaseReturn.pureBelongsSection"
@@ -319,15 +332,24 @@
                             </el-input>
                         </el-form-item>
                         <el-form-item label="所属项目" prop="require">
-                            <el-input v-model="purechaseReturn.pureBelongsProject" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.pureBelongsProject"
+                                      :disabled="edit"
+                                      @keyup.f4.native="projectDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
                         <el-form-item label="制单人员" prop="require">
-                            <el-input v-model="purechaseReturn.pureExecutor" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.pureExecutor"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="复核人员" prop="require">
-                            <el-input v-model="purechaseReturn.pureCheckagainStaff" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.pureCheckagainStaff"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -388,14 +410,76 @@
     <i class="el-icon-circle-check" v-show="purechaseReturn.pureAudition == '1'"
        style="font-size: 100px;color:#67C23A;position: absolute;top: 30px;right: 30px;"></i>
     <retrieve-dialog
+            :filter-type="supplierDialogConfig.filterType"
+            :data="supplierDialogConfig.suppliers"
+            :option="supplierDialogConfig.option"
+            :columns="supplierDialogConfig.columns"
+            :title="supplierDialogConfig.title"
+            :single-value="supplierDialogConfig.singleValue"
+            :dialog-visible="supplierDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="warehouseDialogConfig.filterType"
+            :data="warehouseDialogConfig.wareHouses"
+            :option="warehouseDialogConfig.option"
+            :columns="warehouseDialogConfig.columns"
+            :title="warehouseDialogConfig.title"
+            :single-value="warehouseDialogConfig.singleValue"
+            :dialog-visible="warehouseDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="warehouseDialogConfig.filterType"
+            :data="warehouseDialogConfig.wareHouses"
+            :option="warehouseDialogConfig.option"
+            :columns="warehouseDialogConfig.columns"
+            :title="warehouseDialogConfig.title"
+            :single-value="warehouseDialogConfig.singleValue"
+            :dialog-visible="warehouseDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="currencyDialogConfig.filterType"
+            :data="currencyDialogConfig.currencies"
+            :option="currencyDialogConfig.option"
+            :columns="currencyDialogConfig.columns"
+            :title="currencyDialogConfig.title"
+            :single-value="currencyDialogConfig.singleValue"
+            :dialog-visible="currencyDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="projectDialogConfig.filterType"
+            :data="projectDialogConfig.projects"
+            :option="projectDialogConfig.option"
+            :columns="projectDialogConfig.columns"
+            :title="projectDialogConfig.title"
+            :single-value="projectDialogConfig.singleValue"
+            :dialog-visible="projectDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
             :filter-type="departmentDialogConfig.filterType"
             :data="departmentDialogConfig.teams"
-            :filter-config="departmentDialogConfig.filterConfig"
             :option="departmentDialogConfig.option"
             :columns="departmentDialogConfig.columns"
             :title="departmentDialogConfig.title"
             :single-value="departmentDialogConfig.singleValue"
             :dialog-visible="departmentDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="employeeDialogConfig.filterType"
+            :data="employeeDialogConfig.employees"
+            :option="employeeDialogConfig.option"
+            :columns="employeeDialogConfig.columns"
+            :title="employeeDialogConfig.title"
+            :single-value="employeeDialogConfig.singleValue"
+            :dialog-visible="employeeDialogConfig.dialogVisible">
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="materialDialogConfig.filterType"
+            :data="materialDialogConfig.materials"
+            :option="materialDialogConfig.option"
+            :columns="materialDialogConfig.columns"
+            :title="materialDialogConfig.title"
+            :single-value="materialDialogConfig.singleValue"
+            :dialog-visible="materialDialogConfig.dialogVisible">
     </retrieve-dialog>
 </div>
 </body>

@@ -2,7 +2,6 @@ export function materialDialogConfig() {
     return {
         materials: [],
         filterType: 'matterId',
-        filterConfig: ['matterId', 'matterBarno', 'matterName', 'matterSize', 'matterEnglishName'],
         option: [
             {
                 label: '物料编号',

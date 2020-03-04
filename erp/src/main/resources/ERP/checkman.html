@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>物料取回</title>
+    <title>人员取回</title>
     <link rel="stylesheet" href="css/layui.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
@@ -37,10 +37,10 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 0;">
                                 <select name="teams">
-                                    <option value="4">物料编号</option>
-                                    <option value="4">物料类别</option>
-                                    <option value="4">物料名称</option>
-                                    <option value="4">备注</option>
+                                    <option value="4">人员编号</option>
+                                    <option value="4">人员名称</option>
+                                    <option value="4">部门名称</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -145,40 +145,22 @@
                     <col width="150">
                     <col width="150">
                     <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
                     <col>
                 </colgroup>
                 <thead>
                 <tr>
-                	
-                    <th>物料编号</th>
-                    <th>物料名称</th>
-                    <th>规格编号</th>
-                    <th>规格型号</th>
-                    <th>单位</th>
-                    <th>库存量</th>
-                    <th>平均成本</th>
-                    <th>单价</th>
+                    <th>编号</th>
+                    <th>人员名称</th>             
                 </tr>
                 </thead>
-                <tbody>           
-                <tr v-for="stu in list" @click="dianji(stu)">
-                    <td>{{stu.matterId}}</td>
-                    <td>{{stu.mmatterName}}</td> 
-                    <td>{{stu.mamuId}}</td> 
-                    <td>{{stu.mmatterSize}}</td> 
-                    <td>{{stu.muName}}</td> 
-                    <td>{{stu.mmatterNowcount}}</td> 
-                    <td>{{stu.mmatterNowavgcost}}</td> 
-                    <td>{{stu.mmonePrice}}</td> 
+                <tbody>
+                <tr v-for="stu in stafflist" @click="dianji(stu)">
+                    <td>{{stu.staffId}}</td>
+                    <td>{{stu.staffName}}</td>                  
                 </tr>
                 </tbody>
             </table>
-            <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设定</button>
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设置</button>
         </div>
     </div>
 </div>
@@ -188,78 +170,37 @@
         var form = layui.form;
     });
     var dizhi = window.location.href.split("=")[1];
-    var mattervue = new Vue({
+    var staffvue = new Vue({
     	el:"#app",
 		data:{	
-			list:[],
-			list2:[],
-			list3:[]
+			stafflist:[],
+			staff:{}
 		},methods:{
-			dianji(stu){
-				if(mattervue.list2.includes(stu)){
-					mattervue.list2.splice(stu);
-					$each($("table tbody tr"),function(a,b){
-						if($(b).find("td:eq(1)").text()==stu.mmatterName){
-							$(b).css("background","lightblue");
-						}
-					})
-				}else{
-					mattervue.list2.push(stu);
-					$.each($("table tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==stu.mmatterName){
-						$(b).css("background","lightblue");
+			dianji(staff){
+				$.each($("table tbody tr"),function(a,b){
+					if($(b).find("td:eq(1)").text()==staff.staffName){
+						$(b).css("background","pink");
+					}else{
+						$(b).css("background","");
 					}
 				})
-				}
+				staffvue.staff=staff;
 			},
 			quhui(){
-				$.each(mattervue.list2,function(a,b) {
-					if(dizhi=="receiptvue"){
-						var cnmb={
-							matterId:b.matterId,
-							mmatterName:b.mmatterName,
-							mamuId:b.mamuId,
-							mmatterSize:b.mmatterSize,
-							muName:b.muName,
-							mmatterNowcount:b.mmatterNowcount,
-							mmatterNowavgcost:b.mmatterNowavgcost,
-							mmonePrice:b.mmonePrice
-						};
-						mattervue.list3.push(cnmb);
-					}else{
-						var cnmb={
-							matterId:b.matterId,
-							mmatterName:b.mmatterName,
-							mamuId:b.mamuId,
-							mmatterSize:b.mmatterSize,
-							muName:b.muName,
-							mmatterNowcount:b.mmatterNowcount,
-							mmatterNowavgcost:b.mmatterNowavgcost,
-							mmonePrice:b.mmonePrice
-						};
-						mattervue.list3.push(cnmb);
-					}
-				});	
+				parent[dizhi].page.list[0].apDoworkman=staffvue.staff.staffName;
 				
-				parent[dizhi].page.list[0].list=mattervue.list3;
-				parent[dizhi].tableshuax();
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
-				
-				/*parent[dizhi].bianji();
-					*/
-					
 			}
 		},created:function(){
 			$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8080/wdMatterController/selectAll",
+			url:"http://127.0.0.1:8080/wdStaffController/selectAll",
 			success:function(res){
-				mattervue.list=res;
+				staffvue.stafflist=res;
 			}
 		});
 		}
     })
-    
    
 </script>
 </body>

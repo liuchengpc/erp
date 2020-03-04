@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Staff;
+import com.apatech.domain.wdStaff;
 import com.apatech.domain.Staff;
 import com.apatech.domain.Staff;
 import com.apatech.mapper.StaffMapper;
@@ -61,4 +62,8 @@ public class StaffService {
     public int updateByPrimaryKey(Staff record){
     	return dao.updateByPrimaryKey(record);
     }
+
+	public List<wdStaff> selectAlls() {
+		return dao.selectAlls();
+	}
 }

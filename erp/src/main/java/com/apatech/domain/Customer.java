@@ -53,7 +53,7 @@ public class Customer {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCuordervisit;//预约拜访日
     private Float customerDiscountpoint;//折数
-    private String customerSalelv;//售价等级
+    private String customerSalelv;//售价等级--------------------------------------------------------
     private Integer customerCuiftax;//是否含税（0，1）
     private String customerLatentcusno;//潜在客户编号
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -67,13 +67,13 @@ public class Customer {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCuendorderday;//每月结账日
-    private String customerHonestlv;//信用等级
+    private String customerHonestlv;//信用等级---------------------------------------
     private Float customerCufirstcollect;//期初预收款
     private Float customerHouldcollect;//期初应收款
     private Float customerCuendcollect;//期末预收款
     private Float cuendshouldcollect;//期末应收款
     private String customerCudecoration;//其他备注
-    private String receivableId;//收款条件id(关联应收冲款单表)
+    private String receivableId;//收款条件id(关联应收冲款单表)--------------------------------
     private String itId;//发票类型id(关联发票类型表)
     private String itAccountsEceivableSubject;//应收账款科目(关联会计科目表account_id)
     private String itDepositReceivedSubject;//预收账款科目id(关联会计科目表account_id)

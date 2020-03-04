@@ -755,7 +755,28 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
-				  	this.page.list[0].receivableId="";//应收冲款单id（主键 唯一）
+					/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+			  		this.page.list[0].receivableId="";//预收款单id（主键 唯一）
 			    	this.page.list[0].customerId="";//供应商表id，外键
 				    this.page.list[0].scsId="";//结算方式id，外键
 				    this.page.list[0].staffId="";//部门员工表id，外键
@@ -763,16 +784,16 @@
 				    this.page.list[0].projectId="";//项目表id，外键
 				    this.page.list[0].customerName="";//供应商表
 				    this.page.list[0].payablesSatName1="";//结算方式表,默认值：转账
-				    this.page.list[0].payablesPrice1="";//默认值：0.00
+				    this.page.list[0].payablesPrice1=0;//默认值：0.00
 				    this.page.list[0].payablesSatName2="";//结算方式表,默认值：汇票
-				    this.page.list[0].payablesPrice2="";//默认值：0.00
+				    this.page.list[0].payablesPrice2=0;//默认值：0.00
 				    this.page.list[0].payablesSatName3="";//结算方式表
-				    this.page.list[0].payablesPrice3="";//默认值：0.00
-				    this.page.list[0].payablesZhekou="";//折扣率,默认值：0.00
-				    this.page.list[0].payablesEndtime="";//终止账月,默认值：当前年月
-				    this.page.list[0].payablesPayablestime="";//单据日期,默认值：当前日期
+				    this.page.list[0].payablesPrice3=0;//默认值：0.00
+				    this.page.list[0].payablesZhekou=1;//折扣率,默认值：0.00
+				    this.page.list[0].payablesEndtime=now;//终止账月,默认值：当前年月
+				    this.page.list[0].payablesPayablestime=now;//单据日期,默认值：当前日期
 				    this.page.list[0].payablesCurrencyName="";//币别类型表快照
-				    this.page.list[0].payablesCurrencyInexchange="";//汇率
+				    this.page.list[0].payablesCurrencyInexchange=1;//汇率
 				    this.page.list[0].payablesType="";//应付冲款类型,默认值：付款冲款
 				    this.page.list[0].payablesVoucherno="";//凭证编号
 				    this.page.list[0].payablesTeamName="";//部门表
@@ -780,11 +801,11 @@
 				    this.page.list[0].payablesBillpersonnel="admin";//制单人员,默认值：当前人员
 				    this.page.list[0].payablesReviewers="admin";//复核人员
 				    this.page.list[0].payablesRemarks="";//备注
-				    this.page.list[0].payablesAuditstatus="";//审核状态,0:未审核,1:已结案
+				    this.page.list[0].payablesAuditstatus=0;//审核状态,0:未审核,1:已结案
 				    this.page.list[0].payablesAuditstatusAuditing="";//是否审核
 				    this.page.list[0].payablesAuditstatusYn=0;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].payablesCustom1="";//创建时间
-				    this.page.list[0].payablesCustom2="";//表状态（0：预收款，1：应收款）
+				    this.page.list[0].payablesCustom1=ss;//创建时间
+				    this.page.list[0].payablesCustom2=0;//表状态（0：预收款，1：应收款）
 				    this.page.list[0].payablesCustom3="";//自定义3
 				    this.page.list[0].payablesCustom4="";//自定义4
 				    this.page.list[0].payablesCustom5="";//自定义5

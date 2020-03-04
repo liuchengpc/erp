@@ -500,9 +500,9 @@
 		                                    <div class="layui-form-item">
 		                                        <label class="layui-form-label" style="padding: 9px 15px 9px 0;width: 95px;">单价是否含税</label>
 		                                        <div class="layui-input-block">
-		                                            <select name="modules" lay-verify="required" lay-search=""  v-bind:disabled="diasabledInput" lay-filter="selectCate1">
-													      <option value="">未税</option>
-														  <option value="">含税</option>
+		                                            <select name="modules" lay-verify="required" lay-search="" v-model="pages.customerCuiftax"   v-bind:disabled="diasabledInput" lay-filter="selectCate2">
+													      <option value="0">未税</option>
+														  <option value="1">含税</option>
 													</select>
 		                                        </div>
 		                                    </div>
@@ -546,16 +546,18 @@
 		                                        <div class="layui-input-block">
 		                                            <input type="text" name="title"  class="layui-input" v-model="pages.customerResiduemonet" v-bind:disabled="diasabledInput">
 		                                        </div>
-		                                    </div>
+		                                    </div>                                 
 		                                    <div class="layui-form-item">
 		                                        <label class="layui-form-label">收款条件</label>
-		                                        <div class="layui-input-block">
-		                                            <select name="modules" lay-verify="required" lay-search="" v-model="pages.receivableId" v-bind:disabled="diasabledInput" lay-filter="selectCate1">
+		                                        <div class="layui-input-inline" >
+		                                            <select name="modules" lay-verify="required"  lay-search="" v-model="pages.receivableId" v-bind:disabled="diasabledInput" lay-filter="selectCate3">
 													      <option value="">货到</option>
 														  <option value="">次月</option>
 														  <option value="">月结</option>
 														  <option value="">其他</option>
 													</select>
+		                                        </div>
+		                                        <div class="layui-input-inline">
 													<input type="text" name="title"  class="layui-input" placeholder="天">
 		                                        </div>
 		                                    </div>
@@ -568,7 +570,7 @@
 		                                    <div class="layui-form-item">
 		                                        <label class="layui-form-label">信用等级</label>
 		                                        <div class="layui-input-block">
-		                                            <select name="modules" lay-verify="required" lay-search="" v-model="pages.customerHonestlv" v-bind:disabled="diasabledInput" lay-filter="selectCate1">
+		                                            <select name="modules" lay-verify="required" lay-search="" v-model="pages.customerHonestlv" v-bind:disabled="diasabledInput" lay-filter="selectCate4">
 													      <option value="">A</option>
 														  <option value="">B</option>
 														  <option value="">C</option>
@@ -722,7 +724,28 @@
 					  	form.on('select(selectCate1)',function(data){
 					        console.log("显示select");
 					        console.log(data);
-					        this_.page.list[0].currencyMpointset=data.value;
+					        this_.page.list[0].customerSalelv=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
+
+					    })
+					  	form.on('select(selectCate2)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+					        this_.page.list[0].customerCuiftax=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
+
+					    })
+					  	form.on('select(selectCate3)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+					        this_.page.list[0].receivableId=data.value;
+					        //alert(this_.page.list[0].currencyMpointset=data.value);
+
+					    })
+					  	form.on('select(selectCate4)',function(data){
+					        console.log("显示select");
+					        console.log(data);
+					        this_.page.list[0].customerHonestlv=data.value;
 					        //alert(this_.page.list[0].currencyMpointset=data.value);
 
 					    })
@@ -744,12 +767,6 @@
 							}
 						})
 						
-					})
-					/*vue调用layui日期选择器： 数据双向绑定失败解决*/
-					layui.use('laydate',function(){
-						var laydate=layui.laydate;
-						
-						
 						//执行一个laydate实例
 						laydate.render({
 							elem:'#file-time2',//指定元素
@@ -761,12 +778,6 @@
 							}
 						})
 						
-					})
-					/*vue调用layui日期选择器： 数据双向绑定失败解决*/
-					layui.use('laydate',function(){
-						var laydate=layui.laydate;
-						
-						
 						//执行一个laydate实例
 						laydate.render({
 							elem:'#file-time3',//指定元素
@@ -776,12 +787,7 @@
 								console.log(value)
 							}
 						})
-						
-					})
-					/*vue调用layui日期选择器： 数据双向绑定失败解决*/
-					layui.use('laydate',function(){
-						var laydate=layui.laydate;
-						
+					
 						//执行一个laydate实例
 						laydate.render({
 							elem:'#file-time4',//指定元素
@@ -791,12 +797,7 @@
 								console.log(value)
 							}
 						})
-						
-					})
-					/*vue调用layui日期选择器： 数据双向绑定失败解决*/
-					layui.use('laydate',function(){
-						var laydate=layui.laydate;
-						
+					
 						//执行一个laydate实例
 						laydate.render({
 							elem:'#file-time5',//指定元素
@@ -806,11 +807,6 @@
 								console.log(value)
 							}
 						})
-						
-					})
-					/*vue调用layui日期选择器： 数据双向绑定失败解决*/
-					layui.use('laydate',function(){
-						var laydate=layui.laydate;
 						
 						//执行一个laydate实例
 						laydate.render({

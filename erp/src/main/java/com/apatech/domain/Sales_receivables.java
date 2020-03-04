@@ -37,8 +37,29 @@ public class Sales_receivables {
     private String srCustom8;//币别名
     private String srCustom9;//自定义栏九
     private String srCustom10;//主表id
+    
+    
+    
 
-    public Integer getSrId() {
+    public Sales_receivables() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Sales_receivables [srId=" + srId + ", srType=" + srType + ", srNumber=" + srNumber + ", srDate="
+				+ srDate + ", srPcId=" + srPcId + ", srPcName=" + srPcName + ", srTeamId=" + srTeamId + ", srTeamName="
+				+ srTeamName + ", srBuyer=" + srBuyer + ", srProjectName=" + srProjectName + ", srCurrency="
+				+ srCurrency + ", srExchangeRate=" + srExchangeRate + ", srPayablesmainPrice=" + srPayablesmainPrice
+				+ ", srCurrentbalance=" + srCurrentbalance + ", srDiscountamount=" + srDiscountamount
+				+ ", srAmountcharged=" + srAmountcharged + ", srOffsetamount=" + srOffsetamount + ", srAuditing="
+				+ srAuditing + ", srYn=" + srYn + ", srCustom1=" + srCustom1 + ", srCustom2=" + srCustom2
+				+ ", srCustom3=" + srCustom3 + ", srCustom4=" + srCustom4 + ", srCustom5=" + srCustom5 + ", srCustom6="
+				+ srCustom6 + ", srCustom7=" + srCustom7 + ", srCustom8=" + srCustom8 + ", srCustom9=" + srCustom9
+				+ ", srCustom10=" + srCustom10 + "]";
+	}
+
+	public Integer getSrId() {
         return srId;
     }
 

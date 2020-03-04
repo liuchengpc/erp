@@ -52,6 +52,7 @@ export function projectDialogConfig() {
             }
         ],
         title: '单选--项目设定',
-        singleValue: true
+        singleValue: true,
+        dialogVisible:false
     }
 }

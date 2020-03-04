@@ -19,6 +19,10 @@ import {
 }from "../config/department-dialog-config.js"
 
 import {
+    getAllDepartment
+}from "../rest/team_rest.js"
+
+import {
     employeeDialogConfig
 }from "../config/employee-dialog-config.js"
 
@@ -383,10 +387,18 @@ let viewModel = new Vue({
             this.purechaseReturn.details[index].puredMoney = amount;
             this.purechaseReturn.details[index].puredTaxAmount = taxAmount;
             this.purechaseReturn.details[index].puredIncludingTaxAmount = includeTaxAmount;
+        },
+        getAllDepartment(){
+            getAllDepartment().then(resp =>{
+                this.departmentDialogConfig.teams = resp.data;
+            }).catch(error =>{
+
+            })
         }
     },
     created: function () {
         this.getLast();
+        this.getAllDepartment();
     },
     watch: {
         orderStatus: function (newOrderStatus, originalOrderStatus) {

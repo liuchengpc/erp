@@ -86,6 +86,7 @@ export function employeeDialogConfig() {
             }
         ],
         title: '单选--人员主文件设定',
-        singleValue: true
+        singleValue: true,
+        dialogVisible:false
     }
 }

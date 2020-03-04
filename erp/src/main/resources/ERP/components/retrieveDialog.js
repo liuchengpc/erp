@@ -1,7 +1,7 @@
 Vue.component('retrieve-dialog', {
     template: `
         <div>
-            <el-dialog :title="title" :visible.sync="dialogFormVisible">
+            <el-dialog :title="title" :visible.sync="dialogVisible">
                 <el-row>
                     <el-col :span="24">
                         <el-form :inline="true" class="demo-form-inline">
@@ -103,8 +103,8 @@ Vue.component('retrieve-dialog', {
                     </el-col>
                 </el-row>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                    <el-button @click="dialogVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
                     <el-button type="primary" @click="toggleSelectionFirst()">选中第一行</el-button>
                 </div>
                 <dialog-column :dialog-column-visible.sync="dialogColumnVisible"
@@ -116,10 +116,9 @@ Vue.component('retrieve-dialog', {
             </el-dialog>
         </div>
     `,
-    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue'],
+    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue','dialogVisible'],
     data() {
         return {
-            dialogFormVisible: true,
             charLength: 1,
             check: true,
             searchKeyWord: '',
@@ -236,6 +235,10 @@ Vue.component('retrieve-dialog', {
         this.visibleColumn = this.columns.filter(element => {
             return element['visible'];
         });
+
+        let temp = this.option.map(element => element.value);
+        console.log(temp);
+        console.log(this.dialogVisible);
     },
     mounted: function () {
         // this.handleChange();

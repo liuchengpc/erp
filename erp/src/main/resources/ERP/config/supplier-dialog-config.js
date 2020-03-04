@@ -90,6 +90,7 @@ export function supplierDialogConfig() {
             }
         ],
         title: '单选--供应商主文件设定',
-        singleValue: true
+        singleValue: true,
+        dialogVisible:false
     }
 }

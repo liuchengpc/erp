@@ -313,7 +313,10 @@
                             <el-input v-model="purechaseReturn.pureBuyer" :disabled="edit"></el-input>
                         </el-form-item>
                         <el-form-item label="所属部门" prop="require">
-                            <el-input v-model="purechaseReturn.pureBelongsSection" :disabled="edit"></el-input>
+                            <el-input v-model="purechaseReturn.pureBelongsSection"
+                                      :disabled="edit"
+                                      @keyup.f4.native="departmentDialogConfig.dialogVisible = true">
+                            </el-input>
                         </el-form-item>
                         <el-form-item label="所属项目" prop="require">
                             <el-input v-model="purechaseReturn.pureBelongsProject" :disabled="edit"></el-input>
@@ -384,7 +387,16 @@
     </el-row>
     <i class="el-icon-circle-check" v-show="purechaseReturn.pureAudition == '1'"
        style="font-size: 100px;color:#67C23A;position: absolute;top: 30px;right: 30px;"></i>
-    <retrieve-dialog></retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="departmentDialogConfig.filterType"
+            :data="departmentDialogConfig.teams"
+            :filter-config="departmentDialogConfig.filterConfig"
+            :option="departmentDialogConfig.option"
+            :columns="departmentDialogConfig.columns"
+            :title="departmentDialogConfig.title"
+            :single-value="departmentDialogConfig.singleValue"
+            :dialog-visible="departmentDialogConfig.dialogVisible">
+    </retrieve-dialog>
 </div>
 </body>
 <!-- import Vue before Element -->

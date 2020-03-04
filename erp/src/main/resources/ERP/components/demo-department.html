@@ -20,7 +20,8 @@
             :option="option"
             :columns="columns"
             :title="title"
-            :single-value="singleValue">
+            :single-value="singleValue"
+            :dialog-visible.sync="dialogVisible">
     </retrieve-dialog>
 </div>
 <!-- import Vue before Element -->
@@ -127,7 +128,8 @@
                     }
                 ],
                 title: '单选--部门选定',
-                singleValue: false
+                singleValue: false,
+                dialogVisible:true
             }
         },
         methods: {}

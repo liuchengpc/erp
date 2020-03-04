@@ -48,6 +48,7 @@ export function departmentDialogConfig() {
             }
         ],
         title: '单选--部门选定',
-        singleValue: false
+        singleValue: true,
+        dialogVisible: false
     }
 }

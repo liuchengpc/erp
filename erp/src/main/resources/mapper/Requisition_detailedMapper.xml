@@ -9,7 +9,7 @@
     <result column="rd_remark" jdbcType="VARCHAR" property="rdRemark" />
     <result column="rd_price_include_tax" jdbcType="VARCHAR" property="rdPriceIncludeTax" />
     <result column="rd_single_num" jdbcType="INTEGER" property="rdSingleNum" />
-    <result column="rd_batch _number" jdbcType="VARCHAR" property="rdBatchNumber" />
+    <result column="rd_batch_number" jdbcType="VARCHAR" property="rdBatchNumber" />
     <result column="rd_remarks" jdbcType="VARCHAR" property="rdRemarks" />
     <result column="rd_auditing" jdbcType="VARCHAR" property="rdAuditing" />
     <result column="rd_yn" jdbcType="VARCHAR" property="rdYn" />
@@ -24,7 +24,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     rd_id, requisition_id, matter_id, rd_engname, rd_remark, rd_price_include_tax, rd_single_num, 
-    "rd_batch _number", rd_remarks, rd_auditing, rd_yn, rd_custom1, rd_custom2, rd_custom3, 
+    rd_batch_number, rd_remarks, rd_auditing, rd_yn, rd_custom1, rd_custom2, rd_custom3, 
     rd_custom4, rd_custom5
   </sql>
   <sql id="Blob_Column_List">
@@ -64,7 +64,7 @@
   <insert id="insert" parameterType="com.apatech.domain.Requisition_detailed">
     insert into requisition_detailed (rd_id, requisition_id, matter_id, 
       rd_engname, rd_remark, rd_price_include_tax, 
-      rd_single_num, "rd_batch _number", rd_remarks, 
+      rd_single_num, rd_batch_number, rd_remarks, 
       rd_auditing, rd_yn, rd_custom1, 
       rd_custom2, rd_custom3, rd_custom4, 
       rd_custom5, rd_custom6)
@@ -100,7 +100,7 @@
         rd_single_num,
       </if>
       <if test="rdBatchNumber != null">
-        "rd_batch _number",
+        rd_batch_number,
       </if>
       <if test="rdRemarks != null">
         rd_remarks,
@@ -206,7 +206,7 @@
         rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
       </if>
       <if test="rdBatchNumber != null">
-        "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+        rd_batch_number = #{rdBatchNumber,jdbcType=VARCHAR},
       </if>
       <if test="rdRemarks != null">
         rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
@@ -246,7 +246,7 @@
       rd_remark = #{rdRemark,jdbcType=VARCHAR},
       rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
       rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
-      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_batch_number = #{rdBatchNumber,jdbcType=VARCHAR},
       rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
       rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
       rd_yn = #{rdYn,jdbcType=VARCHAR},
@@ -266,7 +266,7 @@
       rd_remark = #{rdRemark,jdbcType=VARCHAR},
       rd_price_include_tax = #{rdPriceIncludeTax,jdbcType=VARCHAR},
       rd_single_num = #{rdSingleNum,jdbcType=INTEGER},
-      "rd_batch _number" = #{rdBatchNumber,jdbcType=VARCHAR},
+      rd_batch_number = #{rdBatchNumber,jdbcType=VARCHAR},
       rd_remarks = #{rdRemarks,jdbcType=VARCHAR},
       rd_auditing = #{rdAuditing,jdbcType=VARCHAR},
       rd_yn = #{rdYn,jdbcType=VARCHAR},

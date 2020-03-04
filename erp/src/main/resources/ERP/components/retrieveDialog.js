@@ -71,7 +71,7 @@ Vue.component('retrieve-dialog', {
                                             tooltip-effect="dark"
                                             border
                                             style="width: 100%"
-                                            height="193">
+                                            height="270">
                                         <el-table-column
                                                 label="---"
                                                 prop="key">
@@ -81,11 +81,28 @@ Vue.component('retrieve-dialog', {
                             </el-col>
                             <el-col :span="19">
                                 <template>
+                                     <el-table
+                                        v-if="singleValue"
+                                        ref="singleSearchResultTable"
+                                        :data="startWithArray"
+                                        border
+                                        highlight-current-row
+                                        heigit="270"
+                                        @current-change="handleClick">
+                                        <el-table-column v-for="item in visibleColumn"
+                                                :label="item.label"
+                                                :prop="item.prop"
+                                                :key="item.prop">
+                                        </el-table-column>
+                                      </el-table>
+                                </template>
+                                <template>
                                     <el-table
-                                            ref="searchResultTable"
+                                            v-if="!singleValue"
+                                            ref="multipartSearchResultTable"
                                             :data="startWithArray"
                                             border
-                                            height="193"
+                                            height="270"
                                             @selection-change="handleClick">
                                         <el-table-column type="selection"></el-table-column>
                                         <el-table-column v-for="item in visibleColumn"
@@ -116,7 +133,7 @@ Vue.component('retrieve-dialog', {
             </el-dialog>
         </div>
     `,
-    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue','dialogVisible'],
+    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
     data() {
         return {
             charLength: 1,
@@ -160,20 +177,21 @@ Vue.component('retrieve-dialog', {
                 return bol;
             });
         },
-        handleClick(row, column, event) {
+            handleClick(row, column, event) {
             this.selectedContent = row;
         },
         retrieve() {
-            this.filterConfig.forEach((value, index, array) => {
-                console.log(this.selectedContent[value]);
-            });
+            if(this.singleValue){
+                this.filterConfig.forEach((value, index, array) => {
+                    console.log(this.selectedContent[value]);
+                });
+            }else {
+                console.log(this.selectedContent);
+            }
         },
         querySearch(searchString, callback) {
             let data = this.data;
             let searchResult = searchString ? data.filter(this.matchSearchString(searchString)) : data;
-            // console.log(searchResult.map(element => element[this.filterType]));
-            // callback(searchResult.map(element => {return {value: element[this.filterType]}}));
-            // console.log(searchResult);
             callback(searchResult);
         },
         matchSearchString(searchString) {
@@ -188,26 +206,32 @@ Vue.component('retrieve-dialog', {
                     this.handleCurrentChange(this.filteredArray[index]);
                     this.startWithArray.forEach((element, i) => {
                         if (element === item) {
-                            this.toggleSelection([this.startWithArray[i]]);
+                            this.singleValue ?
+                                this.setCurrent('singleSearchResultTable',this.startWithArray[i]) :
+                                this.toggleSelection([this.startWithArray[i]]);
                         }
                     });
                 }
             });
         },
         setCurrent(refName, row) {
+            if(refName === 'singleSearchResultTable'){
+                this.selectedContent = row;
+                console.log(this.selectedContent);
+            }
             this.$refs[refName].setCurrentRow(row);
         },
-        toggleSelection(rows){
-            if(rows){
+        toggleSelection(rows) {
+            if (rows) {
                 rows.forEach(row => {
                     console.log(row);
                     this.$refs.searchResultTable.toggleRowSelection(row);
                 });
-            }else{
+            } else {
                 this.$refs.searchResultTable.clearSelection();
             }
         },
-        toggleSelectionFirst(){
+        toggleSelectionFirst() {
             this.toggleSelection([this.startWithArray[0]]);
         },
         handlerVisibleColumnChange(changedVisibleColumn) {

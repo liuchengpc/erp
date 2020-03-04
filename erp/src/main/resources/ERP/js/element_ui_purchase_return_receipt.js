@@ -451,43 +451,49 @@ let viewModel = new Vue({
             this.supplierDialogConfig.dialogVisible = visible;
         },
         handleSupplierDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.purechaseReturn.supplierId = selectedContent['supplierId'] + ' ' + selectedContent['supplierName'];
+            this.handleSupplierDialogVisibleChange(false);
         },
         handleWarehouseDialogVisibleChange(visible){
             this.warehouseDialogConfig.dialogVisible = visible;
         },
         handleWarehouseDialogRetrieve(selectedContent){
-            console.log(this.selectedContent);
+            this.purechaseReturn.warehouseId = selectedContent['warehouseId'] + ' ' + selectedContent['warehouseName'];
+            this.handleWarehouseDialogVisibleChange(false);
         },
         handleCurrencyDialogVisibleChange(visible){
             this.currencyDialogConfig.dialogVisible = visible;
         },
         handleCurrencyDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.purechaseReturn.currencyId = selectedContent['currencyId'] + ' ' + selectedContent['currencyName'];
+            this.handleCurrencyDialogVisibleChange(false);
         },
         handleProjectDialogVisibleChange(visible){
             this.projectDialogConfig.dialogVisible = visible;
         },
         handleProjectDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.purechaseReturn.pureBelongsProject = selectedContent['projectId'] + ' ' + selectedContent['projectName'];
+            this.handleProjectDialogVisibleChange(false);
         },
         handleDepartmentDialogVisibleChange(visible){
             this.departmentDialogConfig.dialogVisible = visible;
         },
         handleDepartmentDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.purechaseReturn.pureBelongsSection = selectedContent['teamId'] + ' ' + selectedContent['teamName'];
+            this.handleDepartmentDialogVisibleChange(false);
         },
         handleEmployeeDialogVisibleChange(visible){
             this.employeeDialogConfig.dialogVisible = visible;
         },
         handleEmployeeDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.handleEmployeeDialogVisibleChange(false);
         },
         handleMaterialDialogVisibleChange(visible){
             this.materialDialogConfig.dialogVisible = visible;
         },
         handleMaterialDialogRetrieve(selectedContent){
-            console.log(selectedContent);
+            this.purechaseReturn.details.push(selectedContent);
+            this.handleMaterialDialogVisibleChange(false);
         }
     },
     created: function () {

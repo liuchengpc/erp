@@ -16,7 +16,7 @@ public class Project {
     private String projectId;//项目编号（主键 唯一）
     private String projectName;//项目名称
     private String projectEnglishName;//项目英文名称
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date projectAbate;//失效日期
     private String projectRemark;//备注

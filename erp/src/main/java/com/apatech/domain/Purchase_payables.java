@@ -13,7 +13,7 @@ public class Purchase_payables {
 
     private String ppNumber;
 
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date ppDate;
 

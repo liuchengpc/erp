@@ -16,7 +16,7 @@ public class Other_out_storage {
     private Integer istId;//入库类型
     private String warehouseId;//仓库id
     private String oosDocumentationDate;//单据号码
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date oosDocumentationNo;//单据日期
     private String oosCertificateNumber;//凭证编号

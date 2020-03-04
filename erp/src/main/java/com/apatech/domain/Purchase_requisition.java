@@ -15,7 +15,7 @@ public class Purchase_requisition {
     private String prId;//id（主键 唯一）
     private String prtId;//采购请购类型id
     private String prSingleStatus;//单况(0未结案 1已结案 2无效 )
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date prDocumentDate;//单据日期
     private String prDocumentNumber;//单据号码

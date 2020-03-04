@@ -19,7 +19,7 @@ public class Purchase_storage {
     private String psPriceIncludeTax;//单价是否含税
     private Integer warehouseId;//仓库id
     private String psSingleStatus;//凭证编号
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date psDocumentDate;//单据日期
     private String psDocumentNumber;//单据号码

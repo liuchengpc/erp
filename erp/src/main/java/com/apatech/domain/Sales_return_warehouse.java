@@ -21,7 +21,7 @@ public class Sales_return_warehouse {
     private Integer salescxrk;//是否重新入库(0否1是)
     private String warehouseId;//仓库id
     private String srwCertificateNumber;//凭证编号
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date srwDocumentDate;//单据日期
     private String srwDocumentNumber;//单据号码
@@ -32,12 +32,12 @@ public class Sales_return_warehouse {
     private Float srwSunmoney;//总金额
     private Float srwTax;//总税额
     private Float srwIncludingTaxAmount;//总含税金额
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private String srwSaleszkgs;//账款归属
     private String srwSalesdate;//收款日期
     private String srwSalessktj;//收款条件
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Integer srwSalesday;//收款天数
     private String srwSalesyue;//账款月份

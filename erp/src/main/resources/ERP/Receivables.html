@@ -599,7 +599,7 @@
 				yxck: function(e) {//以下冲款	
 //					alert(e)
 //					alert(this.page.list[0].customerId)
-					if(this.page.list[0].customerId!=""){						
+					if(this.page.list[0].customerId!=""){		
 						//					alert("进入goPage")
 						var this_ = this;	
 //						alert(JSON.stringify(this.page4))
@@ -640,14 +640,14 @@
 					layui.use('table', function(){
 					  	var table = layui.table;
 						 //执行重载
-					  	table.reload('test', {					
+					  	table.reload('test', {
 						   page: {
 						   curr: 1 //重新从第 1 页开始
 						  }
 					  	})
 				  	})
 				},
-				jztable:function(){//加载表格						
+				jztable:function(){//加载表格
 					/*加载表格数据2*/
 					var this_ = this;		
 					var page2=this_.page2;
@@ -655,7 +655,7 @@
 					console.info(page2)
 							layui.use('table', function(){
 							  var table = layui.table;
-								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功					
+								var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 							  //展示已知数据
 							  table.render({
 							    elem: '#test'

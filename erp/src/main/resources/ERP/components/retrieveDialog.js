@@ -189,7 +189,7 @@ Vue.component('retrieve-dialog', {
         retrieve() {
             if(this.singleValue){
                 this.filterConfig.forEach((value, index, array) => {
-                    console.log(this.selectedContent[value]);
+                    // console.log(this.selectedContent[value]);
                 });
             }else {
                 console.log(this.selectedContent);

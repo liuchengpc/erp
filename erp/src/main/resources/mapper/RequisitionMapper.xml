@@ -242,4 +242,162 @@
       requisition_custom6 = #{requisitionCustom6,jdbcType=VARCHAR}
     where requisition_id = #{requisitionId,jdbcType=VARCHAR}
   </update>
+  
+  
+  <insert id="insertSelective2" parameterType="com.apatech.domain.Requisition">
+    insert into requisition
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="requisitionId != null and requisitionId !=''">
+        requisition_id,
+      </if>
+      <if test="requisitionOutWarehouse != null and requisitionOutWarehouse !=''">
+        requisition_out_warehouse,
+      </if>
+      <if test="requisitionInputWarehouse != null and requisitionInputWarehouse !=''">
+        requisition_input_warehouse,
+      </if>
+      <if test="requisitionDocumentationDate != null">
+        requisition_documentation_date,
+      </if>
+      <if test="requisitionDocumentationNo != null and requisitionDocumentationNo !=''">
+        requisition_documentation_no,
+      </if>
+      <if test="requisitionForm != null and requisitionForm !=''">
+        requisition_form,
+      </if>
+      <if test="isReviewStaff != null and isReviewStaff !=''">
+        is_review_staff,
+      </if>
+      <if test="requisitionRemark != null and requisitionRemark !=''">
+        requisition_remark,
+      </if>
+      <if test="requisitionAuditing != null and requisitionAuditing !=''">
+        requisition_auditing,
+      </if>
+      <if test="requisitionYn != null and requisitionYn !=''">
+        requisition_yn,
+      </if>
+      <if test="requisitionCustom1 != null and requisitionCustom1 !=''">
+        requisition_custom1,
+      </if>
+      <if test="requisitionCustom2 != null and requisitionCustom2 !=''">
+        requisition_custom2,
+      </if>
+      <if test="requisitionCustom3 != null and requisitionCustom3 !=''">
+        requisition_custom3,
+      </if>
+      <if test="requisitionCustom4 != null and requisitionCustom4 !=''">
+        requisition_custom4,
+      </if>
+      <if test="requisitionCustom5 != null and requisitionCustom5 !=''">
+        requisition_custom5,
+      </if>
+      <if test="requisitionCustom6 != null and requisitionCustom6 !=''">
+        requisition_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="requisitionId != null and requisitionId !=''">
+        #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionOutWarehouse != null and requisitionOutWarehouse !=''">
+        #{requisitionOutWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionInputWarehouse != null and requisitionInputWarehouse !=''">
+        #{requisitionInputWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionDocumentationDate != null">
+        #{requisitionDocumentationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requisitionDocumentationNo != null and requisitionDocumentationNo !=''">
+        #{requisitionDocumentationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionForm != null and requisitionForm !=''">
+        #{requisitionForm,jdbcType=VARCHAR},
+      </if>
+      <if test="isReviewStaff != null and isReviewStaff !=''">
+        #{isReviewStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionRemark != null and requisitionRemark !=''">
+        #{requisitionRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionAuditing != null and requisitionAuditing !=''">
+        #{requisitionAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionYn != null and requisitionYn !=''">
+        #{requisitionYn,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom1 != null and requisitionCustom1 !=''">
+        #{requisitionCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom2 != null and requisitionCustom2 !=''">
+        #{requisitionCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom3 != null and requisitionCustom3 !=''">
+        #{requisitionCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom4 != null and requisitionCustom4 !=''">
+        #{requisitionCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom5 != null and requisitionCustom5 !=''">
+        #{requisitionCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom6 != null and requisitionCustom6 !=''">
+        #{requisitionCustom6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective2" parameterType="com.apatech.domain.Requisition">
+    update requisition
+    <set>
+      <if test="requisitionOutWarehouse != null and requisitionOutWarehouse !=''">
+        requisition_out_warehouse = #{requisitionOutWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionInputWarehouse != null and requisitionInputWarehouse !=''">
+        requisition_input_warehouse = #{requisitionInputWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionDocumentationDate != null">
+        requisition_documentation_date = #{requisitionDocumentationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requisitionDocumentationNo != null and requisitionDocumentationNo !=''">
+        requisition_documentation_no = #{requisitionDocumentationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionForm != null and requisitionForm !=''">
+        requisition_form = #{requisitionForm,jdbcType=VARCHAR},
+      </if>
+      <if test="isReviewStaff != null and isReviewStaff !=''">
+        is_review_staff = #{isReviewStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionRemark != null and requisitionRemark !=''">
+        requisition_remark = #{requisitionRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionAuditing != null and requisitionAuditing !=''">
+        requisition_auditing = #{requisitionAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionYn != null and requisitionYn !=''">
+        requisition_yn = #{requisitionYn,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom1 != null and requisitionCustom1 !=''">
+        requisition_custom1 = #{requisitionCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom2 != null and requisitionCustom2 !=''">
+        requisition_custom2 = #{requisitionCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom3 != null and requisitionCustom3 !=''">
+        requisition_custom3 = #{requisitionCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom4 != null and requisitionCustom4 !=''">
+        requisition_custom4 = #{requisitionCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom5 != null and requisitionCustom5 !=''">
+        requisition_custom5 = #{requisitionCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom6 != null and requisitionCustom6 !=''">
+        requisition_custom6 = #{requisitionCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where requisition_id = #{requisitionId,jdbcType=VARCHAR}
+  </update>
 </mapper>

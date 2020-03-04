@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apatech.domain.Check;
+import com.apatech.domain.Check_detailed;
 import com.apatech.domain.Requisition;
+import com.apatech.domain.Requisition_detailed;
 import com.apatech.domain.Requisition;
 import com.apatech.domain.Requisition;
 import com.apatech.mapper.RequisitionMapper;
@@ -96,5 +99,46 @@ public class RequisitionService {
 
     public int updateByPrimaryKey(Requisition record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    
+    public int insertSelective2(Requisition record){
+    	int a=0;
+    	record.setRequisitionAuditing("0");
+    	record.setRequisitionYn("0");
+    	a=dao.insertSelective2(record);
+    	for(Requisition_detailed c:record.getRd_list()) {
+    		c.setRequisitionId(record.getRequisitionId());
+    		List<Requisition_detailed> list=Rd_dao.selectAll();
+    		int id=Integer.parseInt(list.get(0).getRdId())+1;
+    		c.setRdId(Integer.toString(id));
+    		c.setRdAuditing("0");
+    		c.setRdYn("0");
+    		if(Rd_dao.insertSelective2(c)<=0) {
+    			return 0;
+    		}
+    	}
+    	return a;
+    }
+    
+    
+    public int updateByPrimaryKeySelective2(Requisition record){
+    	int a=0;
+    	a=dao.updateByPrimaryKeySelective2(record);
+    	if(Rd_dao.deleteByrequisitionId(record.getRequisitionId())<=0) {
+    		return 0;
+    	}
+    	for(Requisition_detailed c:record.getRd_list()) {
+    		c.setRequisitionId(record.getRequisitionId());
+    		List<Requisition_detailed> list=Rd_dao.selectAll();
+    		int id=Integer.parseInt(list.get(0).getRdId())+1;
+    		c.setRdId(Integer.toString(id));
+    		c.setRdAuditing("0");
+    		c.setRdYn("0");
+    		if(Rd_dao.insertSelective2(c)<=0) {
+    			return 0;
+    		}
+    	}
+    	return a;
     }
 }

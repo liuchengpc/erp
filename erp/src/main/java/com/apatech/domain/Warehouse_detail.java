@@ -74,13 +74,18 @@ public class Warehouse_detail {
 		this.warehouseId = warehouseId;
 	}
 
+
 	public String getMtId() {
 		return mtId;
 	}
 
+
+
 	public void setMtId(String mtId) {
 		this.mtId = mtId;
 	}
+
+
 
 	public Float getWdUnitRice() {
         return wdUnitRice;

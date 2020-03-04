@@ -36,8 +36,9 @@ Vue.component('retrieve-dialog', {
                                   @select="handleSelect">
                                   <i slot="prefix" class="el-input__icon el-icon-search"></i>
                                   <template slot-scope="{ item }">
-                                    <span class="name">{{ item.teamName }}</span>
-                                    <span class="addr">{{ item.teamId }}</span>
+                                    <slot :item="item">
+                                        {{item}}
+                                    </slot>
                                   </template>
                                 </el-autocomplete>
                             </el-form-item>
@@ -71,7 +72,7 @@ Vue.component('retrieve-dialog', {
                                             tooltip-effect="dark"
                                             border
                                             style="width: 100%"
-                                            height="270">
+                                            height="223">
                                         <el-table-column
                                                 label="---"
                                                 prop="key">
@@ -87,7 +88,7 @@ Vue.component('retrieve-dialog', {
                                         :data="startWithArray"
                                         border
                                         highlight-current-row
-                                        heigit="270"
+                                        heigit="223"
                                         @current-change="handleClick">
                                         <el-table-column v-for="item in visibleColumn"
                                                 :label="item.label"
@@ -102,7 +103,7 @@ Vue.component('retrieve-dialog', {
                                             ref="multipartSearchResultTable"
                                             :data="startWithArray"
                                             border
-                                            height="270"
+                                            height="223"
                                             @selection-change="handleClick">
                                         <el-table-column type="selection"></el-table-column>
                                         <el-table-column v-for="item in visibleColumn"
@@ -133,7 +134,7 @@ Vue.component('retrieve-dialog', {
             </el-dialog>
         </div>
     `,
-    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
+    props: ['data', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
     data() {
         return {
             charLength: 1,
@@ -145,7 +146,9 @@ Vue.component('retrieve-dialog', {
             filterType: '',
             visibleColumn: [],
             dialogColumnVisible: false,
-            currentRow: {}
+            currentRow: {},
+            filterConfig: [],
+            recommendKey:['teamName','teamId']
         };
     },
     methods: {
@@ -255,14 +258,11 @@ Vue.component('retrieve-dialog', {
         }
     },
     created: function () {
+        this.filterConfig = this.option.map(element => element.value);
         this.filterType = this.filterConfig[0];
         this.visibleColumn = this.columns.filter(element => {
             return element['visible'];
         });
-
-        let temp = this.option.map(element => element.value);
-        console.log(temp);
-        console.log(this.dialogVisible);
     },
     mounted: function () {
         // this.handleChange();

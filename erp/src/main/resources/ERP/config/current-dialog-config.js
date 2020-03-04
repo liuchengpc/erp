@@ -2,7 +2,6 @@ export function currencyDialogConfig() {
     return {
         filterType: 'currencyId',
         currencies: [],
-        filterConfig: ['currencyId', 'currencyName', 'currencyEasyname', 'currencyEngname', 'currencyTransactionday', 'currencyStandardexchange', 'currencyInexchange', 'currencyOutexchange'],
         option: [
             {
                 label: '币别编号',

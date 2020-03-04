@@ -12,39 +12,39 @@ import {
 
 import {
     currencyDialogConfig
-}from "../config/current-dialog-config.js"
+} from "../config/current-dialog-config.js"
 
 import {
     departmentDialogConfig
-}from "../config/department-dialog-config.js"
+} from "../config/department-dialog-config.js"
 
 import {
     getAllDepartment
-}from "../rest/team_rest.js"
+} from "../rest/team_rest.js"
 
 import {
     employeeDialogConfig
-}from "../config/employee-dialog-config.js"
+} from "../config/employee-dialog-config.js"
 
 import {
     materialDialogConfig
-}from "../config/material-dialog-config.js"
+} from "../config/material-dialog-config.js"
 
 import {
     projectDialogConfig
-}from "../config/project-dialog-config.js"
+} from "../config/project-dialog-config.js"
 
 import {
     supplierDialogConfig
-}from "../config/supplier-dialog-config.js"
+} from "../config/supplier-dialog-config.js"
 
 import {
     warehouseDialogConfig
-}from "../config/warehouse-dialog-config.js"
+} from "../config/warehouse-dialog-config.js"
 
 import {
     orderStatusConfig
-}from "../config/orderStatusConfig.js"
+} from "../config/orderStatusConfig.js"
 
 let orderStatusMeta = orderStatusConfig();
 const defaultOrderStatus = orderStatusMeta.browse;
@@ -388,10 +388,10 @@ let viewModel = new Vue({
             this.purechaseReturn.details[index].puredTaxAmount = taxAmount;
             this.purechaseReturn.details[index].puredIncludingTaxAmount = includeTaxAmount;
         },
-        getAllDepartment(){
-            getAllDepartment().then(resp =>{
+        getAllDepartment() {
+            getAllDepartment().then(resp => {
                 this.departmentDialogConfig.teams = resp.data;
-            }).catch(error =>{
+            }).catch(error => {
 
             })
         }
@@ -406,18 +406,6 @@ let viewModel = new Vue({
             if (!this.edit) {
 
             }
-        }/*,
-        'purechaseReturn.details': {
-            handler(newValue, originalValue) {
-                if (!originalValue) {
-                    return;
-                }
-                console.log("handlerChange");
-                this.watchKey.forEach((value, index, array) => {
-                    console.log(value);
-                });
-            },
-            deep: true
-        }*/
+        }
     }
 });

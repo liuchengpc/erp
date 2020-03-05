@@ -83,6 +83,7 @@ public class wd_adjustController {
 	@ResponseBody
 	public List<wdQueryTaiz>doQueryTaiz(){
 		System.out.println("进来了~");
+		//System.out.println(wddao.doQueryTaiz(matterBegin,matterEnd,warehouseBegin,warehouseEnd,dateBegin,dateEnd));
 		return wddao.doQueryTaizAll();
 		 
 	}

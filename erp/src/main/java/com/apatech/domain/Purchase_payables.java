@@ -17,7 +17,7 @@ public class Purchase_payables {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date ppDate;
 
-    private String ppPcId;
+    private String ppPcId; 
 
     private String ppPcName;
 

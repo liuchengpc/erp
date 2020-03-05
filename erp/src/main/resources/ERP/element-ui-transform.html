@@ -9,84 +9,123 @@
 <div id="app">
     <el-row>
         <el-col :span="20">
-            <el-row>
-                <el-col :span="10">
-                    <el-form-item label="日期区间">
+            <el-form :inline="true">
+                <el-row>
+                    <el-col :span="10">
+                        <el-form-item label="日期区间">
+                            <el-form-item prop="pureDocumentDate">
+                                <el-date-picker type="date" placeholder="选择日期"
+                                                v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
+                                                :disabled="edit"></el-date-picker>
+                            </el-form-item>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2">To</el-col>
+                    <el-col :span="8">
                         <el-form-item prop="pureDocumentDate">
                             <el-date-picker type="date" placeholder="选择日期"
                                             v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
                                             :disabled="edit"></el-date-picker>
                         </el-form-item>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="2">To</el-col>
-                <el-col :span="8">
-                    <el-form-item prop="pureDocumentDate">
-                        <el-date-picker type="date" placeholder="选择日期"
-                                        v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
-                                        :disabled="edit"></el-date-picker>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="4">
-                    <el-form-item>
-                        <el-button type="primary">
-                            载入资料
-                        </el-button>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="10">
-                    <el-form-item label="单据区间" prop="supplierId">
-                        <el-input
-                                v-model="purechaseReturn.supplierId">
-                        </el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="2">To</el-col>
-                <el-col :span="8">
-                    <el-form-item prop="supplierId">
-                        <el-input
-                                v-model="purechaseReturn.supplierId">
-                        </el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="4">
-                    <el-form-item>
-                        <el-button type="primary">
-                            全选
-                        </el-button>
-                    </el-form-item>
-                </el-col>
-            </el-row>
-            <el-row>
-                <el-col :span="10">
-                    <el-form-item label="物料区间" prop="supplierId">
-                        <el-input
-                                v-model="purechaseReturn.supplierId">
-                        </el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="2">To</el-col>
-                <el-col :span="8">
-                    <el-form-item prop="supplierId">
-                        <el-input
-                                v-model="purechaseReturn.supplierId">
-                        </el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :span="4">
-                    <el-form-item>
-                        <el-button type="primary">
-                            全选
-                        </el-button>
-                    </el-form-item>
-                </el-col>
-            </el-row>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-form-item>
+                            <el-button type="primary">
+                                载入资料
+                            </el-button>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="10">
+                        <el-form-item label="单据区间" prop="supplierId">
+                            <el-input
+                                    v-model="purechaseReturn.supplierId">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2">To</el-col>
+                    <el-col :span="8">
+                        <el-form-item prop="supplierId">
+                            <el-input
+                                    v-model="purechaseReturn.supplierId">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-form-item>
+                            <el-button type="primary">
+                                全选
+                            </el-button>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="10">
+                        <el-form-item label="物料区间" prop="supplierId">
+                            <el-input
+                                    v-model="purechaseReturn.supplierId">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="2">To</el-col>
+                    <el-col :span="8">
+                        <el-form-item prop="supplierId">
+                            <el-input
+                                    v-model="purechaseReturn.supplierId">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-form-item>
+                            <el-button type="primary">
+                                全选
+                            </el-button>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+            </el-form>
         </el-col>
         <el-col :span="4">
-
+            <el-row>
+                <el-col :span="24">
+                    <el-form-item>
+                        <el-button type="primary">
+                            取回
+                        </el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
+                    <el-form-item>
+                        <el-button type="primary">
+                            取回
+                        </el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
         </el-col>
+    </el-row>
+    <el-row>
+        <el-col :span="24">
+            <el-form-item>
+                <el-button type="primary">光标已下全转</el-button>
+                <el-button type="primary">光标已下清零</el-button>
+                <el-button type="primary">显示字段设置</el-button>
+                <el-button type="primary">批号咨询</el-button>
+            </el-form-item>
+        </el-col>
+    </el-row>
+    <el-row>
+        <template>
+            <el-table
+                    ref="orderTable"
+                    :data="data"
+                    border
+                    height="197">
+            </el-table>
+        </template>
     </el-row>
 </div>
 <!-- import Vue before Element -->

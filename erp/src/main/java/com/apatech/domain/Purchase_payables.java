@@ -23,7 +23,7 @@ public class Purchase_payables {
 
     private String ppTeamId;
 
-    private String ppTeamName;
+    private String ppTeamName; 
 
     private String ppBuyer;
 

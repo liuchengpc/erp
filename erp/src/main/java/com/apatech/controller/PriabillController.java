@@ -1,5 +1,8 @@
 package com.apatech.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Priabill;
 import com.apatech.domain.Priadetails;
+import com.apatech.domain.Purchase_jiaoyi;
 import com.apatech.domain.Supplier;
 import com.apatech.domain.Priabill;
 import com.apatech.domain.Priabill;
 import com.apatech.mapper.PriabillMapper;
 import com.apatech.service.PriabillService;
 import com.apatech.service.PriadetailsService;
+import com.apatech.service.Purchase_jiaoyiService;
 import com.apatech.service.SupplierService;
 import com.github.pagehelper.PageInfo;
 
@@ -37,14 +42,18 @@ public class PriabillController {
 	@Autowired
 	private SupplierService daoSupp;
 	
+	@Autowired
+	private Purchase_jiaoyiService daoJy;
+	
 	/**
 	 * 根据主键修改 Xz只专属
 	 * @param student
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
 	@ResponseBody
-    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Priabill record) {
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Priabill record) throws ParseException {
 		System.out.println("进入PriabillController根据主键修改");
 		System.out.println("实体："+record.toString());
 		System.out.println("审核状态："+record.getPriabillAuditing());
@@ -57,6 +66,21 @@ public class PriabillController {
     		for(int a=0;a<list.size();a++) {
     			price+=list.get(a).getPriabillPrice();
     		}
+    		Purchase_jiaoyi jy = new Purchase_jiaoyi();
+    		jy.setJyData(record.getPriabillPayablestime());
+    		jy.setJySupplierName(record.getPriabillSupplierName());
+    		jy.setJyNumber(record.getPriabillCustom2());
+    		jy.setJyType("预付款单(预付)");
+    		jy.setJyPriabill(price);
+    		jy.setJyPriabillBb(price);
+    		jy.setJyCustom3(record.getPriabillId());
+    		int u = daoJy.insertSelective(jy);
+    		if(u>0) {
+    			System.out.println("供应商预付款明细新增成功！");
+    		}else {
+    			System.out.println("供应商预付款明细新增失败！");
+    		}
+    		
     		System.out.println("预付款主表总金额："+price);
     		String supplierId = record.getSupplierId();
     		System.out.println("进入供应商主文件修改剩余额度和期末预付款金额");
@@ -107,6 +131,13 @@ public class PriabillController {
     		for(int a=0;a<list.size();a++) {
     			price+=list.get(a).getPriabillPrice();
     		}
+    		int u = daoJy.deleteByPrimaryKey2(record.getPriabillId());
+    		if(u>0) {
+    			System.out.println("供应商账款明细记录删除成功！");
+    		}else {
+    			System.out.println("供应商账款明细记录删除失败！");
+    		}
+    		
     		System.out.println("预付款主表总金额："+price);
     		String supplierId = record.getSupplierId();
     		System.out.println("进入供应商主文件修改剩余额度和期末预付款金额");

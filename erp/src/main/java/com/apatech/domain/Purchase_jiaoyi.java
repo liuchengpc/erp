@@ -2,11 +2,17 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Purchase_jiaoyi {
     private Integer jyId;//供应商账款明细表主键ID，自增,快照用
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date jyData;//单据日期
     private String jySupplierName;//供应商简称
-    private Date jyNumber;//单据号码
+    private String jyNumber;//单据号码
     private String jyType;//单别
     private Float jyPriabill;//预付款金额，默认0
     private Float jyPriabillBb;//预付款本币金额，默认0
@@ -24,7 +30,11 @@ public class Purchase_jiaoyi {
     private String jyCustom8;//自定栏八
     private String jyCustom9;//自定栏九
     private String jyCustom10;//自定栏十
-
+    
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date jyDataXz;//单据日期
+    
     public Integer getJyId() {
         return jyId;
     }
@@ -40,6 +50,14 @@ public class Purchase_jiaoyi {
     public void setJyData(Date jyData) {
         this.jyData = jyData;
     }
+    
+    public Date getJyDataXz() {
+        return jyDataXz;
+    }
+
+    public void setJyDataXz(Date jyDataXz) {
+        this.jyDataXz = jyDataXz;
+    }
 
     public String getJySupplierName() {
         return jySupplierName;
@@ -49,11 +67,11 @@ public class Purchase_jiaoyi {
         this.jySupplierName = jySupplierName == null ? null : jySupplierName.trim();
     }
 
-    public Date getJyNumber() {
+    public String getJyNumber() {
         return jyNumber;
     }
 
-    public void setJyNumber(Date jyNumber) {
+    public void setJyNumber(String jyNumber) {
         this.jyNumber = jyNumber;
     }
 

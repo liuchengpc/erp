@@ -1697,7 +1697,7 @@
 					    var updateObj = this_.page.list[0];
 					    updateObj.payablesAuditing="1";
 					    $.ajax({
-							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective2",
 							type:"post",
 							data:JSON.stringify(updateObj),
 							async:false,
@@ -1708,10 +1708,37 @@
 								this_.isinsert=false;//关闭新增模式
 								this_.isedit=false;//关闭编辑模式
 								/*layer.msg('审核通过！1');*/
-								alert(1);
-								this_.goPage(1, 1);		
 					        }
 						});
+						
+						//供应商付款明细记录表--取用预付
+						if(table.cache["materialsContent6"].length!=0){
+							var obj7 = table.cache["materialsContent6"];
+							for(var u=0;u<obj7.length;u++){
+								var jyPriabill = -parseFloat(obj7[u].priabillCustom8);
+								alert(jyPriabill);
+								obj01={
+									"jyData":$("#payablesPayablestime").val(),
+									"jySupplierName":$("#payablesSupplierName").val(),
+									"jyNumber":obj7[u].priadetailsId,
+									"jyType":"应付款单(取用预付)",
+									"jyPriabill":jyPriabill,
+									"jyPriabillBb":jyPriabill
+								};
+								if(jyPriabill!=0||jyPriabill!=""){
+									$.ajax({
+										url :"http://127.0.0.1:8080/Purchase_jiaoyiController/insertSelective",
+										type:"post",
+										data:JSON.stringify(obj01),
+									  	dataType:'json',
+									  	contentType:"application/json;charset=utf-8",
+									  	success:function (res) {
+									  		alert("ee");
+								        }
+									});
+								}
+							}
+						}
 						
 						//应付款明细表
 						if(table.cache["materialsContent2"].length!=0){											
@@ -1783,8 +1810,8 @@
 								  	dataType:'json',
 								  	contentType:"application/json;charset=utf-8",
 								  	success:function (res) {
-								  		/*layer.msg("审核通过！2");*/
-								  		alert(2);
+								  		layer.msg("审核通过！2");
+								  		this_.goPage(1, 1);	
 								  	}
 								});
 							}

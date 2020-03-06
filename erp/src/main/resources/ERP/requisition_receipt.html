@@ -402,12 +402,14 @@
 					, {field: 'rdEngname', 			title: '(物料名称)', sort: true						}
 					, {field: 'rdRemark', 			title: '(规格型号)', sort: true						}
 					, {field: 'rdPriceIncludeTax', 	title: '(单位)',		sort: true						}
-					, {field: 'rdSingleNum', 		title: '数量',		sort: true, 	align: 'right'	} //单元格内容水平居中,	edit: 'text'
+					, {field: 'rdSingleNum', 		title: '数量',		sort: true, 	align: 'right'	,edit:"text"} //单元格内容水平居中,	edit: 'text'
 					, {field: 'rdBatchNumber', 		title: '批号',		sort: true,		align: 'center' ,toolbar: '#barDemo'} //单元格内容水平居中
-					, {field: 'rdRemarks', 			title: '分录备注', 	sort: true						}
+					, {field: 'rdRemarks', 			title: '分录备注', 	sort: true						,edit:"text"}
 		        ]]
 		    });
 		});
+		//使ajax异步
+		$.ajaxSettings.async=true;
 	}
 	
 	
@@ -447,9 +449,7 @@
 
 			goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
-				var this_ = this;		
-				this.Auditing1 =false;//审核
-				this.noAuditing1 =false;//取消审核
+				var this_ = this;
 				$.ajax({
 					url : "http://127.0.0.1:8080/RequisitionController/queryAllpage",
 					type:"get",
@@ -458,6 +458,17 @@
 					success:function (res) {
 						//res.data获取服务器返回的数据
 						this_.page = res;
+						if(this_.page.list[0].requisitionAuditing==1){
+							this_.noAuditing1 =false;//取消审核
+							this_.Auditing1 =true;//审核
+							this_.update1=true;//编辑
+							this_.deletes1=true;//删除
+						}else{
+							this_.noAuditing1 =true;//取消审核
+							this_.Auditing1 =false;//审核
+							this_.update1=false;//编辑
+							this_.deletes1=false;//删除
+						}
 						console.info("详表表数据：")
 						console.info(this_.page)
 						layui.use('table', function(){
@@ -678,7 +689,6 @@
 				this.deletes1 =true;//删除		
 				this.Auditing1 =true;//审核
 				this.noAuditing1 =true;//取消审核
-				
 			},
 			updates: function() {//编辑 
 				
@@ -723,11 +733,94 @@
 				}
 			},   
 			Auditing: function() {//审核
-				
-			},   
-			noAuditing: function() {//取消
-				
-			},   
+				$.ajaxSettings.async=false;
+				var this_=this;
+				var tf=true;
+				for(var i=0;i<this_.page.list[0].rd_list.length;i++){
+					$.ajax({
+						type:"get",
+						url:"http://127.0.0.1:8080/Check_detailedController/queryBykc",
+						data:{
+							ckid:this_.page.list[0].requisitionOutWarehouse,
+							wlid:this_.page.list[0].rd_list[i].matterId
+						},
+						success:function(res){
+							console.log("库存单价"+JSON.stringify(res));
+							if(res.ku_cun<this_.page.list[0].rd_list[i].rdSingleNum){
+								alert(this_.page.list[0].requisitionOutWarehouseName+"的"+this_.page.list[0].rd_list[i].rdEngname+"库存不足,无法完成调拨,当前库存数量为:"+res.ku_cun);
+								tf=false;
+							}
+							if(this_.page.list[0].rd_list[i].rdSingleNum==0){
+								alert("请输入"+this_.page.list[0].rd_list[i].rdEngname+"物料调拨的数量");
+								tf=false;
+							}
+						}
+					});
+				}
+				if(tf){
+					this.AuditionCommit();
+				}
+			},
+			AuditionCommit:function(){//审核提交
+				var this_=this;
+				console.log("进入审核提交");
+				this.page.list[0].isReviewStaff="Admin";
+				var obj=this.page.list[0];
+				$.ajax({
+					url : "http://127.0.0.1:8080/RequisitionController/sh",
+					type:"post",
+					data : JSON.stringify(obj),
+					dataType:'json',	
+					contentType : "application/json;charset=utf-8",
+					success:function (res) {
+						alert("系统提示：" +res.message);
+						this_.goPage(1, 1);		
+					}
+				});
+				$.ajaxSettings.async=true;
+			},
+			noAuditing: function() {//取消审核
+				$.ajaxSettings.async=false;
+				var this_=this;
+				var tf=true;
+				for(var i=0;i<this_.page.list[0].rd_list.length;i++){
+					$.ajax({
+						type:"get",
+						url:"http://127.0.0.1:8080/Check_detailedController/queryBykc",
+						data:{
+							ckid:this_.page.list[0].requisitionInputWarehouse,
+							wlid:this_.page.list[0].rd_list[i].matterId
+						},
+						success:function(res){
+							console.log("库存单价"+JSON.stringify(res));
+							if(res.ku_cun<this_.page.list[0].rd_list[i].rdSingleNum){
+								alert(this_.page.list[0].requisitionInputWarehouseName+"的"+this_.page.list[0].rd_list[i].rdEngname+"库存不足,无法取消审核,当前库存数量为:"+res.ku_cun);
+								tf=false;
+							}
+						}
+					});
+				}
+				if(tf){
+					this.noAuditingCommit();
+				}
+			},
+			noAuditingCommit: function() {//取消审核
+				var this_=this;
+				console.log("取消审核提交");
+				var obj=this.page.list[0];
+				$.ajax({
+					url : "http://127.0.0.1:8080/RequisitionController/qxsh",
+					type:"post",
+					data : JSON.stringify(obj),
+					dataType:'json',	
+					contentType : "application/json;charset=utf-8",
+					success:function (res) {
+						alert("系统提示：" +res.message);
+						this_.goPage(1, 1);		
+					}
+				});
+				$.ajaxSettings.async=true;
+			},      
 			getno:function(){//获取id
 				var this_=this;
 				

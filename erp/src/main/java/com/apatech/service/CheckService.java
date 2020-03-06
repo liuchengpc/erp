@@ -1,5 +1,7 @@
 package com.apatech.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Check;
 import com.apatech.domain.Check_detailed;
+import com.apatech.domain.Requisition;
+import com.apatech.domain.Warehouse_detail;
 import com.apatech.domain.Check;
 import com.apatech.domain.Check;
 import com.apatech.mapper.CheckMapper;
@@ -29,6 +33,10 @@ public class CheckService {
 	//增减科目表
 	@Autowired
 	private Updown_programService up_dao;
+	
+
+	@Autowired
+	private Warehouse_detailService whd_dao;
 	public PageInfo<Check> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -140,5 +148,134 @@ public class CheckService {
     
     public int updateByPrimaryKey(Check record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * 	审核
+     * @param r
+     * @return
+     */
+    public int sh(Check r) {
+    	int a=1;
+    	for(int i=0;i<r.getCd_List().size();i++) {
+    		if(r.getCd_List().get(i).getCdProfitsLossesNumber()>0) {
+    			if(rk(r)<=0) {
+    				return 0;
+    			}
+    		}
+    		if(r.getCd_List().get(i).getCdProfitsLossesNumber()<0) {
+    			if(ck(r)<=0) {
+    				return 0;
+    			}
+    		}
+    	}
+    	r.setCheckAuditing("1");
+    	if(dao.updateByPrimaryKeySelective2(r)<=0) {
+    		return 0;
+    	}
+    	return a;
+    }
+    
+    /**
+     * 	取消审核
+     * @param r
+     * @return
+     */
+    public int qxsh(Check r) {
+    	int a=1;
+    	for(int i=0;i<r.getCd_List().size();i++) {
+    		if(r.getCd_List().get(i).getCdProfitsLossesNumber()>0) {
+    			if(ck(r)<=0) {
+    				return 0;
+    			}
+    		}
+    		if(r.getCd_List().get(i).getCdProfitsLossesNumber()<0) {
+    			if(rk(r)<=0) {
+    				return 0;
+    			}
+    		}
+    	}
+    	r.setCheckAuditing("0");
+    	r.setCheckCheckagainStaff(null);
+    	if(dao.updateByPrimaryKeySelective3(r)<=0) {
+    		return 0;
+    	}
+    	return a;
+    }
+    
+    /**
+     *	 新增出库记录
+     * @return
+     */
+    public int ck(Check r) {
+    	int a=1;
+    	for(int i=0;i<r.getCd_List().size();i++) {
+    		Warehouse_detail wd=new Warehouse_detail();
+    		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//设置日期格式
+    		String time=df.format(new Date());// new Date()为获取当前系统时间
+    		//id
+    		wd.setWdId(time+whd_dao.getno(time));
+    		//出库的仓库id
+    		wd.setWarehouseId(r.getWarehouseId());
+    		//出库的物料id
+    		wd.setMtId(r.getCd_List().get(i).getMatterId());
+    		//出库的数量
+    		wd.setWdNumber(Math.abs(r.getCd_List().get(i).getCdProfitsLossesNumber()));
+    		//状态为出库
+    		wd.setWdInorout(1);
+    		//出库时的单价
+    		wd.setWdUnitRice(r.getCd_List().get(i).getCdUnitPrice());
+    		//出库前的上期结存数
+    		wd.setWdLastbalancenumber(cd_dao.queryBykc(r.getWarehouseId(), r.getCd_List().get(i).getMatterId()).getKu_cun());
+    		//设置状态为未删除
+    		wd.setWdYn("0");
+    		//为自定义1赋值
+    		wd.setWdCustom1(time);
+    		if(whd_dao.insertSelective(wd)<=0) {
+    			return 0;
+    		}
+    	}
+    	return a;
+    }
+    
+    /**
+     *	 新增入库记录(取消审核)
+     * @return
+     */
+    public int rk(Check r) {
+    	int a=1;
+    	for(int i=0;i<r.getCd_List().size();i++) {
+    		Warehouse_detail wd=new Warehouse_detail();
+    		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");//设置日期格式
+    		String time=df.format(new Date());// new Date()为获取当前系统时间
+    		//id
+    		wd.setWdId(time+whd_dao.getno(time));
+    		//入库的仓库id
+    		wd.setWarehouseId(r.getWarehouseId());
+    		//入库的物料id
+    		wd.setMtId(r.getCd_List().get(i).getMatterId());
+    		//入库的数量
+    		wd.setWdNumber(Math.abs(r.getCd_List().get(i).getCdProfitsLossesNumber()));
+    		//状态为入库
+    		wd.setWdInorout(0);
+    		//出库时的单价
+    		wd.setWdUnitRice(r.getCd_List().get(i).getCdUnitPrice());
+    		//出库前的上期结存数
+    		wd.setWdLastbalancenumber(cd_dao.queryBykc(r.getWarehouseId(), r.getCd_List().get(i).getMatterId()).getKu_cun());
+    		//设置状态为未删除
+    		wd.setWdYn("0");
+    		//为自定义1赋值
+    		wd.setWdCustom1(time);
+    		if(whd_dao.insertSelective(wd)<=0) {
+    			return 0;
+    		}
+    	}
+    	return a;
     }
 }

@@ -70,7 +70,7 @@ public class Purchase_jiaoyiController {
     }
 	
 	/**
-	 * 获取单号
+	 * 获取单号 
 	 * @param billdate
 	 * @return
 	 */

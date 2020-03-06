@@ -27,19 +27,18 @@
 		        <div class="layui-col-lg6">
 		            <div class="layui-form">
 		            	<div class="layui-form-item">
-		                    <label class="layui-form-label" style="color:#009688;width:100px;">供应商区间</label>
+		                    <label class="layui-form-label" style="color:#009688;width:100px;">供应商</label>
 		                    <div class="layui-input-block">
-		                        <input type="text" id="payablesSatName1" name="title" title="F4查询"  class="layui-input" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
-		                        <label class="layui-form-label" style="color:#009688;width:100px;">——&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		                        <input type="text" id="payablesPrice1" name="title"  class="layui-input" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <input type="text" id="jySupplierName" name="title" title="F4查询"  class="layui-input" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
 		                    </div>
 		                </div>
 		                <div class="layui-form-item">
 		                    <label class="layui-form-label" style="color:#009688;width:100px;">区间日期</label>
 		                    <div class="layui-input-block">
-		                        <input type="text" id="payablesPayablestime"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <input type="text" id="jyData"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
 		                        <label class="layui-form-label" style="color:#009688;width:100px;">——&nbsp&nbsp&nbsp&nbsp&nbsp</label>
-		                        <input type="text" id="payablesEndtime"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <input type="text" id="jyDataXz"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <button type="button" id="chaxun" class="layui-btn" style="float: left;margin-left:10%;">查询</button>
 		                    </div>
 		                </div>
 		                <div class="layui-form-item">
@@ -65,30 +64,62 @@
 			
 			//执行一个laydate实例
 			laydate.render({
-				elem:'#payablesPayablestime',//指定元素
+				elem:'#jyData',//指定元素
 				done:function(value){
-					this_.page.list[0].payablesPayablestime=value;
-					$("#payablesPayablestime").val(value);
-					console.log(this_.page.list[0].payablesPayablestime);
-					console.log(value)
+					$("#jyData").val(value);
+
 				}
 			})
 			
 			//执行一个laydate实例
 			laydate.render({
-				elem:'#payablesEndtime',//指定元素
+				elem:'#jyDataXz',//指定元素
 				done:function(value){
-					this_.page.list[0].payablesEndtime=value;
-					$("#payablesEndtime").val(value);
-					console.log(this_.page.list[0].payablesEndtime);
-					console.log(value)
+					$("#jyDataXz").val(value);
 				}
 			})
+			
+			//供应商开窗取值
+			$("#jySupplierName").click(function(){
+	  			layer.open({
+	  				type:2,
+	  				area:["800px","400px"],
+	  				content:"PayablesSupplier3.html"
+	  			});
+	  		});
+	  		
+	  		//查询按钮
+	  		$("#chaxun").click(function(){
+	  			var obj={
+	  				"jySupplierName":$("#jySupplierName").val(),
+	  				"jyData":$("#jyData").val(),
+	  				"jyDataXz":$("#jyDataXz").val()
+	  			};
+	  			
+	  			/*var jyData=new Date(Date.parse($("#jyData").val()));
+	  			var jyDataXz=new Date(Date.parse($("#jyDataXz").val()));*/
+	  			//表格重载
+	  			table.reload('materialsContent2', {
+	                page: {
+	                    curr: 1 //重新从第 1 页开始
+	                }
+	                , where: {//这里传参  向后台
+	                    page: 1,
+	                    limit:100,
+	                    jySupplierName:$("#jySupplierName").val(),
+		  				jyData:$("#jyData").val(),
+		  				jyDataXz:$("#jyDataXz").val()
+	                    //可传多个参数到后台...  ，分隔
+	                }
+	                , url: 'http://127.0.0.1:8080/Purchase_jiaoyiController/selectAllpageXz2'//后台做模糊搜索接口路径
+	                , method: 'get'
+	            });
+	  		});
 			
 			
 			var tables=table.render({
 	            elem: '#materialsContent2'
-	            ,url:'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName'
+	            ,url:'http://127.0.0.1:8080/Purchase_jiaoyiController/selectAllpageXz'
 	            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
 	            ,toolbar: 'default'//开启工具栏
 	            ,totalRow: true //开启合计行
@@ -106,18 +137,18 @@
 	           	}
 	            , cols: [[
 	            	{type: 'checkbox', fixed: 'left'}
-	                , {field: 'ppDate', width:150,title: '单据日期',sort:true, fixed: 'left', totalRowText: '合计：'}
-	                , {field: 'ppNumber', width:150,title: '供应商名称'}
-	                , {field: '', width:150,title: '单据号码',sort:true}
-	                , {field: 'ppPcId', width:150,title: '单别'}
-	                , {field: 'ppPcName', width:150,title: '预付款',sort:true}
-	                , {field: 'ppPcName', width:150,title: '本币预付款',sort:true}
-	                , {field: 'ppPcName', width:150,title: '应付款',sort:true}
-	                , {field: 'ppPcName', width:150,title: '本币应付款',sort:true}
+	                , {field: 'jyData', width:150,title: '单据日期',sort:true, fixed: 'left', totalRowText: '合计：'}
+	                , {field: 'jySupplierName', width:150,title: '供应商名称'}
+	                , {field: 'jyNumber', width:150,title: '单据号码',sort:true}
+	                , {field: 'jyType', width:180,title: '单别'}
+	                , {field: 'jyPriabill', width:150,title: '预付款',sort:true}
+	                , {field: 'jyPriabillBb', width:150,title: '本币预付款',sort:true}
+	                , {field: 'jyPayables', width:150,title: '应付款',sort:true}
+	                , {field: 'jyPayablesBb', width:150,title: '本币应付款',sort:true}
 	            ]]
 	            ,page:true//是否开启分页
-	            ,limits:[1,2,3]//选择每页显示多少条数据
-	            ,limit:2//初始每页显示条数
+	            ,limits:[100,200,300]//选择每页显示多少条数据
+	            ,limit:100//初始每页显示条数
 	            ,height:350
 	        });
 		});

@@ -3,9 +3,9 @@
 <mapper namespace="com.apatech.mapper.Purchase_jiaoyiMapper">
   <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_jiaoyi">
     <id column="jy_id" jdbcType="INTEGER" property="jyId" />
-    <result column="jy_data" jdbcType="DATE" property="jyData" />
+    <result column="jy_data" jdbcType="TIMESTAMP" property="jyData" />
     <result column="jy_supplier_name" jdbcType="VARCHAR" property="jySupplierName" />
-    <result column="jy_number" jdbcType="TIMESTAMP" property="jyNumber" />
+    <result column="jy_number" jdbcType="VARCHAR" property="jyNumber" />
     <result column="jy_type" jdbcType="VARCHAR" property="jyType" />
     <result column="jy_priabill" jdbcType="REAL" property="jyPriabill" />
     <result column="jy_priabill_bb" jdbcType="REAL" property="jyPriabillBb" />
@@ -32,9 +32,22 @@
    <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
 	    select 
 	    <include refid="Base_Column_List" />
-	    from purchase_inquiry 
-	    where pi_Yn=0
-	    ORDER BY pi_id DESC
+	    from purchase_jiaoyi 
+	    where jy_yn=0
+	    ORDER BY jy_id DESC
+  </select>
+  <select id="selectAllXz" parameterType="com.apatech.domain.Purchase_jiaoyi" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_jiaoyi 
+	    where jy_yn=0 
+	    <if test="jySupplierName != null and jySupplierName !='' and jySupplierName !='null' ">
+        	 AND jy_supplier_name=#{jySupplierName,jdbcType=VARCHAR}  
+      	</if>
+      	<if test="jyData != null and jyDataXz != null">
+        	 AND jy_data BETWEEN #{jyData,jdbcType=TIMESTAMP} AND #{jyDataXz,jdbcType=TIMESTAMP}   
+      	</if> 
+	    ORDER BY jy_id DESC
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -46,6 +59,10 @@
     delete from purchase_jiaoyi
     where jy_id = #{jyId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.String">
+    delete from purchase_jiaoyi
+    where jy_custom3 = #{jyCustom3,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.apatech.domain.Purchase_jiaoyi">
     insert into purchase_jiaoyi (jy_id, jy_data, jy_supplier_name, 
       jy_number, jy_type, jy_priabill, 
@@ -55,8 +72,8 @@
       jy_custom5, jy_custom6, jy_custom7, 
       jy_custom8, jy_custom9, jy_custom10
       )
-    values (#{jyId,jdbcType=INTEGER}, #{jyData,jdbcType=DATE}, #{jySupplierName,jdbcType=VARCHAR}, 
-      #{jyNumber,jdbcType=TIMESTAMP}, #{jyType,jdbcType=VARCHAR}, #{jyPriabill,jdbcType=REAL}, 
+    values (#{jyId,jdbcType=INTEGER}, #{jyData,jdbcType=TIMESTAMP}, #{jySupplierName,jdbcType=VARCHAR}, 
+      #{jyNumber,jdbcType=VARCHAR}, #{jyType,jdbcType=VARCHAR}, #{jyPriabill,jdbcType=REAL}, 
       #{jyPriabillBb,jdbcType=REAL}, #{jyPayables,jdbcType=REAL}, #{jyPayablesBb,jdbcType=REAL}, 
       #{jyAuditing,jdbcType=VARCHAR}, #{jyYn,jdbcType=VARCHAR}, #{jyCustom1,jdbcType=VARCHAR}, 
       #{jyCustom2,jdbcType=VARCHAR}, #{jyCustom3,jdbcType=VARCHAR}, #{jyCustom4,jdbcType=VARCHAR}, 
@@ -136,13 +153,13 @@
         #{jyId,jdbcType=INTEGER},
       </if>
       <if test="jyData != null">
-        #{jyData,jdbcType=DATE},
+        #{jyData,jdbcType=TIMESTAMP},
       </if>
       <if test="jySupplierName != null">
         #{jySupplierName,jdbcType=VARCHAR},
       </if>
       <if test="jyNumber != null">
-        #{jyNumber,jdbcType=TIMESTAMP},
+        #{jyNumber,jdbcType=VARCHAR},
       </if>
       <if test="jyType != null">
         #{jyType,jdbcType=VARCHAR},
@@ -201,13 +218,13 @@
     update purchase_jiaoyi
     <set>
       <if test="jyData != null">
-        jy_data = #{jyData,jdbcType=DATE},
+        jy_data = #{jyData,jdbcType=TIMESTAMP},
       </if>
       <if test="jySupplierName != null">
         jy_supplier_name = #{jySupplierName,jdbcType=VARCHAR},
       </if>
       <if test="jyNumber != null">
-        jy_number = #{jyNumber,jdbcType=TIMESTAMP},
+        jy_number = #{jyNumber,jdbcType=VARCHAR},
       </if>
       <if test="jyType != null">
         jy_type = #{jyType,jdbcType=VARCHAR},
@@ -265,9 +282,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_jiaoyi">
     update purchase_jiaoyi
-    set jy_data = #{jyData,jdbcType=DATE},
+    set jy_data = #{jyData,jdbcType=TIMESTAMP},
       jy_supplier_name = #{jySupplierName,jdbcType=VARCHAR},
-      jy_number = #{jyNumber,jdbcType=TIMESTAMP},
+      jy_number = #{jyNumber,jdbcType=VARCHAR},
       jy_type = #{jyType,jdbcType=VARCHAR},
       jy_priabill = #{jyPriabill,jdbcType=REAL},
       jy_priabill_bb = #{jyPriabillBb,jdbcType=REAL},

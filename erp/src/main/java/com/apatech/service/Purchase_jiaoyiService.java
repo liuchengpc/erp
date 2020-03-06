@@ -27,12 +27,28 @@ public class Purchase_jiaoyiService {
     	return page;
     }
 	 
+	 public PageInfo<Purchase_jiaoyi> selectAllpage(Integer pageNum,Integer pageSize,Purchase_jiaoyi jiaoyi){
+	    	System.out.println("分页的集合："+dao.selectAllXz(jiaoyi).toString());
+			 
+	    	PageHelper.startPage(pageNum, pageSize);
+	    	List<Purchase_jiaoyi> list=dao.selectAllXz(jiaoyi);
+
+	    	PageInfo<Purchase_jiaoyi> page=new PageInfo<Purchase_jiaoyi>(list);
+//		    	System.out.println("分页的集合2："+page.getList().toString());
+	    	return page;
+	    }
+	 
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
 	
     public int deleteByPrimaryKey(Integer apId){
-    	return dao.deleteByPrimaryKey(apId);    }
+    	return dao.deleteByPrimaryKey(apId);    
+    }
+    
+    public int deleteByPrimaryKey2(String jyCustom3){
+    	return dao.deleteByPrimaryKey2(jyCustom3);    
+    }
 
     public int insert(Purchase_jiaoyi record){
     	return dao.insert(record);

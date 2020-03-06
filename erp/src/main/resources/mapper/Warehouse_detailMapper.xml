@@ -3,11 +3,7 @@
 <mapper namespace="com.apatech.mapper.Warehouse_detailMapper">
   <resultMap id="BaseResultMap" type="com.apatech.domain.Warehouse_detail">
     <id column="wd_id" jdbcType="VARCHAR" property="wdId" />
-<<<<<<< HEAD
     <result column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
-=======
-    <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
->>>>>>> refs/heads/zhzs
     <result column="mt_id" jdbcType="VARCHAR" property="mtId" />
     <result column="wd_unit_rice" jdbcType="REAL" property="wdUnitRice" />
     <result column="wd_number" jdbcType="INTEGER" property="wdNumber" />

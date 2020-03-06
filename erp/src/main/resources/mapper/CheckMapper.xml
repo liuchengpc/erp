@@ -457,4 +457,66 @@
     </set>
     where check_id = #{checkId,jdbcType=VARCHAR}
   </update>
+  
+  
+  <update id="updateByPrimaryKeySelective3" parameterType="com.apatech.domain.Check">
+    update `check`
+    <set>
+      <if test="warehouseId != null and warehouseId !=''">
+        warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      </if>
+      <if test="scAppreciationSubjects != null and scAppreciationSubjects !=''">
+        sc_appreciation_subjects = #{scAppreciationSubjects,jdbcType=VARCHAR},
+      </if>
+      <if test="scImpairmentSubjects != null and scImpairmentSubjects !=''">
+        sc_impairment_subjects = #{scImpairmentSubjects,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDocumentationDate != null">
+        check_documentation_date = #{checkDocumentationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkDocumentationNo != null and checkDocumentationNo !=''">
+        check_documentation_no = #{checkDocumentationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkBuyer != null and checkBuyer !=''">
+        check_buyer = #{checkBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="checkBelongsSection != null and checkBelongsSection !=''">
+        check_belongs_section = #{checkBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="checkForm != null and checkForm !=''">
+        check_form = #{checkForm,jdbcType=VARCHAR},
+      </if>
+      <if test="1 != 2">
+        check_checkagain_staff = #{checkCheckagainStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="checkRemark != null and checkRemark !=''">
+        check_remark = #{checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkAuditing != null and checkAuditing !=''">
+        check_auditing = #{checkAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="checkYn != null and checkYn !=''">
+        check_yn = #{checkYn,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom1 != null and checkCustom1 !=''">
+        check_custom1 = #{checkCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom2 != null and checkCustom2 !=''">
+        check_custom2 = #{checkCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom3 != null and checkCustom3 !=''">
+        check_custom3 = #{checkCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom4 != null and checkCustom4 !=''">
+        check_custom4 = #{checkCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom5 != null and checkCustom5 !=''">
+        check_custom5 = #{checkCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="checkCustom6 != null and checkCustom6 !=''">
+        check_custom6 = #{checkCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=VARCHAR}
+  </update>
 </mapper>

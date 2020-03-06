@@ -1,5 +1,7 @@
 package com.apatech.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -199,4 +201,46 @@ public class RequisitionController {
 		}
 		return map;
     }
+	
+	
+	/**
+	 *	 审核
+	 */
+	@RequestMapping(value = "sh",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> sh(@RequestBody Requisition record) {
+		System.out.println("进入RequisitionController审核");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.sh(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "审核成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "审核失败！");
+		}
+		return map;
+    }
+	
+	/**
+	 *	取消 审核
+	 */
+	@RequestMapping(value = "qxsh",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> qxsh(@RequestBody Requisition record) {
+		System.out.println("进入RequisitionController取消审核");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.qxsh(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "取消审核成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "取消审核失败！");
+		}
+		return map;
+    }
+	
 }

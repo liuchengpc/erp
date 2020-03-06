@@ -34,6 +34,7 @@ public interface RequisitionMapper {
 
     int updateByPrimaryKeySelective(Requisition record);
     int updateByPrimaryKeySelective2(Requisition record);
+    int updateByPrimaryKeySelective3(Requisition record);
     
     int updateByPrimaryKey(Requisition record);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Check;
+import com.apatech.domain.Requisition;
 import com.apatech.domain.Check;
 import com.apatech.domain.Check;
 import com.apatech.domain.Check;
@@ -192,6 +193,50 @@ public class CheckController {
 		}else {
 			map.put("code", "2");
 			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	
+	
+	
+	
+	
+	/**
+	 *	 审核
+	 */
+	@RequestMapping(value = "sh",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> sh(@RequestBody Check record) {
+		System.out.println("进入CheckController审核");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.sh(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "审核成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "审核失败！");
+		}
+		return map;
+    }
+	
+	/**
+	 *	取消 审核
+	 */
+	@RequestMapping(value = "qxsh",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> qxsh(@RequestBody Check record) {
+		System.out.println("进入CheckController取消审核");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String,String>();
+    	int i=dao.qxsh(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "取消审核成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "取消审核失败！");
 		}
 		return map;
     }

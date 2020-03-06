@@ -400,4 +400,57 @@
     </set>
     where requisition_id = #{requisitionId,jdbcType=VARCHAR}
   </update>
+  
+  
+  <update id="updateByPrimaryKeySelective3" parameterType="com.apatech.domain.Requisition">
+    update requisition
+    <set>
+      <if test="requisitionOutWarehouse != null and requisitionOutWarehouse !=''">
+        requisition_out_warehouse = #{requisitionOutWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionInputWarehouse != null and requisitionInputWarehouse !=''">
+        requisition_input_warehouse = #{requisitionInputWarehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionDocumentationDate != null">
+        requisition_documentation_date = #{requisitionDocumentationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requisitionDocumentationNo != null and requisitionDocumentationNo !=''">
+        requisition_documentation_no = #{requisitionDocumentationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionForm != null and requisitionForm !=''">
+        requisition_form = #{requisitionForm,jdbcType=VARCHAR},
+      </if>
+      <if test="1 != 2">
+        is_review_staff = #{isReviewStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionRemark != null and requisitionRemark !=''">
+        requisition_remark = #{requisitionRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionAuditing != null and requisitionAuditing !=''">
+        requisition_auditing = #{requisitionAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionYn != null and requisitionYn !=''">
+        requisition_yn = #{requisitionYn,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom1 != null and requisitionCustom1 !=''">
+        requisition_custom1 = #{requisitionCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom2 != null and requisitionCustom2 !=''">
+        requisition_custom2 = #{requisitionCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom3 != null and requisitionCustom3 !=''">
+        requisition_custom3 = #{requisitionCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom4 != null and requisitionCustom4 !=''">
+        requisition_custom4 = #{requisitionCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom5 != null and requisitionCustom5 !=''">
+        requisition_custom5 = #{requisitionCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionCustom6 != null and requisitionCustom6 !=''">
+        requisition_custom6 = #{requisitionCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where requisition_id = #{requisitionId,jdbcType=VARCHAR}
+  </update>
 </mapper>

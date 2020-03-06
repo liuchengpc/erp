@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,21 +56,32 @@ public class SalesorderlistController {
 		String s=dao.getno(billdate);
     	return s;
     }
-	
-	
 	/**
 	 * 根据主键查询
 	 * @param solId
 	 * @return
 	 */
-	@RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
+//	@RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
+//	@ResponseBody
+//    public Salesorderlist selectByPrimaryKey(String solId) {
+//		System.out.println("进入SalesorderlistController根据主键查询");
+//		System.out.println("solId="+solId);
+//    	return dao.selectByPrimaryKey(solId);
+//	}
+	//获取详表数据
+	@RequestMapping(value = "selectquerybysolId",method = RequestMethod.GET)
 	@ResponseBody
-    public Salesorderlist selectByPrimaryKey(String solId) {
-		System.out.println("进入SalesorderlistController根据主键查询");
-		System.out.println("solId="+solId);
-    	return dao.selectByPrimaryKey(solId);
-	}
-	
+	public Map<String,Object> selectquerybysolId(String solId){
+		System.out.println("进入详表查询方法！ 查询ID:"+solId);
+		List<Salesorderlist> data=dao.selectByPrimaryKey(solId);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",1000);
+		map.put("data",data);
+		System.out.println(map);
+    	return map;
+    }
 	/**
 	 * 新增
 	 * @param student

@@ -48,7 +48,7 @@ public class SalesorderlistService {
     	return dao.insertSelective(record);
     }
 
-    public Salesorderlist selectByPrimaryKey(String solId){
+    public List<Salesorderlist> selectByPrimaryKey(String solId){
     	return dao.selectByPrimaryKey(solId);
     }
 

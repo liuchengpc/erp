@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.Receivablesdetails;
+import com.apatech.domain.Sales_quotation;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Salesorderlist;
 import com.apatech.domain.Salesorder;
@@ -95,19 +96,19 @@ public class SalesorderController {
 	 * 根据id查询详表数据
 	 * 
 	 */
-	@RequestMapping(value = "selectquerybysolId",method = RequestMethod.GET)
-	@ResponseBody
-	public Map<String,Object> selectquerybysolId(String solId){
-		System.out.println("进入详表查询方法！ 查询ID:"+solId);
-		List<Salesorderlist> data=dao1.selectquerybysolId(solId);
-		HashMap<String,Object> map=new HashMap<String,Object>();
-		map.put("code",0);
-		map.put("msg","");
-		map.put("count",1000);
-		map.put("data",data);
-		System.out.println(map);
-    	return map;
-    }
+//	@RequestMapping(value = "selectquerybysolId",method = RequestMethod.GET)
+//	@ResponseBody
+//	public Map<String,Object> selectquerybysolId(String solId){
+//		System.out.println("进入详表查询方法！ 查询ID:"+solId);
+//		List<Salesorderlist> data=dao1.selectquerybysolId(solId);
+//		HashMap<String,Object> map=new HashMap<String,Object>();
+//		map.put("code",0);
+//		map.put("msg","");
+//		map.put("count",1000);
+//		map.put("data",data);
+//		System.out.println(map);
+//    	return map;
+//    }
 	/**
 	 * 获取单号
 	 * @param billdate
@@ -130,10 +131,17 @@ public class SalesorderController {
 	 */
 	@RequestMapping(value = "selectByPrimaryKey",method = RequestMethod.GET)
 	@ResponseBody
-    public Salesorder selectByPrimaryKey(String soId) {
+    public Map<String,String> selectByPrimaryKey(String soId) {
 		System.out.println("进入SalesorderController根据主键查询");
 		System.out.println("soId="+soId);
-    	return dao.selectByPrimaryKey(soId);
+    	Map<String,String> map=new HashMap<String, String>();
+    	Salesorder s=dao.selectByPrimaryKey(soId);
+		if(s!=null) {
+			map.put("msg","200");
+		}else {
+			map.put("msg","210");
+		}
+    	return map;
 	}
 	/**
 	 * 新增 保存1

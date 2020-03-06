@@ -29,7 +29,7 @@ public interface SalesorderlistMapper {
 
     int insertSelective(Salesorderlist record);
 
-    Salesorderlist selectByPrimaryKey(String solId);
+    List<Salesorderlist> selectByPrimaryKey(String solId);
 
     int updateByPrimaryKeySelective(Salesorderlist record);
 

@@ -70,8 +70,21 @@ public class Sales_quotationController {
 		System.out.println(map);
     	return map;
     }
-	//根据人员id获取部门
-	
+	//根据单号获取是否存在
+	@RequestMapping(value="selectByPrimaryKey",method=RequestMethod.GET)
+	@ResponseBody
+	 public Map<String,String> selectByPrimaryKey(String sqId){
+		System.out.println(sqId);
+		System.out.println(dao.selectByPrimaryKey(sqId));
+		Sales_quotation s=dao.selectByPrimaryKey(sqId);
+		Map<String,String> map=new HashMap<String, String>();
+		if(s!=null) {
+			map.put("msg","200");
+		}else {
+			map.put("msg","210");
+		}
+    	return map;
+    }
 	/**
 	 * 获取单号
 	 * @param billdate

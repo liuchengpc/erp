@@ -22,7 +22,8 @@ public interface Sales_quotationMapper {
 	 		"FROM\r\n" + 
 	 		"Sales_quotation WHERE sq_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
-	
+	 
+	 
     int deleteByPrimaryKey(String sqId);
 
     int insert(Sales_quotation record);

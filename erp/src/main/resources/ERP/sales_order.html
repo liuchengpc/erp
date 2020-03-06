@@ -26,7 +26,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label" style="color: #009688;">客户</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" v-model="pages.soCustomerorder" name="soCustomerorder"@keyup.f4="showClientWindow()">
+									<input type="text" class="layui-input" v-model="pages.soCustomerorder" name="soCustomerorder" @keyup.f4="showClientWindow()">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -85,7 +85,7 @@
 								<label class="layui-form-label">单况</label>
 								<div class="layui-input-block">
 									<template v-if="pages.soTax==1">
-										<select name="soTax" >
+										<select name="soTax">
 											<option value="1" selected="selected">未完结</option>
 											<option value="2">已结案</option>
 											<option value="3">无 效</option>
@@ -114,7 +114,7 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">客户订单</label>
 								<div class="layui-input-block">
-									<input type="text" class="layui-input" >
+									<input type="text" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-form-item">
@@ -229,7 +229,7 @@
 											<div class="layui-form-item">
 												<label class="layui-form-label">备注</label>
 												<div class="layui-input-block">
-													<textare class="layui-textarea" v-model="pages.soRemark" name="soRemark"></textare>
+													<textare class="layui-textarea">{{pages.soRemark}}</textare>
 												</div>
 											</div>
 										</div>
@@ -299,10 +299,10 @@
 						<div class="layui-form">
 							<div class="layui-form-item">
 								<div class="layui-input-block" style="margin-left: 30px;">
-									<select lay-filter="aihao">
+									<select lay-filter="aihao"  v-on:change="selectchenge">
 										<option value="0">转单</option>
-										<option value="0" disabled>转销售出库单</option>
-										<option value="0">销售报价转入</option>
+										<option value="1" disabled>转销售出库单</option>
+										<option value="2" >销售报价转入</option>
 									</select>
 								</div>
 							</div>
@@ -360,10 +360,10 @@
                 area: ['800px', '700px']
             });
         });*/
-			function ygqh(id,name,bname){
+			function ygqh(id, name, bname) {
 				$("[name=staffId]").val(name);
 				/* $("[name=sqCustom4]").val(bname); */
-			};	
+			};
 			layui.use('element', function() {
 				var $ = layui.jquery,
 					element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -407,14 +407,16 @@
 				});
 			});
 
-
+			
 			$(function() {
+				
 				var name = $("#fhname").val();
 				if (name != "") {
 					$("#auditinfo").attr("class", "layui-btn layui-btn-disabled");
 				} else {
 					$("#auditinfo").attr("class", "layui-btn");
 				}
+				
 			});
 			var listVm = new Vue({
 				el: "#app",
@@ -456,50 +458,54 @@
 							this.logininfo();
 						}
 					},
+					//下拉框改变
+					selectchenge:function(){
+						layer.msg(11);
+					},
 					//业务人员资料弹窗
-					showSalesmanWindow(){
+					showSalesmanWindow() {
 						layer.open({
-							type:2,
-							title:"业务人员资料",
-							content:"window_set_ personnel_master_file_settings.html",
-							area:['762px','450px']
+							type: 2,
+							title: "业务人员资料",
+							content: "window_set_ personnel_master_file_settings.html",
+							area: ['762px', '450px']
 						})
 					},
 					//客户资料弹窗
-					showClientWindow(){
-						var t=this;
+					showClientWindow() {
+						var t = this;
 						layer.open({
-							type:2,
-							title:"客户资料",
-							content:"customerinfo.html",
-							area:['762px','450px'],
-							closeBtn: 1,//右上角
-							       success: function(layero, index){  
-							            var body = layer.getChildFrame('body', index);  
-							            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到子页面的窗口对象，执行iframe页的方法：iframeWin.method();
-							            //console.log(iframeWin);
-							            iframeWin.setVueName("info");
-										iframeWin.id = 100;
-										iframeWin.printId();
-							          }  
+							type: 2,
+							title: "客户资料",
+							content: "customerinfo.html",
+							area: ['762px', '450px'],
+							closeBtn: 1, //右上角
+							success: function(layero, index) {
+								var body = layer.getChildFrame('body', index);
+								var iframeWin = window[layero.find('iframe')[0]['name']]; //得到子页面的窗口对象，执行iframe页的方法：iframeWin.method();
+								//console.log(iframeWin);
+								iframeWin.setVueName("info");
+								iframeWin.id = 100;
+								iframeWin.printId();
+							}
 						})
 					},
 					//币别资料弹窗
-					showCurrencyWindow(){
+					showCurrencyWindow() {
 						layer.open({
-							type:2,
-							title:"币别资料",
-							content:"currencyTC1.html",
-							area:['762px','450px']
+							type: 2,
+							title: "币别资料",
+							content: "currencyTC1.html",
+							area: ['762px', '450px']
 						})
 					},
 					//新增订单
 					addinfo: function() {
 						$(":input").val("");
-						var data=this.page;
-						for(var o in data.list){
-							  data.list[o] = "";
-						 }
+						var data = this.page;
+						for (var o in data.list) {
+							data.list[o] = "";
+						}
 						var myDate = new Date;
 						var year = myDate.getFullYear(); //获取当前年
 						var mon = myDate.getMonth() + 1; //获取当前月
@@ -531,74 +537,99 @@
 						$("#deleinfo").attr("class", "layui-btn layui-btn-disabled");
 						$("#auditinfo").attr("class", "layui-btn layui-btn-disabled");
 						$("#cancelauditinfo").attr("class", "layui-btn layui-btn-disabled");
-						
 						//物料资料绑定事件
-						$("table").on("dblclick",function(){
-							layui.use(['layer'],function(){
-							var $ = layui.jquery;
-							var layer = layui.layer;
+						$("table").on("dblclick", function() {
+							layui.use(['layer'], function() {
+								var $ = layui.jquery;
+								var layer = layui.layer;
 								layer.open({
-									type:2,
-									content:"window_set_material_master_file_setting.html",
-									area:['762px','450px']
-								});				
-						});
-							
+									type: 2,
+									content: "materialget.html",
+									area: ['762px', '450px']
+								});
+							});
+
 						})
 					},
 					//修改订单信息
 					updateinfo: function() {
-						var record = {
-							soId: $("[name=soDocumentnumber]").val(),
-							soDocumentTime: $("[name=soDocumentTime]").val(),
-							currencyId: $("[name=currencyId]").val(),
-							soEffectiveTime: $("[name=soEffectiveTime]").val(),
-							soTax: $("[name=soTax]").val(),
-							customerId: $("[name=customerId]").val(),
-							soDeliveryAddress: $("[name=soDeliveryAddress]").val(),
-							staffId: $("[name=staffId]").val(),
-							teamId: $("[name=teamId]").val(),
-							soMonograph: $("[name=soMonograph]").val(),
-							soReviewer: $("[name=soReviewer]").val(),
-							soWatchword: $("[name=soWatchword]").val(),
-							soTailclause: $("[name=soTailclause]").val(),
-							soRemark: $("[name=soRemark]").val(),
-							soAuditing: $("[name=soAuditing]").val(),
-							soYn: "0",
-							soCustom2: $("[name=soCustom2]").val(),
-							soCustom3: $("[name=soCustom3]").val(),
-							soCustom4: $("[name=soCustom4]").val(),
-							soSubordinate: $("[name=soSubordinate]").val(),
-							soCollectionTerms: $("[name=soCollectionTerms]").val(),
-							soCollectionMonth: $("[name=soCollectionMonth]").val(),
-							soCollectionTime: $("[name=soCollectionTime]").val(),
-							soCustomerorder: $("[name=soCustomerorder]").val(),
-							soDocumentnumber: $("[name=soDocumentnumber]").val(),
-							soOderStatic: "1",
-							soAccountOwnership: $("[name=soAccountOwnership]").val(),
-							soCollectionTermsDay: "0"
-						}
-						if (record.sqDocumentTime >= record.sqEffectiveTime) {
-							alert("有效日期必须大于单据日期");
-							return;
-						} else {
-							var con = confirm("是否确认修改该订单？");
-							if (con) {
-								$.ajax({
-									url: "http://127.0.0.1:8080/SalesorderController/updateByPrimaryKeySelective2",
-									type: "post",
-									contentType: "application/json",
-									data: JSON.stringify(record),
-									success: function(res) {
-										alert(res.message);
-									}
+						//改变保存的按钮属性
+						$("#save").attr("class", "layui-btn");
+						$("#fistinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#preinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#nextinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#lastinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#updateinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#deleinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#auditinfo").attr("class", "layui-btn layui-btn-disabled");
+						$("#cancelauditinfo").attr("class", "layui-btn layui-btn-disabled");
+						//物料资料绑定事件
+						$("table").on("dblclick", function() {
+							layui.use(['layer'], function() {
+								var $ = layui.jquery;
+								var layer = layui.layer;
+								layer.open({
+									type: 2,
+									content: "materialget.html",
+									area: ['762px', '450px']
 								});
-								this.page(1);
-							}
-						}
+							});
+
+						})
+					
+						
+						// var record = {
+						// 	soId: $("[name=soDocumentnumber]").val(),
+						// 	soDocumentTime: $("[name=soDocumentTime]").val(),
+						// 	currencyId: $("[name=currencyId]").val(),
+						// 	soEffectiveTime: $("[name=soEffectiveTime]").val(),
+						// 	soTax: $("[name=soTax]").val(),
+						// 	customerId: $("[name=customerId]").val(),
+						// 	soDeliveryAddress: $("[name=soDeliveryAddress]").val(),
+						// 	staffId: $("[name=staffId]").val(),
+						// 	teamId: $("[name=teamId]").val(),
+						// 	soMonograph: $("[name=soMonograph]").val(),
+						// 	soReviewer: $("[name=soReviewer]").val(),
+						// 	soWatchword: $("[name=soWatchword]").val(),
+						// 	soTailclause: $("[name=soTailclause]").val(),
+						// 	soRemark: $("[name=soRemark]").val(),
+						// 	soAuditing: $("[name=soAuditing]").val(),
+						// 	soYn: "0",
+						// 	soCustom2: $("[name=soCustom2]").val(),
+						// 	soCustom3: $("[name=soCustom3]").val(),
+						// 	soCustom4: $("[name=soCustom4]").val(),
+						// 	soSubordinate: $("[name=soSubordinate]").val(),
+						// 	soCollectionTerms: $("[name=soCollectionTerms]").val(),
+						// 	soCollectionMonth: $("[name=soCollectionMonth]").val(),
+						// 	soCollectionTime: $("[name=soCollectionTime]").val(),
+						// 	soCustomerorder: $("[name=soCustomerorder]").val(),
+						// 	soDocumentnumber: $("[name=soDocumentnumber]").val(),
+						// 	soOderStatic: "1",
+						// 	soAccountOwnership: $("[name=soAccountOwnership]").val(),
+						// 	soCollectionTermsDay: "0"
+						// }
+						// if (record.sqDocumentTime >= record.sqEffectiveTime) {
+						// 	layer.msg("有效日期必须大于单据日期");
+						// 	return;
+						// } else {
+						// 	var con = confirm("是否确认修改该订单？");
+						// 	if (con) {
+						// 		$.ajax({
+						// 			url: "http://127.0.0.1:8080/SalesorderController/updateByPrimaryKeySelective2",
+						// 			type: "post",
+						// 			contentType: "application/json",
+						// 			data: JSON.stringify(record),
+						// 			success: function(res) {
+						// 				layer.msg(res.message);
+						// 			}
+						// 		});
+						// 		this.page(1);
+						// 	}
+						// }
 					},
 					//保存数据
 					add: function() {
+						 var soId=$("[name=soDocumentnumber]").val();
 						var record = {
 							soId: $("[name=soDocumentnumber]").val(),
 							soDocumentTime: $("[name=soDocumentTime]").val(),
@@ -629,17 +660,46 @@
 							soAccountOwnership: $("[name=soAccountOwnership]").val(),
 							soCollectionTermsDay: "0"
 						}
-						//新增数据
+						//判断修改还是新增
 						$.ajax({
-							url: "http://127.0.0.1:8080/SalesorderController/insertSelective1",
-							type: "post",
-							contentType: "application/json",
-							data: JSON.stringify(record),
-							success: function(res) {
-								alert(res.message);
+							url: "http://127.0.0.1:8080/SalesorderController/selectByPrimaryKey",
+							type: "get",
+							data:"soId="+soId,
+							success: function(res){
+								layer.msg(res.msg);
+								if(res.msg=="200"){
+									if(record.sqDocumentTime>=record.sqEffectiveTime){
+										layer.msg("有效日期必须大于单据日期");
+										return;
+									}else{
+										var con=confirm("是否确认修改该订单？");
+										if(con){
+											$.ajax({
+												url: "http://127.0.0.1:8080/SalesorderController/updateByPrimaryKeySelective2",
+												type: "post",
+												contentType: "application/json",
+												data: JSON.stringify(record),
+												success: function(res){
+													layer.msg(res.message);
+												}
+											});
+										}
+									}
+								}else{
+									//新增数据
+									$.ajax({
+										url: "http://127.0.0.1:8080/SalesorderController/insertSelective1",
+										type: "post",
+										contentType: "application/json",
+										data: JSON.stringify(record),
+										success: function(res){
+											layer.msg(res.message);
+										}
+									});
+								}
+								this.page(1); 
 							}
-						});
-						this.page(1);
+						})
 					},
 					//刷新
 					renovate: function() {
@@ -658,7 +718,7 @@
 					cancelaudit: function() {
 						var name = $("#fhname").val();
 						if (name == "") {
-							alert("该单据还未审核!");
+							layer.msg("该单据还未审核!");
 						} else {
 							var con = confirm("是否取消该单据的审核?");
 							if (con) {
@@ -675,9 +735,9 @@
 									data: JSON.stringify(record),
 									success: function(res) {
 										if (res.code == "1") {
-											alert("订单已取消审核！");
+											layer.msg("订单已取消审核！");
 										} else {
-											alert("订单已取消审核失败！");
+											layer.msg("订单已取消审核失败！");
 										}
 									}
 								});
@@ -701,7 +761,7 @@
 								contentType: "application/json",
 								data: JSON.stringify(record),
 								success: function(res) {
-									alert(res.message);
+									layer.msg(res.message);
 								}
 							});
 							this.goPage(1);
@@ -711,7 +771,7 @@
 					audit: function() {
 						var name = $("#fhname").val();
 						if (name != "") {
-							alert("该订单已复核！");
+							layer.msg("该订单已复核！");
 						} else {
 							//发ajax请求修改订单审核状态
 							var sqid = $("[name=soDocumentnumber]").val();
@@ -726,7 +786,7 @@
 								contentType: "application/json",
 								data: JSON.stringify(record),
 								success: function(res) {
-									alert(res.message);
+									layer.msg(res.message);
 								}
 							});
 							this.goPage(1);
@@ -734,90 +794,100 @@
 					},
 					logininfo: function() {
 						layui.use('table', function() {
-							var sqlid = $("[name=soDocumentnumber]").val();
+							var solId = $("[name=soDocumentnumber]").val();
 							var table = layui.table;
 							table.render({
 								elem: '#materialsContent',
-								url: 'http://127.0.0.1:8080/Sales_quotationController/querybysqid?sqlid=' + sqlid,
+								url: 'http://127.0.0.1:8080/SalesorderlistController/selectquerybysolId?solId=' + solId,
 								cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 									,
 								cols: [
 									[{
-											field: 'sqdProdid',
+											field: 'solId',
 											title: '(栏号)',
 											sort: true
 										}, {
-											field: 'sqdSerno',
-											title: '物料编号'
+											field: 'matterId',
+											title: '物料编号',
+											edit: 'text',
 										} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
 										, {
-											field: 'sqdProdname',
+											field: 'solMatName',
 											title: '(物料名称)',
 											sort: true
 										}, {
-											field: 'sqdProdsize',
+											field: 'solMatType',
 											title: '(规格型号)'
 										}, {
-											field: 'sqdUnitname',
+											field: 'solNominal',
 											title: '(单位名称)'
 										}, {
-											field: 'sqdSquantity',
+											field: 'solQuantity',
 											title: '数量',
+											edit: 'text',
 											align: 'center'
 										} //单元格内容水平居中
 										, {
-											field: 'sqdZkqprice',
+											field: 'solPrePrice',
 											title: '折扣前单价',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										} //单元格内容水平居中
 										, {
-											field: 'sqdDiscount',
+											field: 'solFold',
 											title: '折数(%)',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
-											field: 'sqdUnitprice',
+											field: 'solPrice',
 											title: '单价',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
-											field: 'sqdPrice',
+											field: 'solAmount',
 											title: '金额',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
-											field: 'sqdTaxrate',
+											field: 'solTaxRate',
 											title: '税率(%)',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
-											field: 'sqdTaxlimit',
+											field: 'solTax',
 											title: '(税额)',
 											sort: true,
 											align: 'right'
 										}, {
-											field: 'sqdTaxinclusiveprice',
+											field: 'solTaxAmount',
 											title: '(含税金额)',
 											sort: true,
 											align: 'right'
 										}, {
-											field: 'sqdComplimentart',
+											field: 'solGiveaway',
 											title: '赠品',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
-											field: 'sqdItemremark',
+											field: 'solJournalizing',
 											title: '分录备注',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										}, {
-											field: '无',
-											title: '(来源别)',
+											field: 'solMaterialComposition',
+											title: '物料组合',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										}, {
-											field: 'sqlId',
+											field: 'solSingleSource',
 											title: '(来源单号)',
 											sort: true,
 											align: 'right'

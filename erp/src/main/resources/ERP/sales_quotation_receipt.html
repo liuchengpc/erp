@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>销售报价单</title>
-
 		<link rel="stylesheet" href="css/layui.css">
 		<link href="css/fontawesome.css" rel="stylesheet">
 		<link href="css/brands.css" rel="stylesheet">
@@ -113,8 +112,30 @@
 						</ul>
 						<div class="layui-tab-content" style="padding: 10px 0;">
 							<div class="layui-tab-item layui-show">
-								<table id="materialsContent" class="layui-hide" @keyup.F4="showMaterialWindow()">
-									
+								<!-- <table class="layui-table" lay-data="{url:'http://127.0.0.1:8080/Sales_quotationController/querybysqid?sqlid=20200203002', id:'test3'}" lay-filter="test3">
+									<thead>
+										<tr>
+											<th lay-data="{field:'sqdSerno', width:80, sort: true}">物料编号</th>
+											<th lay-data="{field:'sqdProdname', width:120, sort: true, edit: 'text'}">物料名称</th>
+											<th lay-data="{field:'sqdProdsize', minWidth: 150}">(规格型号)</th>
+											<th lay-data="{field:'sqdUnitname', width:120}">(单位名称)</th>
+											<th lay-data="{field:'sqdSquantity', width:120, sort: true, edit: 'text'}">数量</th>
+											<th lay-data="{field:'sqdZkqprice', width:120, sort: true, edit: 'text'}">折扣前单价</th>
+											<th lay-data="{field:'sqdDiscount', width:120, sort: true, edit: 'text'}">折数(%)</th>
+											<th lay-data="{field:'sqdUnitprice', width:120, sort: true, edit: 'text'}">单价</th>
+											<th lay-data="{field:'sqdPrice', width:120, sort: true, edit: 'text'}">金额</th>sqdTaxrate
+											<th lay-data="{field:'sqdTaxrate', width:120, sort: true, edit: 'text'}">税率(%)</th>
+											<th lay-data="{field:'sqdTaxlimit', width:120}">(税额)</th>
+											<th lay-data="{field:'sqdTaxinclusiveprice', width:120}">(含税金额)</th>
+											<th lay-data="{field:'sqdComplimentart', width:120, sort: true, edit: 'text'}">赠品</th>
+											<th lay-data="{field:'sqdItemremark', width:120, sort: true, edit: 'text'}">分录备注</th>
+											<th lay-data="{field:'sqlId', width:120, sort: true, edit: 'text'}">(来源单号)</th>
+											
+										</tr>
+									</thead>
+								</table> -->
+								<table id="materialsContent" class="layui-hide" lay-filter="materialsContent" >
+								
 								</table>
 							</div>
 							<div class="layui-tab-item">
@@ -254,6 +275,9 @@
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
 		<script>
+		
+		</script>
+		<script>
 			$(function(){
 				var name = $("#fhname").val();
 				if (name != "") {
@@ -314,7 +338,8 @@
             type: 1,
             title: '销售报价单',
             content: $('#app'),
-            area: ['800px', '650px']
+            area: ['800px', '650px']给我看看清空的方法
+			
         });
     });*/
 			//创建vue实例
@@ -323,8 +348,9 @@
 				data() {
 					return {
 						page: [
-							
-						]
+						],
+						customerId:"",
+						list:[]
 					}
 				},
 				methods: {
@@ -360,15 +386,7 @@
 							this.logininfo();
 						}
 					},
-					//物料资料弹窗
-					showMaterialWindow(){
-						layer.open({
-							type:2,
-							title:"物料资料",
-							content:"window_set_material_master_file_setting.html",
-							area:['762px','450px'],
-						})
-					},
+					
 					//客户资料弹窗
 					showClientWindow(){
 						var t=this;
@@ -411,7 +429,7 @@
 					cancelaudit: function() {
 						var name = $("#fhname").val();
 						if (name == "") {
-							alert("该单据还未审核!");
+							layer.msg("该单据还未审核!");
 						} else {
 							var con = confirm("是否取消该单据的审核?");
 							if (con) {
@@ -428,9 +446,9 @@
 									data: JSON.stringify(record),
 									success: function(res) {
 										if (res.code == "1") {
-											alert("订单已取消审核！");
+											layer.msg("订单已取消审核！");
 										} else {
-											alert("订单已取消审核失败！");
+											layer.msg("订单已取消审核失败！");
 										}
 									}
 								});
@@ -453,6 +471,7 @@
 					},
 					//保存数据
 					add:function(){
+						 var sqId=$("[name=sqId]").val();
 						var record={
 							sqId:$("[name=sqId]").val(),
 							sqDocumentTime:$("[name=sqDocumentTime]").val(),
@@ -475,70 +494,155 @@
 							sqCustom3:$("[name=sqCustom3]").val(),
 							sqCustom4:$("[name=sqCustom4]").val()
 						}
-						//新增数据
+						//判断修改还是新增
 						$.ajax({
-							url: "http://127.0.0.1:8080/Sales_quotationController/insertSelective1",
-							type: "post",
-							contentType: "application/json",
-							data: JSON.stringify(record),
+							url: "http://127.0.0.1:8080/Sales_quotationController/selectByPrimaryKey",
+							type: "get",
+							data:"sqId="+sqId,
 							success: function(res){
-								alert(res.message);
-							}
-						});
-						this.page(1);
-					},
-					//修改订单信息
-					updateinfo:function(){
-						
-						var record={
-							sqId:$("[name=sqId]").val(),
-							sqDocumentTime:$("[name=sqDocumentTime]").val(),
-							currencyId:$("[name=currencyId]").val(),
-							sqExchangeRate:$("[name=sqExchangeRate]").val(),
-							sqEffectiveTime:$("[name=sqEffectiveTime]").val(),
-							sqTax:$("[name=sqTax]").val(),
-							customerId:$("[name=customerId]").val(),
-							sqDeliveryAddress:$("[name=sqDeliveryAddress]").val(),
-							staffId:$("[name=staffId]").val(),
-							teamId:$("[name=teamId]").val(),
-							sqMonograph:$("[name=sqMonograph]").val(),
-							sqReviewer:$("[name=sqReviewer]").val(),
-							sqWatchword:$("[name=sqWatchword]").val(),
-							sqTailclause:$("[name=sqTailclause]").val(),
-							sqRemark:$("[name=sqRemark]").val(),
-							sqAuditing:$("[name=sqAuditing]").val(),
-							sqYn:"0",//是否删除
-							sqCustom2:$("[name=sqCustom2]").val(),
-							sqCustom3:$("[name=sqCustom3]").val(),
-							sqCustom4:$("[name=sqCustom4]").val()
-						}
-						if(record.sqDocumentTime>=record.sqEffectiveTime){
-							alert("有效日期必须大于单据日期");
-							return;
-						}else{
-							var con=confirm("是否确认修改该订单？");
-							if(con){
-								$.ajax({
-									url: "http://127.0.0.1:8080/Sales_quotationController/updateByPrimaryKeySelective3",
-									type: "post",
-									contentType: "application/json",
-									data: JSON.stringify(record),
-									success: function(res){
-										alert(res.message);
+								alert(res.msg);
+								if(res.msg=="200"){
+									if(record.sqDocumentTime>=record.sqEffectiveTime){
+										alert("有效日期必须大于单据日期");
+										return;
+									}else{
+										var con=confirm("是否确认修改该订单？");
+										if(con){
+											$.ajax({
+												url: "http://127.0.0.1:8080/Sales_quotationController/updateByPrimaryKeySelective3",
+												type: "post",
+												contentType: "application/json",
+												data: JSON.stringify(record),
+												success: function(res){
+													layer.msg(res.message);
+												}
+											});
+										}
 									}
-								});
-								this.page(1);
+								}else{
+									//新增数据
+									$.ajax({
+										url: "http://127.0.0.1:8080/Sales_quotationController/insertSelective1",
+										type: "post",
+										contentType: "application/json",
+										data: JSON.stringify(record),
+										success: function(res){
+											layer.msg(res.message);
+										}
+									});
+								}
+								this.page(1); 
 							}
-						}
+						})
+					},
+					//编辑状态时
+					updateinfo:function(){
+							layui.use('table', function() {
+								var table = layui.table;
+								//监听单元格编辑
+								table.on('edit(materialsContent)', function(obj) {
+									var value = obj.value //得到修改后的值
+										,
+										data = obj.data //得到所在行所有键值
+										,
+										field = obj.field; //得到字段
+									layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+								});
+							});
+							//改变保存的按钮属性
+							$("#save").attr("class","layui-btn");
+							$("#fistinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#preinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#nextinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#lastinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#updateinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#deleinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
+							$("#cancelauditinfo").attr("class","layui-btn layui-btn-disabled");
+							//物料资料绑定事件
+							$("table").on("dblclick",function(){
+								layui.use(['layer'],function(){
+								var $ = layui.jquery;
+								var layer = layui.layer;
+									layer.open({
+										type:2,
+										content:"materialget.html",
+										area:['762px','450px']
+									});				
+							});
+								
+							})
+						// var record={
+						// 	sqId:$("[name=sqId]").val(),
+						// 	sqDocumentTime:$("[name=sqDocumentTime]").val(),
+						// 	currencyId:$("[name=currencyId]").val(),
+						// 	sqExchangeRate:$("[name=sqExchangeRate]").val(),
+						// 	sqEffectiveTime:$("[name=sqEffectiveTime]").val(),
+						// 	sqTax:$("[name=sqTax]").val(),
+						// 	customerId:$("[name=customerId]").val(),
+						// 	sqDeliveryAddress:$("[name=sqDeliveryAddress]").val(),
+						// 	staffId:$("[name=staffId]").val(),
+						// 	teamId:$("[name=teamId]").val(),
+						// 	sqMonograph:$("[name=sqMonograph]").val(),
+						// 	sqReviewer:$("[name=sqReviewer]").val(),
+						// 	sqWatchword:$("[name=sqWatchword]").val(),
+						// 	sqTailclause:$("[name=sqTailclause]").val(),
+						// 	sqRemark:$("[name=sqRemark]").val(),
+						// 	sqAuditing:$("[name=sqAuditing]").val(),
+						// 	sqYn:"0",//是否删除
+						// 	sqCustom2:$("[name=sqCustom2]").val(),
+						// 	sqCustom3:$("[name=sqCustom3]").val(),
+						// 	sqCustom4:$("[name=sqCustom4]").val()
+						// }
+						// if(record.sqDocumentTime>=record.sqEffectiveTime){
+						// 	alert("有效日期必须大于单据日期");
+						// 	return;
+						// }else{
+						// 	var con=confirm("是否确认修改该订单？");
+						// 	if(con){
+						// 		$.ajax({
+						// 			url: "http://127.0.0.1:8080/Sales_quotationController/updateByPrimaryKeySelective3",
+						// 			type: "post",
+						// 			contentType: "application/json",
+						// 			data: JSON.stringify(record),
+						// 			success: function(res){
+						// 				alert(res.message);
+						// 			}
+						// 		});
+						// 		this.page(1);
+						// 	}
+						// }
 					},
 					//新增订单
 					addinfo: function() {
 						  var data=this.page;
 						   console.log(data);
-							for(var o in data.list){
-							      data.list[o] = "";
-							 }
-							 $("input").val("");
+							/* for(var o in data.list){
+							      data.list[0]="";
+							 } */
+							//data.list[0].customerId = "";
+							// data.list[0].sqDocumentTime = "";
+							 data.list[0].currencyId = "人民币";
+							 data.list[0].sqExchangeRate = "1.0000";
+							 data.list[0].sqEffectiveTime = "";
+							 data.list[0].sqTax = "";
+							 data.list[0].customerId = "";
+							 data.list[0].sqDeliveryAddress = "";
+							 data.list[0].staffId = "";
+							 data.list[0].sqMonograph = "";
+							 data.list[0].teamId = "";
+							 data.list[0].sqReviewer = "";
+							 data.list[0].sqWatchword = "";
+							 data.list[0].sqTailclause = "";
+							 data.list[0].sqRemark = "";
+							 data.list[0].sqAuditing = "";
+							 data.list[0].sqYn =0;
+							 data.list[0].sqCustom1 = "";
+							 data.list[0].sqCustom2 = "";
+							 data.list[0].sqCustom3 = "";
+							 data.list[0].sqCustom4 = "";
+							 data.list[0].sqCustom5 = "";
+							 data.list[0].sqCustom6 = "";
 							var myDate = new Date;
 						    var year = myDate.getFullYear(); //获取当前年
 						    var mon = myDate.getMonth() + 1; //获取当前月
@@ -551,15 +655,16 @@
 						    // var s = myDate.getSeconds();//获取当前秒
 							var nowDate=year+"-"+mon+"-"+date
 							//获取当前时间
-							$("[name=sqDocumentTime]").val(nowDate);
+							data.list[0].sqDocumentTime = nowDate;
+							// data.list[0].sqDocumentTime = "";
 							//获取当前操作员name
-							$("[name=sqMonograph]").val("admin");
+							 data.list[0].sqMonograph = "admin";
 							//生成订单号
 							 var x = 100;
 							  var y = 999;
 							 var  rand= parseInt(Math.random() * (x - y + 1) + y);
 							var sqId1=year+mon+date+rand
-							$("[name=sqId]").val(sqId1);
+							data.list[0].sqId = sqId1;
 							//改变保存的按钮属性
 							$("#save").attr("class","layui-btn");
 							$("#fistinfo").attr("class","layui-btn layui-btn-disabled");
@@ -570,20 +675,124 @@
 							$("#deleinfo").attr("class","layui-btn layui-btn-disabled");
 							$("#auditinfo").attr("class","layui-btn layui-btn-disabled");
 							$("#cancelauditinfo").attr("class","layui-btn layui-btn-disabled");
-							
 							//物料资料绑定事件
-							$("table").on("dblclick",function(){
-								layui.use(['layer'],function(){
-								var $ = layui.jquery;
-								var layer = layui.layer;
-									layer.open({
-										type:2,
-										content:"window_set_material_master_file_setting.html",
-										area:['762px','450px']
-									});				
+								layui.use('table', function(){
+								   var table = layui.table; 
+								   //监听单元格事件
+										table.on('rowDouble(materialsContent)',function(obj){
+											
+												layer.open({
+													type:2,
+													content:"materialget.html",
+													area:['762px','450px']
+												});
+											})
+											
+								   }); 
+							//数据表格重载
+							layui.use('table', function() {
+								var table = layui.table;
+								table.render({
+									elem: '#materialsContent',
+									url: '',//http://127.0.0.1:8080/Sales_quotationController/querybysqid?sqlid=
+									data:[{}],
+									cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+										,
+									cols: [
+										[{
+												field: 'sqdProdid',
+												title: '(栏号)',
+												sort: true
+											}, {
+												field: 'sqdSerno',
+												title: '物料编号',
+												edit: 'text',
+											} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+											, {
+												field: 'sqdProdname',
+												title: '(物料名称)',
+												sort: true
+											}, {
+												field: 'sqdProdsize',
+												title: '(规格型号)'
+											}, {
+												field: 'sqdUnitname',
+												title: '(单位名称)'
+											}, {
+												field: 'sqdSquantity',
+												title: '数量',
+												edit: 'text',
+												align: 'center',
+												sort: true,
+											} //单元格内容水平居中
+											, {
+												field: 'sqdZkqprice',
+												title: '折扣前单价',
+												edit: 'text',
+												sort: true,
+												align: 'right'
+											} //单元格内容水平居中
+											, {
+												field: 'sqdDiscount',
+												title: '折数(%)',
+												sort: true,
+												edit: 'text',
+												align: 'right'
+											}, {
+												field: 'sqdUnitprice',
+												title: '单价',
+												edit: 'text',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqdPrice',
+												title: '金额',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqdTaxrate',
+												title: '税率(%)',
+												sort: true,
+												edit: 'text',
+												align: 'right'
+											}, {
+												field: 'sqdTaxlimit',
+												title: '(税额)',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqdTaxinclusiveprice',
+												title: '(含税金额)',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqdComplimentart',
+												title: '赠品',
+												edit: 'text',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqdItemremark',
+												title: '分录备注',
+												edit: 'text',
+												sort: true,
+												align: 'right'
+											}, {
+												field: '无',
+												title: '(来源别)',
+												sort: true,
+												align: 'right'
+											}, {
+												field: 'sqlId',
+												title: '(来源单号)',
+												sort: true,
+												align: 'right'
+											}
+										]
+									]
+								});
 							});
-								
-							})
+							
 					},
 					//删除订单
 					gomove: function() {
@@ -601,7 +810,7 @@
 								contentType: "application/json",
 								data: JSON.stringify(record),
 								success: function(res){
-									alert(res.message);
+									layer.msg(res.message);
 								}
 							});
 							this.goPage(1);
@@ -611,7 +820,7 @@
 					audit: function() {
 						var name = $("#fhname").val();
 						if (name != "") {
-							alert("该订单已复核！");
+							layer.msg("该订单已复核！");
 						} else {
 							//发ajax请求修改订单审核状态
 							var sqid = $("[name=sqId]").val();
@@ -626,21 +835,23 @@
 								contentType: "application/json",
 								data: JSON.stringify(record),
 								success: function(res) {
-									alert(res.message);
+									layer.msg(res.message);
 								}
 							});
 							this.goPage(1);
 						}
 					},
-					
 					logininfo: function() {
-						
 						layui.use('table', function() {
 							var sqlid = $("[name=sqId]").val();
 							var table = layui.table;
 							table.render({
 								elem: '#materialsContent',
 								url: 'http://127.0.0.1:8080/Sales_quotationController/querybysqid?sqlid=' + sqlid,
+								data:{list:[
+										
+										
+								]},
 								cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 									,
 								cols: [
@@ -650,7 +861,8 @@
 											sort: true
 										}, {
 											field: 'sqdSerno',
-											title: '物料编号'
+											title: '物料编号',
+											edit: 'text',
 										} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
 										, {
 											field: 'sqdProdname',
@@ -665,11 +877,14 @@
 										}, {
 											field: 'sqdSquantity',
 											title: '数量',
-											align: 'center'
+											edit: 'text',
+											align: 'center',
+											sort: true,
 										} //单元格内容水平居中
 										, {
 											field: 'sqdZkqprice',
 											title: '折扣前单价',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										} //单元格内容水平居中
@@ -677,10 +892,12 @@
 											field: 'sqdDiscount',
 											title: '折数(%)',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
 											field: 'sqdUnitprice',
 											title: '单价',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										}, {
@@ -692,6 +909,7 @@
 											field: 'sqdTaxrate',
 											title: '税率(%)',
 											sort: true,
+											edit: 'text',
 											align: 'right'
 										}, {
 											field: 'sqdTaxlimit',
@@ -706,11 +924,13 @@
 										}, {
 											field: 'sqdComplimentart',
 											title: '赠品',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										}, {
 											field: 'sqdItemremark',
 											title: '分录备注',
+											edit: 'text',
 											sort: true,
 											align: 'right'
 										}, {

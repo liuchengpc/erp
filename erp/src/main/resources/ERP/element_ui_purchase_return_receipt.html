@@ -375,7 +375,7 @@
                         </el-dropdown>
                         <el-dropdown split-button type="primary" trigger="click">
                             功能
-                            <el-dropdown-menu slot="dropdown" @command="handleCommand">
+                            <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item command="a">批号设定</el-dropdown-item>
                                 <el-dropdown-item command="a">条码打印</el-dropdown-item>
                                 <el-dropdown-item command="a">批次变更价格</el-dropdown-item>
@@ -524,6 +524,21 @@
         <template #default="data">
             {{data.item.matterId}}
             {{data.item.matterName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="storeDialogConfig.filterType"
+            :data="storeDialogConfig.stores"
+            :option="storeDialogConfig.option"
+            :columns="storeDialogConfig.columns"
+            :title="storeDialogConfig.title"
+            :single-value="storeDialogConfig.singleValue"
+            :dialog-visible.sync="storeDialogConfig.dialogVisible"
+            @visible-change="handleStoreDialogVisibleChange"
+            @handle-retrieve="handleStoreDialogRetrieve">
+        <template #default="data">
+            {{data.item.psDocumentNumber}}
+            {{data.item.psDocumentDate}}
         </template>
     </retrieve-dialog>
 </div>

@@ -489,4 +489,9 @@
     <include refid="Base_Column_List"/>
     from erp.purchase_storage order by ps_id asc limit 0,1;
   </select>
+  <select id="selectAllReview" resultMap="purchaseStorageMap">
+    select
+    <include refid="Base_Column_List"/>
+    from erp.purchase_storage where ps_audition = 1
+  </select>
 </mapper>

@@ -76,4 +76,8 @@ public class Purchase_storageService {
 	public PurchaseStoragePojo selectFirst() {
 		return purchase_storageMapper.selectFirst();
 	}
+
+	public List<PurchaseStoragePojo> selectAllReview() {
+		return dao.selectAllReview();
+	}
 }

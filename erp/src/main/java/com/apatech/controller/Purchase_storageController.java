@@ -1,6 +1,7 @@
 package com.apatech.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.apatech.pojo.PurchaseStoragePojo;
@@ -158,5 +159,9 @@ public class Purchase_storageController {
 		return dao.selectFirst();
 	}
 
-
+	@GetMapping("/selectAllReview")
+	@ResponseBody
+	public List<PurchaseStoragePojo> selectAllReview(){
+		return dao.selectAllReview();
+	}
 }

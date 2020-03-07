@@ -1,7 +1,7 @@
 Vue.component('retrieve-dialog', {
     template: `
         <div>
-            <el-dialog :title="title" :visible.sync="dialogVisible">
+            <el-dialog :title="title" :visible.sync="dialogVisible" :close-on-click-modal="false" :show-close="false">
                 <el-row>
                     <el-col :span="24">
                         <el-form :inline="true" class="demo-form-inline">

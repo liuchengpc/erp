@@ -60,6 +60,13 @@ import {
 } from "../rest/warehouse_rest.js"
 
 import {
+    storeDialogConfig
+}from "../config/store-dialog-config.js"
+import {
+    getAllReviewStore
+}from "../rest/Purchase_receipt_receipt_rest.js"
+
+import {
     orderStatusConfig
 } from "../config/orderStatusConfig.js"
 
@@ -165,7 +172,8 @@ let viewModel = new Vue({
             projectDialogConfig: projectDialogConfig(),
             departmentDialogConfig: departmentDialogConfig(),
             employeeDialogConfig: employeeDialogConfig(),
-            materialDialogConfig: materialDialogConfig()
+            materialDialogConfig: materialDialogConfig(),
+            storeDialogConfig: storeDialogConfig()
         };
     },
     methods: {
@@ -185,7 +193,7 @@ let viewModel = new Vue({
             this.$refs[formName].resetFields();
         },
         handleCommand(command) {
-
+            this.storeDialogConfig.dialogVisible = true;
         },
         handleClick(row) {
         },
@@ -447,6 +455,13 @@ let viewModel = new Vue({
 
             })
         },
+        getAllReviewStore() {
+            getAllReviewStore().then(resp => {
+                this.storeDialogConfig.stores = resp.data;
+            }).catch(error => {
+
+            });
+        },
         handleSupplierDialogVisibleChange(visible) {
             this.supplierDialogConfig.dialogVisible = visible;
         },
@@ -494,6 +509,13 @@ let viewModel = new Vue({
         handleMaterialDialogRetrieve(selectedContent){
             this.purechaseReturn.details.push(selectedContent);
             this.handleMaterialDialogVisibleChange(false);
+        },
+        handleStoreDialogVisibleChange(visible){
+            this.storeDialogConfig.dialogVisible = visible;
+        },
+        handleStoreDialogRetrieve(selectedContent) {
+            console.log(selectedContent);
+            this.handleStoreDialogVisibleChange(false);
         }
     },
     created: function () {
@@ -504,6 +526,7 @@ let viewModel = new Vue({
         this.getAllProject();
         this.getAllSupplier();
         this.getAllWarehouse();
+        this.getAllReviewStore();
     },
     watch: {
         orderStatus: function (newOrderStatus, originalOrderStatus) {

@@ -32,7 +32,7 @@ public class Purchase_jiaoyiController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<Purchase_jiaoyi> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入Purchase_jiaoyiController分页");
+		System.out.println("进入Purchase_jiaoyiController分页 ");
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Purchase_jiaoyi> page=dao.selectAllpage(pageNum, pageSize);
     	return page;

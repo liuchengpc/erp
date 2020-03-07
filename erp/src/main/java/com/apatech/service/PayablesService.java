@@ -31,12 +31,21 @@ public class PayablesService {
     }
 	 
 	
+	public List<Payables> selectAll2(String payablesSupplierName) {
+		List<Payables> list = dao.selectAll2(payablesSupplierName);
+		return list;
+	}
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
 	
     public int deleteByPrimaryKey(String payablesId){
     	return dao.deleteByPrimaryKey(payablesId);
+    }
+    
+    public int deleteByPrimaryKey2(String payablesSupplierName){
+    	return dao.deleteByPrimaryKey2(payablesSupplierName);
     }
 
     public int insert(Payables record){

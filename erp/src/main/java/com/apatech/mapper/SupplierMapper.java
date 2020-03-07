@@ -28,8 +28,12 @@ public interface SupplierMapper {
     int insertSelective(Supplier record);
 
     Supplier selectByPrimaryKey(String supplierId);
+    
+    Supplier selectByPrimaryKey2(String supplierName);
 
     int updateByPrimaryKeySelective(Supplier record);
 
+    int updateByPrimaryKeySelective2(Supplier record);
+    
     int updateByPrimaryKey(Supplier record);
 }

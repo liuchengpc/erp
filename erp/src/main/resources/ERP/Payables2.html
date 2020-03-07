@@ -849,7 +849,7 @@
 						        });
 						          var tables2=table.render({
 						            elem: '#materialsContent6'
-						            ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllBySupplier2?priabillCustom10='+$("#payablesSupplierName").val()
+						            ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllBySupplier2?priabillCustom10='+$("#payablesSupplierName").val()+'&payablesId='+$("#payablesCustom2").val()
 						            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
 						            ,toolbar: 'default'//开启工具栏
 						            ,totalRow: true //开启合计行
@@ -1017,7 +1017,7 @@
 	             	this.saves1 =true;//保存 
 	             	this.update1 =false;//编辑*/
 				},
-				inset: function() {//新增按钮
+				inset: function() {//新增按钮				
 					this.page.list[0].payablesId="";//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId="";//供应商表id,外键
 				    this.page.list[0].scsId="";//结算方式id,外键
@@ -1308,6 +1308,7 @@
 									for(var q=0;q<obj3.length;q++){
 										/*获取当前时间*/
 									   	//判断是否在前面加0
+									   		obj3[q].priabillCustom5=obj3[q].priadetailsId;
 											function getNow(s) {
 											return s < 10 ? '0' + s: s;
 											}
@@ -1361,10 +1362,32 @@
 					});					
 				 });
 				},
-				saves: function() {//保存					
+				saves: function() {//保存	
+					/*$.ajax({
+						url :"http://127.0.0.1:8080/PayablesController/selectAll2?payablesSupplierName="+$("#payablesSupplierName").val(),
+						type:"get",
+						async:false,
+					  	dataType:'json',
+					  	success:function(resz){
+					  		if(resz==1){
+					  			layer.confirm('已有该供应商未审核的单据，是否保存？[确认：覆盖原单据]', function(index){
+					  				$.ajax({
+										url :"http://127.0.0.1:8080/PayablesController/deleteByPrimaryKey2?payablesSupplierName="+$("#payablesSupplierName").val(),
+										type:"get",
+										async:false,
+									  	dataType:'json',
+									  	success:function(resz2){
+
+									  	}									  	
+									});
+									layer.close(index);
+					  			});
+					  		}
+					  	}
+					});*/
+					
 					
 					if(this.isinsert==true){//新增
-						//alert("进入新增")
 						if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=0.00){
 							if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=$("#payablesPrice1").val()){
 								layer.msg("结算方式金额 与 合计需支付金额 不相等");
@@ -1716,7 +1739,7 @@
 							var obj7 = table.cache["materialsContent6"];
 							for(var u=0;u<obj7.length;u++){
 								var jyPriabill = -parseFloat(obj7[u].priabillCustom8);
-								alert(jyPriabill);
+								var priabillCustom9 = -parseFloat(obj7[u].priabillCustom8);
 								obj01={
 									"jyData":$("#payablesPayablestime").val(),
 									"jySupplierName":$("#payablesSupplierName").val(),
@@ -1733,7 +1756,16 @@
 									  	dataType:'json',
 									  	contentType:"application/json;charset=utf-8",
 									  	success:function (res) {
-									  		alert("ee");
+									  		
+								        }
+									});
+									
+									$.ajax({
+										url :"http://127.0.0.1:8080/PriadetailsController/updateByPrimaryKeySelective2?priadetailsId="+obj7[u].priabillCustom5+"&priabillCustom9="+priabillCustom9,
+										type:"post",
+									  	dataType:'json',
+									  	success:function (res78) {
+									  		
 								        }
 									});
 								}
@@ -1743,6 +1775,7 @@
 						//应付款明细表
 						if(table.cache["materialsContent2"].length!=0){											
 							var obj2 = table.cache["materialsContent2"];
+							console.log("content2:"+obj2);
 							for(var n=0;n<obj2.length;n++){										
    								var ob={
    									ppType:"",
@@ -1810,36 +1843,53 @@
 								  	dataType:'json',
 								  	contentType:"application/json;charset=utf-8",
 								  	success:function (res) {
-								  		layer.msg("审核通过！2");
-								  		this_.goPage(1, 1);	
+								  		
 								  	}
 								});
 							}
+							
+							var ppAmountcharged=$('.layui-table-total .layui-table tr [data-field="ppAmountcharged"]').text();
+							var ppOffsetamount=$('.layui-table-total .layui-table tr [data-field="ppOffsetamount"]').text();
+							var payablesSupplierName = $("#payablesSupplierName").val();
+							$.ajax({
+								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective2?ppAmountcharged="+ppAmountcharged+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
+								type:"post",
+							  	dataType:'json',
+							  	success:function (res985) {
+							  		
+							  	}
+							});
+							this_.goPage(1,1);
+							layer.msg("审核通过！2");
 				    	}
 				    }
 				 });
 				},   
-				noAuditing: function() {//反审核
+				noAuditing: function() {//反审核					
 					var this_ = this;
-					if(this.noAuditing1=true){
-				    	this.diasabledInput=true;//input可以编辑
-						this.isinsert=true;//开启新增模式
-						this.isedit=false;//关闭修改模式
-						this.getno();
+				layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+								var form2 = layui.form;
+						        var table = layui.table;						
+								var $ = layui.$, layer = layui.layer;
+				    if(this_.noAuditing1=true){
+				    	this_.diasabledInput=true;//input可以编辑
+						this_.isinsert=true;//开启新增模式
+						this_.isedit=false;//关闭修改模式
+						this_.getno();
 											
-						this.goFirstPage1 =false;//第一笔
-			            this.goPrePage1 =false;//上一笔				            
-		             	this.goNextPage1 =false;//下一笔
-				     	this.goLastPage1 =false;//后一笔
-		             	this.inset1 =false;   //新增      
-	             		this.return1=true;//返回
-		             	this.saves1 =true;//保存 
-		             	this.update1 =false;//编辑
-		             	this.deletes1 =false;//删除		
+						this_.goFirstPage1 =false;//第一笔
+			            this_.goPrePage1 =false;//上一笔				            
+		             	this_.goNextPage1 =false;//下一笔
+				     	this_.goLastPage1 =false;//后一笔
+		             	this_.inset1 =false;   //新增      
+	             		this_.return1=true;//返回
+		             	this_.saves1 =true;//保存 
+		             	this_.update1 =false;//编辑
+		             	this_.deletes1 =false;//删除		
 					    
-					    var payablesId = this.page.list[0].payablesId;
-					    var updateObj = this.page.list[0];
-					    alert(payablesId);
+					    var payablesId = this_.page.list[0].payablesId;
+					    var updateObj = this_.page.list[0];
 					    updateObj.payablesAuditing="0";
 					    //应付款主表
 					    $.ajax({
@@ -1853,12 +1903,140 @@
 						  		//alert("系统提示：" +res.message);
 								this_.isinsert=false;//关闭新增模式
 								this_.isedit=false;//关闭编辑模式
-								layer.msg('反审核成功！1');
-								this_.goPage(1, 1);		
 					        }
-						});						
+						});	
 						
-					}
+						$.ajax({
+							url :"http://127.0.0.1:8080/Purchase_jiaoyiController/deleteByPrimaryKey3?jyNumber="+payablesId,
+							type:"get",
+						  	dataType:'json',
+						  	success:function (res) {
+						  		
+					        }
+						});
+						
+						//供应商付款明细记录表--取用预付
+						if(table.cache["materialsContent6"].length!=0){
+							var obj7 = table.cache["materialsContent6"];
+							for(var u=0;u<obj7.length;u++){
+								var jyPriabill = -parseFloat(obj7[u].priabillCustom8);
+								var priabillCustom9 = -parseFloat(obj7[u].priabillCustom8);
+								if(jyPriabill!=0||jyPriabill!=""){
+									$.ajax({
+										url :"http://127.0.0.1:8080/Purchase_jiaoyiController/deleteByPrimaryKey2?jyNumber="+obj7[u].priadetailsId,
+										type:"get",
+									  	dataType:'json',
+									  	success:function (res) {
+									  		
+								        }
+									});
+									
+									$.ajax({
+										url :"http://127.0.0.1:8080/PriadetailsController/updateByPrimaryKeySelective2?priadetailsId="+obj7[u].priabillCustom5+"&priabillCustom9="+priabillCustom9,
+										type:"post",
+									  	dataType:'json',
+									  	success:function (res78) {
+									  		
+								        }
+									});
+								}
+							}
+						}
+						
+						//应付款明细表
+						if(table.cache["materialsContent2"].length!=0){											
+							var obj2 = table.cache["materialsContent2"];
+							console.log("content2:"+obj2);
+							for(var n=0;n<obj2.length;n++){										
+   								var ob={
+   									ppType:"",
+   									ppNumber:"",
+   									ppDate:"",
+   									ppPcId:"",
+   									ppPcName:"",
+   									ppTeamId:"",
+   									ppTeamName:"",
+   									ppBuyer:"",
+   									ppProjectName:"",
+   									ppCurrency:"",
+   									ppExchangeRate:"",
+   									ppPayablesmainPrice:"",
+   									ppCurrentbalance:"",
+   									ppDiscountamount:"",
+   									ppAmountcharged:"",
+   									ppOffsetamount:"",
+   									ppAuditing:"",
+   									ppYn:"",
+   									ppCustom1:"",
+   									ppCustom2:"",
+   									ppCustom3:"",
+   									ppCustom4:"",
+   									ppCustom5:"",
+   									ppCustom6:"",
+   									ppCustom7:"",
+   									ppCustom8:"",
+   									ppCustom9:"",
+   									ppCustom10:""
+   								};
+								ob.ppType=obj2[n].ppType;
+								ob.ppNumber=obj2[n].ppNumber;
+								ob.ppDate=obj2[n].ppDate;
+								ob.ppPcId=obj2[n].ppPcId;
+								ob.ppPcName=obj2[n].ppPcName;
+								ob.ppTeamId=obj2[n].ppTeamId;
+								ob.ppTeamName=obj2[n].ppTeamName;
+								ob.ppBuyer=obj2[n].ppBuyer;
+								ob.ppProjectName=obj2[n].ppProjectName;
+								ob.ppCurrency=obj2[n].ppCurrency;
+								ob.ppExchangeRate=obj2[n].ppExchangeRate;
+								ob.ppPayablesmainPrice=obj2[n].ppPayablesmainPrice;
+								ob.ppCurrentbalance=obj2[n].ppCurrentbalance;
+								ob.ppDiscountamount=obj2[n].ppDiscountamount;
+								ob.ppAmountcharged=obj2[n].ppAmountcharged;
+								ob.ppOffsetamount=obj2[n].ppOffsetamount;
+								ob.ppAuditing="1";
+								ob.ppYn=obj2[n].ppYn;
+								ob.ppCustom1=obj2[n].ppCustom1;
+								ob.ppCustom2=obj2[n].ppCustom2;
+								ob.ppCustom3=obj2[n].ppCustom3;
+								ob.ppCustom4=obj2[n].ppCustom4;
+								ob.ppCustom5=obj2[n].ppCustom5;
+								ob.ppCustom6=obj2[n].ppCustom6;
+								ob.ppCustom7=obj2[n].ppCustom7;
+								ob.ppCustom8=$("#payablesCustom2").val();
+								ob.ppCustom9="2";
+								ob.ppCustom10=obj2[n].ppCustom10;
+								
+								$.ajax({
+									url :"http://127.0.0.1:8080/Purchase_payablesController/updateByPrimaryKeySelective3",
+									type:"post",
+									data:JSON.stringify(ob),
+								  	dataType:'json',
+								  	contentType:"application/json;charset=utf-8",
+								  	success:function (res) {
+								  		
+								  	}
+								});
+							}
+							
+							var ppAmountcharged=$('.layui-table-total .layui-table tr [data-field="ppAmountcharged"]').text();
+							var ppOffsetamount=$('.layui-table-total .layui-table tr [data-field="ppOffsetamount"]').text();
+							var payablesSupplierName = $("#payablesSupplierName").val();
+							$.ajax({
+								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective3?ppAmountcharged="+ppAmountcharged+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
+								type:"post",
+							  	dataType:'json',
+							  	success:function (res985) {
+							  		
+							  	}
+							});
+							
+							
+							this_.goPage(1,1);
+							layer.msg("反审核通过！");
+				    	}
+				    }
+				 });
 				},
 				selectCk: function() {//下拉框
 					alert(1);

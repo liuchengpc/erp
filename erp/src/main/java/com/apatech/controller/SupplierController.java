@@ -128,6 +128,60 @@ public class SupplierController {
     }
 	
 	/**
+	 * 根据主键修改
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(String ppAmountcharged,String ppOffsetamount,String payablesSupplierName) {
+		System.out.println("进入"+payablesSupplierName+"供应商查询修改付款信息");
+		Map<String, String> map=new HashMap<String,String>();
+		Supplier sp = dao.selectByPrimaryKey2(payablesSupplierName);
+		System.out.println("查询结果:"+sp);
+		System.out.println("期末预付款:"+(sp.getSupplierCuendcollect()-Float.parseFloat(ppOffsetamount)));
+		sp.setSupplierCuendcollect(sp.getSupplierCuendcollect()-Float.parseFloat(ppOffsetamount));
+		System.out.println("期末应付款："+(sp.getSupplierCuendshouldcollect()-Float.parseFloat(ppAmountcharged)));
+		sp.setSupplierCuendshouldcollect((sp.getSupplierCuendshouldcollect()-Float.parseFloat(ppAmountcharged)));
+		System.out.println("剩余额度："+(sp.getSupplierResiduemonet()+Float.parseFloat(ppAmountcharged)-Float.parseFloat(ppOffsetamount)));
+		sp.setSupplierResiduemonet((sp.getSupplierResiduemonet()+Float.parseFloat(ppAmountcharged)-Float.parseFloat(ppOffsetamount)));
+		System.out.println("修改供应商:"+sp.getSupplierName());
+		int h = dao.updateByPrimaryKeySelective2(sp);
+		if(h>0) {
+			map.put("code", "1");
+			map.put("message", "审核成功！");
+		}
+		return map;
+    }
+	
+	/**
+	 * 根据主键修改
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective3",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective3(String ppAmountcharged,String ppOffsetamount,String payablesSupplierName) {
+		System.out.println("进入"+payablesSupplierName+"供应商查询修改付款信息");
+		Map<String, String> map=new HashMap<String,String>();
+		Supplier sp = dao.selectByPrimaryKey2(payablesSupplierName);
+		System.out.println("查询结果:"+sp);
+		System.out.println("期末预付款:"+Float.parseFloat(ppOffsetamount));
+		sp.setSupplierCuendcollect(Float.parseFloat(ppOffsetamount));
+		System.out.println("期末应付款："+(sp.getSupplierCuendshouldcollect()+Float.parseFloat(ppAmountcharged)));
+		sp.setSupplierCuendshouldcollect((sp.getSupplierCuendshouldcollect()+Float.parseFloat(ppAmountcharged)));
+		System.out.println("剩余额度："+(sp.getSupplierResiduemonet()-sp.getSupplierCuendshouldcollect()+Float.parseFloat(ppOffsetamount)));
+		sp.setSupplierResiduemonet((sp.getSupplierResiduemonet()-sp.getSupplierCuendshouldcollect()+Float.parseFloat(ppOffsetamount)));
+		System.out.println("修改供应商:"+sp.getSupplierName());
+		int h = dao.updateByPrimaryKeySelective2(sp);
+		if(h>0) {
+			map.put("code", "1");
+			map.put("message", "审核成功！");
+		}
+		return map;
+    }
+	
+	/**
 	 * 根据主键删除
 	 * @param supplierId
 	 * @param model

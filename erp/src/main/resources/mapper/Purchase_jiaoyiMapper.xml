@@ -63,6 +63,10 @@
     delete from purchase_jiaoyi
     where jy_custom3 = #{jyCustom3,jdbcType=VARCHAR}
   </delete>
+  <delete id="deleteByPrimaryKey3" parameterType="java.lang.String">
+    delete from purchase_jiaoyi
+    where jy_number = #{jyNumber,jdbcType=VARCHAR}
+  </delete>
   <insert id="insert" parameterType="com.apatech.domain.Purchase_jiaoyi">
     insert into purchase_jiaoyi (jy_id, jy_data, jy_supplier_name, 
       jy_number, jy_type, jy_priabill, 

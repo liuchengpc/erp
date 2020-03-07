@@ -68,10 +68,10 @@ public class PriadetailsController {
 	 */
 	@RequestMapping(value = "selectAllBySupplier2",method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10){
+	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10,String payablesId){
 		System.out.println(" 进入Priadetails查询--"+page+"/"+limit);
-		System.out.println("预付款主表部门："+priabillCustom10);
-		PageInfo<Priadetails> pageFy = dao.selectAllBySupplier2(page, limit,priabillCustom10);
+		System.out.println("预付款主表部门："+priabillCustom10+",应付款主表ID："+payablesId);
+		PageInfo<Priadetails> pageFy = dao.selectAllBySupplier2(page, limit,priabillCustom10,payablesId);
 		return pageFy;
     }
 	
@@ -162,6 +162,31 @@ public class PriadetailsController {
 		System.out.println("实体："+record.toString());
 		Map<String, String> map=new HashMap<String, String>();
     	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	/**
+	 * 根据主键修改
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(String priadetailsId,String priabillCustom9) {
+		System.out.println("进入PriadetailsController根据主键修改 预付款主余额");
+		Priadetails p = dao.selectByPrimaryKey3(priadetailsId);		
+		Float priabillCustom99=(Float.parseFloat(p.getPriabillCustom9())+Float.parseFloat(priabillCustom9));
+		Map<String, String> map=new HashMap<String, String>();
+		Priadetails record = new Priadetails();
+		record.setPriadetailsId(priadetailsId);
+		record.setPriabillCustom9(priabillCustom99.toString());
+    	int i=dao.updateByPrimaryKeySelective2(record);
     	if (i>0) {
 			map.put("code", "1");
 			map.put("message", "修改成功！");

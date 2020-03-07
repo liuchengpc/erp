@@ -33,7 +33,7 @@ public class Purchase_payables {
 
     private Float ppExchangeRate;
 
-    private Double ppPayablesmainPrice;
+    private Float ppPayablesmainPrice;
 
     private Float ppCurrentbalance;
 
@@ -163,11 +163,11 @@ public class Purchase_payables {
         this.ppExchangeRate = ppExchangeRate;
     }
 
-    public Double getPpPayablesmainPrice() {
+    public Float getPpPayablesmainPrice() {
         return ppPayablesmainPrice;
     }
 
-    public void setPpPayablesmainPrice(Double ppPayablesmainPrice) {
+    public void setPpPayablesmainPrice(Float ppPayablesmainPrice) {
         this.ppPayablesmainPrice = ppPayablesmainPrice;
     }
 

@@ -46,7 +46,26 @@ public class PayablesController {
     	PageInfo<Payables> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
-		
+	
+	/**
+	 * 查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAll2",method = RequestMethod.GET)
+	@ResponseBody
+	public int selectAll2(String payablesSupplierName){
+		System.out.println("进入PayablesController查询");
+		System.out.println(dao.selectAll2(payablesSupplierName));
+    	if(dao.selectAll2(payablesSupplierName).isEmpty()) {
+    		System.out.println("0");
+    		return 0;
+    	}
+    	System.out.println("1");
+    	return 1;
+    }
+	
 	/**
 	 * 获取单号
 	 * @param billdate
@@ -167,6 +186,29 @@ public class PayablesController {
 		System.out.println("payablesId："+payablesId);
 		Map<String, String> map=new HashMap<String,String>();
     	int i =dao.deleteByPrimaryKey(payablesId);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
+	
+	/**
+	 * 根据主键删除 Xz专属
+	 * @param payablesId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByPrimaryKey2",method = RequestMethod.GET)
+	@ResponseBody
+    public Map<String, String> deleteByPrimaryKey2(String payablesSupplierName,Model model) {
+		System.out.println("进入PayablesController根据主键删除");
+		System.out.println("payablesSupplierName："+payablesSupplierName);
+		Map<String, String> map=new HashMap<String,String>();
+    	int i =dao.deleteByPrimaryKey2(payablesSupplierName);
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");

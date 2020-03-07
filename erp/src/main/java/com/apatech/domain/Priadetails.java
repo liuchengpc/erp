@@ -17,8 +17,8 @@ public class Priadetails {
     private String priabillCustom1;//自定义1
     private String priabillCustom2;//自定义2
     private String priabillCustom3;//自定义3
-    private String priabillCustom4;//自定义4
-    private String priabillCustom5;//自定义5
+    private String priabillCustom4;//自定义4 
+    private String priabillCustom5;//自定义5	--原预付明细单据(主体)
     private String priabillCustom6;//自定义6
     private String priabillCustom7;//自定义7	--应付款主表ID
     private String priabillCustom8;//自定义8	--取用预付金额

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单选--人员主文件设定</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script src="js/vue.js"></script>
+    <style>
+        #app{
+            padding: 15px;
+        }
+        .layui-input{
+            height: 24px !important;
+        }
+        .layui-form-item{
+            margin-bottom: 8px !important;
+        }
+        .layui-form-checkbox{
+            margin-top: 3px !important;
+        }
+        .layui-input-block{
+            height: 24px !important;
+            min-height: 24px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="layui-row">
+        <!-- 4 1 1 3-->
+        <div class="layui-col-xs6">
+            <div class="layui-row">
+                <div class="layui-col-xs4">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0;">
+                                <select name="teams">
+                                    <option value="4">人员编号</option>
+                                    <option value="4">所属部门</option>
+                                    <option value="4">部门名称</option>
+									<option value="4">人员名称</option>
+                                    <option value="4">英文姓名</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 3px;">
+                                <input type="text" placeholder="0" class="layui-input" v-model="charLength">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1" style="margin-left: 3px;">
+                    <div class="layui-btn-group">
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;width: 50%;padding: 0;" @click="charLengthMinute()">
+                            <i class="layui-icon"></i>
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;width: 50%;padding: 0;" @click="charLengthAdd()">
+                            <i class="layui-icon lyaui-icon-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="layui-col-xs3">
+                    <div class="layui-form">
+                        <div class="layui-form-item" pane="">
+                            <div class="layui-input-block" style="margin-left: 3px;">
+                                <input type="checkbox" name="like1[game]" lay-skin="primary" title="寻找同时选取">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs6">
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0px;">
+                                <input type="text" placeholder="0" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-xs1" style="margin-left: 3px;">
+                    <div class="layui-row">
+                        <div class="layui-col-xs12">
+                            <div class="layui-btn-group" style="display:block;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                        style="height: 12px;display:block;width: 100%;">
+                                    <i class="layui-icon layui-icon-up"
+                                       style="width: 100%;margin-right: 0;line-height: 12px;display:block;text-align:center;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-col-xs12">
+                            <div class="layui-btn-group" style="display:block;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                        style="height: 12px;display:block;width:100%;">
+                                    <i class="layui-icon layui-icon-down"
+                                       style="width: 100%;margin-right: 0;line-height: 12px;display:block;text-align:center;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1" style="margin-left: 3px;">
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs" @click="quhui()">取回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 0;">
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">全选</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">全清</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">以下全选</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">以下全清</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">新增记录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <!-- <div class="layui-col-xs2" style="height: 296px;">
+
+        </div> -->
+        <div class="layui-col-xs10" style="height: 296px;">
+			<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+                <colgroup>
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col>
+                </colgroup> 
+                <thead>
+               <thead>
+               <tr>
+                   <th>员工编号</th>
+                   <th>员工名称</th>             
+               </tr>
+               </thead>
+               <tbody>           
+				   <tr v-for="s in list" @click="dianji(s.staffId,s.staffName,s.teamId)">
+					   <td>{{s.staffId}}</td>
+					   <td>{{s.staffName}}</td>                  
+				   </tr>
+               </tbody>
+            </table>
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设置</button>
+        </div>
+    </div>
+</div>
+<script>
+ layui.use(['form'], function () {
+        var form = layui.form;
+    });
+    var ygvue = new Vue({
+    	el:"#app",
+		data:{	
+			list:[],
+			staffId:"",
+			staffName:"",
+			teamId:"",
+			teamName:""
+		},methods:{
+			dianji(id,name,bid){
+				ygvue.staffId=id;
+				ygvue.staffName=name;
+				ygvue.teamId=bid;
+			},
+			quhui(){
+				/* parent["listVm"].page.list[0].warehouseId=ckvue.warehouseId;
+				parent["listVm"].page.list[0].warehouse_Name=ckvue.warehouse_Name; */
+				parent.ygqh(ygvue.staffId,ygvue.staffName,ygvue.teamName);
+				parent.layer.close(parent.layer.getFrameIndex(window.name));
+			},
+			 getname:function(id){
+				console.log(id);
+				$.ajax({
+					type:"get",
+					url:"http://127.0.0.1:8080/TeamController/selectByPrimaryKey",
+					data:{
+						TeamId:id
+					},
+					success:function(res){
+						ygvue.teamName=res.teamName;
+						console.log(res.teamName);
+					}
+				});
+			}
+		},created:function(){
+			var this_=this;
+			$.ajax({
+				type:"get",
+				url:"http://127.0.0.1:8080/StaffController/selectAll",
+				success:function(res){
+					console.log(JSON.stringify(res));
+					this_.list=res;
+					this_.getname(res[0].teamId);
+					
+				}
+			});
+		}
+    })
+</script>
+</body>
+</html>

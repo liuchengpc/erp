@@ -1,5 +1,6 @@
 package com.apatech.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,20 @@ public class SalesorderService {
 
     public int insert(Salesorder record){
     	return dao.insert(record);
+    }
+    
+    public String selectbysh(String bitten){
+    	return dao.selectbysh(bitten);
+    }
+    
+    public List<Salesorder> selectzdsh(){
+    	List<Salesorder> list = new ArrayList<Salesorder>();
+    	for (Salesorder stu : dao.selectAll()) {
+			if(stu.getSoAuditing().equals("1")) {
+				list.add(stu);
+			}
+		}
+    	return list;
     }
     
     public int insertSelective(Salesorder record){

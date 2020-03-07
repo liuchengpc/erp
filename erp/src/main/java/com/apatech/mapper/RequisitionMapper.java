@@ -28,10 +28,13 @@ public interface RequisitionMapper {
     int insert(Requisition record);
 
     int insertSelective(Requisition record);
+    int insertSelective2(Requisition record);
 
     Requisition selectByPrimaryKey(String requisitionId);
 
     int updateByPrimaryKeySelective(Requisition record);
-
+    int updateByPrimaryKeySelective2(Requisition record);
+    int updateByPrimaryKeySelective3(Requisition record);
+    
     int updateByPrimaryKey(Requisition record);
 }

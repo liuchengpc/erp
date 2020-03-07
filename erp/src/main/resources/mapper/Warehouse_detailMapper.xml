@@ -3,8 +3,9 @@
 <mapper namespace="com.apatech.mapper.Warehouse_detailMapper">
   <resultMap id="BaseResultMap" type="com.apatech.domain.Warehouse_detail">
     <id column="wd_id" jdbcType="VARCHAR" property="wdId" />
+    <result column="warehouse_id" jdbcType="VARCHAR" property="warehouseId" />
     <result column="warehouse_id" jdbcType="INTEGER" property="warehouseId" />
-    <result column="mt_id" jdbcType="INTEGER" property="mtId" />
+    <result column="mt_id" jdbcType="VARCHAR" property="mtId" />
     <result column="wd_unit_rice" jdbcType="REAL" property="wdUnitRice" />
     <result column="wd_number" jdbcType="INTEGER" property="wdNumber" />
     <result column="wd_inorout" jdbcType="INTEGER" property="wdInorout" />
@@ -48,7 +49,7 @@
       wd_custom1, wd_custom2, wd_custom3, 
       wd_custom4, wd_custom5, wd_custom6
       )
-    values (#{wdId,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{mtId,jdbcType=INTEGER}, 
+    values (#{wdId,jdbcType=VARCHAR}, #{warehouseId,jdbcType=VARCHAR}, #{mtId,jdbcType=VARCHAR}, 
       #{wdUnitRice,jdbcType=REAL}, #{wdNumber,jdbcType=INTEGER}, #{wdInorout,jdbcType=INTEGER}, 
       #{wdLastbalancenumber,jdbcType=INTEGER}, #{wdAuditing,jdbcType=VARCHAR}, #{wdYn,jdbcType=VARCHAR}, 
       #{wdCustom1,jdbcType=VARCHAR}, #{wdCustom2,jdbcType=VARCHAR}, #{wdCustom3,jdbcType=VARCHAR}, 
@@ -109,10 +110,10 @@
         #{wdId,jdbcType=VARCHAR},
       </if>
       <if test="warehouseId != null">
-        #{warehouseId,jdbcType=INTEGER},
+        #{warehouseId,jdbcType=VARCHAR},
       </if>
       <if test="mtId != null">
-        #{mtId,jdbcType=INTEGER},
+        #{mtId,jdbcType=VARCHAR},
       </if>
       <if test="wdUnitRice != null">
         #{wdUnitRice,jdbcType=REAL},
@@ -156,10 +157,10 @@
     update warehouse_detail
     <set>
       <if test="warehouseId != null">
-        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+        warehouse_id = #{warehouseId,jdbcType=VARCHAR},
       </if>
       <if test="mtId != null">
-        mt_id = #{mtId,jdbcType=INTEGER},
+        mt_id = #{mtId,jdbcType=VARCHAR},
       </if>
       <if test="wdUnitRice != null">
         wd_unit_rice = #{wdUnitRice,jdbcType=REAL},
@@ -202,8 +203,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Warehouse_detail">
     update warehouse_detail
-    set warehouse_id = #{warehouseId,jdbcType=INTEGER},
-      mt_id = #{mtId,jdbcType=INTEGER},
+    set warehouse_id = #{warehouseId,jdbcType=VARCHAR},
+      mt_id = #{mtId,jdbcType=VARCHAR},
       wd_unit_rice = #{wdUnitRice,jdbcType=REAL},
       wd_number = #{wdNumber,jdbcType=INTEGER},
       wd_inorout = #{wdInorout,jdbcType=INTEGER},

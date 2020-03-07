@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!--    <link rel="stylesheet" href="dlist/index.css">-->
+    <style>
+        .el-table__body-wrapper{
+            height: auto !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <retrieve-dialog
+            :filter-type="filterType"
+            :data="teams"
+            :filter-config="filterConfig"
+            :option="option"
+            :columns="columns"
+            :title="title"
+            :single-value="singleValue"
+            :dialog-visible.sync="dialogVisible">
+    </retrieve-dialog>
+</div>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!--<script src="dlist/vue.js"></script>-->
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!--<script src="dlist/index.js"></script>-->
+<script src="retrieveDialog.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                teams: [
+                    {
+                        "teamId": "20200131003",
+                        "teamName": "渠道部",
+                        "teamEnglishName": "qudaobu",
+                        "teamAbate": null,
+                        "teamRemark": null,
+                        "teamAuditing": null,
+                        "teamYn": "0",
+                        "teamCustom1": "20200131",
+                        "teamCustom2": null,
+                        "teamCustom3": null,
+                        "teamCustom4": null,
+                        "teamCustom5": null,
+                        "teamCustom6": null
+                    }, {
+                        "teamId": "20200131002",
+                        "teamName": "直销部",
+                        "teamEnglishName": "zhixiaobu",
+                        "teamAbate": null,
+                        "teamRemark": null,
+                        "teamAuditing": null,
+                        "teamYn": "0",
+                        "teamCustom1": "20200131",
+                        "teamCustom2": null,
+                        "teamCustom3": null,
+                        "teamCustom4": null,
+                        "teamCustom5": null,
+                        "teamCustom6": null
+                    }, {
+                        "teamId": "20200131001",
+                        "teamName": "财务部",
+                        "teamEnglishName": "caiwubus",
+                        "teamAbate": null,
+                        "teamRemark": null,
+                        "teamAuditing": null,
+                        "teamYn": "0",
+                        "teamCustom1": "20200131",
+                        "teamCustom2": null,
+                        "teamCustom3": null,
+                        "teamCustom4": null,
+                        "teamCustom5": null,
+                        "teamCustom6": null
+                    }
+                ],
+                filterType: "teamId",
+                filterConfig: ["teamId", "teamName", "teamEnglishName", "teamRemark"],
+                option: [
+                    {
+                        label: '类型编号',
+                        value: 'teamId'
+                    },
+                    {
+                        label: "类型名称",
+                        value: "teamName"
+                    },
+                    {
+                        label: "英文名称",
+                        value: "teamEnglishName"
+                    },
+                    {
+                        label: "备注",
+                        value: "teamRemark"
+                    }
+                ],
+                columns: [
+                    {
+                        label: '供应商编号',
+                        prop: 'teamId',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '供应商名称',
+                        prop: 'teamName',
+                        visible: true,
+                        disabled: true
+                    },
+                    {
+                        label: '备注',
+                        prop: 'teamRemark',
+                        visible: false,
+                        disabled: false
+                    },
+                    {
+                        label: '英文名称',
+                        prop: 'teamEnglishName',
+                        visible: false,
+                        disabled: false
+                    }
+                ],
+                title: '单选--部门选定',
+                singleValue: false,
+                dialogVisible:true
+            }
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

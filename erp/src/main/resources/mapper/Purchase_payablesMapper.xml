@@ -47,6 +47,36 @@
 	    ORDER BY pp_id DESC
   </select>
   
+  <select id="selectByPayablesbillSupplierName" parameterType="com.apatech.domain.Purchase_payables" resultMap="BaseResultMap">	    
+    	SELECT pp_id,pp_type,pp_number, pp_date, 
+	    pp_pc_id,pp_pc_name,pp_team_id, 
+	    pp_team_name,pp_buyer,pp_project_name, 
+	    pp_currency,pp_exchange_rate,pp_payablesmain_price,
+	    pp_currentbalance,pp_discountamount,pp_amountcharged, 
+	    pp_offsetamount,pp_auditing,pp_yn, 
+	    pp_custom1,pp_custom2,pp_custom3,
+	    pp_custom4,pp_custom5,pp_custom6,pp_custom7,pp_custom8,
+	    pp_custom9,pp_custom10  
+	    FROM purchase_payables WHERE pp_custom8=#{ppCustom8,jdbcType=VARCHAR} 
+	    AND pp_yn=0    
+	    ORDER BY pp_custom2 DESC
+  </select>
+  
+  <select id="selectByPayablesbillSupplierName2" parameterType="com.apatech.domain.Purchase_payables" resultMap="BaseResultMap">	    
+    	SELECT pp_id,pp_type,pp_number, pp_date, 
+	    pp_pc_id,pp_pc_name,pp_team_id, 
+	    pp_team_name,pp_buyer,pp_project_name, 
+	    pp_currency,pp_exchange_rate,pp_payablesmain_price,
+	    pp_currentbalance,pp_discountamount,pp_amountcharged, 
+	    pp_offsetamount,pp_auditing,pp_yn, 
+	    pp_custom1,pp_custom2,pp_custom3,
+	    pp_custom4,pp_custom5,pp_custom6,pp_custom7,pp_custom8,
+	    pp_custom9,pp_custom10  
+	    FROM purchase_payables WHERE pp_pc_name=#{ppPcName,jdbcType=VARCHAR} 
+	    AND pp_yn=0 AND pp_custom9='1' AND pp_currentbalance>0     
+	    ORDER BY pp_custom2 DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -58,7 +88,7 @@
     where pp_id = #{ppId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.apatech.domain.Purchase_payables">
-    insert into purchase_payables (pp_id, pp_type, pp_number, 
+    insert into purchase_payables (pp_type, pp_number, 
       pp_date, pp_pc_id, pp_pc_name, 
       pp_team_id, pp_team_name, pp_buyer, 
       pp_project_name, pp_currency, pp_exchange_rate, 
@@ -68,7 +98,7 @@
       pp_custom3, pp_custom4, pp_custom5, 
       pp_custom6, pp_custom7, pp_custom8, 
       pp_custom9, pp_custom10)
-    values (#{ppId,jdbcType=INTEGER}, #{ppType,jdbcType=VARCHAR}, #{ppNumber,jdbcType=VARCHAR}, 
+    values (#{ppType,jdbcType=VARCHAR}, #{ppNumber,jdbcType=VARCHAR}, 
       #{ppDate,jdbcType=TIMESTAMP}, #{ppPcId,jdbcType=VARCHAR}, #{ppPcName,jdbcType=VARCHAR}, 
       #{ppTeamId,jdbcType=VARCHAR}, #{ppTeamName,jdbcType=VARCHAR}, #{ppBuyer,jdbcType=VARCHAR}, 
       #{ppProjectName,jdbcType=VARCHAR}, #{ppCurrency,jdbcType=VARCHAR}, #{ppExchangeRate,jdbcType=REAL}, 
@@ -82,9 +112,6 @@
   <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_payables">
     insert into purchase_payables
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="ppId != null">
-        pp_id,
-      </if>
       <if test="ppType != null">
         pp_type,
       </if>
@@ -171,9 +198,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="ppId != null">
-        #{ppId,jdbcType=INTEGER},
-      </if>
       <if test="ppType != null">
         #{ppType,jdbcType=VARCHAR},
       </if>
@@ -348,7 +372,7 @@
         pp_custom10 = #{ppCustom10,jdbcType=VARCHAR},
       </if>
     </set>
-    where pp_id = #{ppId,jdbcType=INTEGER}
+    where pp_custom2 = #{ppCustom2,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_payables">
     update purchase_payables
@@ -380,6 +404,96 @@
       pp_custom8 = #{ppCustom8,jdbcType=VARCHAR},
       pp_custom9 = #{ppCustom9,jdbcType=VARCHAR},
       pp_custom10 = #{ppCustom10,jdbcType=VARCHAR}
+    where pp_custom2 = #{pp_custom2,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective22" parameterType="com.apatech.domain.Purchase_payables">
+    update purchase_payables
+    <set>
+      <if test="ppType != null">
+        pp_type = #{ppType,jdbcType=VARCHAR},
+      </if>
+      <if test="ppNumber != null">
+        pp_number = #{ppNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="ppDate != null">
+        pp_date = #{ppDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ppPcId != null">
+        pp_pc_id = #{ppPcId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppPcName != null">
+        pp_pc_name = #{ppPcName,jdbcType=VARCHAR},
+      </if>
+      <if test="ppTeamId != null">
+        pp_team_id = #{ppTeamId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppTeamName != null">
+        pp_team_name = #{ppTeamName,jdbcType=VARCHAR},
+      </if>
+      <if test="ppBuyer != null">
+        pp_buyer = #{ppBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="ppProjectName != null">
+        pp_project_name = #{ppProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCurrency != null">
+        pp_currency = #{ppCurrency,jdbcType=VARCHAR},
+      </if>
+      <if test="ppExchangeRate != null">
+        pp_exchange_rate = #{ppExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="ppPayablesmainPrice != null">
+        pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="ppCurrentbalance != null">
+        pp_currentbalance = #{ppCurrentbalance,jdbcType=REAL},
+      </if>
+      <if test="ppDiscountamount != null">
+        pp_discountamount = #{ppDiscountamount,jdbcType=REAL},
+      </if>
+      <if test="ppAmountcharged != null">
+        pp_amountcharged = #{ppAmountcharged,jdbcType=REAL},
+      </if>
+      <if test="ppOffsetamount != null">
+        pp_offsetamount = #{ppOffsetamount,jdbcType=REAL},
+      </if>
+      <if test="ppAuditing != null">
+        pp_auditing = #{ppAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="ppYn != null">
+        pp_yn = #{ppYn,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom1 != null">
+        pp_custom1 = #{ppCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom2 != null">
+        pp_custom2 = #{ppCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom3 != null">
+        pp_custom3 = #{ppCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom4 != null">
+        pp_custom4 = #{ppCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom5 != null">
+        pp_custom5 = #{ppCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom6 != null">
+        pp_custom6 = #{ppCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom7 != null">
+        pp_custom7 = #{ppCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom8 != null">
+        pp_custom8 = #{ppCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom9 != null">
+        pp_custom9 = #{ppCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="ppCustom10 != null">
+        pp_custom10 = #{ppCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
     where pp_id = #{ppId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <title>采购退货单</title>
+    <style>
+        #app{
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <el-col :span="24">
+            <el-form :model="purechaseReturn" :rules="rules" ref="purechaseReturn" label-width="120px" class="demo-ruleForm">
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="供应商" prop="supplierId">
+                            <el-input
+                                    v-model="purechaseReturn.supplierId"
+                                    :disabled="edit" title="F4"
+                                    @keyup.f4.native="supplierDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="供应商地址" prop="pureEngname">
+                            <el-input v-model="purechaseReturn.pureEngname" :disabled="edit"></el-input>
+                        </el-form-item>
+                        <el-form-item label="单价是否含税">
+                            <el-select v-model="purechaseReturn.purePriceIncludeTax" :disabled="edit">
+                                <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="仓库" prop="warehouseId">
+                            <el-input v-model="purechaseReturn.warehouseId"
+                                      :disabled="edit"
+                                      @keyup.f4.native="warehouseDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="重新入库">
+                            <el-select :disabled="edit" v-model="test">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="凭证编号" prop="pureSingleStatus">
+                            <el-input v-model="purechaseReturn.pureSingleStatus" :disabled="edit"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="单据日期">
+                            <el-form-item prop="pureDocumentDate">
+                                <el-date-picker type="date" placeholder="选择日期"
+                                                v-model="purechaseReturn.pureDocumentDate" style="width: 100%;"
+                                                :disabled="edit"></el-date-picker>
+                            </el-form-item>
+                        </el-form-item>
+                        <el-form-item label="单据号码">
+                            <el-input v-model="purechaseReturn.pureDocumentNumber" disabled></el-input>
+                        </el-form-item>
+                        <el-form-item label="币别" prop="currencyId">
+                            <el-input v-model="purechaseReturn.currencyId"
+                                      :disabled="edit"
+                                      @keyup.f4.native="currencyDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="汇率" prop="pureExchangeRate">
+                            <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                        </el-form-item>
+                        <el-form-item label="国外贸易">
+                            <el-select v-model="purechaseReturn.pureForeignTrade" :disabled="edit">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <template>
+                            <el-tabs v-model="activeName" @tab-click="handleClick">
+                                <el-tab-pane label="内容" name="first">
+                                    <el-button type="primary" style="margin-bottom: 15px;"
+                                               :disabled="orderStatus != 0 && orderStatus != 7"
+                                                @click="addDetailsRow">
+                                        添加一行
+                                    </el-button>
+                                    <template>
+                                        <el-table
+                                                :data="purechaseReturn.details"
+                                                height="250"
+                                                border
+                                                style="width: 100%">
+                                            <el-table-column
+                                                    prop="matterId"
+                                                    label="物料编号"
+                                                    >
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.matterId"
+                                                                 :prop="'matterId'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredEngname"
+                                                    label="物料名称"
+                                                    width="120px">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredEngname"
+                                                                 :prop="'puredEngname'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredRemark"
+                                                    label="规格型号">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredRemark"
+                                                                 :prop="'puredRemark'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredPriceIncludeTax"
+                                                    label="单位名称">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredPriceIncludeTax"
+                                                                 :prop="'puredPriceIncludeTax'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredSingleStatus"
+                                                    label="数量"
+                                                    width="60">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredSingleStatus"
+                                                                 :prop="'puredSingleStatus'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredDocumentDate"
+                                                    label="折扣前单价"
+                                                    width="100">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredDocumentDate"
+                                                                 :prop="'puredDocumentDate'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredDocumentNumber"
+                                                    label="折数">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredDocumentNumber"
+                                                                 :prop="'puredDocumentNumber'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredPrice"
+                                                    label="单价">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredPrice"
+                                                                 :prop="'puredPrice'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredMoney"
+                                                    label="金额">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredMoney"
+                                                                 :prop="'puredMoney'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredTaxRate"
+                                                    label="税率">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredTaxRate"
+                                                                 :prop="'puredTaxRate'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredTaxAmount"
+                                                    label="(税额)">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredIncludingTaxAmount"
+                                                    label="(含税金额)"
+                                                    width="100">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredBatchNumber"
+                                                    label="(批号)">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredIfgift"
+                                                    label="赠品">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredInvoiceDetails"
+                                                    label="(发票明细)"
+                                                    width="100">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredInvoiceDetails"
+                                                    label="(未开票数量)"
+                                                    width="120">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredRemarks"
+                                                    label="分录备注">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredRemarks"
+                                                                 :prop="'puredRemarks'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredSourceOrder"
+                                                    label="来源单别"
+                                                    width="120">
+                                                <template slot-scope="scope">
+                                                    <edit-column :data="scope.row.puredSourceOrder"
+                                                                 :prop="'puredSourceOrder'" :index="scope.$index"
+                                                                 @handler-change="handlerChangeColumnValue"
+                                                                 :edit="edit">
+                                                    </edit-column>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column
+                                                    prop="puredSourceNo"
+                                                    label="来源单号"
+                                                    width="130">
+                                            </el-table-column>
+                                            <el-table-column
+                                                    fixed="right"
+                                                    label="编辑"
+                                                    width="100">
+                                                <template slot-scope="scope">
+                                                    <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+                                                    <el-button type="text" size="small">编辑</el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-tab-pane>
+                                <el-tab-pane label="账款" name="second">
+                                    <el-row>
+                                        <el-col :span="12">
+                                            <el-form-item label="账款归属" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                            <el-form-item label="付款条件" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :span="12">
+                                            <el-form-item label="付款日期" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                            <el-form-item label="付款月份" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                </el-tab-pane>
+                                <el-tab-pane label="备注" name="third">
+                                    <el-row>
+                                        <el-col :span="12">
+                                            <el-form-item label="自定栏一" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                        <el-col :span="12">
+                                            <el-form-item label="自定栏二" prop="require">
+                                                <el-input v-model="purechaseReturn.pureExchangeRate" :disabled="edit"></el-input>
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-form-item label="备注" prop="desc">
+                                            <el-input type="textarea" v-model="purechaseReturn.pureRemark" :disabled="edit"></el-input>
+                                        </el-form-item>
+                                    </el-row>
+                                </el-tab-pane>
+                            </el-tabs>
+                        </template>
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px">
+                    <el-col :span="12">
+                        <el-form-item label="采购人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureBuyer"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="所属部门" prop="require">
+                            <el-input v-model="purechaseReturn.pureBelongsSection"
+                                      :disabled="edit"
+                                      @keyup.f4.native="departmentDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="所属项目" prop="require">
+                            <el-input v-model="purechaseReturn.pureBelongsProject"
+                                      :disabled="edit"
+                                      @keyup.f4.native="projectDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="制单人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureExecutor"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item label="复核人员" prop="require">
+                            <el-input v-model="purechaseReturn.pureCheckagainStaff"
+                                      :disabled="edit"
+                                      @keyup.f4.native="employeeDialogConfig.dialogVisible = true">
+                            </el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="24">
+                        <el-dropdown split-button type="primary" @command="handleCommand" trigger="click">
+                            转单
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="a">采购入库转入</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                        <el-dropdown split-button type="primary" trigger="click">
+                            功能
+                            <el-dropdown-menu slot="dropdown" @command="handleCommand">
+                                <el-dropdown-item command="a">批号设定</el-dropdown-item>
+                                <el-dropdown-item command="a">条码打印</el-dropdown-item>
+                                <el-dropdown-item command="a">批次变更价格</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px;">
+                    <el-col :span="24">
+                        <el-button type="primary" @click="submitForm('purechaseReturn')">立即创建</el-button>
+                        <el-button @click="resetForm('purechaseReturn')">重置</el-button>
+                    </el-col>
+                </el-row>
+                <el-row style="margin-top: 20px;">
+                    <el-col :span="24">
+                        <el-button type="primary" icon="el-icon-d-arrow-left" @click="getFirst()">第一页</el-button>
+                        <el-button type="primary" icon="el-icon-arrow-left" @click="getPrev()">上一页</el-button>
+                        <el-button type="primary" icon="el-icon-arrow-right" @click="getNext()">下一页</el-button>
+                        <el-button type="primary" icon="el-icon-d-arrow-right" @click="getLast()">最后一页</el-button>
+                        <el-button type="primary" icon="el-icon-plus" @click="insertOrder()">新增</el-button>
+                        <el-button type="primary" icon="el-icon-s-order" @click="saveOrder()"
+                                    :disabled="(orderStatus !== 0 &&
+                                    orderStatus !== 7)">保存</el-button>
+                        <el-button type="primary" icon="el-icon-edit" @click="editOrder()">编辑</el-button>
+                        <el-button type="primary" icon="el-icon-delete" @click="deleteOrder()"
+                                    :disabled="!orderStatus == 5">删除</el-button>
+                        <el-button type="primary" icon="el-icon-document-checked" @click="reviewOrder()"
+                                   :disabled="!((orderStatus == 1 ||
+                                   orderStatus == 5 ||
+                                   orderStatus == 6) &&
+                                   purechaseReturn.pureAudition == 0)"
+                        >审核
+                        </el-button>
+                        <el-button type="primary" icon="el-icon-document-delete" @click="unReviewOrder()"
+                                   :disabled="!((orderStatus == 1 ||
+                                   orderStatus == 3 ||
+                                   orderStatus == 6) &&
+                                   purechaseReturn.pureAudition == 1)">取消审核</el-button>
+                    </el-col>
+                </el-row>
+            </el-form>
+        </el-col>
+    </el-row>
+    <i class="el-icon-circle-check" v-show="purechaseReturn.pureAudition == '1'"
+       style="font-size: 100px;color:#67C23A;position: absolute;top: 30px;right: 30px;"></i>
+    <retrieve-dialog
+            :filter-type="supplierDialogConfig.filterType"
+            :data="supplierDialogConfig.suppliers"
+            :option="supplierDialogConfig.option"
+            :columns="supplierDialogConfig.columns"
+            :title="supplierDialogConfig.title"
+            :single-value="supplierDialogConfig.singleValue"
+            :dialog-visible="supplierDialogConfig.dialogVisible"
+            @visible-change="handleSupplierDialogVisibleChange"
+            @handle-retrieve="handleSupplierDialogRetrieve">
+        <template #default="data">
+            {{data.item.supplierId}}
+            {{data.item.supplierName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="warehouseDialogConfig.filterType"
+            :data="warehouseDialogConfig.wareHouses"
+            :option="warehouseDialogConfig.option"
+            :columns="warehouseDialogConfig.columns"
+            :title="warehouseDialogConfig.title"
+            :single-value="warehouseDialogConfig.singleValue"
+            :dialog-visible.sync="warehouseDialogConfig.dialogVisible"
+            @visible-change="handleWarehouseDialogVisibleChange"
+            @handle-retrieve="handleWarehouseDialogRetrieve">
+        <template #default="data">
+            {{data.item.warehouseId}}
+            {{data.item.warehouseName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="currencyDialogConfig.filterType"
+            :data="currencyDialogConfig.currencies"
+            :option="currencyDialogConfig.option"
+            :columns="currencyDialogConfig.columns"
+            :title="currencyDialogConfig.title"
+            :single-value="currencyDialogConfig.singleValue"
+            :dialog-visible.sync="currencyDialogConfig.dialogVisible"
+            @visible-change="handleCurrencyDialogVisibleChange"
+            @handle-retrieve="handleCurrencyDialogRetrieve">
+        <template #default="data">
+            {{data.item.currencyId}}
+            {{data.item.currencyName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="projectDialogConfig.filterType"
+            :data="projectDialogConfig.projects"
+            :option="projectDialogConfig.option"
+            :columns="projectDialogConfig.columns"
+            :title="projectDialogConfig.title"
+            :single-value="projectDialogConfig.singleValue"
+            :dialog-visible.sync="projectDialogConfig.dialogVisible"
+            @visible-change="handleProjectDialogVisibleChange"
+            @handle-retrieve="handleProjectDialogRetrieve">
+        <template #default="data">
+            {{data.item.projectId}}
+            {{data.item.projectName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="departmentDialogConfig.filterType"
+            :data="departmentDialogConfig.teams"
+            :option="departmentDialogConfig.option"
+            :columns="departmentDialogConfig.columns"
+            :title="departmentDialogConfig.title"
+            :single-value="departmentDialogConfig.singleValue"
+            :dialog-visible.sync="departmentDialogConfig.dialogVisible"
+            @visible-change="handleDepartmentDialogVisibleChange"
+            @handle-retrieve="handleDepartmentDialogRetrieve">
+        <template #default="data">
+            {{data.item.teamId}}
+            {{data.item.teamName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="employeeDialogConfig.filterType"
+            :data="employeeDialogConfig.employees"
+            :option="employeeDialogConfig.option"
+            :columns="employeeDialogConfig.columns"
+            :title="employeeDialogConfig.title"
+            :single-value="employeeDialogConfig.singleValue"
+            :dialog-visible.sync="employeeDialogConfig.dialogVisible"
+            @visible-change="handleEmployeeDialogVisibleChange"
+            @handle-retrieve="handleEmployeeDialogRetrieve">
+        <template #default="data">
+            {{data.item.staffId}}
+            {{data.item.staffName}}
+        </template>
+    </retrieve-dialog>
+    <retrieve-dialog
+            :filter-type="materialDialogConfig.filterType"
+            :data="materialDialogConfig.materials"
+            :option="materialDialogConfig.option"
+            :columns="materialDialogConfig.columns"
+            :title="materialDialogConfig.title"
+            :single-value="materialDialogConfig.singleValue"
+            :dialog-visible.sync="materialDialogConfig.dialogVisible"
+            @visible-change="handleMaterialDialogVisibleChange"
+            @handle-retrieve="handleMaterialDialogRetrieve">
+        <template #default="data">
+            {{data.item.matterId}}
+            {{data.item.matterName}}
+        </template>
+    </retrieve-dialog>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="components/editColumn.js"></script>
+<script src="components/retrieveDialog.js"></script>
+<script src="js/element_ui_purchase_return_receipt.js" type="module"></script>
+</html>

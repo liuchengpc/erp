@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Check_detailed;
+import com.apatech.domain.KucunDanjia;
 import com.apatech.domain.Check_detailed;
 import com.apatech.domain.Check_detailed;
 import com.apatech.domain.Check_detailed;
@@ -136,4 +137,17 @@ public class Check_detailedController {
 		}
 		return map;
     }
+	
+	/**
+	 * 查询目前库存及单价
+	 * @param Check_detailedid
+	 * @return
+	 */
+	@RequestMapping(value = "queryBykc",method = RequestMethod.GET)
+	@ResponseBody
+    public KucunDanjia queryBykc(String ckid,String wlid) {
+		System.out.println("进入Check_detailedController查询库存及单价");
+		System.out.println("ckid="+ckid+",wlid="+wlid);
+    	return dao.queryBykc(ckid,wlid);
+	}
 }

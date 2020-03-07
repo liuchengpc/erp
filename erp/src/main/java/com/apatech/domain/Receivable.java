@@ -26,10 +26,10 @@ public class Receivable {
     private Integer payablesSatName3;//结算方式表
     private Float payablesPrice3;//默认值：0.00
     private Integer payablesZhekou;//折扣率,默认值：0.00
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesEndtime;//终止账月,默认值：当前年月
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesPayablestime;//单据日期,默认值：当前日期
     private String payablesCurrencyName;//币别类型表快照
@@ -52,7 +52,7 @@ public class Receivable {
     private String payablesCustom6;//自定义6
     private String payablesCustom7;//自定义7
     private String payablesCustom8;//自定义8
-    private String payablesCustom9;//自定义9
+    private String payablesCustom9;//部门id 外键
     private String payablesCustom10;//自定义10
     
     

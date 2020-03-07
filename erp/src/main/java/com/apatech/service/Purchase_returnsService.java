@@ -1,8 +1,11 @@
 package com.apatech.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.apatech.domain.Purchase_returns_detailed;
 import com.apatech.mapper.Purchase_returns_detailedMapper;
 import com.apatech.pojo.PurchaseReturnsPojo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +87,23 @@ public class Purchase_returnsService {
 
 	@Transactional(rollbackFor = Exception.class)
 	public void insertWithDetails(PurchaseReturnsPojo returnsPojo) throws Exception {
+		returnsPojo.setPureId(dao.selectPureId());
+		returnsPojo.setPureDocumentNumber(dao.selectPureId());
 		dao.insertWithDetails(returnsPojo);
 		detailedMapper.insertList(returnsPojo.getDetails());
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void updateWithDetails(PurchaseReturnsPojo purchaseReturnsPojo) {
+		dao.updateByPrimaryKeySelective(purchaseReturnsPojo);
+		System.out.println(purchaseReturnsPojo.getDetails().size());
+		dao.updateDetailsList(purchaseReturnsPojo.getDetails());
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteWithDetails(String pureId) {
+		dao.deleteByPrimaryKey(pureId);
+		dao.deleteDetailsByPureId(pureId);
+		throw new RuntimeException();
 	}
 }

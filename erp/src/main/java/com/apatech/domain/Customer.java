@@ -33,46 +33,47 @@ public class Customer {
     private String customerEmail;//电子邮件
     private String customerWebadd;//网址
     private String customerFaxno;//传真号码
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCufirstsaleout;//最初销售出库日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCufirstsalereturn;//最初销售退货日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCurecentsaleout;//最近销售出库日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCurecentsalereturn;//最近销售退货日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCurecentvisit;//最近拜访日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCuordervisit;//预约拜访日
     private Float customerDiscountpoint;//折数
-    private String customerSalelv;//售价等级
+    private String customerSalelv;//售价等级--------------------------------------------------------
     private Integer customerCuiftax;//是否含税（0，1）
     private String customerLatentcusno;//潜在客户编号
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerTanddate;//客户建立日期
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date endbusinessday;//终止交易日
     private Float customerCreditmoney;//账款额度
     private Float customerResiduemonet;//剩余额度
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date customerCuendorderday;//每月结账日
-    private String customerHonestlv;//信用等级
+    private String customerHonestlv;//信用等级---------------------------------------
     private Float customerCufirstcollect;//期初预收款
     private Float customerHouldcollect;//期初应收款
     private Float customerCuendcollect;//期末预收款
     private Float cuendshouldcollect;//期末应收款
     private String customerCudecoration;//其他备注
-    private String receivableId;//收款条件id(关联应收冲款单表)
+    private String receivableId;//收款条件id(关联应收冲款单表)--------------------------------
     private String itId;//发票类型id(关联发票类型表)
     private String itAccountsEceivableSubject;//应收账款科目(关联会计科目表account_id)
     private String itDepositReceivedSubject;//预收账款科目id(关联会计科目表account_id)

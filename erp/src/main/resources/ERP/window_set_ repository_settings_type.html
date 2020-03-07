@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="layui-col-xs1" style="margin-left: 3px;">
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">取回</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-xs" @click="quhui()">取回</button>
                 </div>
             </div>
         </div>
@@ -145,96 +145,60 @@
         </div> -->
         <div class="layui-col-xs10" style="height: 296px;">
 			<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                <!-- <colgroup>
+                <colgroup>
                     <col width="150">
                     <col width="150">
                     <col width="150">
                     <col>
-                </colgroup> -->
+                </colgroup> 
                 <thead>
-                <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
-                    <th>格言</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>贤心</td>
-                    <td>汉族</td>
-                    <td>1989-10-14</td>
-                    <td>人生似修行</td>
-                </tr>
-                <tr>
-                    <td>张爱玲</td>
-                    <td>汉族</td>
-                    <td>1920-09-30</td>
-                    <td>于千万人之中</td>
-                </tr>
-                <tr>
-                    <td>Helen Keller</td>
-                    <td>拉丁美裔</td>
-                    <td>1880-06-27</td>
-                    <td> Life</td>
-                </tr>
-                <tr>
-                    <td>岳飞</td>
-                    <td>汉族</td>
-                    <td>1103-北宋崇宁二年</td>
-                    <td>教科书再滥改</td>
-                </tr>
-                <tr>
-                    <td>孟子</td>
-                    <td>华夏族（汉族）</td>
-                    <td>公元前-372年</td>
-                    <td>猿强，则国强</td>
-                </tr>
-                </tbody>
+               <thead>
+               <tr>
+                   <th>仓库编号</th>
+                   <th>仓库名称</th>             
+               </tr>
+               </thead>
+               <tbody>           
+				   <tr v-for="wh in list" @click="dianji(wh.warehouseId,wh.warehouseName)">
+					   <td>{{wh.warehouseId}}</td>
+					   <td>{{wh.warehouseName}}</td>                  
+				   </tr>
+               </tbody>
             </table>
             <button type="button" class="layui-btn layui-btn-primary layui-btn-xs">显示字段设置</button>
         </div>
     </div>
 </div>
 <script>
-    layui.use(['form'], function () {
+ layui.use(['form'], function () {
         var form = layui.form;
     });
-    let viewModel = new Vue({
-        el:"#app",
-        data: function () {
-            return {
-                teams: [],
-                testData:["电","网","整"],
-                charLength: 0
-            }
-        },
-        methods:{
-            initialTeam(){
-                let self = this;
-                $.ajax({
-                    url: "http://erp:8080/Purchase_requisition_typeController/teams",
-                    type: "",
-                    data: {},
-                    dataType: "json",
-                    success: function (resp) {
-                        self.teams = resp;
-                    }
-                });
-            },
-            charLengthAdd(){
-                this.charLength = this.charLength + 1;
-            },
-            charLengthMinute(){
-                if(this.charLength === 0){
-                    return;
-                }
-                this.charLength = this.charLength - 1;
-            }
-        },
-        created: function () {
-
-        }
+    var ckvue = new Vue({
+    	el:"#app",
+		data:{	
+			list:[],
+			warehouseId:"",
+			warehouse_Name:""
+		},methods:{
+			dianji(id,name){
+				ckvue.warehouseId=id;
+				ckvue.warehouse_Name=name;
+			},
+			quhui(){
+				/* parent["listVm"].page.list[0].warehouseId=ckvue.warehouseId;
+				parent["listVm"].page.list[0].warehouse_Name=ckvue.warehouse_Name; */
+				parent.ckqh(ckvue.warehouseId,ckvue.warehouse_Name);
+				parent.layer.close(parent.layer.getFrameIndex(window.name));
+			}
+		},created:function(){
+			$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8080/WarehouseController/selectAll",
+			success:function(res){
+				ckvue.list=res;
+			}
+		});
+		}
     })
 </script>
 </body>

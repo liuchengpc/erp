@@ -2,6 +2,10 @@ package com.apatech.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Purchase_payables {
     private Integer ppId;
 
@@ -9,15 +13,17 @@ public class Purchase_payables {
 
     private String ppNumber;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date ppDate;
 
-    private String ppPcId;
+    private String ppPcId; 
 
     private String ppPcName;
 
     private String ppTeamId;
 
-    private String ppTeamName;
+    private String ppTeamName; 
 
     private String ppBuyer;
 
@@ -43,7 +49,7 @@ public class Purchase_payables {
 
     private String ppCustom1;
 
-    private String ppCustom2;
+    private String ppCustom2;		//单据号码
 
     private String ppCustom3;
 
@@ -53,11 +59,11 @@ public class Purchase_payables {
 
     private String ppCustom6;
 
-    private String ppCustom7;
+    private String ppCustom7;		//审核明细账款
 
-    private String ppCustom8;
+    private String ppCustom8;		//关联应付款主表ID
 
-    private String ppCustom9;
+    private String ppCustom9;		//判断是否为空，默认空值
 
     private String ppCustom10;
 

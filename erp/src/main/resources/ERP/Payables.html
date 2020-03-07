@@ -29,42 +29,42 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName" data-method="offset" i="">
-                        <input type="text" id="supplierId" name="title"  class="layui-input" v-model="pages.supplierId" data-method="offset" hidden="hidden">
-                         <input type="text" id="priabillId" name="title"  class="layui-input" v-model="pages.priabillId" data-method="offset" hidden="hidden">
+                        <input type="text" id="priabillSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillSupplierName" v-bind:disabled="diasabledInput">
+                        <input type="text" id="priabillId" name="title"  class="layui-input" title="F4查询" v-model="pages.priabillId" hidden="hidden">
+                        <input type="text" id="supplierId" name="title"  class="layui-input" title="F4查询" v-model="pages.supplierId" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式一</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSatName1" v-model="pages.priabillSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" id="priabillPrice1" v-model="pages.priabillPrice1" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName1" v-model="pages.priabillSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="priabillPrice1" v-model="pages.priabillPrice1" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式二</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSatName2" v-model="pages.priabillSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" id="priabillPrice2" v-model="pages.priabillPrice2" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName2" v-model="pages.priabillSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="priabillPrice2" v-model="pages.priabillPrice2" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式三</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillSatName3" v-model="pages.priabillSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" id="priabillPrice3" v-model="pages.priabillPrice3" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="priabillSatName3" v-model="pages.priabillSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="priabillPrice3" v-model="pages.priabillPrice3" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">折扣率(%)</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillZhekou" v-model="pages.priabillZhekou" name="title"  class="layui-input">
+                        <input type="text" id="priabillZhekou" v-model="pages.priabillZhekou" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">终止帐月</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillEndtime" v-model="pages.priabillEndtime" name="title"  class="layui-input">
+                        <input type="text" id="priabillEndtime" v-model="pages.priabillEndtime" name="title"  class="layui-input" placeholder="yyyy-MM-dd" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据日期</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillPayablestime" v-model="pages.priabillPayablestime"  name="title"  class="layui-input">
+                        <input type="text" id="priabillPayablestime" v-model="pages.priabillPayablestime"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -86,14 +86,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillCurrencyName" v-model="pages.priabillCurrencyName" name="title"  class="layui-input">
+                        <input type="text" id="priabillCurrencyName" v-model="pages.priabillCurrencyName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                         <input type="text" id="currencyId" v-model="pages.currencyId" name="title"  class="layui-input" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">汇率</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillCurrencyInexchange" v-model="pages.priabillCurrencyInexchange" name="title"  class="layui-input">
+                        <input type="text" id="priabillCurrencyInexchange" v-model="pages.priabillCurrencyInexchange" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -115,7 +115,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">凭证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" id="priabillVoucherno" v-model="pages.priabillVoucherno" name="title"  class="layui-input">
+                        <input type="text" id="priabillVoucherno" v-model="pages.priabillVoucherno" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
             </div>
@@ -180,15 +180,15 @@
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" id="priabillTeamName" v-model="pages.priabillTeamName" name="title"  class="layui-input">
+					                        <input type="text" id="priabillTeamName" v-model="pages.priabillTeamName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
 					                        <input type="text" id="priabillCustom9" v-model="pages.priabillCustom9" name="title"  class="layui-input" hidden="hidden">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">所属项目</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" id="priabillProjectName" v-model="pages.priabillProjectName" name="title"  class="layui-input">
-					                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input">
+					                        <input type="text" id="priabillProjectName" v-model="pages.priabillProjectName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
+					                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input" hidden="hidden">
 					                    </div>
 					                </div>
 					            </div>
@@ -198,13 +198,13 @@
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">制单人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" id="priabillBillpersonnel" v-model="pages.priabillBillpersonnel" name="title"  class="layui-input">
+					                        <input type="text" id="priabillBillpersonnel" v-model="pages.priabillBillpersonnel" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">复核人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" id="priabillReviewers" v-model="pages.priabillReviewers" name="title"  class="layui-input">
+					                        <input type="text" id="priabillReviewers" v-model="pages.priabillReviewers" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
 					                    </div>
 					                </div>
 					            </div>
@@ -221,7 +221,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏一</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="priabillCustom3" v-model="pages.priabillCustom3" name="title" class="layui-input">
+                                        <input type="text" id="priabillCustom3" v-model="pages.priabillCustom3" name="title" class="layui-input" v-bind:disabled="diasabledInput">
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏二</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="priabillCustom4" v-model="pages.priabillCustom4" name="title" class="layui-input">
+                                        <input type="text" id="priabillCustom4" v-model="pages.priabillCustom4" name="title" class="layui-input" v-bind:disabled="diasabledInput">
                                     </div>
                                 </div>
                             </div>
@@ -243,7 +243,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" id="priabillRemarks" class="layui-textarea" v-model="pages.priabillRemarks"></textarea>
+                                        <textarea placeholder="请输入内容" id="priabillRemarks" class="layui-textarea" v-model="pages.priabillRemarks" v-bind:disabled="diasabledInput"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -282,18 +282,18 @@
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">                       
+        <div class="layui-form-item" style=" position: fixed;bottom:0px;">                       
             <div class="layui-input-block">  
-	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1" id="dyb"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
-	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1" id="syb"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
-	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1" id="xyb"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
-				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1" id="hyb"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
-	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1" id="xinzeng"><i class="fa fa-file fa-lg" aria-hidden="true"></i></button>          
+	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
+	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
+	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
+				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
+	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1" id="xinzengXz"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
 	            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
-	             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1" id="baocun"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i></button>  
-	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+	             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
+	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1" id="quxiao"><i class="fa  fa-undo fa-lg" ></i></button>
 	            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
-				<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+				<button  class="layui-btn" title="刷新" @click="shuaxin" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
 				<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
 				<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
             </div>
@@ -308,6 +308,12 @@
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" name="del">删除</a>
 </script>
 <script>
+	var priabillNumber33 = ""
+	function GetValue(obj){
+	    priabillNumber33=obj;
+	}
+	
+	var time2 = "";
 	//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
 	//必须设置允许跨域访问session中数据(cookie)
@@ -339,10 +345,11 @@
 			    tp:true
 			},
 			methods: {//定义函数
-
-				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
+				goPage: function(page, size ,priabillSupplierName,supplierId,priabillCurrencyName,currencyId,priabillTeamName,priabillCustom9,priabillProjectName,projectId,priabillSatName1,priabillSatName2,priabillSatName3) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
+					var time1 = "";
 					var this_ = this;
+					var priabillId = "";
 					$.ajax({
 						url : "http://127.0.0.1:8080/PriabillController/selectAllpage",
 						type:"get",
@@ -353,67 +360,633 @@
 							this_.page = res;
 							console.info("详表表数据：");
 							console.info(this_.page);
-							$("#priabillSupplierName").attr("i",res.list[0].priabillSupplierName);
-							//冲款类型下拉框自动选择默认.find('option')
-							//找到下拉框option的value值为res.list[0].payablesType的节点
-							/*var se = 'option[value='+res.list[0].payablesType+']';
-							$('#selectListXz').find('option').find(se).click();*/
-							
+							//判断是否审核
+							if(this_.page.list[0].priabillAuditing=="0"||this_.page.list[0].priabillAuditing==0){
+								this_.diasabledInput=true;//input可以编辑
+								this_.isinsert=true;//开启新增模式
+								this_.isedit=true;//开启修改模式													
+								this_.goFirstPage1 =false;//第一笔
+					            this_.goPrePage1 =false;//上一笔				            
+				             	this_.goNextPage1 =false;//下一笔
+						     	this_.goLastPage1 =false;//后一笔
+				             	this_.inset1 =false;   //新增      
+			             		this_.return1=true;//返回
+				             	this_.saves1 =true;//保存 
+				             	this_.update1 =false;//编辑
+				             	this_.deletes1 =false;//删除		
+							    this_.Auditing1 =false;//审核
+							    this_.noAuditing1 =true;//取消审核
+								
+							}else{
+								this_.diasabledInput=false;//input不可以编辑
+								this_.isinsert=true;//开启新增模式
+								this_.isedit=false;//关闭修改模式													
+								this_.goFirstPage1 =false;//第一笔
+					            this_.goPrePage1 =false;//上一笔				            
+				             	this_.goNextPage1 =false;//下一笔
+						     	this_.goLastPage1 =false;//后一笔
+				             	this_.inset1 =false;   //新增      
+			             		this_.return1=true;//返回
+				             	this_.saves1 =true;//保存 
+				             	this_.update1 =true;//编辑
+				             	this_.deletes1 =true;//删除		
+							    this_.Auditing1 =true;//审核
+							    this_.noAuditing1 =false;//取消审核
+								
+							}
+							//判断参数是否为空
+							if(priabillSupplierName!=null){
+								this_.page.list[0].priabillSupplierName = priabillSupplierName;
+							}
+							if(supplierId!=null){
+								this_.page.list[0].supplierId = supplierId;
+							}
+							if(priabillCurrencyName!=null){
+								this_.page.list[0].priabillCurrencyName = priabillCurrencyName;
+							}
+							if(currencyId!=null){
+								this_.page.list[0].currencyId = currencyId;
+							}
+							if(priabillTeamName!=null){
+								this_.page.list[0].priabillTeamName = priabillTeamName;
+							}
+							if(priabillCustom9!=null){
+								this_.page.list[0].priabillCustom9 = priabillCustom9;
+							}
+							if(priabillProjectName!=null){
+								this_.page.list[0].priabillProjectName = priabillProjectName;
+							}
+							if(projectId!=null){
+								this_.page.list[0].projectId = projectId;
+							}
+							if(priabillSatName1!=null){
+								this_.page.list[0].priabillSatName1 = priabillSatName1;
+							}
+							if(priabillSatName2!=null){
+								this_.page.list[0].priabillSatName2 = priabillSatName2;
+							}
+							if(priabillSatName3!=null){
+								this_.page.list[0].priabillSatName3 = priabillSatName3;
+							}
+							if(this_.page.list[0].priabillId==""){
+								/*获取当前时间*/
+							   	//判断是否在前面加0
+									function getNow(s) {
+									return s < 10 ? '0' + s: s;
+									}
+									 
+									var myDate = new Date();            
+									 
+									var year=myDate.getFullYear();        //获取当前年
+									var month=myDate.getMonth()+1;   //获取当前月
+									var date=myDate.getDate();            //获取当前日
+									 
+									var h=myDate.getHours();              //获取当前小时数(0-23)
+									var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+									var s=myDate.getSeconds();
+						 
+								var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   				/*获取当前时间*/
+				   	
+						  		var ss=year+getNow(month)+getNow(date);
+						  		
+								$.ajax({
+									url:"http://127.0.0.1:8080/PayablesController/getno",
+									type:"get",
+								  	data:"billdate="+ss,
+								  	dataType:'text',	
+								  	success:function (res) {
+								  		console.info("idfdsfhoewifhw")
+									  	console.info(res)
+									   	this_.page.list[0].priabillId="yA"+ss+res;
+									   	this_.page.list[0].priabillCustom2="yA"+ss+res;
+							        }
+								});
+							}
 							//TAB选项卡
 							$("#yf").click();
+							//时间
+							layui.use('laydate',function(){
+								var laydate=layui.laydate;
+								
+								//执行一个laydate实例
+								laydate.render({
+									elem:'#priabillEndtime',//指定元素
+									done:function(value){
+										this_.page.list[0].priabillEndtime=value;
+										$("#priabillEndtime").val(value);
+										console.log(this_.page.list[0].priabillEndtime);
+										console.log(value)
+									}
+								})
+								
+								//执行一个laydate实例
+								laydate.render({
+									elem:'#priabillPayablestime',//指定元素
+									done:function(value){
+										this_.page.list[0].priabillPayablestime=value;
+										$("#priabillPayablestime").val(value);
+										console.log(this_.page.list[0].priabillPayablestime);
+										console.log(value)
+									}
+								})
+								
+							})
+							
+							//layui
+							layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+						        var table = layui.table;
+								/*var $ = layui.jquery, layer = layui.layer;*/
+								var $ = layui.$, layer = layui.layer;
+								//供应商触发事件
+								$("#priabillSupplierName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSupplier.html"
+						  			});
+						  		});
 
-							//根据冲款类型显示下方选项卡信息
-							/*if(res.list[0].payablesType=="预付款"){
-								$("#nr").remove();
-								$("#nrXz").remove();
-								$("#yf").attr("class","layui-this");
-								$("#yf").click();
-							}else if(res.list[0].payablesType=="付款冲款"){
-								$("#yf").remove();
-								$("#yfXz").remove();
-							}*/
-						
+						  		
+						  		//部门触发事件
+						  		$("#priabillTeamName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesTeam.html"
+						  			});
+						  		});
+						  		
+						  		//项目触发事件
+						  		$("#priabillProjectName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesProject.html"
+						  			});
+						  		});
+								
+								//结算方式触发事件
+						  		$("#priabillSatName1").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat1.html"
+						  			});
+						  		});
+								
+								$("#priabillSatName2").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat2.html"
+						  			});
+						  		});
+								
+								$("#priabillSatName3").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat3.html"
+						  			});
+						  		});
+						  		
+						  		//币别触发事件
+						  		$("#priabillCurrencyName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesCurrency.html"
+						  			});
+						  		});
+						  		
+						  		//新增按钮
+						  		$("#xinzengXz").click(function(){
+						  			//表格重载刷新 也相当于清空
+						  			table.reload('materialsContent2', {
+						                page: {
+						                    curr: 1 //重新从第 1 页开始
+						                }
+						                , where: {//这里传参  向后台
+						                    page: 1,
+						                    limit:1,
+						                    priabillCustom10:0,
+						                    priabillId:0
+						                    //可传多个参数到后台...  ，分隔
+						                }
+						                , url: 'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName'//后台做模糊搜索接口路径
+						                , method: 'get'
+						            });
+						  		});
+						  		
+						  		
+						  		
+						       var priabillSupplierName = this_.page.list[0].priabillSupplierName;
+						       var priabillId = this_.page.list[0].priabillId;
+						        var tables=table.render({
+						            elem: '#materialsContent2'
+						            ,url:'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName?priabillId='+priabillId
+						            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+						            ,toolbar: 'default'//开启工具栏
+						            ,totalRow: true //开启合计行
+									,parseData: function(res){
+										//生成预付款明细表ID
+										/*获取当前时间*/
+									   	//判断是否在前面加0
+											function getNow(s) {
+											return s < 10 ? '0' + s: s;
+											}
+											 
+											var myDate = new Date();            
+											 
+											var year=myDate.getFullYear();        //获取当前年
+											var month=myDate.getMonth()+1;   //获取当前月
+											var date=myDate.getDate();            //获取当前日
+											 
+											var h=myDate.getHours();              //获取当前小时数(0-23)
+											var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+											var s=myDate.getSeconds();
+											 
+											var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+									   	/*获取当前时间*/
+									   	
+								  		var ss=year+getNow(month)+getNow(date);
+										$.ajax({
+											url:"http://127.0.0.1:8080/PriadetailsController/getno",
+											type:"get",
+											async:false,
+										  	data:"billdate="+ss,
+										  	dataType:'text',	
+										  	success:function (ressult66) {
+											   	time2=ss+ressult66;	
+											   	//添加一组空数据
+									        }
+										});
+										
+										//添加一组空数据
+						               res.list.push({
+						               		"priadetailsId":time2
+						               		,"priabillPrice":""
+						               		,"priabillType":""
+						               		,"priabillNumber":""
+						               		,"priabillRemarks":""                   		
+						               });
+										return {
+											"code":0,
+											"msg":"",
+											"count":res.total,
+											data:res.list
+										};
+									}
+									,done: function (res, curr, count) {
+						                layui.each($('select'), function (index, item) {
+						                    var elem = $(item);
+						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css('overflow', 'visible');
+						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
+						                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");                  
+						                });
+						           	}
+						            , cols: [[
+						            	{type: 'checkbox'}
+						            	,{field: 'priadetailsId', title: '(栏号)',sort:true}
+						                ,{field: 'priabillPrice', title: '预付金额 ',sort:true} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+						                , {field: 'priabillType',
+						                	title: '来源别',
+						                	width: 200,
+						                	templet: function (res) {
+						                        // 模板的实现方式也是多种多样，这里简单返回固定的
+						                        if(res.priabillType=="采购订单"){
+						                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单" selected="selected">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+						                        }else if(res.priabillType=="进口采购单"){
+						                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单" selected="selected">进口采购单</option><option value="P/O">P/O</option></select>';
+						                        }else if(res.priabillType=="P/O"){
+						                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
+						                        }else{
+						                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
+						                        }
+						                   }
+						                  }
+						                /*, {field: 'sex', title: '来源别', sort: true}*/
+						                , {field: 'priabillNumber', title: '来源单号',event:'yun'}
+						                , {field: 'priabillRemarks', title: '摘要'}
+						                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
+						            ]]
+						            ,page:true//是否开启分页
+						            ,limits:[1,2,3]//选择每页显示多少条数据
+						            ,limit:2//初始每页显示条数
+						            ,height:350
+						        });
+						                  
+						        //监听行工具事件   
+								  table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
+								    var data = obj.data //获得当前行数据
+								    ,layEvent = obj.event; //获得 lay-event 对应的值	
+								    var $this = $(this);
+								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+						  			var trIndex = tr.data('index');	//索引
+								    if(layEvent === 'edit'){											      										if(this_.page.list[0].priabillAuditing=="0"||this_.page.list[0].priabillAuditing==0){
+											layer.msg('编辑操作');
+											//修改编辑按钮名 
+								    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
+										      //修改lay-event对应值
+										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
+										      //修改样式
+										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
+										      //取消单元格的禁用  添加data-edit="text"
+										      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
+										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",true);
+									$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").removeAttr("disabled");	      
+										      
+										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",true);
+										      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",true);
+										      form.render('select');
+										      
+										      	$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").click(function(){
+										      		if($(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").val()!=""){
+										      			layer.open({
+										  				type:2,
+										  				area:["800px","400px"],
+										  				content:"PayablesPurchasing.html",
+										  				success:function (layero,index) {
+												                var iframe = window['layui-layer-iframe' + index];
+												                iframe.child(trIndex);
+												        }
+										  			});
+										      		}
+										      	});
+										      
+										}else{
+											layer.msg('已审核，无法编辑');
+										}								      
+								    } else if(layEvent === 'del'){
+								      layer.confirm('真的删除行么', function(index){
+								        obj.del(); //删除对应行（tr）的DOM结构
+								        
+								        $.ajax({
+								        	url:"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKey?priadetailsId="+obj.data.priadetailsId,
+											async:false,
+											type:"get",
+										  	dataType:'json',
+										  	success:function(result88){
+										  		layer.msg("已删除.");
+										  	}
+								        });
+								        
+								        //向服务端发送删除指令
+								      });
+								    }else if(layEvent === 'save'){
+								    	/*layer.msg('保存操作');*/
+								    	var sy = "";
+								    	obj.data.priabillNumber=priabillNumber33;
+								    	obj.update({
+							         		priabillNumber:priabillNumber33
+							         	});
+								    	if(obj.data.priabillPrice==""||obj.data.priabillPrice<=0){
+								    		sy+="预付金额不能小于等于0或者为空  ,";
+								    	}
+								    	if(obj.data.priabillType==""||obj.data.priabillType=="请选择"){
+								    		sy+="请选择来源单别  ,";
+								    	}
+								    	if(obj.data.priabillNumber==""){
+								    		sy+="请填写来源单号  ,";
+								    	}
+										sy+="请认真填写！";
+										if(sy=="请认真填写！"){
+											var priabillSupplierName2 = this_.page.list[0].priabillSupplierName;
+						       				var priabillId2 = this_.page.list[0].priabillId;
+						       				if(priabillSupplierName2==""||priabillId2==""){
+						       					priabillSupplierName2=$("#priabillSupplierName").val();
+						       					priabillId2=$("#priabillId").val();
+						       				}
+											var obj2 = {
+												"priadetailsId":obj.data.priadetailsId,
+												"priabillId":priabillId2,
+												"priabillPrice":obj.data.priabillPrice,
+												"priabillType":obj.data.priabillType,
+												"priabillNumber":priabillNumber33,
+												"priabillRemarks":obj.data.priabillRemarks,
+												"priabillCustom9":obj.data.priabillPrice,
+												"priabillCustom10":$("#priabillSupplierName").val()
+											}
+
+											$.ajax({
+												url:"http://127.0.0.1:8080/PriadetailsController/insertAndDelete",
+												data:JSON.stringify(obj2),
+												async:false,
+												type:"post",
+											  	dataType:'json',
+											  	contentType:"application/json;charset=utf-8",
+												success:function(result2){
+													layer.msg("编辑完成");
+													
+													//修改保存按钮名 
+									    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
+											        //修改lay-event对应值
+											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
+											        //修改样式
+											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
+											        //单元格的禁用  去掉data-edit="text"
+											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",false);
+													$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").attr("disabled","disabled");	        
+											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",false);
+											        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",false);
+											        form.render('select');
+											        priabillSupplierName = this_.page.list[0].priabillSupplierName;
+						       						priabillId = this_.page.list[0].priabillId;
+											        table.reload('materialsContent2', {
+										                page: {
+										                    curr: 1 //重新从第 1 页开始
+										                }
+										                , where: {//这里传参  向后台
+										                    page: 1,
+										                    limit:2,
+										                    priabillId:priabillId
+										                    //可传多个参数到后台...  ，分隔
+										                }
+										                , url: 'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName'//后台做模糊搜索接口路径
+										                , method: 'get'
+										            });
+												}
+											});																			
+										}else{
+											layer.msg(sy);
+										}
+								    }
+								    //下拉框监听
+							         form.on('select',function(data){
+							         	obj.update({
+							         		priabillType:data.value
+							         	});
+							         	form.render('select');
+							         });							         
+								  });
+						        //监听头工具栏事件
+								    table.on('toolbar(materialsContent2)', function(obj){
+								  	layer.msg('1');
+								    /*var checkStatus = table.checkStatus(obj.config.id)
+								    ,data = checkStatus.data; //获取选中的数据*/
+								    switch(obj.event){
+								      case 'add':
+								        	layer.msg('添加一行表格');
+						                   /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+						                   var datas = table.cache.materialsContent2;
+						                   
+						                   //定义一个空数组
+						                   var demo = [];
+						                   
+						                   //将之前的数组备份
+						                   for(var i =0;i<datas.length;i++){
+						                   		demo.push(datas[i]);
+						                   }
+						                    
+						                   //添加一组空数据
+						                   demo.push({
+						                   		"priadetailsId":"haha"
+						                   		,"priabillPrice":""
+						                   		,"priabillType":""
+						                   		,"priabillNumber":""
+						                   		,"priabillRemarks":""                   		
+						                   });*/
+						                  
+						                    tables.reload({	//将数据重新载入表格
+						                        
+						                    });
+								     		 break;
+								      case 'update':
+								        /*if(data.length === 0){
+								          layer.msg('请选择一行');
+								        } else if(data.length > 1){
+								          layer.msg('只能同时编辑一个');
+								        } else {
+								          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+								        }*/
+								       
+								       	//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
+								       	var datas = table.cache.materialsContent2;
+								       	
+								       	//
+								       	for(var i =0;i<datas.length;i++){
+						                   		
+						                   }
+								      case 'delete':
+								        if(data.length === 0){
+								          layer.msg('请选择一行');
+								        } else {
+								          layer.msg('删除');
+								        }
+								      		break;
+								    };
+								  });
+						    });
 				        }
-					}); 					
+					}); 	
+					
+					
 				},
 				goPrePage: function() {//上一条
+					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 					if(this.page.hasPreviousPage) {
 //						alert(this.page.prePage+"："+this.page.pageSize)
-						this.goPage(this.page.prePage, this.page.pageSize);
+						this.goPage(this.page.prePage, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 					}
 				},
 				goNextPage: function() {//下一条
+					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 					if(this.page.hasNextPage) {
 //						alert(this.page.nextPage+"："+this.page.pageSize)
-						this.goPage(this.page.nextPage, this.page.pageSize);
+						this.goPage(this.page.nextPage, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 					}
 				},
 				goFirstPage: function() {//第一条
+					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 //					alert(1+"："+this.page.pageSize)
-					this.goPage(1, this.page.pageSize);
+					this.goPage(1, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 				},
 				goLastPage: function() {//最后一条
+					if(this.page.list[0].priabillAuditing=="0"||this.page.list[0].priabillAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 //					alert(this.page.pages+"："+this.page.pageSize)
-					this.goPage(this.page.pages, this.page.pageSize);
+					this.goPage(this.page.pages, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
+				},
+				shuaxin:function(){//刷新
+					this.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
 				},
 				returns: function() {//取消
-					this.goPage(1,1);
-					
-					this.diasabledInput= true;//input不可编辑
-					
-					this.goFirstPage1 =false;//第一笔
+					if(this.return1=true){
+						var priabillId = this.page.list[0].priabillId;
+						$.ajax({
+							url :"http://127.0.0.1:8080/PriabillController/selectByPrimaryKeyXuZhe?priabillId="+priabillId,
+							type:"get",
+							async:false,
+						  	dataType:'json',
+						  	success:function (res) {
+						  		if(res.code=="1"){
+						  			$.ajax({
+										url :"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKeyXuzhe?priabillId="+priabillId,
+										type:"get",
+										async:false,
+									  	dataType:'json',
+									  	success:function (res2) {
+									  		if(res2.code=="1"){
+									  			/*alert("删除成功！");*/
+									  		}
+								        }
+									});
+						  		}
+					        }
+						});
+						
+		             	this.return1=false;//返回
+						this.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
+						
+					}										
+					/*this.goFirstPage1 =false;//第一笔
 		            this.goPrePage1 =false;//上一笔				            
 	             	this.goNextPage1 =false;//下一笔
 			     	this.goLastPage1 =false;//后一笔
 	             	this.inset1 =false;   //新增      
 	             	this.return1=true;//返回
 	             	this.saves1 =true;//保存 
-	             	this.update1 =false;//编辑
-	             	this.deletes1 =false;//删除		
-				    this.Auditing1 =true;//审核
-				    this.noAuditing1 =true;//取消审核
+	             	this.update1 =false;//编辑*/
 				},
 				inset: function() {//新增按钮
+					
 					this.page.list[0].priabillId="";//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId="";//供应商表id,外键
 				    this.page.list[0].scsId="";//结算方式id,外键
@@ -443,14 +1016,16 @@
 				    this.page.list[0].priabillAuditing="";//是否审核，【默认值】：当前人员
 				    this.page.list[0].priabillYn="";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].priabillCustom1="";//创建时间
+				    this.page.list[0].tpriabillCustom1="";//创建时间
 				    this.page.list[0].priabillCustom2="";//自定义2，单据号码
 				    this.page.list[0].priabillCustom3="";//自定义3
 				    this.page.list[0].priabillCustom4="";//自定义4
 				    this.page.list[0].priabillCustom5="";//自定义5
 				    this.page.list[0].priabillCustom6="";//自定义6
-					
-					
+					this.page.list[0].priabillCustom7="";//自定义7
+					this.page.list[0].priabillCustom8="";//自定义8
+					this.page.list[0].priabillCustom9="";//自定义9
+					this.page.list[0].priabillCustom10="";//自定义10
 					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
@@ -471,8 +1046,8 @@
 				    this.Auditing1 =true;//审核
 				    this.noAuditing1 =true;//取消审核
 				    
-					lay();
-				    
+					
+					
 				},
 				insets: function() {//新增
 				 	/*获取当前时间*/
@@ -500,8 +1075,8 @@
 					//修改信息
 					this.page.list[0].priabillId=$("#priabillId").val();//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId=$("#supplierId").val();//供应商表id,外键
-				    this.page.list[0].scsId="";//结算方式id,外键
-				    this.page.list[0].staffId=$("#priabillCustom9").val();//部门员工表id,外键
+				    this.page.list[0].scsId="1";//结算方式id,外键
+				    this.page.list[0].staffId="100";//部门员工表id,外键
 				    this.page.list[0].currencyId=$("#currencyId").val();//币别类型表id,外键
 				    this.page.list[0].projectId=$("#projectId").val();//项目表id,外键
 				    this.page.list[0].priabillSupplierName=$("#priabillSupplierName").val();//供应商表，名称
@@ -520,27 +1095,32 @@
 				    this.page.list[0].priabillVoucherno=$("#priabillVoucherno").val();//凭证编号
 				    this.page.list[0].priabillTeamName=$("#priabillTeamName").val();//部门表，名称
 				    this.page.list[0].priabillProjectName=$("#priabillProjectName").val();//项目表，名称
-				    this.page.list[0].priabillBillpersonnel=$("#priabillBillpersonnel").val();//制单人员，【默认值】：当前人员
+				    this.page.list[0].priabillBillpersonnel="admin";//制单人员，【默认值】：当前人员
 				    this.page.list[0].priabillReviewers=$("#priabillReviewers").val();//复合人员，【默认值】：
 				    this.page.list[0].priabillRemarks=$("#priabillRemarks").val();//备注
 				    this.page.list[0].priabillAuditstatus="0";//审核状态，【默认值】：0
-				    this.page.list[0].priabillAuditing="admin";//是否审核，【默认值】：当前人员
+				    this.page.list[0].priabillAuditing="0";//是否审核，【默认值】：当前人员
 				    this.page.list[0].priabillYn="0";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].priabillCustom1=year+getNow(month)+getNow(date);//创建时间
-				    this.page.list[0].priabillCustom2="";//自定义2，单据号码
-				    this.page.list[0].priabillCustom3="";//自定义3
-				    this.page.list[0].priabillCustom4="";//自定义4
+				    this.page.list[0].tpriabillCustom1=year+getNow(month)+getNow(date);//创建时间
+				    this.page.list[0].priabillCustom2=$("#priabillCustom2").val();//自定义2，单据号码
+				    this.page.list[0].priabillCustom3=$("#priabillCustom3").val();//自定义3
+				    this.page.list[0].priabillCustom4=$("#priabillCustom4").val();//自定义4
 				    this.page.list[0].priabillCustom5="";//自定义5
 				    this.page.list[0].priabillCustom6="";//自定义6
+				    this.page.list[0].priabillCustom7="";//自定义7
+				    this.page.list[0].priabillCustom8="";//自定义8
+				    this.page.list[0].priabillCustom9=$("#priabillCustom9").val();//自定义9
+				    this.page.list[0].priabillCustom10="";//自定义10
 					var obj=this.page.list[0];
 					
 					$.ajax({
-						url : "http://127.0.0.1:8080/PriabillController/insertSelective",
+						url :"http://127.0.0.1:8080/PriabillController/insertSelective",
 						type:"post",
-					  	data : JSON.stringify(obj),
-					  	dataType:'json',	
-					  	contentType : "application/json;charset=utf-8",
+						data:JSON.stringify(obj),
+						async:false,
+					  	dataType:'json',
+					  	contentType:"application/json;charset=utf-8",
 					  	success:function (res) {
 					  		//alert("系统提示：" +res.message);
 							this_.isinsert=false;//关闭新增模式
@@ -578,22 +1158,140 @@
 					
 				},
 				update: function() {//编辑按钮
-					
+					this.diasabledInput=false;//input可以输入
+					this.isinsert=false;//关闭新增模式
+					this.isedit=true;//开启编辑模式
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+	             	this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
 					
 				},
 				updates: function() {//编辑 
-					
+					var this_=this;
+					var priabillId = $("#priabillId").val();
+					var updateObj = this_.page.list[0];
+				    $.ajax({
+						url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+						type:"post",
+						data:JSON.stringify(updateObj),
+						async:false,
+					  	dataType:'json',
+					  	contentType:"application/json;charset=utf-8",
+					  	success:function (res) {
+					  		//alert("系统提示：" +res.message);
+							layer.msg('编辑成功！');
+							this_.goPage(this_.page.pageNum, 1);
+							
+				        }
+					});
 					
 				
 				},
 				deletes: function() {//删除
-					
+					var this_ = this;
+					layer.confirm('确认删除吗？', function(index){
+						var priabillId = this_.page.list[0].priabillId;
+						var updateObj = this_.page.list[0];
+					    updateObj.priabillYn="1";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+								layer.msg('删除成功！');
+								this_.goPage(1, 1);		
+					        }
+						});
+				        layer.close(index);
+				        //向服务端发送删除指令
+				     });
 				},   
-				Auditing: function() {//审核
-					
+				Auditing: function() {//审核	
+					var this_ = this;
+				    if(this.Auditing1=true){
+				    	this.diasabledInput=false;//input不可以编辑
+						this.isinsert=true;//开启新增模式
+						this.isedit=true;//开启修改模式
+						this.getno();
+											
+						this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+	             		this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =true;//编辑
+		             	this.deletes1 =true;//删除		
+					    
+					    var pbId = this.page.list[0].priabillId;
+					    var updateObj = this.page.list[0];
+					    updateObj.priabillAuditing="1";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective2",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								this_.isinsert=false;//关闭新增模式
+								this_.isedit=false;//关闭编辑模式
+								layer.msg('审核通过！');
+								this_.goPage(this_.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);							
+					        }
+						});
+				    }
 				},   
-				noAuditing: function() {//取消
-					
+				noAuditing: function() {//反审核
+					var this_ = this;
+					if(this.noAuditing1=true){
+				    	this.diasabledInput=true;//input可以编辑
+						this.isinsert=true;//开启新增模式
+						this.isedit=false;//关闭修改模式
+						this.getno();
+											
+						this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+	             		this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    
+					    var pbId = this.page.list[0].priabillId;
+					    var updateObj = this.page.list[0];
+					    updateObj.priabillAuditing="0";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective3",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								this_.isinsert=false;//关闭新增模式
+								this_.isedit=false;//关闭编辑模式
+								layer.msg('反审核成功！');
+								this_.goPage(this.page.pageNum, 1);		
+					        }
+						});
+				    }
 				},
 				selectCk: function() {//下拉框
 					alert(1);
@@ -624,14 +1322,15 @@
 			  		var ss=year+getNow(month)+getNow(date);
 			  		
 					$.ajax({
-						url:"http://127.0.0.1:8080/PayablesController/getno",
+						url:"http://127.0.0.1:8080/PriabillController/getno",
 						type:"get",
 					  	data:"billdate="+ss,
 					  	dataType:'text',	
 					  	success:function (res) {
-					  		console.info("idfdsfhoewifhw")
-						  	console.info(res)
-						   	this_.page.list[0].priabillCustom2="y"+ss+res;
+						    this_.page.list[0].priabillCustom2="y"+ss+res;
+						   	this_.page.list[0].priabillId=ss+res;
+						   	$("#priabillCustom2").val("y"+ss+res);
+						   	$("#priabillId").val(ss+res);
 				        }
 					});
 					
@@ -640,7 +1339,7 @@
 			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
 							
 				var this_ = this;				
-				this_.goPage(1, 1);				
+				this_.goPage(1, 1,null,null,null,null,null,null,null,null,null,null,null);				
 			}
 		
 		});
@@ -658,7 +1357,7 @@
     layui.use('element', function () {
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-		
+
         //触发事件
         var active = {
             tabAdd: function(){
@@ -695,361 +1394,7 @@
             location.hash = 'test='+ $(this).attr('lay-id');
         });
     });
-
-    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
-        var table = layui.table;
-		/*var $ = layui.jquery, layer = layui.layer;*/
-		var form = layui.form;
-		var $ = layui.$, layer = layui.layer;
-		//layui表格方法
-		lay();
-		//供应商触发事件
-  		$("#priabillSupplierName").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesSupplier.html"
-  			});
-  		});
-  		
-  		//部门触发事件
-  		$("#priabillTeamName").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesTeam.html"
-  			});
-  		});
-  		
-  		//项目触发事件
-  		$("#priabillProjectName").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesProject.html"
-  			});
-  		});
-		
-		//结算方式触发事件
-  		$("#priabillSatName1").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesSat1.html"
-  			});
-  		});
-		
-		$("#priabillSatName2").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesSat2.html"
-  			});
-  		});
-		
-		$("#priabillSatName3").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesSat3.html"
-  			});
-  		});
-  		
-  		//币别触发事件
-  		$("#priabillCurrencyName").click(function(){
-  			layer.open({
-  				type:2,
-  				area:["800px","400px"],
-  				content:"PayablesCurrency.html"
-  			});
-  		});
-  		
-  		//第一笔
-  		$("#dyb").click(function(){
-  			lay();
-  		});
-  		
-  		//上一笔
-  		$("#syb").click(function(){
-  			lay();
-  		});
-  		
-  		//下一笔
-  		$("#xyb").click(function(){
-  			lay();
-  		});
-  		
-  		//后一笔
-  		$("#hyb").click(function(){
-  			lay();
-  		});
-  		
-  		//新增清空表格数据
-		$("#xinzeng").click(function(){
-			$("#priabillId").val("");//预付冲款单ID（主键 唯一）
-		    $("#priabillSupplierName").val("");//供应商表，名称		    
-			lay();
-		});
-  		       
-		var time = "";
-       
-        function lay(){
-        	var priabillSupplierName = $("#priabillSupplierName").val();
-        	var priabillId = $("#priabillId").val();
-        	var tables=table.render({
-            elem: '#materialsContent2'
-            ,url:'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName?priabillCustom10='+priabillSupplierName+"&priabillId="+priabillId
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
-            ,toolbar: 'default'//开启工具栏
-            ,totalRow: true //开启合计行
-			,parseData: function(res){
-				/*获取当前时间*/
-				   	//判断是否在前面加0
-				   
-				   	console.log($("#priabillId").val());
-						function getNow(s) {
-						return s < 10 ? '0' + s: s;
-						}
-						 
-						var myDate = new Date();            
-						 
-						var year=myDate.getFullYear();        //获取当前年
-						var month=myDate.getMonth()+1;   //获取当前月
-						var date=myDate.getDate();            //获取当前日
-						 
-						var h=myDate.getHours();              //获取当前小时数(0-23)
-						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
-						var s=myDate.getSeconds();
-						 
-						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
-				   	/*获取当前时间*/
-				   	
-			  		var ss=year+getNow(month)+getNow(date);
-			  		
-					$.ajax({
-						url:"http://127.0.0.1:8080/PriadetailsController/getno",
-						type:"get",
-						async: false,//同步
-					  	data:"billdate="+ss,
-					  	dataType:'text',	
-					  	success:function (res) {
-						   	time=ss+res;
-				        }
-					});
-				
-				//添加一组空数据
-               res.list.push({
-               		"priadetailsId":time
-               		,"priabillPrice":""
-               		,"priabillType":""
-               		,"priabillNumber":""
-               		,"priabillRemarks":""
-               		,"priabillCustom1":ss
-               });
-				return {
-					"code":0,
-					"msg":"",
-					"count":res.total,
-					data:res.list
-				};
-			}
-			,done: function (res, curr, count) {
-                layui.each($('select'), function (index, item) {
-                    var elem = $(item);
-                    elem.val(elem.data('value')).parents('div.layui-table-cell').css('overflow', 'visible');
-                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("height","40px");
-                    elem.val(elem.data('value')).parents('div.layui-table-cell').css("line-height","40px");                  
-                });
-                
-           	}
-            , cols: [[
-            	{type: 'checkbox'}
-            	,{field: 'priadetailsId', title: '(栏号)',sort:true}
-                ,{field: 'priabillPrice', title: '预付金额 ',sort:true} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'priabillType',
-                	title: '来源别',
-                	width: 200,
-                	templet: function (res) {
-                        // 模板的实现方式也是多种多样，这里简单返回固定的
-                        if(res.priabillType=="采购订单"){
-                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单" selected="selected">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
-                        }else if(res.priabillType=="进口采购单"){
-                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单" selected="selected">进口采购单</option><option value="P/O">P/O</option></select>';
-                        }else if(res.priabillType=="P/O"){
-                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required" data-value="' + res.priabillType + '" ><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O" selected="selected">P/O</option></select>';
-                        }else{
-                        	return '<select disabled="disabled" name="priabillType" lay-filter="testSelect" lay-verify="required"><option value=""></option><option value="采购订单">采购订单</option><option value="进口采购单">进口采购单</option><option value="P/O">P/O</option></select>';
-                        }
-                   }
-                  }
-                /*, {field: 'sex', title: '来源别', sort: true}*/
-                , {field: 'priabillNumber', title: '来源单号'}
-                , {field: 'priabillRemarks', title: '摘要'}
-                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
-            ]]
-            ,page:true//是否开启分页
-            ,limits:[1,2,3]//选择每页显示多少条数据
-            ,limit:2//初始每页显示条数
-            ,height:350
-        });
-                  
-        //监听行工具事件   
-		  table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
-		    var data = obj.data //获得当前行数据
-		    ,layEvent = obj.event; //获得 lay-event 对应的值	
-		    var $this = $(this);
-		    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
-  			var trIndex = tr.data('index');	//索引\
-  			console.log(obj.data);
-  			alert($("#priabillSupplierName").attr("i"));
-		    if(layEvent === 'edit'){
-		      layer.msg('进入编辑操作');
-		      //修改编辑按钮名 
-	    		  $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("保存");
-			      //修改lay-event对应值
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","save");
-			      //修改样式
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","red");
-			      //取消单元格的禁用 
-			      /*console.log($(".layui-table-body tbody tr[data-index='"+trIndex+"']").html())*/
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",true);
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").removeAttr("disabled");
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",true);
-			      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",true);
-			      form.render('select');	      
-			  
-		    } else if(layEvent === 'del'){
-		      layer.confirm('真的删除行么', function(index){
-		        obj.del(); //删除对应行（tr）的DOM结构
-		        layer.close(index);
-		        //向服务端发送删除指令
-		        $.ajax({
-		        	url:"http://127.0.0.1:8080/PriadetailsController/deleteByPrimaryKey",
-		        	type:"get",
-		        	data : "priadetailsId="+obj.data.priadetailsId,
-			        dataType:'json', 
-			        contentType : "application/json;charset=utf-8",			        	
-		        	success:function(result){
-		        		console.log("删除："+result);
-		        		layer.msg(result.message);
-		        	}
-		        });
-		      });
-		    }else if(layEvent === 'save'){	
-		    	var sy = "";
-		    	if(obj.data.priabillPrice<=0){
-			      	sy += "[预付金额不能小于或等于0]  ";
-			      }
-			      if(obj.data.priabillType==""||obj.data.priabillType=="请选择"){
-			      	console.log(obj.data.priabillType)
-			      	sy += "[请选择来源别]  ";
-			      }
-			      if(obj.data.priabillNumber==""){
-			      	sy += "[来源单号不能为空]  ";
-			      }
-			      sy += "请仔细填写";
-			      if(sy!="请仔细填写"){
-			      	layer.msg(sy);
-			      }else{
-			      	//修改编辑按钮名 
-	    		    $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").html("编辑");
-			        //修改lay-event对应值
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").attr("lay-event","edit");
-			        //修改样式
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] #a").css("background-color","#009688");
-			        //单元格的禁用  
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(2)").data("edit",false);
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div select").attr("disabled","disabled");
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").data("edit",false);
-			        $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").data("edit",false);
-			        form.render('select');
-			        
-			        //向服务端发起请求
-			        $.ajax({
-			        	url:"http://127.0.0.1:8080/PriadetailsController/insertAndDelete",
-			        	type:"post",
-			        	data : JSON.stringify(obj.data),
-				        dataType:'json', 
-				        contentType : "application/json;charset=utf-8",			        	
-			        	success:function(result){
-			        		console.log("新增删除："+result);
-			        		layer.msg('编辑成功！');
-			        	}
-			        });
-				  }		    	
-		    }
-		    	//下拉框监听事件
-		    	form.on('select', function(data){
-				  /*console.log(data.elem);*/ //得到select原始DOM对象
-				  /*console.log(data.value);*/ //得到被选中的值]
-				  //将被选中的值赋给当前行priabillType数据
-				  obj.update({
-				  	priabillType:data.value
-				  });
-				}); 
-				
-		  });  
-
-        //监听头工具栏事件
-		    table.on('toolbar(materialsContent2)', function(obj){
-		  	layer.msg('1');
-		    /*var checkStatus = table.checkStatus(obj.config.id)
-		    ,data = checkStatus.data; *///获取选中的数据
-		    switch(obj.event){
-		      case 'add':
-		        	layer.msg('添加一行表格');
-		        	console.log(obj);
-                   /*//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
-                   var datas = table.cache.materialsContent2;
-                   
-                   //定义一个空数组
-                   var demo = [];
-                   
-                   //将之前的数组备份
-                   for(var i =0;i<datas.length;i++){
-                   		demo.push(datas[i]);
-                   }
-                    
-                   //添加一组空数据
-                   demo.push({
-                   		"priadetailsId":"haha"
-                   		,"priabillPrice":""
-                   		,"priabillType":""
-                   		,"priabillNumber":""
-                   		,"priabillRemarks":""                   		
-                   });*/
-                  
-                    tables.reload({	//将数据重新载入表格
-                        
-                    });
-		     		 break;
-		      case 'update':
-		        /*if(data.length === 0){
-		          layer.msg('请选择一行');
-		        } else if(data.length > 1){
-		          layer.msg('只能同时编辑一个');
-		        } else {
-		          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-		        }*/
-		       
-		       	//获取之前编辑过的全部数据，前提是编辑数据时要更新缓存，materialsContent2为表格的id
-		       	var datas = table.cache.materialsContent2;
-		       	
-		       	//
-		       	for(var i =0;i<datas.length;i++){
-                   		
-                   }
-		      case 'delete':
-		        if(data.length === 0){
-		          layer.msg('请选择一行');
-		        } else {
-		          layer.msg('删除');
-		        }
-		      		break;
-		    };
-		  });
-        }
-    });
+   
 </script>
 </body>
 </html>

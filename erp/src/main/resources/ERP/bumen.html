@@ -187,7 +187,8 @@
 				staffvue.staff=staff;
 			},
 			quhui(){
-				parent[dizhi].page.list[0].sowBuyer=staffvue.staff.staffName;
+				if(dizhi=="sales_outboundvue"){
+					parent[dizhi].page.list[0].sowBuyer=staffvue.staff.staffName;
 				$.ajax({
 				type:"get",
 				data:{TeamId:staffvue.staff.teamId},
@@ -196,6 +197,18 @@
 					parent[dizhi].page.list[0].sowBelongsSection=res.teamName;
 				}
 			});
+				}else{
+					parent[dizhi].page.list[0].srwBuyer=staffvue.staff.staffName;
+				$.ajax({
+				type:"get",
+				data:{TeamId:staffvue.staff.teamId},
+				url:"http://127.0.0.1:8080/TeamController/selectByPrimaryKey",
+				success:function(res){
+					parent[dizhi].page.list[0].srwBelongsSection=res.teamName;
+				}
+			});
+				}
+				
 					parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){

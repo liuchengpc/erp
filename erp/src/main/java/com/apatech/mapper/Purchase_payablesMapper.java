@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.apatech.domain.Priadetails;
 import com.apatech.domain.Purchase_payables;
 
 public interface Purchase_payablesMapper {
@@ -19,6 +20,10 @@ public interface Purchase_payablesMapper {
 	 		"FROM\r\n" + 
 	 		"Purchase_payables WHERE pp_custom1=#{billdate}")
     String getno(@Param("billdate")String billdate);
+	 
+	List<Purchase_payables> selectByPayablesbillSupplierName(String ppCustom8);
+	 
+	List<Purchase_payables> selectByPayablesbillSupplierName2(String ppPcName);
 	
     int deleteByPrimaryKey(Integer ppId);
 
@@ -29,6 +34,8 @@ public interface Purchase_payablesMapper {
     Purchase_payables selectByPrimaryKey(Integer ppId);
 
     int updateByPrimaryKeySelective(Purchase_payables record);
-
+    
+    int updateByPrimaryKeySelective22(Purchase_payables record);
+    
     int updateByPrimaryKey(Purchase_payables record);
 }

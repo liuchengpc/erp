@@ -1,8 +1,8 @@
-import rest from "../config/rest"
+import rest from "../config/rest-config.js"
 
-export function getAll() {
+export function getAllDepartment() {
     return rest({
-        url:"/TeamController/selectAll",
+        url:"http://localhost:8080/TeamController/selectAll",
         method: "get"
     });
 }

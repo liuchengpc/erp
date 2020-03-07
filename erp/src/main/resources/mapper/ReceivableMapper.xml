@@ -64,7 +64,7 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from receivable 
-	    where payables_auditstatus_Yn=0 payablesCustom2=#{payablesCustom2,jdbcType=VARCHAR}
+	    where payables_auditstatus_Yn=0 and payables_custom2=#{payablesCustom2}
 	    ORDER BY receivable_id DESC
   </select>
   

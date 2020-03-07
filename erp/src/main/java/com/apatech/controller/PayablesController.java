@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Payables;
+import com.apatech.domain.Purchase_jiaoyi;
 import com.apatech.domain.Payables;
 import com.apatech.domain.Payables;
 import com.apatech.domain.Payables;
 import com.apatech.mapper.PayablesMapper;
 import com.apatech.service.PayablesService;
+import com.apatech.service.Purchase_jiaoyiService;
 import com.github.pagehelper.PageInfo;
 
 @Controller
@@ -26,6 +28,9 @@ import com.github.pagehelper.PageInfo;
 public class PayablesController {
 	@Autowired
 	private PayablesService dao;
+	
+	@Autowired
+	private Purchase_jiaoyiService daoJy;
 	
 	/**
 	 * 分页
@@ -112,6 +117,43 @@ public class PayablesController {
 		}
 		return map;
     }
+	
+	/**
+	 * 根据主键修改
+	 * @param student
+	 * @return
+	 */
+	@RequestMapping(value = "updateByPrimaryKeySelective2",method = RequestMethod.POST)
+	@ResponseBody
+    public Map<String, String> updateByPrimaryKeySelective2(@RequestBody Payables record) {
+		System.out.println("进入PayablesController根据主键修改");
+		System.out.println("实体："+record.toString());
+		Map<String, String> map=new HashMap<String, String>();
+    	int i=dao.updateByPrimaryKeySelective(record);
+    	if (i>0) {
+    		Purchase_jiaoyi jy = new Purchase_jiaoyi();
+    		jy.setJyData(record.getPayablesPayablestime());
+    		jy.setJySupplierName(record.getPayablesSupplierName());
+    		jy.setJyNumber(record.getPayablesCustom2());
+    		jy.setJyType("应付冲款单(冲款)");
+    		jy.setJyPayables(0-record.getPayablesPrice1());
+    		jy.setJyPayablesBb(0-record.getPayablesPrice1());
+    		jy.setJyCustom3(record.getPayablesId());
+    		int u = daoJy.insertSelective(jy);
+    		if(u>0) {
+    			System.out.println("供应商预付款明细新增成功！");
+    		}else {
+    			System.out.println("供应商预付款明细新增失败！");
+    		}
+			map.put("code", "1");
+			map.put("message", "修改成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "修改失败！");
+		}
+		return map;
+    }
+	
 	/**
 	 * 根据主键删除
 	 * @param payablesId

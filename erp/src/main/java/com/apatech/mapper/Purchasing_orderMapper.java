@@ -10,6 +10,7 @@ import com.apatech.domain.Purchasing_order;
 public interface Purchasing_orderMapper {
  List<Purchasing_order> selectAll();
 	 
+ List<Purchasing_order> selectAll2();
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 

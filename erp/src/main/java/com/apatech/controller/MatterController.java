@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Matter;
 import com.apatech.domain.wdMatter;
+import com.apatech.domain.Updown_program;
 import com.apatech.domain.Matter;
 import com.apatech.domain.Matter;
 import com.apatech.domain.Matter;
@@ -33,6 +34,12 @@ public class MatterController {
 	@ResponseBody
 	public List<wdMatter> selectAll(){
 		return dao.selectAll();
+	}
+	
+	@RequestMapping("selectAll2")
+	@ResponseBody
+	public List<Matter> selectAll2(){
+		return dao.selectAll2();
 	}
 	
 	
@@ -144,4 +151,27 @@ public class MatterController {
 		}
 		return map;
     }
+	
+	/**
+	 * 联表查询所有(只绑定单位名称)
+	 * zhz
+	 */
+	@RequestMapping("queryAll")
+	@ResponseBody
+	public List<Matter> queryAll(){
+		System.out.println("进入MatterController联表查询所有");
+		return dao.queryAll();
+    }
+	/**
+	 * 联表根据主键(只绑定单位名称)
+	 *zhz
+	 */
+	@RequestMapping(value = "queryAllByPrimaryKey",method = RequestMethod.GET)
+	@ResponseBody
+    public Matter queryAllByPrimaryKey(String matterId) {
+		System.out.println("进入MatterController 联表根据主键查询");
+		System.out.println("matterId=" +matterId);
+		System.out.println(dao.queryAllByPrimaryKey(matterId).toString());
+		return dao.queryAllByPrimaryKey(matterId);
+	}
 }

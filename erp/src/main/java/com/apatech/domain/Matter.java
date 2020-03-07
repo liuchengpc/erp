@@ -36,20 +36,20 @@ public class Matter {
     private Float matterStandardallcost;//标准总成本
     private Float matterDaystartallcost;//期初总成本
     private Float matterNowallcost;//现行总成本
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterFirstin;//最初出库日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterRecentout;//最近出库日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterRecentin;//最近入库
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterFirstout;//最初入库日
     private Integer matterAppearstartday;//呆滞起记天数
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date matterStopdate;//停用日期
     private String matterMdecoration;//物料说明
@@ -65,13 +65,15 @@ public class Matter {
     private String matterCustom5;//自定栏5
     private String matterCustom6;//自定栏6
     
+    private String mu_name;//单位名称
     
-
    
 
 	public Matter() {
 		super();
 	}
+
+	
 
 	@Override
 	public String toString() {
@@ -91,8 +93,23 @@ public class Matter {
 				+ matterMdecoration + ", mtId=" + mtId + ", muId=" + muId + ", currencyId=" + currencyId
 				+ ", matterAuditing=" + matterAuditing + ", matterYn=" + matterYn + ", matterCustom1=" + matterCustom1
 				+ ", matterCustom2=" + matterCustom2 + ", matterCustom3=" + matterCustom3 + ", matterCustom4="
-				+ matterCustom4 + ", matterCustom5=" + matterCustom5 + ", matterCustom6=" + matterCustom6 + "]";
+				+ matterCustom4 + ", matterCustom5=" + matterCustom5 + ", matterCustom6=" + matterCustom6 + ", mu_name="
+				+ mu_name + "]";
 	}
+
+
+
+	public String getMu_name() {
+		return mu_name;
+	}
+
+
+
+	public void setMu_name(String mu_name) {
+		this.mu_name = mu_name;
+	}
+
+
 
 	public String getMatterId() {
         return matterId;

@@ -113,6 +113,7 @@ let viewModel = new Vue({
         getLast() {
             getLast().then(resp => {
                 this.purechaseReturn = resp.data;
+                this.addProp(this.purechaseReturn.details);
                 console.log(resp);
             }).catch(error => {
                 console.log(error);
@@ -179,6 +180,19 @@ let viewModel = new Vue({
             }).catch(error => {
                 console.log(error);
             });
+        },
+        editColumn(enableEdit,index) {
+            // console.log(enableEdit);
+            // console.log(typeof enableEdit); // boolean
+            console.log(enableEdit);
+            console.log(index);
+            this.$set(this.purechaseReturn.details[index], "enableEdit", !enableEdit);
+        },
+        addProp(details) {
+            let self = this;
+            details.forEach(function (value, index, array) {
+                self.$set(self.purechaseReturn.details[index], "enableEdit", false);
+            });
         }
     },
     created: function () {
@@ -237,6 +251,7 @@ layui.use(['form', 'layedit', 'laydate','layer'], function () {
         }else if(viewModel.$data.orderStatus === orderStatusMeta.insert){
             // 新增
             let data = form.val('pure-form');
+            data.details = viewModel.$data.purechaseReturn.details;
             insertWithDetails(JSON.stringify(data)).then(resp => {
                 console.log(resp);
             }).catch(error => {

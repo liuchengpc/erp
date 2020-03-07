@@ -43,6 +43,14 @@
 	    ORDER BY po_id DESC
   </select>
   
+  <select id="selectAll2" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchasing_order 
+	    where po_Yn=0 and po_custom6=0 
+	    ORDER BY po_id DESC
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

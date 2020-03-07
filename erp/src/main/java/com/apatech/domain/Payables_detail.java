@@ -19,7 +19,7 @@ public class Payables_detail {
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String padeSourcelist;//来源单别
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date padeSourcetime;//来源日期
     private String padeSourcenumber;//来源单号
@@ -44,8 +44,8 @@ public class Payables_detail {
     private String padeCustom4;//自定栏4
     private String padeCustom5;//自定栏5
     private String padeCustom6;//自定栏6
-    private String padeCustom7;//自定栏7
-    private String padeCustom8;//自定栏8
+    private String padeCustom7;//自定栏7	--原单金额
+    private String padeCustom8;//自定栏8	--部门编号
     private String padeCustom9;//自定栏9
     private String padeCustom10;//自定栏10
     

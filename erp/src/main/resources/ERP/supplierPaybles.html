@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>供应商账款明细区间</title>
+		<link rel="stylesheet" href="css/layui.css">
+	    <link rel="stylesheet" href="css/bootstrap.css" /> 
+	    <link href="css/fontawesome.css" rel="stylesheet">
+		<link href="css/brands.css" rel="stylesheet">
+		<link href="css/solid.css" rel="stylesheet">
+	
+	    
+	    <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/dialog.js"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/axios.min.js"></script>
+	    <style>
+	        #app{
+	            padding: 15px;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div id="app">
+		    <div class="layui-row" v-for="pages,index in page.list">
+		        <div class="layui-col-lg6">
+		            <div class="layui-form">
+		            	<div class="layui-form-item">
+		                    <label class="layui-form-label" style="color:#009688;width:100px;">供应商</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" id="jySupplierName" name="title" title="F4查询"  class="layui-input" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                    </div>
+		                </div>
+		                <div class="layui-form-item">
+		                    <label class="layui-form-label" style="color:#009688;width:100px;">区间日期</label>
+		                    <div class="layui-input-block">
+		                        <input type="text" id="jyData"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <label class="layui-form-label" style="color:#009688;width:100px;">——&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+		                        <input type="text" id="jyDataXz"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" style="width: 30%; float: left;" v-bind:disabled="diasabledInput">
+		                        <button type="button" id="chaxun" class="layui-btn" style="float: left;margin-left:10%;">查询</button>
+		                    </div>
+		                </div>
+		                <div class="layui-form-item">
+		                    <table id="materialsContent2" class="layui-hide" lay-filter="materialsContent2">
+			
+			                </table>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	
+	<script src="layui.js"></script>
+	<script>
+		//layui
+		layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form','laydate'], function(){
+			var form = layui.form;
+			var form2 = layui.form;
+	        var table = layui.table;
+	        var laydate=layui.laydate;
+			/*var $ = layui.jquery, layer = layui.layer;*/
+			var $ = layui.$, layer = layui.layer;
+			
+			//执行一个laydate实例
+			laydate.render({
+				elem:'#jyData',//指定元素
+				done:function(value){
+					$("#jyData").val(value);
+
+				}
+			})
+			
+			//执行一个laydate实例
+			laydate.render({
+				elem:'#jyDataXz',//指定元素
+				done:function(value){
+					$("#jyDataXz").val(value);
+				}
+			})
+			
+			//供应商开窗取值
+			$("#jySupplierName").click(function(){
+	  			layer.open({
+	  				type:2,
+	  				area:["800px","400px"],
+	  				content:"PayablesSupplier3.html"
+	  			});
+	  		});
+	  		
+	  		//查询按钮
+	  		$("#chaxun").click(function(){
+	  			var obj={
+	  				"jySupplierName":$("#jySupplierName").val(),
+	  				"jyData":$("#jyData").val(),
+	  				"jyDataXz":$("#jyDataXz").val()
+	  			};
+	  			
+	  			/*var jyData=new Date(Date.parse($("#jyData").val()));
+	  			var jyDataXz=new Date(Date.parse($("#jyDataXz").val()));*/
+	  			//表格重载
+	  			table.reload('materialsContent2', {
+	                page: {
+	                    curr: 1 //重新从第 1 页开始
+	                }
+	                , where: {//这里传参  向后台
+	                    page: 1,
+	                    limit:100,
+	                    jySupplierName:$("#jySupplierName").val(),
+		  				jyData:$("#jyData").val(),
+		  				jyDataXz:$("#jyDataXz").val()
+	                    //可传多个参数到后台...  ，分隔
+	                }
+	                , url: 'http://127.0.0.1:8080/Purchase_jiaoyiController/selectAllpageXz2'//后台做模糊搜索接口路径
+	                , method: 'get'
+	            });
+	  		});
+			
+			
+			var tables=table.render({
+	            elem: '#materialsContent2'
+	            ,url:'http://127.0.0.1:8080/Purchase_jiaoyiController/selectAllpageXz'
+	            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+	            ,toolbar: 'default'//开启工具栏
+	            ,totalRow: true //开启合计行
+				,parseData: function(res){
+					
+					return {
+						"code":0,
+						"msg":"",
+						"count":res.total,
+						data:res.list
+					};
+				}
+				,done: function (res, curr, count) {
+	                
+	           	}
+	            , cols: [[
+	            	{type: 'checkbox', fixed: 'left'}
+	                , {field: 'jyData', width:150,title: '单据日期',sort:true, fixed: 'left', totalRowText: '合计：'}
+	                , {field: 'jySupplierName', width:150,title: '供应商名称'}
+	                , {field: 'jyNumber', width:150,title: '单据号码',sort:true}
+	                , {field: 'jyType', width:180,title: '单别'}
+	                , {field: 'jyPriabill', width:150,title: '预付款',sort:true}
+	                , {field: 'jyPriabillBb', width:150,title: '本币预付款',sort:true}
+	                , {field: 'jyPayables', width:150,title: '应付款',sort:true}
+	                , {field: 'jyPayablesBb', width:150,title: '本币应付款',sort:true}
+	            ]]
+	            ,page:true//是否开启分页
+	            ,limits:[100,200,300]//选择每页显示多少条数据
+	            ,limit:100//初始每页显示条数
+	            ,height:350
+	        });
+		});
+		
+		
+		
+		
+		layui.use('element', function () {
+	        var $ = layui.jquery
+	            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+	
+	        //触发事件
+	        var active = {
+	            tabAdd: function(){
+	                //新增一个Tab项
+	                element.tabAdd('demo', {
+	                    title: '新选项'+ (Math.random()*1000|0) //用于演示
+	                    ,content: '内容'+ (Math.random()*1000|0)
+	                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+	                })
+	            }
+	            ,tabDelete: function(othis){
+	                //删除指定Tab项
+	                element.tabDelete('demo', '44'); //删除：“商品管理”
+	
+	
+	                othis.addClass('layui-btn-disabled');
+	            }
+	            ,tabChange: function(){
+	                //切换到指定Tab项
+	                element.tabChange('demo', '22'); //切换到：用户管理
+	            }
+	        };
+	
+	        $('.site-demo-active').on('click', function(){
+	            var othis = $(this), type = othis.data('type');
+	            active[type] ? active[type].call(this, othis) : '';
+	        });
+	
+	        //Hash地址的定位
+	        var layid = location.hash.replace(/^#test=/, '');
+	        element.tabChange('test', layid);
+	
+	        element.on('tab(test)', function(elem){
+	            location.hash = 'test='+ $(this).attr('lay-id');
+	        });
+	    });
+	</script>
+	</body>
+</html>

@@ -17,7 +17,7 @@ public class Check {
     private String warehouseId;//盘点仓库id
     private String scAppreciationSubjects;//增值科目id
     private String scImpairmentSubjects;//减值科目id
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern ="yyyy-MM-dd HH:mm:ss")
     private Date checkDocumentationDate;//单据日期
     private String checkDocumentationNo;//单据号码

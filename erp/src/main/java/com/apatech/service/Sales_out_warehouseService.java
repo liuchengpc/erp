@@ -1,5 +1,6 @@
 package com.apatech.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Sales_out_warehouse;
+import com.apatech.domain.Salesorder;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.mapper.Sales_out_warehouseMapper;
@@ -23,7 +25,14 @@ public class Sales_out_warehouseService {
 		return dao.selectcount();
 	}
 	
+	public int selectcountby(String id) {
+		return dao.selectcountby(id);
+	}
 	
+	public String selectbysh(String id) {
+		return dao.selectbysh(id);
+	}
+		
 	public int deletelist(String id) {
 		dao.deletelist2(id);
 		return dao.deletelist(id);
@@ -33,6 +42,16 @@ public class Sales_out_warehouseService {
 		dao.selectlist2(id, sid);
 		return dao.selectlist(id, sid);
 	}
+	
+	 public List<Sales_out_warehouse> selectzdsh(){
+	    	List<Sales_out_warehouse> list = new ArrayList<Sales_out_warehouse>();
+	    	for (Sales_out_warehouse stu : dao.selectAll()) {
+				if(stu.getSowAuditing().equals("1")) {
+					list.add(stu);
+				}
+			}
+	    	return list;
+	    }
 	
 	public PageInfo<Sales_out_warehouse> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());

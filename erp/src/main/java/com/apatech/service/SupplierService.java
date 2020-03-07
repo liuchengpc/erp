@@ -57,4 +57,8 @@ public class SupplierService {
     public int updateByPrimaryKey(Supplier record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public List<Supplier> selectAll() {
+        return dao.selectAll();
+    }
 }

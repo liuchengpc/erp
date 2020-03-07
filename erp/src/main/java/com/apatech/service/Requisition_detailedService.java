@@ -36,6 +36,10 @@ public class Requisition_detailedService {
 		return dao.queryAllByR_ID(requisitionId);
 	}
 	 
+	public List<Requisition_detailed> selectAll(){
+		return dao.selectAll();
+	}
+	
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }
@@ -44,12 +48,19 @@ public class Requisition_detailedService {
     	return dao.deleteByPrimaryKey(rdId);
     }
 
+    public int deleteByrequisitionId(String requisitionId){
+    	return dao.deleteByrequisitionId(requisitionId);
+    }
+    
     public int insert(Requisition_detailed record){
     	return dao.insert(record);
     }
     
     public int insertSelective(Requisition_detailed record){
     	return dao.insertSelective(record);
+    }
+    public int insertSelective2(Requisition_detailed record){
+    	return dao.insertSelective2(record);
     }
 
     public Requisition_detailed selectByPrimaryKey(String rdId){

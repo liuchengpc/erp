@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>采购入库转入</title>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="layui.js"></script>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/layui.css">
+    <style>
+        #app {
+            padding: 15px;
+        }
+
+        .layui-input {
+            height: 24px !important;
+        }
+
+        .layui-form-item {
+            margin-bottom: 8px !important;
+        }
+
+        .layui-form-checkbox {
+            margin-top: 3px !important;
+        }
+
+        .layui-input-block {
+            height: 24px !important;
+            min-height: 24px !important;
+        }
+
+        .layui-form-label {
+            padding: 0 !important;
+            line-height: 24px !important;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="layui-row">
+        <div class="layui-col-xs10" style="border: 1px solid #eee;padding: 10px 10px 0;margin-bottom: 13px;">
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="color: rgb(0, 150, 136);">日期区间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" lay-verify="required" lay-reqtext="供应商是必填项，岂能为空？"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1" style="text-align:center;line-height: 24px;font-size: 14px;">
+                    To
+                </div>
+                <div class="layui-col-xs4">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0px;">
+                                <input type="text" placeholder="" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs2">
+                    <div class="layui-form">
+                        <div class="layui-form-item" style="margin-bottom: 0;">
+                            <div class="layui-input-block" style="margin-left: 0;text-align:center;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                        style="height:24px;box-sizing: border-box">
+                                    载入资料
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="color: rgb(0, 150, 136);">单据区间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" lay-verify="required" lay-reqtext="供应商是必填项，岂能为空？"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1" style="text-align:center;line-height: 24px;font-size: 14px;">
+                    To
+                </div>
+                <div class="layui-col-xs4">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0px;">
+                                <input type="text" placeholder="" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs2">
+                    <div class="layui-form">
+                        <div class="layui-form-item" style="margin-bottom: 0;">
+                            <div class="layui-input-block" style="margin-left: 0;text-align:center;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                        style="height:24px;box-sizing: border-box">全选
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row">
+                <div class="layui-col-xs5">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="color: rgb(0, 150, 136);">物料区间</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" lay-verify="required" lay-reqtext="供应商是必填项，岂能为空？"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs1" style="text-align:center;line-height: 24px;font-size: 14px;">
+                    To
+                </div>
+                <div class="layui-col-xs4">
+                    <div class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="margin-left: 0px;">
+                                <input type="text" placeholder="" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs2">
+                    <div class="layui-form">
+                        <div class="layui-form-item" style="margin-bottom: 0;">
+                            <div class="layui-input-block" style="margin-left: 0;text-align:center;">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                        style="height:24px;box-sizing: border-box">
+                                    全选
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs2">
+            <div class="layui-row">
+                <div class="layui-col-xs12">
+                    <div class="layui-form">
+                        <div class="layui-form-item" style="margin-bottom: 0;">
+                            <div class="layui-input-block"
+                                 style="margin-left: 0;text-align:center;min-height: 36px !important;">
+                                <button type="button" class="layui-btn layui-btn-normal layui-btn-sm">
+                                    取回
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row"me>
+                <div class="layui-col-xs-12">
+                    <div class="layui-form">
+                        <div class="layui-form-item" style="margin-bottom: 0;">
+                            <div class="layui-input-block"
+                                 style="margin-left: 0;text-align:center;min-height: 36px !important;">
+                                <button type="button" class="layui-btn layui-btn-danger layui-btn-sm">
+                                    取消
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs12">
+            <div class="layui-form">
+                <div class="layui-form-item" style="margin-bottom: 0;">
+                    <div class="layui-input-block" style="margin-left: 0;">
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;box-sizing: border-box">
+                            光标行以下全转
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;box-sizing: border-box">
+                            光标行以下清零
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;box-sizing: border-box">
+                            显示字段设置
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
+                                style="height:24px;box-sizing: border-box">
+                            批号咨询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row" style="overflow-y: scroll;max-height: 239px;">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>人物</th>
+                    <th>民族</th>
+                    <th>出场时间</th>
+                    <th>格言</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>贤心</td>
+                    <td>汉族</td>
+                    <td>1989-10-14</td>
+                    <td>人生似修行</td>
+                </tr>
+                <tr>
+                    <td>张爱玲</td>
+                    <td>汉族</td>
+                    <td>1920-09-30</td>
+                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                </tr>
+                <tr>
+                    <td>Helen Keller</td>
+                    <td>拉丁美裔</td>
+                    <td>1880-06-27</td>
+                    <td> Life is either a daring adventure or nothing.</td>
+                </tr>
+                <tr>
+                    <td>岳飞</td>
+                    <td>汉族</td>
+                    <td>1103-北宋崇宁二年</td>
+                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
+                </tr>
+                <tr>
+                    <td>孟子</td>
+                    <td>华夏族（汉族）</td>
+                    <td>公元前-372年</td>
+                    <td>猿强，则国强。国强，则猿更强！ </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.open({
+            type: 1,
+            title: '采购入库转入',
+            content: $('#app'),
+            area: ['745px', '450px']
+        });
+    });
+</script>
+</body>
+</html>

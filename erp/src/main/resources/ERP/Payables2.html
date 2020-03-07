@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>付款冲款</title>
+    <title>应付冲款</title>
     <link rel="stylesheet" href="css/layui.css">
     <link rel="stylesheet" href="css/bootstrap.css" /> 
     <link href="css/fontawesome.css" rel="stylesheet">
@@ -19,6 +19,9 @@
         #app{
             padding: 15px;
         }
+        .dis{
+        	disabled:disabled;
+        }
     </style>
 </head>
 <body>
@@ -29,40 +32,42 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">供应商</label>
                     <div class="layui-input-block">
-                        <input type="text" name="title"  class="layui-input" title="F4查询" v-model="pages.payablesSupplierName">
+                        <input type="text" id="payablesSupplierName" name="title"  class="layui-input" title="F4查询" v-model="pages.payablesSupplierName" v-bind:disabled="diasabledInput">
+                        <input type="text" id="payablesId" name="title"  class="layui-input" title="F4查询" v-model="pages.payablesId" hidden="hidden">
+                        <input type="text" id="supplierId" name="title"  class="layui-input" title="F4查询" v-model="pages.supplierId" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式一</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.payablesPrice1" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="payablesSatName1" v-model="pages.payablesSatName1" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="payablesPrice1" v-model="pages.payablesPrice1" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式二</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.payablesPrice2" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="payablesSatName2" v-model="pages.payablesSatName2" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="payablesPrice2" v-model="pages.payablesPrice2" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">结算方式三</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;">
-                        <input type="text" v-model="pages.payablesPrice3" name="title"  class="layui-input" style="width: 40%; float: right;">
+                        <input type="text" id="payablesSatName3" v-model="pages.payablesSatName3" name="title" title="F4查询"  class="layui-input" style="width: 60%; float: left;" v-bind:disabled="diasabledInput">
+                        <input type="text" id="payablesPrice3" v-model="pages.payablesPrice3" name="title"  class="layui-input" style="width: 40%; float: right;" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">折扣率(%)</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesZhekou" name="title"  class="layui-input">
+                        <input type="text" id="payablesZhekou" v-model="pages.payablesZhekou" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">终止帐月</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesEndtime" name="title"  class="layui-input">
+                        <input type="text" id="payablesEndtime" v-model="pages.payablesEndtime" name="title"  class="layui-input" placeholder="yyyy-MM-dd" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
             </div>
@@ -72,31 +77,32 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据日期</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesPayablestime"  name="title"  class="layui-input">
+                        <input type="text" id="payablesPayablestime" v-model="pages.payablesPayablestime"  name="title"  class="layui-input" placeholder="yyyy-MM-dd" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">单据号码</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesCustom2" name="title"  class="layui-input" disabled="disabled">
+                        <input type="text" id="payablesCustom2" v-model="pages.payablesCustom2" name="title"  class="layui-input" disabled="disabled">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="color:#009688;">币别</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesCurrencyName" name="title"  class="layui-input">
+                        <input type="text" id="payablesCurrencyName" v-model="pages.payablesCurrencyName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
+                        <input type="text" id="currencyId" v-model="pages.currencyId" name="title"  class="layui-input" hidden="hidden">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">汇率</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesCurrencyInexchange" name="title"  class="layui-input">
+                        <input type="text" id="payablesCurrencyInexchange" v-model="pages.payablesCurrencyInexchange" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">应付冲款类型</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesType" name="title"  class="layui-input" disabled="disabled">
+                        <input type="text" id="payablesType" v-model="pages.payablesType" name="title"  class="layui-input" disabled="disabled">
                     </div>
                 </div>
                <!-- <div class="layui-form-item">
@@ -112,7 +118,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">凭证编号</label>
                     <div class="layui-input-block">
-                        <input type="text" v-model="pages.payablesVoucherno" name="title"  class="layui-input">
+                        <input type="text" id="payablesVoucherno" v-model="pages.payablesVoucherno" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
                     </div>
                 </div>
             </div>
@@ -121,12 +127,13 @@
     <div class="layui-row">
         <div class="layui-tab">
             <ul class="layui-tab-title">
-                <li id="nr" class="layui-this">内容</li>
-                <li id="yf">预付</li>
+                <!--<li id="nr" class="layui-this">内容</li>-->
+                <li id="yf" class="layui-this">内容</li>
+                <li id="yf2">取用预付</li>
                 <li id="bz">备注</li>
             </ul>
             <div class="layui-tab-content" style="padding: 10px 0;">
-                <div class="layui-tab-item layui-show" id="nrXz">
+                <!--<div class="layui-tab-item layui-show" id="nrXz">
                     <table id="materialsContent" class="layui-hide">
 
                     </table>
@@ -164,26 +171,28 @@
 				            </div>
 				        </div>
 				    </div>
-                </div>
+                </div>-->
                 <div class="layui-tab-item">
                     <div class="layui-row" v-for="pages,index in page.list">
                     	<div class="layui-tab-item layui-show" id="yfXz">
 			                <table id="materialsContent2" class="layui-hide" lay-filter="materialsContent2">
 			
-			                </table>
+			                </table>			                
 			                <div class="layui-row" id="nrXz">
 					        <div class="layui-col-lg6">
 					            <div class="layui-form">
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label" style="color:#009688;">所属部门</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.payablesTeamName" name="title"  class="layui-input" disabled="disabled">
+					                        <input type="text" id="payablesTeamName" v-model="pages.payablesTeamName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
+					                        <input type="text" id="payablesCustom8" v-model="pages.payablesCustom8" name="title"  class="layui-input" hidden="hidden">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">所属项目</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.payablesProjectName" name="title"  class="layui-input">
+					                        <input type="text" id="payablesProjectName" v-model="pages.payablesProjectName" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
+					                        <input type="text" id="projectId" v-model="pages.projectId" name="title"  class="layui-input" hidden="hidden">
 					                    </div>
 					                </div>
 					            </div>
@@ -193,19 +202,29 @@
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">制单人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.payablespersonnel" name="title"  class="layui-input" disabled="disabled">
+					                        <input type="text" id="payablesBillpersonnel" v-model="pages.payablesBillpersonnel" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
 					                    </div>
 					                </div>
 					                <div class="layui-form-item">
 					                    <label class="layui-form-label">复核人员</label>
 					                    <div class="layui-input-block">
-					                        <input type="text" v-model="pages.payablesReviewers" name="title"  class="layui-input" disabled="disabled">
+					                        <input type="text" id="payablesReviewers" v-model="pages.payablesReviewers" name="title"  class="layui-input" v-bind:disabled="diasabledInput">
 					                    </div>
 					                </div>
 					            </div>
 					        </div>
-					    </div>
-								            </div>
+					    	</div>
+						</div>
+                        
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row" v-for="pages,index in page.list">
+                    	<div class="layui-tab-item layui-show" id="yfXz">
+			                <table id="materialsContent6" class="layui-hide" lay-filter="materialsContent6">
+			
+			                </table>			                			                
+						</div>
                         
                     </div>
                 </div>
@@ -216,7 +235,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏一</label>
                                     <div class="layui-input-block">
-                                        <input type="text" v-model="pages.payablesCustom3" name="title" class="layui-input">
+                                        <input type="text" id="payablesCustom3" v-model="pages.payablesCustom3" name="title" class="layui-input" v-bind:disabled="diasabledInput">
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +245,7 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">自定栏二</label>
                                     <div class="layui-input-block">
-                                        <input type="text" v-model="pages.payablesCustom4" name="title" class="layui-input">
+                                        <input type="text" id="payablesCustom4" v-model="pages.payablesCustom4" name="title" class="layui-input" v-bind:disabled="diasabledInput">
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +257,43 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备注</label>
                                     <div class="layui-input-block">
-                                        <textarea placeholder="请输入内容" class="layui-textarea" v-model="pages.payablesRemarks"></textarea>
+                                        <textarea placeholder="请输入内容" id="payablesRemarks" class="layui-textarea" v-model="pages.payablesRemarks" v-bind:disabled="diasabledInput"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-row" v-for="pages,index in page.list">
+                        <div class="layui-col-lg6">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">自定栏一</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" id="payablesCustom3" v-model="pages.payablesCustom3" name="title" class="layui-input" v-bind:disabled="diasabledInput">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-lg6">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">自定栏二</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" id="payablesCustom4" v-model="pages.payablesCustom4" name="title" class="layui-input" v-bind:disabled="diasabledInput">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row" v-for="pages,index in page.list">
+                        <div class="layui-col-lg12">
+                            <div class="layui-form">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">备注</label>
+                                    <div class="layui-input-block">
+                                        <textarea placeholder="请输入内容" id="payablesRemarks" class="layui-textarea" v-model="pages.payablesRemarks" v-bind:disabled="diasabledInput"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -253,11 +308,11 @@
             <div class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin-left: 30px;">
-                        <select id="selectGN" name="interest" lay-filter="aihao">
+                        <select id="aihao" name="interest" lay-filter="aihao" lay-verify="required">
                             <option value="">功能</option>
-                            <option value="0">载入单币别账款</option>
-                            <option value="0">载入多币别账款</option>
-                            <option value="0">载入预收</option>
+                            <option value="载入单币别账款">载入单币别账款</option>
+                            <option value="载入多币别账款" disabled>载入多币别账款</option>
+                            <option value="载入预付">载入预付</option>
                         </select>
                     </div>
                 </div>
@@ -267,7 +322,7 @@
             <div class="layui-form">
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin-left: 30px;">
-                        <select id="selectJS" name="interest" lay-filter="aihao">
+                        <select id="jisuan" name="interest2" lay-filter="jisuan" lay-verify="required">
                             <option value="">自动计算</option>
                             <option value="0">以下冲款</option>
                             <option value="0">以下折让</option>
@@ -277,18 +332,18 @@
                 </div>
             </div>
         </div>
-        <div class="layui-form-item">                       
+        <div class="layui-form-item" style=" position: fixed;bottom:0px;">                       
             <div class="layui-input-block">  
 	            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
 	            <button :class="[goPrePage1 ? lay1 : '', lay2]" class="layui-btn" title="上一笔" @click="goPrePage"  v-bind:disabled="goPrePage1"><i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i></button>				            
 	            <button :class="[goNextPage1 ? lay1 : '', lay2]" class="layui-btn" title="下一笔" @click="goNextPage" v-bind:disabled="goNextPage1"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></button>
 				<button :class="[goLastPage1 ? lay1 : '', lay2]" class="layui-btn" title="后一笔" @click="goLastPage" v-bind:disabled="goLastPage1"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></button> 
-	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
+	            <button :class="[inset1 ? lay1 : '', lay2]" class="layui-btn" title="新增" @click="inset" v-bind:disabled="inset1" id="xinzengXz"><i class="fa fa-file fa-lg" aria-hidden="true" ></i></button>          
 	            <button :class="[update1 ? lay1 : '', lay2]" class="layui-btn" title="编辑" @click="update" v-bind:disabled="update1"><i class="fa fa-pencil-square-o fa-lg" ></i></button>
 	             <button :class="[saves1 ? lay1 : '', lay2]" class="layui-btn" title="保存" @click="saves" v-bind:disabled="saves1"><i class="fa fa-floppy-o fa-lg" aria-hidden="true" ></i></button>  
-	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1"><i class="fa  fa-undo fa-lg" ></i></button>
+	            <button :class="[return1 ? lay1 : '', lay2]" class="layui-btn" title="取消" @click="returns" v-bind:disabled="return1" id="quxiao"><i class="fa  fa-undo fa-lg" ></i></button>
 	            <button :class="[deletes1 ? lay1 : '', lay2]" class="layui-btn" title="删除" @click="deletes" v-bind:disabled="deletes1"><i class="fa fa-trash fa-lg" aria-hidden="true" > </i></button>							            
-				<button  class="layui-btn" title="刷新" @click="goPage(1,1)" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
+				<button  class="layui-btn" title="刷新" @click="shuaxin" ><i class="fa fa-refresh fa-lg" aria-hidden="true" ></i></button>    
 				<button :class="[Auditing1 ? lay1 : '', lay2]" class="layui-btn" title="审核" @click="Auditing"  v-bind:disabled="Auditing1"><i class="fa fa-check fa-lg" aria-hidden="true" ></i></button>             
 				<button :class="[noAuditing1 ? lay1 : '', lay2]" class="layui-btn" title="取消审核" @click="noAuditing"  v-bind:disabled="noAuditing1"><i class="fa fa-close fa-lg" aria-hidden="true"></i></button>
             </div>
@@ -298,6 +353,13 @@
 
 <script src="layui.js"></script>
 <script>
+	var priabillNumber = ""
+	var num1 = "";
+	function GetValue(obj){
+	    priabillNumber=obj;
+	}
+	
+	var time2 = "";
 	//必须设置允许跨域访问session中数据(cookie)
 		axios.default.withCredentials = true;
 	//必须设置允许跨域访问session中数据(cookie)
@@ -329,10 +391,11 @@
 			    tp:true
 			},
 			methods: {//定义函数
-
-				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
+				goPage: function(page, size ,payablesSupplierName,supplierId,payablesCurrencyName,currencyId,payablesTeamName,payablesCustom8,payablesProjectName,projectId,payablesSatName1,payablesSatName2,payablesSatName3) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
+					var time1 = "";
 					var this_ = this;
+					var priabillId = "";
 					$.ajax({
 						url : "http://127.0.0.1:8080/PayablesController/selectAllpage",
 						type:"get",
@@ -343,68 +406,619 @@
 							this_.page = res;
 							console.info("详表表数据：");
 							console.info(this_.page);
-							
-							//冲款类型下拉框自动选择默认.find('option')
-							//找到下拉框option的value值为res.list[0].payablesType的节点
-							/*var se = 'option[value='+res.list[0].payablesType+']';
-							$('#selectListXz').find('option').find(se).click();*/
-							
+							//判断是否审核
+							if(this_.page.list[0].payablesAuditing=="0"||this_.page.list[0].payablesAuditing==0){
+								this_.diasabledInput=true;//input可以编辑
+								this_.isinsert=true;//开启新增模式
+								this_.isedit=true;//开启修改模式													
+								this_.goFirstPage1 =false;//第一笔
+					            this_.goPrePage1 =false;//上一笔				            
+				             	this_.goNextPage1 =false;//下一笔
+						     	this_.goLastPage1 =false;//后一笔
+				             	this_.inset1 =false;   //新增      
+			             		this_.return1=true;//返回
+				             	this_.saves1 =true;//保存 
+				             	this_.update1 =false;//编辑
+				             	this_.deletes1 =false;//删除		
+							    this_.Auditing1 =false;//审核
+							    this_.noAuditing1 =true;//取消审核
+								
+							}else{
+								this_.diasabledInput=false;//input不可以编辑
+								this_.isinsert=true;//开启新增模式
+								this_.isedit=false;//关闭修改模式													
+								this_.goFirstPage1 =false;//第一笔
+					            this_.goPrePage1 =false;//上一笔				            
+				             	this_.goNextPage1 =false;//下一笔
+						     	this_.goLastPage1 =false;//后一笔
+				             	this_.inset1 =false;   //新增      
+			             		this_.return1=true;//返回
+				             	this_.saves1 =true;//保存 
+				             	this_.update1 =true;//编辑
+				             	this_.deletes1 =true;//删除		
+							    this_.Auditing1 =true;//审核
+							    this_.noAuditing1 =false;//取消审核
+								
+							}
+							//判断参数是否为空
+							if(payablesSupplierName!=null){
+								this_.page.list[0].payablesSupplierName = payablesSupplierName;
+							}
+							if(supplierId!=null){
+								this_.page.list[0].supplierId = supplierId;
+							}
+							if(payablesCurrencyName!=null){
+								this_.page.list[0].payablesCurrencyName = payablesCurrencyName;
+							}
+							if(currencyId!=null){
+								this_.page.list[0].currencyId = currencyId;
+							}
+							if(payablesTeamName!=null){
+								this_.page.list[0].payablesTeamName = payablesTeamName;
+							}
+							if(payablesCustom8!=null){
+								this_.page.list[0].payablesCustom8 = payablesCustom8;
+							}
+							if(payablesProjectName!=null){
+								this_.page.list[0].payablesProjectName = payablesProjectName;
+							}
+							if(projectId!=null){
+								this_.page.list[0].projectId = projectId;
+							}
+							if(payablesSatName1!=null){
+								this_.page.list[0].payablesSatName1 = payablesSatName1;
+							}
+							if(payablesSatName2!=null){
+								this_.page.list[0].payablesSatName2 = payablesSatName2;
+							}
+							if(payablesSatName3!=null){
+								this_.page.list[0].payablesSatName3 = payablesSatName3;
+							}
+							if(this_.page.list[0].payablesId==""){
+								/*获取当前时间*/
+							   	//判断是否在前面加0
+									function getNow(s) {
+									return s < 10 ? '0' + s: s;
+									}
+									 
+									var myDate = new Date();            
+									 
+									var year=myDate.getFullYear();        //获取当前年
+									var month=myDate.getMonth()+1;   //获取当前月
+									var date=myDate.getDate();            //获取当前日
+									 
+									var h=myDate.getHours();              //获取当前小时数(0-23)
+									var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+									var s=myDate.getSeconds();
+						 
+								var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   				/*获取当前时间*/
+				   	
+						  		var ss=year+getNow(month)+getNow(date);
+						  		
+								$.ajax({
+									url:"http://127.0.0.1:8080/PayablesController/getno",
+									type:"get",
+								  	data:"billdate="+ss,
+								  	dataType:'text',	
+								  	success:function (res) {
+									  	console.info(res)
+									   	$("#payablesCustom2").val(ss+res);
+						   				$("#payablesId").val(ss+res);
+							        }
+								});
+							}
 							//TAB选项卡
-							$("#nr").click();
+							$("#yf").click();
+							//时间
+							layui.use('laydate',function(){
+								var laydate=layui.laydate;
+								
+								//执行一个laydate实例
+								laydate.render({
+									elem:'#payablesPayablestime',//指定元素
+									done:function(value){
+										this_.page.list[0].payablesPayablestime=value;
+										$("#payablesPayablestime").val(value);
+										console.log(this_.page.list[0].payablesPayablestime);
+										console.log(value)
+									}
+								})
+								
+								//执行一个laydate实例
+								laydate.render({
+									elem:'#payablesEndtime',//指定元素
+									done:function(value){
+										this_.page.list[0].payablesEndtime=value;
+										$("#payablesEndtime").val(value);
+										console.log(this_.page.list[0].payablesEndtime);
+										console.log(value)
+									}
+								})
+								
+							})
+							
+							//layui
+							layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+								var form2 = layui.form;
+						        var table = layui.table;
+								/*var $ = layui.jquery, layer = layui.layer;*/
+								var $ = layui.$, layer = layui.layer;
+								//供应商触发事件
+								$("#payablesSupplierName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"padeCustom6.html"
+						  			});
+						  		});
 
-							//根据冲款类型显示下方选项卡信息
-							/*if(res.list[0].payablesType=="预付款"){
-								$("#nr").remove();
-								$("#nrXz").remove();
-								$("#yf").attr("class","layui-this");
-								$("#yf").click();
-							}else if(res.list[0].payablesType=="付款冲款"){
-								$("#yf").remove();
-								$("#yfXz").remove();
-							}*/
-						
+						  		
+						  		//部门触发事件
+						  		$("#payablesTeamName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesTeam2.html"
+						  			});
+						  		});
+						  		
+						  		//项目触发事件
+						  		$("#payablesProjectName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesProject2.html"
+						  			});
+						  		});
+								
+								//结算方式触发事件
+						  		$("#payablesSatName1").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat11.html"
+						  			});
+						  		});
+								
+								$("#payablesSatName2").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat22.html"
+						  			});
+						  		});
+								
+								$("#payablesSatName3").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesSat33.html"
+						  			});
+						  		});
+						  		
+						  		//币别触发事件
+						  		$("#payablesCurrencyName").click(function(){
+						  			layer.open({
+						  				type:2,
+						  				area:["800px","400px"],
+						  				content:"PayablesCurrency2.html"
+						  			});
+						  		});
+						  		
+						  		//新增按钮
+						  		$("#xinzengXz").click(function(){
+						  			//表格重载刷新 也相当于清空
+						  			table.reload('materialsContent2', {
+						                page: {
+						                    curr: 1 //重新从第 1 页开始
+						                }
+						                , where: {//这里传参  向后台
+						                    page: 1,
+						                    limit:5,
+						                    ppCustom8:0
+						                    //可传多个参数到后台...  ，分隔
+						                }
+						                , url: 'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName'//后台做模糊搜索接口路径
+						                , method: 'get'
+						            });
+						            
+						            //表格重载刷新 也相当于清空
+						  			table.reload('materialsContent6', {
+						                page: {
+						                    curr: 1 //重新从第 1 页开始
+						                }
+						                , where: {//这里传参  向后台
+						                    page: 1,
+						                    limit:5,
+						                    ppCustom8:0
+						                    //可传多个参数到后台...  ，分隔
+						                }
+						                , url: 'http://127.0.0.1:8080/PriadetailsController/selectByPriabillSupplierName'//后台做模糊搜索接口路径
+						                , method: 'get'
+						            });
+						  		});
+						  								  								  		
+						       var ppTeamName = this_.page.list[0].ppTeamName;
+						       var ppCustom2 = this_.page.list[0].ppCustom2;
+						       
+						       var ppPcName = "";	
+						       
+						       //点击载入 重载TABLE
+						       var froms = form.on('select(aihao)',function(data){	
+						       		if(data.value=="载入单币别账款"){							       										if($("#payablesSupplierName").val()==""||this_.page.list[0].payablesSupplierName==""){
+							         		layer.msg("供应商不能为空！");
+								         	form.render('select');
+							         	}else{
+							         		//表格重载刷新 也相当于清空
+								  			table.reload('materialsContent2', {
+								                page: {
+								                    curr: 1 //重新从第 1 页开始
+								                }
+								                , where: {//这里传参  向后台
+								                    page: 1,
+								                    limit:2,
+								                    ppPcName:this_.page.list[0].payablesSupplierName
+								                    //可传多个参数到后台...  ，分隔
+								                }
+								                , url: 'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName2'
+								                , method: 'get'
+								            });
+							         	}
+						       		}else if(data.value=="载入预付"){
+						       										if($("#payablesSupplierName").val()==""||this_.page.list[0].payablesSupplierName==""){
+							         		layer.msg("供应商不能为空！");
+								         	form.render('select');
+							         	}else{
+							         		//表格重载刷新 也相当于清空
+								  			table.reload('materialsContent6', {
+								                page: {
+								                    curr: 1 //重新从第 1 页开始
+								                }
+								                , where: {//这里传参  向后台
+								                    page: 1,
+								                    limit:2,
+								                    ppPcName:this_.page.list[0].payablesSupplierName
+								                    //可传多个参数到后台...  ，分隔
+								                }
+								                , url: 'http://127.0.0.1:8080/PriadetailsController/selectAllBySupplier?priabillCustom10='+$("#payablesSupplierName").val()
+								                , method: 'get'
+								            });
+							         	}
+						       		}
+						       									
+						         	
+						        });
+						        
+						        //点击以下冲款 重载TABLE
+						       var froms2 = form2.on('select(jisuan)',function(data){						        
+				       	if($("#payablesSupplierName").val()==""||this_.page.list[0].payablesSupplierName==""){
+						         		layer.msg("供应商不能为空！");
+							         	form.render('select');
+						         	}else{
+						         		//获取 取用预付的表格所有值
+						         		var tab1 = layui.table.cache["materialsContent6"];//取用预付明细
+						         		var tab2 = layui.table.cache["materialsContent2"];//应付明细
+						         		console.log("取用预付："+tab1);
+						         		//变量值
+						         		var priabillCustom9XG = "";	//剩余预付的余额
+						         		var priceNum = 0;	//取用的预付总金额
+						         		for(var s=0;s<tab1.length;s++){
+						         			if(parseFloat(layui.table.cache["materialsContent6"][s].priabillCustom9)<parseFloat(layui.table.cache["materialsContent6"][s].priabillCustom8)){
+						         				layer.msg("预付余额不足！");
+						         				return;
+						         			}else{
+						         				layui.table.cache["materialsContent6"][s].priabillCustom9=parseFloat(layui.table.cache["materialsContent6"][s].priabillCustom9)-parseFloat(layui.table.cache["materialsContent6"][s].priabillCustom8);
+							         			priceNum = parseFloat(priceNum)+parseFloat(layui.table.cache["materialsContent6"][s].priabillCustom8);
+						         			}
+							         			
+							         	}
+							         		
+							         		for(var p=0;p<tab2.length;p++){
+							         			
+							         			if(parseFloat(tab2[p].ppCurrentbalance)-parseFloat(priceNum)<=0){
+							         				layui.table.cache["materialsContent2"][p].ppAmountcharged=tab2[p].ppCurrentbalance;
+							         				layui.table.cache["materialsContent2"][p].ppOffsetamount=tab2[p].ppCurrentbalance;
+							         				priceNum=priceNum-tab2[p].ppCurrentbalance;
+							         				layui.table.cache["materialsContent2"][p].ppCurrentbalance=parseFloat(layui.table.cache["materialsContent2"][p].ppCurrentbalance)-parseFloat(layui.table.cache["materialsContent2"][p].ppAmountcharged);//现行余额=现行余额-冲款金额
+							         				if(p==tab2.length-1){
+							         					if(parseFloat(priceNum)>0){
+							         						alert(parseFloat(priceNum));
+							         						layui.table.cache["materialsContent6"][0].priabillCustom9=parseFloat(layui.table.cache["materialsContent6"][0].priabillCustom9)+parseFloat(priceNum);
+							         					}
+							         				}
+							         			}else{
+							         				layui.table.cache["materialsContent2"][p].ppAmountcharged=priceNum;
+							         				layui.table.cache["materialsContent2"][p].ppOffsetamount=priceNum;
+							         				layui.table.cache["materialsContent2"][p].ppCurrentbalance=parseFloat(layui.table.cache["materialsContent2"][p].ppCurrentbalance)-parseFloat(layui.table.cache["materialsContent2"][p].ppAmountcharged);//现行余额=现行余额-冲款金额
+							         				break;
+							         			}
+							         		}					         		
+						         		
+						         		//重载
+						         		table.render({
+						         			elem: '#materialsContent2'
+						         			, cols: [[
+								            	{type: 'checkbox', fixed: 'left'}
+								            	,{field: 'ppId', width:100,title: '(栏号)',sort:true, fixed: 'left', totalRowText: '合计：'}
+								                ,{field: 'ppType',width:120, title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+								                /*, {field: 'sex', title: '来源别', sort: true}*/
+								                , {field: 'ppDate', width:120,title: '(原单日期)',sort:true}
+								                , {field: 'ppNumber', width:130,title: '(原单单号)'}
+								                , {field: '', width:120,title: '(发票号码)'}
+								                , {field: 'ppPcId', width:120,title: '(交易对象)'}
+								                , {field: 'ppPcName', width:120,title: '(交易对象名称)'}
+								                , {field: 'ppTeamId', width:120,title: '(部门编号)'}
+								                , {field: 'ppTeamName', width:120,title: '(部门名称)'}
+								                , {field: 'ppBuyer',width:120, title: '(采购人员)'}
+								                , {field: 'ppProjectName', width:120,title: '(项目名称)'}
+								                , {field: 'ppCurrency', width:100,title: '(币别)'}
+								                , {field: 'ppExchangeRate', width:120,title: '(汇率)'}
+								                , {field: 'ppPayablesmainPrice',width:120, title: '(原单金额)',sort:true,totalRow: true}
+								                , {field: 'ppCurrentbalance', width:120,title: '(现行余额)',sort:true,totalRow: true}
+								                , {field: 'ppDiscountamount',width:120, title: '(折让金额)', edit: 'text',sort:true,totalRow: true}
+								                , {field: 'ppAmountcharged', width:120,title: '(冲款金额)', edit: 'text',sort:true,totalRow: true}
+								                , {field: 'ppOffsetamount', width:120,title: '(冲抵金额)', edit: 'text',sort:true,totalRow: true}
+								            ]]
+						         			,data:layui.table.cache["materialsContent2"]
+										    //,skin: 'line' //表格风格
+										    ,even: true
+										    , id: 'materialsContent2'
+										    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+								            ,toolbar: 'default'//开启工具栏
+								            ,totalRow: true //开启合计行
+								            ,page:true//是否开启分页
+								            ,limits:[1,2,3]//选择每页显示多少条数据
+								            ,limit:2//初始每页显示条数
+								            ,height:350
+						         		});
+						         		
+						         		var tables2=table.render({
+								            elem: '#materialsContent6'								            
+								            , cols: [[
+								            	{type: 'checkbox', fixed: 'left'}
+								            	,{field: 'priadetailsId',title: '(预付款单号)',sort:true, fixed: 'left', totalRowText: '合计：'}
+								                ,{field: 'priabillType',title: '(来源单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+								                /*, {field: 'sex', title: '来源别', sort: true}*/
+								                , {field: 'priabillNumber',title: '(来源单号)'}
+								                , {field: 'priabillCustom9', title: '(预付余额)',sort:true,totalRow: true}
+								                , {field: 'priabillCustom10',title: '(部门名称)'}
+								                , {field: 'priabillCustom8',title: '(取用金额)', edit: 'text',totalRow: true}
+								                , {field: 'priabillRemarks',title: '(来源摘要)'}
+								            ]]
+								            ,data:layui.table.cache["materialsContent6"]
+										    //,skin: 'line' //表格风格
+										    ,even: true
+										    , id: 'materialsContent6'
+										    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+								            ,toolbar: 'default'//开启工具栏
+								            ,totalRow: true //开启合计行
+								            ,page:true//是否开启分页
+								            ,limits:[1,2,3]//选择每页显示多少条数据
+								            ,limit:2//初始每页显示条数
+								            ,height:350
+								        }); 
+								         	}
+								         	
+								        });
+						        var tables=table.render({
+						            elem: '#materialsContent2'
+						            ,url:'http://127.0.0.1:8080/Purchase_payablesController/selectByPayablesbillSupplierName?ppCustom8='+this_.page.list[0].payablesId
+						            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+						            ,toolbar: 'default'//开启工具栏
+						            ,totalRow: true //开启合计行
+									,parseData: function(res){
+										
+										return {
+											"code":0,
+											"msg":"",
+											"count":res.total,
+											data:res.list
+										};
+									}
+									,done: function (res, curr, count) {
+						                
+						           	}
+						            , cols: [[
+						            	{type: 'checkbox', fixed: 'left'}
+						            	,{field: 'ppCustom2', width:150,title: '(栏号)',sort:true, fixed: 'left', totalRowText: '合计：'}
+						                ,{field: 'ppType',width:120, title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+						                /*, {field: 'sex', title: '来源别', sort: true}*/
+						                , {field: 'ppDate', width:120,title: '(原单日期)',sort:true}
+						                , {field: 'ppNumber', width:130,title: '(原单单号)'}
+						                , {field: '', width:120,title: '(发票号码)'}
+						                , {field: 'ppPcId', width:120,title: '(交易对象)'}
+						                , {field: 'ppPcName', width:120,title: '(交易对象名称)'}
+						                , {field: 'ppTeamId', width:120,title: '(部门编号)'}
+						                , {field: 'ppTeamName', width:120,title: '(部门名称)'}
+						                , {field: 'ppBuyer',width:120, title: '(采购人员)'}
+						                , {field: 'ppProjectName', width:120,title: '(项目名称)'}
+						                , {field: 'ppCurrency', width:100,title: '(币别)'}
+						                , {field: 'ppExchangeRate', width:120,title: '(汇率)'}
+						                , {field: 'ppPayablesmainPrice',width:120, title: '(原单金额)',sort:true,totalRow: true}
+						                , {field: 'ppCurrentbalance', width:120,title: '(现行余额)',sort:true,totalRow: true}
+						                , {field: 'ppDiscountamount',width:120, title: '(折让金额)', edit: 'text',sort:true,totalRow: true}
+						                , {field: 'ppAmountcharged', width:120,title: '(冲款金额)', edit: 'text',sort:true,totalRow: true}
+						                , {field: 'ppOffsetamount', width:120,title: '(冲抵金额)', edit: 'text',sort:true,totalRow: true}
+						            ]]
+						            ,page:true//是否开启分页
+						            ,limits:[1,2,3]//选择每页显示多少条数据
+						            ,limit:2//初始每页显示条数
+						            ,height:350
+						        });
+						          var tables2=table.render({
+						            elem: '#materialsContent6'
+						            ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllBySupplier2?priabillCustom10='+$("#payablesSupplierName").val()
+						            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增     
+						            ,toolbar: 'default'//开启工具栏
+						            ,totalRow: true //开启合计行
+									,parseData: function(res){
+										
+										return {
+											"code":0,
+											"msg":"",
+											"count":res.total,
+											data:res.list
+										};
+									}
+									,done: function (res, curr, count) {
+						                
+						           	}
+						            , cols: [[
+						            	{type: 'checkbox', fixed: 'left'}
+						            	,{field: 'priadetailsId',title: '(预付款单号)',sort:true, fixed: 'left', totalRowText: '合计：'}
+						                ,{field: 'priabillType',title: '(来源单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+						                /*, {field: 'sex', title: '来源别', sort: true}*/
+						                , {field: 'priabillNumber',title: '(来源单号)'}
+						                , {field: 'priabillCustom9', title: '(预付余额)',sort:true,totalRow: true}
+						                , {field: 'priabillCustom10',title: '(部门名称)'}
+						                , {field: 'priabillCustom8',title: '(取用金额)', edit: 'text',totalRow: true}
+						                , {field: 'priabillRemarks',title: '(来源摘要)'}
+						            ]]
+						            ,page:true//是否开启分页
+						            ,limits:[1,2,3]//选择每页显示多少条数据
+						            ,limit:2//初始每页显示条数
+						            ,height:350
+						        });        
+						        //监听行工具事件   
+								  table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
+								    var data = obj.data //获得当前行数据
+								    ,layEvent = obj.event; //获得 lay-event 对应的值	
+								    var $this = $(this);
+								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+						  			var trIndex = tr.data('index');	//索引
+						  			
+						  			$(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(16)").data("edit",true);										      
+							      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(17)").data("edit",true);
+							      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(18)").data("edit",true);
+								    if(layEvent === 'edit'){											      										if(this_.page.list[0].payablesAuditing=="0"||this_.page.list[0].payablesAuditing==0){																					      
+										      
+										}else{
+											layer.msg('已审核，无法编辑');
+										}								      
+								    } else if(layEvent === 'del'){
+								      layer.confirm('真的删除行么', function(index){
+								        obj.del(); //删除对应行（tr）的DOM结构								        
+								        
+								        //向服务端发送删除指令
+								      });
+								    }else if(layEvent === 'save'){
+								    	/*layer.msg('保存操作');*/								    	
+								      
+								   }
+							         
+								  });
+						        //监听头工具栏事件
+								    table.on('toolbar(materialsContent2)', function(obj){
+								  	layer.msg('1');
+								    /*var checkStatus = table.checkStatus(obj.config.id)
+								    ,data = checkStatus.data; //获取选中的数据*/
+								    switch(obj.event){
+								      case 'add':
+								        	layer.msg('此功能暂无开发');
+						                  
+								     		 break;
+								      case 'update':
+	
+											
+											
+								      case 'delete':
+								        if(data.length === 0){
+								          layer.msg('请选择一行');
+								        } else {
+								          layer.msg('删除');
+								        }
+								      		break;
+								    };
+								  });
+						    });
 				        }
-					}); 					
+					}); 	
+					
+					
 				},
 				goPrePage: function() {//上一条
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 					if(this.page.hasPreviousPage) {
 //						alert(this.page.prePage+"："+this.page.pageSize)
-						this.goPage(this.page.prePage, this.page.pageSize);
+						this.goPage(this.page.prePage, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 					}
 				},
 				goNextPage: function() {//下一条
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 					if(this.page.hasNextPage) {
 //						alert(this.page.nextPage+"："+this.page.pageSize)
-						this.goPage(this.page.nextPage, this.page.pageSize);
+						this.goPage(this.page.nextPage, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 					}
 				},
 				goFirstPage: function() {//第一条
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 //					alert(1+"："+this.page.pageSize)
-					this.goPage(1, this.page.pageSize);
+					this.goPage(1, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
 				},
 				goLastPage: function() {//最后一条
+					if(this.page.list[0].payablesAuditing=="0"||this.page.list[0].payablesAuditing==0){
+						this.Auditing1=false;
+						this.diasabledInput=true;
+						this.noAuditing1=true;
+					}else{
+						this.Auditing1=true;
+						this.diasabledInput=false;
+						this.noAuditing1=false;
+						this.deletes1=true;
+					}
 //					alert(this.page.pages+"："+this.page.pageSize)
-					this.goPage(this.page.pages, this.page.pageSize);
+					this.goPage(this.page.pages, this.page.pageSize,null,null,null,null,null,null,null,null,null,null,null);
+				},
+				shuaxin:function(){//刷新
+					this.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
 				},
 				returns: function() {//取消
-					this.goPage(1,1);
-					
-					this.diasabledInput= true;//input不可编辑
-					
-					this.goFirstPage1 =false;//第一笔
+					if(this.return1=true){
+						
+		             	this.return1=false;//返回
+						this.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
+						
+					}										
+					/*this.goFirstPage1 =false;//第一笔
 		            this.goPrePage1 =false;//上一笔				            
 	             	this.goNextPage1 =false;//下一笔
 			     	this.goLastPage1 =false;//后一笔
 	             	this.inset1 =false;   //新增      
 	             	this.return1=true;//返回
 	             	this.saves1 =true;//保存 
-	             	this.update1 =false;//编辑
-	             	this.deletes1 =false;//删除		
-				    this.Auditing1 =true;//审核
-				    this.noAuditing1 =true;//取消审核
+	             	this.update1 =false;//编辑*/
 				},
 				inset: function() {//新增按钮
-					this.page.list[0].payablesId="";//应付冲款单ID（主键 唯一）
+					this.page.list[0].payablesId="";//预付冲款单ID（主键 唯一）
 				    this.page.list[0].supplierId="";//供应商表id,外键
 				    this.page.list[0].scsId="";//结算方式id,外键
 				    this.page.list[0].staffId="";//部门员工表id,外键
@@ -422,7 +1036,7 @@
 				    this.page.list[0].payablesPayablestime="";//单据日期,【默认值】：当前日期
 				    this.page.list[0].payablesCurrencyName="";//币别类型表，名称
 				    this.page.list[0].payablesCurrencyInexchange="";//币别类型表，汇率
-				    this.page.list[0].payablesType="预付款";//应付冲款类型，【默认值】：付款冲款
+				    this.page.list[0].payablesType="付款冲款";//应付冲款类型，【默认值】：付款冲款
 				    this.page.list[0].payablesVoucherno="";//凭证编号
 				    this.page.list[0].payablesTeamName="";//部门表，名称
 				    this.page.list[0].payablesProjectName="";//项目表，名称
@@ -434,13 +1048,15 @@
 				    this.page.list[0].payablesYn="";//是否删除，【默认值】：0
 //				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
 				    this.page.list[0].payablesCustom1="";//创建时间
-				    this.page.list[0].payablesCustom2="";//自定义2，单据号码
+				    this.page.list[0].payablesCustom2=$("#payablesCustom2").val();//自定义2，单据号码
 				    this.page.list[0].payablesCustom3="";//自定义3
 				    this.page.list[0].payablesCustom4="";//自定义4
 				    this.page.list[0].payablesCustom5="";//自定义5
 				    this.page.list[0].payablesCustom6="";//自定义6
-					
-					
+					this.page.list[0].payablesCustom7="";//自定义7
+					this.page.list[0].payablesCustom8="";//自定义8
+					this.page.list[0].payablesCustom9="";//自定义9
+					this.page.list[0].payablesCustom10="";//自定义10
 					
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
@@ -461,40 +1077,788 @@
 				    this.Auditing1 =true;//审核
 				    this.noAuditing1 =true;//取消审核
 				    
-				    //下拉框启用
-				    this.tp=false;
-				    
-				    //冲款类型下拉框自动选择默认.find('option')
-					//找到下拉框option的value值为res.list[0].payablesType的节点
-					var se = 'option[value='+this.page.list[0].payablesType+']';
-					$('#selectListXz').find('option').find(se).click();
 					
 					
 				},
 				insets: function() {//新增
-				 	
+				 var this_ = this;
+				layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+								var form2 = layui.form;
+						        var table = layui.table;						
+								var $ = layui.$, layer = layui.layer;
+				
+				/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+			  		
+				
+					//修改信息
+					this_.page.list[0].payablesId=$("#payablesCustom2").val();//预付冲款单ID（主键 唯一）
+				    this_.page.list[0].supplierId=$("#supplierId").val();//供应商表id,外键
+				    this_.page.list[0].scsId="1";//结算方式id,外键
+				    this_.page.list[0].staffId="100";//部门员工表id,外键
+				    this_.page.list[0].currencyId=$("#currencyId").val();//币别类型表id,外键
+				    this_.page.list[0].projectId=$("#projectId").val();//项目表id,外键
+				    this_.page.list[0].payablesSupplierName=$("#payablesSupplierName").val();//供应商表，名称
+				    this_.page.list[0].payablesSatName1=$("#payablesSatName1").val();//结算方式表，结算方式1，名称
+				    this_.page.list[0].payablesPrice1=$("#payablesPrice1").val();//结算方式表，结算方式1，值
+				    this_.page.list[0].payablesSatName2=$("#payablesSatName2").val();//结算方式表，结算方式2，名称
+				    this_.page.list[0].payablesPrice2=$("#payablesPrice2").val();//结算方式表，结算方式2，值
+				    this_.page.list[0].payablesSatName3=$("#payablesSatName3").val();//结算方式表，结算方式3，名称
+				    this_.page.list[0].payablesPrice3=$("#payablesPrice3").val();//结算方式表，结算方式3，值
+				    this_.page.list[0].payablesZhekou=$("#payablesZhekou").val();//折扣率，【默认值】：0.00
+				    this_.page.list[0].payablesEndtime=$("#payablesEndtime").val();//终止账月，【默认值】：当前年月
+				    this_.page.list[0].payablesPayablestime=$("#payablesPayablestime").val();//单据日期,【默认值】：当前日期
+				    this_.page.list[0].payablesCurrencyName=$("#payablesCurrencyName").val();//币别类型表，名称
+				    this_.page.list[0].payablesCurrencyInexchange=$("#payablesCurrencyInexchange").val();//币别类型表，汇率
+				    this_.page.list[0].payablesType="应付冲款";//应付冲款类型，【默认值】：付款冲款
+				    this_.page.list[0].payablesVoucherno=$("#payablesVoucherno").val();//凭证编号
+				    this_.page.list[0].payablesTeamName=$("#payablesTeamName").val();//部门表，名称
+				    this_.page.list[0].payablesProjectName=$("#payablesProjectName").val();//项目表，名称
+				    this_.page.list[0].payablesBillpersonnel="admin";//制单人员，【默认值】：当前人员
+				    this_.page.list[0].payablesReviewers=$("#payablesReviewers").val();//复合人员，【默认值】：
+				    this_.page.list[0].payablesRemarks=$("#payablesRemarks").val();//备注
+				    this_.page.list[0].payablesAuditstatus="0";//审核状态，【默认值】：0
+				    this_.page.list[0].payablesAuditing="0";//是否审核，【默认值】：当前人员
+				    this_.page.list[0].payablesYn="0";//是否删除，【默认值】：0
+//				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
+				    this_.page.list[0].payablesCustom1=year+getNow(month)+getNow(date);//创建时间
+				    this_.page.list[0].payablesCustom2=$("#payablesCustom2").val();//自定义2，单据号码
+				    this_.page.list[0].payablesCustom3=$("#payablesCustom3").val();//自定义3
+				    this_.page.list[0].payablesCustom4=$("#payablesCustom4").val();//自定义4
+				    this_.page.list[0].payablesCustom5="";//自定义5
+				    this_.page.list[0].payablesCustom6="";//自定义6
+				    this_.page.list[0].payablesCustom7="";//自定义7
+				    this_.page.list[0].payablesCustom8=$("#payablesCustom8").val();//自定义8	--部门ID
+				    this_.page.list[0].payablesCustom10="";//自定义10
+					var obj=this_.page.list[0];
+					/*if(table.cache["materialsContent2"].length==0){
+						layer.msg("本账单没有任何明细单据，不能保存！");												
+						return
+					}
+					if($("#payablesSatName1").val()!=""){
+						var mon = table.cache["materialsContent2"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice1").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName2").val()!=""){
+						var mon = table.cache["materialsContent2"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice2").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName3").val()!=""){
+						var mon = table.cache["materialsContent3"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice2").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName1").val()==""&&$("#payablesSatName2").val()==""&&$("#payablesSatName3").val()==""){
+						layer.msg("请选择结账方式！");
+						return;
+					}*/
+					$.ajax({
+						url :"http://127.0.0.1:8080/PayablesController/insertSelective",
+						type:"post",
+						data:JSON.stringify(obj),
+						async:false,
+					  	dataType:'json',
+					  	contentType:"application/json;charset=utf-8",
+					  	success:function (res) {
+							if(table.cache["materialsContent2"].length!=0){											
+											
+								var obj2 = table.cache["materialsContent2"];
+								for(var n=0;n<obj2.length;n++){
+									/*获取当前时间*/
+								   	//判断是否在前面加0
+										function getNow(s) {
+										return s < 10 ? '0' + s: s;
+										}
+										 
+										var myDate = new Date();            
+										 
+										var year=myDate.getFullYear();        //获取当前年
+										var month=myDate.getMonth()+1;   //获取当前月
+										var date=myDate.getDate();            //获取当前日
+										 
+										var h=myDate.getHours();              //获取当前小时数(0-23)
+										var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+										var s=myDate.getSeconds();
+										 
+										var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+								   	/*获取当前时间*/
+							  		var ss=year+getNow(month)+getNow(date);
+									$.ajax({
+										url:"http://127.0.0.1:8080/Purchase_payablesController/getno",
+										type:"get",
+									  	data:"billdate="+ss,
+									  	async:false,
+									  	dataType:'text',	
+									  	success:function (res2) {
+										   	num1 = ss+res2;											
+								        }
+									});
+									num1++;
+	   								var ob={
+	   									ppType:"",
+	   									ppNumber:"",
+	   									ppDate:"",
+	   									ppPcId:"",
+	   									ppPcName:"",
+	   									ppTeamId:"",
+	   									ppTeamName:"",
+	   									ppBuyer:"",
+	   									ppProjectName:"",
+	   									ppCurrency:"",
+	   									ppExchangeRate:"",
+	   									ppPayablesmainPrice:"",
+	   									ppCurrentbalance:"",
+	   									ppDiscountamount:"",
+	   									ppAmountcharged:"",
+	   									ppOffsetamount:"",
+	   									ppAuditing:"",
+	   									ppYn:"",
+	   									ppCustom1:ss,
+	   									ppCustom2:num1,
+	   									ppCustom3:"",
+	   									ppCustom4:"",
+	   									ppCustom5:"",
+	   									ppCustom6:"",
+	   									ppCustom7:"",
+	   									ppCustom8:"",
+	   									ppCustom9:"",
+	   									ppCustom10:""
+	   								};
+	   									   	
+									ob.ppType=obj2[n].ppType;
+									ob.ppNumber=obj2[n].ppNumber;
+									ob.ppDate=obj2[n].ppDate;
+									ob.ppPcId=obj2[n].ppPcId;
+									ob.ppPcName=obj2[n].ppPcName;
+									ob.ppTeamId=obj2[n].ppTeamId;
+									ob.ppTeamName=obj2[n].ppTeamName;
+									ob.ppBuyer=obj2[n].ppBuyer;
+									ob.ppProjectName=obj2[n].ppProjectName;
+									ob.ppCurrency=obj2[n].ppCurrency;
+									ob.ppExchangeRate=obj2[n].ppExchangeRate;
+									ob.ppPayablesmainPrice=obj2[n].ppPayablesmainPrice;
+									ob.ppCurrentbalance=0;
+									ob.ppDiscountamount=obj2[n].ppDiscountamount;
+									ob.ppAmountcharged=obj2[n].ppPayablesmainPrice;
+									ob.ppOffsetamount=obj2[n].ppOffsetamount;
+									ob.ppAuditing=obj2[n].ppAuditing;
+									ob.ppYn=obj2[n].ppYn;
+									ob.ppCustom3=obj2[n].ppCustom3;
+									ob.ppCustom4=obj2[n].ppCustom4;
+									ob.ppCustom5=obj2[n].ppCustom5;
+									ob.ppCustom6=obj2[n].ppCustom6;
+									ob.ppCustom7=obj2[n].ppId;
+									ob.ppCustom8=$("#payablesCustom2").val();
+									ob.ppCustom9="2";
+									ob.ppCustom10=obj2[n].ppCustom10;
+									
+									$.ajax({
+										url :"http://127.0.0.1:8080/Purchase_payablesController/insertSelective",
+										type:"post",
+										data:JSON.stringify(ob),
+									  	dataType:'json',
+									  	contentType:"application/json;charset=utf-8",
+									  	success:function (res) {
+									  		console.log(res.message);
+									  	}
+									});
+								}
+								
+								if(table.cache["materialsContent6"].length!=0){
+									var obj3 = table.cache["materialsContent6"];
+									for(var q=0;q<obj3.length;q++){
+										/*获取当前时间*/
+									   	//判断是否在前面加0
+											function getNow(s) {
+											return s < 10 ? '0' + s: s;
+											}
+											 
+											var myDate = new Date();            
+											 
+											var year=myDate.getFullYear();        //获取当前年
+											var month=myDate.getMonth()+1;   //获取当前月
+											var date=myDate.getDate();            //获取当前日
+											 
+											var h=myDate.getHours();              //获取当前小时数(0-23)
+											var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+											var s=myDate.getSeconds();
+											 
+											var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+									   	/*获取当前时间*/
+								  		var ss=year+getNow(month)+getNow(date);
+										$.ajax({
+											url:"http://127.0.0.1:8080/PriadetailsController/getno",
+											type:"get",
+										  	data:"billdate="+ss,
+										  	async:false,
+										  	dataType:'text',	
+										  	success:function (res3) {
+										  		obj3[q].priabillCustom1=ss;
+											   	obj3[q].priadetailsId = ss+res3;
+									        }
+										});
+										
+										obj3[q].priabillCustom7=$("#payablesId").val();
+										obj3[q].priabillCustom6="1";
+										alert(obj3[q].priabillCustom9);
+										$.ajax({
+											url:"http://127.0.0.1:8080/PriadetailsController/insertSelective",
+											type:"post",
+											data:JSON.stringify(obj3[q]),
+										  	dataType:'json',
+										  	contentType:"application/json;charset=utf-8",
+										  	success:function (res4) {
+										  		console.log(res4.message);
+										  	}
+										});
+									}
+								}
+							}
+							layer.msg("新增成功!");
+							this_.isinsert=false;//关闭新增模式
+							this_.isedit=false;//关闭编辑模式
+							this_.goPage(1, 1);	
+				        }
+					});					
+				 });
 				},
-				saves: function() {//保存
+				saves: function() {//保存					
+					
+					if(this.isinsert==true){//新增
+						//alert("进入新增")
+						if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=0.00){
+							if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=$("#payablesPrice1").val()){
+								layer.msg("结算方式金额 与 合计需支付金额 不相等");
+								return;
+							}
+						}
+						
+						this.diasabledInput= true;//input不可编辑
+						this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+		             	this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    this.Auditing1 =true;//审核
+					    this.noAuditing1 =true;//取消审核
+						this.insets();
+					}else if(this.isedit==true){
+						//alert("进入修改")
+						if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=0.00){
+							if(parseFloat($('.layui-table-total .layui-table tr [data-field="ppCurrentbalance"]').text())!=$("#payablesPrice1").val()){
+								layer.msg("结算方式金额 与 合计需支付金额 不相等");
+								return;
+							}
+						}
+						this.diasabledInput= true;//input不可编辑
+						this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+		             	this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    this.Auditing1 =true;//审核
+					    this.noAuditing1 =true;//取消审核
+						this.updates();
+					}else{
+						
+					}	
 					
 					
 				},
 				update: function() {//编辑按钮
-					
+					this.diasabledInput=false;//input可以输入
+					this.isinsert=false;//关闭新增模式
+					this.isedit=true;//开启编辑模式
+					this.goFirstPage1 =true;//第一笔
+		            this.goPrePage1 =true;//上一笔				            
+	             	this.goNextPage1 =true;//下一笔
+			     	this.goLastPage1 =true;//后一笔
+	             	this.inset1 =true;   //新增      
+	             	this.return1=false;//返回
+	             	this.saves1 =false;//保存 
+	             	this.update1 =true;//编辑
+	             	this.deletes1 =true;//删除		
+				    this.Auditing1 =true;//审核
+				    this.noAuditing1 =true;//取消审核
 					
 				},
 				updates: function() {//编辑 
 					
+					 var this_ = this;
+				layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+								var form2 = layui.form;
+						        var table = layui.table;						
+								var $ = layui.$, layer = layui.layer;
+				
+			  		/*获取当前时间*/
+				   	//判断是否在前面加0
+						function getNow(s) {
+						return s < 10 ? '0' + s: s;
+						}
+						 
+						var myDate = new Date();            
+						 
+						var year=myDate.getFullYear();        //获取当前年
+						var month=myDate.getMonth()+1;   //获取当前月
+						var date=myDate.getDate();            //获取当前日
+						 
+						var h=myDate.getHours();              //获取当前小时数(0-23)
+						var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+						var s=myDate.getSeconds();
+						 
+						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+				
+					//修改信息
+					this_.page.list[0].payablesId=$("#payablesCustom2").val();//预付冲款单ID（主键 唯一）
+				    this_.page.list[0].supplierId=$("#supplierId").val();//供应商表id,外键
+				    this_.page.list[0].scsId="1";//结算方式id,外键
+				    this_.page.list[0].staffId="100";//部门员工表id,外键
+				    this_.page.list[0].currencyId=$("#currencyId").val();//币别类型表id,外键
+				    this_.page.list[0].projectId=$("#projectId").val();//项目表id,外键
+				    this_.page.list[0].payablesSupplierName=$("#payablesSupplierName").val();//供应商表，名称
+				    this_.page.list[0].payablesSatName1=$("#payablesSatName1").val();//结算方式表，结算方式1，名称
+				    this_.page.list[0].payablesPrice1=$("#payablesPrice1").val();//结算方式表，结算方式1，值
+				    this_.page.list[0].payablesSatName2=$("#payablesSatName2").val();//结算方式表，结算方式2，名称
+				    this_.page.list[0].payablesPrice2=$("#payablesPrice2").val();//结算方式表，结算方式2，值
+				    this_.page.list[0].payablesSatName3=$("#payablesSatName3").val();//结算方式表，结算方式3，名称
+				    this_.page.list[0].payablesPrice3=$("#payablesPrice3").val();//结算方式表，结算方式3，值
+				    this_.page.list[0].payablesZhekou=$("#payablesZhekou").val();//折扣率，【默认值】：0.00
+				    this_.page.list[0].payablesEndtime=$("#payablesEndtime").val();//终止账月，【默认值】：当前年月
+				    this_.page.list[0].payablesPayablestime=$("#payablesPayablestime").val();//单据日期,【默认值】：当前日期
+				    this_.page.list[0].payablesCurrencyName=$("#payablesCurrencyName").val();//币别类型表，名称
+				    this_.page.list[0].payablesCurrencyInexchange=$("#payablesCurrencyInexchange").val();//币别类型表，汇率
+				    this_.page.list[0].payablesType="应付冲款";//应付冲款类型，【默认值】：付款冲款
+				    this_.page.list[0].payablesVoucherno=$("#payablesVoucherno").val();//凭证编号
+				    this_.page.list[0].payablesTeamName=$("#payablesTeamName").val();//部门表，名称
+				    this_.page.list[0].payablesProjectName=$("#payablesProjectName").val();//项目表，名称
+				    this_.page.list[0].payablesBillpersonnel="admin";//制单人员，【默认值】：当前人员
+				    this_.page.list[0].payablesReviewers=$("#payablesReviewers").val();//复合人员，【默认值】：
+				    this_.page.list[0].payablesRemarks=$("#payablesRemarks").val();//备注
+				    this_.page.list[0].payablesAuditstatus="0";//审核状态，【默认值】：0
+				    this_.page.list[0].payablesAuditing="0";//是否审核，【默认值】：当前人员
+				    this_.page.list[0].payablesYn="0";//是否删除，【默认值】：0
+//				    this.page.list[0].teamYn=;//是否删除（0 否 1 是 ，默认0）
+				    this_.page.list[0].payablesCustom1=year+getNow(month)+getNow(date);//创建时间
+				    this_.page.list[0].payablesCustom2=$("#payablesCustom2").val();//自定义2，单据号码
+				    this_.page.list[0].payablesCustom3=$("#payablesCustom3").val();//自定义3
+				    this_.page.list[0].payablesCustom4=$("#payablesCustom4").val();//自定义4
+				    this_.page.list[0].payablesCustom5="";//自定义5
+				    this_.page.list[0].payablesCustom6="";//自定义6
+				    this_.page.list[0].payablesCustom7="";//自定义7
+				    this_.page.list[0].payablesCustom8=$("#payablesCustom8").val();//自定义8	--部门ID
+				    this_.page.list[0].payablesCustom10="";//自定义10
+					var obj=this_.page.list[0];
+					/*if(table.cache["materialsContent2"].length==0){
+						layer.msg("本账单没有任何明细单据，不能保存！");												
+						return
+					}
+					if($("#payablesSatName1").val()!=""){
+						var mon = table.cache["materialsContent2"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice1").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName2").val()!=""){
+						var mon = table.cache["materialsContent2"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice2").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName3").val()!=""){
+						var mon = table.cache["materialsContent3"];
+						var qian = 0;
+						for(var q=0;q<mon.length;q++){
+							qian=parseFloat(qian)+parseFloat(mon[q].ppCurrentbalance);
+						}
+						if(parseFloat($("#payablesPrice2").val())!=parseFloat(qian)){
+							layer.msg("预支付金额不等于付款合计！");
+							return;
+						}
+					}
+					if($("#payablesSatName1").val()==""&&$("#payablesSatName2").val()==""&&$("#payablesSatName3").val()==""){
+						layer.msg("请选择结账方式！");
+						return;
+					}*/
+						$.ajax({
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(obj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+								if(table.cache["materialsContent2"].length!=0){											
+												
+									var obj2 = table.cache["materialsContent2"];
+									for(var n=0;n<obj2.length;n++){										
+		   								var ob={
+		   									ppType:"",
+		   									ppNumber:"",
+		   									ppDate:"",
+		   									ppPcId:"",
+		   									ppPcName:"",
+		   									ppTeamId:"",
+		   									ppTeamName:"",
+		   									ppBuyer:"",
+		   									ppProjectName:"",
+		   									ppCurrency:"",
+		   									ppExchangeRate:"",
+		   									ppPayablesmainPrice:"",
+		   									ppCurrentbalance:"",
+		   									ppDiscountamount:"",
+		   									ppAmountcharged:"",
+		   									ppOffsetamount:"",
+		   									ppAuditing:"",
+		   									ppYn:"",
+		   									ppCustom1:"",
+		   									ppCustom2:"",
+		   									ppCustom3:"",
+		   									ppCustom4:"",
+		   									ppCustom5:"",
+		   									ppCustom6:"",
+		   									ppCustom7:"",
+		   									ppCustom8:"",
+		   									ppCustom9:"",
+		   									ppCustom10:""
+		   								};
+										ob.ppType=obj2[n].ppType;
+										ob.ppNumber=obj2[n].ppNumber;
+										ob.ppDate=obj2[n].ppDate;
+										ob.ppPcId=obj2[n].ppPcId;
+										ob.ppPcName=obj2[n].ppPcName;
+										ob.ppTeamId=obj2[n].ppTeamId;
+										ob.ppTeamName=obj2[n].ppTeamName;
+										ob.ppBuyer=obj2[n].ppBuyer;
+										ob.ppProjectName=obj2[n].ppProjectName;
+										ob.ppCurrency=obj2[n].ppCurrency;
+										ob.ppExchangeRate=obj2[n].ppExchangeRate;
+										ob.ppPayablesmainPrice=obj2[n].ppPayablesmainPrice;
+										ob.ppCurrentbalance=0;
+										ob.ppDiscountamount=obj2[n].ppDiscountamount;
+										ob.ppAmountcharged=obj2[n].ppPayablesmainPrice;
+										ob.ppOffsetamount=obj2[n].ppOffsetamount;
+										ob.ppAuditing=obj2[n].ppAuditing;
+										ob.ppYn=obj2[n].ppYn;
+										ob.ppCustom3=obj2[n].ppCustom3;
+										ob.ppCustom4=obj2[n].ppCustom4;
+										ob.ppCustom5=obj2[n].ppCustom5;
+										ob.ppCustom6=obj2[n].ppCustom6;
+										ob.ppCustom7=obj2[n].ppId;
+										ob.ppCustom8=$("#payablesCustom2").val();
+										ob.ppCustom9="2";
+										ob.ppCustom10=obj2[n].ppCustom10;
+										
+										$.ajax({
+											url :"http://127.0.0.1:8080/Purchase_payablesController/updateByPrimaryKeySelective",
+											type:"post",
+											data:JSON.stringify(ob),
+										  	dataType:'json',
+										  	contentType:"application/json;charset=utf-8",
+										  	success:function (res) {
+										  		console.log(res.message);
+										  	}
+										});
+									}
+									
+									if(table.cache["materialsContent6"].length!=0){
+										var obj3 = table.cache["materialsContent6"];
+										for(var q=0;q<obj3.length;q++){
+											
+											obj3[q].priabillCustom7=$("#payablesId").val();
+											obj3[q].priabillCustom6="1";
+											$.ajax({
+												url:"http://127.0.0.1:8080/PriadetailsController/updateByPrimaryKeySelective",
+												type:"post",
+												data:JSON.stringify(obj3[q]),
+											  	dataType:'json',
+											  	contentType:"application/json;charset=utf-8",
+											  	success:function (res4) {
+											  		console.log(res4.message);
+											  	}
+											});
+										}
+									}
+								}
+								
+								layer.msg("编辑成功！");
+					        }
+						});					
+					 });
 					
 				
 				},
 				deletes: function() {//删除
-					
+					var this_ = this;
+					layer.confirm('确认删除吗？', function(index){
+						var priabillId = this_.page.list[0].payablesId;
+						var updateObj = this_.page.list[0];
+					    updateObj.payablesYn="1";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+								layer.msg('删除成功！');
+								this_.goPage(1, 1);		
+					        }
+						});
+				        layer.close(index);
+				        //向服务端发送删除指令
+				     });
 				},   
-				Auditing: function() {//审核
-					
+				Auditing: function() {//审核	
+					var this_ = this;
+				layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+								var form2 = layui.form;
+						        var table = layui.table;						
+								var $ = layui.$, layer = layui.layer;
+				    if(this.Auditing1=true){
+				    	this_.diasabledInput=false;//input不可以编辑
+						this_.isinsert=true;//开启新增模式
+						this_.isedit=true;//开启修改模式
+						this_.getno();
+											
+						this_.goFirstPage1 =false;//第一笔
+			            this_.goPrePage1 =false;//上一笔				            
+		             	this_.goNextPage1 =false;//下一笔
+				     	this_.goLastPage1 =false;//后一笔
+		             	this_.inset1 =false;   //新增      
+	             		this_.return1=true;//返回
+		             	this_.saves1 =true;//保存 
+		             	this_.update1 =true;//编辑
+		             	this_.deletes1 =true;//删除		
+					    
+					    var payablesId = this_.page.list[0].payablesId;
+					    var updateObj = this_.page.list[0];
+					    updateObj.payablesAuditing="1";
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective2",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								this_.isinsert=false;//关闭新增模式
+								this_.isedit=false;//关闭编辑模式
+								/*layer.msg('审核通过！1');*/
+					        }
+						});
+						
+						//供应商付款明细记录表--取用预付
+						if(table.cache["materialsContent6"].length!=0){
+							var obj7 = table.cache["materialsContent6"];
+							for(var u=0;u<obj7.length;u++){
+								var jyPriabill = -parseFloat(obj7[u].priabillCustom8);
+								alert(jyPriabill);
+								obj01={
+									"jyData":$("#payablesPayablestime").val(),
+									"jySupplierName":$("#payablesSupplierName").val(),
+									"jyNumber":obj7[u].priadetailsId,
+									"jyType":"应付款单(取用预付)",
+									"jyPriabill":jyPriabill,
+									"jyPriabillBb":jyPriabill
+								};
+								if(jyPriabill!=0||jyPriabill!=""){
+									$.ajax({
+										url :"http://127.0.0.1:8080/Purchase_jiaoyiController/insertSelective",
+										type:"post",
+										data:JSON.stringify(obj01),
+									  	dataType:'json',
+									  	contentType:"application/json;charset=utf-8",
+									  	success:function (res) {
+									  		alert("ee");
+								        }
+									});
+								}
+							}
+						}
+						
+						//应付款明细表
+						if(table.cache["materialsContent2"].length!=0){											
+							var obj2 = table.cache["materialsContent2"];
+							for(var n=0;n<obj2.length;n++){										
+   								var ob={
+   									ppType:"",
+   									ppNumber:"",
+   									ppDate:"",
+   									ppPcId:"",
+   									ppPcName:"",
+   									ppTeamId:"",
+   									ppTeamName:"",
+   									ppBuyer:"",
+   									ppProjectName:"",
+   									ppCurrency:"",
+   									ppExchangeRate:"",
+   									ppPayablesmainPrice:"",
+   									ppCurrentbalance:"",
+   									ppDiscountamount:"",
+   									ppAmountcharged:"",
+   									ppOffsetamount:"",
+   									ppAuditing:"",
+   									ppYn:"",
+   									ppCustom1:"",
+   									ppCustom2:"",
+   									ppCustom3:"",
+   									ppCustom4:"",
+   									ppCustom5:"",
+   									ppCustom6:"",
+   									ppCustom7:"",
+   									ppCustom8:"",
+   									ppCustom9:"",
+   									ppCustom10:""
+   								};
+								ob.ppType=obj2[n].ppType;
+								ob.ppNumber=obj2[n].ppNumber;
+								ob.ppDate=obj2[n].ppDate;
+								ob.ppPcId=obj2[n].ppPcId;
+								ob.ppPcName=obj2[n].ppPcName;
+								ob.ppTeamId=obj2[n].ppTeamId;
+								ob.ppTeamName=obj2[n].ppTeamName;
+								ob.ppBuyer=obj2[n].ppBuyer;
+								ob.ppProjectName=obj2[n].ppProjectName;
+								ob.ppCurrency=obj2[n].ppCurrency;
+								ob.ppExchangeRate=obj2[n].ppExchangeRate;
+								ob.ppPayablesmainPrice=obj2[n].ppPayablesmainPrice;
+								ob.ppCurrentbalance=obj2[n].ppCurrentbalance;
+								ob.ppDiscountamount=obj2[n].ppDiscountamount;
+								ob.ppAmountcharged=obj2[n].ppAmountcharged;
+								ob.ppOffsetamount=obj2[n].ppOffsetamount;
+								ob.ppAuditing="1";
+								ob.ppYn=obj2[n].ppYn;
+								ob.ppCustom1=obj2[n].ppCustom1;
+								ob.ppCustom2=obj2[n].ppCustom2;
+								ob.ppCustom3=obj2[n].ppCustom3;
+								ob.ppCustom4=obj2[n].ppCustom4;
+								ob.ppCustom5=obj2[n].ppCustom5;
+								ob.ppCustom6=obj2[n].ppCustom6;
+								ob.ppCustom7=obj2[n].ppCustom7;
+								ob.ppCustom8=$("#payablesCustom2").val();
+								ob.ppCustom9="2";
+								ob.ppCustom10=obj2[n].ppCustom10;
+								
+								$.ajax({
+									url :"http://127.0.0.1:8080/Purchase_payablesController/updateByPrimaryKeySelective2",
+									type:"post",
+									data:JSON.stringify(ob),
+								  	dataType:'json',
+								  	contentType:"application/json;charset=utf-8",
+								  	success:function (res) {
+								  		layer.msg("审核通过！2");
+								  		this_.goPage(1, 1);	
+								  	}
+								});
+							}
+				    	}
+				    }
+				 });
 				},   
-				noAuditing: function() {//取消
-					
+				noAuditing: function() {//反审核
+					var this_ = this;
+					if(this.noAuditing1=true){
+				    	this.diasabledInput=true;//input可以编辑
+						this.isinsert=true;//开启新增模式
+						this.isedit=false;//关闭修改模式
+						this.getno();
+											
+						this.goFirstPage1 =false;//第一笔
+			            this.goPrePage1 =false;//上一笔				            
+		             	this.goNextPage1 =false;//下一笔
+				     	this.goLastPage1 =false;//后一笔
+		             	this.inset1 =false;   //新增      
+	             		this.return1=true;//返回
+		             	this.saves1 =true;//保存 
+		             	this.update1 =false;//编辑
+		             	this.deletes1 =false;//删除		
+					    
+					    var payablesId = this.page.list[0].payablesId;
+					    var updateObj = this.page.list[0];
+					    alert(payablesId);
+					    updateObj.payablesAuditing="0";
+					    //应付款主表
+					    $.ajax({
+							url :"http://127.0.0.1:8080/PayablesController/updateByPrimaryKeySelective",
+							type:"post",
+							data:JSON.stringify(updateObj),
+							async:false,
+						  	dataType:'json',
+						  	contentType:"application/json;charset=utf-8",
+						  	success:function (res) {
+						  		//alert("系统提示：" +res.message);
+								this_.isinsert=false;//关闭新增模式
+								this_.isedit=false;//关闭编辑模式
+								layer.msg('反审核成功！1');
+								this_.goPage(1, 1);		
+					        }
+						});						
+						
+					}
 				},
 				selectCk: function() {//下拉框
 					alert(1);
@@ -530,9 +1894,10 @@
 					  	data:"billdate="+ss,
 					  	dataType:'text',	
 					  	success:function (res) {
-					  		console.info("idfdsfhoewifhw")
-						  	console.info(res)
-						   	this_.page.list[0].priabillCustom2="p"+ss+res;
+						    this_.page.list[0].payablesCustom2=ss+res;
+						   	this_.page.list[0].payablesId=ss+res;
+						   	$("#payablesCustom2").val(ss+res);
+						   	$("#payablesId").val(ss+res);
 				        }
 					});
 					
@@ -541,7 +1906,7 @@
 			mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
 							
 				var this_ = this;				
-				this_.goPage(1, 1);				
+				this_.goPage(1, 1,null,null,null,null,null,null,null,null,null,null,null);	
 			}
 		
 		});
@@ -596,74 +1961,7 @@
             location.hash = 'test='+ $(this).attr('lay-id');
         });
     });
-
-    layui.use('table', function(){
-        var table = layui.table;
-
-        table.render({
-            elem: '#materialsContent'
-            ,url:'https://www.layui.com/demo/table/user/'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,parseData: function(res){
-				console.log('返回的值',res)
-				return {
-					"code":0,
-					"msg":"",
-					"count":res.total,
-					data:res.list
-				};
-			}
-            , cols: [[
-                {field: 'id', title: '(栏号)', sort: true}
-                , {field: 'username', title: '物料编号'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'sex', title: '(物料名称)', sort: true}
-                , {field: 'city', title: '(规格型号)'}
-                , {field: 'sign', title: '(单位名称)'}
-                , {field: 'classify', title: '数量', align: 'center'} //单元格内容水平居中
-                , {field: 'experience', title: '折扣前单价', sort: true, align: 'right'} //单元格内容水平居中
-                , {field: 'score', title: '折数(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '单价', sort: true, align: 'right'}
-                , {field: 'wealth', title: '金额', sort: true, align: 'right'}
-                , {field: 'wealth', title: '税率(%)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(税额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(含税金额)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(批号)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '赠品', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(发票明细)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '(未开票数量)', sort: true, align: 'right'}
-                , {field: 'wealth', title: '分录备注', sort: true, align: 'right'}
-            ]]
-            ,page:true//是否开启分页
-            ,limits:[1,2,3]//选择每页显示多少条数据
-            ,limit:2//初始每页显示条数
-        }),
-        
-        table.render({
-            elem: '#materialsContent2'
-            ,url:'http://127.0.0.1:8080/PriadetailsController/selectAllpage'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增           
-			,parseData: function(res){
-				console.log('返回的值',res)
-				return {
-					"code":0,
-					"msg":"",
-					"count":res.total,
-					data:res.list
-				};
-			}
-            , cols: [[
-            	{field: 'priadetailsId', title: '(栏号)',sort:true}
-                ,{field: 'priabillPrice', title: '预付金额 ',sort:true} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                , {field: 'priabillType', title: '来源别'}
-                /*, {field: 'sex', title: '来源别', sort: true}*/
-                , {field: 'priabillNumber', title: '来源单号'}
-                , {field: 'priabillRemarks', title: '摘要'}
-            ]]
-            ,page:true//是否开启分页
-            ,limits:[1,2,3]//选择每页显示多少条数据
-            ,limit:2//初始每页显示条数
-        });
-    });
+   
 </script>
 </body>
 </html>

@@ -50,8 +50,24 @@
 	    select 
 	    <include refid="Base_Column_List" />
 	    from payables_detail 
-	    where pade_Yn=0
+	    where pade_Yn=0 and pade_custom7 is null
 	    ORDER BY pade_id DESC
+  </select>
+  
+  <select id="selectByPayablesbillSupplierName" parameterType="com.apatech.domain.Payables_detail" resultMap="BaseResultMap">
+	    SELECT paydetail_id,Payables_id,supplier_id, staff_id, 
+	    currency_id,project_id,pade_sourcelist, 
+	    pade_sourcetime,pade_sourcenumber,pade_invoiceno, 
+	    pade_transaction,pade_transactionname,pade_team_name,
+	    pade_staff_name,pade_project_name,pade_currency_name, 
+	    pade_currency_inexchange,pade_price,pade_Currentbalance, 
+	    pade_Discountamount,pade_Amountcharged,pade_Offsetamount,
+	    pade_Auditing,pade_yn,pade_custom1,pade_custom2,pade_custom3,
+	    pade_custom4,pade_custom5,pade_custom6,pade_custom7,
+	    pade_custom8,pade_custom9,pade_custom10 
+	    FROM payables_detail WHERE paydetail_id=#{paydetail_id,jdbcType=VARCHAR} 
+	    AND pade_yn=0 AND pade_custom7 is null 
+	    ORDER BY paydetail_id DESC
   </select>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">

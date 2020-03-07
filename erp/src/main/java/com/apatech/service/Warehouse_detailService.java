@@ -19,6 +19,14 @@ public class Warehouse_detailService {
 	@Autowired
 	private Warehouse_detailMapper dao;
 	
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
+	public int deletebysj(String sj) {
+		return dao.deletebysj(sj);
+	}
+	
 	public PageInfo<Warehouse_detail> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 
@@ -49,6 +57,20 @@ public class Warehouse_detailService {
     public Warehouse_detail selectByPrimaryKey(String wdId){
     	return dao.selectByPrimaryKey(wdId);
     }
+    
+    public int selectbyid(String id,String sid){
+    	Warehouse_detail stu = dao.selectbyid(id, sid);
+    	int i=0;	
+		//System.out.println(stu);
+		if(stu!=null) {
+		if(stu.getWdInorout()==0) {
+			i=stu.getWdNumber()+stu.getWdLastbalancenumber();
+		}else {
+			i=stu.getWdLastbalancenumber()-stu.getWdNumber();
+		}
+		}
+    	return i;
+    }
 
     public int updateByPrimaryKeySelective(Warehouse_detail record){
     	return dao.updateByPrimaryKeySelective(record);
@@ -56,5 +78,11 @@ public class Warehouse_detailService {
 
     public int updateByPrimaryKey(Warehouse_detail record){
     	return dao.updateByPrimaryKey(record);
+    }
+    
+    
+    
+    public List<Warehouse_detail> selectAll(){
+    	return dao.selectAll();
     }
 }

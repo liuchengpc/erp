@@ -32,7 +32,7 @@
 </head>
 <body>
  
-<!--<table class="layui-hide" id="test" lay-filter="test"></table>
+ 	
  
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
@@ -187,7 +187,7 @@ layui.use('table', function(){
   
 
 });
-</script>-->
+</script>
 
 
 
@@ -198,16 +198,21 @@ layui.use('table', function(){
 
 
 
+<!--
 
-
-<table id='task-list' lay-filter='task-list'></table> <!--需要渲染的表格-->
+<table id='task-list' lay-filter='task-list' class="layui-hide"></table> 
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script type="text/javascript">
 	layui.use('table', function(){
 	  var table = layui.table;
 		var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
 	  table.render({
 	   elem: '#task-list'
-	   , height: 472
+//	   , height: 472
+	 ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 	   , title: '决策场景信息'
 	   , limit: 5
 	   , page: {
@@ -219,19 +224,19 @@ layui.use('table', function(){
 	    , last: false //不显示尾页
 	   }
 	   , cols: [[
-	    {field: 'id', title: '序号', width: 60, style: 'font-size: 12px; color: #666'},
+	    {field: 'id', title: '序号',  style: 'font-size: 12px; color: #666'},
 	    {field: 'modelNum', title: '场景模型编号', style: 'font-size: 12px; color: #666'},
 	    {field: 'modelName', title: '场景模型名称', style: 'font-size: 12px; color: #666'},
 	    {field: 'taskNum', title: '当前任务编号', style: 'font-size: 12px; color: #666'},
-	    {field: 'taskLevel', title: '当前任务阶段', width: 150, templet: "#level", style: 'font-size: 12px; color: #666'},
-	    {field: 'report', title: '报告', width: 60, event: 'viewReport', templet: "#reportID", style: 'font-size: 12px; color: #666; cursor:pointer', edit: 'text',},
+	    {field: 'taskLevel', title: '当前任务阶段', templet: "#level", style: 'font-size: 12px; color: #666'},
+	    {field: 'report', title: '报告',  event: 'viewReport', templet: "#reportID", style: 'font-size: 12px; color: #666; cursor:pointer', edit: 'text',},
 	    // 这里设置event，事件名称自定义。
-	    {field: 'history', title: '历史任务', width: 100, style: 'font-size: 12px; color: #666'},
+	    {field: 'history', title: '历史任务',  style: 'font-size: 12px; color: #666'},
 	    {
 	     fixed: 'right',
 	     title: '操作',
 	     width: 100,
-	     toolbar: "#table-linetoolbar",
+	     toolbar: "#barDemo",
 	     align: 'center',
 	     style: 'font-size: 12px; color: #666'
 	    }
@@ -265,10 +270,34 @@ layui.use('table', function(){
 	            content: 'receivablesbillTC1.html'
 	        });
 	 }
+	 
+	 
 	})
+	
+	 //监听行工具事件
+  table.on('tool(task-list)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.prompt({
+        formType: 2
+        ,value: data.modelName
+      }, function(value, index){
+        obj.update({
+          modelName: value
+        });
+        layer.close(index);
+      });
+    }
+  });
 
 })
-</script>
+</script>-->
  
 
 </body>

@@ -22,6 +22,9 @@ public interface PayablesmainMapper {
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String payablesmainId);
+    
+    @Select("select payablesmain_auditing from Payablesmain where payablesmain_sourcelist=#{bitten}")
+    String selectbysh(String bitten);
 
     int insert(Payablesmain record);
 

@@ -19,11 +19,7 @@
     <result column="so_watchword" jdbcType="VARCHAR" property="soWatchword" />
     <result column="so_tailclause" jdbcType="VARCHAR" property="soTailclause" />
     <result column="so_remark" jdbcType="VARCHAR" property="soRemark" />
-<<<<<<< HEAD
     <result column="so_account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
-=======
-    <result column="so_ account_ownership" jdbcType="VARCHAR" property="soAccountOwnership" />
->>>>>>> branch 'master' of https://github.com/liuchengpc/erp.git
     <result column="so_collection_time" jdbcType="VARCHAR" property="soCollectionTime" />
     <result column="so_collection_month" jdbcType="VARCHAR" property="soCollectionMonth" />
     <result column="so_collection_terms" jdbcType="VARCHAR" property="soCollectionTerms" />

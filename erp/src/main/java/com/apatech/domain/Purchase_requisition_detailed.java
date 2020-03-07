@@ -24,10 +24,10 @@ public class Purchase_requisition_detailed {
     private Float prdStandardPurchaseAmount;//标准进价金额
     private Float prdUnitPrice;//单价
     private Float prdIncomingAmount;//进价金额
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date prdDemandDate;//需求日期
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date prdRecommendedProcurementDate;//建议采购日期
     private Integer prdUnpurchasedQuantity;//未采购量

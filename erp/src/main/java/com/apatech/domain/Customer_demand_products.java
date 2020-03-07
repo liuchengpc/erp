@@ -21,7 +21,7 @@ public class Customer_demand_products {
     private Float cdpAffordablePrice;//可承受价
     private Float cdpScheduledQuotation;//预定报价
     private Float cdpCounterpartOffer;//对手报价
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date cdpAdvanceDate;//预交日期
     private String cdpRemark;//备注

@@ -14,7 +14,7 @@
     <result column="pp_project_name" jdbcType="VARCHAR" property="ppProjectName" />
     <result column="pp_currency" jdbcType="VARCHAR" property="ppCurrency" />
     <result column="pp_exchange_rate" jdbcType="REAL" property="ppExchangeRate" />
-    <result column="pp_payablesmain_price" jdbcType="DOUBLE" property="ppPayablesmainPrice" />
+    <result column="pp_payablesmain_price" jdbcType="REAL" property="ppPayablesmainPrice" />
     <result column="pp_currentbalance" jdbcType="REAL" property="ppCurrentbalance" />
     <result column="pp_discountamount" jdbcType="REAL" property="ppDiscountamount" />
     <result column="pp_amountcharged" jdbcType="REAL" property="ppAmountcharged" />
@@ -102,7 +102,7 @@
       #{ppDate,jdbcType=TIMESTAMP}, #{ppPcId,jdbcType=VARCHAR}, #{ppPcName,jdbcType=VARCHAR}, 
       #{ppTeamId,jdbcType=VARCHAR}, #{ppTeamName,jdbcType=VARCHAR}, #{ppBuyer,jdbcType=VARCHAR}, 
       #{ppProjectName,jdbcType=VARCHAR}, #{ppCurrency,jdbcType=VARCHAR}, #{ppExchangeRate,jdbcType=REAL}, 
-      #{ppPayablesmainPrice,jdbcType=DOUBLE}, #{ppCurrentbalance,jdbcType=REAL}, #{ppDiscountamount,jdbcType=REAL}, 
+      #{ppPayablesmainPrice,jdbcType=REAL}, #{ppCurrentbalance,jdbcType=REAL}, #{ppDiscountamount,jdbcType=REAL}, 
       #{ppAmountcharged,jdbcType=REAL}, #{ppOffsetamount,jdbcType=REAL}, #{ppAuditing,jdbcType=VARCHAR}, 
       #{ppYn,jdbcType=VARCHAR}, #{ppCustom1,jdbcType=VARCHAR}, #{ppCustom2,jdbcType=VARCHAR}, 
       #{ppCustom3,jdbcType=VARCHAR}, #{ppCustom4,jdbcType=VARCHAR}, #{ppCustom5,jdbcType=VARCHAR}, 
@@ -232,7 +232,7 @@
         #{ppExchangeRate,jdbcType=REAL},
       </if>
       <if test="ppPayablesmainPrice != null">
-        #{ppPayablesmainPrice,jdbcType=DOUBLE},
+        #{ppPayablesmainPrice,jdbcType=REAL},
       </if>
       <if test="ppCurrentbalance != null">
         #{ppCurrentbalance,jdbcType=REAL},
@@ -321,7 +321,7 @@
         pp_exchange_rate = #{ppExchangeRate,jdbcType=REAL},
       </if>
       <if test="ppPayablesmainPrice != null">
-        pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=DOUBLE},
+        pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=REAL},
       </if>
       <if test="ppCurrentbalance != null">
         pp_currentbalance = #{ppCurrentbalance,jdbcType=REAL},
@@ -387,7 +387,7 @@
       pp_project_name = #{ppProjectName,jdbcType=VARCHAR},
       pp_currency = #{ppCurrency,jdbcType=VARCHAR},
       pp_exchange_rate = #{ppExchangeRate,jdbcType=REAL},
-      pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=DOUBLE},
+      pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=REAL},
       pp_currentbalance = #{ppCurrentbalance,jdbcType=REAL},
       pp_discountamount = #{ppDiscountamount,jdbcType=REAL},
       pp_amountcharged = #{ppAmountcharged,jdbcType=REAL},
@@ -443,7 +443,7 @@
         pp_exchange_rate = #{ppExchangeRate,jdbcType=REAL},
       </if>
       <if test="ppPayablesmainPrice != null">
-        pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=DOUBLE},
+        pp_payablesmain_price = #{ppPayablesmainPrice,jdbcType=REAL},
       </if>
       <if test="ppCurrentbalance != null">
         pp_currentbalance = #{ppCurrentbalance,jdbcType=REAL},

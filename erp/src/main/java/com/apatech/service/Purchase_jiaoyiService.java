@@ -49,6 +49,9 @@ public class Purchase_jiaoyiService {
     public int deleteByPrimaryKey2(String jyCustom3){
     	return dao.deleteByPrimaryKey2(jyCustom3);    
     }
+    public int deleteByPrimaryKey3(String jyNumber){
+    	return dao.deleteByPrimaryKey3(jyNumber);    
+    }
 
     public int insert(Purchase_jiaoyi record){
     	return dao.insert(record);

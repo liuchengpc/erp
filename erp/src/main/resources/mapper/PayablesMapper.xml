@@ -57,6 +57,14 @@
 	    from payables 
 	    where payables_Yn=0  
 	    ORDER BY payables_id DESC
+  </select>
+  
+  <select id="selectAll2" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from payables 
+	    where payables_Yn=0 AND payables_Auditing = 0 AND payables_supplier_name = #{payablesSupplierName,jdbcType=VARCHAR}   
+	    ORDER BY payables_id DESC
   </select>  
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -68,6 +76,11 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from payables
     where payables_id = #{payablesId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.String">
+    delete from payables
+    where payables_supplier_name = #{payablesSupplierName,jdbcType=VARCHAR} 
+    AND payables_Auditing = 0
   </delete>
   <insert id="insert" parameterType="com.apatech.domain.Payables">
     insert into payables (payables_id, supplier_id, scs_id, 

@@ -38,10 +38,10 @@ public class PriadetailsService {
     	return pageFy;
 	}
 	
-	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10){
-		System.out.println("预付款余额大于0分页的集合："+dao.selectAllBySupplier2(priabillCustom10));
+	public PageInfo<Priadetails> selectAllBySupplier2(Integer page,Integer limit,String priabillCustom10,String payablesId){
+		System.out.println("预付款余额大于0分页的集合："+dao.selectAllBySupplier2(priabillCustom10,payablesId));
     	PageHelper.startPage(page, limit);
-    	List<Priadetails> list=dao.selectAllBySupplier2(priabillCustom10);
+    	List<Priadetails> list=dao.selectAllBySupplier2(priabillCustom10,payablesId);
 
     	PageInfo<Priadetails> pageFy=new PageInfo<Priadetails>(list);
     	return pageFy;
@@ -49,6 +49,10 @@ public class PriadetailsService {
 	
 	public List<Priadetails>  selectByPrimaryKey2(String priabillId){
     	return dao.selectByPrimaryKey2(priabillId);
+    }
+	
+	public Priadetails  selectByPrimaryKey3(String priabillId){
+    	return dao.selectByPrimaryKey3(priabillId);
     }
 	
 	 public String getno(String billdate){
@@ -89,6 +93,10 @@ public class PriadetailsService {
     	return dao.selectByPrimaryKey(priadetailsId);
     }
 
+    public int updateByPrimaryKeySelective2(Priadetails record){
+    	return dao.updateByPrimaryKeySelective2(record);
+    }
+    
     public int updateByPrimaryKeySelective(Priadetails record){
     	return dao.updateByPrimaryKeySelective(record);
     }

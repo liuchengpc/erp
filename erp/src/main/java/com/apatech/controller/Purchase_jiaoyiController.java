@@ -162,4 +162,27 @@ public class Purchase_jiaoyiController {
 		}
 		return map;
     }
+	
+	/**
+	 * 根据单号删除
+	 * @param Purchase_jiaoyiid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByPrimaryKey3",method = RequestMethod.GET)
+	@ResponseBody
+    public Map<String, String> deleteByPrimaryKey3(String jyNumber,Model model) {
+		System.out.println("进入Purchase_jiaoyiController根据主键删除");
+		System.out.println("jyNumber："+jyNumber);
+		Map<String, String> map=new HashMap<String,String>();
+    	int i =dao.deleteByPrimaryKey3(jyNumber);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
 }

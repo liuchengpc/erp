@@ -25,6 +25,8 @@ public interface Purchase_jiaoyiMapper {
 
     int deleteByPrimaryKey2(String jyCustom3);
     
+    int deleteByPrimaryKey3(String jyNumber);
+    
     int insert(Purchase_jiaoyi record);
 
     int insertSelective(Purchase_jiaoyi record);

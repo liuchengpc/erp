@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
 import com.apatech.domain.wd_Adjust_price;
 import com.apatech.domain.Adjust_price;
 import com.apatech.mapper.Adjust_priceMapper;
@@ -63,6 +64,11 @@ public class Adjust_priceService {
 		return dao.insertupd(updownmid,upname,apId,doname);
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<Dull_section> querySection() {
+		// TODO Auto-generated method stub
+		return dao.querySection();
 	}
 
 	

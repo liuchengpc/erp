@@ -172,7 +172,7 @@ public class Purchase_jiaoyiController {
 	@RequestMapping(value = "deleteByPrimaryKey3",method = RequestMethod.GET)
 	@ResponseBody
     public Map<String, String> deleteByPrimaryKey3(String jyNumber,Model model) {
-		System.out.println("进入Purchase_jiaoyiController根据主键删除");
+		System.out.println("进入Purchase_jiaoyiController根据主键删除 ");
 		System.out.println("jyNumber："+jyNumber);
 		Map<String, String> map=new HashMap<String,String>();
     	int i =dao.deleteByPrimaryKey3(jyNumber);

@@ -56,10 +56,10 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">增值科目</label>
 								<div class="layui-input-block">
-									<input type="text" id="pro" name="pro" class="layui-input" v-model="pages.upName" v-bind:disabled="diasabledInput">
+									<input type="text" id="pro" name="pro" class="layui-input" v-model="pages.upCuston3" v-bind:disabled="diasabledInput">
 									<div id="sel">
 										<select style="display:none" class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upName">
-											<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="upname"></option>
+											<option v-for="sl,index in shoplist" :value='sl.upId' v-text="sl.upName" name="upname"></option>
 										</select>
 									</div>
 								</div>
@@ -67,10 +67,10 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">减值科目</label>
 								<div class="layui-input-block">
-									<input type="text" id="pro1" name="pro" class="layui-input" v-model="pages.upCustom6" v-bind:disabled="diasabledInput">
+									<input type="text" id="pro1" name="pro" class="layui-input" v-model="pages.upCuston4" v-bind:disabled="diasabledInput">
 									<div id="sel1">
 										<select style="display:none" class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upCustom6">
-											<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="downname"></option>
+											<option v-for="sl,index in shoplist" :value='sl.upId' v-text="sl.upName" name="downname"></option>
 										</select>
 									</div>
 								</div>
@@ -493,14 +493,15 @@
 					},
 					//审核
 					Auditing: function(apDateid) { //审核
-						alert(apDateid);
+						
+						
 						var this_ = this;
+						this.update1 = true; //编辑
+						this.inset1 = true; //新增
 						if(confirm("是否审核")) {
 							$.ajax({
 								type: "get",
-								data: {
-									apDateId: apDateid
-								},
+								data: JSON.stringify(this_.page.list[0]),
 								url: "http://127.0.0.1:8080/wd_adjustController/updateAuding",
 								success: function(res) {
 									if(res > 0) {
@@ -509,6 +510,12 @@
 										alert("审核失败！");
 									}
 								}
+								
+								
+								
+								
+								
+								
 							});
 						}
 						this.deletes1 = true, //删除
@@ -728,6 +735,91 @@
 					//点击新增
 					inset: function() {
 						this.clear(); //清空文本框
+						var exap=[{mamuId:""}];
+							layui.use('table', function() {
+									var table = layui.table;
+									//console.log(this_.page.list[0].list);
+									table.render({
+										elem: '#materialsContent',
+										data: exap,
+										cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+											,
+										cols: [
+											[{
+													templet: "#indexs",
+													title: '(栏号)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mamuId',
+													title: '(类型id)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterName',
+													title: '(物料名称)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'matterId',
+													title: '(物料编号)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterSize',
+													title: '(规格型号)',
+													align: 'center'
+												},
+												{
+													field: 'muName',
+													title: '(单位)',
+													align: 'center'
+												},
+												{
+													field: 'mmatterNowcount',
+													title: '(库存量)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterNowavgcost',
+													title: '(平均成本)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmonePrice',
+													title: '(单价)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'dAdjustprice',
+													title: '(调价金额)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'dDecoration',
+													title: '分录备注',
+													align: 'center'
+												}
+											]
+										]
+									});
+								});
+
+
+
+
+
+
+
+
 
 						//开窗取值
 						$("tr td:eq(0)").on("keyup.f4", function() {

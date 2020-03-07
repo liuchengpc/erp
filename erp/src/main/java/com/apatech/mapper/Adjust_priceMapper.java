@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
 import com.apatech.domain.wdQueryTaiz;
 import com.apatech.domain.wdQueryTaizDetail;
 import com.apatech.domain.wd_Adjust_detail;
@@ -235,6 +236,9 @@ public interface Adjust_priceMapper {
 			"WHERE c.warehouse_id=b.warehouse_id AND m.`matter_id`=c.mt_id AND c.warehouse_id=#{warehouseId} AND c.`mt_id`=#{matterId}\n" + 
 			"GROUP BY  c.`mt_id`")
 	List<wdQueryTaizDetail> queryNum(String matterId, String warehouseId);
+
+	@Select("SELECT ds_id AS dsId, ds_startday AS dsStartday, ds_enddate AS dsEnddate, ds_decoration AS dsDecoration FROM dull_section")
+	List<Dull_section> querySection();
     
     
 }

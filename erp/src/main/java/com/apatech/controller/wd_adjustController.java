@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Team;
@@ -102,7 +103,12 @@ public class wd_adjustController {
 		return wddao.tzqueryWarehouse();
 	}
 	
-	
+	//querySection呆滞品区间查询
+	@RequestMapping("/querySection")
+	@ResponseBody
+	public List<Dull_section>querySection(){
+		return dao.querySection();
+	}
 	
 	
 	

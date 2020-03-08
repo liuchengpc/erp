@@ -106,4 +106,13 @@ public class Purchase_returnsService {
 		dao.deleteDetailsByPureId(pureId);
 		throw new RuntimeException();
 	}
+
+	public PurchaseReturnsPojo formatData(PurchaseReturnsPojo data){
+		data.setSupplierId(data.getSupplierId().split(" ")[0]);
+		data.setCurrencyId(data.getCurrencyId().split(" ")[0]);
+		data.setPureBuyer(data.getPureBuyer().split(" ")[0]);
+		data.setPureExecutor(data.getPureExecutor().split(" ")[0]);
+
+		return null;
+	}
 }

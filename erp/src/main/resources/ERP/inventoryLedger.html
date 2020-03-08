@@ -223,9 +223,9 @@
 							<td><input type="text" style="text-align: center;" v-model="det.warehouseId"></td>
 							<td><input type="text" style="text-align: center;" v-model="det.warehouseName"></td>
 							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber"></td>
-							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber"></td>
-							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber"></td>
-							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-20"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-3"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-17"></td>
 						</tr>
 
 					</tbody>
@@ -286,7 +286,6 @@
 							var warehouseEnd = $("input:eq(3)").val();
 							var dateBegin = $("input:eq(4)").val();
 							var dateEnd = $("input:eq(5)").val();
-							alert(matterBegin + "," + matterEnd + "," + warehouseBegin + "," + warehouseEnd + "," + dateBegin + "," + dateEnd);
 							var that = this;
 
 							$.ajax({

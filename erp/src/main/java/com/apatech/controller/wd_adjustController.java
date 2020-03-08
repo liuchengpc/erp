@@ -295,7 +295,9 @@ public class wd_adjustController {
 	@ResponseBody
 	public int updateAuding(String apDateId) {
 		System.out.println("进");
-		return wddao.updateAuding(apDateId);
+		int i=wddao.updateAuding(apDateId);
+		System.out.println(i);
+		return i;
 				
 	}
 

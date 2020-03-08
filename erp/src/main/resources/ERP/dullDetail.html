@@ -278,7 +278,7 @@
                 			var layer = layui.layer,$=layui.$;
                 			win=layer.open({
                     			type:1,//类型
-                    			area:['1000px','600px'],//定义宽和高
+                    			area:['600px','500px'],//定义宽和高
                     			title:'呆滞品分析——查询结果',//题目
                     			shadeClose:false,//点击遮罩层关闭
                     			content: $('#motaikunag')//打开的内容
@@ -289,7 +289,6 @@
 					var dulldate=$("#3").val();//计算日期
 					var dullSdate=$("#5").val();//起止
 					var dullEdate=$("#6").val();//结束
-			alert(matterBegin+","+matterEnd+","+dulldate+","+dullSdate+","+dullEdate);
 			var that=this;
             $.ajax({
             	type:"get",
@@ -311,7 +310,7 @@
                 			var layer = layui.layer,$=layui.$;
                 			win=layer.open({
                     			type:1,//类型
-                    			area:['1000px','600px'],//定义宽和高
+                    			area:['600px','500px'],//定义宽和高
                     			title:'呆滞品分析——查询结果',//题目
                     			shadeClose:false,//点击遮罩层关闭
                     			content: $('#motaikunags')//打开的内容
@@ -322,7 +321,6 @@
 						var dulldate=$("#3").val();//计算日期
 						var dullSdate=$("#5").val();//起止
 						var dullEdate=$("#6").val();//结束
-			alert(matterBegin+","+matterEnd+","+dulldate+","+dullSdate+","+dullEdate);
             			var that=this;
             			$.ajax({
             				type:"get",
@@ -350,7 +348,7 @@
                 var layer = layui.layer,$=layui.$;
                 win=layer.open({
                     type:1,//类型
-                    area:['400px','300px'],//定义宽和高
+                    area:['400px','400px'],//定义宽和高
                     title:'物料取回（物料区间）',//题目
                     shadeClose:false,//点击遮罩层关闭
                     content: $('#matStart')//打开的内容
@@ -390,7 +388,7 @@
                 var layer = layui.layer,$=layui.$;
                 win=layer.open({
                     type:1,//类型
-                    area:['400px','300px'],//定义宽和高
+                    area:['400px','400px'],//定义宽和高
                     title:'物料取回（物料区间）',//题目
                     shadeClose:false,//点击遮罩层关闭
                     content: $('#matEnd')//打开的内容

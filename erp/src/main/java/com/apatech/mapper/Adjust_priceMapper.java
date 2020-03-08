@@ -99,7 +99,7 @@ public interface Adjust_priceMapper {
     		"    		AND a.ap_dateid= #{apDateid}")
 	List<wd_Adjust_detail> selectlist(String apDateid);
 
-	@Insert("INSERT INTO adjust_price(ap_id,ap_dateid,updowmid,ap_doworkman,ap_recheckman,ap_auditing,ap_yn,ap_custom6)\n" + 
+	@Insert("INSERT INTO adjust_price(ap_id,ap_dateid,ap_doworkman,ap_recheckman,ap_auditing,ap_yn,ap_custom6)\n" + 
 			"		VALUE(#{apId},#{apDateid},#{apdoworkman},#{apRecheckman},#{apAuditing},#{apYn},#{apCustom6})")
 	int inserts(@Param("apId") int apId, @Param("apDateid") String apDateid, 
 			@Param("apdoworkman") String apdoworkman, @Param("apRecheckman") String apRecheckman,

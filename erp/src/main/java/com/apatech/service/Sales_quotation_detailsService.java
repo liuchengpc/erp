@@ -29,6 +29,9 @@ public class Sales_quotation_detailsService {
 //		    	System.out.println("分页的集合2："+page.getList().toString());
     	return page;
     }
+	public Sales_quotation_details selectlimet(){
+		return dao.selectlimet();
+	}
 	public List<Sales_quotation_details> querybysqlid(String sqlId){
 		return dao.querybysqlid(sqlId);
 	}
@@ -51,7 +54,9 @@ public class Sales_quotation_detailsService {
     public Sales_quotation_details selectByPrimaryKey(String sqdId){
     	return dao.selectByPrimaryKey(sqdId);
     }
-
+    public int updateBysqlid(Sales_quotation_details record) {
+    	return dao.updateBysqlid(record);
+    }
     public int updateByPrimaryKeySelective(Sales_quotation_details record){
     	return dao.updateByPrimaryKeySelective(record);
     }

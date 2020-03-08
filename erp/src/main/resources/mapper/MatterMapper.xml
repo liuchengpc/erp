@@ -63,7 +63,14 @@
 	    where matter_Yn=0
 	    ORDER BY matter_id DESC
   </select>
-  
+  <select id="selectbymatterid" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from matter 
+	    where matter_Yn=0
+	    and matter_id = #{matterId,jdbcType=VARCHAR}
+	    ORDER BY matter_id DESC
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

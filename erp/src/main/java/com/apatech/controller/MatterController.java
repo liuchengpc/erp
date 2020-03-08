@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Matter;
+import com.apatech.domain.Sales_quotation_details;
 import com.apatech.domain.wdMatter;
 import com.apatech.domain.Updown_program;
 import com.apatech.domain.Matter;
@@ -30,13 +31,12 @@ public class MatterController {
 	@Autowired
 	private MatterService dao;
 	
+	
 	@RequestMapping("selectAll")
 	@ResponseBody
 	public List<wdMatter> selectAll(){
 		return dao.selectAll();
 	}
-	
-	
 	/**
 	 * 分页
 	 * @param pageNum
@@ -66,7 +66,20 @@ public class MatterController {
     	return s;
     }
 	
-	
+	//根据id查询物料
+	@RequestMapping(value = "querybysqid",method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> querybysqid(String[] sqlid){
+		System.out.println("进入详表查询方法！ 查询ID"+sqlid);
+		List<Matter> data=dao.selectbymatterid(sqlid);
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("code",0);
+		map.put("msg","");
+		map.put("count",1000);
+		map.put("data",data);
+		System.out.println(map);
+    	return map;
+    }
 	/**
 	 * 根据主键查询
 	 * @param matterId

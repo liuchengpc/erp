@@ -1,5 +1,6 @@
 package com.apatech.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,14 @@ public class MatterService {
     	return page;
     }
 	 
+	public List<Matter> selectbymatterid(String[] sqlid){
+		List<Matter> list=new ArrayList<Matter>();
+		StringBuffer sb = new StringBuffer();
+		for(int i = 0; i < sqlid.length; i++){
+			list.addAll(dao.selectbymatterid(sqlid[i]));
+		}
+		return list;
+	}
 	 public String getno(String billdate){
 	    	return dao.getno(billdate);
     }

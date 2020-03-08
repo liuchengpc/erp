@@ -161,7 +161,8 @@
                 </thead>
                 <tbody>           
                 <tr v-for="stu in customerlist" @click="dianji(stu.matterId)">
-                    <td>{{stu.matterId}}</td>
+					<td><input type="checkbox" name="" id="" value=""  /></td>
+					<td>{{stu.matterId}}</td>
                     <td>{{stu.mmatterName}}</td> 
                     <td>{{stu.customerName}}</td> 
                     <td>{{stu.mmatterSize}}</td> 
@@ -192,10 +193,14 @@
 			},
 			quhui(){
 			//	parent["listVm"].page.list[0].sqdSerno=kehuvue.customerId;
-				var matterId=kehuvue.customerId;
-				alert(matterId);
+					var listid=[{id:""}];
+					  str = $(":checkbox:checked").map(function() {
+					            return $(this).parent().next('td').text();  // 根据checkbox定位到后面的td，然后使用text()函数获取内容
+					        }).get().join(", ");   // 获取内容数组并拼接为字符串
+					        alert(str); 
+				parent.wuliaoget(str);
 				//根据物料id查出物料数据
-				$.ajax({
+				/* $.ajax({
 						url: "http://127.0.0.1:8080/MatterController/selectByPrimaryKey",
 						data:"matterId="+matterId,
 						type: "get",
@@ -203,7 +208,7 @@
 							console.log(res.matterId);
 							parent["listVm"].list.sqdSerno=kehuvue.customerId;
 						}
-					});
+					}); */
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
 			}
 		},created:function(){

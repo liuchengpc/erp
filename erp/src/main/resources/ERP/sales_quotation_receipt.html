@@ -275,7 +275,108 @@
 		<script src="layui.js"></script>
 		<script src="js/vue.js"></script>
 		<script>
-		
+				function wuliaoget(customerId){
+					alert(customerId);
+					layui.use('table', function() {
+						var table = layui.table;
+						table.render({
+							elem: '#materialsContent',
+							url: 'http://127.0.0.1:8080/MatterController/querybysqid?sqlid=' + customerId,
+							data:{customerId:[
+							]},
+							cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+								,
+							cols: [
+								[ {
+										field: 'matterId',
+										title: '物料编号',
+										edit: 'text',
+									} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+									, {
+										field: 'matterName',
+										title: '(物料名称)',
+										sort: true
+									}, {
+										field: 'matterSize',
+										title: '(规格型号)'
+									}, {
+										field: 'sqdUnitname',
+										title: '(单位名称)'
+									}, {
+										field: 'sqdSquantity',
+										title: '数量',
+										edit: 'text',
+										align: 'center',
+										sort: true,
+									} //单元格内容水平居中
+									, {
+										field: 'sqdZkqprice',
+										title: '折扣前单价',
+										edit: 'text',
+										sort: true,
+										align: 'right'
+									} //单元格内容水平居中
+									, {
+										field: 'sqdDiscount',
+										title: '折数(%)',
+										sort: true,
+										edit: 'text',
+										align: 'right'
+									}, {
+										field: 'matterMsaleA',
+										title: '单价',
+										edit: 'text',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqdPrice',
+										title: '金额',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqdTaxrate',
+										title: '税率(%)',
+										sort: true,
+										edit: 'text',
+										align: 'right'
+									}, {
+										field: 'sqdTaxlimit',
+										title: '(税额)',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqdTaxinclusiveprice',
+										title: '(含税金额)',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqdComplimentart',
+										title: '赠品',
+										edit: 'text',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqdItemremark',
+										title: '分录备注',
+										edit: 'text',
+										sort: true,
+										align: 'right'
+									}, {
+										field: '无',
+										title: '(来源别)',
+										sort: true,
+										align: 'right'
+									}, {
+										field: 'sqlId',
+										title: '(来源单号)',
+										sort: true,
+										align: 'right'
+									} 
+								]
+							]
+						});
+					});
+				}
 		</script>
 		<script>
 			$(function(){
@@ -359,31 +460,31 @@
 						$.ajax({
 							url: "http://127.0.0.1:8080/Sales_quotationController/selectAllpage",
 							type: "get",
+							async:false, 
 							data: "pageNum=" + page + "&pageSize=1",
 							success: function(res) {
 								console.info(res)
 								this_.page = res;
-							}
+							},
+							
 						});
+						this.logininfo();
 					},
 					goFirstPage: function() { //第一条
 						this.goPage(this.page.pages);
-						this.logininfo();
 					},
 					goLastPage: function() { //最后一条
 						this.goPage(1);
-						this.logininfo();
 					},
 					goPrePage: function() { //上一条
 						if (this.page.hasPreviousPage) {
 							this.goPage(this.page.prePage);
-							this.logininfo();
 						}
 					},
 					goNextPage: function() { //下一条
 						if (this.page.hasNextPage) {
 							this.goPage(this.page.nextPage);
-							this.logininfo();
+							
 						}
 					},
 					
@@ -520,18 +621,76 @@
 										}
 									}
 								}else{
-									//新增数据
-									$.ajax({
+									 //新增数据主表
+								 	$.ajax({
 										url: "http://127.0.0.1:8080/Sales_quotationController/insertSelective1",
 										type: "post",
+										async:false, 
 										contentType: "application/json",
 										data: JSON.stringify(record),
 										success: function(res){
-											layer.msg(res.message);
+											layer.msg("主表:"+res.message);
 										}
+									}); 
+									//新增数据详表
+									layui.use('table',function(){
+										var table = layui.table;
+										var tabdata=table.cache["materialsContent"];
+										 for(var i=0;i<tabdata.length;i++){
+											 //获取最后一条数据的id
+											 var prodid="";	
+											 $.ajax({
+											 	url:"http://127.0.0.1:8080/Sales_quotation_detailsController/selectlimet",
+											 	type:"GET",
+												async:false, 
+											 	success:function(res){
+											 		prodid=res.sqdProdid;
+											 		prodid++;
+													var sqdProdid1=tabdata[i].matterId;
+													alert(sqdProdid1);
+													alert(prodid);
+													var matterName=tabdata[i].matterName;
+													var matterSize=tabdata[i].matterSize;
+													var matterMsaleA=tabdata[i].matterMsaleA;
+													var sqlid = $("[name=sqId]").val();
+													var record={
+														sqdSerno:sqdProdid1,
+														sqdProdid:prodid,
+														sqdProdname:matterName,
+														sqdProdsize:matterSize,
+														sqdUnitname:"吨",
+														sqdSquantity:"1",
+														sqdZkqprice:matterMsaleA,
+														sqdDiscount:"",
+														sqdUnitprice:"",
+														sqdPrice:matterMsaleA,
+														sqdTaxrate:"",
+														sqdTaxlimit:"",
+														sqdTaxinclusiveprice:"",
+														sqdComplimentart:"",
+														sqdItemremark:"",
+														sqlId:sqlid,
+														sqdAuditing:"",
+														sqdYn:"",
+														sqdCustom1:""
+													}
+													//新增详表的ajax
+													$.ajax({
+															url: "http://127.0.0.1:8080/Sales_quotation_detailsController/insertSelective",
+															type: "post",
+															contentType: "application/json",
+															data: JSON.stringify(record),
+															success: function(res){
+																layer.msg("详表："+res.message);
+															}
+														}); 
+											 	}
+											 })
+											
+											
+										} 
 									});
 								}
-								this.page(1); 
 							}
 						})
 					},
@@ -539,14 +698,23 @@
 					updateinfo:function(){
 							layui.use('table', function() {
 								var table = layui.table;
+								
 								//监听单元格编辑
 								table.on('edit(materialsContent)', function(obj) {
 									var value = obj.value //得到修改后的值
-										,
 										data = obj.data //得到所在行所有键值
-										,
 										field = obj.field; //得到字段
-									layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+										layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+										//修改物料表的数据
+										$.ajax({
+											url: "http://127.0.0.1:8080/Sales_quotation_detailsController/updateByPrimaryKeySelective",
+											type: "post",
+											contentType: "application/json",
+											data: JSON.stringify(data),
+											success: function(res){
+												layer.msg(res.message);
+											}
+										}); 
 								});
 							});
 							//改变保存的按钮属性
@@ -687,7 +855,6 @@
 													area:['762px','450px']
 												});
 											})
-											
 								   }); 
 							//数据表格重载
 							layui.use('table', function() {
@@ -842,14 +1009,13 @@
 						}
 					},
 					logininfo: function() {
+						var sqlid = $("[name=sqId]").val();
 						layui.use('table', function() {
-							var sqlid = $("[name=sqId]").val();
 							var table = layui.table;
 							table.render({
 								elem: '#materialsContent',
 								url: 'http://127.0.0.1:8080/Sales_quotationController/querybysqid?sqlid=' + sqlid,
 								data:{list:[
-										
 										
 								]},
 								cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
@@ -953,7 +1119,6 @@
 				},
 				mounted: function() {
 					this.goPage(1);
-					this.logininfo();
 				}
 			});
 			

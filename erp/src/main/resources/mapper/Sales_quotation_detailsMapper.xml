@@ -41,7 +41,10 @@
 	    where sqd_Yn=0
 	    ORDER BY sqd_Prodid DESC
   </select>
-  
+	
+	<select id="selectlimet" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT  <include refid="Base_Column_List" /> FROM sales_quotation_details  where sqd_Yn=0 ORDER BY Sqd_ProdID DESC LIMIT 1
+	</select>  
   <select id="querybysqlid" parameterType="java.lang.String" resultMap="BaseResultMap">
   	  	select 
 	    <include refid="Base_Column_List" />
@@ -304,6 +307,81 @@
       </if>
     </set>
     where Sqd_ProdID = #{sqdProdid,jdbcType=VARCHAR}
+  </update>
+<update id="updateBysqlid" parameterType="com.apatech.domain.Sales_quotation_details">
+    update sales_quotation_details
+    <set>
+      <if test="sqdSerno != null">
+        Sqd_SerNO = #{sqdSerno,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdname != null">
+        Sqd_ProdName = #{sqdProdname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdProdsize != null">
+        Sqd_ProdSize = #{sqdProdsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdUnitname != null">
+        Sqd_UnitName = #{sqdUnitname,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdSquantity != null">
+        Sqd_sQuantity = #{sqdSquantity,jdbcType=INTEGER},
+      </if>
+      <if test="sqdZkqprice != null">
+        Sqd_ZkqPrice = #{sqdZkqprice,jdbcType=REAL},
+      </if>
+      <if test="sqdDiscount != null">
+        Sqd_Discount = #{sqdDiscount,jdbcType=REAL},
+      </if>
+      <if test="sqdUnitprice != null">
+        Sqd_UnitPrice = #{sqdUnitprice,jdbcType=REAL},
+      </if>
+      <if test="sqdPrice != null">
+        Sqd_Price = #{sqdPrice,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxrate != null">
+        Sqd_TaxRate = #{sqdTaxrate,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxlimit != null">
+        Sqd_Taxlimit = #{sqdTaxlimit,jdbcType=REAL},
+      </if>
+      <if test="sqdTaxinclusiveprice != null">
+        Sqd_TaxInclusivePrice = #{sqdTaxinclusiveprice,jdbcType=REAL},
+      </if>
+      <if test="sqdComplimentart != null">
+        Sqd_Complimentart = #{sqdComplimentart,jdbcType=INTEGER},
+      </if>
+      <if test="sqdItemremark != null">
+        Sqd_ItemRemark = #{sqdItemremark,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlId != null">
+        sql_id = #{sqlId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdAuditing != null">
+        Sqd_auditing = #{sqdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdYn != null">
+        Sqd_yn = #{sqdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom1 != null">
+        Sqd_custom1 = #{sqdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom2 != null">
+        Sqd_custom2 = #{sqdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom3 != null">
+        Sqd_custom3 = #{sqdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom4 != null">
+        Sqd_custom4 = #{sqdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom5 != null">
+        Sqd_custom5 = #{sqdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="sqdCustom6 != null">
+        Sqd_custom6 = #{sqdCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sqlId = #{sqlId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Sales_quotation_details">
     update sales_quotation_details

@@ -11,7 +11,7 @@ import com.apatech.domain.wdMatter;
 
 public interface MatterMapper {
 	 List<Matter> selectAll();
-	 
+	 List<Matter> selectbymatterid(String matterId);
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 
@@ -23,7 +23,7 @@ public interface MatterMapper {
     String getno(@Param("billdate")String billdate);
 	
     int deleteByPrimaryKey(String matterId);
-
+    
     int insert(Matter record);
 
     int insertSelective(Matter record);

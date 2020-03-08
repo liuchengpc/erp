@@ -22,7 +22,11 @@ public interface Sales_quotation_detailsMapper {
     String getno(@Param("billdate")String billdate);
 
 	List<Sales_quotation_details> querybysqlid(String sqlId);
-	 
+
+	Sales_quotation_details selectlimet();
+	
+	int updateBysqlid(Sales_quotation_details record);
+	
     int deleteByPrimaryKey(String sqdId);
 
     int insert(Sales_quotation_details record);

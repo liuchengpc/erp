@@ -61,7 +61,7 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
  priadetails.Priabill_custom10 
  FROM priadetails,priabill 
 	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
-	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
+	    priadetails.Priabill_id=priabill.priabill_id  
 	     AND priadetails.Priabill_custom6 = '1' AND priadetails.Priabill_custom7 = #{payablesId,jdbcType=VARCHAR}              
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>

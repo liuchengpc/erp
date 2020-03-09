@@ -73,7 +73,7 @@
 	    pp_custom4,pp_custom5,pp_custom6,pp_custom7,pp_custom8,
 	    pp_custom9,pp_custom10  
 	    FROM purchase_payables WHERE pp_pc_name=#{ppPcName,jdbcType=VARCHAR} 
-	    AND pp_yn=0 AND pp_custom9='1' AND pp_currentbalance>0     
+	    AND pp_yn=0 AND pp_custom9='1' AND pp_currentbalance!=0     
 	    ORDER BY pp_custom2 DESC
   </select>
   

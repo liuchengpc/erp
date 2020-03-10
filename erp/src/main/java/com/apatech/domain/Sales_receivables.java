@@ -36,9 +36,10 @@ public class Sales_receivables {
     private String srCustom7;//表状态（0 商品记录表，1 应收账款明细表）
     private String srCustom8;//币别名
     private String srCustom9;//自定义栏九
+    private String srCustom10;//主表id
     
     public Sales_receivables() {
-    	
+    	super();
     }
     public Sales_receivables(Integer srId, String srType, String srNumber, Date srDate, String srPcId, String srPcName,
 			String srTeamId, String srTeamName, String srBuyer, String srProjectName, String srCurrency,
@@ -77,8 +78,7 @@ public class Sales_receivables {
 		this.srCustom9 = srCustom9;
 		this.srCustom10 = srCustom10;
 	}
-
-	private String srCustom10;//主表id
+	
 
     public Integer getSrId() {
         return srId;

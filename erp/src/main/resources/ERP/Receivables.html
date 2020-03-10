@@ -460,9 +460,7 @@
 							console.info("主表数据：")
 							console.info(this_.page)	
 							
-							this_.page.list[0].payablesPrice1=0;
-							this_.page.list[0].payablesPrice2=0;
-							this_.page.list[0].payablesPrice3=0;
+							
 							
 							//判断是否审核
 							if(this_.page.list[0].payablesAuditstatus=="0"||this_.page.list[0].payablesAuditstatus==0){//未审核
@@ -563,9 +561,10 @@
 					  				this_.page4 = res.list;
 					  			}
 								$.each(this_.page2,function(i, value){
-									this_.page2[i].srId="";//预收账款明细表id，主键
+									
 								    this_.page2[i].srType="销售发票"//单别
 								    this_.page2[i].srNumber=this_.page2[i].srId;//原单单号
+								    this_.page2[i].srId="";//预收账款明细表id，主键
 //								    this_.page2[i].srDate=this_.page2[i].//原单日期
 //								    this_.page2[i].srPcId=this_.page2[i].//交易对象客户表id,外键
 								    this_.page2[i].srPcName=this_.page.list[0].customerName;//交易对象名称
@@ -574,12 +573,12 @@
 //								    this_.page2[i].srBuyer=this_.page2[i].//业务人员
 //								    this_.page2[i].srProjectName=this_.page2[i].//项目名称
 //								    this_.page2[i].srCurrency=this_.page2[i].//币别表id,外键
-//								    this_.page2[i].srExchangeRate=this_.page2[i].//币别表汇率（买进）
+								    this_.page2[i].srExchangeRate=this_.page.list[0].payablesCurrencyInexchange;//币别表汇率（买进）
 //								    this_.page2[i].srPayablesmainPrice=this_.page2[i].//原单金额
-//								    this_.page2[i].srCurrentbalance=this_.page2[i].//现行余额
-//								    this_.page2[i].srDiscountamount=this_.page2[i].//折让金额
-//								    this_.page2[i].srAmountcharged=this_.page2[i].//冲款金额
-//								    this_.page2[i].srOffsetamount=this_.page2[i].//冲抵金额
+								    this_.page2[i].srCurrentbalance=this_.page2[i].srPayablesmainPrice;//现行余额
+								    this_.page2[i].srDiscountamount=0//折让金额
+								    this_.page2[i].srAmountcharged=0//冲款金额
+								    this_.page2[i].srOffsetamount=0//冲抵金额
 								    this_.page2[i].srAuditing=0;//是否审核
 								    this_.page2[i].srYn=0;//是否删除 0是 1否 默认0
 								    this_.page2[i].srCustom7=1;//自定义栏七（0 商品记录表，1 应收账款明细表）
@@ -599,31 +598,47 @@
 				yxck: function(e) {//以下冲款	
 //					alert(e)
 //					alert(this.page.list[0].customerId)
-					if(this.page.list[0].customerId!=""){
+					if(this.page.list[0].customerId!=""){		
 						//					alert("进入goPage")
 						var this_ = this;	
 //						alert(JSON.stringify(this.page4))
 						var a=0;
-
-				 		$.each(this.page2,function(i, value){
-				 			if(this.Page2[i].srCurrentbalance>0){
-				 				return false;
+						
+				 		  for(i=0;i<this.page2.length;i++){
+				 			if(this_.page2[i].srCurrentbalance<=0){
+				 				alert(1)
+				 				continue;
 				 			}else{
-				 				if(parseFloat(this.srCurrentbalance)-parseFloat(this.page.list[0].payablesPrice1)-parseFloat(this.page.list[0].payablesPrice2)-parseFloat(this.page.list[0].payablesPrice3)-parseFloat(this.page2[0].srOffsetamount)+parseFloat(this.srOffsetamount)+parseFloat(this.srAmountcharged)<0){
-				 					a=0;
-				 					a=parseFloat(this.page.list[0].payablesPrice1)+parseFloat(this.page.list[0].payablesPrice2)+parseFloat(this.page.list[0].payablesPrice3)+parseFloat(this.page2[0].srOffsetamount)-this.page2[i].srCurrentbalance;
-				 					this.page2[i].srCurrentbalance=0;
-				 					return false;
+				 				alert(2)
+				 				if(a==0){
+				 					alert(21)
+					 				if(parseFloat(this_.srCurrentbalance)-parseFloat(this_.page.list[0].payablesPrice1)-parseFloat(this_.page.list[0].payablesPrice2)-parseFloat(this_.page.list[0].payablesPrice3)-parseFloat(this_.page2[0].srOffsetamount)+parseFloat(this_.srOffsetamount)+parseFloat(this_.srAmountcharged)<0){
+					 					alert(211)
+					 					a=0;
+					 					a=parseFloat(this_.page.list[0].payablesPrice1)+parseFloat(this_.page.list[0].payablesPrice2)+parseFloat(this_.page.list[0].payablesPrice3)+parseFloat(this_.page2[0].srOffsetamount)-this_.page2[i].srCurrentbalance;
+					 					alert("a:"+a)
+					 					this_.page2[i].srAmountcharged=this_.page2[i].srCurrentbalance;
+					 					this_.page2[i].srCurrentbalance=0;
+					 					continue;
+					 				}else{
+					 					alert(212)
+					 					if(a!=0){
+					 						alert(2121)
+					 						this_.page2[i].srCurrentbalance-=a;
+					 						this_.page2[i].srAmountcharged=+parseFloat(this_.page.list[0].payablesPrice1) +parseFloat(this_.page.list[0].payablesPrice2)+parseFloat(this_.page.list[0].payablesPrice3);
+					 						continue;
+					 					}else{
+					 						alert(2122)
+					 						this_.page2[i].srCurrentbalance=parseFloat(this_.srCurrentbalance)-parseFloat(this_.page.list[0].payablesPrice1)-parseFloat(this_.page.list[0].payablesPrice2)-parseFloat(this_.page.list[0].payablesPrice3)-parseFloat(this_.page2[i].srOffsetamount)+parseFloat(this_.srOffsetamount)+parseFloat(this_.srAmountcharged);
+											this_.page2[i].srAmountcharged=+parseFloat(this_.page.list[0].payablesPrice1) +parseFloat(this_.page.list[0].payablesPrice2)+parseFloat(this_.page.list[0].payablesPrice3);
+					 						break;
+					 					}
+					 				}
 				 				}else{
-				 					if(a!=0){
-				 						this.page2[i].srCurrentbalance-=a;
-				 						this.page2[i].srAmountcharged=+parseFloat(this.page.list[0].payablesPrice1) +parseFloat(this.page.list[0].payablesPrice2)+parseFloat(this.page.list[0].payablesPrice3);
-				 						return false;
-				 					}else{
-				 						this.page2[i].srCurrentbalance=parseFloat(this.srCurrentbalance)-parseFloat(this.page.list[0].payablesPrice1)-parseFloat(this.page.list[0].payablesPrice2)-parseFloat(this.page.list[0].payablesPrice3)-parseFloat(this.page2[i].srOffsetamount)+parseFloat(this.srOffsetamount)+parseFloat(this.srAmountcharged);
-										this.page2[i].srAmountcharged=+parseFloat(this.page.list[0].payablesPrice1) +parseFloat(this.page.list[0].payablesPrice2)+parseFloat(this.page.list[0].payablesPrice3);
-				 					}
-				 					
+				 					alert(22)
+			 						this_.page2[i].srCurrentbalance-=a;
+			 						this_.page2[i].srAmountcharged=a;
+			 						continue;
 				 				}
 				 			}
 				 			
@@ -897,8 +912,6 @@
 //						alert(this.page.prePage+"："+this.page.pageSize)
 						this.goPage(this.page.prePage, this.page.pageSize);
 					}
-					
-					
 				},
 				goNextPage: function() {//下一条
 					if(this.page.hasNextPage) {
@@ -911,13 +924,13 @@
 				goFirstPage: function() {//第一条
 //					alert(1+"："+this.page.pageSize)
 					this.goPage(1, this.page.pageSize);
-					this.Page2=this.page3;
+					this.page2=this.page3;
 					
 				},
 				goLastPage: function() {//最后一条
 //					alert(this.page.pages+"："+this.page.pageSize)
 					this.goPage(this.page.pages, this.page.pageSize);
-					this.Page2=this.page3;
+					this.page2=this.page3;
 					
 				},
 				returns: function() {//取消
@@ -938,6 +951,28 @@
 				    this.noAuditing1 =true;//取消审核
 				},
 				inset: function() {//新增按钮
+					/*获取当前时间*/
+				   	//判断是否在前面加0
+					function getNow(s) {
+					return s < 10 ? '0' + s: s;
+					}
+					 
+					var myDate = new Date();            
+					 
+					var year=myDate.getFullYear();        //获取当前年
+					var month=myDate.getMonth()+1;   //获取当前月
+					var date=myDate.getDate();            //获取当前日
+					 
+					var h=myDate.getHours();              //获取当前小时数(0-23)
+					var m=myDate.getMinutes();          //获取当前分钟数(0-59)
+					var s=myDate.getSeconds();
+					 
+					var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
+				   	/*获取当前时间*/
+				   	
+			  		var ss=year+getNow(month)+getNow(date);
+					
+					
 				  	this.page.list[0].receivableId="";//应收冲款单id（主键 唯一）
 			    	this.page.list[0].customerId="";//供应商表id，外键
 				    this.page.list[0].scsId="";//结算方式id，外键
@@ -946,16 +981,16 @@
 				    this.page.list[0].projectId="";//项目表id，外键
 				    this.page.list[0].customerName="";//供应商表
 				    this.page.list[0].payablesSatName1="";//结算方式表,默认值：转账
-				    this.page.list[0].payablesPrice1="";//默认值：0.00
+				    this.page.list[0].payablesPrice1=0;//默认值：0.00
 				    this.page.list[0].payablesSatName2="";//结算方式表,默认值：汇票
-				    this.page.list[0].payablesPrice2="";//默认值：0.00
+				    this.page.list[0].payablesPrice2=0;//默认值：0.00
 				    this.page.list[0].payablesSatName3="";//结算方式表
-				    this.page.list[0].payablesPrice3="";//默认值：0.00
-				    this.page.list[0].payablesZhekou="";//折扣率,默认值：0.00
-				    this.page.list[0].payablesEndtime="";//终止账月,默认值：当前年月
-				    this.page.list[0].payablesPayablestime="";//单据日期,默认值：当前日期
+				    this.page.list[0].payablesPrice3=0;//默认值：0.00
+				    this.page.list[0].payablesZhekou=1;//折扣率,默认值：0.00
+				    this.page.list[0].payablesEndtime=now;//终止账月,默认值：当前年月
+				    this.page.list[0].payablesPayablestime=now;//单据日期,默认值：当前日期
 				    this.page.list[0].payablesCurrencyName="";//币别类型表快照
-				    this.page.list[0].payablesCurrencyInexchange="";//汇率
+				    this.page.list[0].payablesCurrencyInexchange=1;//汇率
 				    this.page.list[0].payablesType="";//应付冲款类型,默认值：付款冲款
 				    this.page.list[0].payablesVoucherno="";//凭证编号
 				    this.page.list[0].payablesTeamName="";//部门表
@@ -963,11 +998,11 @@
 				    this.page.list[0].payablesBillpersonnel="admin";//制单人员,默认值：当前人员
 				    this.page.list[0].payablesReviewers="admin";//复核人员
 				    this.page.list[0].payablesRemarks="";//备注
-				    this.page.list[0].payablesAuditstatus="";//审核状态,0:未审核,1:已结案
+				    this.page.list[0].payablesAuditstatus=0;//审核状态,0:未审核,1:已结案
 				    this.page.list[0].payablesAuditstatusAuditing="";//是否审核
 				    this.page.list[0].payablesAuditstatusYn=0;//是否删除（0 否 1 是 ，默认0）
-				    this.page.list[0].payablesCustom1="";//创建时间
-				    this.page.list[0].payablesCustom2="";//表状态（0：预收款，1：应收款）
+				    this.page.list[0].payablesCustom1=ss;//创建时间
+				    this.page.list[0].payablesCustom2=1;//表状态（0：预收款，1：应收款）
 				    this.page.list[0].payablesCustom3="";//自定义3
 				    this.page.list[0].payablesCustom4="";//自定义4
 				    this.page.list[0].payablesCustom5="";//自定义5
@@ -1062,18 +1097,12 @@
 									
 									//交易对象名称
 									
-									
-									
-
-									
-									
-									
-									
 									//部门编号
+									
 									var obj2=this_.page2[i];//详表数据
-				//					alert(JSON.stringify(obj2))
+									alert(JSON.stringify(obj2))
 				//					alert(this_.page.list[i].receivableId)
-										
+									alert(obj2.srCurrentbalance)
 						  		
 									$.ajax({//新增详表
 										url : "http://127.0.0.1:8080/Sales_receivablesController/insertSelective",
@@ -1091,12 +1120,6 @@
 								}); 
 					        }
 						}); 
-					 	
-					 
-					
-					
-
-					
 				},	
 				saves: function() {//保存
 					this.diasabledInput= true;//input不可编辑

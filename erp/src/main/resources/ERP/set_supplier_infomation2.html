@@ -673,26 +673,7 @@
 		});
 		
 		
-		layui.use('table', function(){
-		  var table = layui.table;
-		  
-		  table.render({
-		    elem: '#test'
-		    ,url:'/demo/table/user/'
-		    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-		    ,cols: [[
-		      {field:'id', width:120, title: '地址编号'}
-		      ,{field:'username', width:220, title: '地址'}
-		      ,{field:'sex', width:120, title: '邮政编码'}
-		      ,{field:'city', width:150, title: '联系人'}
-		      ,{field:'experience',  width:150,title: '联系人职称'}
-		      ,{field:'experience',  width:150,title: '联系人电话'}
-		      ,{field:'experience',  width:150,title: '传真号码'}
-		      ,{field:'experience',  width:150,title: '行走路线'}
-		      ,{field:'experience',  width:150,title: '备注'}
-		    ]]
-		  });
-		});
+	
 
 		layui.use('form', function(){
 		  var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功

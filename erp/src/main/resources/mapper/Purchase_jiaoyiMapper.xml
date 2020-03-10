@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.Purchase_jiaoyiMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.Purchase_jiaoyi">
+    <id column="jy_id" jdbcType="INTEGER" property="jyId" />
+    <result column="jy_data" jdbcType="TIMESTAMP" property="jyData" />
+    <result column="jy_supplier_name" jdbcType="VARCHAR" property="jySupplierName" />
+    <result column="jy_number" jdbcType="VARCHAR" property="jyNumber" />
+    <result column="jy_type" jdbcType="VARCHAR" property="jyType" />
+    <result column="jy_priabill" jdbcType="REAL" property="jyPriabill" />
+    <result column="jy_priabill_bb" jdbcType="REAL" property="jyPriabillBb" />
+    <result column="jy_payables" jdbcType="REAL" property="jyPayables" />
+    <result column="jy_payables_bb" jdbcType="REAL" property="jyPayablesBb" />
+    <result column="jy_auditing" jdbcType="VARCHAR" property="jyAuditing" />
+    <result column="jy_yn" jdbcType="VARCHAR" property="jyYn" />
+    <result column="jy_custom1" jdbcType="VARCHAR" property="jyCustom1" />
+    <result column="jy_custom2" jdbcType="VARCHAR" property="jyCustom2" />
+    <result column="jy_custom3" jdbcType="VARCHAR" property="jyCustom3" />
+    <result column="jy_custom4" jdbcType="VARCHAR" property="jyCustom4" />
+    <result column="jy_custom5" jdbcType="VARCHAR" property="jyCustom5" />
+    <result column="jy_custom6" jdbcType="VARCHAR" property="jyCustom6" />
+    <result column="jy_custom7" jdbcType="VARCHAR" property="jyCustom7" />
+    <result column="jy_custom8" jdbcType="VARCHAR" property="jyCustom8" />
+    <result column="jy_custom9" jdbcType="VARCHAR" property="jyCustom9" />
+    <result column="jy_custom10" jdbcType="VARCHAR" property="jyCustom10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    jy_id, jy_data, jy_supplier_name, jy_number, jy_type, jy_priabill, jy_priabill_bb, 
+    jy_payables, jy_payables_bb, jy_auditing, jy_yn, jy_custom1, jy_custom2, jy_custom3, 
+    jy_custom4, jy_custom5, jy_custom6, jy_custom7, jy_custom8, jy_custom9, jy_custom10
+  </sql>
+   <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_jiaoyi 
+	    where jy_yn=0
+	    ORDER BY jy_id DESC
+  </select>
+  <select id="selectAllXz" parameterType="com.apatech.domain.Purchase_jiaoyi" resultMap="BaseResultMap">
+	    select 
+	    <include refid="Base_Column_List" />
+	    from purchase_jiaoyi 
+	    where jy_yn=0 
+	    <if test="jySupplierName != null and jySupplierName !='' and jySupplierName !='null' ">
+        	 AND jy_supplier_name=#{jySupplierName,jdbcType=VARCHAR}  
+      	</if>
+      	<if test="jyData != null and jyDataXz != null">
+        	 AND jy_data BETWEEN #{jyData,jdbcType=TIMESTAMP} AND #{jyDataXz,jdbcType=TIMESTAMP}   
+      	</if> 
+	    ORDER BY jy_id DESC
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_jiaoyi
+    where jy_id = #{jyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from purchase_jiaoyi
+    where jy_id = #{jyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByPrimaryKey2" parameterType="java.lang.String">
+    delete from purchase_jiaoyi
+    where jy_custom3 = #{jyCustom3,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPrimaryKey3" parameterType="java.lang.String">
+    delete from purchase_jiaoyi
+    where jy_number = #{jyNumber,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.apatech.domain.Purchase_jiaoyi">
+    insert into purchase_jiaoyi (jy_id, jy_data, jy_supplier_name, 
+      jy_number, jy_type, jy_priabill, 
+      jy_priabill_bb, jy_payables, jy_payables_bb, 
+      jy_auditing, jy_yn, jy_custom1, 
+      jy_custom2, jy_custom3, jy_custom4, 
+      jy_custom5, jy_custom6, jy_custom7, 
+      jy_custom8, jy_custom9, jy_custom10
+      )
+    values (#{jyId,jdbcType=INTEGER}, #{jyData,jdbcType=TIMESTAMP}, #{jySupplierName,jdbcType=VARCHAR}, 
+      #{jyNumber,jdbcType=VARCHAR}, #{jyType,jdbcType=VARCHAR}, #{jyPriabill,jdbcType=REAL}, 
+      #{jyPriabillBb,jdbcType=REAL}, #{jyPayables,jdbcType=REAL}, #{jyPayablesBb,jdbcType=REAL}, 
+      #{jyAuditing,jdbcType=VARCHAR}, #{jyYn,jdbcType=VARCHAR}, #{jyCustom1,jdbcType=VARCHAR}, 
+      #{jyCustom2,jdbcType=VARCHAR}, #{jyCustom3,jdbcType=VARCHAR}, #{jyCustom4,jdbcType=VARCHAR}, 
+      #{jyCustom5,jdbcType=VARCHAR}, #{jyCustom6,jdbcType=VARCHAR}, #{jyCustom7,jdbcType=VARCHAR}, 
+      #{jyCustom8,jdbcType=VARCHAR}, #{jyCustom9,jdbcType=VARCHAR}, #{jyCustom10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.apatech.domain.Purchase_jiaoyi">
+    insert into purchase_jiaoyi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jyId != null">
+        jy_id,
+      </if>
+      <if test="jyData != null">
+        jy_data,
+      </if>
+      <if test="jySupplierName != null">
+        jy_supplier_name,
+      </if>
+      <if test="jyNumber != null">
+        jy_number,
+      </if>
+      <if test="jyType != null">
+        jy_type,
+      </if>
+      <if test="jyPriabill != null">
+        jy_priabill,
+      </if>
+      <if test="jyPriabillBb != null">
+        jy_priabill_bb,
+      </if>
+      <if test="jyPayables != null">
+        jy_payables,
+      </if>
+      <if test="jyPayablesBb != null">
+        jy_payables_bb,
+      </if>
+      <if test="jyAuditing != null">
+        jy_auditing,
+      </if>
+      <if test="jyYn != null">
+        jy_yn,
+      </if>
+      <if test="jyCustom1 != null">
+        jy_custom1,
+      </if>
+      <if test="jyCustom2 != null">
+        jy_custom2,
+      </if>
+      <if test="jyCustom3 != null">
+        jy_custom3,
+      </if>
+      <if test="jyCustom4 != null">
+        jy_custom4,
+      </if>
+      <if test="jyCustom5 != null">
+        jy_custom5,
+      </if>
+      <if test="jyCustom6 != null">
+        jy_custom6,
+      </if>
+      <if test="jyCustom7 != null">
+        jy_custom7,
+      </if>
+      <if test="jyCustom8 != null">
+        jy_custom8,
+      </if>
+      <if test="jyCustom9 != null">
+        jy_custom9,
+      </if>
+      <if test="jyCustom10 != null">
+        jy_custom10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jyId != null">
+        #{jyId,jdbcType=INTEGER},
+      </if>
+      <if test="jyData != null">
+        #{jyData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jySupplierName != null">
+        #{jySupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="jyNumber != null">
+        #{jyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="jyType != null">
+        #{jyType,jdbcType=VARCHAR},
+      </if>
+      <if test="jyPriabill != null">
+        #{jyPriabill,jdbcType=REAL},
+      </if>
+      <if test="jyPriabillBb != null">
+        #{jyPriabillBb,jdbcType=REAL},
+      </if>
+      <if test="jyPayables != null">
+        #{jyPayables,jdbcType=REAL},
+      </if>
+      <if test="jyPayablesBb != null">
+        #{jyPayablesBb,jdbcType=REAL},
+      </if>
+      <if test="jyAuditing != null">
+        #{jyAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="jyYn != null">
+        #{jyYn,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom1 != null">
+        #{jyCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom2 != null">
+        #{jyCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom3 != null">
+        #{jyCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom4 != null">
+        #{jyCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom5 != null">
+        #{jyCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom6 != null">
+        #{jyCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom7 != null">
+        #{jyCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom8 != null">
+        #{jyCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom9 != null">
+        #{jyCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom10 != null">
+        #{jyCustom10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchase_jiaoyi">
+    update purchase_jiaoyi
+    <set>
+      <if test="jyData != null">
+        jy_data = #{jyData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jySupplierName != null">
+        jy_supplier_name = #{jySupplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="jyNumber != null">
+        jy_number = #{jyNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="jyType != null">
+        jy_type = #{jyType,jdbcType=VARCHAR},
+      </if>
+      <if test="jyPriabill != null">
+        jy_priabill = #{jyPriabill,jdbcType=REAL},
+      </if>
+      <if test="jyPriabillBb != null">
+        jy_priabill_bb = #{jyPriabillBb,jdbcType=REAL},
+      </if>
+      <if test="jyPayables != null">
+        jy_payables = #{jyPayables,jdbcType=REAL},
+      </if>
+      <if test="jyPayablesBb != null">
+        jy_payables_bb = #{jyPayablesBb,jdbcType=REAL},
+      </if>
+      <if test="jyAuditing != null">
+        jy_auditing = #{jyAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="jyYn != null">
+        jy_yn = #{jyYn,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom1 != null">
+        jy_custom1 = #{jyCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom2 != null">
+        jy_custom2 = #{jyCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom3 != null">
+        jy_custom3 = #{jyCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom4 != null">
+        jy_custom4 = #{jyCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom5 != null">
+        jy_custom5 = #{jyCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom6 != null">
+        jy_custom6 = #{jyCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom7 != null">
+        jy_custom7 = #{jyCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom8 != null">
+        jy_custom8 = #{jyCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom9 != null">
+        jy_custom9 = #{jyCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="jyCustom10 != null">
+        jy_custom10 = #{jyCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jy_id = #{jyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Purchase_jiaoyi">
+    update purchase_jiaoyi
+    set jy_data = #{jyData,jdbcType=TIMESTAMP},
+      jy_supplier_name = #{jySupplierName,jdbcType=VARCHAR},
+      jy_number = #{jyNumber,jdbcType=VARCHAR},
+      jy_type = #{jyType,jdbcType=VARCHAR},
+      jy_priabill = #{jyPriabill,jdbcType=REAL},
+      jy_priabill_bb = #{jyPriabillBb,jdbcType=REAL},
+      jy_payables = #{jyPayables,jdbcType=REAL},
+      jy_payables_bb = #{jyPayablesBb,jdbcType=REAL},
+      jy_auditing = #{jyAuditing,jdbcType=VARCHAR},
+      jy_yn = #{jyYn,jdbcType=VARCHAR},
+      jy_custom1 = #{jyCustom1,jdbcType=VARCHAR},
+      jy_custom2 = #{jyCustom2,jdbcType=VARCHAR},
+      jy_custom3 = #{jyCustom3,jdbcType=VARCHAR},
+      jy_custom4 = #{jyCustom4,jdbcType=VARCHAR},
+      jy_custom5 = #{jyCustom5,jdbcType=VARCHAR},
+      jy_custom6 = #{jyCustom6,jdbcType=VARCHAR},
+      jy_custom7 = #{jyCustom7,jdbcType=VARCHAR},
+      jy_custom8 = #{jyCustom8,jdbcType=VARCHAR},
+      jy_custom9 = #{jyCustom9,jdbcType=VARCHAR},
+      jy_custom10 = #{jyCustom10,jdbcType=VARCHAR}
+    where jy_id = #{jyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apatech.mapper.KucunDanjiaMapper">
+  <resultMap id="BaseResultMap" type="com.apatech.domain.KucunDanjia">
+    <result column="ku_cun" jdbcType="INTEGER" property="ku_cun" />
+    <result column="dan_jia" jdbcType="REAL" property="dan_jia" />
+  </resultMap>
+  
+  <select id="queryBywlidAndckid" resultMap="BaseResultMap">
+	    SELECT 
+			IFNULL(
+				(SELECT SUM(wd_number)
+				FROM warehouse_detail
+				WHERE mt_id=#{wlid,jdbcType=VARCHAR}
+				AND warehouse_id=#{ckid,jdbcType=VARCHAR}
+				AND wd_inorout=0)
+			,0)-
+			IFNULL(
+				(SELECT SUM(wd_number)
+				FROM warehouse_detail
+				WHERE mt_id=#{wlid,jdbcType=VARCHAR}
+				AND warehouse_id=#{ckid,jdbcType=VARCHAR}
+				AND wd_inorout=1)
+			,0)+
+			IFNULL(
+				(SELECT wd_lastbalancenumber
+				FROM warehouse_detail
+				WHERE mt_id=#{wlid,jdbcType=VARCHAR}
+				AND warehouse_id=#{ckid,jdbcType=VARCHAR}
+				ORDER BY mt_id
+				ASC
+				LIMIT 0,1)
+			,0)AS 'ku_cun',wd_unit_rice AS 'dan_jia'
+		FROM warehouse_detail
+		WHERE mt_id=#{wlid,jdbcType=VARCHAR}
+		AND warehouse_id=#{ckid,jdbcType=VARCHAR}
+		GROUP BY mt_id
+  </select>
+</mapper>

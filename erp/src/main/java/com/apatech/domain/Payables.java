@@ -26,10 +26,10 @@ public class Payables {
     private String payablesSatName3;//结算方式表
     private Float payablesPrice3;//默认值：0.00
     private Integer payablesZhekou;//折扣率，默认值：0.00
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesEndtime;//终止账月，默认值：当前年月
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date payablesPayablestime;//单据日期，默认值：当前日期
     private String payablesCurrencyName;//币别类型表快照
@@ -41,7 +41,7 @@ public class Payables {
     private String payablesBillpersonnel;//制单人员，默认值：当前人员
     private String payablesReviewers;//复核人员
     private String payablesRemarks;//备注
-    private Integer payablesAuditstatus;//审核状态，0:未审核，1:已结案
+    private Integer payablesAuditstatus;//审核状态，0:未审核， 1:已结案
     private String payablesAuditing;//是否审核
     private String payablesYn;//是否删除（0 否 1 是 ，默认0）
     private String payablesCustom1;//自定栏1

@@ -18,7 +18,7 @@ public class Purchase_inquiry {
     private String pitId;//采购订单类型id
     private String piPriceIncludeTax;//单价是否含税
     private String piSingleStatus;//单况
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date piDocumentDate;//单据日期
     private String piDocumentNumber;//单据号码

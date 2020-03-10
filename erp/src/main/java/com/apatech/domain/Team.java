@@ -15,7 +15,7 @@ public class Team {
     private String teamId;//部门编号（主键 唯一）
     private String teamName;//部门名称
     private String teamEnglishName;//部门英文名称
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date teamAbate;//失效日期
     private String teamRemark;//备注

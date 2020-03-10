@@ -8,8 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Adjust_price;
 import com.apatech.domain.Updown_program;
+import com.apatech.domain.wdQueryTaiz;
+import com.apatech.domain.wdQueryTaizDetail;
 import com.apatech.domain.wd_Adjust_detail;
 import com.apatech.domain.wd_Adjust_price;
+import com.apatech.domain.wd_inorout;
 import com.apatech.mapper.Adjust_priceMapper;
 import com.apatech.mapper.Updown_programMapper;
 import com.github.pagehelper.PageHelper;
@@ -103,14 +106,67 @@ public class wd_Adjust_priceService {
 		return dao.updatelist(ApDateid,updowmid);
 	}
 
-	public int updatekm(String upId, String upname, String doId, String doname, String updowmid, String apDateid) {
+	public int updatekm( String upname, String doname, String updowmid, String apDateid) {
 		// TODO Auto-generated method stub
-		return dao.updatekm(upId,upname,doId,doname,updowmid,apDateid);
+		return dao.updatekm(upname,doname,updowmid,apDateid);
 	}
 
 	public int updateprice(String dadjustprice,String dDecoration, String dMatterid,String apid) {
 		// TODO Auto-generated method stub
 		return dao.updateprice(dadjustprice,dDecoration,dMatterid,apid);
+	}
+
+	public int updatepeople(String apdoworkman, String apRecheckman,String apDateid) {
+		
+		return dao.updatepeople(apdoworkman,apRecheckman,apDateid);
+	}
+
+	public int delkm(String upId, String apDateid) {
+		
+		return dao.delkm(upId,apDateid);
+	}
+
+	public int updateMoney(String dAdjustprice,String dMatterid) {
+		return dao.updateMoney(dAdjustprice,dMatterid);
+		
+	}
+
+	public List<wdQueryTaiz> doQueryTaiz(String matterBegin, String matterEnd, String warehouseBegin,
+			String warehouseEnd, String dateBegin, String dateEnd) {
+				System.out.println("进");
+		
+		return dao.doQueryTaiz(matterBegin,matterEnd,warehouseBegin,warehouseEnd,dateBegin,dateEnd);
+	}
+	
+	public List<wdQueryTaiz> doQueryTaizAll() {
+				System.out.println("进");
+		return dao.doQueryTaizAll();
+	}
+
+	public List<wd_inorout> selinorout() {
+		// TODO Auto-generated method stub
+		return dao.selinorout();
+	}
+
+	public List<wd_inorout> selinoroutDetail(String matterId, String warehouseName, String wdDate) {
+		// TODO Auto-generated method stub
+		return dao.selinoroutDetail(matterId,warehouseName,wdDate);
+	}
+
+	public List<wdQueryTaiz> tzqueryMatter() {
+		// TODO Auto-generated method stub
+		return dao.tzqueryMatter();
+	}
+
+	public List<wdQueryTaiz> tzqueryWarehouse() {
+		// TODO Auto-generated method stub
+		return dao.tzqueryWarehouse();
+	}
+
+	public List<wdQueryTaizDetail> queryNum(String matterId, String warehouseId) {
+		System.out.println("matterId="+matterId+"warehouseId="+warehouseId);
+		// TODO Auto-generated method stub
+		return dao.queryNum(matterId,warehouseId);
 	}
 	 
 	 

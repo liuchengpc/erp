@@ -24,13 +24,13 @@ public class Potential_customer {
     private String nsId;//洽谈阶段id
     private Float pcProbabilitySuccess;//成功几率（%）
     private String pcDecisionMaker;//决策者
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pcNegotiationDate;//洽谈日期
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pcAppointmentVisitDate;//预约拜访日
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pcRecentVisitDate;//最近拜访日
     private Float pcEstimatedTurnover;//预估成交额
@@ -50,12 +50,12 @@ public class Potential_customer {
     private String pcEmail;//电子邮件
     private String pcWebadd;//网址
     private String pcFaxno;//传真号码
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pcExpiryDate;//失效日期
     private String pcSalelv;//售价等级
     private String receivableId;////应收账款科目(关联会计科目表account_id)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pcCuendorderday;//每月结账日
     private String itAccountsEceivableSubject;//应收账款科目(关联会计科目表account_id)

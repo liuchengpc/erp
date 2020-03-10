@@ -251,6 +251,7 @@ layui.use(['form', 'layedit', 'laydate','layer'], function () {
         }else if(viewModel.$data.orderStatus === orderStatusMeta.insert){
             // 新增
             let data = form.val('pure-form');
+            data.details = viewModel.$data.purechaseReturn.details;
             insertWithDetails(JSON.stringify(data)).then(resp => {
                 console.log(resp);
             }).catch(error => {

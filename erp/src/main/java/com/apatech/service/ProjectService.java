@@ -57,4 +57,8 @@ public class ProjectService {
     public int updateByPrimaryKey(Project record){
     	return dao.updateByPrimaryKey(record);
     }
+
+    public List<Project> selectAll() {
+        return dao.selectAll();
+    }
 }

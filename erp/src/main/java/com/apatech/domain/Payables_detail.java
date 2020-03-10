@@ -19,7 +19,7 @@ public class Payables_detail {
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String padeSourcelist;//来源单别
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date padeSourcetime;//来源日期
     private String padeSourcenumber;//来源单号

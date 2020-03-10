@@ -31,5 +31,7 @@ public interface Purchasing_orderMapper {
 
     int updateByPrimaryKeySelective(Purchasing_order record);
 
+    int updateByPrimaryKeySelective22(Purchasing_order record);
+    
     int updateByPrimaryKey(Purchasing_order record);
 }

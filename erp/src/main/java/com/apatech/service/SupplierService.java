@@ -49,12 +49,24 @@ public class SupplierService {
     public Supplier selectByPrimaryKey(String supplierId){
     	return dao.selectByPrimaryKey(supplierId);
     }
+    
+    public Supplier selectByPrimaryKey2(String supplierName){
+    	return dao.selectByPrimaryKey2(supplierName);
+    }
 
     public int updateByPrimaryKeySelective(Supplier record){
     	return dao.updateByPrimaryKeySelective(record);
     }
+    
+    public int updateByPrimaryKeySelective2(Supplier record){
+    	return dao.updateByPrimaryKeySelective2(record);
+    }
 
     public int updateByPrimaryKey(Supplier record){
     	return dao.updateByPrimaryKey(record);
+    }
+
+    public List<Supplier> selectAll() {
+        return dao.selectAll();
     }
 }

@@ -19,7 +19,7 @@ public class Purchase_returns {
     private String purePriceIncludeTax;//单价是否含税
     private Integer warehouseId;//仓库id
     private String pureSingleStatus;//凭证编号
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date pureDocumentDate;//单据日期
     private String pureDocumentNumber;//单据号码
@@ -47,9 +47,12 @@ public class Purchase_returns {
     private String pureCustom4;//自定义4
     private String pureCustom5;//自定义5
     private String pureCustom6;//自定义6
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date createDate;//修改时间
+    private Date createDate;//创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date editDate; // 修改时间
     private int lineId;//行编号
     
     

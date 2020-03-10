@@ -14,6 +14,8 @@ public interface PriadetailsMapper {
 	 List<Priadetails> selectByPriabillSupplierName(String priabillId);
 	 
 	 List<Priadetails> selectAllBySupplier(String priabillCustom10);
+	
+	 List<Priadetails> selectAllBySupplier2(String priabillCustom10,String payablesId);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -35,10 +37,14 @@ public interface PriadetailsMapper {
 
     List<Priadetails> selectByPrimaryKey2(String priabillId);
     
+    Priadetails selectByPrimaryKey3(String priabillId);
+    
     Priadetails selectByPrimaryKey(String priadetailsId);
 
     int updateByPrimaryKeySelective(Priadetails record);
-
+    
+    int updateByPrimaryKeySelective2(Priadetails record);
+    
     int updateByPrimaryKey(Priadetails record);
     
     int selectCount();

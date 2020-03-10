@@ -20,7 +20,7 @@ public class Sales_out_warehouse {
     private String sowPriceIncludeTax;//单价是否含税
     private String warehouseId;//仓库id
     private String sowCertificateNumber;//凭证编号
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sowDocumentDate;//单据日期
     private String sowDocumentNumber;//单据号码
@@ -32,12 +32,12 @@ public class Sales_out_warehouse {
     private Float sowTax;//总税额
     private Float sowIncludingTaxAmount;//总含税金额
     private String sowSaleszkgs;//账款归属
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sowSalesdate;//收款日期
     private String sowSalessktj;//收款条件
     private Integer sowSalesday;//收款天数
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date sowSalesyue;//账款月份
     private String sowBuyer;//采购人员

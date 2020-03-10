@@ -61,3 +61,10 @@ export function insertWithDetails(data) {
         }
     })
 }
+
+export function getAllReviewStore() {
+    return rest({
+        url: "http://localhost:8080/Purchase_storageController/selectAllReview",
+        method: "get",
+    });
+}

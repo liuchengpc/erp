@@ -59,8 +59,8 @@ public class PurchaseReturnsPojo {
     private Date createDate; // 创建时间
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private Date editDate; // 编辑时间
-    private Integer lineId; // 行号
+    private Date editDate; // 修改时间
+    private Integer lineId; // 行编号
 
     public String getPureId() {
         return pureId;

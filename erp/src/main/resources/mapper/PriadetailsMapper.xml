@@ -47,7 +47,22 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
  FROM priadetails,priabill 
 	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
 	    priadetails.Priabill_id=priabill.priabill_id AND priabill.`priabill_Auditing`=1 
-	    AND priadetails.Priabill_custom9>0         
+	     AND priadetails.Priabill_custom6 is null AND priadetails.Priabill_custom9 >0            
+	    ORDER BY priadetails.Priadetails_id DESC
+  </select>
+  
+  <select id="selectAllBySupplier2" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    SELECT priadetails.Priadetails_id,priadetails.Priabill_id,priadetails.Priabill_price,priadetails.Priabill_type,
+priadetails.Priabill_number,priadetails.Priabill_remarks,
+priadetails.Priabill_Auditing,priadetails.Priabill_yn,priadetails.Priabill_custom1,priadetails.Priabill_custom2,
+priadetails.Priabill_custom3,
+priadetails.Priabill_custom4,priadetails.Priabill_custom5,
+ priadetails.Priabill_custom6,priadetails.Priabill_custom7,priadetails.Priabill_custom8,priadetails.Priabill_custom9,
+ priadetails.Priabill_custom10 
+ FROM priadetails,priabill 
+	    WHERE priabill.priabill_yn=0 AND priabill.priabill_supplier_name=#{priabillCustom10,jdbcType=VARCHAR}  AND 
+	    priadetails.Priabill_id=priabill.priabill_id  
+	     AND priadetails.Priabill_custom6 = '1' AND priadetails.Priabill_custom7 = #{payablesId,jdbcType=VARCHAR}              
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   
@@ -59,7 +74,7 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
 	    priadetails.Priabill_custom5,priadetails.Priabill_custom6,priadetails.Priabill_custom7, 
 	    priadetails.Priabill_custom8,priadetails.Priabill_custom9,priadetails.Priabill_custom10 
 	    FROM priadetails WHERE priadetails.Priabill_id=#{priabillId,jdbcType=VARCHAR} 
-	    AND priadetails.Priabill_yn=0   
+	    AND priadetails.Priabill_yn=0 AND priadetails.Priabill_custom7 is null 
 	    ORDER BY priadetails.Priadetails_id DESC
   </select>
   
@@ -68,6 +83,13 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
     <include refid="Base_Column_List" />
     from priadetails
     where Priabill_id = #{Priabill_id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey3" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from priadetails 
+    where Priadetails_id = #{priadetailsId,jdbcType=VARCHAR}
   </select>
   
   <select id="selectCount"  resultType="Integer">
@@ -220,6 +242,63 @@ priadetails.Priabill_custom4,priadetails.Priabill_custom5,
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Priadetails">
+    update priadetails
+    <set>
+      <if test="priabillId != null">
+        Priabill_id = #{priabillId,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillPrice != null">
+        Priabill_price = #{priabillPrice,jdbcType=REAL},
+      </if>
+      <if test="priabillType != null">
+        Priabill_type = #{priabillType,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillNumber != null">
+        Priabill_number = #{priabillNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillRemarks != null">
+        Priabill_remarks = #{priabillRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillAuditing != null">
+        Priabill_Auditing = #{priabillAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillYn != null">
+        Priabill_yn = #{priabillYn,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom1 != null">
+        Priabill_custom1 = #{priabillCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom2 != null">
+        Priabill_custom2 = #{priabillCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom3 != null">
+        Priabill_custom3 = #{priabillCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom4 != null">
+        Priabill_custom4 = #{priabillCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom5 != null">
+        Priabill_custom5 = #{priabillCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom6 != null">
+        Priabill_custom6 = #{priabillCustom6,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom7 != null">
+        Priabill_custom7 = #{priabillCustom7,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom8 != null">
+        Priabill_custom8 = #{priabillCustom8,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom9 != null">
+        Priabill_custom9 = #{priabillCustom9,jdbcType=VARCHAR},
+      </if>
+      <if test="priabillCustom10 != null">
+        Priabill_custom10 = #{priabillCustom10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Priadetails_id = #{priadetailsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective2" parameterType="com.apatech.domain.Priadetails">
     update priadetails
     <set>
       <if test="priabillId != null">

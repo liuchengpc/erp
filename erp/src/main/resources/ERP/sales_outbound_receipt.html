@@ -13,10 +13,31 @@
         #app{
             padding: 15px;
         }
+         .demo{
+         	right: 0px;
+         	z-index: 999;
+         	display: none;
+         	position: absolute;
+            height: 20px; 
+            width: 200px; 
+            background: #f00;
+            text-align: center;
+            margin-top: 40px;
+            margin-right: -45px;
+            text-decoration: none;
+            color:#fff;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            
+        }
     </style>
 </head>
 <body>
 <div id="app">
+	<a class="demo" id="shbq" href="javasript:;">已审核</a>
 	<template v-for="stu in page.list">
     <div class="layui-row">
         <div class="layui-col-lg6">
@@ -448,6 +469,12 @@
 					success:function(resulet){
 						if(resulet==1){
 							alert(name+"成功！");
+							if(name=="审核"){
+								$(".demo").show();
+							}else{
+								$(".demo").hide();
+							}
+							
 						}else{
 							alert(name+"失败！");
 						}
@@ -695,7 +722,10 @@
 					url:host+"Sales_out_warehouseController/selectAllpage",
 					data:{pageNum:pageNum,pageSize:1},
 					success:function(res){
-						sales_outboundvue.page=res;						
+						sales_outboundvue.page=res;	
+						if(sales_outboundvue.page.list[0].sowAuditing==1){
+							$(".demo").show();
+						}
 					 	//sales_outboundvue.tableshuax();
 					 	//sales_outboundvue.bianji();
 					}

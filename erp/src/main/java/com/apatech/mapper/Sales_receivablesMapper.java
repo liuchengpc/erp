@@ -4,12 +4,19 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Sales_receivables;
 import com.apatech.domain.Sales_receivables_customerLC;
 
 public interface Sales_receivablesMapper {
 	List<Sales_receivables> selectAll();
+	
+	@Select("select count(*) from Sales_receivables")
+	int selectcount();
+	
+	@Update("update Sales_receivables set srAuditing=0 where srNumber=#{id}")
+	int updatenum(String id);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 

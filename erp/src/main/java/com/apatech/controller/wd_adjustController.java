@@ -54,6 +54,7 @@ public class wd_adjustController {
     	System.out.println(pageNum+"/"+pageSize);
 		PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	for (wd_Adjust_price item : page.getList()) {
+    		
 			item.setList(wddao.selectlist(item.getApDateid()));
 		}
     	

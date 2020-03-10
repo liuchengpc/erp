@@ -435,4 +435,51 @@ public class PurchaseReturnsPojo {
         this.editDate = editDate;
         this.lineId = lineId;
     }
+
+    @Override
+    public String toString() {
+        return "PurchaseReturnsPojo{" +
+                "pureId='" + pureId + '\'' +
+                ", supplierId='" + supplierId + '\'' +
+                ", pureEngname='" + pureEngname + '\'' +
+                ", puretId='" + puretId + '\'' +
+                ", purePriceIncludeTax='" + purePriceIncludeTax + '\'' +
+                ", warehouseId=" + warehouseId +
+                ", pureSingleStatus='" + pureSingleStatus + '\'' +
+                ", pureDocumentDate=" + pureDocumentDate +
+                ", pureDocumentNumber='" + pureDocumentNumber + '\'' +
+                ", currencyId='" + currencyId + '\'' +
+                ", pureExchangeRate=" + pureExchangeRate +
+                ", pureForeignTrade=" + pureForeignTrade +
+                ", pureSunnum=" + pureSunnum +
+                ", pureSunmoney=" + pureSunmoney +
+                ", pureTax=" + pureTax +
+                ", pureIncludeTaxAmount=" + pureIncludeTaxAmount +
+                ", pureDeliveryAddress='" + pureDeliveryAddress + '\'' +
+                ", pureBuyer='" + pureBuyer + '\'' +
+                ", pureBelongsSection='" + pureBelongsSection + '\'' +
+                ", pureBelongsProject='" + pureBelongsProject + '\'' +
+                ", pureExecutor='" + pureExecutor + '\'' +
+                ", pureCheckagainStaff='" + pureCheckagainStaff + '\'' +
+                ", pureHeaderProvision='" + pureHeaderProvision + '\'' +
+                ", pureEndClause='" + pureEndClause + '\'' +
+                ", pureRemark='" + pureRemark + '\'' +
+                ", pureAudition='" + pureAudition + '\'' +
+                ", pureYn='" + pureYn + '\'' +
+                ", pureCustom1='" + pureCustom1 + '\'' +
+                ", pureCustom2='" + pureCustom2 + '\'' +
+                ", pureCustom3='" + pureCustom3 + '\'' +
+                ", pureCustom4='" + pureCustom4 + '\'' +
+                ", pureCustom5='" + pureCustom5 + '\'' +
+                ", pureCustom6='" + pureCustom6 + '\'' +
+                ", details=" + details +
+                ", supplier=" + supplier +
+                ", warehouse=" + warehouse +
+                ", currency=" + currency +
+                ", purchaseStorage=" + purchaseStorage +
+                ", createDate=" + createDate +
+                ", editDate=" + editDate +
+                ", lineId=" + lineId +
+                '}';
+    }
 }

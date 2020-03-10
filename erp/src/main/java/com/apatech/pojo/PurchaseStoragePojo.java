@@ -427,4 +427,50 @@ public class PurchaseStoragePojo {
         this.editDate = editDate;
         this.lineId = lineId;
     }
+
+    @Override
+    public String toString() {
+        return "PurchaseStoragePojo{" +
+                "psId='" + psId + '\'' +
+                ", supplierId='" + supplierId + '\'' +
+                ", psEngname='" + psEngname + '\'' +
+                ", pstId='" + pstId + '\'' +
+                ", psPriceIncludeTax='" + psPriceIncludeTax + '\'' +
+                ", warehouseId=" + warehouseId +
+                ", psSingleStatus='" + psSingleStatus + '\'' +
+                ", psDocumentDate=" + psDocumentDate +
+                ", psDocumentNumber='" + psDocumentNumber + '\'' +
+                ", currencyId='" + currencyId + '\'' +
+                ", psExchangeRate=" + psExchangeRate +
+                ", psForeignTrade=" + psForeignTrade +
+                ", psSunnum=" + psSunnum +
+                ", psSunmoney=" + psSunmoney +
+                ", psTax=" + psTax +
+                ", psIncludeTaxAmount=" + psIncludeTaxAmount +
+                ", psDeliveryAddress='" + psDeliveryAddress + '\'' +
+                ", psBuyer='" + psBuyer + '\'' +
+                ", psBelongsSection='" + psBelongsSection + '\'' +
+                ", psBelongsProject='" + psBelongsProject + '\'' +
+                ", psExecutor='" + psExecutor + '\'' +
+                ", psCheckagainStaff='" + psCheckagainStaff + '\'' +
+                ", psHeaderProvision='" + psHeaderProvision + '\'' +
+                ", psEndClause='" + psEndClause + '\'' +
+                ", psRemark='" + psRemark + '\'' +
+                ", psAudition='" + psAudition + '\'' +
+                ", psYn='" + psYn + '\'' +
+                ", psCustom1='" + psCustom1 + '\'' +
+                ", psCustom2='" + psCustom2 + '\'' +
+                ", psCustom3='" + psCustom3 + '\'' +
+                ", psCustom4='" + psCustom4 + '\'' +
+                ", psCustom5='" + psCustom5 + '\'' +
+                ", psCustom6='" + psCustom6 + '\'' +
+                ", details=" + details +
+                ", supplier=" + supplier +
+                ", warehouse=" + warehouse +
+                ", currency=" + currency +
+                ", createDate=" + createDate +
+                ", editDate=" + editDate +
+                ", lineId=" + lineId +
+                '}';
+    }
 }

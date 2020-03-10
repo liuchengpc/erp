@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse_detailed;
+import com.apatech.domain.Sales_receivables;
 import com.apatech.domain.Salesorder;
 import com.apatech.domain.Warehouse_detail;
 import com.apatech.domain.Sales_out_warehouse;
@@ -51,6 +52,7 @@ public class Sales_out_warehouseController {
 	
 	@Autowired
 	private Sales_receivablesService rece;
+	
 	
 	@RequestMapping("/selectcount")
 	@ResponseBody
@@ -83,6 +85,7 @@ public class Sales_out_warehouseController {
 	@ResponseBody
 	public int autddert(String id,String sid) {
 		int autd=0;
+		double max=0;
 		Sales_out_warehouse stu = dao.selectByPrimaryKey(id);
 		stu.setList(daoo.selectlist(stu.getSowId()));
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -91,14 +94,18 @@ public class Sales_out_warehouseController {
 		int count=wares.selectcount();
 		for (Sales_out_warehouse_detailed item : stu.getList()) {
 			count+=1;
+			max+=item.getSowdIncludingTaxAmount();
 			int count2=wares.selectbyid(stu.getWarehouseId(), item.getMatterId());
 			Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(),item.getMatterId(), item.getSowdPrice(), item.getSowdSingleStatus(), 1, count2, "1","0", df.format(new Date()), null, null, null, null, null);
 			wares.insert(sky);
-		}
+		}																					
+		Sales_receivables salrece = new Sales_receivables(rece.selectcount()+1, null, stu.getSowDocumentNumber(), stu.getSowDocumentDate(), stu.getCustomerId(), null, null, stu.getSowBelongsSection(), stu.getSowBuyer(), stu.getSowBelongsProject(), stu.getCurrencyId(),stu.getSowExchangeRate(), max, Float.parseFloat("0"), Float.parseFloat("0"), Float.parseFloat("0"), Float.parseFloat("0"), "1", "0", null, null, null, null, null, null, null, "0", null, null);
+		rece.insert(salrece);
+		
 			autd=dao.selectlist(id, sid);
 			}
 		}else {
-			if(rece.selectbysh(stu.getSowDocumentNumber()).equals("0")) {
+			if(rece.selectbysh(stu.getSowDocumentNumber()).equals("1")) {
 			int count=wares.selectcount();
 			for (Sales_out_warehouse_detailed item : stu.getList()) {
 				count+=1;
@@ -106,6 +113,7 @@ public class Sales_out_warehouseController {
 				Warehouse_detail sky=new Warehouse_detail(count+"",stu.getWarehouseId(),item.getMatterId(), item.getSowdPrice(), item.getSowdSingleStatus(), 0, count2, "1","0", df.format(new Date()), null, null, null, null, null);
 				wares.insert(sky);
 		}
+			rece.updatenum(stu.getSowDocumentNumber());
 			autd=dao.selectlist(id, sid);
 		}
 		}

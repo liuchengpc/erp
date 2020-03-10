@@ -36,7 +36,49 @@ public class Sales_receivables {
     private String srCustom7;//表状态（0 商品记录表，1 应收账款明细表）
     private String srCustom8;//币别名
     private String srCustom9;//自定义栏九
-    private String srCustom10;//主表id
+    
+    public Sales_receivables() {
+    	
+    }
+    public Sales_receivables(Integer srId, String srType, String srNumber, Date srDate, String srPcId, String srPcName,
+			String srTeamId, String srTeamName, String srBuyer, String srProjectName, String srCurrency,
+			Float srExchangeRate, Double srPayablesmainPrice, Float srCurrentbalance, Float srDiscountamount,
+			Float srAmountcharged, Float srOffsetamount, String srAuditing, String srYn, String srCustom1,
+			String srCustom2, String srCustom3, String srCustom4, String srCustom5, String srCustom6, String srCustom7,
+			String srCustom8, String srCustom9, String srCustom10) {
+		super();
+		this.srId = srId;
+		this.srType = srType;
+		this.srNumber = srNumber;
+		this.srDate = srDate;
+		this.srPcId = srPcId;
+		this.srPcName = srPcName;
+		this.srTeamId = srTeamId;
+		this.srTeamName = srTeamName;
+		this.srBuyer = srBuyer;
+		this.srProjectName = srProjectName;
+		this.srCurrency = srCurrency;
+		this.srExchangeRate = srExchangeRate;
+		this.srPayablesmainPrice = srPayablesmainPrice;
+		this.srCurrentbalance = srCurrentbalance;
+		this.srDiscountamount = srDiscountamount;
+		this.srAmountcharged = srAmountcharged;
+		this.srOffsetamount = srOffsetamount;
+		this.srAuditing = srAuditing;
+		this.srYn = srYn;
+		this.srCustom1 = srCustom1;
+		this.srCustom2 = srCustom2;
+		this.srCustom3 = srCustom3;
+		this.srCustom4 = srCustom4;
+		this.srCustom5 = srCustom5;
+		this.srCustom6 = srCustom6;
+		this.srCustom7 = srCustom7;
+		this.srCustom8 = srCustom8;
+		this.srCustom9 = srCustom9;
+		this.srCustom10 = srCustom10;
+	}
+
+	private String srCustom10;//主表id
 
     public Integer getSrId() {
         return srId;

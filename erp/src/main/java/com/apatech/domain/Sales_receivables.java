@@ -38,10 +38,6 @@ public class Sales_receivables {
     private String srCustom9;//自定义栏九
     private String srCustom10;//主表id
     
-    public Sales_receivables() {
-		super();
-	}
-
     public Sales_receivables(Integer srId, String srType, String srNumber, Date srDate, String srPcId, String srPcName,
 			String srTeamId, String srTeamName, String srBuyer, String srProjectName, String srCurrency,
 			Float srExchangeRate, Double srPayablesmainPrice, Float srCurrentbalance, Float srDiscountamount,
@@ -78,6 +74,10 @@ public class Sales_receivables {
 		this.srCustom8 = srCustom8;
 		this.srCustom9 = srCustom9;
 		this.srCustom10 = srCustom10;
+	}
+    
+    public Sales_receivables() {
+		super();
 	}
     
     @Override

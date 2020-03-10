@@ -113,7 +113,8 @@
                                                     <edit-column :data="scope.row.matterId"
                                                                  :prop="'matterId'" :index="scope.$index"
                                                                  @handler-change="handlerChangeColumnValue"
-                                                                 :edit="edit">
+                                                                 :edit="edit"
+                                                                 @handle-f4-up="handleF4Up">
                                                     </edit-column>
                                                 </template>
                                             </el-table-column>

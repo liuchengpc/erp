@@ -7,6 +7,7 @@ Vue.component('editColumn', {
                 v-model="childData" 
                 @blur="handlerBlur()" 
                 @keyup.enter.native="handlerEnter()"
+                @keyup.f4.native="handleF4Up()"
                 ref="input">    
             </el-input>
         </div>
@@ -30,7 +31,13 @@ Vue.component('editColumn', {
             this.$emit("handler-change", this.prop, this.childData, this.index, this.watch);
         },
         handlerBlur(){
+            if(this.show){
+                return;
+            }
             this.handlerEnter();
+        },
+        handleF4Up(){
+            this.$emit('handle-f4-up');
         }
     },
     created: function () {

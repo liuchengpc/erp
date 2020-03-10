@@ -90,14 +90,20 @@ public class Purchase_returnsService {
 		returnsPojo.setPureId(dao.selectPureId());
 		returnsPojo.setPureDocumentNumber(dao.selectPureId());
 		dao.insertWithDetails(returnsPojo);
-		detailedMapper.insertList(returnsPojo.getDetails());
+		if(returnsPojo.getDetails().size() > 0){
+			for (Purchase_returns_detailed detail : returnsPojo.getDetails()) {
+				detail.setPureId(returnsPojo.getPureId());
+			}
+		}
+		dao.insertDetailsList(returnsPojo.getDetails());
 	}
 
 	@Transactional(rollbackFor = Exception.class)
 	public void updateWithDetails(PurchaseReturnsPojo purchaseReturnsPojo) {
 		dao.updateByPrimaryKeySelective(purchaseReturnsPojo);
-		System.out.println(purchaseReturnsPojo.getDetails().size());
-		dao.updateDetailsList(purchaseReturnsPojo.getDetails());
+		if(purchaseReturnsPojo.getDetails().size() > 0){
+			dao.updateDetailsList(purchaseReturnsPojo.getDetails());
+		}
 	}
 
 	@Transactional(rollbackFor = Exception.class)
@@ -105,5 +111,24 @@ public class Purchase_returnsService {
 		dao.deleteByPrimaryKey(pureId);
 		dao.deleteDetailsByPureId(pureId);
 		throw new RuntimeException();
+	}
+
+	public void formatData(PurchaseReturnsPojo data){
+		// 供应商
+		data.setSupplierId(data.getSupplierId().split(" ")[0]);
+		// 币别
+		data.setCurrencyId(data.getCurrencyId().split(" ")[0]);
+		// 采购人员
+		data.setPureBuyer(data.getPureBuyer().split(" ")[0]);
+		// 制单人员
+		data.setPureExecutor(data.getPureExecutor().split(" ")[0]);
+		// 所属部门
+		data.setPureBelongsSection(data.getPureBelongsSection().split(" ")[0]);
+		// 复核人员
+		data.setPureCheckagainStaff(data.getPureCheckagainStaff().split(" ")[0]);
+		// 所属项目
+		data.setPureBelongsProject(data.getPureBelongsProject().split(" ")[0]);
+		// 仓库
+		data.setWarehouseId(Integer.parseInt(data.getWarehouseId().toString().split(" ")[0]));
 	}
 }

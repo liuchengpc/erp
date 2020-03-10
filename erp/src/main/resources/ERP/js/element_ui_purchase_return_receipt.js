@@ -516,6 +516,9 @@ let viewModel = new Vue({
         handleStoreDialogRetrieve(selectedContent) {
             console.log(selectedContent);
             this.handleStoreDialogVisibleChange(false);
+        },
+        handleF4Up(){
+            this.materialDialogConfig.dialogVisible = true;
         }
     },
     created: function () {

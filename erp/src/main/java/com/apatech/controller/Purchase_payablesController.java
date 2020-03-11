@@ -163,10 +163,10 @@ public class Purchase_payablesController {
 		Map<String, String> map=new HashMap<String, String>();
     	int i=dao.updateByPrimaryKeySelective(record);
     	if (i>0) {
-    		System.out.println("审核明细账款ID："+record.getPpCustom7());
+    		System.out.println("审核明细账款ID："+record.getPpCustom6());
     		System.out.println("审核明细账款现行余额："+record.getPpCurrentbalance());
     		Purchase_payables pp = new Purchase_payables();
-    		pp.setPpId(Integer.parseInt(record.getPpCustom7()));
+    		pp.setPpId(Integer.parseInt(record.getPpCustom6()));
     		System.out.println("ID："+pp.getPpId());
     		pp.setPpCurrentbalance(record.getPpCurrentbalance());
     		System.out.println("现金余额："+pp.getPpCurrentbalance());
@@ -226,10 +226,10 @@ public class Purchase_payablesController {
 		Map<String, String> map=new HashMap<String, String>();
     	int i=dao.updateByPrimaryKeySelective(record);
     	if (i>0) {
-    		System.out.println("审核明细账款ID："+record.getPpCustom7());
+    		System.out.println("审核明细账款ID："+record.getPpCustom6());
     		System.out.println("审核明细账款现行余额："+record.getPpCurrentbalance());
     		Purchase_payables pp = new Purchase_payables();
-    		pp.setPpId(Integer.parseInt(record.getPpCustom7()));
+    		pp.setPpId(Integer.parseInt(record.getPpCustom6()));
     		System.out.println("ID："+pp.getPpId());
     		pp.setPpCurrentbalance(record.getPpPayablesmainPrice());
     		System.out.println("现金余额："+pp.getPpCurrentbalance());

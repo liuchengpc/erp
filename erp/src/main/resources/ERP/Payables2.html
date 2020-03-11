@@ -1252,6 +1252,7 @@
 										url :"http://127.0.0.1:8080/Purchase_payablesController/insertSelective",
 										type:"post",
 										data:JSON.stringify(obj2[n]),
+										async:false,
 									  	dataType:'json',
 									  	contentType:"application/json;charset=utf-8",
 									  	success:function (res123) {
@@ -1283,6 +1284,7 @@
 										url:"http://127.0.0.1:8080/PriadetailsController/insertSelective",
 										type:"post",
 										data:JSON.stringify(obj3[q]),
+										async:false,
 									  	dataType:'json',
 									  	contentType:"application/json;charset=utf-8",
 									  	success:function (res4) {
@@ -1296,7 +1298,7 @@
 					layer.msg("新增成功!");
 					this_.isinsert=false;//关闭新增模式
 					this_.isedit=false;//关闭编辑模式
-					this_.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
+					this_.goPage(this_.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
 				 });
 				},
 				saves: function() {//保存	
@@ -1518,6 +1520,7 @@
 											type:"post",
 											data:JSON.stringify(ob),
 										  	dataType:'json',
+										  	async:false,
 										  	contentType:"application/json;charset=utf-8",
 										  	success:function (reshehe) {
 										  		console.log(reshehe.message);
@@ -1537,6 +1540,7 @@
 											type:"post",
 											data:JSON.stringify(obj3[q]),
 										  	dataType:'json',
+										  	async:false,
 										  	contentType:"application/json;charset=utf-8",
 										  	success:function (res4) {
 										  		console.log(res4.message);
@@ -1633,6 +1637,7 @@
 										url :"http://127.0.0.1:8080/Purchase_jiaoyiController/insertSelective",
 										type:"post",
 										data:JSON.stringify(obj01),
+										async:false,
 									  	dataType:'json',
 									  	contentType:"application/json;charset=utf-8",
 									  	success:function (res66) {
@@ -1644,6 +1649,7 @@
 										url :"http://127.0.0.1:8080/PriadetailsController/updateByPrimaryKeySelective2?priadetailsId="+obj7[u].priabillCustom5+"&priabillCustom9="+priabillCustom9,
 										type:"post",
 									  	dataType:'json',
+									  	async:false,
 									  	success:function (res78) {
 									  		
 								        }
@@ -1719,6 +1725,7 @@
 									type:"post",
 									data:JSON.stringify(obj2[n]),
 								  	dataType:'json',
+								  	async:false,
 								  	contentType:"application/json;charset=utf-8",
 								  	success:function (res9090) {
 								  		
@@ -1726,13 +1733,14 @@
 								});
 							}
 							
-							var ppAmountcharged=$('.layui-table-total .layui-table tr [data-field="ppAmountcharged"]').text();
+							var ppPayablesmainPrice=$('.layui-table-total .layui-table tr [data-field="ppPayablesmainPrice"]').text();
 							var ppOffsetamount=$('.layui-table-total .layui-table tr [data-field="ppOffsetamount"]').text();
 							var payablesSupplierName = $("#payablesSupplierName").val();
 							$.ajax({
-								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective2?ppAmountcharged="+ppAmountcharged+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
+								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective2?ppPayablesmainPrice="+ppPayablesmainPrice+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
 								type:"post",
 							  	dataType:'json',
+							  	async:false,
 							  	success:function (res985) {
 							  		
 							  	}
@@ -1741,14 +1749,14 @@
 							var obq = table.cache["materialsContent2"];
 							for(var c = 0;c<obq.length;c++){
 								if(obq[c].ppType=="采购发票(退)"){
-									alert(obq[c].ppAmountcharged);
+									alert("退票钱:"+obq[c].ppAmountcharged);
 									var obq2={
 										"jyData":$("#payablesPayablestime").val(),
 										"jySupplierName":$("#payablesSupplierName").val(),
 										"jyNumber":obq[c].ppNumber,
 										"jyType":"采购发票(应退)",
-										"jyPayables":obq[c].ppAmountcharged,
-										"jyPayablesBb":obq[c].ppAmountcharged
+										"jyPayables":obq[c].ppPayablesmainPrice,
+										"jyPayablesBb":obq[c].ppPayablesmainPrice
 									};
 									
 									$.ajax({
@@ -1764,7 +1772,7 @@
 								}
 							}
 							
-							this_.goPage(this.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
+							this_.goPage(this_.page.pageNum, 1,null,null,null,null,null,null,null,null,null,null,null);
 							layer.msg("审核通过！");
 				    	}
 				    }
@@ -1803,6 +1811,7 @@
 							type:"post",
 							data:JSON.stringify(updateObj),
 						  	dataType:'json',
+						  	async:false,
 						  	contentType:"application/json;charset=utf-8",
 						  	success:function (res) {
 						  		//alert("系统提示：" +res.message);
@@ -1815,6 +1824,7 @@
 							url :"http://127.0.0.1:8080/Purchase_jiaoyiController/deleteByPrimaryKey3?jyNumber="+payablesId,
 							type:"get",
 						  	dataType:'json',
+						  	async:false,
 						  	success:function (res) {
 						  		
 					        }
@@ -1830,6 +1840,7 @@
 										url :"http://127.0.0.1:8080/Purchase_jiaoyiController/deleteByPrimaryKey3?jyNumber="+obj7[u].priadetailsId,
 										type:"get",
 									  	dataType:'json',
+									  	async:false,
 									  	success:function (res21) {
 									  		
 								        }
@@ -1839,6 +1850,7 @@
 										url :"http://127.0.0.1:8080/PriadetailsController/updateByPrimaryKeySelective2?priadetailsId="+obj7[u].priabillCustom5+"&priabillCustom9="+priabillCustom9,
 										type:"post",
 									  	dataType:'json',
+									  	async:false,
 									  	success:function (res78) {
 									  		
 								        }
@@ -1861,6 +1873,7 @@
 									type:"post",
 									data:JSON.stringify(obj2[n]),
 								  	dataType:'json',
+								  	async:false,
 								  	contentType:"application/json;charset=utf-8",
 								  	success:function (res25) {
 								  		
@@ -1868,13 +1881,14 @@
 								});
 							}
 							
-							var ppAmountcharged=$('.layui-table-total .layui-table tr [data-field="ppAmountcharged"]').text();
+							var ppPayablesmainPrice=$('.layui-table-total .layui-table tr [data-field="ppPayablesmainPrice"]').text();
 							var ppOffsetamount=$('.layui-table-total .layui-table tr [data-field="ppOffsetamount"]').text();
 							var payablesSupplierName = $("#payablesSupplierName").val();
 							$.ajax({
-								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective3?ppAmountcharged="+ppAmountcharged+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
+								url :"http://127.0.0.1:8080/SupplierController/updateByPrimaryKeySelective3?ppPayablesmainPrice="+ppPayablesmainPrice+"&ppOffsetamount="+ppOffsetamount+"&payablesSupplierName="+payablesSupplierName,
 								type:"post",
 							  	dataType:'json',
+							  	async:false,
 							  	success:function (res985) {
 							  		
 							  	}
@@ -1888,6 +1902,7 @@
 										url:"http://127.0.0.1:8080/Purchase_jiaoyiController/deleteByPrimaryKey3?jyNumber="+obq[c].ppNumber,
 										type:"get",
 									  	dataType:'json',
+									  	async:false,
 									  	success:function (obq2) {
 									  		
 									  	}

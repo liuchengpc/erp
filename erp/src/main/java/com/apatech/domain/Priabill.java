@@ -15,7 +15,7 @@ public class Priabill {
     private String priabillId;//预付款单主表id（主键  唯一）
     private String supplierId;//供应商表id，外键
     private Integer scsId;//结算方式id，外键
-    private String staffId;//部门员工表id，外键
+    private String staffId;//部门员工表id， 外键
     private String currencyId;//币别类型表id，外键
     private String projectId;//项目表id，外键
     private String priabillSupplierName;//供应商表

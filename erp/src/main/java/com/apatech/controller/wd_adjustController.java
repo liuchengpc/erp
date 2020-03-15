@@ -24,6 +24,7 @@ import com.apatech.domain.wdQueryTaiz;
 import com.apatech.domain.wdQueryTaizDetail;
 import com.apatech.domain.wd_Adjust_detail;
 import com.apatech.domain.wd_Adjust_price;
+import com.apatech.domain.wd_dull;
 import com.apatech.domain.wd_inorout;
 import com.apatech.domain.Adjust_price;
 import com.apatech.service.Adjust_priceService;
@@ -53,6 +54,7 @@ public class wd_adjustController {
     	System.out.println(pageNum+"/"+pageSize);
 		PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	for (wd_Adjust_price item : page.getList()) {
+    		
 			item.setList(wddao.selectlist(item.getApDateid()));
 		}
     	
@@ -110,7 +112,12 @@ public class wd_adjustController {
 		return dao.querySection();
 	}
 	
-	
+	//QueryDull呆滞品查询
+	@RequestMapping("/QueryDull")
+	@ResponseBody
+	public List<wd_dull>QueryDull(String matterBegin,String matterEnd,String dulldate,String dullSdate,String dullEdate){
+		return dao.QueryDull(matterBegin,matterEnd,dulldate,dullSdate,dullEdate);
+	}
 	
 	
 	
@@ -205,9 +212,9 @@ public class wd_adjustController {
 		String upname=record.getUpName();
 		String doname=record.getUpCustom6();
 		System.out.println("新增增减值科目"+updownmids+upname+apDateid+doname);
-		dao.insertupd(updownmids,upname,apDateid,doname);
+		//dao.insertupd(updownmids,upname,apDateid,doname);
 		System.out.println("新增主单："+apId+apDateid+updownmids+apdoworkman+apRecheckman+apAuditing+apYn+apCustom6);
-		int i=dao.insert(apId,apDateid,updownmids,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
+		int i=dao.insert(apId,apDateid,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
 		if(i>0) {
 			for (wd_Adjust_detail item : record.getList()) {
 				String dMatterid=item.getMatterId();
@@ -248,7 +255,7 @@ public class wd_adjustController {
 		String apRecheckman=record.getApRecheckman();
 		
 		//修改科目
-		System.out.println("修改增减值科目"+upId+upname+doId+doname+upIds+apDateid);
+		//System.out.println("修改增减值科目"+upId+upname+doId+doname+upIds+apDateid);
 		int i=wddao.updatekm(upname,doname,upIds,apDateid);
 		//修改制单人复核人
 		int j=wddao.updatepeople(apdoworkman,apRecheckman,apDateid);
@@ -289,7 +296,9 @@ public class wd_adjustController {
 	@ResponseBody
 	public int updateAuding(String apDateId) {
 		System.out.println("进");
-		return wddao.updateAuding(apDateId);
+		int i=wddao.updateAuding(apDateId);
+		System.out.println(i);
+		return i;
 				
 	}
 

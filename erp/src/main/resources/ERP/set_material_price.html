@@ -20,10 +20,45 @@
 					display: none !important;
 				}
 			}
+			 .demo{
+            display: inline-block;
+            height: 20px; 
+            width: 200px; 
+            background: #f00;
+            text-align: center;
+            margin-top: 40px;
+            margin-left: -45px;
+            text-decoration: none;
+            color:#fff;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        .shbqys2{
+            position: absolute;/*这里一定要设置*/
+   z-index: 999999;/*这里是该元素与显示屏的距离，据说越大越好，但是我也没有看到效果，因为没有它也是可以的*/
+   right: 0px;
+            height: 20px; 
+            width: 200px; 
+            background: #f00;
+            text-align: center;
+            margin-top: 40px;
+            margin-right: -45px;
+            text-decoration: none;
+            color:#fff;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
 		</style>
 	</head>
 
 	<body>
+		<a class="shbqys2" id="shbq" href="javasript:;">已审核</a>
 		<div id="app">
 			<div class="layui-form" v-for="pages,index in page.list">
 				<div class="layui-row">
@@ -56,10 +91,10 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">增值科目</label>
 								<div class="layui-input-block">
-									<input type="text" id="pro" name="pro" class="layui-input" v-model="pages.upName" v-bind:disabled="diasabledInput">
+									<input type="text" id="pro" name="pro" class="layui-input" v-model="pages.upCuston3" v-bind:disabled="diasabledInput">
 									<div id="sel">
 										<select style="display:none" class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upName">
-											<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="upname"></option>
+											<option v-for="sl,index in shoplist" :value='sl.upId' v-text="sl.upName" name="upname"></option>
 										</select>
 									</div>
 								</div>
@@ -67,10 +102,10 @@
 							<div class="layui-form-item">
 								<label class="layui-form-label">减值科目</label>
 								<div class="layui-input-block">
-									<input type="text" id="pro1" name="pro" class="layui-input" v-model="pages.upCustom6" v-bind:disabled="diasabledInput">
+									<input type="text" id="pro1" name="pro" class="layui-input" v-model="pages.upCuston4" v-bind:disabled="diasabledInput">
 									<div id="sel1">
 										<select style="display:none" class="layui-select" style="margin: 5px;" name="remark" v-model="pages.upCustom6">
-											<option v-for="sl,index in shoplist" :value='sl.upCustom3' v-text="sl.upCustom4" name="downname"></option>
+											<option v-for="sl,index in shoplist" :value='sl.upId' v-text="sl.upName" name="downname"></option>
 										</select>
 									</div>
 								</div>
@@ -219,6 +254,8 @@
 						location.reload();
 					}, //查询
 					goPage: function(page) {
+						//隐藏
+						$(".shbqys2").hide();
 						this.diasabledInput = true; //input可以编辑
 						var this_ = this;
 						$.ajax({
@@ -227,6 +264,25 @@
 							data: "pageNum=" + page + "&pageSize=1",
 							success: function(res) {
 								this_.page = res;
+								if(this_.page.list[0].apAuditing==1){
+									$(".shbqys2").show();
+									this_.deletes1 = true; //删除
+									this_.Auditing1 = true; //审核
+									this_.noAuditing1 = false; //取消审核
+									this_.inset1=true; //新增  
+									this_.return1==true; //取消
+									this_.saves1= true; //保存 
+									this_.update1= true; //编辑
+									this_.deletes1= true; //删除
+									
+								}else{
+									$(".shbqys2").hide();
+									this.Auditing1 = false; //审核
+									this.noAuditing1 = true; //取消审核
+									//this.saves1= false; //保存 
+									this.inset1 = false; //新增  
+									this.update1= false; //编辑
+								}
 								layui.use('table', function() {
 									var table = layui.table;
 									console.log(this_.page.list[0].list);
@@ -328,7 +384,7 @@
 					},
 					//执行删除
 					deletes: function(apDateid) {
-						//alert(apDateid);
+						
 						var this_ = this;
 						if(confirm("是否删除")) {
 							$.ajax({
@@ -338,11 +394,10 @@
 								},
 								url: "http://127.0.0.1:8080/wd_adjustController/updateByPrimaryKeySelective",
 								success: function(res) {
-									//alert(apDateid);
 									if(res > 0) {
-										alert("已删除！");
+
 									} else {
-										//alert("删除失败！");
+										alert("删除失败！");
 									}
 									this_.goPage(1, 1);
 								}
@@ -353,10 +408,8 @@
 					save: function() {
 						this.diasabledInput = true; //input不可编辑
 						if(this.isinsert == true) { //新增
-							alert("进入新增")
 							this.insets();
 						} else if(this.isedit == true) {
-							alert("进入修改")
 							this.updates();
 						} else {}
 						this.goFirstPage1 = false; //第一笔
@@ -398,7 +451,7 @@
 						this.deletes1 = true; //删除		
 						this.Auditing1 = false; //审核
 						this.noAuditing1 = true; //取消审核
-						$("table td:eq(0)").attr("data-edit", "text");
+						//$("table td:eq(0)").attr("data-edit", "text");
 						$("table td:eq(9)").attr("data-edit", "text");
 						$("table td:eq(20)").attr("data-edit", "text");
 						$("table td:eq(31)").attr("data-edit", "text");
@@ -493,22 +546,30 @@
 					},
 					//审核
 					Auditing: function(apDateid) { //审核
-						alert(apDateid);
+						
+						
 						var this_ = this;
+						this.update1 = true; //编辑
+						this.inset1 = true; //新增
 						if(confirm("是否审核")) {
 							$.ajax({
 								type: "get",
-								data: {
-									apDateId: apDateid
-								},
+								data: {apDateId:apDateid},
 								url: "http://127.0.0.1:8080/wd_adjustController/updateAuding",
 								success: function(res) {
 									if(res > 0) {
-										//alert("审核成功！");
+										//隐藏审核
+										$(".shbqys2").show();
 									} else {
 										alert("审核失败！");
 									}
 								}
+								
+								
+								
+								
+								
+								
 							});
 						}
 						this.deletes1 = true, //删除
@@ -517,7 +578,6 @@
 					},
 					//反审核
 					noAuditing: function(apDateid) { //反审核
-						alert(apDateid);
 						var this_ = this;
 						if(confirm("是否取消审核")) {
 							$.ajax({
@@ -528,7 +588,9 @@
 								url: "http://127.0.0.1:8080/wd_adjustController/deupdateAuding",
 								success: function(res) {
 									if(res > 0) {
-										//alert("反审核成功！");
+										//隐藏审核
+										$(".shbqys2").hide();
+										
 									} else {
 										alert("反审核失败！");
 									}
@@ -538,6 +600,9 @@
 						this.deletes1 = false, //删除
 							this.Auditing1 = false, //审核
 							this.noAuditing1 = true //取消审核
+							this.saves1= false; //保存 
+							this.inset1 = false; //新增  
+							this.update1= false; //编辑
 					},
 
 					//执行修改
@@ -573,7 +638,6 @@
 							contentType: "application/json;charset=utf-8",
 							success: function(res) {
 								if(res >= 0) {
-									//alert("修改成功！");
 									/*upname=$("#pro").val();
 									downname=$("#pro1").val();*/
 									this.goPage(1,1);
@@ -728,6 +792,91 @@
 					//点击新增
 					inset: function() {
 						this.clear(); //清空文本框
+						var exap=[{mamuId:""}];
+							layui.use('table', function() {
+									var table = layui.table;
+									//console.log(this_.page.list[0].list);
+									table.render({
+										elem: '#materialsContent',
+										data: exap,
+										cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+											,
+										cols: [
+											[{
+													templet: "#indexs",
+													title: '(栏号)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mamuId',
+													title: '(类型id)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterName',
+													title: '(物料名称)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'matterId',
+													title: '(物料编号)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterSize',
+													title: '(规格型号)',
+													align: 'center'
+												},
+												{
+													field: 'muName',
+													title: '(单位)',
+													align: 'center'
+												},
+												{
+													field: 'mmatterNowcount',
+													title: '(库存量)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmatterNowavgcost',
+													title: '(平均成本)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'mmonePrice',
+													title: '(单价)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'dAdjustprice',
+													title: '(调价金额)',
+													sort: true,
+													align: 'center'
+												},
+												{
+													field: 'dDecoration',
+													title: '分录备注',
+													align: 'center'
+												}
+											]
+										]
+									});
+								});
+
+
+
+
+
+
+
+
 
 						//开窗取值
 						$("tr td:eq(0)").on("keyup.f4", function() {
@@ -812,7 +961,6 @@
 							type: "get",
 							url: host + "wd_adjustController/selectcount",
 							success: function(res) {
-								//alert(res);
 								this_.page.list[0].list = layui.table.cache["materialsContent"];
 								$.each(this_.page.list[0].list, function(a, b) {
 									b.apCustom6 = apdate;
@@ -839,7 +987,6 @@
 									contentType: "application/json;charset=utf-8",
 									success: function(res) {
 										if(res > 0) {
-											//alert("新增成功！");
 										} else {
 											alert("新增失败！");
 										}
@@ -853,8 +1000,11 @@
 					},
 					
 					
+					
 				},
 				created: function() {
+					//隐藏审核
+					//$(".shbqys2").hide();
 					this.goPage(1);
 					this.querykm();
 					this.init();

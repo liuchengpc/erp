@@ -34,13 +34,10 @@
 		}span{
 			color: #009688;
 		}
-		button{
-			border:1px solid skyblue;
-			border-radius: 5px;
-			background-color: skyblue;
-			color: #FFFFFF;
-			margin-left: -70px;
-			margin-right: -70px;
+		a{
+			/*border:1px solid skyblue;
+			*/border-radius: 5px;
+			color: skyblue;
 			width: 200px;
 			height: 40px;
 		}
@@ -67,7 +64,7 @@
                     	<td>{{stu.warehouseName}}</td> 
                     	<td>{{stu.wdDate}}</td> 
                     	<td>
-                    		<button type="button" @click="openModak(stu.matterId,stu.matterName,stu.warehouseName,stu.wdDate)">查看详情</button>
+                    		[<a type="button" @click="openModak(stu.matterId,stu.matterName,stu.warehouseName,stu.wdDate)">查看详情</a>]
                     	</td>
                 	</tr>
                 </tbody>

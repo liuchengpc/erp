@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,505 +8,481 @@
 		<title>库存台账</title>
 
 		<link rel="stylesheet" href="css/layui.css">
-    <script src="jquery-1.12.4.js"></script>
-    <script src="layui.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/bootstrap.js"></script>
+		<script src="jquery-1.12.4.js"></script>
+		<script src="layui.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/bootstrap.js"></script>
 		<style>
 			#app {
 				text-align: center;
 				padding: 15px;
-			}.layui-table{
+			}
+			
+			.layui-table {
 				align-content: center;
 				margin: auto;
-			width:100%;
-		}
-		
-		input{
-			width: 90px;
-			border-radius: 5px;
-						border: 1px solid transparent;
-			background-color:transparent;
-		}span{
-			color: #009688;
-		}
-		button{
-			margin-top: 10px;
-			margin-bottom: 10px;
-			border:1px solid skyblue;
-			border-radius: 5px;
-			background-color: skyblue;
-			color: #FFFFFF;
-			width: 100px;
-			height: 30px;
-		}
+				width: 100%;
+			}
+			
+			input {
+				width: 90px;
+				border-radius: 5px;
+				border: 1px solid transparent;
+				background-color: transparent;
+			}
+			
+			span {
+				color: #009688;
+			}
+			
+			button {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				border: 1px solid skyblue;
+				border-radius: 5px;
+				background-color: skyblue;
+				color: #FFFFFF;
+				width: 100px;
+				height: 30px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<div id="app">
-			<div  class="layui-row" >
-					<table  class="layui-table" >
-						<tr>
-							<td>物料区间：</td>
-							<td><input type="text" class="layui-input" @keyup.f4="outmatterStart()"></td>
-							<td>To</td>
-							<td><input type="text" class="layui-input" @keyup.f4="outmatterEnd()"></td>
-						</tr>
-						<tr>
-							<td>仓库区间：</td>
-							<td><input type="text" class="layui-input" @keyup.f4="warehouseStarts()"></td>
-							<td>To</td>
-							<td><input type="text" class="layui-input" @keyup.f4="warehouseEnds()"></td>
-						</tr>
-						<tr>
-							<td>日期区间：</td>
-							<td><input type="date" class="layui-input"></td>
-							<td>To</td>
-							<td><input type="date" class="layui-input"></td>
-						</tr>
-					</table>
+			<div class="layui-row">
+				<table class="layui-table">
+					<tr>
+						<td>物料区间：</td>
+						<td><input type="text" class="layui-input" @keyup.f4="outmatterStart()"></td>
+						<td>To</td>
+						<td><input type="text" class="layui-input" @keyup.f4="outmatterEnd()"></td>
+					</tr>
+					<tr>
+						<td>仓库区间：</td>
+						<td><input type="text" class="layui-input" @keyup.f4="warehouseStarts()"></td>
+						<td>To</td>
+						<td><input type="text" class="layui-input" @keyup.f4="warehouseEnds()"></td>
+					</tr>
+					<tr>
+						<td>日期区间：</td>
+						<td><input type="date" class="layui-input"></td>
+						<td>To</td>
+						<td><input type="date" class="layui-input"></td>
+					</tr>
+				</table>
+
+				<div class="layui-input-block">
 					
-					<div class="layui-input-block">
-						<span><input type="checkbox" checked="checked" id="checkbox-id"/>区分仓库</span>
-						<button class="layuiadmin-btn" title="确认" @click="openModak">确认</button>
-						<button class="layuiadmin-btn" title="取消">取消</button>
-						<button class="layuiadmin-btn" title="清空">清空</button>
-					</div>
+					<button class="layuiadmin-btn" title="确认" @click="openModak">确认</button>
+					<button class="layuiadmin-btn" title="取消" @click="clear">取消</button>
+					<button class="layuiadmin-btn" title="清空" @click="clear">清空</button>
+				</div>
 			</div>
 			<!--起始物料-->
-			<div id="matStart"  style="display: none;">
-					<table id="tb1" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                		<thead>
-                			<tr>
-                		
-                  	 			<td>物料编号</td>
-                   				 <td>物料名称</td>
-                    
-                			</tr>
-                	</thead>
-                 	<tbody>           
-                		<tr v-for="mat in matterStart" @click="quhuiStart(mat)">
-                    		<td>{{mat.matterId}}</td>
+			<div id="matStart" style="display: none;">
+				<table id="tb1" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+					<thead>
+						<tr>
+
+							<td>物料编号</td>
+							<td>物料名称</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="mat in matterStart" @click="quhuiStart(mat)">
+							<td>{{mat.matterId}}</td>
 							<td>{{mat.matterName}}</td>
-                		</tr>
-                	</tbody>
-               	</table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<!--结束物料-->
-		<div id="matEnd"  style="display: none;">
-			<table id="tb2" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                		<thead>
-                			<tr>
-                		
-                  	 			<td>物料编号</td>
-                   				 <td>物料名称</td>
-                    
-                			</tr>
-                	</thead>
-                 	<tbody>           
-                		<tr v-for="mat in matterEnd" @click="quhuiStart1(mat)">
-                    		<td>{{mat.matterId}}</td>
+			<div id="matEnd" style="display: none;">
+				<table id="tb2" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+					<thead>
+						<tr>
+
+							<td>物料编号</td>
+							<td>物料名称</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="mat in matterEnd" @click="quhuiStart1(mat)">
+							<td>{{mat.matterId}}</td>
 							<td>{{mat.matterName}}</td>
-                		</tr>
-                	</tbody>
-               	</table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			
+
 			<!--起止仓库-->
-			<div id="warStart"  style="display: none;">
-			<table id="tb3" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                		<thead>
-                			<tr>
-                		
-                  	 			<td>仓库编号</td>
-                   				 <td>仓库名称</td>
-                    
-                			</tr>
-                	</thead>
-                 	<tbody>           
-                		<tr v-for="war in warehouseStart" @click="quhuiStart2(war)">
-                    		<td>{{war.warehouseId}}</td>
+			<div id="warStart" style="display: none;">
+				<table id="tb3" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+					<thead>
+						<tr>
+
+							<td>仓库编号</td>
+							<td>仓库名称</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="war in warehouseStart" @click="quhuiStart2(war)">
+							<td>{{war.warehouseId}}</td>
 							<td>{{war.warehouseName}}</td>
-                		</tr>
-                	</tbody>
-               	</table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			
+
 			<!--结束仓库-->
-			<div id="warEnd"  style="display: none;">
-			<table id="tb4" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                		<thead>
-                			<tr>
-                		
-                  	 			<td>仓库编号</td>
-                   				 <td>仓库名称</td>
-                    
-                			</tr>
-                	</thead>
-                 	<tbody>           
-                		<tr v-for="war in warehouseStart" @click="quhuiStart3(war)">
-                    		<td>{{war.warehouseId}}</td>
+			<div id="warEnd" style="display: none;">
+				<table id="tb4" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
+					<thead>
+						<tr>
+
+							<td>仓库编号</td>
+							<td>仓库名称</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="war in warehouseStart" @click="quhuiStart3(war)">
+							<td>{{war.warehouseId}}</td>
 							<td>{{war.warehouseName}}</td>
-                		</tr>
-                	</tbody>
-               	</table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
+
 			<!--查询结果-->
 			<div class="layui-row">
 				<table id="tbs" class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                <thead>
-                	<tr>
-                	
-                   	<td>物料编号</td>
-                    <td>物料名称</td>
-                    <td>规格型号</td>
-                    <td>物料类别</td>
-                    <td>单位</td>
-                    <td>仓库编号</td>
-                    <td>仓库名称</td>
-                    <td>上期结存数量</td>
-                    <!--<td>本期收入数量</td>
+					<thead>
+						<tr>
+
+							<td>物料编号</td>
+							<td>物料名称</td>
+							<td>规格型号</td>
+							<td>物料类别</td>
+							<td>单位</td>
+							<td>仓库编号</td>
+							<td>仓库名称</td>
+							<td>上期结存数量</td>
+							<!--<td>本期收入数量</td>
                     <td>本期发出数量</td>
                     <td>期末结存数量</td>-->
-                	</tr>
-                </thead>
-                 <tbody>           
-                	<tr v-for="mat in page">
-                		
-                    	<td>{{mat.matterId}}</td>
-						<td>{{mat.matterName}}</td>
-						<td>{{mat.matterSize}}</td>
-						<td>{{mat.mtName}}</td>
-						<td>{{mat.muName}}</td>
-						<td>{{mat.warehouseId}}</td>
-						<td>{{mat.warehouseName}}</td>
-						<td>{{mat.wdLastbalancenumber}}</td>
-						<!--<td>{{wa.inNum}}</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="mat in page">
+
+							<td>{{mat.matterId}}</td>
+							<td>{{mat.matterName}}</td>
+							<td>{{mat.matterSize}}</td>
+							<td>{{mat.mtName}}</td>
+							<td>{{mat.muName}}</td>
+							<td>{{mat.warehouseId}}</td>
+							<td>{{mat.warehouseName}}</td>
+							<td>{{mat.wdLastbalancenumber}}</td>
+							<!--<td>{{wa.inNum}}</td>
 						<td>{{wa.outNum}}</td>
 						<td></td>-->
-                	</tr>
-                </tbody>
-               </table>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 			<div id="motaikunag" style="display: none;">
-				 <div class="layui-row">
-            		<span style="color:#393D49">物料区间：
-            			<input type="text" />~
-            			<input type="text" />
-            		</span>
-            		<span style="color:#393D49">日期区间：
-            			<input type="text" />~
-            			<input type="text" />
-            		</span>
-            		<span style="color:#393D49">仓库区间：
-            			<input type="text" />~
-            			<input type="text" />
-            		</span>
-        		</div>
-    			<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm" style="width: 1000px;">
-                <thead>
-                	<tr>
-                		
-                   	<td>物料编号</td>
-                    <td>物料名称</td>
-                    <td>规格型号</td>
-                    <td>物料类别</td>
-                    <td>单位</td>
-                    <td>仓库编号</td>
-                    <td>仓库名称</td>
-                    <td>上期结存数量</td>
-                    <td>本期收入数量</td>
-                    <td>本期发出数量</td>
-                    <td>期末结存数量</td>
-                	</tr>
-                </thead>
-                 <tbody>           
-                	 <tr  v-for="det in detail">
-						<td><input type="text" v-model="det.matterId"></td>
-						<td><input type="text" v-model="det.matterName"></td>
-						<td><input type="text" v-model="det.matterSize"></td>
-						<td><input type="text" v-model="det.mtName"></td>
-						<td><input type="text" v-model="det.muName"></td>
-						<td><input type="text" v-model="det.warehouseId"></td>
-						<td><input type="text" v-model="det.warehouseName"></td>
-						<td><input type="text" v-model="det.wdLastbalancenumber"></td>
-						<td><input type="text" v-model="det.wdLastbalancenumber"></td>
-						<td><input type="text" v-model="det.wdLastbalancenumber"></td>
-						<td><input type="text" v-model="det.wdLastbalancenumber"></td>
-				</tr>
-                 
-                </tbody>
-                	
-               </table>
-    
+				<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm" style="width: 1000px;">
+					<thead>
+						<tr>
+
+							<td>物料编号</td>
+							<td>物料名称</td>
+							<td>规格型号</td>
+							<td>物料类别</td>
+							<td>单位</td>
+							<td>仓库编号</td>
+							<td>仓库名称</td>
+							<td>上期结存数量</td>
+							<td>本期收入数量</td>
+							<td>本期发出数量</td>
+							<td>期末结存数量</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="det in detail">
+							<td><input type="text" style="text-align: center;" v-model="det.matterId"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.matterName"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.matterSize"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.mtName"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.muName"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.warehouseId"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.warehouseName"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-20"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-3"></td>
+							<td><input type="text" style="text-align: center;" v-model="det.wdLastbalancenumber-17"></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+
 			</div>
 		</div>
 		<script>
-	    
-			
-   
-    </script>
+		</script>
 		<script>
 			var win;
 			var host = "http://127.0.0.1:8080/";
 			var receiptvue = new Vue({
 				el: "#app",
-				data:{
+				data: {
 					page: [],
-					num:[],
-					detail:[],
-					matterStart:[],	//起止物料
-					matterEnd:[],
-					warehouseStart:[],
-					warehouseEnd:[],
-					mat:[]
+					num: [],
+					detail: [],
+					matterStart: [], //起止物料
+					matterEnd: [],
+					warehouseStart: [],
+					warehouseEnd: [],
+					mat: []
 				},
 				methods: {
-					 openModak:function(){
-				     	
-           		 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                win=layer.open({
-                    type:1,//类型
-                    area:['1000px','600px'],//定义宽和高
-                    title:'库存台账',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#motaikunag')//打开的内容
-                });
-            })
-           		 	var matterBegin=$("input:eq(0)").val();
-					var matterEnd=$("input:eq(1)").val();
-					var warehouseBegin=$("input:eq(2)").val();
-					var warehouseEnd=$("input:eq(3)").val();
-					var dateBegin=$("input:eq(4)").val();
-					var dateEnd=$("input:eq(5)").val();
-			alert(matterBegin+","+matterEnd+","+warehouseBegin+","+warehouseEnd+","+dateBegin+","+dateEnd);
-			var that=this;
-			if($("#checkbox-id").get(0).checked){
-            $.ajax({
-            	type:"get",
-            	url: host + "wd_adjustController/doQueryTaiz",
-            	data:{matterBegin:matterBegin,
-						matterEnd:matterEnd,
-						warehouseBegin:warehouseBegin,
-						warehouseEnd:warehouseEnd,
-						dateBegin:dateBegin,dateEnd:dateEnd},
-            	success:function(res){
-            		that.detail = res;
-            	}
-            	
-            });
-            }else{
-            	
-            }
-        },
-         
-        //物料起止开窗
-        outmatterStart:function(){
-        	 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                win=layer.open({
-                    type:1,//类型
-                    area:['400px','300px'],//定义宽和高
-                    title:'物料取回（物料区间）',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#matStart')//打开的内容
-                });
-        	});
-        	var that=this;
-        	$.ajax({
-        		type:"get",
-            	url: host + "wd_adjustController/tzqueryMatter",
-            	success:function(res){
-            		that.matterStart = res;
-            	}
-        	});
-        
-        },
-        quhuiStart:function(mat){
-        	var this_=this;
-        	$.each($("#tb1 tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==mat.matterName){
-						$(b).css("background","skyblue");
-					}else{
-						$(b).css("background","");
+					clear:function(){
+						$("input").attr("value"," ");
+						this.selAll();
+						
+					},
+					openModak: function() {
+						if($("input:eq(0)").val() == "" || $("input:eq(1)").val() == "") {
+							alert("请输入物料区间！");
+						}
+						else if($("input:eq(2)").val() == "" || $("input:eq(3)").val() == "") {
+							alert("请输入仓库区间！");
+						}
+						else if($("input:eq(4)").val() == "" || $("input:eq(5)").val() == "") {
+							alert("请输入日期区间！");
+						}
+						else {
+
+							layui.use(['layer'], function() {
+								var layer = layui.layer,
+									$ = layui.$;
+								win = layer.open({
+									type: 1, //类型
+									area: ['1000px', '600px'], //定义宽和高
+									title: '库存台账', //题目
+									shadeClose: false, //点击遮罩层关闭
+									content: $('#motaikunag') //打开的内容
+								});
+							})
+							var matterBegin = $("input:eq(0)").val();
+							var matterEnd = $("input:eq(1)").val();
+							var warehouseBegin = $("input:eq(2)").val();
+							var warehouseEnd = $("input:eq(3)").val();
+							var dateBegin = $("input:eq(4)").val();
+							var dateEnd = $("input:eq(5)").val();
+							var that = this;
+
+							$.ajax({
+								type: "get",
+								url: host + "wd_adjustController/doQueryTaiz",
+								data: {
+									matterBegin: matterBegin,
+									matterEnd: matterEnd,
+									warehouseBegin: warehouseBegin,
+									warehouseEnd: warehouseEnd,
+									dateBegin: dateBegin,
+									dateEnd: dateEnd
+								},
+								success: function(res) {
+									that.detail = res;
+								}
+
+							});
+						}
+					},
+
+					//物料起止开窗
+					outmatterStart: function() {
+						layui.use(['layer'], function() {
+							var layer = layui.layer,
+								$ = layui.$;
+							win = layer.open({
+								type: 1, //类型
+								area: ['400px', '300px'], //定义宽和高
+								title: '物料取回（物料区间）', //题目
+								shadeClose: false, //点击遮罩层关闭
+								content: $('#matStart') //打开的内容
+							});
+						});
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: host + "wd_adjustController/tzqueryMatter",
+							success: function(res) {
+								that.matterStart = res;
+							}
+						});
+
+					},
+					quhuiStart: function(mat) {
+						var this_ = this;
+						$.each($("#tb1 tbody tr"), function(a, b) {
+							if($(b).find("td:eq(1)").text() == mat.matterName) {
+								$(b).css("background", "skyblue");
+							} else {
+								$(b).css("background", "");
+								layer.close(win);
+							}
+
+						})
+						receiptvue.mat = mat;
+						var mtsv = $("input:eq(0)").val();
+						mtsv = mat.matterName;
+						$("input:eq(0)").attr("value", mtsv);
+						$("#matStart").css("display", "none");
+					},
+
+					//物料结束开窗
+					outmatterEnd: function() {
+						layui.use(['layer'], function() {
+							var layer = layui.layer,
+								$ = layui.$;
+							win = layer.open({
+								type: 1, //类型
+								area: ['400px', '300px'], //定义宽和高
+								title: '物料取回（物料区间）', //题目
+								shadeClose: false, //点击遮罩层关闭
+								content: $('#matEnd') //打开的内容
+							});
+						});
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: host + "wd_adjustController/tzqueryMatter",
+							success: function(res) {
+								that.matterEnd = res;
+							}
+						});
+					},
+					quhuiStart1: function(mat) {
+						var this_ = this;
+						$.each($("#tb2 tbody tr"), function(a, b) {
+							if($(b).find("td:eq(1)").text() == mat.matterName) {
+								$(b).css("background", "skyblue");
+							} else {
+								$(b).css("background", "");
+							}
+
+						})
+						receiptvue.mat = mat;
+						var mtsv = $("input:eq(1)").val();
+						mtsv = mat.matterName;
+						$("input:eq(1)").attr("value", mtsv);
 						layer.close(win);
-					}
-					
-				})
-        		receiptvue.mat=mat;
-        		var mtsv=$("input:eq(0)").val();
-        		mtsv=mat.matterName;
-        		$("input:eq(0)").attr("value",mtsv);
-        		$("#matStart").css("display","none");
-        },
-        
-        //物料结束开窗
-        outmatterEnd:function(){
-        	 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                win=layer.open({
-                    type:1,//类型
-                    area:['400px','300px'],//定义宽和高
-                    title:'物料取回（物料区间）',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#matEnd')//打开的内容
-                });
-        	});
-        	var that=this;
-        	$.ajax({
-        		type:"get",
-            	url: host + "wd_adjustController/tzqueryMatter",
-            	success:function(res){
-            		that.matterEnd = res;
-            	}
-        	});
-        },
-        quhuiStart1:function(mat){
-        	var this_=this;
-        	$.each($("#tb2 tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==mat.matterName){
-						$(b).css("background","skyblue");
-					}else{
-						$(b).css("background","");
-					}
-					
-				})
-        		receiptvue.mat=mat;
-        		var mtsv=$("input:eq(1)").val();
-        		mtsv=mat.matterName;
-        		$("input:eq(1)").attr("value",mtsv);
-        		layer.close(win);
-        		
-        },
-         
-        //仓库起止开窗
-        warehouseStarts:function(){
-        	 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                win=layer.open({
-                    type:1,//类型
-                    area:['400px','300px'],//定义宽和高
-                    title:'仓库取回（仓库区间）',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#warStart')//打开的内容
-                });
-        	});
-        	var that=this;
-        	$.ajax({
-        		type:"get",
-            	url: host + "wd_adjustController/tzqueryWarehouse",
-            	success:function(res){
-            		that.warehouseStart = res;
-            	}
-        	});
-        },
-        quhuiStart2:function(war){
-        	var this_=this;
-        	$.each($("#tb3 tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==war.warehouseName){
-						$(b).css("background","skyblue");
-					}else{
-						$(b).css("background","");
-					}
-					
-				})
-        		receiptvue.war=war;
-        		var mtsv=$("input:eq(2)").val();
-        		mtsv=war.warehouseName;
-        		$("input:eq(2)").attr("value",mtsv);
-        		layer.close(win);
-        		
-        },
-        
-        //结束开窗
-        warehouseEnds:function(){
-        	 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                win=layer.open({
-                    type:1,//类型
-                    area:['400px','300px'],//定义宽和高
-                    title:'仓库取回（仓库区间）',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#warEnd')//打开的内容
-                });
-        	});
-        	var that=this;
-        	$.ajax({
-        		type:"get",
-            	url: host + "wd_adjustController/tzqueryWarehouse",
-            	success:function(res){
-            		that.warehouseEnd = res;
-            	}
-        	});
-        },
-        quhuiStart3:function(war){
-        	var this_=this;
-        	$.each($("#tb4 tbody tr"),function(a,b){
-					if($(b).find("td:eq(1)").text()==war.warehouseName){
-						$(b).css("background","skyblue");
-					}else{
-						$(b).css("background","");
-					}
-					
-				})
-        		receiptvue.war=war;
-        		var mtsv=$("input:eq(3)").val();
-        		mtsv=war.warehouseName;
-        		$("input:eq(3)").attr("value",mtsv);
-        		layer.close(win);
-        },
-        selAll:function(){
-        	var this_ = this;
+
+					},
+
+					//仓库起止开窗
+					warehouseStarts: function() {
+						layui.use(['layer'], function() {
+							var layer = layui.layer,
+								$ = layui.$;
+							win = layer.open({
+								type: 1, //类型
+								area: ['400px', '300px'], //定义宽和高
+								title: '仓库取回（仓库区间）', //题目
+								shadeClose: false, //点击遮罩层关闭
+								content: $('#warStart') //打开的内容
+							});
+						});
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: host + "wd_adjustController/tzqueryWarehouse",
+							success: function(res) {
+								that.warehouseStart = res;
+							}
+						});
+					},
+					quhuiStart2: function(war) {
+						var this_ = this;
+						$.each($("#tb3 tbody tr"), function(a, b) {
+							if($(b).find("td:eq(1)").text() == war.warehouseName) {
+								$(b).css("background", "skyblue");
+							} else {
+								$(b).css("background", "");
+							}
+
+						})
+						receiptvue.war = war;
+						var mtsv = $("input:eq(2)").val();
+						mtsv = war.warehouseName;
+						$("input:eq(2)").attr("value", mtsv);
+						layer.close(win);
+
+					},
+
+					//结束开窗
+					warehouseEnds: function() {
+						layui.use(['layer'], function() {
+							var layer = layui.layer,
+								$ = layui.$;
+							win = layer.open({
+								type: 1, //类型
+								area: ['400px', '300px'], //定义宽和高
+								title: '仓库取回（仓库区间）', //题目
+								shadeClose: false, //点击遮罩层关闭
+								content: $('#warEnd') //打开的内容
+							});
+						});
+						var that = this;
+						$.ajax({
+							type: "get",
+							url: host + "wd_adjustController/tzqueryWarehouse",
+							success: function(res) {
+								that.warehouseEnd = res;
+							}
+						});
+					},
+					quhuiStart3: function(war) {
+						var this_ = this;
+						$.each($("#tb4 tbody tr"), function(a, b) {
+							if($(b).find("td:eq(1)").text() == war.warehouseName) {
+								$(b).css("background", "skyblue");
+							} else {
+								$(b).css("background", "");
+							}
+
+						})
+						receiptvue.war = war;
+						var mtsv = $("input:eq(3)").val();
+						mtsv = war.warehouseName;
+						$("input:eq(3)").attr("value", mtsv);
+						layer.close(win);
+					},
+					selAll: function() {
+						var this_ = this;
 						$.ajax({
 							url: host + "wd_adjustController/doQueryTaizAll",
 							type: "get",
 							success: function(res) {
 								this_.page = res;
 								console.log(this_.page[0].matterId)
-								//this.queryNums(this_.page[0].matterId,this_.page[0].warehouseId);
-								/*for (i=0;i<5;i++) {
-									var ma=this_.page[i].matterId;
-									var ha=this_.page[i].warehouseId;
-									console.log(ma);
-										$.ajax({
-        									type:"get",
-        									url:host + "wd_adjustController/queryNum",
-        									data:{
-        											matterId:ma,
-        											warehouseId:ha
-        										},
-        									success:function(result){
-        										this_.num=result;
-        										var inNum=this_.num[0].inNum;
-        										console.log(inNum);
-        										//$("#tbs tbody input:eq(0").attr("value",inNum);
-        										//console.log($("#tbs tbody input:eq(0").val());
-        										
-        								}
-        						});
-								}*/
-							
 							}
 						});
-        }
+					}
 				},
 				created: function() {
-						this.selAll();
-						//this.queryNums();
-						
-					}
+					this.selAll();
+
+				}
 			});
-			
 		</script>
 	</body>
 

@@ -119,9 +119,6 @@
 			                </div>
 			            </div>
 			        </div>
-			        
-
-			        
 			        <div class="layui-col-lg6">
 			            <div class="layui-form">
 			                <div class="layui-form-item">
@@ -163,7 +160,6 @@
 			        <div class="layui-tab">
 			            <ul class="layui-tab-title">
 			                <li class="layui-this">内容</li>
-			              
 			            </ul>
 			            <div class="layui-tab-content" style="padding: 10px 0;">
 			                <div class="layui-tab-item layui-show">
@@ -174,8 +170,6 @@
 								   <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 								</script>
 			                </div>
-			              
-			                
 			            </div>
 			        </div>
 			    </div>
@@ -219,12 +213,12 @@
 			        <div class="layui-col-lg2">
 			            <div class="layui-form">
 			                <div class="layui-form-item">
-			                    <div class="layui-input-block" style="margin-left: 30px;" lay-filter="selectCate1">
-			                        <select @change="alert(1)">
+			                    <div class="layui-input-block" style="margin-left: 30px;" >
+			                        <select lay-filter="selectCate1">
 			                            <option value="">功能</option>
-			                            <option value="0"  v-bind:disabled="zrdbb">载入单币别账款</option>
-			                            <option value="0" disabled>载入多币别账款</option>
-			                            <option value="0" disabled>载入预收</option>
+			                            <option  v-bind:disabled="zrdbb">载入单币别账款</option>
+			                            <option  disabled>载入多币别账款</option>
+			                            <option  disabled>载入预收</option>
 			                        </select>
 			                    </div>
 			                </div>
@@ -244,12 +238,8 @@
 			                </div>
 			            </div>
 			        </div>
-			    </div>
-	
+			   </div>
 			</form>	
-			
-		    
-			
 			<div class="layui-form-item">                       
                 <div class="layui-input-block">  
 		            <button :class="[goFirstPage1 ? lay1 : '', lay2]" class="layui-btn" title="第一笔" @click="goFirstPage"   v-bind:disabled="goFirstPage1"><i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i></button>
@@ -267,10 +257,7 @@
                 	<button :class="[zrdbb ? lay1 : '', lay2]" v-bind:disabled="zrdbb"  @click="zrdbbs" class="layui-btn" >载入单币别账款</button>
                 	<button   @click="yxck" class="layui-btn" >以下冲款</button>
                 </div>
-            </div>
-				
-				
-			
+           </div>
       	</div>
 	</div>    
 
@@ -419,34 +406,46 @@
 					
 				/*vue调用layui日期选择器： 数据双向绑定失败解决*/
 				layui.use('form', function(){
-					  	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-					  	//但是，如果你的HTML是动态生成的，自动渲染就会失效
-					  	//因此你需要在相应的地方，执行下述方法来进行渲染
-					  	form.render(); //更新全部
+				  	var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+				  	//但是，如果你的HTML是动态生成的，自动渲染就会失效
+				  	//因此你需要在相应的地方，执行下述方法来进行渲染
+				  	form.render(); //更新全部
 //					  	form.render('select'); //刷新select选择框渲染
 //					  	form.on('select', 'selectCate1'); //更新 lay-filter="test2" 所在容器内的全部 select 状态
-					  	form.on('select(selectCate1)',function(data){
-					        console.log("显示select");
-					        console.log(data);
+				  	form.on('select(selectCate1)',function(data){
+				        console.log("显示select");
+				        console.log(data);
 //					        this_.page.list[0].currencyMpointset=data.value;
-					        //alert(this_.page.list[0].currencyMpointset=data.value);
-
-					    })
-					  	form.on('select(selectCate2)',function(data){
-					        console.log("显示select");
-					        console.log(data);
+				        //alert(this_.page.list[0].currencyMpointset=data.value);
+						var message=data.value;
+				    	   
+			    	   if(message=="载入单币别账款"){
+			    		   alert(1)
+			    		   this_.zrdbbs();
+			               form.render('select');
+			    	   }
+				    })
+				  	form.on('select(selectCate2)',function(data){
+				        console.log("显示select");
+				        console.log(data);
 //					        this_.page.list[0].currencyMpointset=data.value;
-					        //alert(this_.page.list[0].currencyMpointset=data.value);
+				        //alert(this_.page.list[0].currencyMpointset=data.value);
 
-					    })
-					}); 
+				    })
+				}); 
+					
+					
+					
+					
+					
+
 	          },
 	          computed:{
 	          		
 	          },
-			methods: {//定义函数
+			methods: {//定义函数				
 
-				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		查主表
+				goPage: function(page, size) {//获取分页数据（当前页，每页大小）		查主表          
 //					alert("进入goPage")
 					var this_ = this;					
 					$.ajax({
@@ -477,7 +476,7 @@
 							    this_.Auditing1=false;//审核
 							    this_.noAuditing1=true;//取消审核
 								this_.shbq=true;//审核标签
-							}else{//已审核
+							}else{//已审核 
 //								alert(2)
 								this_.goFirstPage1=false;//第一笔
 					            this_.goPrePage1=false;//上一笔				            
@@ -679,7 +678,6 @@
 							       {type: 'checkbox'}
 //					            	,{field: 'srId', title: '(栏号)',sort:true}
 					                ,{field: 'srType', title: '(单别) '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-					                
 					                , {field: 'srDate', title: '(原单日期)',sort:true}
 					                , {field: 'srNumber', title: '(原单单号)'}
 					                , {field: 'srPcId', title: '(交易对象)'}
@@ -1103,6 +1101,7 @@
 									alert(JSON.stringify(obj2))
 				//					alert(this_.page.list[i].receivableId)
 									alert(obj2.srCurrentbalance)
+									
 						  		
 									$.ajax({//新增详表
 										url : "http://127.0.0.1:8080/Sales_receivablesController/insertSelective",
@@ -1245,11 +1244,6 @@
 				},   
 				khxxxg: function() {//客户信息修改
 					var this_=this;
-					
-					
-					
-					
-					
 					/*修改商品记录表现行余额*/
 //					alert(this.page2[0].srNumber)
 					$.ajax({

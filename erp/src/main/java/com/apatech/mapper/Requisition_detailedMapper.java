@@ -23,12 +23,14 @@ public interface Requisition_detailedMapper {
 	
 	//@Select("SELECT * FROM requisition_detailed WHERE requisition_id=#{requisitionId}")
 	List<Requisition_detailed> queryAllByR_ID(String requisitionId); 
-	
+
     int deleteByPrimaryKey(String rdId);
+    int deleteByrequisitionId(String requisitionId);
 
     int insert(Requisition_detailed record);
 
     int insertSelective(Requisition_detailed record);
+    int insertSelective2(Requisition_detailed record);
 
     Requisition_detailed selectByPrimaryKey(String rdId);
 

@@ -88,6 +88,14 @@
     from supplier
     where supplier_id = #{supplierId,jdbcType=VARCHAR}
   </select>
+  
+  <select id="selectByPrimaryKey2" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplier_name = #{supplierName,jdbcType=VARCHAR}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from supplier
     where supplier_id = #{supplierId,jdbcType=VARCHAR}
@@ -644,6 +652,171 @@
       </if>
     </set>
     where supplier_id = #{supplierId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeySelective2" parameterType="com.apatech.domain.Supplier">
+    update supplier
+    <set>
+      <if test="supplierEasyname != null">
+        supplier_easyname = #{supplierEasyname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEngname != null">
+        supplier_engname = #{supplierEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEasyengname != null">
+        supplier_easyengname = #{supplierEasyengname,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAccountAttribution != null">
+        supplier_account_attribution = #{supplierAccountAttribution,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierType != null">
+        supplier_type = #{supplierType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierZone != null">
+        supplier_zone = #{supplierZone,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPrincipalman != null">
+        supplier_principalman = #{supplierPrincipalman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinkman != null">
+        supplier_linkman = #{supplierLinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktela != null">
+        supplier_linktela = #{supplierLinktela,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelb != null">
+        supplier_linktelb = #{supplierLinktelb,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierLinktelc != null">
+        supplier_linktelc = #{supplierLinktelc,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierMobilephone != null">
+        supplier_mobilephone = #{supplierMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="adaId != null">
+        ada_id = #{adaId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null">
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierProcurementStaff != null">
+        supplier_procurement_staff = #{supplierProcurementStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTaxcheckno != null">
+        supplier_taxcheckno = #{supplierTaxcheckno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCapitalmoney != null">
+        supplier_capitalmoney = #{supplierCapitalmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierJob != null">
+        supplier_job = #{supplierJob,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierEmail != null">
+        supplier_email = #{supplierEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierWebadd != null">
+        supplier_webadd = #{supplierWebadd,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierFaxno != null">
+        supplier_faxno = #{supplierFaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstsaleinput != null">
+        supplier_cufirstsaleinput = #{supplierCufirstsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCufirstsalereturn != null">
+        supplier_cufirstsalereturn = #{supplierCufirstsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsaleinput != null">
+        supplier_curecentsaleinput = #{supplierCurecentsaleinput,jdbcType=DATE},
+      </if>
+      <if test="supplierCurecentsalereturn != null">
+        supplier_curecentsalereturn = #{supplierCurecentsalereturn,jdbcType=DATE},
+      </if>
+      <if test="supplierTaxIncluded != null">
+        supplier_tax_included = #{supplierTaxIncluded,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierTerminationdate != null">
+        supplier_terminationdate = #{supplierTerminationdate,jdbcType=DATE},
+      </if>
+      <if test="supplierCreditmoney != null">
+        supplier_creditmoney = #{supplierCreditmoney,jdbcType=REAL},
+      </if>
+      <if test="supplierResiduemonet != null">
+        supplier_residuemonet = #{supplierResiduemonet,jdbcType=REAL},
+      </if>
+      <if test="supplierCondition != null">
+        supplier_condition = #{supplierCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCuendorderday != null">
+        supplier_cuendorderday = #{supplierCuendorderday,jdbcType=DATE},
+      </if>
+      <if test="supplierHonestlv != null">
+        supplier_honestlv = #{supplierHonestlv,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierInvoiceType != null">
+        supplier_invoice_type = #{supplierInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCufirstcollect != null">
+        supplier_cufirstcollect = #{supplierCufirstcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierHouldcollect != null">
+        supplier_houldcollect = #{supplierHouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendcollect != null">
+        supplier_cuendcollect = #{supplierCuendcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCuendshouldcollect != null">
+        supplier_cuendshouldcollect = #{supplierCuendshouldcollect,jdbcType=REAL},
+      </if>
+      <if test="supplierCudecoration != null">
+        supplier_cudecoration = #{supplierCudecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCollectiontermid != null">
+        supplier_collectiontermid = #{supplierCollectiontermid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierInvoicetypeid != null">
+        supplier_invoicetypeid = #{supplierInvoicetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="supplierHouldcollectmoney != null">
+        supplier_houldcollectmoney = #{supplierHouldcollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierCurecollectmoney != null">
+        supplier_curecollectmoney = #{supplierCurecollectmoney,jdbcType=INTEGER},
+      </if>
+      <if test="supplierAddressNo != null">
+        supplier_address_no = #{supplierAddressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierRemark != null">
+        supplier_remark = #{supplierRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierAuditing != null">
+        supplier_Auditing = #{supplierAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierYn != null">
+        supplier_yn = #{supplierYn,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom1 != null">
+        supplier_custom1 = #{supplierCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom2 != null">
+        supplier_custom2 = #{supplierCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom3 != null">
+        supplier_custom3 = #{supplierCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom4 != null">
+        supplier_custom4 = #{supplierCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom5 != null">
+        supplier_custom5 = #{supplierCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierCustom6 != null">
+        supplier_custom6 = #{supplierCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplier_name = #{supplierName,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.apatech.domain.Supplier">
     update supplier

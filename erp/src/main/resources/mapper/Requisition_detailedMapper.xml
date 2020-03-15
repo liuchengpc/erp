@@ -277,4 +277,119 @@
       rd_custom5 = #{rdCustom5,jdbcType=VARCHAR}
     where rd_id = #{rdId,jdbcType=VARCHAR}
   </update>
+  
+  <insert id="insertSelective2" parameterType="com.apatech.domain.Requisition_detailed">
+    insert into requisition_detailed
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rdId != null and rdId !=''">
+        rd_id,
+      </if>
+      <if test="requisitionId != null and requisitionId !=''">
+        requisition_id,
+      </if>
+      <if test="matterId != null and matterId !=''">
+        matter_id,
+      </if>
+      <if test="rdEngname != null and rdEngname !=''">
+        rd_engname,
+      </if>
+      <if test="rdRemark != null and rdRemark !=''">
+        rd_remark,
+      </if>
+      <if test="rdPriceIncludeTax != null and rdPriceIncludeTax !=''">
+        rd_price_include_tax,
+      </if>
+      <if test="rdSingleNum != null">
+        rd_single_num,
+      </if>
+      <if test="rdBatchNumber != null and rdBatchNumber !=''">
+        rd_batch_number,
+      </if>
+      <if test="rdRemarks != null and rdRemarks !=''">
+        rd_remarks,
+      </if>
+      <if test="rdAuditing != null and rdAuditing !=''">
+        rd_auditing,
+      </if>
+      <if test="rdYn != null and rdYn !=''">
+        rd_yn,
+      </if>
+      <if test="rdCustom1 != null and rdCustom1 !=''">
+        rd_custom1,
+      </if>
+      <if test="rdCustom2 != null and rdCustom2 !=''">
+        rd_custom2,
+      </if>
+      <if test="rdCustom3 != null and rdCustom3 !=''">
+        rd_custom3,
+      </if>
+      <if test="rdCustom4 != null and rdCustom4 !=''">
+        rd_custom4,
+      </if>
+      <if test="rdCustom5 != null and rdCustom5 !=''">
+        rd_custom5,
+      </if>
+      <if test="rdCustom6 != null and rdCustom6 !=''">
+        rd_custom6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rdId != null and rdId !=''">
+        #{rdId,jdbcType=VARCHAR},
+      </if>
+      <if test="requisitionId != null and requisitionId !=''">
+        #{requisitionId,jdbcType=VARCHAR},
+      </if>
+      <if test="matterId != null and matterId !=''">
+        #{matterId,jdbcType=VARCHAR},
+      </if>
+      <if test="rdEngname != null and rdEngname !=''">
+        #{rdEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemark != null and rdRemark !=''">
+        #{rdRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="rdPriceIncludeTax != null and rdPriceIncludeTax !=''">
+        #{rdPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="rdSingleNum != null">
+        #{rdSingleNum,jdbcType=INTEGER},
+      </if>
+      <if test="rdBatchNumber != null and rdBatchNumber !=''">
+        #{rdBatchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rdRemarks != null and rdRemarks !=''">
+        #{rdRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="rdAuditing != null and rdAuditing !=''">
+        #{rdAuditing,jdbcType=VARCHAR},
+      </if>
+      <if test="rdYn != null and rdYn !=''">
+        #{rdYn,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom1 != null and rdCustom1 !=''">
+        #{rdCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom2 != null and rdCustom2 !=''">
+        #{rdCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom3 != null and rdCustom3 !=''">
+        #{rdCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom4 != null and rdCustom4 !=''">
+        #{rdCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom5 != null and rdCustom5 !=''">
+        #{rdCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="rdCustom6 != null and rdCustom6 !=''">
+        #{rdCustom6,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByrequisitionId" parameterType="java.lang.String">
+    delete from requisition_detailed
+    where requisition_id = #{requisitionId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

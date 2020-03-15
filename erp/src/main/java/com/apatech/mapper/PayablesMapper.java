@@ -11,6 +11,7 @@ import com.apatech.domain.Team;
 public interface PayablesMapper {
 	 List<Payables> selectAll();
 	 
+	 List<Payables> selectAll2(String payablesSupplierName);
 	 
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
@@ -24,6 +25,8 @@ public interface PayablesMapper {
 	
     int deleteByPrimaryKey(String payablesId);
 
+    int deleteByPrimaryKey2(String payablesSupplierName);
+    
     int insert(Payables record);
 
     int insertSelective(Payables record);

@@ -50,7 +50,7 @@
                     <div class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-input-block" style="margin-left: 3px;">
-                                <input type="text" placeholder="0" class="layui-input" v-model="charLength">
+                                <input type="text" placeholder="0" class="layui-input" >
                             </div>
                         </div>
                     </div>
@@ -58,11 +58,11 @@
                 <div class="layui-col-xs1" style="margin-left: 3px;">
                     <div class="layui-btn-group">
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
-                                style="height:24px;width: 50%;padding: 0;" @click="charLengthMinute()">
+                                style="height:24px;width: 50%;padding: 0;" >
                             <i class="layui-icon"></i>
                         </button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-xs"
-                                style="height:24px;width: 50%;padding: 0;" @click="charLengthAdd()">
+                                style="height:24px;width: 50%;padding: 0;" >
                             <i class="layui-icon lyaui-icon-right"></i>
                         </button>
                     </div>
@@ -145,10 +145,16 @@
                     <col width="150">
                     <col width="150">
                     <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
                     <col>
                 </colgroup>
                 <thead>
                 <tr>
+                	
                     <th>物料编号</th>
                     <th>物料名称</th>
                     <th>规格编号</th>
@@ -160,15 +166,15 @@
                 </tr>
                 </thead>
                 <tbody>           
-                <tr v-for="stu in customerlist" @click="dianji(stu.customerId)">
-                    <td>{{stu.customerId}}</td>
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
-                    <td>{{stu.customerName}}</td> 
+                <tr v-for="stu in list" @click="dianji(stu)">
+                    <td>{{stu.matterId}}</td>
+                    <td>{{stu.mmatterName}}</td> 
+                    <td>{{stu.mamuId}}</td> 
+                    <td>{{stu.mmatterSize}}</td> 
+                    <td>{{stu.muName}}</td> 
+                    <td>{{stu.mmatterNowcount}}</td> 
+                    <td>{{stu.mmatterNowavgcost}}</td> 
+                    <td>{{stu.mmonePrice}}</td> 
                 </tr>
                 </tbody>
             </table>
@@ -181,25 +187,74 @@
     layui.use(['form'], function () {
         var form = layui.form;
     });
-    var kehuvue = new Vue({
+    var dizhi = window.location.href.split("=")[1];
+    var mattervue = new Vue({
     	el:"#app",
 		data:{	
-			customerlist:[],
-			customerId:""
+			list:[],
+			list2:[],
+			list3:[]
 		},methods:{
-			dianji(customerId){
-				kehuvue.customerId=customerId;
+			dianji(stu){
+				if(mattervue.list2.includes(stu)){
+					mattervue.list2.splice(stu);
+					$each($("table tbody tr"),function(a,b){
+						if($(b).find("td:eq(1)").text()==stu.mmatterName){
+							$(b).css("background","lightblue");
+						}
+					})
+				}else{
+					mattervue.list2.push(stu);
+					$.each($("table tbody tr"),function(a,b){
+					if($(b).find("td:eq(1)").text()==stu.mmatterName){
+						$(b).css("background","lightblue");
+					}
+				})
+				}
 			},
 			quhui(){
-				parent["sales_outboundvue"].page.list[0].customerId=kehuvue.customerId;
+				$.each(mattervue.list2,function(a,b) {
+					if(dizhi=="receiptvue"){
+						var cnmb={
+							matterId:b.matterId,
+							mmatterName:b.mmatterName,
+							mamuId:b.mamuId,
+							mmatterSize:b.mmatterSize,
+							muName:b.muName,
+							mmatterNowcount:b.mmatterNowcount,
+							mmatterNowavgcost:b.mmatterNowavgcost,
+							mmonePrice:b.mmonePrice
+						};
+						mattervue.list3.push(cnmb);
+					}else{
+						var cnmb={
+							matterId:b.matterId,
+							mmatterName:b.mmatterName,
+							mamuId:b.mamuId,
+							mmatterSize:b.mmatterSize,
+							muName:b.muName,
+							mmatterNowcount:b.mmatterNowcount,
+							mmatterNowavgcost:b.mmatterNowavgcost,
+							mmonePrice:b.mmonePrice
+						};
+						mattervue.list3.push(cnmb);
+					}
+				});	
+				
+				parent[dizhi].page.list[0].list=mattervue.list3;
+				parent[dizhi].tableshuax();
 				parent.layer.close(parent.layer.getFrameIndex(window.name));
+				
+				/*parent[dizhi].bianji();
+					*/
+					
 			}
 		},created:function(){
 			$.ajax({
 			type:"get",
-			url:"http://127.0.0.1:8080/CustomerController/selectAll",
+			url:"http://127.0.0.1:8080/wdMatterController/selectAll",
 			success:function(res){
-				kehuvue.customerlist=res;
+				mattervue.list=res;
 			}
 		});
 		}

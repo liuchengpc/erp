@@ -19,9 +19,30 @@
         #app{
             padding: 15px;
         }
+        
+        .shbqys2{
+            position: fixed;/*这里一定要设置*/
+   z-index: 999999;/*这里是该元素与显示屏的距离，据说越大越好，但是我也没有看到效果，因为没有它也是可以的*/
+   right: 0px;
+            height: 35px; 
+            width: 300px; 
+            background: #f00;
+            text-align: center;
+            margin-top: 5.5%;
+            margin-right: -5%;
+            text-decoration: none;
+            color:#fff;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            font-size: 25px;
+        }
     </style>
 </head>
 <body>
+	<a class="shbqys2" id="shbq" href="javasript:;" hidden="hidden">已审核</a>
 <div id="app">
     <div class="layui-row" v-for="pages,index in page.list">
         <div class="layui-col-lg6">
@@ -378,6 +399,7 @@
 							    this_.noAuditing1 =true;//取消审核
 								
 							}else{
+								$("#shbq").attr("hidden",false);
 								this_.diasabledInput=false;//input不可以编辑
 								this_.isinsert=true;//开启新增模式
 								this_.isedit=false;//关闭修改模式													
@@ -766,6 +788,7 @@
 												"priabillType":obj.data.priabillType,
 												"priabillNumber":priabillNumber33,
 												"priabillRemarks":obj.data.priabillRemarks,
+												"priabillCustom2":obj.data.priadetailsId,
 												"priabillCustom9":obj.data.priabillPrice,
 												"priabillCustom10":$("#priabillSupplierName").val()
 											}
@@ -1030,6 +1053,7 @@
 					this.diasabledInput=false;//input可以编辑
 					this.isinsert=true;//开启新增模式
 					this.isedit=false;//关闭修改模式
+					$("#shbq").attr("hidden",true);
 					this.getno();
 					
 					
@@ -1068,8 +1092,6 @@
 						 
 						var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
 				   	/*获取当前时间*/
-					
-					
 					
 					var this_ = this;
 					//修改信息
@@ -1125,7 +1147,7 @@
 					  		//alert("系统提示：" +res.message);
 							this_.isinsert=false;//关闭新增模式
 							this_.isedit=false;//关闭编辑模式
-							this_.goPage(1, 1);		
+							this_.goPage(this_.page.pageNum, 1);		
 				        }
 					});
 				},
@@ -1220,6 +1242,7 @@
 				Auditing: function() {//审核	
 					var this_ = this;
 				    if(this.Auditing1=true){
+				    	$("#shbq").attr("hidden",false);
 				    	this.diasabledInput=false;//input不可以编辑
 						this.isinsert=true;//开启新增模式
 						this.isedit=true;//开启修改模式
@@ -1257,41 +1280,58 @@
 				},   
 				noAuditing: function() {//反审核
 					var this_ = this;
-					if(this.noAuditing1=true){
-				    	this.diasabledInput=true;//input可以编辑
-						this.isinsert=true;//开启新增模式
-						this.isedit=false;//关闭修改模式
-						this.getno();
-											
-						this.goFirstPage1 =false;//第一笔
-			            this.goPrePage1 =false;//上一笔				            
-		             	this.goNextPage1 =false;//下一笔
-				     	this.goLastPage1 =false;//后一笔
-		             	this.inset1 =false;   //新增      
-	             		this.return1=true;//返回
-		             	this.saves1 =true;//保存 
-		             	this.update1 =false;//编辑
-		             	this.deletes1 =false;//删除		
-					    
-					    var pbId = this.page.list[0].priabillId;
-					    var updateObj = this.page.list[0];
-					    updateObj.priabillAuditing="0";
-					    $.ajax({
-							url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective3",
-							type:"post",
-							data:JSON.stringify(updateObj),
-							async:false,
-						  	dataType:'json',
-						  	contentType:"application/json;charset=utf-8",
-						  	success:function (res) {
-						  		//alert("系统提示：" +res.message);
-								this_.isinsert=false;//关闭新增模式
-								this_.isedit=false;//关闭编辑模式
-								layer.msg('反审核成功！');
-								this_.goPage(this.page.pageNum, 1);		
-					        }
-						});
-				    }
+					
+					layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider','form'], function(){
+								var form = layui.form;
+						        var table = layui.table;
+								/*var $ = layui.jquery, layer = layui.layer;*/
+								var $ = layui.$, layer = layui.layer;
+								
+								var bbq = table.cache["materialsContent2"];
+								for(var w=0;w<bbq.length-1;w++){
+									if(parseFloat(bbq[w].priabillCustom9)!=parseFloat(bbq[w].priabillPrice)){
+										layer.msg("本单据已进行冲抵业务，无法反审核！");
+										return;
+									}
+								}
+								
+								if(this_.noAuditing1=true){
+									$("#shbq").attr("hidden",true);
+							    	this_.diasabledInput=true;//input可以编辑
+									this_.isinsert=true;//开启新增模式
+									this_.isedit=false;//关闭修改模式
+									this_.getno();
+														
+									this_.goFirstPage1 =false;//第一笔
+						            this_.goPrePage1 =false;//上一笔				            
+					             	this_.goNextPage1 =false;//下一笔
+							     	this_.goLastPage1 =false;//后一笔
+					             	this_.inset1 =false;   //新增      
+				             		this_.return1=true;//返回
+					             	this_.saves1 =true;//保存 
+					             	this_.update1 =false;//编辑
+					             	this_.deletes1 =false;//删除		
+								    
+								    var pbId = this_.page.list[0].priabillId;
+								    var updateObj = this_.page.list[0];
+								    updateObj.priabillAuditing="0";
+								    $.ajax({
+										url :"http://127.0.0.1:8080/PriabillController/updateByPrimaryKeySelective3",
+										type:"post",
+										data:JSON.stringify(updateObj),
+										async:false,
+									  	dataType:'json',
+									  	contentType:"application/json;charset=utf-8",
+									  	success:function (res) {
+									  		//alert("系统提示：" +res.message);
+											this_.isinsert=false;//关闭新增模式
+											this_.isedit=false;//关闭编辑模式
+											layer.msg('反审核成功！');
+											this_.goPage(this_.page.pageNum, 1);		
+								        }
+									});
+							    }
+						});										
 				},
 				selectCk: function() {//下拉框
 					alert(1);

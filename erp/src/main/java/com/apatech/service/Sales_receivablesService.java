@@ -17,6 +17,14 @@ public class Sales_receivablesService {
 	@Autowired
 	private Sales_receivablesMapper dao;
 	
+	public int selectcount() {
+		return dao.selectcount();
+	}
+	
+	public int updatenum(String id) {
+		return dao.updatenum(id);
+	}
+	
 	 public PageInfo<Sales_receivables> selectAllpage(Integer pageNum,Integer pageSize){
     	System.out.println("分页的集合："+dao.selectAll().toString());
 		 

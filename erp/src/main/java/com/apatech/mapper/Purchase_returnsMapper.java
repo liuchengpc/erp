@@ -52,4 +52,6 @@ public interface Purchase_returnsMapper {
     int updateDetailsList(@Param("list") List<Purchase_returns_detailed> list);
 
     int deleteDetailsByPureId(String pureId);
+
+    void insertDetailsList(List<Purchase_returns_detailed> details);
 }

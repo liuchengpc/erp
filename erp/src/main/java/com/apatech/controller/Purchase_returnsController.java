@@ -171,6 +171,8 @@ public class Purchase_returnsController {
 	@PostMapping("/insertWithDetails")
 	@ResponseBody
 	public Map<String,String> insertWithDetails(@RequestBody PurchaseReturnsPojo returnsPojo){
+		System.out.println(returnsPojo.getDetails().size());
+		dao.formatData(returnsPojo);
 		System.out.println(returnsPojo);
 		Map<String, String> map = new HashMap<>();
 		try {

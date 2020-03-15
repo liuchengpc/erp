@@ -53,13 +53,13 @@
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">单据日期</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationDate">
+								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationDate" disabled="false">
 							</div>
 						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label" style="color:#009688;">单据号码</label>
 							<div class="layui-input-block">
-								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationNo">
+								<input type="text" name="title" class="layui-input" v-model="pages.checkDocumentationNo" disabled="false">
 							</div>
 						</div>
 						<div class="layui-form-item">
@@ -268,40 +268,132 @@
 		}
 		
 	}
+	
+	//属性初始化
+	function cleanobj(obj){
+		for(var o in obj){
+			obj[o]="";
+		}
+	}
 	//子页面物料主文件设定调方法取回值
 	function wlqh(id){
+		//使ajax同步
+		$.ajaxSettings.async=false;
 		console.log("物料取回");
-		this.listVm.page.list[0].cd_List="";
-		for(i=0;i<id.length;i++){
-			console.log(id[i]);
-			$.ajax({
-				type:"get",
-				url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
-				data:{
-					matterId:id[i]
-				},
-				success:function(res){
-					this.listVm.page.list[0].cd_List[i].matterId=id[i];
-					this.listVm.page.list[0].cd_List[i].cdName=res.matterName;
-					this.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
-					this.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
-				}
-			});
-			$.ajax({
-				type:"get",
-				url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
-				data:{
-					matterId:id[i]
-				},
-				success:function(res){
-					this.listVm.page.list[0].cd_List[i].matterId=id[i];
-					this.listVm.page.list[0].cd_List[i].cdName=res.matterName;
-					this.listVm.page.list[0].cd_List[i].cdFormat=res.matterSize;
-					this.listVm.page.list[0].cd_List[i].cdIncludeTax=res.mu_name;
-				}
-			});
-			
+		//cleanobj(this.listVm.cdadd_list);
+		//alert(JSON.stringify(this.listVm.page.list[0].cd_List));
+		//this.listVm.page.list[0].cd_List=JSON.parse("["+JSON.stringify(this.listVm.page.list[0].cd_List+"]"));
+		for(var i=0;i<this.listVm.page.list[0].cd_List.length;i++){
+			cleanobj(this.listVm.page.list[0].cd_List[i]);
+			if(i>0){
+				this.listVm.page.list[0].cd_List.splice(i,1)
+			}
 		}
+		wlqh2(id);
+	}
+	function wlqh2(id){
+		var this_=this;
+		console.log("数据清空后结果为"+JSON.stringify(this_.listVm.cdAdd_list));
+		for(var i=0;i<id.length;i++){
+			console.log("循环第"+i+"次的ajax的id为"+JSON.stringify(id[i].id));
+			wlqh3(id[i].id,i);
+			if(i==id.length-1){
+				wlqh4();
+			}
+		}
+		
+	}
+	function wlqh3(id,i){
+		var this_=this;
+		var list={cdId:"",
+				proofNumber:"",
+				checkId:"",
+				matterId:"",
+				cdName:"",
+				cdFormat:"",
+				cdIncludeTax:"",
+				cdVolume:"",
+				cdInventoriesNumber:"",
+				cdProfitsLossesNumber:"",
+				cdUnitPrice:"",
+				cdLossAmountProfit:"",
+				cdBatchNumber:"",
+				cdCause:"",
+				cdAuditing:"",
+				cdYn:"",
+				cdCustom1:"",
+				cdCustom2:"",
+				cdCustom3:"",
+				cdCustom4:"",
+				cdCustom5:"",
+				cdCustom6:""};
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8080/MatterController/queryAllByPrimaryKey",
+			data:{
+				matterId:id
+			},
+			success:function(res){
+				console.log("ajax第"+i+"次查询出来的结果为"+JSON.stringify(res));
+				console.log("数据赋值第"+i+"次前为"+JSON.stringify(list));
+				list.matterId=res.matterId;
+				list.cdName=res.matterName;
+				list.cdFormat=res.matterSize;
+				list.cdIncludeTax=res.mu_name;
+				console.log("数据赋值第"+i+"次后为"+JSON.stringify(list));
+			}
+		});
+		$.ajax({
+			type:"get",
+			url:"http://127.0.0.1:8080/Check_detailedController/queryBykc",
+			data:{
+				ckid:this_.listVm.page.list[0].warehouseId,
+				wlid:id
+			},
+			success:function(res){
+				console.log("库存单价"+JSON.stringify(res));
+				list.cdVolume=res.ku_cun;
+				list.cdInventoriesNumber=res.ku_cun;
+				list.cdProfitsLossesNumber=0;
+				list.cdUnitPrice=res.dan_jia;
+				list.cdLossAmountProfit=0;
+			}
+		});
+		if(i==0){
+			this.listVm.page.list[0].cd_List[0]=list;
+		}
+		if(i>0){
+			this.listVm.page.list[0].cd_List.push(list);
+		}
+		//alert(JSON.stringify(this.listVm.page.list[0].cd_List));
+	}
+	function wlqh4(){
+		var this_=this;
+		console.log("绑定上表格前的数据为"+JSON.stringify(this_.listVm.page.list[0].cd_List));
+		layui.use('table', function(){
+		    var table = layui.table;
+		    table.render({
+		        elem: '#materialsContent'
+		        ,url:''//'https://www.layui.com/demo/table/user/'
+				,data:this_.listVm.page.list[0].cd_List//[{rdId:1,matterId:2,rdEngname:3,rdRemark:4,rdPriceIncludeTax:5,rdSingleNum:6,rdBatchNumber:7,rdRemarks:8}]
+		        ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+		        , cols: [[
+					 {type:'numbers', 					title: '(栏号)', 		sort: true 	,width:'7%'		}
+					,{field: 'cdId', 					title: 'id', 		sort: true, 	hide:true		}
+					, {field: 'matterId', 				title: '物料编号'									} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+					, {field: 'cdName', 				title: '(物料名称)', 	sort: true					}
+					, {field: 'cdFormat', 				title: '(规格型号)'									}
+					, {field: 'cdIncludeTax', 			title: '(单位)'										}
+					, {field: 'cdVolume', 				title: '(账面数量)', 				align: 'center'	}//单元格内容水平居中
+					, {field: 'cdInventoriesNumber', 	title: '盘点数量', 					align: 'center'	,edit:"text"}//单元格内容水平居中
+					, {field: 'cdProfitsLossesNumber', 	title: '(盈亏数量)', 				align: 'center'	} //单元格内容水平居中
+					, {field: 'cdUnitPrice', 			title: '单价', 			sort: true, align: 'right'	,edit:"text"} //单元格内容水平居中
+					, {field: 'cdLossAmountProfit', 	title: '(盈亏金额)', 	sort: true, align: 'right'	}
+					, {field: 'cdBatchNumber', 			title: '(批号)', 		sort: true, align: 'center'	,toolbar: '#barDemo'}
+					, {field: 'cdCause', 				title: '原因', 			sort: true, align: 'right'	,edit:"text"}
+		        ]]
+		    });
+		});
 	}
 	//创建vue实例
 	var listVm = new Vue({
@@ -327,15 +419,37 @@
 			
 			lay1:'layui-btn-primary',
 			lay2:'layui-btn',
-			zt:""
+			zt:"",
+			cdadd_list:{
+				cdId:"",
+				proofNumber:"",
+				checkId:"",
+				matterId:"",
+				cdName:"",
+				cdFormat:"",
+				cdIncludeTax:"",
+				cdVolume:"",
+				cdInventoriesNumber:"",
+				cdProfitsLossesNumber:"",
+				cdUnitPrice:"",
+				cdLossAmountProfit:"",
+				cdBatchNumber:"",
+				cdCause:"",
+				cdAuditing:"",
+				cdYn:"",
+				cdCustom1:"",
+				cdCustom2:"",
+				cdCustom3:"",
+				cdCustom4:"",
+				cdCustom5:"",
+				cdCustom6:""
+			}
 		},
 		methods: {//定义函数
 
 			goPage: function(page, size) {//获取分页数据（当前页，每页大小）		
 //					alert("进入goPage")
 				var this_ = this;		
-				this.Auditing1 =false;//审核
-				this.noAuditing1 =false;//取消审核
 				$.ajax({
 					url : "http://127.0.0.1:8080/CheckController/queryAllpage",
 					type:"get",
@@ -344,6 +458,17 @@
 					success:function (res) {
 						//res.data获取服务器返回的数据
 						this_.page = res;
+						if(this_.page.list[0].checkAuditing==1){
+							this_.noAuditing1 =false;//取消审核
+							this_.Auditing1 =true;//审核
+							this_.update1=true;//编辑
+							this_.deletes1=true;//删除
+						}else{
+							this_.noAuditing1 =true;//取消审核
+							this_.Auditing1 =false;//审核
+							this_.update1=false;//编辑
+							this_.deletes1=false;//删除
+						}
 						console.info("详表表数据：");
 						console.info(this_.page.list);
 						console.info(JSON.stringify(this_.page.list));
@@ -418,25 +543,34 @@
 				this.noAuditing1 =false;//取消审核
 			},
 			inset: function() {//新增按钮
-				this.page.list[0].requisitionId="";//调拨单编号（主键 唯一）
-				this.page.list[0].requisitionOutWarehouse="";//调出仓库id
-				this.page.list[0].requisitionInputWarehouse="";//调入仓库id
-				this.page.list[0].requisitionDocumentationDate="";//单据日期
-				this.page.list[0].requisitionDocumentationNo="";//单据号码
-				this.page.list[0].requisitionForm="";//制单人员
-				this.page.list[0].isReviewStaff="";//复核人员
-				this.page.list[0].requisitionRemark="";//备注
-				this.page.list[0].requisitionAuditing="";//是否审核(0否1是,默认0)
-				this.page.list[0].rd_list="";//调拨详表
-				this.page.list[0].requisitionOutWarehouseName="";//调出仓库名称
-				this.page.list[0].requisitionInputWarehouseName="";//调入仓库名称
-				this.page.list[0].requisitionYn="";//是否删除（0 否 1 是 ，默认0）
-				this.page.list[0].requisitionCustom1="";//创建时间
-				this.page.list[0].requisitionCustom2="";//自定义2
-				this.page.list[0].requisitionCustom3="";//自定义3
-				this.page.list[0].requisitionCustom4="";//自定义4
-				this.page.list[0].requisitionCustom5="";//自定义5
-				this.page.list[0].requisitionCustom6="";//自定义6
+				this.page.list[0].checkId="";//id（主键 唯一）               
+				this.page.list[0].warehouseId="";//盘点仓库id
+				this.page.list[0].scAppreciationSubjects="";//增值科目id
+				this.page.list[0].scImpairmentSubjects="";//减值科目id
+				this.page.list[0].checkDocumentationDate="";//单据日期
+				this.page.list[0].checkDocumentationNo="";//单据号码
+				this.page.list[0].checkBuyer="";//盘点人员
+				this.page.list[0].checkBelongsSection="";//所属部门
+				this.page.list[0].checkForm="Admin";//制单人员
+				this.page.list[0].checkCheckagainStaff="";//复核人员
+				this.page.list[0].checkRemark="";//备注
+				this.page.list[0].checkAuditing="";//是否审核
+				this.page.list[0].checkYn="";//是否删除（0 否 1 是 ，默认0）
+				this.page.list[0].checkCustom1="";//自定栏1
+				this.page.list[0].checkCustom2="";//自定栏2
+				this.page.list[0].checkCustom3="";//自定栏3
+				this.page.list[0].checkCustom4="";//自定栏4(占用)凭证编号
+				this.page.list[0].checkCustom5="";//自定栏5(占用)
+				this.page.list[0].checkCustom6="";//自定栏6(占用)
+				for(var i=0;i<this.page.list[0].cd_List.length;i++){
+					this.qkobj(this.page.list[0].cd_List[i]);
+					if(i>0){
+						this.page.list[0].cd_List.splice(i,1);
+					}
+				}
+				this.page.list[0].scAppreciationSubjects_Name="";//增值科目名称
+				this.page.list[0].scImpairmentSubjects_Name="";//减值科目名称
+				this.page.list[0].warehouse_Name="";//盘点仓库名称
 				var this_=this;
 				
 				layui.use('table', function(){
@@ -485,6 +619,7 @@
 				this.noAuditing1 =true;//取消审核
 			},
 			insets: function() {//新增
+				console.log("当前新增数据为:"+JSON.stringify(this.page.list[0]));
 				/*获取当前时间*/
 				//判断是否在前面加0
 					function getNow(s) {
@@ -512,13 +647,13 @@
 				var obj=this.page.list[0];
 				
 				$.ajax({
-					url : "http://127.0.0.1:8080/CheckController/insertSelective",
+					url : "http://127.0.0.1:8080/CheckController/insertzx",
 					type:"post",
 					data : JSON.stringify(obj),
 					dataType:'json',	
 					contentType : "application/json;charset=utf-8",
 					success:function (res) {
-						//alert("系统提示：" +res.message);
+						alert("系统提示：" +res.message);
 						this_.isinsert=false;//关闭新增模式
 						this_.isedit=false;//关闭编辑模式
 						this_.goPage(1, 1);		
@@ -578,13 +713,13 @@
 				var obj=this.page.list[0];
 				
 				$.ajax({
-					url : "http://127.0.0.1:8080/CheckController/updateByPrimaryKeySelective",
+					url : "http://127.0.0.1:8080/CheckController/updateByPrimaryKeySelective2",
 					type:"post",
 					data : JSON.stringify(obj),
 					dataType:'json',	
 					contentType : "application/json;charset=utf-8",
 					success:function (res) {
-						//alert("系统提示：" +res.message);
+						alert("系统提示：" +res.message);
 						this_.isinsert=false;//关闭新增模式
 						this_.isedit=false;//关闭编辑模式
 						this_.goPage(1, 1);		
@@ -614,11 +749,79 @@
 				}
 			},   
 			Auditing: function() {//审核
-				
-			},   
-			noAuditing: function() {//取消
-				
-			},   
+				$.ajaxSettings.async=false;
+				var this_=this;
+				var tf=true;
+				for(var i=0;i<this_.page.list[0].cd_List.length;i++){
+					if(this_.page.list[0].cd_List[i].cdInventoriesNumber<0){
+						alert("盘点数量不能小于0");
+						tf=false;
+					}
+				}
+				if(tf){
+					this.AuditionCommit();
+				}
+			},
+			AuditionCommit:function(){//审核提交
+				var this_=this;
+				console.log("进入审核提交");
+				this.page.list[0].checkCheckagainStaff="Admin";
+				var obj=this.page.list[0];
+				$.ajax({
+					url : "http://127.0.0.1:8080/CheckController/sh",
+					type:"post",
+					data : JSON.stringify(obj),
+					dataType:'json',	
+					contentType : "application/json;charset=utf-8",
+					success:function (res) {
+						alert("系统提示：" +res.message);
+						this_.goPage(1, 1);		
+					}
+				});
+				$.ajaxSettings.async=true;
+			},
+			noAuditing: function() {//取消审核
+				$.ajaxSettings.async=false;
+				var this_=this;
+				var tf=true;
+				for(var i=0;i<this_.page.list[0].cd_List.length;i++){
+					$.ajax({
+						type:"get",
+						url:"http://127.0.0.1:8080/Check_detailedController/queryBykc",
+						data:{
+							ckid:this_.page.list[0].warehouseId,
+							wlid:this_.page.list[0].cd_List[i].matterId
+						},
+						success:function(res){
+							console.log("库存单价"+JSON.stringify(res));
+							if(res.ku_cun<this_.page.list[0].cd_List[i].cdProfitsLossesNumber){
+								alert(this_.page.list[0].warehouse_Name+"的"+this_.page.list[0].cd_List[i].cdName+"库存不足,无法取消审核,当前库存数量为:"+res.ku_cun);
+								tf=false;
+							}
+						}
+					});
+				}
+				if(tf){
+					this.noAuditingCommit();
+				}
+			},
+			noAuditingCommit: function() {//取消审核
+				var this_=this;
+				console.log("取消审核提交");
+				var obj=this.page.list[0];
+				$.ajax({
+					url : "http://127.0.0.1:8080/CheckController/qxsh",
+					type:"post",
+					data : JSON.stringify(obj),
+					dataType:'json',	
+					contentType : "application/json;charset=utf-8",
+					success:function (res) {
+						alert("系统提示：" +res.message);
+						this_.goPage(1, 1);		
+					}
+				});
+				$.ajaxSettings.async=true;
+			}, 
 			getno:function(){//获取id
 				var this_=this;
 				
@@ -641,9 +844,9 @@
 					 
 					var now=year+'-'+getNow(month)+"-"+getNow(date)+" "+getNow(h)+':'+getNow(m)+":"+getNow(s);
 				/*获取当前时间*/
-				
+				this_.page.list[0].checkDocumentationDate=now;
 				var ss=year+getNow(month)+getNow(date);
-				
+				this_.page.list[0].checkCustom1=ss;
 				$.ajax({
 					url:"http://127.0.0.1:8080/CheckController/getno",
 					type:"get",
@@ -652,7 +855,8 @@
 					success:function (res) {
 						console.info("idfdsfhoewifhw")
 						console.info(res)
-						this_.page.list[0].teamId=ss+res;						
+						this_.page.list[0].checkDocumentationNo=ss+res;
+						this_.page.list[0].checkId=ss+res;
 					}
 				}); 				
 			},add:function(){
@@ -663,7 +867,7 @@
 					content: "window_set_ repository_settings_type.html",
 					area: ['762px', '450px']
 				});
-				//alert(JSON.stringify(this.page.list[0].rd_list));
+				//alert(JSON.stringify(this.page.list[0].cd_List));
 			},ygadd:function(){
 				layer.open({
 					type: 2,
@@ -684,6 +888,10 @@
 			},jzadd:function(){
 				this.zt="jz";
 				this.hjadd();
+			},qkobj:function(obj){
+				for(var o in obj){
+						obj[o]="";
+				}
 			}
 		},
 		mounted: function() {//在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
@@ -693,11 +901,15 @@
 		}
 	
 	});
-	
+	var wthis=this;
 	layui.use('table', function(){
 	  var table = layui.table; 
 	  //监听单元格事件
 	  table.on('rowDouble(materialsContent)',function(obj){
+		if(wthis.listVm.page.list[0].warehouseId==""||wthis.listVm.page.list[0].warehouse_Name==""){
+			alert("请先选择仓库");
+			return ;
+		}
 	    layer.open({
 	    	type: 2,
 	    	title:"多选--物料主文件设定",

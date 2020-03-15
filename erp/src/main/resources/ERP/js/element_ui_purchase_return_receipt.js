@@ -13,11 +13,13 @@ import {
 import {
     currencyDialogConfig
 } from "../config/current-dialog-config.js"
+import {
+    getAllCurrency
+} from "../rest/currency_rest.js"
 
 import {
     departmentDialogConfig
 } from "../config/department-dialog-config.js"
-
 import {
     getAllDepartment
 } from "../rest/team_rest.js"
@@ -25,22 +27,44 @@ import {
 import {
     employeeDialogConfig
 } from "../config/employee-dialog-config.js"
+import {
+    getAllEmployee
+} from "../rest/employee_rest.js"
 
 import {
     materialDialogConfig
 } from "../config/material-dialog-config.js"
+import {
+    getAllMaterial
+} from "../rest/material_rest.js"
 
 import {
     projectDialogConfig
 } from "../config/project-dialog-config.js"
+import {
+    getAllProject
+} from "../rest/project_rest.js"
 
 import {
     supplierDialogConfig
 } from "../config/supplier-dialog-config.js"
+import {
+    getAllSupplier
+} from "../rest/supplier_rest.js"
 
 import {
     warehouseDialogConfig
 } from "../config/warehouse-dialog-config.js"
+import {
+    getAllWarehouse
+} from "../rest/warehouse_rest.js"
+
+import {
+    storeDialogConfig
+}from "../config/store-dialog-config.js"
+import {
+    getAllReviewStore
+}from "../rest/Purchase_receipt_receipt_rest.js"
 
 import {
     orderStatusConfig
@@ -148,7 +172,8 @@ let viewModel = new Vue({
             projectDialogConfig: projectDialogConfig(),
             departmentDialogConfig: departmentDialogConfig(),
             employeeDialogConfig: employeeDialogConfig(),
-            materialDialogConfig: materialDialogConfig()
+            materialDialogConfig: materialDialogConfig(),
+            storeDialogConfig: storeDialogConfig()
         };
     },
     methods: {
@@ -168,7 +193,7 @@ let viewModel = new Vue({
             this.$refs[formName].resetFields();
         },
         handleCommand(command) {
-            this.$message('click on item ' + command);
+            this.storeDialogConfig.dialogVisible = true;
         },
         handleClick(row) {
         },
@@ -394,11 +419,117 @@ let viewModel = new Vue({
             }).catch(error => {
 
             })
+        },
+        getAllEmployee() {
+            getAllEmployee().then(resp => {
+                this.employeeDialogConfig.employees = resp.data;
+            }).catch(error => {
+
+            });
+        },
+        getAllMaterial() {
+            getAllMaterial().then(resp => {
+                this.materialDialogConfig.materials = resp.data;
+            }).catch(error => {
+
+            })
+        },
+        getAllProject() {
+            getAllProject().then(resp => {
+                this.projectDialogConfig.projects = resp.data
+            }).catch(error => {
+
+            });
+        },
+        getAllSupplier() {
+            getAllSupplier().then(resp => {
+                this.supplierDialogConfig.suppliers = resp.data;
+            }).catch(error => {
+
+            })
+        },
+        getAllWarehouse() {
+            getAllWarehouse().then(resp => {
+                this.warehouseDialogConfig.wareHouses = resp.data;
+            }).catch(error => {
+
+            })
+        },
+        getAllReviewStore() {
+            getAllReviewStore().then(resp => {
+                this.storeDialogConfig.stores = resp.data;
+            }).catch(error => {
+
+            });
+        },
+        handleSupplierDialogVisibleChange(visible) {
+            this.supplierDialogConfig.dialogVisible = visible;
+        },
+        handleSupplierDialogRetrieve(selectedContent){
+            this.purechaseReturn.supplierId = selectedContent['supplierId'] + ' ' + selectedContent['supplierName'];
+            this.handleSupplierDialogVisibleChange(false);
+        },
+        handleWarehouseDialogVisibleChange(visible){
+            this.warehouseDialogConfig.dialogVisible = visible;
+        },
+        handleWarehouseDialogRetrieve(selectedContent){
+            this.purechaseReturn.warehouseId = selectedContent['warehouseId'] + ' ' + selectedContent['warehouseName'];
+            this.handleWarehouseDialogVisibleChange(false);
+        },
+        handleCurrencyDialogVisibleChange(visible){
+            this.currencyDialogConfig.dialogVisible = visible;
+        },
+        handleCurrencyDialogRetrieve(selectedContent){
+            this.purechaseReturn.currencyId = selectedContent['currencyId'] + ' ' + selectedContent['currencyName'];
+            this.handleCurrencyDialogVisibleChange(false);
+        },
+        handleProjectDialogVisibleChange(visible){
+            this.projectDialogConfig.dialogVisible = visible;
+        },
+        handleProjectDialogRetrieve(selectedContent){
+            this.purechaseReturn.pureBelongsProject = selectedContent['projectId'] + ' ' + selectedContent['projectName'];
+            this.handleProjectDialogVisibleChange(false);
+        },
+        handleDepartmentDialogVisibleChange(visible){
+            this.departmentDialogConfig.dialogVisible = visible;
+        },
+        handleDepartmentDialogRetrieve(selectedContent){
+            this.purechaseReturn.pureBelongsSection = selectedContent['teamId'] + ' ' + selectedContent['teamName'];
+            this.handleDepartmentDialogVisibleChange(false);
+        },
+        handleEmployeeDialogVisibleChange(visible){
+            this.employeeDialogConfig.dialogVisible = visible;
+        },
+        handleEmployeeDialogRetrieve(selectedContent){
+            this.handleEmployeeDialogVisibleChange(false);
+        },
+        handleMaterialDialogVisibleChange(visible){
+            this.materialDialogConfig.dialogVisible = visible;
+        },
+        handleMaterialDialogRetrieve(selectedContent){
+            this.purechaseReturn.details.push(selectedContent);
+            this.handleMaterialDialogVisibleChange(false);
+        },
+        handleStoreDialogVisibleChange(visible){
+            this.storeDialogConfig.dialogVisible = visible;
+        },
+        handleStoreDialogRetrieve(selectedContent) {
+            console.log(selectedContent);
+            this.handleStoreDialogVisibleChange(false);
+        },
+        handleF4Up(){
+            this.materialDialogConfig.dialogVisible = true;
         }
     },
     created: function () {
         this.getLast();
         this.getAllDepartment();
+        this.getAllEmployee();
+        this.getAllMaterial();
+        this.getAllProject();
+        this.getAllSupplier();
+        this.getAllWarehouse();
+        this.getAllReviewStore();
     },
     watch: {
         orderStatus: function (newOrderStatus, originalOrderStatus) {

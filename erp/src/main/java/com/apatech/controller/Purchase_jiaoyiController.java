@@ -1,5 +1,8 @@
 package com.apatech.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,17 +32,45 @@ public class Purchase_jiaoyiController {
 	@RequestMapping(value = "selectAllpage",method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo<Purchase_jiaoyi> selectAllpage( Integer pageNum,Integer pageSize){
-		System.out.println("进入Purchase_jiaoyiController分页");
+		System.out.println("进入Purchase_jiaoyiController分页 ");
 		System.out.println(pageNum+"/"+pageSize);
     	PageInfo<Purchase_jiaoyi> page=dao.selectAllpage(pageNum, pageSize);
     	return page;
     }
 	
-	
-	
+	/**
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value = "selectAllpageXz",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Purchase_jiaoyi> selectAllpageXz( Integer page,Integer limit){
+		System.out.println("进入Purchase_jiaoyiController分页");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Purchase_jiaoyi> pageFv=dao.selectAllpage(page, limit);
+    	return pageFv;
+    }
 	
 	/**
-	 * 获取单号
+	 * 分页 Xz专属
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 * @throws ParseException 
+	 */
+	@RequestMapping(value = "selectAllpageXz2",method = RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<Purchase_jiaoyi> selectAllpageXz2( Integer page,Integer limit,Purchase_jiaoyi jiaoyi) throws ParseException{
+		System.out.println("进入Purchase_jiaoyiController分页 Xz2");
+		System.out.println(page+"/"+limit);
+    	PageInfo<Purchase_jiaoyi> pageFv=dao.selectAllpage(page, limit,jiaoyi);
+    	return pageFv;
+    }
+	
+	/**
+	 * 获取单号   
 	 * @param billdate
 	 * @return
 	 */
@@ -122,6 +153,29 @@ public class Purchase_jiaoyiController {
 		System.out.println("apId："+apId);
 		Map<String, String> map=new HashMap<String,String>();
     	int i =dao.deleteByPrimaryKey(apId);
+		if (i>0) {
+			map.put("code", "1");
+			map.put("message", "删除成功！");
+		}else {
+			map.put("code", "2");
+			map.put("message", "删除失败！");
+		}
+		return map;
+    }
+	
+	/**
+	 * 根据单号删除
+	 * @param Purchase_jiaoyiid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "deleteByPrimaryKey3",method = RequestMethod.GET)
+	@ResponseBody
+    public Map<String, String> deleteByPrimaryKey3(String jyNumber,Model model) {
+		System.out.println("进入Purchase_jiaoyiController根据主键删除 ");
+		System.out.println("jyNumber："+jyNumber);
+		Map<String, String> map=new HashMap<String,String>();
+    	int i =dao.deleteByPrimaryKey3(jyNumber);
 		if (i>0) {
 			map.put("code", "1");
 			map.put("message", "删除成功！");

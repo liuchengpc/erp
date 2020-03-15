@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
 import com.apatech.domain.wd_Adjust_price;
+import com.apatech.domain.wd_dull;
 import com.apatech.domain.Adjust_price;
 import com.apatech.mapper.Adjust_priceMapper;
 import com.github.pagehelper.PageHelper;
@@ -36,8 +38,8 @@ public class Adjust_priceService {
     public int deleteByPrimaryKey(String apId){
     	return dao.deleteByPrimaryKey(apId);    }
 
-    public int insert(int apId,String apDateid,String updownmid,String apdoworkman,String apRecheckman,String apAuditing,String apYn,String apCustom6){
-    	return dao.inserts(apId,apDateid,updownmid,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
+    public int insert(int apId,String apDateid,String apdoworkman,String apRecheckman,String apAuditing,String apYn,String apCustom6){
+    	return dao.inserts(apId,apDateid,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
     }
     
     public int insertSelective(Adjust_price record){
@@ -63,6 +65,16 @@ public class Adjust_priceService {
 		return dao.insertupd(updownmid,upname,apId,doname);
 		// TODO Auto-generated method stub
 		
+	}
+
+	public List<Dull_section> querySection() {
+		// TODO Auto-generated method stub
+		return dao.querySection();
+	}
+
+	public List<wd_dull> QueryDull(String matterBegin, String matterEnd, String dulldate, String dullSdate,
+			String dullEdate) {
+		return dao.QueryDull(matterBegin,matterEnd,dulldate,dullSdate,dullEdate);
 	}
 
 	

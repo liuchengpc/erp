@@ -1,7 +1,7 @@
 Vue.component('retrieve-dialog', {
     template: `
         <div>
-            <el-dialog :title="title" :visible.sync="dialogVisible">
+            <el-dialog :title="title" :visible.sync="dialogVisible" :close-on-click-modal="false" :show-close="false">
                 <el-row>
                     <el-col :span="24">
                         <el-form :inline="true" class="demo-form-inline">
@@ -36,13 +36,18 @@ Vue.component('retrieve-dialog', {
                                   @select="handleSelect">
                                   <i slot="prefix" class="el-input__icon el-icon-search"></i>
                                   <template slot-scope="{ item }">
-                                    <span class="name">{{ item.teamName }}</span>
-                                    <span class="addr">{{ item.teamId }}</span>
+                                    <slot :item="item">
+                                        {{item}}
+                                    </slot>
                                   </template>
                                 </el-autocomplete>
                             </el-form-item>
                             <el-form-item>
-                                <el-button type="primary" @click="retrieve">取回</el-button>
+                                <el-button 
+                                    type="primary" 
+                                    @click="retrieve">
+                                        取回
+                                </el-button>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" 
@@ -71,7 +76,7 @@ Vue.component('retrieve-dialog', {
                                             tooltip-effect="dark"
                                             border
                                             style="width: 100%"
-                                            height="270">
+                                            height="223">
                                         <el-table-column
                                                 label="---"
                                                 prop="key">
@@ -87,7 +92,7 @@ Vue.component('retrieve-dialog', {
                                         :data="startWithArray"
                                         border
                                         highlight-current-row
-                                        heigit="270"
+                                        heigit="223"
                                         @current-change="handleClick">
                                         <el-table-column v-for="item in visibleColumn"
                                                 :label="item.label"
@@ -102,7 +107,7 @@ Vue.component('retrieve-dialog', {
                                             ref="multipartSearchResultTable"
                                             :data="startWithArray"
                                             border
-                                            height="270"
+                                            height="223"
                                             @selection-change="handleClick">
                                         <el-table-column type="selection"></el-table-column>
                                         <el-table-column v-for="item in visibleColumn"
@@ -120,8 +125,7 @@ Vue.component('retrieve-dialog', {
                     </el-col>
                 </el-row>
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">取 消</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                    <el-button type="primary" @click="dialogHide()">关 闭</el-button>
                     <el-button type="primary" @click="toggleSelectionFirst()">选中第一行</el-button>
                 </div>
                 <dialog-column :dialog-column-visible.sync="dialogColumnVisible"
@@ -133,7 +137,7 @@ Vue.component('retrieve-dialog', {
             </el-dialog>
         </div>
     `,
-    props: ['data', 'filterConfig', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
+    props: ['data', 'option', 'columns', 'title', 'singleValue', 'dialogVisible'],
     data() {
         return {
             charLength: 1,
@@ -145,7 +149,9 @@ Vue.component('retrieve-dialog', {
             filterType: '',
             visibleColumn: [],
             dialogColumnVisible: false,
-            currentRow: {}
+            currentRow: {},
+            filterConfig: [],
+            recommendKey:['teamName','teamId']
         };
     },
     methods: {
@@ -183,11 +189,12 @@ Vue.component('retrieve-dialog', {
         retrieve() {
             if(this.singleValue){
                 this.filterConfig.forEach((value, index, array) => {
-                    console.log(this.selectedContent[value]);
+                    // console.log(this.selectedContent[value]);
                 });
             }else {
                 console.log(this.selectedContent);
             }
+            this.$emit('handle-retrieve', this.selectedContent);
         },
         querySearch(searchString, callback) {
             let data = this.data;
@@ -252,17 +259,18 @@ Vue.component('retrieve-dialog', {
         },
         clearBelowAll() {
 
+        },
+        dialogHide(){
+            this.$emit('visible-change', false);
         }
-    },
+    }
+    ,
     created: function () {
+        this.filterConfig = this.option.map(element => element.value);
         this.filterType = this.filterConfig[0];
         this.visibleColumn = this.columns.filter(element => {
             return element['visible'];
         });
-
-        let temp = this.option.map(element => element.value);
-        console.log(temp);
-        console.log(this.dialogVisible);
     },
     mounted: function () {
         // this.handleChange();

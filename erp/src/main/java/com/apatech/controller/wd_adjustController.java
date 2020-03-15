@@ -15,12 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
 import com.apatech.domain.Sales_out_warehouse;
 import com.apatech.domain.Sales_out_warehouse_detailed;
 import com.apatech.domain.Team;
 import com.apatech.domain.Updown_program;
+import com.apatech.domain.wdQueryTaiz;
+import com.apatech.domain.wdQueryTaizDetail;
 import com.apatech.domain.wd_Adjust_detail;
 import com.apatech.domain.wd_Adjust_price;
+import com.apatech.domain.wd_dull;
+import com.apatech.domain.wd_inorout;
 import com.apatech.domain.Adjust_price;
 import com.apatech.service.Adjust_priceService;
 import com.apatech.service.wd_Adjust_priceService;
@@ -49,6 +54,7 @@ public class wd_adjustController {
     	System.out.println(pageNum+"/"+pageSize);
 		PageInfo<wd_Adjust_price> page=wddao.wdselectAllpage(pageNum, pageSize);
     	for (wd_Adjust_price item : page.getList()) {
+    		
 			item.setList(wddao.selectlist(item.getApDateid()));
 		}
     	
@@ -56,6 +62,85 @@ public class wd_adjustController {
 	    System.out.println("page.list:"+page.getList().toString());
     	return page;
     }
+	
+	@RequestMapping("/doQueryTaiz")
+	@ResponseBody
+	public List<wdQueryTaiz>doQueryTaiz(String matterBegin,String matterEnd,String warehouseBegin,String warehouseEnd,String dateBegin,String dateEnd){
+		System.out.println("进来了耶~");
+		System.out.println(matterBegin+","+matterEnd+","+warehouseBegin+","+warehouseEnd+","+dateBegin+","+dateEnd);
+		return wddao.doQueryTaiz(matterBegin,matterEnd,warehouseBegin,warehouseEnd,dateBegin,dateEnd);
+		
+	}
+	
+	@RequestMapping("/queryNum")
+	@ResponseBody
+	public List<wdQueryTaizDetail>queryNum(String matterId,String warehouseId){
+		System.out.println("matterId:"+matterId+"warehouseId:"+warehouseId);
+		return wddao.queryNum(matterId,warehouseId);
+	}
+	
+	
+	
+	
+	@RequestMapping("/doQueryTaizAll")
+	@ResponseBody
+	public List<wdQueryTaiz>doQueryTaiz(){
+		System.out.println("进来了~");
+		//System.out.println(wddao.doQueryTaiz(matterBegin,matterEnd,warehouseBegin,warehouseEnd,dateBegin,dateEnd));
+		return wddao.doQueryTaizAll();
+		 
+	}
+	
+	
+	
+	@RequestMapping("/tzqueryMatter")
+	@ResponseBody
+	public List<wdQueryTaiz>tzqueryMatter(){
+		return wddao.tzqueryMatter();
+	}
+	
+	@RequestMapping("/tzqueryWarehouse")
+	@ResponseBody
+	public List<wdQueryTaiz>tzqueryWarehouse(){
+		return wddao.tzqueryWarehouse();
+	}
+	
+	//querySection呆滞品区间查询
+	@RequestMapping("/querySection")
+	@ResponseBody
+	public List<Dull_section>querySection(){
+		return dao.querySection();
+	}
+	
+	//QueryDull呆滞品查询
+	@RequestMapping("/QueryDull")
+	@ResponseBody
+	public List<wd_dull>QueryDull(String matterBegin,String matterEnd,String dulldate,String dullSdate,String dullEdate){
+		return dao.QueryDull(matterBegin,matterEnd,dulldate,dullSdate,dullEdate);
+	}
+	
+	
+	
+	
+	
+	//进出库明细
+	@RequestMapping("/selinorout")
+	@ResponseBody
+	public List<wd_inorout>selinorout(){
+		System.out.println("进出明细");
+		return wddao.selinorout();
+		
+	}
+	@RequestMapping("/selinoroutDetail")
+	@ResponseBody
+	public List<wd_inorout>selinoroutDetail(String matterId,String warehouseName,String wdDate){
+		System.out.println("进出明细单个:"+matterId+","+warehouseName+","+wdDate);
+		return wddao.selinoroutDetail(matterId,warehouseName,wdDate);
+		
+	}
+	
+	
+	
 	
 	/**
 	 * 查询科目
@@ -127,18 +212,19 @@ public class wd_adjustController {
 		String upname=record.getUpName();
 		String doname=record.getUpCustom6();
 		System.out.println("新增增减值科目"+updownmids+upname+apDateid+doname);
-		dao.insertupd(updownmids,upname,apDateid,doname);
+		//dao.insertupd(updownmids,upname,apDateid,doname);
 		System.out.println("新增主单："+apId+apDateid+updownmids+apdoworkman+apRecheckman+apAuditing+apYn+apCustom6);
-		int i=dao.insert(apId,apDateid,updownmids,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
+		int i=dao.insert(apId,apDateid,apdoworkman,apRecheckman,apAuditing,apYn,apCustom6);
 		if(i>0) {
 			for (wd_Adjust_detail item : record.getList()) {
-				//item.setdApid(record.getApId());
-				String dMatterid=item.getdMatterid();
+				String dMatterid=item.getMatterId();
 				String dAdjustprice=item.getdAdjustprice();
 				String dDecoration=item.getdDecoration();
-				String dApId=item.getdApid();
+				String dApId=item.getApId();
 				System.out.println("新增详单："+dMatterid+dAdjustprice+dDecoration+dApId);
 				wddao.inserts(dMatterid,dAdjustprice,dDecoration,dApId);
+				//修改价格
+				wddao.updateMoney(dAdjustprice,dMatterid);
 			}
 			return 1;
 		}else {
@@ -158,27 +244,36 @@ public class wd_adjustController {
 	public int update(@RequestBody wd_Adjust_price record) {
 		String updowmid=record.getUpdowmid();
 		String apDateid=record.getApDateid();
-		//1
+		
 		String upId=record.getUpId();
+		String upIds=upId;
 		System.out.println("upId"+upId);
 		String doId=record.getUpCustom5();
 		String upname=record.getUpName();
 		String doname=record.getUpCustom6();
+		String apdoworkman=record.getApDoworkman();
+		String apRecheckman=record.getApRecheckman();
 		
 		//修改科目
-		System.out.println("修改增减值科目"+upId+upname+doId+doname+updowmid+apDateid);
-		int i=wddao.updatekm(upId,upname,doId,doname,updowmid,apDateid);
-		
+		//System.out.println("修改增减值科目"+upId+upname+doId+doname+upIds+apDateid);
+		int i=wddao.updatekm(upname,doname,upIds,apDateid);
+		//修改制单人复核人
+		int j=wddao.updatepeople(apdoworkman,apRecheckman,apDateid);
+		System.out.println("制单人复核人："+apdoworkman+apRecheckman);
 		//修改调价价格
 
 		for (wd_Adjust_detail item : record.getList()) {
 			String dadjustprice=item.getdAdjustprice();
 			String dapid=item.getdApid();
-			String apid=item.getApId();
-			String dMatterid=item.getdMatterid();
+			
+			
+			String dMatterid=item.getMatterId();
 			String dDecoration=item.getdDecoration();
-			//item.setdApid(record.getApDateid());
-			wddao.updateprice(dadjustprice,dDecoration,dMatterid,apid);
+			String dApId=record.getApId();
+			System.out.println("修改箱单："+dadjustprice+dDecoration+dMatterid+dApId);
+			wddao.updateprice(dadjustprice,dDecoration,dMatterid,dApId);
+			//修改调价价格
+			wddao.updateMoney(dadjustprice,dMatterid);
 		}
 		//return dao.updateByPrimaryKey(record);
 		return wddao.updatelist(apDateid,updowmid);
@@ -201,7 +296,9 @@ public class wd_adjustController {
 	@ResponseBody
 	public int updateAuding(String apDateId) {
 		System.out.println("进");
-		return wddao.updateAuding(apDateId);
+		int i=wddao.updateAuding(apDateId);
+		System.out.println(i);
+		return i;
 				
 	}
 
@@ -224,6 +321,7 @@ public class wd_adjustController {
 	
 	
 	
+	
 	@RequestMapping(value = "wdupdateByPrimaryKeySelective",method = RequestMethod.POST)
 	@ResponseBody
     public Map<String, String> wdupdateByPrimaryKeySelective(@RequestBody wd_Adjust_price record) {
@@ -240,4 +338,8 @@ public class wd_adjustController {
 		}
 		return map;
 	}
+	
+	
+	
+	
 }

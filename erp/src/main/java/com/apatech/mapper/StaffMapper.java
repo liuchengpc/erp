@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.apatech.domain.Staff;
 import com.apatech.domain.Team;
+import com.apatech.domain.wdStaff;
 
 public interface StaffMapper {
 	List<Staff> selectAll();
@@ -32,4 +33,10 @@ public interface StaffMapper {
     int updateByPrimaryKeySelective(Staff record);
 
     int updateByPrimaryKey(Staff record);
+
+    
+    @Select("SELECT a.staff_id AS staffId, a.staff_name AS staffName,b.team_name AS teamName\n" + 
+    		"FROM staff AS a,team AS b\n" + 
+    		"WHERE a.team_id=b.team_id")
+	List<wdStaff> selectAlls();
 }

@@ -2,7 +2,6 @@ export function projectDialogConfig() {
     return {
         filterType: 'projectId',
         projects: [],
-        filterConfig: ['projectId', 'projectName', 'projectEnglishName', 'projectRemark', 'projectAbate'],
         option: [
             {
                 label: '项目编号',

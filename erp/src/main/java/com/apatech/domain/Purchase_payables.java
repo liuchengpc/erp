@@ -17,13 +17,13 @@ public class Purchase_payables {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date ppDate;
 
-    private String ppPcId;
+    private String ppPcId; 
 
     private String ppPcName;
 
     private String ppTeamId;
 
-    private String ppTeamName;
+    private String ppTeamName; 
 
     private String ppBuyer;
 
@@ -33,7 +33,7 @@ public class Purchase_payables {
 
     private Float ppExchangeRate;
 
-    private Double ppPayablesmainPrice;
+    private Float ppPayablesmainPrice;
 
     private Float ppCurrentbalance;
 
@@ -163,11 +163,11 @@ public class Purchase_payables {
         this.ppExchangeRate = ppExchangeRate;
     }
 
-    public Double getPpPayablesmainPrice() {
+    public Float getPpPayablesmainPrice() {
         return ppPayablesmainPrice;
     }
 
-    public void setPpPayablesmainPrice(Double ppPayablesmainPrice) {
+    public void setPpPayablesmainPrice(Float ppPayablesmainPrice) {
         this.ppPayablesmainPrice = ppPayablesmainPrice;
     }
 

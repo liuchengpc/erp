@@ -2,7 +2,6 @@ export function supplierDialogConfig() {
     return {
         filterType: 'supplierName',
         suppliers: [],
-        filterConfig: ['supplierId', 'supplierName', 'supplierEasyname', 'supplierEngname', 'supplierEasyengname', 'supplierAccountAttribution'],
         option: [
             {
                 label: '供应商编号',

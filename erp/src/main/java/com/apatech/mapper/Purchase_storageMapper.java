@@ -41,4 +41,6 @@ public interface Purchase_storageMapper {
     PurchaseStoragePojo selectNext(@Param("lineId") Integer lineId);
 
     PurchaseStoragePojo selectFirst();
+
+    List<PurchaseStoragePojo> selectAllReview();
 }

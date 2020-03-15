@@ -52,6 +52,10 @@ public class Purchasing_orderService {
 	   public int updateByPrimaryKeySelective(Purchasing_order record){
 	   	return dao.updateByPrimaryKeySelective(record);
 	   }
+	   
+	   public int updateByPrimaryKeySelective22(Purchasing_order record){
+	   	return dao.updateByPrimaryKeySelective22(record);
+	   }
 	
 	   public int updateByPrimaryKey(Purchasing_order record){
 	   	return dao.updateByPrimaryKey(record);

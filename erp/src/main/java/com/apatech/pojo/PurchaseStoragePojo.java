@@ -53,6 +53,14 @@ public class PurchaseStoragePojo {
     private Warehouse warehouse; // 仓库信息
     private Currency currency; // 货币信息
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date createDate; // 创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date editDate; // 修改时间
+    private Integer lineId; // 行编号
+
     public String getPsId() {
         return psId;
     }
@@ -349,9 +357,35 @@ public class PurchaseStoragePojo {
         this.currency = currency;
     }
 
-    public PurchaseStoragePojo(){}
+    public Date getCreateDate() {
+        return createDate;
+    }
 
-    public PurchaseStoragePojo(String psId, String supplierId, String psEngname, String pstId, String psPriceIncludeTax, Integer warehouseId, String psSingleStatus, Date psDocumentDate, String psDocumentNumber, String currencyId, Float psExchangeRate, Integer psForeignTrade, Integer psSunnum, Float psSunmoney, Float psTax, Float psIncludeTaxAmount, String psDeliveryAddress, String psBuyer, String psBelongsSection, String psBelongsProject, String psExecutor, String psCheckagainStaff, String psHeaderProvision, String psEndClause, String psRemark, String psAudition, String psYn, String psCustom1, String psCustom2, String psCustom3, String psCustom4, String psCustom5, String psCustom6, List<Purchase_storage_detailed> details, Supplier supplier, Warehouse warehouse, Currency currency) {
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getEditDate() {
+        return editDate;
+    }
+
+    public void setEditDate(Date editDate) {
+        this.editDate = editDate;
+    }
+
+    public Integer getLineId() {
+        return lineId;
+    }
+
+    public void setLineId(Integer lineId) {
+        this.lineId = lineId;
+    }
+
+    public PurchaseStoragePojo(){
+
+    }
+
+    public PurchaseStoragePojo(String psId, String supplierId, String psEngname, String pstId, String psPriceIncludeTax, Integer warehouseId, String psSingleStatus, Date psDocumentDate, String psDocumentNumber, String currencyId, Float psExchangeRate, Integer psForeignTrade, Integer psSunnum, Float psSunmoney, Float psTax, Float psIncludeTaxAmount, String psDeliveryAddress, String psBuyer, String psBelongsSection, String psBelongsProject, String psExecutor, String psCheckagainStaff, String psHeaderProvision, String psEndClause, String psRemark, String psAudition, String psYn, String psCustom1, String psCustom2, String psCustom3, String psCustom4, String psCustom5, String psCustom6, List<Purchase_storage_detailed> details, Supplier supplier, Warehouse warehouse, Currency currency, Date createDate, Date editDate, Integer lineId) {
         this.psId = psId;
         this.supplierId = supplierId;
         this.psEngname = psEngname;
@@ -389,5 +423,54 @@ public class PurchaseStoragePojo {
         this.supplier = supplier;
         this.warehouse = warehouse;
         this.currency = currency;
+        this.createDate = createDate;
+        this.editDate = editDate;
+        this.lineId = lineId;
+    }
+
+    @Override
+    public String toString() {
+        return "PurchaseStoragePojo{" +
+                "psId='" + psId + '\'' +
+                ", supplierId='" + supplierId + '\'' +
+                ", psEngname='" + psEngname + '\'' +
+                ", pstId='" + pstId + '\'' +
+                ", psPriceIncludeTax='" + psPriceIncludeTax + '\'' +
+                ", warehouseId=" + warehouseId +
+                ", psSingleStatus='" + psSingleStatus + '\'' +
+                ", psDocumentDate=" + psDocumentDate +
+                ", psDocumentNumber='" + psDocumentNumber + '\'' +
+                ", currencyId='" + currencyId + '\'' +
+                ", psExchangeRate=" + psExchangeRate +
+                ", psForeignTrade=" + psForeignTrade +
+                ", psSunnum=" + psSunnum +
+                ", psSunmoney=" + psSunmoney +
+                ", psTax=" + psTax +
+                ", psIncludeTaxAmount=" + psIncludeTaxAmount +
+                ", psDeliveryAddress='" + psDeliveryAddress + '\'' +
+                ", psBuyer='" + psBuyer + '\'' +
+                ", psBelongsSection='" + psBelongsSection + '\'' +
+                ", psBelongsProject='" + psBelongsProject + '\'' +
+                ", psExecutor='" + psExecutor + '\'' +
+                ", psCheckagainStaff='" + psCheckagainStaff + '\'' +
+                ", psHeaderProvision='" + psHeaderProvision + '\'' +
+                ", psEndClause='" + psEndClause + '\'' +
+                ", psRemark='" + psRemark + '\'' +
+                ", psAudition='" + psAudition + '\'' +
+                ", psYn='" + psYn + '\'' +
+                ", psCustom1='" + psCustom1 + '\'' +
+                ", psCustom2='" + psCustom2 + '\'' +
+                ", psCustom3='" + psCustom3 + '\'' +
+                ", psCustom4='" + psCustom4 + '\'' +
+                ", psCustom5='" + psCustom5 + '\'' +
+                ", psCustom6='" + psCustom6 + '\'' +
+                ", details=" + details +
+                ", supplier=" + supplier +
+                ", warehouse=" + warehouse +
+                ", currency=" + currency +
+                ", createDate=" + createDate +
+                ", editDate=" + editDate +
+                ", lineId=" + lineId +
+                '}';
     }
 }

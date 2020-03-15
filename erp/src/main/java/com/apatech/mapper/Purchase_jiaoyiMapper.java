@@ -10,6 +10,7 @@ import com.apatech.domain.Purchase_jiaoyi;
 public interface Purchase_jiaoyiMapper {
  List<Purchase_jiaoyi> selectAll();
 	 
+ List<Purchase_jiaoyi> selectAllXz(Purchase_jiaoyi jiaoyi);
 	 @Select("SELECT \r\n" + 
 	 		"CASE\r\n" + 
 	 		"WHEN COUNT(*)>98 THEN COUNT(*)+1\r\n" + 
@@ -22,6 +23,10 @@ public interface Purchase_jiaoyiMapper {
 	
     int deleteByPrimaryKey(Integer jyId);
 
+    int deleteByPrimaryKey2(String jyCustom3);
+    
+    int deleteByPrimaryKey3(String jyNumber);
+    
     int insert(Purchase_jiaoyi record);
 
     int insertSelective(Purchase_jiaoyi record);

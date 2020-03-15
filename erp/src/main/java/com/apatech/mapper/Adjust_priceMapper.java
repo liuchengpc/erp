@@ -9,8 +9,13 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.apatech.domain.Adjust_price;
+import com.apatech.domain.Dull_section;
+import com.apatech.domain.wdQueryTaiz;
+import com.apatech.domain.wdQueryTaizDetail;
 import com.apatech.domain.wd_Adjust_detail;
 import com.apatech.domain.wd_Adjust_price;
+import com.apatech.domain.wd_dull;
+import com.apatech.domain.wd_inorout;
 
 public interface Adjust_priceMapper {
 	 List<Adjust_price> selectAll();
@@ -75,37 +80,28 @@ public interface Adjust_priceMapper {
    
     
    //查询主单
-    @Select("SELECT a.ap_id,a.`ap_dateid`,a.`updowmid`,a.`ap_doworkman`,a.`ap_recheckman`,a.`ap_auditing`,a.`ap_yn`,a.`ap_custom6`,\n" + 
-    		"b.up_id,b.`up_name`,b.`up_auditing`,b.`up_yn`,b.`up_custom3`,b.`up_custom4`,b.`up_custom5`,b.`up_custom6`\n" + 
-    		"FROM adjust_price AS a,updown_program AS b WHERE a.`ap_yn`=0 And a.updowmid=b.up_id ORDER BY a.ap_dateid DESC")
+    @Select("SELECT a.ap_id,a.`ap_dateid`,a.`updowmid`,a.`ap_doworkman`,a.`ap_recheckman`,a.`ap_auditing`,a.`ap_yn`,a.`ap_custom6`\r\n" + 
+    		"FROM adjust_price AS a WHERE a.`ap_yn`=0 ORDER BY a.ap_dateid DESC")
     List<wd_Adjust_price> wdselectAll();
     
     
     //查询详单
-    @Select("SELECT a.ap_dateid,a.ap_custom6,b.up_name,b.up_custom6,\n" + 
-    		"ma.matter_name as mmatterName,ma.matter_id,m.mu_name,ma.matter_size as mmatterSize,ma.matter_nowcount as mmatterNowcount,"
-    		+ "ma.matter_nowavgcost as mmatterNowavgcost,(ma.matter_nowallcost/ma.matter_nowcount)AS mmonePrice, c.d_adjustprice,c.d_decoration,\n" + 
-    		"a.`ap_doworkman`,a.`ap_recheckman`,\n" + 
-    		"\n" + 
-    		"c.d_apid,c.d_matterid,b.up_id ,a.ap_dateid,a.updowmid,a.ap_id,m.mu_id as mamuId 	\n" + 
-    		"	\n" + 
-    		"FROM adjust_price AS a,\n" + 
-    		"	updown_program AS b,\n" + 
-    		"	measurement_unit AS m,\n" + 
-    		"	adjust_detail AS c,\n" + 
-    		"	matter AS ma	\n" + 
-    		"WHERE c.d_apid=a.ap_id\n" + 
-    		"AND a.`ap_yn`=0 \n" + 
-    		"AND a.updowmid=b.up_id \n" + 
-    		"AND ma.matter_id=c.d_matterid\n" + 
-    		"AND a.ap_dateid=b.up_custom5 \n" + 
-    		"AND ma.mu_id=m.mu_id "
-    		+ "AND a.ap_dateid= #{apDateid}")
+    @Select("SELECT a.ap_dateid,a.ap_custom6,\r\n" + 
+    		"ma.matter_name AS mmatterName,ma.matter_id,m.mu_name,ma.matter_size AS mmatterSize,ma.matter_nowcount AS mmatterNowcount, \r\n" + 
+    		"ma.matter_nowavgcost AS mmatterNowavgcost,(ma.matter_nowallcost/ma.matter_nowcount)AS mmonePrice, c.d_adjustprice,c.d_decoration, \r\n" + 
+    		"a.`ap_doworkman`,a.`ap_recheckman`, \r\n" + 
+    		"c.d_apid,c.d_matterid,a.ap_dateid,a.updowmid,a.ap_id AS apId,m.mu_id AS mamuId\r\n" + 
+    		"    		 FROM adjust_price AS a, measurement_unit AS m, adjust_detail AS c, matter AS ma\r\n" + 
+    		"    		WHERE c.d_apid=a.ap_id\r\n" + 
+    		"    		AND a.`ap_yn`=0\r\n" + 
+    		"    		AND ma.matter_id=c.d_matterid\r\n" + 
+    		"    		AND ma.mu_id=m.mu_id\r\n" + 
+    		"    		AND a.ap_dateid= #{apDateid}")
 	List<wd_Adjust_detail> selectlist(String apDateid);
 
-	@Insert("INSERT INTO adjust_price(ap_id,ap_dateid,updowmid,ap_doworkman,ap_recheckman,ap_auditing,ap_yn,ap_custom6)\n" + 
-			"		VALUE(#{apId},#{apDateid},#{updownmid},#{apdoworkman},#{apRecheckman},#{apAuditing},#{apYn},#{apCustom6})")
-	int inserts(@Param("apId") int apId, @Param("apDateid") String apDateid, @Param("updownmid") String updownmid, 
+	@Insert("INSERT INTO adjust_price(ap_id,ap_dateid,ap_doworkman,ap_recheckman,ap_auditing,ap_yn,ap_custom6)\n" + 
+			"		VALUE(#{apId},#{apDateid},#{apdoworkman},#{apRecheckman},#{apAuditing},#{apYn},#{apCustom6})")
+	int inserts(@Param("apId") int apId, @Param("apDateid") String apDateid, 
 			@Param("apdoworkman") String apdoworkman, @Param("apRecheckman") String apRecheckman,
 			@Param("apAuditing") String apAuditing, @Param("apYn") String apYn, @Param("apCustom6") String apCustom6);
 
@@ -119,13 +115,9 @@ public interface Adjust_priceMapper {
 			"  updowmid = #{updowmid} where ap_id = #{apDateid}")
 	int updatelist(@Param("apDateid") String apDateid, @Param("updowmid") String updowmid);
 
-	@Update("UPDATE updown_program SET\n" + 
-			"  `up_id` = #{upId},\n" + 
-			"  `up_name` = #{upname},\n" + 
-			"  `up_custom5` =#{apDateid} ,\n" + 
-			"  `up_custom6` = #{doname} \n" + 
-			"WHERE `up_id` =#{updowmid} AND `up_custom5` = #{apDateid}")
-	int updatekm(String upId, String upname, String doId, String doname, String updowmid, String apDateid);
+	@Update("update  updown_program set  `up_name` = #{upname}, `up_custom6` = #{doname} \n" + 
+			"WHERE `up_id` =#{upIds} AND `up_custom5` = #{apDateid}")
+	int updatekm(@Param("upname")String upname, @Param("doname")String doname, @Param("upIds")String upIds, @Param("apDateid")String apDateid);
 
 	@Update("UPDATE adjust_detail SET\n" + 
 			"  `d_adjustprice` = #{dadjustprice},\n" + 
@@ -141,6 +133,114 @@ public interface Adjust_priceMapper {
 			"VALUES\n" + 
 			"  (#{updownmid},#{upname},'0','0','1',#{apId},#{doname})")
 	int insertupd(@Param("updownmid") String updownmid,@Param("upname")  String upname, @Param("apId") String apId, @Param("doname") String doname);
+
+	@Update("UPDATE adjust_price SET\n" + 
+			"  `ap_doworkman` = #{apdoworkman},\n" + 
+			"  `ap_recheckman` = #{apRecheckman}\n" + 
+			"WHERE `ap_dateid` =#{apDateid} ")
+	int updatepeople(@Param("apdoworkman") String apdoworkman,@Param("apRecheckman") String apRecheckman,@Param("apDateid") String apDateid);
+
+	@Delete("delete from updown_program where up_id=#{upId} and up_custom5=#{apDateid}")
+	int delkm(@Param("upId") String upId,@Param("apDateid") String apDateid);
+
+	@Update("UPDATE matter SET\n" + 
+			"  matter_nowallcost = matter_nowcount * #{dAdjustprice}\n" + 
+			" \n" + 
+			"WHERE `matter_id` = #{dMatterid}")
+	int updateMoney(String dAdjustprice,String dMatterid);
+
+	@Select("SELECT m.matter_id AS matterId,m.matter_name AS matterName, m.matter_size AS matterSize,mt.mt_name AS mtName,mu.mu_name AS muName,w.warehouse_id AS warehouseId,w.warehouse_name AS warehouseName,wd.wd_lastbalancenumber AS wdLastbalancenumber\n" + 
+			"	FROM matter AS m,measurement_unit AS mu,warehouse AS w,material_type AS mt,warehouse_detail AS wd\n" + 
+			"	WHERE m.mu_id=mu.mu_id AND w.warehouse_id=wd.warehouse_id AND m.matter_id=wd.mt_id AND m.mt_id=mt.mt_id\n" + 
+			"	AND m.matter_id BETWEEN(SELECT matter_id FROM matter WHERE matter_name=#{matterBegin}) AND (SELECT matter_id FROM matter WHERE matter_name=#{matterEnd})\n" + 
+			"	OR m.matter_id BETWEEN(SELECT matter_id FROM matter WHERE matter_name=#{matterEnd}) AND (SELECT matter_id FROM matter WHERE matter_name=#{matterBegin})\n" + 
+			"	OR wd.warehouse_id BETWEEN(SELECT warehouse_id FROM warehouse WHERE warehouse_name=#{warehouseBegin})AND (SELECT warehouse_id FROM warehouse WHERE warehouse_name=#{warehouseEnd})\n" + 
+			"	AND wd.warehouse_id BETWEEN(SELECT warehouse_id FROM warehouse WHERE warehouse_name=#{warehouseEnd})AND (SELECT warehouse_id FROM warehouse WHERE warehouse_name=#{warehouseBegin})\n" + 
+			"	AND wd.wd_custom1 BETWEEN #{dateBegin} AND #{dateEnd}\n" + 
+			"GROUP BY m.matter_id,wd.warehouse_id")
+	List<wdQueryTaiz> doQueryTaiz(@Param("matterBegin")String matterBegin,@Param("matterEnd") String matterEnd,
+			@Param("warehouseBegin") String warehouseBegin, @Param("warehouseEnd")String warehouseEnd,
+			@Param("dateBegin")String dateBegin,@Param("dateEnd") String dateEnd);
+	
+	
+	@Select("SELECT m.matter_id AS matterId,m.matter_name AS matterName, \n" + 
+			"	m.matter_size AS matterSize,mt.mt_name AS mtName,\n" + 
+			"	mu.mu_name AS muName,w.warehouse_id AS warehouseId,\n" + 
+			"	w.warehouse_name AS warehouseName,wd.wd_lastbalancenumber AS wdLastbalancenumber\n" + 
+			"	FROM matter AS m,\n" + 
+			"	measurement_unit AS mu, \n" + 
+			"	warehouse AS w,\n" + 
+			"	material_type AS mt,\n" + 
+			"	warehouse_detail AS wd\n" + 
+			"	WHERE m.mu_id=mu.mu_id \n" + 
+			"	AND w.warehouse_id=wd.warehouse_id\n" + 
+			"	AND m.matter_id=wd.mt_id\n" + 
+			"	AND m.mt_id=mt.mt_id\n" + 
+			"	GROUP BY wd.warehouse_id, m.matter_id")
+	List<wdQueryTaiz> doQueryTaizAll();
+
+	@Select("SELECT m.matter_id AS matterId,m.matter_name AS matterName, \n" + 
+			"	w.warehouse_name AS warehouseName,wd.wd_custom1 AS wdDate\n" + 
+			"	FROM matter AS m,\n" + 
+			"	measurement_unit AS mu, \n" + 
+			"	warehouse AS w,\n" + 
+			"	material_type AS mt,\n" + 
+			"	warehouse_detail AS wd\n" + 
+			"	WHERE m.mu_id=mu.mu_id \n" + 
+			"	AND w.warehouse_id=wd.warehouse_id\n" + 
+			"	AND m.matter_id=wd.mt_id\n" + 
+			"	AND m.mt_id=mt.mt_id\n" + 
+			"	ORDER BY wd.wd_custom1 DESC")
+	List<wd_inorout> selinorout();
+
+	@Select("SELECT wd.wd_custom1 AS wdDate,m.matter_id AS matterId,m.matter_name AS matterName,\n" + 
+			"m.matter_size AS matterSize,mt.mt_name AS mtName,mu.mu_name AS muName, \n" + 
+			"	w.warehouse_name AS warehouseName,wd.wd_inorout AS wdInorout,wd.wd_unit_rice AS wdUnitRice,\n" + 
+			"	wd.wd_number AS wdNumber\n" + 
+			"	FROM matter AS m,\n" + 
+			"	measurement_unit AS mu, \n" + 
+			"	warehouse AS w,\n" + 
+			"	material_type AS mt,\n" + 
+			"	warehouse_detail AS wd\n" + 
+			"	WHERE m.mu_id=mu.mu_id \n" + 
+			"	AND w.warehouse_id=wd.warehouse_id\n" + 
+			"	AND m.matter_id=wd.mt_id\n" + 
+			"	AND m.mt_id=mt.mt_id\n" + 
+			"	AND m.matter_id=#{matterId}\n" + 
+			"	AND w.warehouse_name=#{warehouseName}\n" + 
+			"	AND wd.wd_custom1=#{wdDate}\n" + 
+			"	ORDER BY wd.wd_custom1 DESC")
+	List<wd_inorout> selinoroutDetail(@Param("matterId") String matterId,  @Param("warehouseName") String warehouseName, @Param("wdDate") String wdDate);
+
+	@Select("select matter_id AS matterId,matter_name AS matterName from matter")
+	List<wdQueryTaiz> tzqueryMatter();
+
+	@Select("select warehouse_id AS warehouseId,warehouse_name AS warehouseName from warehouse")
+	List<wdQueryTaiz> tzqueryWarehouse();
+
+	@Select("SELECT\n" + 
+			" (SELECT SUM(c.wd_number) FROM matter AS m,warehouse AS b,warehouse_detail AS c WHERE c.wd_inorout=0 \n" + 
+			" AND b.warehouse_id=c.warehouse_id AND m.matter_id=c.mt_id AND c.`warehouse_id`=#{warehouseId} AND c.`mt_id`=#{matterId}\n" + 
+			" )AS inNum, \n" + 
+			" (SELECT SUM(c.wd_number) FROM matter AS m,warehouse AS b,warehouse_detail AS c WHERE c.wd_inorout=1 \n" + 
+			" AND b.warehouse_id=c.warehouse_id AND m.matter_id=c.mt_id AND c.`warehouse_id`=#{warehouseId} AND c.`mt_id`=#{matterId}\n" + 
+			" )AS outNum \n" + 
+			"FROM matter AS m,warehouse AS b,warehouse_detail AS c\n" + 
+			"WHERE c.warehouse_id=b.warehouse_id AND m.`matter_id`=c.mt_id AND c.warehouse_id=#{warehouseId} AND c.`mt_id`=#{matterId}\n" + 
+			"GROUP BY  c.`mt_id`")
+	List<wdQueryTaizDetail> queryNum(String matterId, String warehouseId);
+
+	@Select("SELECT ds_id AS dsId, ds_startday AS dsStartday, ds_enddate AS dsEnddate, ds_decoration AS dsDecoration FROM dull_section")
+	List<Dull_section> querySection();
+
+	@Select("SELECT m.matter_id AS matterId,m.matter_name AS matterName,  m.matter_size AS matterSize,mt.mt_name AS mtName, mu.mu_name AS muName,\r\n" + 
+			"m.matter_recentin AS matterRecentin,m.matter_recentout AS matterRecentout,m.matter_nowcount AS matterNowcount,m.matter_nowallcost AS matterNowallcost,DATEDIFF(#{dulldate},m.matter_recentin)AS dullDays\r\n" + 
+			"FROM matter AS m, measurement_unit AS mu, material_type AS mt\r\n" + 
+			"WHERE m.mu_id=mu.mu_id AND m.mt_id=mt.mt_id\r\n" + 
+			"AND m.matter_id BETWEEN (SELECT matter_id FROM matter WHERE matter_name=#{matterBegin}) AND (SELECT matter_id FROM matter WHERE matter_name=#{matterEnd})\r\n" + 
+			"AND m.matter_appearstartday BETWEEN #{dullSdate} AND #{dullEdate}\r\n" + 
+			"AND DATEDIFF('2020-03-09',m.matter_recentin)<=#{dullEdate}-#{dullSdate}")
+	List<wd_dull> QueryDull(@Param("matterBegin") String matterBegin, @Param("matterEnd") String matterEnd, @Param("dulldate") String dulldate, @Param("dullSdate") String dullSdate, @Param("dullEdate") String dullEdate);
     
     
 }

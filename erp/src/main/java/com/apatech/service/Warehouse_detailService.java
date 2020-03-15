@@ -79,4 +79,10 @@ public class Warehouse_detailService {
     public int updateByPrimaryKey(Warehouse_detail record){
     	return dao.updateByPrimaryKey(record);
     }
+    
+    
+    
+    public List<Warehouse_detail> selectAll(){
+    	return dao.selectAll();
+    }
 }

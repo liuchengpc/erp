@@ -238,6 +238,81 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective22" parameterType="com.apatech.domain.Purchasing_order">
+    update purchasing_order
+    <set>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=VARCHAR},
+      </if>
+      <if test="poEngname != null">
+        po_engname = #{poEngname,jdbcType=VARCHAR},
+      </if>
+      <if test="potId != null">
+        pot_id = #{potId,jdbcType=VARCHAR},
+      </if>
+      <if test="poPriceIncludeTax != null">
+        po_price_include_tax = #{poPriceIncludeTax,jdbcType=VARCHAR},
+      </if>
+      <if test="poSingleStatus != null">
+        po_single_status = #{poSingleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="poDocumentDate != null">
+        po_document_date = #{poDocumentDate,jdbcType=DATE},
+      </if>
+      <if test="currencyId != null">
+        currency_id = #{currencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="poExchangeRate != null">
+        po_exchange_rate = #{poExchangeRate,jdbcType=REAL},
+      </if>
+      <if test="poDeliveryAddress != null">
+        po_delivery_address = #{poDeliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="poBuyer != null">
+        po_buyer = #{poBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="poBelongsSection != null">
+        po_belongs_section = #{poBelongsSection,jdbcType=VARCHAR},
+      </if>
+      <if test="poBelongsProject != null">
+        po_belongs_project = #{poBelongsProject,jdbcType=VARCHAR},
+      </if>
+      <if test="poHeaderProvision != null">
+        po_header_provision = #{poHeaderProvision,jdbcType=VARCHAR},
+      </if>
+      <if test="poEndClause != null">
+        po_end_clause = #{poEndClause,jdbcType=VARCHAR},
+      </if>
+      <if test="poRemark != null">
+        po_remark = #{poRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="poAudition != null">
+        po_audition = #{poAudition,jdbcType=VARCHAR},
+      </if>
+      <if test="poYn != null">
+        po_yn = #{poYn,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom1 != null">
+        po_custom1 = #{poCustom1,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom2 != null">
+        po_custom2 = #{poCustom2,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom3 != null">
+        po_custom3 = #{poCustom3,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom4 != null">
+        po_custom4 = #{poCustom4,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom5 != null">
+        po_custom5 = #{poCustom5,jdbcType=VARCHAR},
+      </if>
+      <if test="poCustom6 != null">
+        po_custom6 = #{poCustom6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where po_document_number = #{poDocumentNumber,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.apatech.domain.Purchasing_order">
     update purchasing_order
     <set>

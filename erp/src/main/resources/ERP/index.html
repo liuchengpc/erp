@@ -1,175 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>进出库明细</title>
-
-		<link rel="stylesheet" href="css/layui.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/xadmin.css">
     <script src="jquery-1.12.4.js"></script>
     <script src="layui.js"></script>
-    <script src="js/vue.js"></script>
-    <script src="js/bootstrap.js"></script>
-		<style>
-			#app {
-				text-align: center;
-				padding: 15px;
-			}.layui-table{
-				font-size: 50px;
-				align-content: center;
-				margin: auto;
-				width: 80%;
-				height: 80%;
-		}
-		
-		input{
-			
-			height: 30px;
-			border-radius: 5px;
-			width: 100px;
-			border: 1px solid transparent;
-			background-color:transparent;
-		}span{
-			color: #009688;
-		}
-		button{
-			border:1px solid skyblue;
-			border-radius: 5px;
-			background-color: skyblue;
-			color: #FFFFFF;
-			margin-left: -70px;
-			margin-right: -70px;
-			width: 200px;
-			height: 40px;
-		}
-		</style>
-	</head>
-
-	<body>
-		<div id="app">
-			<div class="layui-row" style="margin-top: 30px;">
-				<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm">
-                <thead>
-                	<tr>
-                   	 	<td>物料编号</td>
-                   	 	<td>物料名称</td>
-                   	 	<td>仓库</td>
-                    	<td>日期</td>
-                     	<td>操作</td>
-                	</tr>
-                </thead>
-                 <tbody>           
-                	<tr v-for="stu in page">
-                    	<td>{{stu.matterId}}</td>
-                    	<td>{{stu.matterName}}</td> 
-                    	<td>{{stu.warehouseName}}</td> 
-                    	<td>{{stu.wdDate}}</td> 
-                    	<td>
-                    		<button type="button" @click="openModak(stu.matterId,stu.matterName,stu.warehouseName,stu.wdDate)">查看详情</button>
-                    	</td>
-                	</tr>
-                </tbody>
-               </table>
-			</div>
-			<div id="motaikunag" style="display: none;">
-    			<table class="layui-table" lay-even="" lay-skin="row" lay-size="sm" style="width: 600px;">
-                <tbody  v-for="det in detail">
-                	<tr>
-                   	 	<td><span>日期：</span></td>
-                   	 	<td><input type="text" v-model="det.wdDate"></td>
-                		<td><span>仓库：</span></td>
-                   	 	<td><input type="text" v-model="det.warehouseName"></td>
-                   	</tr>
-                	<tr>
-                		<td><span>物料编号：</span></td>
-                   	 	<td><input type="text" v-model="det.matterId"></td>
-                   		<td><span>物料名称：</span></td>
-                   	 	<td><input type="text" v-model="det.matterName"></td>
-                   	</tr>
-                	<tr>
-                		<td><span>物料类别：</span></td>
-                   	 	<td><input type="text" v-model="det.mtName"></td>
-                   		<td><span>规格型号：</span></td>
-                   	 	<td><input type="text" v-model="det.matterSize"></td>
-                   	</tr>
-                	<tr>
-                		<td><span>单位：</span></td>
-                   	 	<td><input type="text" v-model="det.muName"></td>
-                   	 	<td><span>出入库状态：</span></td>
-                   	 	<td><input type="text" v-model="det.wdInorout"></td>
-                	</tr>
-                	<tr>
-                		<td><span>数量：</span></td>
-                   		<td><input type="text" v-model="det.wdNumber"></td>
-                   		<td><span>单价：</span></td>
-                   	 	<td><input type="text" v-model="det.wdUnitRice"></td>
-                	</tr>
-                </tbody>
-               </table>
+    <script type="text/javascript" src="js/xadmin.js"></script>
     
-			</div>
-		</div>
-		<script>
-	    
-			
-   
-    </script>
-		<script>
-			var host = "http://127.0.0.1:8080/";
-			var receiptvue = new Vue({
-				el: "#app",
-				data:{
-					page: [],
-					detail:[]
-				},
-				methods: {
-					 openModak:function(matterId,matterName,warehouseName,wdDate){
-				     	
-           		 layui.use(['layer'],function () {
-                var layer = layui.layer,$=layui.$;
-                layer.open({
-                    type:1,//类型
-                    area:['600px','300px'],//定义宽和高
-                    title:'查看详细信息',//题目
-                    shadeClose:false,//点击遮罩层关闭
-                    content: $('#motaikunag')//打开的内容
-                });
-            })
-            var that=this;
-			
-            $.ajax({
-            	type:"get",
-            	url: host + "wd_adjustController/selinoroutDetail",
-            	data:{
-            		matterId:matterId,
-            		warehouseName:warehouseName,
-            		wdDate:wdDate
-            	},
-            	success:function(res){
-            		that.detail = res;
-            	}
-            	
-            });
-        }
-				},
-				created: function() {
-						var this_ = this;
-						$.ajax({
-							url: host + "wd_adjustController/selinorout",
-							type: "get",
-							success: function(res) {
-								this_.page = res;
-							}
-						});
-					}
-			});
-			
-		</script>
-	</body>
+    
+    <style type="text/css">
+    	.left-nav #nav > li.open{
+    		border-left: 4px solid #009688 !important;
+    		/*background: #009688 !important;*/
+    	}
+    	.left-nav #nav > li:hover{
+    		border-left: 4px solid #009688 !important;
+    		/*background: #009688 !important;*/
+    	}
+    	.left-nav{
+    		background-color: #393D49!important;
+    		
+    	}
+    	.left-nav #nav li a{
+    		color: rgba(255,255,255,.7) !important;
+    	}
+    	.menu-current {
+		   background-color: #009688 !important;
+		}
+		.open{
+    		background: rgb(40, 43, 51) !important;
+    	}
+    	
+    	/* .layui-form-label{
+	        width: 100px;
+	    }*/
+	   /* input{
+		    height: 25px !important;
+		}*/
+    </style>
 
-<<<<<<< HEAD
+</head>
+<body class="layui-layout-body">
+	
+
  <!-- 顶部开始 -->
     <div class="container" style="background-color: #23262E;">
         <div class="logo"><a href="index.html">L-admin v2.0</a></div>
@@ -975,10 +853,23 @@
 				                    <i class="iconfont">&#xe6a7;</i>
 				                    <cite>调价单</cite>
 				                </a>
-			                </li><li>
+			                </li>
+			                <li>
 		                		 <a _href="inventoryLedger.html">
 				                    <i class="iconfont">&#xe6a7;</i>
 				                    <cite>库存台账</cite>
+				                </a>
+			                </li>
+			                <li>
+		                		 <a _href="inoroutdetail.html">
+				                    <i class="iconfont">&#xe6a7;</i>
+				                    <cite>进出库明细</cite>
+				                </a>
+			                </li>
+			                <li>
+		                		 <a _href="dullDetail.html">
+				                    <i class="iconfont">&#xe6a7;</i>
+				                    <cite>呆滞品分析</cite>
 				                </a>
 			                </li>
                         </ul>
@@ -1029,27 +920,6 @@
 				                </a>
 		                	</li>
 	                        
-	                    </ul>
-                	</li>
-                	<li>
-                		 <a href="javascript:;">
-		                    <i class="iconfont">&#xe6ae;</i>
-		                    <cite>其他账款作业</cite>
-		                     <i class="iconfont nav_right">&#xe6a7;</i>
-		                </a>
-	                	<ul class="sub-menu">
-		                	<li>
-		                		<a _href="set_supplier_infomation2.html">
-				                    <i class="iconfont">&#xe6a7;</i>
-				                    <cite>供应商主文件</cite>
-				                </a>
-		                	</li> 
-		                	<li>
-		                		<a _href="supplierPaybles.html">
-				                    <i class="iconfont">&#xe6a7;</i>
-				                    <cite>供应商账款明细表</cite>
-				                </a>
-		                	</li> 
 	                    </ul>
                 	</li>
                    <!-- <li>
@@ -1107,5 +977,4 @@
     <!-- 右侧主体结束 -->
     <!-- 中部结束 -->
 </body>
-
 </html>

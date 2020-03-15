@@ -372,6 +372,9 @@
 </div>
 
 <script src="layui.js"></script>
+<script type="text/html" id="barDemo1">
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" name="del">删除</a>
+</script>
 <script>
 	var priabillNumber = ""
 	var num1 = "";
@@ -628,15 +631,7 @@
 						  				content:"PayablesCurrency2.html"
 						  			});
 						  		});
-						  		
-						  		//表格行点击事件
-						  		table.on('row(materialsContent2)',function(obj){
-						  			var this1 = $(this);
-						  			var tr = this1.parents('tr');
-						  			var trIndex = tr.data('index');
-						  			alert(trIndex);
-						  		});
-						  		
+						  						  		
 						  		//新增按钮
 						  		$("#xinzengXz").click(function(){
 						  			//表格重载刷新 也相当于清空
@@ -720,6 +715,22 @@
 						       									
 						         	
 						        });
+						        
+						        
+						        table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
+								    var data = obj.data //获得当前行数据
+								    ,layEvent = obj.event; //获得 lay-event 对应的值	
+								    var $this = $(this);
+								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
+						  			var trIndex = tr.data('index');	//索引
+								    if(layEvent === 'del'){
+								      layer.confirm('真的删除行么', function(index){
+								        obj.del(); //删除对应行（tr）的DOM结构
+								        layer.close(index);								        								        
+								      });
+								    }
+								});
+						        
 						        
 						        //点击以下冲款 重载TABLE
 						       var froms2 = form2.on('select(jisuan)',function(data){						        
@@ -871,6 +882,7 @@
 						                , {field: 'ppDiscountamount',width:120, title: '(折让金额)', edit: 'text',sort:true,totalRow: true}
 						                , {field: 'ppAmountcharged', width:120,title: '(冲款金额)', edit: 'text',sort:true,totalRow: true}
 						                , {field: 'ppOffsetamount', width:120,title: '(冲抵金额)', edit: 'text',sort:true,totalRow: true}
+						                , {fixed: 'right', title: '操作' ,toolbar: '#barDemo1'}
 						            ]]
 						            ,page:true//是否开启分页
 						            ,limits:[5,10,15]//选择每页显示多少条数据

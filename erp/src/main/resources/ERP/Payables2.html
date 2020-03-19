@@ -715,23 +715,7 @@
 						       									
 						         	
 						        });
-						        
-						        
-						        table.on('tool(materialsContent2)', function(obj){ //注：tool 是工具条事件名，materialsContent2 是 table 原始容器的属性 lay-filter="对应的值"
-								    var data = obj.data //获得当前行数据
-								    ,layEvent = obj.event; //获得 lay-event 对应的值	
-								    var $this = $(this);
-								    var tr = $this.parents('tr');	//获取当前行 tr 的DOM节点
-						  			var trIndex = tr.data('index');	//索引
-								    if(layEvent === 'del'){
-								      layer.confirm('真的删除行么', function(index){
-								        obj.del(); //删除对应行（tr）的DOM结构
-								        layer.close(index);								        								        
-								      });
-								    }
-								});
-						        
-						        
+						        						       						        						        
 						        //点击以下冲款 重载TABLE
 						       var froms2 = form2.on('select(jisuan)',function(data){						        
 				       	if($("#payablesSupplierName").val()==""||this_.page.list[0].payablesSupplierName==""){
@@ -942,7 +926,7 @@
 								    } else if(layEvent === 'del'){
 								      layer.confirm('真的删除行么', function(index){
 								        obj.del(); //删除对应行（tr）的DOM结构								        
-								        
+								        layer.close(index);	
 								        //向服务端发送删除指令
 								      });
 								    }else if(layEvent === 'save'){

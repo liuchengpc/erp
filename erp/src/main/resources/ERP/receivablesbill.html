@@ -512,7 +512,7 @@
 							      ,{field:'recedetailType', title:'来源别',}
 							      ,{field:'recedetailNumber', title:'来源单号',  sort: true,edit: 'text',event: 'viewReport', style: 'font-size: 12px; color: #666; cursor:pointer',}
 							      ,{field:'recedetailRemarks', title:'摘要',}
-						        	,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
+						          ,{fixed: 'right', title:'操作', toolbar: '#barDemo', }
 							    ]]
 							   /* ,parseData:function(res){
 							    	console.log("分页数据：");
@@ -569,9 +569,9 @@
 //								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(3) div").html("");
 								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(4)").attr("data-edit","text");
 								      $(".layui-table-body tbody tr[data-index='"+trIndex+"'] td:eq(5)").attr("data-edit","text");
-								    } else if(event === 'del'){
+								   } else if(event === 'del'){	
 								      layer.confirm('真的删除行么', function(index){
-								        obj.del(); //删除对应行（tr）的DOM结构
+								        obj.del(); //删除对应行（tr）的DOM结构 	
 								        layer.close(index);
 								        //向服务端发送删除指令
 								      });
@@ -925,7 +925,6 @@
 					}else{
 						
 					}	
-					
 					this.goFirstPage1 =false;//第一笔
 		            this.goPrePage1 =false;//上一笔				            
 	             	this.goNextPage1 =false;//下一笔
